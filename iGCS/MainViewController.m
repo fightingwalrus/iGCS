@@ -203,6 +203,12 @@ WaypointsHolder *newWaypoints;
                 // We completed a packet, so...
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
+                        heartbeatOnlyCount = [NSNumber numberWithInt:[heartbeatOnlyCount intValue] + 1];
+                        //If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
+                        if([heartbeatOnlyCount intValue] > 5)
+                        {
+                            mavLinkInitialized = false;
+                        }
                         if (!mavLinkInitialized) {
                             TESTFLIGHT_CHECKPOINT(@"FIRST HEARTBEAT");
                             mavLinkInitialized = true;
@@ -282,6 +288,10 @@ WaypointsHolder *newWaypoints;
                         break;
 
                     default:
+                    {
+                        //If we get any other message than heartbeat, we are getting the messages we requested
+                        heartbeatOnlyCount = [NSNumber numberWithInt:0];
+                    }
                         //NSLog(@"UNHANDLED message with ID %d", msg.msgid);
                         break;
                 }

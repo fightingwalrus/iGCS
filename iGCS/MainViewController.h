@@ -20,6 +20,7 @@
     bool cableConnected;
     
     bool mavLinkInitialized;
+    NSNumber *heartbeatOnlyCount;
     
     GCSMapViewController *gcsMapVC;
     CommsViewController *commsVC;
