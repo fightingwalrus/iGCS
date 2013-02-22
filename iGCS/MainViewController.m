@@ -15,6 +15,8 @@
 
 #import "CommsViewController.h"
 #import "GCSMapViewController.h"
+
+#import "CommController.h"
 #import "WaypointsViewController.h"
 
 #import "WaypointsHolder.h"
@@ -60,6 +62,15 @@ RscMgr *g_rscMgr = NULL;
     rscMgr = [[RscMgr alloc] init]; 
     [rscMgr setDelegate:self];  // FIXME: figure out best place to make this call to avoid commsVC "missing" (resetting) the initial cableConnected message when starting up with the cable already connected
     g_rscMgr = rscMgr;
+    
+    
+    
+    // Initialize MavLink Interfaces
+    
+    [CommController start:<#^(id, int)mavLinkReceivedBlock#>];
+    
+    
+    
 }
 
 #pragma mark - View lifecycle
