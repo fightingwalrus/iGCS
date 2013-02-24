@@ -10,4 +10,17 @@
 
 @implementation MavLinkConnection
 
+
++(MavLinkConnection*)createForSource:(MavLinkInterface*)source destination:(MavLinkInterface*)destination
+{
+    
+    MavLinkConnection *conn = [[MavLinkConnection alloc] init];
+    
+    conn.source = source;
+    conn.destination = destination;
+    
+    return conn;
+    
+}
+
 @end

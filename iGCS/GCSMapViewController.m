@@ -13,6 +13,8 @@
 #import "WaypointAnnotation.h"
 #import "GaugeViewCommon.h"
 
+#import "CommController.h"
+
 @implementation GCSMapViewController
 
 @synthesize map;
@@ -148,11 +150,11 @@
 }
 
 - (IBAction) readWaypointButtonClick {
-    [(MainViewController*)[self parentViewController] issueReadWaypointsRequest];
+    [[CommController appMLI] issueReadWaypointsRequest];
 }
 
 - (IBAction) autoButtonClick {
-    [(MainViewController*)[self parentViewController] issueSetAUTOModeCommand];
+    [[CommController appMLI] issueSetAUTOModeCommand];
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -166,7 +168,7 @@
         [map setNeedsDisplay];
         
         // Let's go!
-        [(MainViewController*)[self parentViewController] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
+        [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
     }
 }
 

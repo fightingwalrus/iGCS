@@ -21,13 +21,19 @@
 
 #import "MavLinkInterface.h"
 
-
-typedef void (^ MavLinkReceivedCallback)(NSDictionary*);
+#import "MainViewController.h"
 
 
 
 @interface CommController : NSObject
 
-+(void)start:(MavLinkReceivedCallback)mavLinkReceivedBlock;
+
+
+
+
++(void)start:(MainViewController*)mvc;
+
++(iGCSMavLinkInterface*)appMLI;
+
 
 @end

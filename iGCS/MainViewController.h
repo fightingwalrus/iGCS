@@ -15,22 +15,14 @@
 
 @class WaypointsHolder;
 
-@interface MainViewController : UITabBarController <RscMgrDelegate> {
-    RscMgr *rscMgr;
-    bool cableConnected;
-    
-    bool mavLinkInitialized;
-    NSNumber *heartbeatOnlyCount;
-    
-    GCSMapViewController *gcsMapVC;
-    CommsViewController *commsVC;
-    WaypointsViewController *waypointVC;
-}
+@interface MainViewController : UITabBarController
 
-- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints;
-- (void) issueReadWaypointsRequest;
-- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
-- (void) issueSetAUTOModeCommand;
+
+@property (strong) GCSMapViewController *gcsMapVC;
+@property (strong) CommsViewController *commsVC;
+@property (strong) WaypointsViewController *waypointVC;
+
+
 
 
 @end

@@ -15,36 +15,56 @@
 
 
 static MavLinkConnectionPool *connections;
+static MainViewController *mainVC;
+
+static iGCSMavLinkInterface *appMLI;
 
 
-
-// called at startup for app to initialize interfaces and register
-// its mavlink input block
-+(void)start:(MavLinkReceivedCallback)mavLinkReceivedBlock
+// called at startup for app to initialize interfaces
+// input: instance of MainViewController - used to trigger view updates during comm operations
++(void)start:(MainViewController*)mvc
 {
-
-    // TODO: Load settings for which interfaces to use
-    
-    
     
     connections = [[MavLinkConnectionPool alloc] init];
     
+    mainVC = mvc;
     
+    [self createDefaultConnections];
     
-    // configure input connection as redpark cable
-    RedparkSerialCable *redParkCable = [RedparkSerialCable createConnection];
-    
-    [connections addInput:redParkCable];
-    
-    
-    // configure output connection as iGCSMavLinkInterface
-    iGCSMavLinkInterface *appInput = [iGCSMavLinkInterface createWithReceiveBlock: mavLinkReceivedBlock];
-    [connections addOutput:appInput];
     
     
 }
 
 
+
+// TODO: Move this stuff to user defaults controllable in app views
++(void)createDefaultConnections
+{
+    // configure input connection as redpark cable
+    RedparkSerialCable *redParkCable = [RedparkSerialCable createWithViews:mainVC];
+    
+    [connections addSource:redParkCable];
+    
+    
+    // configure output connection as iGCSMavLinkInterface
+    appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
+    [connections addDestination:appMLI];
+    
+    
+    
+    // Forward redpark RX to app input
+    [connections createConnection:redParkCable destination:appMLI];
+    
+    
+    // Forward app output to redpark TX
+    [connections createConnection:appMLI destination:redParkCable];
+}
+
+
++(iGCSMavLinkInterface*)appMLI
+{
+    return appMLI;
+}
 
 
 

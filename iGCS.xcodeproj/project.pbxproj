@@ -654,13 +654,9 @@
 		49DD938E16D748AF000DE266 /* MavLink */ = {
 			isa = PBXGroup;
 			children = (
+				49DD93F416D9739F000DE266 /* Utility */,
+				49DD93F316D97383000DE266 /* Connections */,
 				49DD93C916D752C9000DE266 /* Interfaces */,
-				CAF8ADA214E1F9FC00DB3D84 /* MavLinkPacketHandler.h */,
-				CA4F239914DE82E6007C97B7 /* MavLinkTools.h */,
-				49DD93E616D75604000DE266 /* MavLinkConnection.h */,
-				49DD93E716D75604000DE266 /* MavLinkConnection.m */,
-				49DD93EA16D75912000DE266 /* MavLinkConnectionPool.h */,
-				49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */,
 			);
 			path = MavLink;
 			sourceTree = "<group>";
@@ -682,6 +678,26 @@
 				49DD93EF16D75978000DE266 /* MavLinkInterface.m */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		49DD93F316D97383000DE266 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				49DD93E616D75604000DE266 /* MavLinkConnection.h */,
+				49DD93E716D75604000DE266 /* MavLinkConnection.m */,
+				49DD93EA16D75912000DE266 /* MavLinkConnectionPool.h */,
+				49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */,
+			);
+			name = Connections;
+			sourceTree = "<group>";
+		};
+		49DD93F416D9739F000DE266 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CAF8ADA214E1F9FC00DB3D84 /* MavLinkPacketHandler.h */,
+				CA4F239914DE82E6007C97B7 /* MavLinkTools.h */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {

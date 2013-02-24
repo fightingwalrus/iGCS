@@ -8,9 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "MavLinkInterface.h"
+#import "RscMgr.h"
 
-@interface RedparkSerialCable : MavLinkInterface
+#import "MainViewController.h"
 
-+(RedparkSerialCable*)createConnection;
+@interface RedparkSerialCable : MavLinkInterface <RscMgrDelegate>
+
++(RedparkSerialCable*)createWithViews:(MainViewController*)mvc;
+
+
+
+@property (strong) RscMgr *rscMgr;
+@property BOOL cableConnected;
+
+
+
+@property (strong) MainViewController *mainVC;
+
 
 @end

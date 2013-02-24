@@ -7,11 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CommController.h"
+#import "MavLinkInterface.h"
+#import "MainViewController.h"
+
+
+#import "WaypointsHolder.h"
 
 @interface iGCSMavLinkInterface : MavLinkInterface
 
-+(iGCSMavLinkInterface*)createWithReceiveBlock:(MavLinkReceivedBlock)block;
+
+
+
+
+
+@property (strong) MainViewController *mainVC;
+@property (strong) NSNumber *heartbeatOnlyCount;
+@property BOOL mavLinkInitialized;
+@property (strong) WaypointsHolder *waypoints;
+
+
++(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
+
+
+- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints;
+- (void) issueReadWaypointsRequest;
+- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
+- (void) issueSetAUTOModeCommand;
 
 
 @end
