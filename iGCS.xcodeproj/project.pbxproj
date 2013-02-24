@@ -7,16 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496E623E16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */; };
+		496E623F16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */; };
+		496E624016DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */; };
+		496E624116DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */; };
+		496E624216DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */; };
+		496E624316DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */; };
+		496E624616DACA7800E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624516DACA7800E52E4A /* BluetoothStream.m */; };
+		496E624716DACA7800E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624516DACA7800E52E4A /* BluetoothStream.m */; };
+		496E624B16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */; };
+		496E624C16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */; };
+		496E625316DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */; };
+		496E625416DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */; };
+		496E625716DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */; };
+		496E625816DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */; };
+		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		49DD939116D7496F000DE266 /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD939016D7496F000DE266 /* CommController.m */; };
 		49DD939216D7496F000DE266 /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD939016D7496F000DE266 /* CommController.m */; };
-		49DD93D416D752C9000DE266 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93CF16D752C9000DE266 /* RedparkSerialCable.m */; };
-		49DD93D516D752C9000DE266 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93CF16D752C9000DE266 /* RedparkSerialCable.m */; };
-		49DD93D816D75320000DE266 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93D716D75320000DE266 /* BluetoothStream.m */; };
-		49DD93D916D75320000DE266 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93D716D75320000DE266 /* BluetoothStream.m */; };
 		49DD93DC16D7532F000DE266 /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DB16D7532F000DE266 /* SocketStream.m */; };
 		49DD93DD16D7532F000DE266 /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DB16D7532F000DE266 /* SocketStream.m */; };
-		49DD93E016D75340000DE266 /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DF16D7533F000DE266 /* FightingWalrusRadio.m */; };
-		49DD93E116D75340000DE266 /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DF16D7533F000DE266 /* FightingWalrusRadio.m */; };
 		49DD93E416D75377000DE266 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */; };
 		49DD93E516D75377000DE266 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */; };
 		49DD93E816D75604000DE266 /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E716D75604000DE266 /* MavLinkConnection.m */; };
@@ -25,6 +34,7 @@
 		49DD93ED16D75912000DE266 /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */; };
 		49DD93F016D75979000DE266 /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EF16D75978000DE266 /* MavLinkInterface.m */; };
 		49DD93F116D75979000DE266 /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EF16D75978000DE266 /* MavLinkInterface.m */; };
+		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
 		CA2BF51F1527EC5800C4A1D0 /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2BF51E1527EC5800C4A1D0 /* WaypointHelper.m */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -80,16 +90,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		496E623816DACA6A00E52E4A /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
+		496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
+		496E623A16DACA6A00E52E4A /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
+		496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusProtocol.m; sourceTree = "<group>"; };
+		496E623C16DACA6A00E52E4A /* FightingWalrusRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusRadio.h; sourceTree = "<group>"; };
+		496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusRadio.m; sourceTree = "<group>"; };
+		496E624416DACA7800E52E4A /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
+		496E624516DACA7800E52E4A /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
+		496E624916DACA9B00E52E4A /* RedparkSerialCable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedparkSerialCable.h; sourceTree = "<group>"; };
+		496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
+		496E625116DACB3400E52E4A /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
+		496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
+		496E625516DACB4B00E52E4A /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
+		496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
+		496E625916DAD7D500E52E4A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		49DD938F16D7496F000DE266 /* CommController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommController.h; sourceTree = "<group>"; };
 		49DD939016D7496F000DE266 /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
-		49DD93CE16D752C9000DE266 /* RedparkSerialCable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedparkSerialCable.h; sourceTree = "<group>"; };
-		49DD93CF16D752C9000DE266 /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
-		49DD93D616D75320000DE266 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
-		49DD93D716D75320000DE266 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
 		49DD93DA16D7532F000DE266 /* SocketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketStream.h; sourceTree = "<group>"; };
 		49DD93DB16D7532F000DE266 /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
-		49DD93DE16D7533F000DE266 /* FightingWalrusRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusRadio.h; sourceTree = "<group>"; };
-		49DD93DF16D7533F000DE266 /* FightingWalrusRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusRadio.m; sourceTree = "<group>"; };
 		49DD93E216D75377000DE266 /* iGCSMavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSMavLinkInterface.h; sourceTree = "<group>"; };
 		49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSMavLinkInterface.m; sourceTree = "<group>"; };
 		49DD93E616D75604000DE266 /* MavLinkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkConnection.h; sourceTree = "<group>"; };
@@ -98,6 +118,7 @@
 		49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnectionPool.m; sourceTree = "<group>"; };
 		49DD93EE16D75978000DE266 /* MavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkInterface.h; sourceTree = "<group>"; };
 		49DD93EF16D75978000DE266 /* MavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkInterface.m; sourceTree = "<group>"; };
+		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
 		CA20FD28164E4754005187A8 /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
@@ -558,6 +579,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */,
+				49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */,
 				CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
 				CA499F6714DE33BC00FCC9FB /* CoreGraphics.framework in Frameworks */,
@@ -585,6 +608,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		496E623616DACA2700E52E4A /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				496E625916DAD7D500E52E4A /* TransferService.h */,
+				496E624416DACA7800E52E4A /* BluetoothStream.h */,
+				496E624516DACA7800E52E4A /* BluetoothStream.m */,
+				496E625116DACB3400E52E4A /* BTLEMavLinkCentral.h */,
+				496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */,
+				496E625516DACB4B00E52E4A /* BTLEMavLinkPeripheral.h */,
+				496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		496E623716DACA4400E52E4A /* FightingWalrus */ = {
+			isa = PBXGroup;
+			children = (
+				496E623816DACA6A00E52E4A /* FightingWalrusMFI.h */,
+				496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */,
+				496E623A16DACA6A00E52E4A /* FightingWalrusProtocol.h */,
+				496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */,
+				496E623C16DACA6A00E52E4A /* FightingWalrusRadio.h */,
+				496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */,
+			);
+			path = FightingWalrus;
+			sourceTree = "<group>";
+		};
+		496E624816DACA9B00E52E4A /* Redpark */ = {
+			isa = PBXGroup;
+			children = (
+				496E624916DACA9B00E52E4A /* RedparkSerialCable.h */,
+				496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */,
+			);
+			path = Redpark;
+			sourceTree = "<group>";
+		};
 		49DD938916D74799000DE266 /* Comm */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,14 +723,11 @@
 		49DD93C916D752C9000DE266 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				49DD93CE16D752C9000DE266 /* RedparkSerialCable.h */,
-				49DD93CF16D752C9000DE266 /* RedparkSerialCable.m */,
-				49DD93D616D75320000DE266 /* BluetoothStream.h */,
-				49DD93D716D75320000DE266 /* BluetoothStream.m */,
+				496E624816DACA9B00E52E4A /* Redpark */,
+				496E623716DACA4400E52E4A /* FightingWalrus */,
+				496E623616DACA2700E52E4A /* Bluetooth */,
 				49DD93DA16D7532F000DE266 /* SocketStream.h */,
 				49DD93DB16D7532F000DE266 /* SocketStream.m */,
-				49DD93DE16D7533F000DE266 /* FightingWalrusRadio.h */,
-				49DD93DF16D7533F000DE266 /* FightingWalrusRadio.m */,
 				49DD93E216D75377000DE266 /* iGCSMavLinkInterface.h */,
 				49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */,
 				49DD93EE16D75978000DE266 /* MavLinkInterface.h */,
@@ -1085,6 +1141,8 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				496E625A16DADDB100E52E4A /* CoreBluetooth.framework */,
+				49DD940216D9A5C7000DE266 /* Security.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1394,14 +1452,18 @@
 				CA7B27D7152ECCD600E258AF /* GotoPointAnnotation.m in Sources */,
 				CAECDB891678786E000FE079 /* DoubleBufferedAsyncView.m in Sources */,
 				49DD939116D7496F000DE266 /* CommController.m in Sources */,
-				49DD93D416D752C9000DE266 /* RedparkSerialCable.m in Sources */,
-				49DD93D816D75320000DE266 /* BluetoothStream.m in Sources */,
 				49DD93DC16D7532F000DE266 /* SocketStream.m in Sources */,
-				49DD93E016D75340000DE266 /* FightingWalrusRadio.m in Sources */,
 				49DD93E416D75377000DE266 /* iGCSMavLinkInterface.m in Sources */,
 				49DD93E816D75604000DE266 /* MavLinkConnection.m in Sources */,
 				49DD93EC16D75912000DE266 /* MavLinkConnectionPool.m in Sources */,
 				49DD93F016D75979000DE266 /* MavLinkInterface.m in Sources */,
+				496E623E16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */,
+				496E624016DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */,
+				496E624216DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */,
+				496E624616DACA7800E52E4A /* BluetoothStream.m in Sources */,
+				496E624B16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */,
+				496E625316DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */,
+				496E625716DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,14 +1473,18 @@
 			files = (
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
 				49DD939216D7496F000DE266 /* CommController.m in Sources */,
-				49DD93D516D752C9000DE266 /* RedparkSerialCable.m in Sources */,
-				49DD93D916D75320000DE266 /* BluetoothStream.m in Sources */,
 				49DD93DD16D7532F000DE266 /* SocketStream.m in Sources */,
-				49DD93E116D75340000DE266 /* FightingWalrusRadio.m in Sources */,
 				49DD93E516D75377000DE266 /* iGCSMavLinkInterface.m in Sources */,
 				49DD93E916D75604000DE266 /* MavLinkConnection.m in Sources */,
 				49DD93ED16D75912000DE266 /* MavLinkConnectionPool.m in Sources */,
 				49DD93F116D75979000DE266 /* MavLinkInterface.m in Sources */,
+				496E623F16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */,
+				496E624116DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */,
+				496E624316DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */,
+				496E624716DACA7800E52E4A /* BluetoothStream.m in Sources */,
+				496E624C16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */,
+				496E625416DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */,
+				496E625816DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1512,6 +1578,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1535,6 +1605,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1561,6 +1635,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -1578,6 +1653,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";

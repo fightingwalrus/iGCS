@@ -41,6 +41,10 @@
 
 - (void) setCableConnectionStatus:(bool) connectedP;
 
+
 - (void)numBytesTimerTick:(NSTimer *)timer;
+
+- (IBAction)bluetoothCentralClicked:(id)sender;
+- (IBAction)bluetoothPeripheralClicked:(id)sender;
 
 @end

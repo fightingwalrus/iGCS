@@ -34,12 +34,14 @@
 	</array>
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
+		<string>com.fightingwalrus.prototype</string>
 		<string>com.redpark.serdb9</string>
 		<string>com.redpark.serEval</string>
 		<string>com.redpark.hobdb9</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 </dict>

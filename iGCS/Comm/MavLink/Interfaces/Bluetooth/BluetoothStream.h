@@ -11,4 +11,9 @@
 
 @interface BluetoothStream : MavLinkInterface
 
+
+
++(BluetoothStream*)createForPeripheral;
++(BluetoothStream*)createForCentral;
+
 @end

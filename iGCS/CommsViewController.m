@@ -270,6 +270,12 @@
     [dataRateGraph reloadData];
 }
 
+- (IBAction)bluetoothCentralClicked:(id)sender {
+}
+
+- (IBAction)bluetoothPeripheralClicked:(id)sender {
+}
+
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
     return MIN(kBperSecondCircularIndex,NUM_KBPS_DATA_POINTS-NUM_KPBS_TICKS_PER_SECOND);
 }

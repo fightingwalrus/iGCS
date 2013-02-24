@@ -68,4 +68,20 @@ static iGCSMavLinkInterface *appMLI;
 
 
 
++(void) startBluetooth:(BOOL)isPeripheral
+{
+    if (isPeripheral)
+    {
+        BluetoothStream *bts = [BluetoothStream createForPeripheral];
+    }
+    else
+    {
+        BluetoothStream *bts = [BluetoothStream createForCentral];
+    }
+    
+}
+
+
+
+
 @end
