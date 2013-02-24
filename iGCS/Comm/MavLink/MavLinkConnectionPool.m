@@ -49,7 +49,7 @@
 
 
 
--(void)interface:(MavLinkInterface*)interface receivedBytes:(uint8_t*)bytes length:(int)length
+-(void)interface:(MavLinkInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length
 {
     
     for (MavLinkConnection *connection in self.connections)
@@ -57,7 +57,7 @@
         if ([connection.source isEqual:interface])
         {
             // Send the bytes to the destination for each matched connection
-            [connection.destination receiveForwardedBytes:bytes length:length];
+            [connection.destination consumeData:bytes length:length];
         }
     }
 }

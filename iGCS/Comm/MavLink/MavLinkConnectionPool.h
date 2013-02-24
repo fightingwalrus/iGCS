@@ -25,7 +25,7 @@
 -(void)addSource:(MavLinkInterface*)interface;
 
 
--(void)interface:(MavLinkInterface*)interface receivedBytes:(uint8_t*)bytes length:(int)length;
+-(void)interface:(MavLinkInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length;
 
 
 -(void)createConnection:(MavLinkInterface*)source destination:(MavLinkInterface*)destination;

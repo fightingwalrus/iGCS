@@ -14,7 +14,7 @@
 
 
 
--(void)receiveForwardedBytes:(uint8_t*)bytes length:(int)length
+-(void)consumeData:(uint8_t*)bytes length:(int)length
 {
     // gets called when matching source interface in a MavLinkConnection has new data
     
@@ -26,13 +26,13 @@
 
 
 // call this method for source interfaces when new data is available
--(void)receivedBytes:(uint8_t*)bytes length:(int)length
+-(void)produceData:(uint8_t*)bytes length:(int)length
 {
     
     // ConnectionPool must be assigned
     assert(self.connectionPool);
     
-    [self.connectionPool interface:self receivedBytes:bytes length:length];
+    [self.connectionPool interface:self producedBytes:bytes length:length];
     
     
 }

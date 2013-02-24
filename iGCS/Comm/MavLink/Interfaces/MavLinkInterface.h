@@ -23,11 +23,11 @@
 
 
 // receiveBytes processes bytes forwarded from another interface
--(void)receiveForwardedBytes:(uint8_t*)bytes length:(int)length;
+-(void)consumeData:(uint8_t*)bytes length:(int)length;
 
 
 
--(void)receivedBytes:(uint8_t*)bytes length:(int)length;
+-(void)produceData:(uint8_t*)bytes length:(int)length;
 
 
 @end

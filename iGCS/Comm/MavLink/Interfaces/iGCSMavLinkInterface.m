@@ -46,7 +46,7 @@ mavlink_heartbeat_t heartbeat;
 
 
 // MavLink destination override
--(void)receiveForwardedBytes:(uint8_t*)bytes length:(int)length
+-(void)consumeData:(uint8_t*)bytes length:(int)length
 {
     @autoreleasepool {
         

@@ -33,7 +33,7 @@
 
 
 
--(void)receiveForwardedBytes:(uint8_t *)bytes length:(int)length
+-(void)consumeData:(uint8_t *)bytes length:(int)length
 {
     send_uart_bytes(0, bytes, length);
 }
@@ -123,7 +123,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     
     
     
-    [self receivedBytes:buf length:n];
+    [self produceData:buf length:n];
     
     
 
