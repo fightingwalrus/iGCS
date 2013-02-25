@@ -19,7 +19,7 @@ static MainViewController *mainVC;
 
 static iGCSMavLinkInterface *appMLI;
 
-static BluetoothStream *bts;
+static RedparkSerialCable *redParkCable;
 
 
 // called at startup for app to initialize interfaces
@@ -42,14 +42,16 @@ static BluetoothStream *bts;
 // TODO: Move this stuff to user defaults controllable in app views
 +(void)createDefaultConnections
 {
+    
+    appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
+    
     // configure input connection as redpark cable
-    RedparkSerialCable *redParkCable = [RedparkSerialCable createWithViews:mainVC];
+    redParkCable = [RedparkSerialCable createWithViews:mainVC];
     
     [connections addSource:redParkCable];
     
     
     // configure output connection as iGCSMavLinkInterface
-    appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
     [connections addDestination:appMLI];
     
     
@@ -70,30 +72,38 @@ static BluetoothStream *bts;
 
 
 
-// TODO: Make this input an enum instead of BOOL
-+(void) startBluetooth:(BOOL)isPeripheral
-{    
-    if (isPeripheral)
-    {
-        bts = [BluetoothStream createForPeripheral];
-    }
-    else
-    {
-        bts = [BluetoothStream createForCentral];
-    }
++(void) startBluetoothTx
+{
+    // Start Bluetooth driver
+    BluetoothStream *bts = [BluetoothStream createForTx];
     
-    NSLog(@"Created BluetoothStream: %@",[bts description]);
+    
+    // Create connection from redpark to bts
+    [connections createConnection:redParkCable destination:bts];
+    
+    
+    NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
+    
+}
+
++(void) startBluetoothRx
+{
+    // Start Bluetooth driver
+    BluetoothStream *bts = [BluetoothStream createForRx];
+    
+    
+    // Create connection from redpark to bts
+    [connections createConnection:bts destination:appMLI];
+    
+    
+    NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
     
 }
 
 
-
-+(void) closeAllConnections
++(void) closeAllInterfaces
 {
-    if (bts)
-    {
-        
-    }
+    [connections closeAllInterfaces];
 }
 
 

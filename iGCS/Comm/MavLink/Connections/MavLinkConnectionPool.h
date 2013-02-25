@@ -29,5 +29,6 @@
 
 
 -(void)createConnection:(MavLinkInterface*)source destination:(MavLinkInterface*)destination;
+-(void)closeAllInterfaces;
 
 @end

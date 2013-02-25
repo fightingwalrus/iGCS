@@ -11,25 +11,35 @@
 @implementation BluetoothStream
 
 
-+(BluetoothStream*) createForPeripheral
+
++(BluetoothStream*) createForTx
 {
     NSLog(@"Creating BluetoothStream for Peripheral mode (Tx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
     
-    bts.streamPeripheral = [[BTLEMavLinkPeripheral alloc] init];
+    // BTLE usage
+    //bts.streamPeripheral = [[BTLEMavLinkPeripheral alloc] init];
+    
+    // GKSession usage
+    //bts.streamGK =
     
     return bts;
 }
 
 
-+(BluetoothStream*) createForCentral
++(BluetoothStream*) createForRx
 {
     NSLog(@"Creating BluetoothStream for Central mode (Rx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
     
-    bts.streamCentral = [[BTLEMavLinkCentral alloc] init];
+    // BTLE usage
+    //bts.streamCentral = [[BTLEMavLinkCentral alloc] init];
+    
+    
+    // GKSession usage
+    //bts.streamGK =
     
     return bts;
 }

@@ -274,13 +274,13 @@
 
 - (IBAction)bluetoothCentralClicked:(id)sender {
     
-    [CommController startBluetooth:NO];
+    [CommController startBluetoothRx];
     
 }
 
 - (IBAction)bluetoothPeripheralClicked:(id)sender {
     
-    [CommController startBluetooth:YES];
+    [CommController startBluetoothTx];
 }
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {

@@ -33,11 +33,11 @@
 
 +(void)start:(MainViewController*)mvc;
 
-+(void) startBluetooth:(BOOL)isPeripheral;
++(void) startBluetoothTx;
++(void) startBluetoothRx;
 
 +(iGCSMavLinkInterface*)appMLI;
 
-+(void) closeAllConnections;
-
++(void) closeAllInterfaces;
 
 @end

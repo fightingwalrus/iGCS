@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "CommController.h"
+
 
 #define REQUIRE_WALRUS 0
 
@@ -116,6 +118,9 @@ static AppDelegate *shared;
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    [CommController closeAllInterfaces];
+    
     if (alertView.visible) {
 		[alertView dismissWithClickedButtonIndex:0 animated:YES];
 	}

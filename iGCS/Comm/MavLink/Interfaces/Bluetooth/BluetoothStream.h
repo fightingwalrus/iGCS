@@ -22,7 +22,7 @@
 
 
 
-+(BluetoothStream*)createForPeripheral;
-+(BluetoothStream*)createForCentral;
++(BluetoothStream*)createForTx;
++(BluetoothStream*)createForRx;
 
 @end

@@ -46,6 +46,25 @@
 }
 
 
+-(void)removeAllConnections
+{
+    [self.connections removeAllObjects];
+}
+
+-(void)closeAllInterfaces
+{
+    for (MavLinkInterface *interface in self.sourceInterfaces)
+    {
+        [interface close];
+    }
+    for (MavLinkInterface *interface in self.destinationInterfaces)
+    {
+        [interface close];
+    }
+    
+    [self removeAllConnections];
+}
+
 
 -(void)createConnection:(MavLinkInterface*)source destination:(MavLinkInterface*)destination
 {

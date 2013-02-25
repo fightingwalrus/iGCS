@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
+		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
+		492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
+		492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -48,10 +52,6 @@
 		496E62CB16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */; };
 		496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
 		496E62CD16DAFBF600E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
-		496E62CE16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */; };
-		496E62CF16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */; };
-		496E62D016DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */; };
-		496E62D116DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */; };
 		496E62D216DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */; };
 		496E62D316DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */; };
 		496E62D416DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */; };
@@ -106,6 +106,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		492C812616DBCCE9004001FF /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
+		492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
+		492C812816DBCCE9004001FF /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
+		492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
+		492C812A16DBCCE9004001FF /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -144,11 +149,6 @@
 		496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnectionPool.m; sourceTree = "<group>"; };
 		496E62AA16DAFBF600E52E4A /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		496E62AB16DAFBF600E52E4A /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
-		496E62AC16DAFBF600E52E4A /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
-		496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
-		496E62AE16DAFBF600E52E4A /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
-		496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
-		496E62B016DAFBF600E52E4A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		496E62B216DAFBF600E52E4A /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
 		496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
 		496E62B416DAFBF600E52E4A /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
@@ -624,6 +624,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		492C812516DBCCE9004001FF /* BTLE */ = {
+			isa = PBXGroup;
+			children = (
+				492C812616DBCCE9004001FF /* BTLEMavLinkCentral.h */,
+				492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */,
+				492C812816DBCCE9004001FF /* BTLEMavLinkPeripheral.h */,
+				492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */,
+				492C812A16DBCCE9004001FF /* TransferService.h */,
+			);
+			path = BTLE;
+			sourceTree = "<group>";
+		};
+		492C812B16DBCCE9004001FF /* GKSession */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GKSession;
+			sourceTree = "<group>";
+		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,13 +765,10 @@
 		496E62A916DAFBF600E52E4A /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				492C812516DBCCE9004001FF /* BTLE */,
+				492C812B16DBCCE9004001FF /* GKSession */,
 				496E62AA16DAFBF600E52E4A /* BluetoothStream.h */,
 				496E62AB16DAFBF600E52E4A /* BluetoothStream.m */,
-				496E62AC16DAFBF600E52E4A /* BTLEMavLinkCentral.h */,
-				496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */,
-				496E62AE16DAFBF600E52E4A /* BTLEMavLinkPeripheral.h */,
-				496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */,
-				496E62B016DAFBF600E52E4A /* TransferService.h */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -1507,8 +1523,6 @@
 				496E62C816DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
 				496E62CA16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
 				496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
-				496E62CE16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */,
-				496E62D016DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
 				496E62D216DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */,
 				496E62D416DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */,
 				496E62D616DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
@@ -1516,6 +1530,8 @@
 				496E62DA16DAFBF600E52E4A /* MavLinkInterface.m in Sources */,
 				496E62DC16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
 				496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */,
+				492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
+				492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,8 +1556,6 @@
 				496E62C916DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
 				496E62CB16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
 				496E62CD16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
-				496E62CF16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */,
-				496E62D116DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
 				496E62D316DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */,
 				496E62D516DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */,
 				496E62D716DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
@@ -1549,6 +1563,8 @@
 				496E62DB16DAFBF600E52E4A /* MavLinkInterface.m in Sources */,
 				496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
 				496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */,
+				492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
+				492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
