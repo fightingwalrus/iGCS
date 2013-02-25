@@ -80,7 +80,7 @@
 				[self queueTxBytes:[NSData dataWithBytes:requestDebugInstrum length:sizeof(requestDebugInstrum)]];
                 [self queueTxBytes:[NSData dataWithBytes:requestMavLinkData length:sizeof(requestMavLinkData)]];
                 
-                NSLog(@"Sent accessory data requests.");
+                //NSLog(@"Sent accessory data requests.");
 			}
             
 		}
