@@ -38,6 +38,9 @@
     unsigned int trackMKMapPointsLen;
     unsigned int numTrackPoints;
     
+    int				gamePacketNumber;
+    int				gameUniqueID;
+
 }
 
 @property(nonatomic) NSInteger		gameState;
