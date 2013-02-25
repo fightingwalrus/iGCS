@@ -38,7 +38,19 @@
 
 
 
-
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        GKPeerPickerController*		picker;
+        
+        picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
+        picker.delegate = self;
+        [picker show]; // show the Peer Picker
+    }
+    return self;
+}
 
 
 

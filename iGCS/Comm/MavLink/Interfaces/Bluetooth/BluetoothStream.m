@@ -22,7 +22,7 @@
     //bts.streamPeripheral = [[BTLEMavLinkPeripheral alloc] init];
     
     // GKSession usage
-    //bts.streamGK =
+    bts.gkSessionController = [[GKSessionController alloc] init];
     
     return bts;
 }
@@ -39,7 +39,7 @@
     
     
     // GKSession usage
-    //bts.streamGK =
+    bts.gkSessionController = [[GKSessionController alloc] init];
     
     return bts;
 }
