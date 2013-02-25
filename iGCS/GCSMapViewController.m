@@ -44,6 +44,17 @@
 
 @synthesize autoButton;
 
+typedef enum {
+	kStateStartGame,
+	kStatePicker,
+	kStateMultiplayer,
+	kStateMultiplayerCointoss,
+	kStateMultiplayerReconnect
+} gameStates;
+
+// GameKit Session ID for app
+#define kTankSessionID @"groundStation"
+
 #define AIRPLANE_ICON_SIZE 48
 
 - (void)didReceiveMemoryWarning
@@ -154,6 +165,119 @@
 - (IBAction) autoButtonClick {
     [(MainViewController*)[self parentViewController] issueSetAUTOModeCommand];
 }
+
+- (IBAction) externalButtonClick {
+    GKPeerPickerController*		picker;
+		
+	picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
+	picker.delegate = self;
+	[picker show]; // show the Peer Picker
+}
+
+#pragma mark -
+#pragma mark Peer Picker Related Methods
+
+-(void)startPicker {
+	GKPeerPickerController*		picker;
+	
+	self.gameState = kStatePicker;			// we're going to do Multiplayer!
+	
+	picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
+	picker.delegate = self;
+	[picker show]; // show the Peer Picker
+}
+
+#pragma mark GKPeerPickerControllerDelegate Methods
+
+- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
+	// Peer Picker automatically dismisses on user cancel. No need to programmatically dismiss.
+    
+	// autorelease the picker.
+	picker.delegate = nil;
+	
+	// invalidate and release game session if one is around.
+	if(self.gameSession != nil)	{
+		[self invalidateSession:self.gameSession];
+		self.gameSession = nil;
+	}
+	
+	// go back to start mode
+	self.gameState = kStateStartGame;
+}
+
+/*
+ *	Note: No need to implement -peerPickerController:didSelectConnectionType: delegate method since this app does not support multiple connection types.
+ *		- see reference documentation for this delegate method and the GKPeerPickerController's connectionTypesMask property.
+ */
+
+//
+// Provide a custom session that has a custom session ID. This is also an opportunity to provide a session with a custom display name.
+//
+- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
+	GKSession *session = [[GKSession alloc] initWithSessionID:kTankSessionID displayName:nil sessionMode:GKSessionModePeer];
+	return session; // peer picker retains a reference, so autorelease ours so we don't leak.
+}
+
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
+	// Remember the current peer.
+	self.gamePeerId = peerID;  // copy
+	
+	// Make sure we have a reference to the game session and it is set up
+	self.gameSession = session; // retain
+	self.gameSession.delegate = self;
+	[self.gameSession setDataReceiveHandler:self withContext:NULL];
+	
+	// Done with the Peer Picker so dismiss it.
+	[picker dismiss];
+	picker.delegate = nil;
+	
+	// Start Multiplayer game by entering a cointoss state to determine who is server/client.
+	self.gameState = kStateMultiplayerCointoss;
+}
+
+#pragma mark -
+#pragma mark Session Related Methods
+
+//
+// invalidate session
+//
+- (void)invalidateSession:(GKSession *)session {
+	if(session != nil) {
+		[session disconnectFromAllPeers];
+		session.available = NO;
+		[session setDataReceiveHandler: nil withContext: NULL];
+		session.delegate = nil;
+	}
+}
+
+
+#pragma mark GKSessionDelegate Methods
+
+// we've gotten a state change in the session
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+	if(self.gameState == kStatePicker) {
+		return;				// only do stuff if we're in multiplayer, otherwise it is probably for Picker
+	}
+	
+	if(state == GKPeerStateDisconnected) {
+		// We've been disconnected from the other peer.
+		
+		// Update user alert or throw alert if it isn't already up
+		NSString *message = [NSString stringWithFormat:@"Could not reconnect with %@.", [session displayNameForPeer:peerID]];
+		if((self.gameState == kStateMultiplayerReconnect) && self.connectionAlert && self.connectionAlert.visible) {
+			self.connectionAlert.message = message;
+		}
+		else {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Lost Connection" message:message delegate:self cancelButtonTitle:@"End Game" otherButtonTitles:nil];
+			self.connectionAlert = alert;
+			[alert show];
+		}
+		
+		// go back to start mode
+		self.gameState = kStateStartGame;
+	}
+}
+
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {

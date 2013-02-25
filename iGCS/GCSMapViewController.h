@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MKMapView.h>
+#import <GameKit/GameKit.h>
+
 #import "ArtificialHorizonView.h"
 #import "CompassView.h"
 #import "VerticalScaleView.h"
@@ -17,7 +19,7 @@
 
 #import "WaypointsHolder.h"
 
-@interface GCSMapViewController : UIViewController <MavLinkPacketHandler, MKMapViewDelegate>
+@interface GCSMapViewController : UIViewController <MavLinkPacketHandler, MKMapViewDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -35,7 +37,16 @@
     MKMapPoint *trackMKMapPoints;
     unsigned int trackMKMapPointsLen;
     unsigned int numTrackPoints;
+    
 }
+
+@property(nonatomic) NSInteger		gameState;
+@property(nonatomic) NSInteger		peerStatus;
+
+@property(nonatomic, retain) GKSession	 *gameSession;
+@property(nonatomic, copy)	 NSString	 *gamePeerId;
+@property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
+@property(nonatomic, retain) UIAlertView *connectionAlert;
 
 #define WIND_ICON_OFFSET_ANG 135
 
@@ -72,6 +83,7 @@
 
 - (IBAction) readWaypointButtonClick;
 - (IBAction) autoButtonClick;
+- (IBAction) externalButtonClick;
 
 - (void) updateWaypoints:(WaypointsHolder*)_waypoints;
 

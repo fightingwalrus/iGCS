@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FEAD79C16DB170D00C3D23D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEAD79B16DB170D00C3D23D /* GameKit.framework */; };
 		CA2BF51F1527EC5800C4A1D0 /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2BF51E1527EC5800C4A1D0 /* WaypointHelper.m */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FEAD79B16DB170D00C3D23D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
 		CA20FD28164E4754005187A8 /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FEAD79C16DB170D00C3D23D /* GameKit.framework in Frameworks */,
 				CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
 				CA499F6714DE33BC00FCC9FB /* CoreGraphics.framework in Frameworks */,
@@ -934,6 +937,7 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				5FEAD79B16DB170D00C3D23D /* GameKit.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
