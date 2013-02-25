@@ -7,35 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		496E623E16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */; };
-		496E623F16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */; };
-		496E624016DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */; };
-		496E624116DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */; };
-		496E624216DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */; };
-		496E624316DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */; };
-		496E624616DACA7800E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624516DACA7800E52E4A /* BluetoothStream.m */; };
-		496E624716DACA7800E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624516DACA7800E52E4A /* BluetoothStream.m */; };
-		496E624B16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */; };
-		496E624C16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */; };
-		496E625316DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */; };
-		496E625416DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */; };
-		496E625716DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */; };
-		496E625816DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
-		49DD939116D7496F000DE266 /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD939016D7496F000DE266 /* CommController.m */; };
-		49DD939216D7496F000DE266 /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD939016D7496F000DE266 /* CommController.m */; };
-		49DD93DC16D7532F000DE266 /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DB16D7532F000DE266 /* SocketStream.m */; };
-		49DD93DD16D7532F000DE266 /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93DB16D7532F000DE266 /* SocketStream.m */; };
-		49DD93E416D75377000DE266 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */; };
-		49DD93E516D75377000DE266 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */; };
-		49DD93E816D75604000DE266 /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E716D75604000DE266 /* MavLinkConnection.m */; };
-		49DD93E916D75604000DE266 /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93E716D75604000DE266 /* MavLinkConnection.m */; };
-		49DD93EC16D75912000DE266 /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */; };
-		49DD93ED16D75912000DE266 /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */; };
-		49DD93F016D75979000DE266 /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EF16D75978000DE266 /* MavLinkInterface.m */; };
-		49DD93F116D75979000DE266 /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD93EF16D75978000DE266 /* MavLinkInterface.m */; };
+		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
+		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
+		496E626216DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */; };
+		496E626316DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */; };
+		496E626416DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
+		496E626516DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
+		496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
+		496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
+		496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
+		496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
+		496E628916DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */; };
+		496E628A16DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */; };
+		496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
+		496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
+		496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
+		496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
+		496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
+		496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
+		496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
+		496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
+		496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
+		496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
+		496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
+		496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
+		496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
+		496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
+		496E629916DAFB8B00E52E4A /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
+		496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
+		496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
+		496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
+		496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
+		496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
+		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
+		496E62C716DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
+		496E62C816DAFBF600E52E4A /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A516DAFBF600E52E4A /* MavLinkConnection.m */; };
+		496E62C916DAFBF600E52E4A /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A516DAFBF600E52E4A /* MavLinkConnection.m */; };
+		496E62CA16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */; };
+		496E62CB16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */; };
+		496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
+		496E62CD16DAFBF600E52E4A /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
+		496E62CE16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */; };
+		496E62CF16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */; };
+		496E62D016DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */; };
+		496E62D116DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */; };
+		496E62D216DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */; };
+		496E62D316DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */; };
+		496E62D416DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */; };
+		496E62D516DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */; };
+		496E62D616DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */; };
+		496E62D716DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */; };
+		496E62D816DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */; };
+		496E62D916DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */; };
+		496E62DA16DAFBF600E52E4A /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */; };
+		496E62DB16DAFBF600E52E4A /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */; };
+		496E62DC16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
+		496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
+		496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
+		496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
-		CA2BF51F1527EC5800C4A1D0 /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2BF51E1527EC5800C4A1D0 /* WaypointHelper.m */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
 		CA43E09715143E940014F7C8 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
@@ -45,37 +76,22 @@
 		CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F6F14DE33BC00FCC9FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
-		CA499F7614DE33BC00FCC9FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA499F7414DE33BC00FCC9FB /* MainStoryboard.storyboard */; };
-		CA499F7914DE33BC00FCC9FB /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7814DE33BC00FCC9FB /* GCSMapViewController.m */; };
-		CA499F8014DE33BC00FCC9FB /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7F14DE33BC00FCC9FB /* CommsViewController.m */; };
 		CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F8B14DE33BC00FCC9FB /* SenTestingKit.framework */; };
 		CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
 		CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F9814DE33BC00FCC9FB /* iGCSTests.m */; };
-		CA655281151477E700EAEB2A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA655280151477E600EAEB2A /* WaypointsHolder.m */; };
 		CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
-		CA7B27C8152EB92600E258AF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7B27C7152EB92600E258AF /* Icon-72.png */; };
-		CA7B27D7152ECCD600E258AF /* GotoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7B27D6152ECCD500E258AF /* GotoPointAnnotation.m */; };
-		CA84687C14DE4F8500DCA29C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84687B14DE4F8500DCA29C /* MainViewController.m */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		CAA2CFD5161BFFB700267615 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD1161BFFB700267615 /* libTestFlight.a */; };
 		CAA2CFD6161BFFB700267615 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD2161BFFB700267615 /* README.md */; };
 		CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD3161BFFB700267615 /* release_notes.md */; };
 		CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
 		CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
-		CAD85B4515285C1000D481A1 /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD85B4415285C1000D481A1 /* WaypointAnnotation.m */; };
-		CAE08DE31515B95C007E50DD /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE08DE21515B95C007E50DD /* WaypointsViewController.m */; };
 		CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
-		CAE135BD14E7462D006EE9C0 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE135BC14E7462D006EE9C0 /* CompassView.m */; };
-		CAE135C114E7A5B8006EE9C0 /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE135C014E7A5B8006EE9C0 /* VerticalScaleView.m */; };
 		CAE20224152EA67A00D659E2 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
-		CAE4479B14E5F0BE00F7EFC4 /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4479A14E5F0BE00F7EFC4 /* ArtificialHorizonView.m */; };
-		CAECDB891678786E000FE079 /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAECDB881678786E000FE079 /* DoubleBufferedAsyncView.m */; };
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
-		CAF4324F15158042001F6E9C /* hazard-stripes-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF4324E15158041001F6E9C /* hazard-stripes-texture.png */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
-		CAF8ADA014E1F95400DB3D84 /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF8AD9F14E1F95400DB3D84 /* airplane.png */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,34 +106,65 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		496E623816DACA6A00E52E4A /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
-		496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
-		496E623A16DACA6A00E52E4A /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
-		496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusProtocol.m; sourceTree = "<group>"; };
-		496E623C16DACA6A00E52E4A /* FightingWalrusRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusRadio.h; sourceTree = "<group>"; };
-		496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusRadio.m; sourceTree = "<group>"; };
-		496E624416DACA7800E52E4A /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
-		496E624516DACA7800E52E4A /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
-		496E624916DACA9B00E52E4A /* RedparkSerialCable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedparkSerialCable.h; sourceTree = "<group>"; };
-		496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
-		496E625116DACB3400E52E4A /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
-		496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
-		496E625516DACB4B00E52E4A /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
-		496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
-		496E625916DAD7D500E52E4A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		49DD938F16D7496F000DE266 /* CommController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommController.h; sourceTree = "<group>"; };
-		49DD939016D7496F000DE266 /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
-		49DD93DA16D7532F000DE266 /* SocketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketStream.h; sourceTree = "<group>"; };
-		49DD93DB16D7532F000DE266 /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
-		49DD93E216D75377000DE266 /* iGCSMavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSMavLinkInterface.h; sourceTree = "<group>"; };
-		49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSMavLinkInterface.m; sourceTree = "<group>"; };
-		49DD93E616D75604000DE266 /* MavLinkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkConnection.h; sourceTree = "<group>"; };
-		49DD93E716D75604000DE266 /* MavLinkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnection.m; sourceTree = "<group>"; };
-		49DD93EA16D75912000DE266 /* MavLinkConnectionPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkConnectionPool.h; sourceTree = "<group>"; };
-		49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnectionPool.m; sourceTree = "<group>"; };
-		49DD93EE16D75978000DE266 /* MavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkInterface.h; sourceTree = "<group>"; };
-		49DD93EF16D75978000DE266 /* MavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkInterface.m; sourceTree = "<group>"; };
+		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
+		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
+		496E625F16DAFAD700E52E4A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		496E626716DAFAF600E52E4A /* WaypointHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHelper.h; sourceTree = "<group>"; };
+		496E626816DAFAF600E52E4A /* WaypointHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHelper.m; sourceTree = "<group>"; };
+		496E626916DAFAF600E52E4A /* WaypointsHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsHolder.h; sourceTree = "<group>"; };
+		496E626A16DAFAF600E52E4A /* WaypointsHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsHolder.m; sourceTree = "<group>"; };
+		496E627116DAFB8B00E52E4A /* GotoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoPointAnnotation.h; sourceTree = "<group>"; };
+		496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoPointAnnotation.m; sourceTree = "<group>"; };
+		496E627316DAFB8B00E52E4A /* WaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotation.h; sourceTree = "<group>"; };
+		496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointAnnotation.m; sourceTree = "<group>"; };
+		496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		496E627716DAFB8B00E52E4A /* CommsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommsViewController.h; sourceTree = "<group>"; };
+		496E627816DAFB8B00E52E4A /* CommsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsViewController.m; sourceTree = "<group>"; };
+		496E627916DAFB8B00E52E4A /* GCSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSMapViewController.h; sourceTree = "<group>"; };
+		496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSMapViewController.m; sourceTree = "<group>"; };
+		496E627B16DAFB8B00E52E4A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		496E627C16DAFB8B00E52E4A /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		496E627D16DAFB8B00E52E4A /* WaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsViewController.h; sourceTree = "<group>"; };
+		496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsViewController.m; sourceTree = "<group>"; };
+		496E628016DAFB8B00E52E4A /* ArtificialHorizonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtificialHorizonView.h; sourceTree = "<group>"; };
+		496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtificialHorizonView.m; sourceTree = "<group>"; };
+		496E628216DAFB8B00E52E4A /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassView.h; sourceTree = "<group>"; };
+		496E628316DAFB8B00E52E4A /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassView.m; sourceTree = "<group>"; };
+		496E628416DAFB8B00E52E4A /* DoubleBufferedAsyncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleBufferedAsyncView.h; sourceTree = "<group>"; };
+		496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleBufferedAsyncView.m; sourceTree = "<group>"; };
+		496E628616DAFB8B00E52E4A /* GaugeViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaugeViewCommon.h; sourceTree = "<group>"; };
+		496E628716DAFB8B00E52E4A /* VerticalScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalScaleView.h; sourceTree = "<group>"; };
+		496E628816DAFB8B00E52E4A /* VerticalScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalScaleView.m; sourceTree = "<group>"; };
+		496E62A016DAFBF600E52E4A /* CommController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommController.h; sourceTree = "<group>"; };
+		496E62A116DAFBF600E52E4A /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
+		496E62A416DAFBF600E52E4A /* MavLinkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkConnection.h; sourceTree = "<group>"; };
+		496E62A516DAFBF600E52E4A /* MavLinkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnection.m; sourceTree = "<group>"; };
+		496E62A616DAFBF600E52E4A /* MavLinkConnectionPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkConnectionPool.h; sourceTree = "<group>"; };
+		496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkConnectionPool.m; sourceTree = "<group>"; };
+		496E62AA16DAFBF600E52E4A /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
+		496E62AB16DAFBF600E52E4A /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
+		496E62AC16DAFBF600E52E4A /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
+		496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
+		496E62AE16DAFBF600E52E4A /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
+		496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
+		496E62B016DAFBF600E52E4A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		496E62B216DAFBF600E52E4A /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
+		496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
+		496E62B416DAFBF600E52E4A /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
+		496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusProtocol.m; sourceTree = "<group>"; };
+		496E62B616DAFBF600E52E4A /* FightingWalrusRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusRadio.h; sourceTree = "<group>"; };
+		496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusRadio.m; sourceTree = "<group>"; };
+		496E62B916DAFBF600E52E4A /* iGCSMavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSMavLinkInterface.h; sourceTree = "<group>"; };
+		496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSMavLinkInterface.m; sourceTree = "<group>"; };
+		496E62BB16DAFBF600E52E4A /* MavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkInterface.h; sourceTree = "<group>"; };
+		496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkInterface.m; sourceTree = "<group>"; };
+		496E62BE16DAFBF600E52E4A /* RedparkSerialCable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedparkSerialCable.h; sourceTree = "<group>"; };
+		496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
+		496E62C116DAFBF600E52E4A /* SocketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketStream.h; sourceTree = "<group>"; };
+		496E62C216DAFBF600E52E4A /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
+		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
+		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
@@ -233,8 +280,6 @@
 		CA20FD96164E4754005187A8 /* mavlink_protobuf_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mavlink_protobuf_manager.hpp; sourceTree = "<group>"; };
 		CA20FD97164E4754005187A8 /* mavlink_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_types.h; sourceTree = "<group>"; };
 		CA20FD98164E4754005187A8 /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
-		CA2BF51D1527EC5800C4A1D0 /* WaypointHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointHelper.h; path = ../WaypointHelper.h; sourceTree = "<group>"; };
-		CA2BF51E1527EC5800C4A1D0 /* WaypointHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointHelper.m; path = ../WaypointHelper.m; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* 00-Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-Read me first - license.txt"; sourceTree = "<group>"; };
 		CA43DE0A15143E570014F7C8 /* glyphish-icons.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "glyphish-icons.pdf"; sourceTree = "<group>"; };
 		CA43DE0B15143E570014F7C8 /* glyphish-icons.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphish-icons.psd"; sourceTree = "<group>"; };
@@ -452,25 +497,12 @@
 		CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGCS-Prefix.pch"; sourceTree = "<group>"; };
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CA499F7514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		CA499F7714DE33BC00FCC9FB /* GCSMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCSMapViewController.h; path = ../../GCSMapViewController.h; sourceTree = "<group>"; };
-		CA499F7814DE33BC00FCC9FB /* GCSMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCSMapViewController.m; path = ../../GCSMapViewController.m; sourceTree = "<group>"; };
-		CA499F7E14DE33BC00FCC9FB /* CommsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CommsViewController.h; path = ../../CommsViewController.h; sourceTree = "<group>"; };
-		CA499F7F14DE33BC00FCC9FB /* CommsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CommsViewController.m; path = ../../CommsViewController.m; sourceTree = "<group>"; };
 		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA499F8B14DE33BC00FCC9FB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
 		CA499F9814DE33BC00FCC9FB /* iGCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGCSTests.m; sourceTree = "<group>"; };
-		CA4F239914DE82E6007C97B7 /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MavLinkTools.h; path = ../../MavLinkTools.h; sourceTree = "<group>"; };
-		CA65527F151477E500EAEB2A /* WaypointsHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointsHolder.h; path = iGCS/WaypointsHolder.h; sourceTree = SOURCE_ROOT; };
-		CA655280151477E600EAEB2A /* WaypointsHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointsHolder.m; path = iGCS/WaypointsHolder.m; sourceTree = SOURCE_ROOT; };
-		CA7B27C7152EB92600E258AF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		CA7B27D5152ECCD500E258AF /* GotoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GotoPointAnnotation.h; path = ../../GotoPointAnnotation.h; sourceTree = "<group>"; };
-		CA7B27D6152ECCD500E258AF /* GotoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GotoPointAnnotation.m; path = ../../GotoPointAnnotation.m; sourceTree = "<group>"; };
-		CA84687A14DE4F8500DCA29C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../../MainViewController.h; sourceTree = "<group>"; };
-		CA84687B14DE4F8500DCA29C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../../MainViewController.m; sourceTree = "<group>"; };
 		CA8CA89216576557003C6D50 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CAA2CFD1161BFFB700267615 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		CAA2CFD2161BFFB700267615 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -478,19 +510,6 @@
 		CAA2CFD4161BFFB700267615 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		CAA2CFD9161C000C00267615 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
-		CAD85B4315285C1000D481A1 /* WaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointAnnotation.h; path = ../../WaypointAnnotation.h; sourceTree = "<group>"; };
-		CAD85B4415285C1000D481A1 /* WaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointAnnotation.m; path = ../../WaypointAnnotation.m; sourceTree = "<group>"; };
-		CAE08DE11515B95C007E50DD /* WaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointsViewController.h; path = ../../WaypointsViewController.h; sourceTree = "<group>"; };
-		CAE08DE21515B95C007E50DD /* WaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointsViewController.m; path = ../../WaypointsViewController.m; sourceTree = "<group>"; };
-		CAE135BB14E7462D006EE9C0 /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompassView.h; path = ../../CompassView.h; sourceTree = "<group>"; };
-		CAE135BC14E7462D006EE9C0 /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompassView.m; path = ../../CompassView.m; sourceTree = "<group>"; };
-		CAE135BF14E7A5B8006EE9C0 /* VerticalScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerticalScaleView.h; path = ../../VerticalScaleView.h; sourceTree = "<group>"; };
-		CAE135C014E7A5B8006EE9C0 /* VerticalScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerticalScaleView.m; path = ../../VerticalScaleView.m; sourceTree = "<group>"; };
-		CAE135C214E7D10E006EE9C0 /* GaugeViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GaugeViewCommon.h; path = ../../GaugeViewCommon.h; sourceTree = "<group>"; };
-		CAE4479914E5F0BE00F7EFC4 /* ArtificialHorizonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArtificialHorizonView.h; path = ../../ArtificialHorizonView.h; sourceTree = "<group>"; };
-		CAE4479A14E5F0BE00F7EFC4 /* ArtificialHorizonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArtificialHorizonView.m; path = ../../ArtificialHorizonView.m; sourceTree = "<group>"; };
-		CAECDB871678786E000FE079 /* DoubleBufferedAsyncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubleBufferedAsyncView.h; path = ../../DoubleBufferedAsyncView.h; sourceTree = "<group>"; };
-		CAECDB881678786E000FE079 /* DoubleBufferedAsyncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubleBufferedAsyncView.m; path = ../../DoubleBufferedAsyncView.m; sourceTree = "<group>"; };
 		CAF0B8391657A8960033B0BC /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
 		CAF0B83A1657A8960033B0BC /* CPTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotation.h; sourceTree = "<group>"; };
 		CAF0B83B1657A8960033B0BC /* CPTAnnotationHostLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotationHostLayer.h; sourceTree = "<group>"; };
@@ -566,10 +585,7 @@
 		CAF0B8811657A8960033B0BC /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		CAF0B8821657A8960033B0BC /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
-		CAF4324E15158041001F6E9C /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CAF8AD9F14E1F95400DB3D84 /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
-		CAF8ADA214E1F9FC00DB3D84 /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MavLinkPacketHandler.h; path = ../../MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		CAF8ADA314E1FD1400DB3D84 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO.txt; path = iGCS/TODO.txt; sourceTree = "<group>"; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -608,152 +624,186 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		496E623616DACA2700E52E4A /* Bluetooth */ = {
+		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				496E625916DAD7D500E52E4A /* TransferService.h */,
-				496E624416DACA7800E52E4A /* BluetoothStream.h */,
-				496E624516DACA7800E52E4A /* BluetoothStream.m */,
-				496E625116DACB3400E52E4A /* BTLEMavLinkCentral.h */,
-				496E625216DACB3400E52E4A /* BTLEMavLinkCentral.m */,
-				496E625516DACB4B00E52E4A /* BTLEMavLinkPeripheral.h */,
-				496E625616DACB4B00E52E4A /* BTLEMavLinkPeripheral.m */,
+				496E625D16DAFAD700E52E4A /* airplane.png */,
+				496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */,
+				496E625F16DAFAD700E52E4A /* Icon-72.png */,
 			);
-			path = Bluetooth;
+			path = Images;
 			sourceTree = "<group>";
 		};
-		496E623716DACA4400E52E4A /* FightingWalrus */ = {
+		496E626616DAFAF600E52E4A /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
-				496E623816DACA6A00E52E4A /* FightingWalrusMFI.h */,
-				496E623916DACA6A00E52E4A /* FightingWalrusMFI.m */,
-				496E623A16DACA6A00E52E4A /* FightingWalrusProtocol.h */,
-				496E623B16DACA6A00E52E4A /* FightingWalrusProtocol.m */,
-				496E623C16DACA6A00E52E4A /* FightingWalrusRadio.h */,
-				496E623D16DACA6A00E52E4A /* FightingWalrusRadio.m */,
-			);
-			path = FightingWalrus;
-			sourceTree = "<group>";
-		};
-		496E624816DACA9B00E52E4A /* Redpark */ = {
-			isa = PBXGroup;
-			children = (
-				496E624916DACA9B00E52E4A /* RedparkSerialCable.h */,
-				496E624A16DACA9B00E52E4A /* RedparkSerialCable.m */,
-			);
-			path = Redpark;
-			sourceTree = "<group>";
-		};
-		49DD938916D74799000DE266 /* Comm */ = {
-			isa = PBXGroup;
-			children = (
-				49DD938E16D748AF000DE266 /* MavLink */,
-				49DD938F16D7496F000DE266 /* CommController.h */,
-				49DD939016D7496F000DE266 /* CommController.m */,
-			);
-			path = Comm;
-			sourceTree = "<group>";
-		};
-		49DD938A16D747F2000DE266 /* UserInterface */ = {
-			isa = PBXGroup;
-			children = (
-				CA499F7414DE33BC00FCC9FB /* MainStoryboard.storyboard */,
-				49DD938C16D7481D000DE266 /* ViewControllers */,
-				49DD938B16D74814000DE266 /* Views */,
-			);
-			path = UserInterface;
-			sourceTree = "<group>";
-		};
-		49DD938B16D74814000DE266 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				CAE135C214E7D10E006EE9C0 /* GaugeViewCommon.h */,
-				CAECDB871678786E000FE079 /* DoubleBufferedAsyncView.h */,
-				CAECDB881678786E000FE079 /* DoubleBufferedAsyncView.m */,
-				CA7B27D5152ECCD500E258AF /* GotoPointAnnotation.h */,
-				CA7B27D6152ECCD500E258AF /* GotoPointAnnotation.m */,
-				CAD85B4315285C1000D481A1 /* WaypointAnnotation.h */,
-				CAD85B4415285C1000D481A1 /* WaypointAnnotation.m */,
-				CAE4479914E5F0BE00F7EFC4 /* ArtificialHorizonView.h */,
-				CAE4479A14E5F0BE00F7EFC4 /* ArtificialHorizonView.m */,
-				CAE135BB14E7462D006EE9C0 /* CompassView.h */,
-				CAE135BC14E7462D006EE9C0 /* CompassView.m */,
-				CAE135BF14E7A5B8006EE9C0 /* VerticalScaleView.h */,
-				CAE135C014E7A5B8006EE9C0 /* VerticalScaleView.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		49DD938C16D7481D000DE266 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				CA84687A14DE4F8500DCA29C /* MainViewController.h */,
-				CA84687B14DE4F8500DCA29C /* MainViewController.m */,
-				CA499F7E14DE33BC00FCC9FB /* CommsViewController.h */,
-				CA499F7F14DE33BC00FCC9FB /* CommsViewController.m */,
-				CA499F7714DE33BC00FCC9FB /* GCSMapViewController.h */,
-				CA499F7814DE33BC00FCC9FB /* GCSMapViewController.m */,
-				CAE08DE11515B95C007E50DD /* WaypointsViewController.h */,
-				CAE08DE21515B95C007E50DD /* WaypointsViewController.m */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		49DD938D16D7486A000DE266 /* Waypoints */ = {
-			isa = PBXGroup;
-			children = (
-				CA2BF51D1527EC5800C4A1D0 /* WaypointHelper.h */,
-				CA2BF51E1527EC5800C4A1D0 /* WaypointHelper.m */,
-				CA65527F151477E500EAEB2A /* WaypointsHolder.h */,
-				CA655280151477E600EAEB2A /* WaypointsHolder.m */,
+				496E626716DAFAF600E52E4A /* WaypointHelper.h */,
+				496E626816DAFAF600E52E4A /* WaypointHelper.m */,
+				496E626916DAFAF600E52E4A /* WaypointsHolder.h */,
+				496E626A16DAFAF600E52E4A /* WaypointsHolder.m */,
 			);
 			path = Waypoints;
 			sourceTree = "<group>";
 		};
-		49DD938E16D748AF000DE266 /* MavLink */ = {
+		496E626F16DAFB8B00E52E4A /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				49DD93F416D9739F000DE266 /* Utility */,
-				49DD93F316D97383000DE266 /* Connections */,
-				49DD93C916D752C9000DE266 /* Interfaces */,
+				496E627016DAFB8B00E52E4A /* Annotations */,
+				496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */,
+				496E627616DAFB8B00E52E4A /* ViewControllers */,
+				496E627F16DAFB8B00E52E4A /* Views */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		496E627016DAFB8B00E52E4A /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				496E627116DAFB8B00E52E4A /* GotoPointAnnotation.h */,
+				496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */,
+				496E627316DAFB8B00E52E4A /* WaypointAnnotation.h */,
+				496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
+		496E627616DAFB8B00E52E4A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				496E627716DAFB8B00E52E4A /* CommsViewController.h */,
+				496E627816DAFB8B00E52E4A /* CommsViewController.m */,
+				496E627916DAFB8B00E52E4A /* GCSMapViewController.h */,
+				496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */,
+				496E627B16DAFB8B00E52E4A /* MainViewController.h */,
+				496E627C16DAFB8B00E52E4A /* MainViewController.m */,
+				496E627D16DAFB8B00E52E4A /* WaypointsViewController.h */,
+				496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		496E627F16DAFB8B00E52E4A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				496E628016DAFB8B00E52E4A /* ArtificialHorizonView.h */,
+				496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */,
+				496E628216DAFB8B00E52E4A /* CompassView.h */,
+				496E628316DAFB8B00E52E4A /* CompassView.m */,
+				496E628416DAFB8B00E52E4A /* DoubleBufferedAsyncView.h */,
+				496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */,
+				496E628616DAFB8B00E52E4A /* GaugeViewCommon.h */,
+				496E628716DAFB8B00E52E4A /* VerticalScaleView.h */,
+				496E628816DAFB8B00E52E4A /* VerticalScaleView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		496E629F16DAFBF600E52E4A /* Comm */ = {
+			isa = PBXGroup;
+			children = (
+				496E62A016DAFBF600E52E4A /* CommController.h */,
+				496E62A116DAFBF600E52E4A /* CommController.m */,
+				496E62A216DAFBF600E52E4A /* MavLink */,
+			);
+			path = Comm;
+			sourceTree = "<group>";
+		};
+		496E62A216DAFBF600E52E4A /* MavLink */ = {
+			isa = PBXGroup;
+			children = (
+				496E62A316DAFBF600E52E4A /* Connections */,
+				496E62A816DAFBF600E52E4A /* Interfaces */,
+				496E62C316DAFBF600E52E4A /* Utility */,
 			);
 			path = MavLink;
 			sourceTree = "<group>";
 		};
-		49DD93C916D752C9000DE266 /* Interfaces */ = {
+		496E62A316DAFBF600E52E4A /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				496E624816DACA9B00E52E4A /* Redpark */,
-				496E623716DACA4400E52E4A /* FightingWalrus */,
-				496E623616DACA2700E52E4A /* Bluetooth */,
-				49DD93DA16D7532F000DE266 /* SocketStream.h */,
-				49DD93DB16D7532F000DE266 /* SocketStream.m */,
-				49DD93E216D75377000DE266 /* iGCSMavLinkInterface.h */,
-				49DD93E316D75377000DE266 /* iGCSMavLinkInterface.m */,
-				49DD93EE16D75978000DE266 /* MavLinkInterface.h */,
-				49DD93EF16D75978000DE266 /* MavLinkInterface.m */,
+				496E62A416DAFBF600E52E4A /* MavLinkConnection.h */,
+				496E62A516DAFBF600E52E4A /* MavLinkConnection.m */,
+				496E62A616DAFBF600E52E4A /* MavLinkConnectionPool.h */,
+				496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */,
+			);
+			path = Connections;
+			sourceTree = "<group>";
+		};
+		496E62A816DAFBF600E52E4A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				496E62A916DAFBF600E52E4A /* Bluetooth */,
+				496E62B116DAFBF600E52E4A /* FightingWalrus */,
+				496E62B816DAFBF600E52E4A /* iGCS */,
+				496E62BB16DAFBF600E52E4A /* MavLinkInterface.h */,
+				496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */,
+				496E62BD16DAFBF600E52E4A /* Redpark */,
+				496E62C016DAFBF600E52E4A /* Socket */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		49DD93F316D97383000DE266 /* Connections */ = {
+		496E62A916DAFBF600E52E4A /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				49DD93E616D75604000DE266 /* MavLinkConnection.h */,
-				49DD93E716D75604000DE266 /* MavLinkConnection.m */,
-				49DD93EA16D75912000DE266 /* MavLinkConnectionPool.h */,
-				49DD93EB16D75912000DE266 /* MavLinkConnectionPool.m */,
+				496E62AA16DAFBF600E52E4A /* BluetoothStream.h */,
+				496E62AB16DAFBF600E52E4A /* BluetoothStream.m */,
+				496E62AC16DAFBF600E52E4A /* BTLEMavLinkCentral.h */,
+				496E62AD16DAFBF600E52E4A /* BTLEMavLinkCentral.m */,
+				496E62AE16DAFBF600E52E4A /* BTLEMavLinkPeripheral.h */,
+				496E62AF16DAFBF600E52E4A /* BTLEMavLinkPeripheral.m */,
+				496E62B016DAFBF600E52E4A /* TransferService.h */,
 			);
-			name = Connections;
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
-		49DD93F416D9739F000DE266 /* Utility */ = {
+		496E62B116DAFBF600E52E4A /* FightingWalrus */ = {
 			isa = PBXGroup;
 			children = (
-				CAF8ADA214E1F9FC00DB3D84 /* MavLinkPacketHandler.h */,
-				CA4F239914DE82E6007C97B7 /* MavLinkTools.h */,
+				496E62B216DAFBF600E52E4A /* FightingWalrusMFI.h */,
+				496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */,
+				496E62B416DAFBF600E52E4A /* FightingWalrusProtocol.h */,
+				496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */,
+				496E62B616DAFBF600E52E4A /* FightingWalrusRadio.h */,
+				496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */,
 			);
-			name = Utility;
+			path = FightingWalrus;
+			sourceTree = "<group>";
+		};
+		496E62B816DAFBF600E52E4A /* iGCS */ = {
+			isa = PBXGroup;
+			children = (
+				496E62B916DAFBF600E52E4A /* iGCSMavLinkInterface.h */,
+				496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */,
+			);
+			path = iGCS;
+			sourceTree = "<group>";
+		};
+		496E62BD16DAFBF600E52E4A /* Redpark */ = {
+			isa = PBXGroup;
+			children = (
+				496E62BE16DAFBF600E52E4A /* RedparkSerialCable.h */,
+				496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */,
+			);
+			path = Redpark;
+			sourceTree = "<group>";
+		};
+		496E62C016DAFBF600E52E4A /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				496E62C116DAFBF600E52E4A /* SocketStream.h */,
+				496E62C216DAFBF600E52E4A /* SocketStream.m */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
+		496E62C316DAFBF600E52E4A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */,
+				496E62C516DAFBF600E52E4A /* MavLinkTools.h */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
@@ -1183,9 +1233,10 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
-				49DD938D16D7486A000DE266 /* Waypoints */,
-				49DD938A16D747F2000DE266 /* UserInterface */,
-				49DD938916D74799000DE266 /* Comm */,
+				496E629F16DAFBF600E52E4A /* Comm */,
+				496E626F16DAFB8B00E52E4A /* UserInterface */,
+				496E626616DAFAF600E52E4A /* Waypoints */,
+				496E625C16DAFAD700E52E4A /* Images */,
 				CA499F7114DE33BC00FCC9FB /* AppDelegate.h */,
 				CA499F7214DE33BC00FCC9FB /* AppDelegate.m */,
 				CA499F6914DE33BC00FCC9FB /* Supporting Files */,
@@ -1196,9 +1247,6 @@
 		CA499F6914DE33BC00FCC9FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CA7B27C7152EB92600E258AF /* Icon-72.png */,
-				CAF8AD9F14E1F95400DB3D84 /* airplane.png */,
-				CAF4324E15158041001F6E9C /* hazard-stripes-texture.png */,
 				CA499F6A14DE33BC00FCC9FB /* iGCS-Info.plist */,
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
 				CA499F6E14DE33BC00FCC9FB /* main.m */,
@@ -1392,17 +1440,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
-				CA499F7614DE33BC00FCC9FB /* MainStoryboard.storyboard in Resources */,
-				CAF8ADA014E1F95400DB3D84 /* airplane.png in Resources */,
 				CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */,
 				CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */,
 				CAE20224152EA67A00D659E2 /* 13-target.png in Resources */,
 				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
 				CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */,
-				CAF4324F15158042001F6E9C /* hazard-stripes-texture.png in Resources */,
-				CA7B27C8152EB92600E258AF /* Icon-72.png in Resources */,
 				CAA2CFD6161BFFB700267615 /* README.md in Resources */,
 				CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */,
+				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
+				496E626216DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
+				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
+				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,6 +1459,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
+				496E626116DAFAD700E52E4A /* airplane.png in Resources */,
+				496E626316DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
+				496E626516DAFAD700E52E4A /* Icon-72.png in Resources */,
+				496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,31 +1491,31 @@
 			files = (
 				CA499F6F14DE33BC00FCC9FB /* main.m in Sources */,
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
-				CA499F7914DE33BC00FCC9FB /* GCSMapViewController.m in Sources */,
-				CA499F8014DE33BC00FCC9FB /* CommsViewController.m in Sources */,
-				CA84687C14DE4F8500DCA29C /* MainViewController.m in Sources */,
-				CAE4479B14E5F0BE00F7EFC4 /* ArtificialHorizonView.m in Sources */,
-				CAE135BD14E7462D006EE9C0 /* CompassView.m in Sources */,
-				CAE135C114E7A5B8006EE9C0 /* VerticalScaleView.m in Sources */,
-				CA655281151477E700EAEB2A /* WaypointsHolder.m in Sources */,
-				CAE08DE31515B95C007E50DD /* WaypointsViewController.m in Sources */,
-				CA2BF51F1527EC5800C4A1D0 /* WaypointHelper.m in Sources */,
-				CAD85B4515285C1000D481A1 /* WaypointAnnotation.m in Sources */,
-				CA7B27D7152ECCD600E258AF /* GotoPointAnnotation.m in Sources */,
-				CAECDB891678786E000FE079 /* DoubleBufferedAsyncView.m in Sources */,
-				49DD939116D7496F000DE266 /* CommController.m in Sources */,
-				49DD93DC16D7532F000DE266 /* SocketStream.m in Sources */,
-				49DD93E416D75377000DE266 /* iGCSMavLinkInterface.m in Sources */,
-				49DD93E816D75604000DE266 /* MavLinkConnection.m in Sources */,
-				49DD93EC16D75912000DE266 /* MavLinkConnectionPool.m in Sources */,
-				49DD93F016D75979000DE266 /* MavLinkInterface.m in Sources */,
-				496E623E16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */,
-				496E624016DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */,
-				496E624216DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */,
-				496E624616DACA7800E52E4A /* BluetoothStream.m in Sources */,
-				496E624B16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */,
-				496E625316DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */,
-				496E625716DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
+				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
+				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
+				496E628916DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */,
+				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
+				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
+				496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
+				496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */,
+				496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
+				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
+				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
+				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
+				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
+				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
+				496E62C816DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
+				496E62CA16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
+				496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
+				496E62CE16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */,
+				496E62D016DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
+				496E62D216DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */,
+				496E62D416DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */,
+				496E62D616DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
+				496E62D816DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */,
+				496E62DA16DAFBF600E52E4A /* MavLinkInterface.m in Sources */,
+				496E62DC16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
+				496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,19 +1524,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
-				49DD939216D7496F000DE266 /* CommController.m in Sources */,
-				49DD93DD16D7532F000DE266 /* SocketStream.m in Sources */,
-				49DD93E516D75377000DE266 /* iGCSMavLinkInterface.m in Sources */,
-				49DD93E916D75604000DE266 /* MavLinkConnection.m in Sources */,
-				49DD93ED16D75912000DE266 /* MavLinkConnectionPool.m in Sources */,
-				49DD93F116D75979000DE266 /* MavLinkInterface.m in Sources */,
-				496E623F16DACA6A00E52E4A /* FightingWalrusMFI.m in Sources */,
-				496E624116DACA6A00E52E4A /* FightingWalrusProtocol.m in Sources */,
-				496E624316DACA6A00E52E4A /* FightingWalrusRadio.m in Sources */,
-				496E624716DACA7800E52E4A /* BluetoothStream.m in Sources */,
-				496E624C16DACA9B00E52E4A /* RedparkSerialCable.m in Sources */,
-				496E625416DACB3400E52E4A /* BTLEMavLinkCentral.m in Sources */,
-				496E625816DACB4B00E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
+				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
+				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
+				496E628A16DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */,
+				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
+				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,
+				496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
+				496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */,
+				496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
+				496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
+				496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */,
+				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
+				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
+				496E62C716DAFBF600E52E4A /* CommController.m in Sources */,
+				496E62C916DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
+				496E62CB16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
+				496E62CD16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
+				496E62CF16DAFBF600E52E4A /* BTLEMavLinkCentral.m in Sources */,
+				496E62D116DAFBF600E52E4A /* BTLEMavLinkPeripheral.m in Sources */,
+				496E62D316DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */,
+				496E62D516DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */,
+				496E62D716DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
+				496E62D916DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */,
+				496E62DB16DAFBF600E52E4A /* MavLinkInterface.m in Sources */,
+				496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
+				496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,15 +1569,6 @@
 				CA499F6C14DE33BC00FCC9FB /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CA499F7414DE33BC00FCC9FB /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA499F7514DE33BC00FCC9FB /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */ = {
