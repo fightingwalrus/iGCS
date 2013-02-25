@@ -112,6 +112,9 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    //Authenticate the local player as soon as possible
+    [self authenticateLocalPlayer];
+    
     //Initialize GK peer variables
     self.peerStatus = kServer;
 	//FIXME inherited from sample, I don't like it without a self
@@ -190,6 +193,10 @@ typedef enum {
     return YES;
 }
 
+
+#pragma mark -
+#pragma mark Button Click callbacks
+
 - (IBAction) readWaypointButtonClick {
     [(MainViewController*)[self parentViewController] issueReadWaypointsRequest];
 }
@@ -204,6 +211,22 @@ typedef enum {
 	picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
 	picker.delegate = self;
 	[picker show]; // show the Peer Picker
+}
+
+
+#pragma mark -
+#pragma mark GameCenter Initialization
+- (void) authenticateLocalPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+        if (localPlayer.isAuthenticated)
+        {
+            int test = 5;
+            // Player was successfully authenticated.
+            // Perform additional tasks for the authenticated player.
+        }
+    }];
 }
 
 #pragma mark -
