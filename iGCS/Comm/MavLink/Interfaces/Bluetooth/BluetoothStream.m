@@ -22,7 +22,8 @@
     //bts.streamPeripheral = [[BTLEMavLinkPeripheral alloc] init];
     
     // GKSession usage
-    bts.gkSessionController = [[GKSessionController alloc] init];
+    GKSessionController *gkSessionController = [[GKSessionController alloc] init:bts];
+    bts.gkSessionController = gkSessionController;  
     
     return bts;
 }
@@ -39,10 +40,33 @@
     
     
     // GKSession usage
-    bts.gkSessionController = [[GKSessionController alloc] init];
+    GKSessionController *gkSessionController = [[GKSessionController alloc] init:bts];
+    bts.gkSessionController = gkSessionController;
+    
     
     return bts;
 }
+
+
+
+
+
+
+#pragma mark -
+#pragma mark MavLinkInterface methods
+
+
+// MavLinkInterface destination override (used for Tx)
+-(void)consumeData:(uint8_t*)bytes length:(int)length
+{
+    if (self.gkSessionController)
+    {
+        [self.gkSessionController sendMavlinkData:bytes length:length];
+    }
+}
+
+
+
 
 
 

@@ -10,6 +10,7 @@
 
 #import <GameKit/GameKit.h>
 
+#import "BluetoothStream.h"
 
 
 #define kMaxPacketSize 1024
@@ -21,6 +22,9 @@
     int				gamePacketNumber;
     int				gameUniqueID;
 }
+
+
+@property (strong) BluetoothStream *parentStream;
 
 @property(nonatomic) NSInteger		gameState;
 @property(nonatomic) NSInteger		peerStatus;
@@ -38,11 +42,13 @@
 
 
 
--(id)init
+-(id)init:(BluetoothStream*)bts
 {
     self = [super init];
     if (self)
     {
+        self.parentStream = bts;
+        
         GKPeerPickerController*		picker;
         
         picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
@@ -50,6 +56,16 @@
         [picker show]; // show the Peer Picker
     }
     return self;
+}
+
+
+
+
+-(void)sendMavlinkData:(uint8_t*)bytes length:(int)length
+{
+    NSLog(@"GKSessionController: Sending MavLink bytes: %i",length);
+    [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
+    
 }
 
 
@@ -191,6 +207,16 @@
                 self.gameState = kStateMultiplayer;
             }
         }
+            
+        case NETWORK_MAVLINK:
+        {
+            uint8_t *mavlinkData = incomingPacket[2];
+            int mavlinkSize = [data length] - 2;
+            
+            // TODO: Refactor to delegate interface to parentStream can be eliminated
+            [self.parentStream produceData:mavlinkData length:mavlinkSize];
+            
+        }
 			break;
 		default:
 			// error
@@ -198,7 +224,8 @@
 	}
 }
 
-- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length reliable:(BOOL)howtosend {
+- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length reliable:(BOOL)howtosend
+{
 	// the packet we'll send is resued
 	static unsigned char networkPacket[kMaxPacketSize];
 	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header

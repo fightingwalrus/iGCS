@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BluetoothStream;
+
 
 typedef enum {
 	kStateStartGame,
@@ -22,7 +24,8 @@ typedef enum {
 	NETWORK_COINTOSS,				// decide who is going to be the server
 	NETWORK_MOVE_EVENT,				// send position
 	NETWORK_FIRE_EVENT,				// send fire
-	NETWORK_HEARTBEAT				// send of entire state at regular intervals
+	NETWORK_HEARTBEAT,				// send of entire state at regular intervals
+    NETWORK_MAVLINK
 } packetCodes;
 
 typedef enum {
@@ -34,5 +37,10 @@ typedef enum {
 
 
 @interface GKSessionController : NSObject
+
+
+-(id)init:(BluetoothStream*)bts;
+-(void)sendMavlinkData:(uint8_t*)bytes length:(int)length;
+
 
 @end
