@@ -246,14 +246,22 @@ typedef enum {
 
 - (void) loadPlayerData: (NSArray *) identifiers
 {
-    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *friends, NSError *error) {
         if (error != nil)
         {
             // Handle the error.
         }
-        if (players != nil)
+        if (friends != nil)
         {
             // Process the array of GKPlayer objects.
+            if ([friends count] > 0)
+            {
+                NSLog(@"You have friends!  You aren't a loner after all!");
+            }
+            else
+            {
+                NSLog(@"There is only but one in the wolfpack");
+            }
         }
     }];
 }
