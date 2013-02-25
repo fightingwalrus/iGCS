@@ -23,6 +23,33 @@
 
 
 
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return self;
+}
+
+
+-(void)startScan
+{
+    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
+                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    
+    NSLog(@"Scanning started");
+}
+
+
+-(void)stopScan
+{
+    [self.centralManager stopScan];
+}
+
+
+
 
 #pragma mark - BT Central Delegate Methods
 
@@ -41,19 +68,8 @@
     // The state must be CBCentralManagerStatePoweredOn...
     
     // ... so start scanning
-    [self scan];
+    [self startScan];
     
-}
-
-
-/** Scan for peripherals - specifically for our service's 128bit CBUUID
- */
-- (void)scan
-{
-    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
-                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
-    
-    NSLog(@"Scanning started");
 }
 
 
@@ -234,7 +250,7 @@
     self.discoveredPeripheral = nil;
     
     // We're disconnected, so start scanning again
-    [self scan];
+    [self startScan];
 }
 
 

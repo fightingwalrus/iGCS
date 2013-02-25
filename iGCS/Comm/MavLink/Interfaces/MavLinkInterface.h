@@ -30,4 +30,7 @@
 -(void)produceData:(uint8_t*)bytes length:(int)length;
 
 
+-(void) close;
+
+
 @end

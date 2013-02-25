@@ -34,6 +34,19 @@
     [self.destinationInterfaces addObject:interface];
 }
 
+-(void)removeSource:(MavLinkInterface*)interface
+{
+    [self.sourceInterfaces removeObject:interface];
+    [interface close];
+}
+-(void)removeDestination:(MavLinkInterface*)interface
+{
+    [self.destinationInterfaces removeObject:interface];
+    [interface close];
+}
+
+
+
 -(void)createConnection:(MavLinkInterface*)source destination:(MavLinkInterface*)destination
 {
     // TODO: Check to see if source and destination are already in source/destination lists,

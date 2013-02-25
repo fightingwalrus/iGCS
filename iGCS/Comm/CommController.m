@@ -19,6 +19,8 @@ static MainViewController *mainVC;
 
 static iGCSMavLinkInterface *appMLI;
 
+static BluetoothStream *bts;
+
 
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
@@ -70,9 +72,7 @@ static iGCSMavLinkInterface *appMLI;
 
 // TODO: Make this input an enum instead of BOOL
 +(void) startBluetooth:(BOOL)isPeripheral
-{
-    BluetoothStream *bts;
-    
+{    
     if (isPeripheral)
     {
         bts = [BluetoothStream createForPeripheral];
@@ -88,5 +88,17 @@ static iGCSMavLinkInterface *appMLI;
 
 
 
++(void) closeAllConnections
+{
+    if (bts)
+    {
+        
+    }
+}
+
 
 @end
+
+
+
+

@@ -10,4 +10,7 @@
 
 @interface BTLEMavLinkPeripheral : NSObject
 
+-(void)startStream;
+-(void)stopStream;
+
 @end

@@ -27,6 +27,26 @@
 
 
 
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return self;
+}
+
+
+-(void)startStream
+{
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+}
+
+-(void)stopStream
+{
+    [self.peripheralManager stopAdvertising];
+}
 
 
 #pragma mark - Peripheral Methods

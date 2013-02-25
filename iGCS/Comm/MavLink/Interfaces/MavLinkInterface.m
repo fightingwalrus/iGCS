@@ -38,5 +38,10 @@
 }
 
 
+-(void) close
+{
+    // override to handle interface-specific shutdown
+}
+
 
 @end

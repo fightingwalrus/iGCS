@@ -37,5 +37,7 @@
 
 +(iGCSMavLinkInterface*)appMLI;
 
++(void) closeAllConnections;
+
 
 @end

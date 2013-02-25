@@ -11,4 +11,7 @@
 
 @interface BTLEMavLinkCentral : NSObject
 
+-(void)startScan;
+-(void)stopScan;
+
 @end
