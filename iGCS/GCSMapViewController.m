@@ -222,11 +222,56 @@ typedef enum {
     [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
         if (localPlayer.isAuthenticated)
         {
-            int test = 5;
             // Player was successfully authenticated.
             // Perform additional tasks for the authenticated player.
+            [self retrieveFriends];
+
         }
     }];
+}
+
+- (void) retrieveFriends
+{
+    GKLocalPlayer *lp = [GKLocalPlayer localPlayer];
+    if (lp.authenticated)
+    {
+        [lp loadFriendsWithCompletionHandler:^(NSArray *friends, NSError *error) {
+            if (friends != nil)
+            {
+                [self loadPlayerData: friends];
+            }
+        }];
+    }
+}
+
+- (void) loadPlayerData: (NSArray *) identifiers
+{
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+        if (error != nil)
+        {
+            // Handle the error.
+        }
+        if (players != nil)
+        {
+            // Process the array of GKPlayer objects.
+        }
+    }];
+}
+
+- (void) inviteFriends: (NSArray*) identifiers
+{
+    GKFriendRequestComposeViewController *friendRequestViewController = [[GKFriendRequestComposeViewController alloc] init];
+    friendRequestViewController.composeViewDelegate = self;
+    if (identifiers)
+    {
+        [friendRequestViewController addRecipientsWithPlayerIDs: identifiers];
+    }
+    [self presentViewController: friendRequestViewController animated: YES completion:nil];
+}
+
+- (void)friendRequestComposeViewControllerDidFinish:(GKFriendRequestComposeViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -
