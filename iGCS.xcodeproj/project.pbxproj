@@ -11,6 +11,7 @@
 		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
 		492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
+		492C813116DBD102004001FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -111,6 +112,7 @@
 		492C812816DBCCE9004001FF /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
 		492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
 		492C812A16DBCCE9004001FF /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492C813116DBD102004001FF /* GameKit.framework in Frameworks */,
 				496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */,
 				49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */,
 				CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
@@ -1207,6 +1210,7 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				492C813016DBD102004001FF /* GameKit.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
