@@ -9,6 +9,8 @@
 #import "CommsViewController.h"
 #import "GaugeViewCommon.h"
 
+#import "CommController.h"
+
 @implementation CommsViewController
 
 @synthesize attitudeTextView;
@@ -271,9 +273,14 @@
 }
 
 - (IBAction)bluetoothCentralClicked:(id)sender {
+    
+    [CommController startBluetooth:NO];
+    
 }
 
 - (IBAction)bluetoothPeripheralClicked:(id)sender {
+    
+    [CommController startBluetooth:YES];
 }
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {

@@ -1141,8 +1141,6 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
-				496E625A16DADDB100E52E4A /* CoreBluetooth.framework */,
-				49DD940216D9A5C7000DE266 /* Security.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1168,6 +1166,8 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				496E625A16DADDB100E52E4A /* CoreBluetooth.framework */,
+				49DD940216D9A5C7000DE266 /* Security.framework */,
 				CA8CA89216576557003C6D50 /* QuartzCore.framework */,
 				CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */,
 				CA499F6414DE33BC00FCC9FB /* Foundation.framework */,

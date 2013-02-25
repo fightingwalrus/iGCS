@@ -68,16 +68,21 @@ static iGCSMavLinkInterface *appMLI;
 
 
 
+// TODO: Make this input an enum instead of BOOL
 +(void) startBluetooth:(BOOL)isPeripheral
 {
+    BluetoothStream *bts;
+    
     if (isPeripheral)
     {
-        BluetoothStream *bts = [BluetoothStream createForPeripheral];
+        bts = [BluetoothStream createForPeripheral];
     }
     else
     {
-        BluetoothStream *bts = [BluetoothStream createForCentral];
+        bts = [BluetoothStream createForCentral];
     }
+    
+    NSLog(@"Created BluetoothStream: %@",[bts description]);
     
 }
 

@@ -33,6 +33,8 @@
 
 +(void)start:(MainViewController*)mvc;
 
++(void) startBluetooth:(BOOL)isPeripheral;
+
 +(iGCSMavLinkInterface*)appMLI;
 
 
