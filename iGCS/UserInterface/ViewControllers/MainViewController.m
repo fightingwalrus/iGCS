@@ -49,7 +49,7 @@
     self.gcsMapVC   = [[self viewControllers] objectAtIndex:0];
     self.commsVC    = [[self viewControllers] objectAtIndex:1];
     self.waypointVC = [[self viewControllers] objectAtIndex:2];
-
+    self.debugVC = [[self viewControllers] objectAtIndex:3];
     
     
     
