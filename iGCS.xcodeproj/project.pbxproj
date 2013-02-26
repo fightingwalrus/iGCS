@@ -69,6 +69,11 @@
 		496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
 		496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
+		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
+		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
+		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
+		49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
+		49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -171,6 +176,11 @@
 		496E62C216DAFBF600E52E4A /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
+		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
+		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
+		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
+		49C1FA1016DC74DB00BAE96B /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		49C1FA1116DC74DB00BAE96B /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
@@ -655,6 +665,7 @@
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49C1FA0D16DC654100BAE96B /* wrench.png */,
 				496E625D16DAFAD700E52E4A /* airplane.png */,
 				496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */,
 				496E625F16DAFAD700E52E4A /* Icon-72.png */,
@@ -706,6 +717,8 @@
 				496E627C16DAFB8B00E52E4A /* MainViewController.m */,
 				496E627D16DAFB8B00E52E4A /* WaypointsViewController.h */,
 				496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */,
+				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
+				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1277,6 +1290,8 @@
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
 				CA499F6E14DE33BC00FCC9FB /* main.m */,
 				CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */,
+				49C1FA1016DC74DB00BAE96B /* Logger.h */,
+				49C1FA1116DC74DB00BAE96B /* Logger.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1477,6 +1492,7 @@
 				496E626216DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1489,6 +1505,7 @@
 				496E626316DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
 				496E626516DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				49C1FA0F16DC654100BAE96B /* wrench.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1543,6 +1560,8 @@
 				492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
 				492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				492C813416DBD32F004001FF /* GKSessionController.m in Sources */,
+				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
+				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1577,6 +1596,7 @@
 				492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
 				492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				492C813516DBD32F004001FF /* GKSessionController.m in Sources */,
+				49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

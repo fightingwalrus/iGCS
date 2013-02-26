@@ -12,6 +12,7 @@
 @class GCSMapViewController;
 @class CommsViewController;
 @class WaypointsViewController;
+@class DebugViewController;
 
 @class WaypointsHolder;
 
@@ -21,6 +22,7 @@
 @property (strong) GCSMapViewController *gcsMapVC;
 @property (strong) CommsViewController *commsVC;
 @property (strong) WaypointsViewController *waypointVC;
+@property (strong) DebugViewController *debugVC;
 
 
 

@@ -8,7 +8,7 @@
 
 #import "CommController.h"
 
-
+#import "DebugViewController.h"
 
 @implementation CommController
 
@@ -32,6 +32,9 @@ static RedparkSerialCable *redParkCable;
     mainVC = mvc;
     
     [self createDefaultConnections];
+    
+    [mainVC.debugVC consoleMessage:@"Created default connections in CommController."];
+    [mainVC.debugVC errorMessage:@"Test message."];
     
     
     
