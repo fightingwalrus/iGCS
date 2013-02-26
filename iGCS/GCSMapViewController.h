@@ -53,6 +53,8 @@
 
 @property(nonatomic, strong) GKMatch *myMatch;
 @property(nonatomic) BOOL matchStarted;
+@property(nonatomic, strong) NSArray *myFriends;
+@property(nonatomic, strong) NSArray *myIdentifiers;
 
 #define WIND_ICON_OFFSET_ANG 135
 

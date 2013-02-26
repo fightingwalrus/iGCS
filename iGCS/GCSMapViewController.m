@@ -209,7 +209,15 @@ typedef enum {
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = 2;
+    NSUInteger friendCount = [self.myFriends count];
     request.maxPlayers = 2;
+
+    //Max realtime friends is 4
+    if(friendCount<4)
+    {
+        request.maxPlayers = friendCount + 1;
+        request.playersToInvite = self.myIdentifiers;
+    }
     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
                                          initWithMatchRequest:request];
     mmvc.matchmakerDelegate = self;
@@ -250,6 +258,7 @@ typedef enum {
             if (friends != nil)
             {
                 [self loadPlayerData: friends];
+                NSString *testFriend = [friends objectAtIndex:0];
             }
         }];
     }
@@ -257,6 +266,7 @@ typedef enum {
 
 - (void) loadPlayerData: (NSArray *) identifiers
 {
+    self.myIdentifiers = identifiers;
     [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *friends, NSError *error) {
         if (error != nil)
         {
@@ -268,6 +278,7 @@ typedef enum {
             if ([friends count] > 0)
             {
                 NSLog(@"You have friends!  You aren't a loner after all!");
+                self.myFriends = friends;
             }
             else
             {
