@@ -74,6 +74,8 @@
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
 		49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
+		49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
+		49C1FA1816DC7B5200BAE96B /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -181,6 +183,8 @@
 		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
 		49C1FA1016DC74DB00BAE96B /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		49C1FA1116DC74DB00BAE96B /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		49C1FA1516DC7B5200BAE96B /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
+		49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
@@ -1292,6 +1296,8 @@
 				CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */,
 				49C1FA1016DC74DB00BAE96B /* Logger.h */,
 				49C1FA1116DC74DB00BAE96B /* Logger.m */,
+				49C1FA1516DC7B5200BAE96B /* ExceptionHandler.h */,
+				49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1562,6 +1568,7 @@
 				492C813416DBD32F004001FF /* GKSessionController.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
+				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1604,7 @@
 				492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				492C813516DBD32F004001FF /* GKSessionController.m in Sources */,
 				49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */,
+				49C1FA1816DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

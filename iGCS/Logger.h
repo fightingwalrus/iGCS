@@ -8,14 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class DebugViewController;
+
 @interface Logger : NSObject
 
 
-+(void)addPendingConsoleMessage:(NSString*)message;
-+(void)addPendingErrorMessage:(NSString*)message;
++(void)setDebugVC:(DebugViewController*)dVC;
+
+
++(void)console:(NSString*)message;
++(void)error:(NSString*)message;
+
 +(NSArray*)getPendingConsoleMessages;
 +(NSArray*)getPendingErrorMessages;
 +(void)clearPendingConsoleMessages;
 +(void)clearPendingErrorMessages;
+
 
 @end

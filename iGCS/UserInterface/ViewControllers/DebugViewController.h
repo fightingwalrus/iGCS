@@ -22,7 +22,9 @@
 - (IBAction)bluetoothRxClicked:(id)sender;
 - (IBAction)bluetoothTxClicked:(id)sender;
 
--(void)consoleMessage:(NSString*)message;
--(void)errorMessage:(NSString*)message;
+
+-(void)consoleMessage:(NSString*)messageText;
+-(void)errorMessage:(NSString*)messageText;
+
 
 @end

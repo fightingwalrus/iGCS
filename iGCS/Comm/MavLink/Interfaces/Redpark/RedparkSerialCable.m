@@ -9,6 +9,8 @@
 #import "RedparkSerialCable.h"
 #import "MavLinkTools.h"
 
+#import "Logger.h"
+
 #import "CommsViewController.h"
 
 #import "DebugViewController.h"
@@ -23,12 +25,12 @@
     rsc.mainVC = mvc;
     
     // Start the Redpark Serial Cable Manager
-    [rsc.mainVC.debugVC consoleMessage:@"Redpark: Creating RscMgr."];
+    [Logger console:@"Redpark: Creating RscMgr."];
     rsc.rscMgr = [[RscMgr alloc] init];
     [rsc.rscMgr setDelegate:rsc];
     
     
-    [rsc.mainVC.debugVC consoleMessage:@"Redpark: RscMgr ready."];
+    [Logger console:@"Redpark: RscMgr ready."];
     
     
     return rsc;
@@ -82,7 +84,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 - (void) cableConnected:(NSString *)protocol
 {
     
-    [self.mainVC.debugVC consoleMessage:@"Redpark: cableConnected"];
+    [Logger console:@"Redpark: cableConnected"];
     /*
      UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"cableConnected"
      message:@"connecting..." delegate:nil
@@ -110,7 +112,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 // Redpark Serial Cable has been disconnected and/or application moved to background.
 - (void) cableDisconnected
 {
-    [self.mainVC.debugVC consoleMessage:@"Redpark: cableDisconnected"];
+    [Logger console:@"Redpark: cableDisconnected"];
     self.cableConnected = NO;
     [self.mainVC.commsVC setCableConnectionStatus:self.cableConnected];
 }
@@ -120,7 +122,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 - (void) portStatusChanged
 {
     
-    [self.mainVC.debugVC consoleMessage:@"Redpark: portStatusChanged"];
+    [Logger console:@"Redpark: portStatusChanged"];
 }
 
 // bytes are available to be read (user calls read:)
@@ -133,7 +135,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     
     
     
-    [self.mainVC.debugVC consoleMessage:@"Redpark: readBytesAvailable"];
+    [Logger console:@"Redpark: readBytesAvailable"];
     [self produceData:buf length:n];
     
     

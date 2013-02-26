@@ -12,6 +12,8 @@
 
 #import "Logger.h"
 
+#import "ExceptionHandler.h"
+
 @interface DebugViewController ()
 
 @end
@@ -35,12 +37,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [ExceptionHandler start:self];
+    
     
 }
 
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [Logger setDebugVC:self];
+    
     if ([[Logger getPendingConsoleMessages] count] > 0)
     {
         for (NSString *message in [Logger getPendingConsoleMessages])
@@ -58,6 +64,7 @@
     
     [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,72 +87,45 @@
 }
 
 
--(void)consoleMessage:(NSString*)message
+-(void)consoleMessage:(NSString*)messageText
 {
-    if (self.consoleTextView)
+    NSString *currentText = self.consoleTextView.text;
+    
+    NSString *updatedText;
+    
+    if (currentText)
     {
-        NSLog(@"Console message: %@",message);
-        NSString *currentText = self.consoleTextView.text;
-        NSString *messageText = [self createLogString:message];
-        
-        NSString *updatedText;
-        
-        if (currentText)
-        {
-            updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-        }
-        else
-        {
-            updatedText = messageText;
-        }
-        
-        self.consoleTextView.text = updatedText;
+        updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
     }
     else
     {
-        [Logger addPendingConsoleMessage:message];
+        updatedText = messageText;
     }
+    
+    self.consoleTextView.text = updatedText;
     
 }
 
--(void)errorMessage:(NSString*)message
+-(void)errorMessage:(NSString*)messageText
 {
-    if (self.consoleTextView)
+    NSString *currentText = self.errorsTextView.text;
+    
+    NSString *updatedText;
+    
+    if (currentText)
     {
-        NSLog(@"Console message: %@",message);
-        NSString *currentText = self.errorsTextView.text;
-        NSString *messageText = [self createLogString:message];
-        
-        NSString *updatedText;
-        
-        if (currentText)
-        {
-            updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-        }
-        else
-        {
-            updatedText = messageText;
-        }
-        
-        self.errorsTextView.text = updatedText;
+        updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
     }
     else
     {
-        [Logger addPendingErrorMessage:message];
+        updatedText = messageText;
     }
+    
+    self.errorsTextView.text = updatedText;
+
 }
 
--(NSString*)createLogString:(NSString*)message
-{
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"%@",dateString);
-    
-    NSString *logString = [NSString stringWithFormat:@"%@: %@",dateString,message];
-    
-    return logString;
-}
+
 
 - (void)viewDidUnload {
     [self setConsoleTextView:nil];
