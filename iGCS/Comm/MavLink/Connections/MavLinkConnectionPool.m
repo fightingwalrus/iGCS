@@ -80,8 +80,6 @@
     
         [self.connections addObject:conn];
         
-        
-        [[NSArray array] objectAtIndex:0];
     }
     @catch (NSException *e)
     {

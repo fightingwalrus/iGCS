@@ -129,14 +129,22 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 - (void) readBytesAvailable:(UInt32)length
 {
     
-    // Read the available bytes out of the serial cable manager
-    uint8_t buf[length];
-    int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
+    @try {
+        // Read the available bytes out of the serial cable manager
+        uint8_t buf[length];
+        int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
+        
+        
+        
+        [Logger console:@"Redpark: readBytesAvailable"];
+        [self produceData:buf length:n];
+    }
+    @catch (NSException *e)
+    {
+        [Logger dumpException:e];
+    }
     
     
-    
-    [Logger console:@"Redpark: readBytesAvailable"];
-    [self produceData:buf length:n];
     
     
 
