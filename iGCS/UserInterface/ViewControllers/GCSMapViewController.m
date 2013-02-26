@@ -13,6 +13,10 @@
 #import "WaypointAnnotation.h"
 #import "GaugeViewCommon.h"
 
+#import "CommController.h"
+
+#import "GKSessionController.h"
+
 @implementation GCSMapViewController
 
 @synthesize map;
@@ -47,26 +51,6 @@
 #define kMaxPacketSize 1024
 
 
-typedef enum {
-	kStateStartGame,
-	kStatePicker,
-	kStateMultiplayer,
-	kStateMultiplayerCointoss,
-	kStateMultiplayerReconnect
-} gameStates;
-
-typedef enum {
-	NETWORK_ACK,					// no packet
-	NETWORK_COINTOSS,				// decide who is going to be the server
-	NETWORK_MOVE_EVENT,				// send position
-	NETWORK_FIRE_EVENT,				// send fire
-	NETWORK_HEARTBEAT				// send of entire state at regular intervals
-} packetCodes;
-
-typedef enum {
-	kServer,
-	kClient
-} gameNetwork;
 
 // GameKit Session ID for app
 #define kTankSessionID @"groundStation"
@@ -198,11 +182,11 @@ typedef enum {
 #pragma mark Button Click callbacks
 
 - (IBAction) readWaypointButtonClick {
-    [(MainViewController*)[self parentViewController] issueReadWaypointsRequest];
+    [[CommController appMLI] issueReadWaypointsRequest];
 }
 
 - (IBAction) autoButtonClick {
-    [(MainViewController*)[self parentViewController] issueSetAUTOModeCommand];
+    [[CommController appMLI] issueSetAUTOModeCommand];
 }
 
 - (IBAction) externalButtonClick {
@@ -579,7 +563,7 @@ typedef enum {
         [map setNeedsDisplay];
         
         // Let's go!
-        [(MainViewController*)[self parentViewController] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
+        [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
     }
 }
 

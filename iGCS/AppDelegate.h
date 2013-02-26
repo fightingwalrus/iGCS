@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TestFlight.h"
+
+#import "FightingWalrusProtocol.h"
+
 #define TESTING 1
 
 #ifdef TESTING
@@ -16,7 +19,16 @@
 #define TESTFLIGHT_CHECKPOINT(X)
 #endif
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    FightingWalrusProtocol *walrus;
+    
+    
+	UIAlertView *alertView;
+    
+    
+	NSTimer *updateTimer;
+    
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

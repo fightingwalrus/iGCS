@@ -9,6 +9,8 @@
 #import "CommsViewController.h"
 #import "GaugeViewCommon.h"
 
+#import "CommController.h"
+
 @implementation CommsViewController
 
 @synthesize attitudeTextView;
@@ -268,6 +270,17 @@
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
                                                     length:CPTDecimalFromFloat(max*1.1)];
     [dataRateGraph reloadData];
+}
+
+- (IBAction)bluetoothCentralClicked:(id)sender {
+    
+    [CommController startBluetoothRx];
+    
+}
+
+- (IBAction)bluetoothPeripheralClicked:(id)sender {
+    
+    [CommController startBluetoothTx];
 }
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {

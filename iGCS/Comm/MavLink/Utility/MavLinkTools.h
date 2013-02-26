@@ -10,14 +10,16 @@
 #define MavLinkTest_MavLinkTools_h
 
 #define MAVLINK_USE_CONVENIENCE_FUNCTIONS 1
-#import "../mavlink-include/mavlink_types.h"
+#import "mavlink_types.h"
+//#import "../mavlink-include/mavlink_types.h"
 mavlink_system_t mavlink_system;
 
 #ifndef MAVLINK_SEPARATE_HELPERS
 #define MAVLINK_SEND_UART_BYTES(chan, buffer, len) send_uart_bytes(chan, buffer, len)
 static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len);
 #endif
-#import "../mavlink-include/ardupilotmega/mavlink.h"
+//#import "../mavlink-include/ardupilotmega/mavlink.h"
+#import "mavlink.h"
 
 /*
  ref: https://code.google.com/p/gentlenav/source/browse/branches/MatrixPilot_refactored/Tools/MAVLink/pymavlink/generator/C/test/posix/testmav.c?r=1420
