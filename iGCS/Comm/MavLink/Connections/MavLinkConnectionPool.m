@@ -8,6 +8,8 @@
 
 #import "MavLinkConnectionPool.h"
 
+#import "Logger.h"
+
 @implementation MavLinkConnectionPool
 
 
@@ -73,10 +75,19 @@
     
     // TODO: Make sure a connection with these interfaces doesn't already exist
     
-    MavLinkConnection *conn = [MavLinkConnection createForSource:source destination:destination];
+    @try {
+        MavLinkConnection *conn = [MavLinkConnection createForSource:source destination:destination];
     
-    [self.connections addObject:conn];
-    
+        [self.connections addObject:conn];
+        
+        
+        [[NSArray array] objectAtIndex:0];
+    }
+    @catch (NSException *e)
+    {
+        [Logger dumpException:e];
+    }
+
 }
 
 

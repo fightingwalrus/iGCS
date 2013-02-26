@@ -27,12 +27,7 @@ void catchUnhandledException(NSException* e)
     NSLog(@"Exception raised: ");
     NSLog(@"%@",[e description]);
     
-    [debugVC errorMessage:e.name];
-    [debugVC errorMessage:e.description];
-    for (NSString *call in e.callStackSymbols)
-    {
-        [debugVC errorMessage:call];
-    }
+    
     
     //[ConstrucsExceptionHandler uploadExceptionReport:e.name desc:e.description type:@"Exception" callstack:[e callStackSymbols]];
     

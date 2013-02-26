@@ -25,5 +25,6 @@
 +(void)clearPendingConsoleMessages;
 +(void)clearPendingErrorMessages;
 
++(void)dumpException:(NSException*)exception;
 
 @end
