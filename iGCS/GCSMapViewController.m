@@ -244,6 +244,7 @@ typedef enum {
             // Player was successfully authenticated.
             // Perform additional tasks for the authenticated player.
             [self retrieveFriends];
+            [self registerForInvites];
 
         }
     }];
@@ -258,7 +259,6 @@ typedef enum {
             if (friends != nil)
             {
                 [self loadPlayerData: friends];
-                NSString *testFriend = [friends objectAtIndex:0];
             }
         }];
     }
@@ -293,6 +293,7 @@ typedef enum {
     [GKMatchmaker sharedMatchmaker].inviteHandler = ^(GKInvite *acceptedInvite,
                                                       NSArray *playersToInvite) {
         // Insert application-specific code here to clean up any games in progress.
+        NSLog(@"Invite received");
         if (acceptedInvite)
         {
             GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
@@ -412,6 +413,7 @@ typedef enum {
 }
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindPlayers:(NSArray *)playerIDs
 {
+    NSLog(@"Did findFindPlayers");
     
 }
 //Handling Cancellations (required method)
