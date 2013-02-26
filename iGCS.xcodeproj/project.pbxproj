@@ -14,6 +14,9 @@
 		492C813116DBD102004001FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		492C813416DBD32F004001FF /* GKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C813316DBD32F004001FF /* GKSessionController.m */; };
 		492C813516DBD32F004001FF /* GKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C813316DBD32F004001FF /* GKSessionController.m */; };
+		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
+		49369FA616DC919D00D98370 /* BugSense-iOS 2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */; };
+		49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FB216DC949600D98370 /* BugSense-iOS */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -124,6 +127,9 @@
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		492C813216DBD32F004001FF /* GKSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKSessionController.h; sourceTree = "<group>"; };
 		492C813316DBD32F004001FF /* GKSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKSessionController.m; sourceTree = "<group>"; };
+		49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "BugSense-iOS 2.framework"; path = "iGCS/BugSense-iOS 2.framework"; sourceTree = "<group>"; };
+		49369FB216DC949600D98370 /* BugSense-iOS */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "BugSense-iOS"; path = "iGCS/BugSense-iOS 2.framework/Versions/A/BugSense-iOS"; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -615,6 +621,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */,
+				49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */,
 				492C813116DBD102004001FF /* GameKit.framework in Frameworks */,
 				496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */,
 				49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */,
@@ -639,6 +647,7 @@
 				CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */,
 				CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
+				49369FA616DC919D00D98370 /* BugSense-iOS 2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1242,7 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				49369FB216DC949600D98370 /* BugSense-iOS */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1258,6 +1268,8 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */,
+				49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */,
 				492C813016DBD102004001FF /* GameKit.framework */,
 				496E625A16DADDB100E52E4A /* CoreBluetooth.framework */,
 				49DD940216D9A5C7000DE266 /* Security.framework */,
@@ -1692,6 +1704,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
+					"\"$(SRCROOT)/iGCS\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -1702,6 +1716,7 @@
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
+					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1716,9 +1731,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
+					"\"$(SRCROOT)/iGCS\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -1729,6 +1747,7 @@
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
+					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1747,6 +1766,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -1765,6 +1785,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
