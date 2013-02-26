@@ -28,14 +28,19 @@ static RedparkSerialCable *redParkCable;
 // input: instance of MainViewController - used to trigger view updates during comm operations
 +(void)start:(MainViewController*)mvc
 {
+    @try {
+        connections = [[MavLinkConnectionPool alloc] init];
+        
+        mainVC = mvc;
+        
+        [self createDefaultConnections];
+        
+        [Logger console:@"Created default connections in CommController."];
+    }
+    @catch (NSException *exception) {
+        [Logger dumpException:exception];
+    }
     
-    connections = [[MavLinkConnectionPool alloc] init];
-    
-    mainVC = mvc;
-    
-    [self createDefaultConnections];
-    
-    [Logger console:@"Created default connections in CommController."];
     
     
     
