@@ -206,11 +206,30 @@ typedef enum {
 }
 
 - (IBAction) externalButtonClick {
+    
+    GKMatchRequest *request = [[GKMatchRequest alloc] init];
+    request.minPlayers = 2;
+    NSUInteger friendCount = [self.myFriends count];
+    request.maxPlayers = 2;
+
+    //Max realtime friends is 4
+    if(friendCount<4)
+    {
+        request.maxPlayers = friendCount + 1;
+        request.playersToInvite = self.myIdentifiers;
+    }
+    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
+                                         initWithMatchRequest:request];
+    mmvc.matchmakerDelegate = self;
+    [self presentModalViewController:mmvc animated:YES];
+    
+    //Comment out local for now
+    /*
     GKPeerPickerController*		picker;
-		
 	picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
 	picker.delegate = self;
 	[picker show]; // show the Peer Picker
+     */
 }
 
 
@@ -239,6 +258,7 @@ typedef enum {
             if (friends != nil)
             {
                 [self loadPlayerData: friends];
+                NSString *testFriend = [friends objectAtIndex:0];
             }
         }];
     }
@@ -246,21 +266,59 @@ typedef enum {
 
 - (void) loadPlayerData: (NSArray *) identifiers
 {
-    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+    self.myIdentifiers = identifiers;
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *friends, NSError *error) {
         if (error != nil)
         {
             // Handle the error.
         }
-        if (players != nil)
+        if (friends != nil)
         {
             // Process the array of GKPlayer objects.
+            if ([friends count] > 0)
+            {
+                NSLog(@"You have friends!  You aren't a loner after all!");
+                self.myFriends = friends;
+            }
+            else
+            {
+                NSLog(@"There is only but one in the wolfpack");
+            }
         }
     }];
+}
+
+- (void) registerForInvites
+{
+    [GKMatchmaker sharedMatchmaker].inviteHandler = ^(GKInvite *acceptedInvite,
+                                                      NSArray *playersToInvite) {
+        // Insert application-specific code here to clean up any games in progress.
+        if (acceptedInvite)
+        {
+            GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
+                                                 initWithInvite:acceptedInvite];
+            mmvc.matchmakerDelegate = self;
+            [self presentModalViewController:mmvc animated:YES];
+        }
+        else if (playersToInvite)
+        {
+            GKMatchRequest *request = [[GKMatchRequest alloc] init];
+            request.minPlayers = 2;
+            request.maxPlayers = 4;
+            request.playersToInvite = playersToInvite;
+            GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
+                                                 initWithMatchRequest:request];
+            mmvc.matchmakerDelegate = self;
+            [self presentModalViewController:mmvc animated:YES];
+        }
+    };
+    
 }
 
 - (void) inviteFriends: (NSArray*) identifiers
 {
     GKFriendRequestComposeViewController *friendRequestViewController = [[GKFriendRequestComposeViewController alloc] init];
+    //FIXME fill out these delegate friend methods
     friendRequestViewController.composeViewDelegate = self;
     if (identifiers)
     {
@@ -333,6 +391,52 @@ typedef enum {
 	
 	// Start Multiplayer game by entering a cointoss state to determine who is server/client.
 	self.gameState = kStateMultiplayerCointoss;
+}
+
+
+#pragma mark -
+#pragma mark GKMatchMakerDelegate
+
+//Completing a Match Request
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
+{
+    [viewController dismissModalViewControllerAnimated:YES];
+    self.myMatch = match; // Use a retaining property to retain the match.
+    match.delegate = self;
+    if (!self.matchStarted && match.expectedPlayerCount == 0)
+    {
+        self.matchStarted = YES;
+        // Insert application-specific code to begin the match.
+        NSLog(@"Take it from here");
+    }
+}
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindPlayers:(NSArray *)playerIDs
+{
+    
+}
+//Handling Cancellations (required method)
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
+{
+    NSLog(@"MatchMaker Cancelled");
+    [viewController dismissModalViewControllerAnimated:YES];
+}
+//Handling Errors (required method)
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
+    NSLog(@"Error occurred:%@",error);
+    [viewController dismissModalViewControllerAnimated:YES];
+}
+//Hosted Matches not yet supported
+//Hosted Matches
+//– matchmakerViewController:didReceiveAcceptFromHostedPlayer:
+
+
+#pragma mark -
+#pragma mark GKMatchDelegate Methods
+
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID
+{
+    NSLog(@"Got some data!!!!");
 }
 
 #pragma mark -

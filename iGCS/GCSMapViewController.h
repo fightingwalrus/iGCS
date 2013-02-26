@@ -19,7 +19,7 @@
 
 #import "WaypointsHolder.h"
 
-@interface GCSMapViewController : UIViewController <MavLinkPacketHandler, MKMapViewDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate>
+@interface GCSMapViewController : UIViewController <MavLinkPacketHandler, MKMapViewDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -50,6 +50,11 @@
 @property(nonatomic, copy)	 NSString	 *gamePeerId;
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
+
+@property(nonatomic, strong) GKMatch *myMatch;
+@property(nonatomic) BOOL matchStarted;
+@property(nonatomic, strong) NSArray *myFriends;
+@property(nonatomic, strong) NSArray *myIdentifiers;
 
 #define WIND_ICON_OFFSET_ANG 135
 
