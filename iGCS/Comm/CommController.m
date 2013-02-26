@@ -10,6 +10,8 @@
 
 #import "DebugViewController.h"
 
+#import "Logger.h"
+
 @implementation CommController
 
 
@@ -33,7 +35,7 @@ static RedparkSerialCable *redParkCable;
     
     [self createDefaultConnections];
     
-    [mainVC.debugVC consoleMessage:@"Created default connections in CommController."];
+    [Logger console:@"Created default connections in CommController."];
     
     
     
@@ -48,17 +50,17 @@ static RedparkSerialCable *redParkCable;
     appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
     
     // configure input connection as redpark cable
-    [mainVC.debugVC consoleMessage:@"Starting Redpark connection."];
+    [Logger console:@"Starting Redpark connection."];
     redParkCable = [RedparkSerialCable createWithViews:mainVC];
     
-    [mainVC.debugVC consoleMessage:@"Redpark started."];
+    [Logger console:@"Redpark started."];
     [connections addSource:redParkCable];
     
     
     // configure output connection as iGCSMavLinkInterface
     [connections addDestination:appMLI];
     
-    [mainVC.debugVC consoleMessage:@"Configured iGCS Application as MavLink consumer."];
+    [Logger console:@"Configured iGCS Application as MavLink consumer."];
     
     
     
@@ -66,14 +68,14 @@ static RedparkSerialCable *redParkCable;
     [connections createConnection:redParkCable destination:appMLI];
     
     
-    [mainVC.debugVC consoleMessage:@"Connected Redpark Rx to iGCS Application input."];
+    [Logger console:@"Connected Redpark Rx to iGCS Application input."];
     
     
     // Forward app output to redpark TX
     [connections createConnection:appMLI destination:redParkCable];
     
     
-    [mainVC.debugVC consoleMessage:@"Connected iGCS Application output to Redpark Tx."];
+    [Logger console:@"Connected iGCS Application output to Redpark Tx."];
 }
 
 
@@ -94,7 +96,7 @@ static RedparkSerialCable *redParkCable;
     [connections createConnection:redParkCable destination:bts];
     
     
-    [mainVC.debugVC consoleMessage:@"Created BluetoothStream for Tx."];
+    [Logger console:@"Created BluetoothStream for Tx."];
     
     NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
     
@@ -110,7 +112,7 @@ static RedparkSerialCable *redParkCable;
     [connections createConnection:bts destination:appMLI];
     
     
-    [mainVC.debugVC consoleMessage:@"Created BluetoothStream for Rx."];
+    [Logger console:@"Created BluetoothStream for Rx."];
     NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
     
 }

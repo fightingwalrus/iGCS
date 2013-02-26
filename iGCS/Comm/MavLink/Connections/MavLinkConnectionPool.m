@@ -83,15 +83,21 @@
 
 -(void)interface:(MavLinkInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length
 {
-    
-    for (MavLinkConnection *connection in self.connections)
-    {
-        if ([connection.source isEqual:interface])
+    @try {
+        for (MavLinkConnection *connection in self.connections)
         {
-            // Send the bytes to the destination for each matched connection
-            [connection.destination consumeData:bytes length:length];
+            if ([connection.source isEqual:interface])
+            {
+                // Send the bytes to the destination for each matched connection
+                [connection.destination consumeData:bytes length:length];
+            }
         }
     }
+    @catch (NSException *e)
+    {
+        NSLog(@"Exception in forwarding data: %@",[e description]);
+    }
+    
 }
 
 @end
