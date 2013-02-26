@@ -13,6 +13,8 @@
 #import "WaypointAnnotation.h"
 #import "GaugeViewCommon.h"
 
+#import "CommController.h"
+
 @implementation GCSMapViewController
 
 @synthesize map;
@@ -198,11 +200,11 @@ typedef enum {
 #pragma mark Button Click callbacks
 
 - (IBAction) readWaypointButtonClick {
-    [(MainViewController*)[self parentViewController] issueReadWaypointsRequest];
+    [[CommController appMLI] issueReadWaypointsRequest];
 }
 
 - (IBAction) autoButtonClick {
-    [(MainViewController*)[self parentViewController] issueSetAUTOModeCommand];
+    [[CommController appMLI] issueSetAUTOModeCommand];
 }
 
 - (IBAction) externalButtonClick {
@@ -577,7 +579,7 @@ typedef enum {
         [map setNeedsDisplay];
         
         // Let's go!
-        [(MainViewController*)[self parentViewController] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
+        [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
     }
 }
 
