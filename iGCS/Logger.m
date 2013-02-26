@@ -60,6 +60,15 @@ static DebugViewController *debugVC;
     }
 }
 
++(void)dumpException:(NSException*)exception
+{
+    [self error:exception.name];
+    [self error:exception.description];
+    for (NSString *stackItem in exception.callStackSymbols)
+    {
+        [self error:stackItem];
+    }
+}
 
 
 

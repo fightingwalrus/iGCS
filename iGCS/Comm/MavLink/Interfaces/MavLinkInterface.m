@@ -10,6 +10,8 @@
 
 #import "MavLinkConnectionPool.h"
 
+#import "Logger.h"
+
 @implementation MavLinkInterface
 
 
@@ -19,6 +21,7 @@
     // gets called when matching source interface in a MavLinkConnection has new data
     
     // must always be overridden for destination interfaces
+    [Logger error:@"Error: Tried to call consumeData that was not overridden by subclass."];
     assert(0);
 
 }
@@ -30,6 +33,10 @@
 {
     
     // ConnectionPool must be assigned
+    if (!self.connectionPool)
+    {
+        [Logger error:@"Error: Tried to call produceData, but no connectionPool was set."];
+    }
     assert(self.connectionPool);
     
     [self.connectionPool interface:self producedBytes:bytes length:length];
