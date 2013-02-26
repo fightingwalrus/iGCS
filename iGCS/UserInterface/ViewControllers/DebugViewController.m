@@ -12,6 +12,8 @@
 
 #import "Logger.h"
 
+#import "ExceptionHandler.h"
+
 @interface DebugViewController ()
 
 @end
@@ -34,6 +36,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [ExceptionHandler start:self];
     
     
 }
@@ -58,6 +62,9 @@
     
     [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
+    
+    // DEBUG: Throw an exception
+    [[NSArray array] objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,7 +119,7 @@
 {
     if (self.consoleTextView)
     {
-        NSLog(@"Console message: %@",message);
+        NSLog(@"Error message: %@",message);
         NSString *currentText = self.errorsTextView.text;
         NSString *messageText = [self createLogString:message];
         
@@ -140,8 +147,6 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"%@",dateString);
-    
     NSString *logString = [NSString stringWithFormat:@"%@: %@",dateString,message];
     
     return logString;
