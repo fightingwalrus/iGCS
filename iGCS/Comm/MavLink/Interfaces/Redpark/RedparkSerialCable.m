@@ -43,6 +43,7 @@
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
+    [Logger console:@"consumeData"];
     rscMgr = self.rscMgr;
     send_uart_bytes(0, bytes, length);
 }
@@ -53,7 +54,10 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 //-(void) send_uart_bytes:(uint8_t*)bytes channel:(mavlink_channel_t)channel length:(uint16_t)len
 {
 
-    NSLog(@"send_uart_bytes: sending %hu chars", len);
+    [Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %hu chars", len]];
+    
+    [Logger console: @"rscMgr:"];
+    [Logger console: [rscMgr description]];
 
     int n = [rscMgr write:buffer Length:len];
 
