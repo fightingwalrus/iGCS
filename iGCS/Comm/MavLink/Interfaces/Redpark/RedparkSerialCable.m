@@ -44,25 +44,18 @@
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
     [Logger console:@"consumeData"];
-    rscMgr = self.rscMgr;
-    send_uart_bytes(1, bytes, length);
-}
-
-
-RscMgr *rscMgr;
-static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
-//-(void) send_uart_bytes:(uint8_t*)bytes channel:(mavlink_channel_t)channel length:(uint16_t)len
-{
-
-    [Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %hu chars", len]];
+    
+    
+    
+    [Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %i chars", length]];
     
     [Logger console: @"rscMgr:"];
-    [Logger console: [rscMgr description]];
-
-    int n = [rscMgr write:buffer Length:len];
-
+    [Logger console: [self.rscMgr description]];
     
-    if (n == len)
+    int n = [self.rscMgr write:bytes Length:length];
+    
+    
+    if (n == length)
     {
         NSLog(@"send_uart_bytes: output %d chars", n);
     }
@@ -70,8 +63,19 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     {
         NSLog(@"send_uart_bytes: FAILED (only %d sent)", n);
     }
-     
+    
+    
 }
+
+
+//RscMgr *rscMgr;
+//static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
+//-(void) send_uart_bytes:(uint8_t*)bytes channel:(mavlink_channel_t)channel length:(uint16_t)len
+//{
+
+    
+     
+//}
 
 
 

@@ -34,6 +34,8 @@
     
     interface.mainVC = mainVC;
     
+    appMLI = interface;
+    
     return interface;
 }
 
@@ -232,6 +234,19 @@ mavlink_heartbeat_t heartbeat;
     }
 }
 
+
+iGCSMavLinkInterface *appMLI;
+
+static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
+{
+    
+    NSLog(@"send_uart_bytes: sending %hu chars to connection pool", len);
+    
+    [appMLI produceData:buffer length:len];
+    
+
+
+}
 
 
 
