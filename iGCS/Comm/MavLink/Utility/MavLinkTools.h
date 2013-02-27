@@ -14,10 +14,10 @@
 //#import "../mavlink-include/mavlink_types.h"
 mavlink_system_t mavlink_system;
 
-#ifndef MAVLINK_SEPARATE_HELPERS
+//#ifndef MAVLINK_SEPARATE_HELPERS
 #define MAVLINK_SEND_UART_BYTES(chan, buffer, len) send_uart_bytes(chan, buffer, len)
 static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len);
-#endif
+//#endif
 //#import "../mavlink-include/ardupilotmega/mavlink.h"
 #import "mavlink.h"
 
