@@ -43,25 +43,25 @@
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
-    [Logger console:@"consumeData"];
+    //[Logger console:@"consumeData"];
     
     
     
-    [Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %i chars", length]];
+    //[Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %i chars", length]];
     
-    [Logger console: @"rscMgr:"];
-    [Logger console: [self.rscMgr description]];
+    //[Logger console: @"rscMgr:"];
+    //[Logger console: [self.rscMgr description]];
     
     int n = [self.rscMgr write:bytes Length:length];
     
     
     if (n == length)
     {
-        NSLog(@"send_uart_bytes: output %d chars", n);
+        //NSLog(@"send_uart_bytes: output %d chars", n);
     }
     else
     {
-        NSLog(@"send_uart_bytes: FAILED (only %d sent)", n);
+        //NSLog(@"send_uart_bytes: FAILED (only %d sent)", n);
     }
     
     
@@ -154,7 +154,7 @@
         
         
         
-        [Logger console:@"Redpark: readBytesAvailable"];
+        //[Logger console:@"Redpark: readBytesAvailable"];
         [self produceData:buf length:n];
     }
     @catch (NSException *e)
