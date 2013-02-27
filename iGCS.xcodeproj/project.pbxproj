@@ -1242,7 +1242,6 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
-				49369FB216DC949600D98370 /* BugSense-iOS */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1268,6 +1267,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49369FB216DC949600D98370 /* BugSense-iOS */,
 				49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */,
 				49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */,
 				492C813016DBD102004001FF /* GameKit.framework */,

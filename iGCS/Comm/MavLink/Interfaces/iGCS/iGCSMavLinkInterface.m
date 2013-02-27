@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h" // For TestFlight control
 
-#import "iGCSMavLinkInterface.h"
 
 #import "MavLinkTools.h"
+
+#import "iGCSMavLinkInterface.h"
+
 
 #import "CommsViewController.h"
 #import "GCSMapViewController.h"
