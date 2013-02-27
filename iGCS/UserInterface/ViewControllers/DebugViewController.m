@@ -65,6 +65,8 @@
     [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
     
+    [[NSArray array] objectAtIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning

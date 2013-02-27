@@ -83,38 +83,47 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 // protocol is the string which matched from the protocol list passed to initWithProtocol:
 - (void) cableConnected:(NSString *)protocol
 {
-    
-    [Logger console:@"Redpark: cableConnected"];
-    /*
-     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"cableConnected"
-     message:@"connecting..." delegate:nil
-     cancelButtonTitle:@"OK" otherButtonTitles:nil];
-     [alert show];
-     */
-    
-    // Configure the serial connection
-    [self.rscMgr setBaud:57600];
-    [self.rscMgr setDataSize:SERIAL_DATABITS_8];
-    [self.rscMgr setParity:SERIAL_PARITY_NONE];
-    [self.rscMgr setStopBits:1];
-    
-    // Now open the serial communication session using the
-    // serial port configuration options we've already set.
-    // However, the baud rate, data size, parity, etc....
-    // can be changed after calling open if needed.
-    [self.rscMgr open];
-    
-    self.cableConnected = YES;
-    [self.mainVC.commsVC setCableConnectionStatus: self.cableConnected];
+    @try {
+        [Logger console:@"Redpark: cableConnected"];
+        /*
+         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"cableConnected"
+         message:@"connecting..." delegate:nil
+         cancelButtonTitle:@"OK" otherButtonTitles:nil];
+         [alert show];
+         */
+        
+        // Configure the serial connection
+        [self.rscMgr setBaud:57600];
+        [self.rscMgr setDataSize:SERIAL_DATABITS_8];
+        [self.rscMgr setParity:SERIAL_PARITY_NONE];
+        [self.rscMgr setStopBits:1];
+        
+        // Now open the serial communication session using the
+        // serial port configuration options we've already set.
+        // However, the baud rate, data size, parity, etc....
+        // can be changed after calling open if needed.
+        [self.rscMgr open];
+        
+        self.cableConnected = YES;
+        [self.mainVC.commsVC setCableConnectionStatus: self.cableConnected];
+    }
+    @catch (NSException *exception) {
+        [Logger dumpException:exception];
+    }
 }
 
 
 // Redpark Serial Cable has been disconnected and/or application moved to background.
 - (void) cableDisconnected
 {
-    [Logger console:@"Redpark: cableDisconnected"];
-    self.cableConnected = NO;
-    [self.mainVC.commsVC setCableConnectionStatus:self.cableConnected];
+    @try {
+        [Logger console:@"Redpark: cableDisconnected"];
+        self.cableConnected = NO;
+        [self.mainVC.commsVC setCableConnectionStatus:self.cableConnected];
+    }
+    @catch (NSException *exception) {
+        [Logger dumpException:exception];
+    }
 }
 
 // serial port status has changed

@@ -10,9 +10,11 @@
 
 #import "CommController.h"
 
+#import <BugSense-iOS 2/BugSenseController.h>
 
 #define REQUIRE_WALRUS 0
 
+#define ENABLE_BUGSENSE 0
 
 
 @implementation AppDelegate
@@ -29,6 +31,15 @@ static AppDelegate *shared;
 #pragma GCC diagnostic warning "-Wdeprecated-declarations"
     [TestFlight takeOff:@"e7a70336421df8ce9b4d667ef9c6c8e3_MTM4ODI5MjAxMi0xMC0wMiAyMzo1ODowOC4xNzc0NTk"];
 #endif
+    
+    
+    
+    if (ENABLE_BUGSENSE)
+    {
+        [BugSenseController sharedControllerWithBugSenseAPIKey:@"e83f12f9"];
+    }
+    
+
     
     
     // TODO: Move this into FightingWalrus Interface to support non-FW operation
