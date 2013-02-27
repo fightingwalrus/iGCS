@@ -43,20 +43,21 @@
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
+    rscMgr = self.rscMgr;
     send_uart_bytes(0, bytes, length);
 }
 
 
-
+RscMgr *rscMgr;
 static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
 //-(void) send_uart_bytes:(uint8_t*)bytes channel:(mavlink_channel_t)channel length:(uint16_t)len
 {
 
     NSLog(@"send_uart_bytes: sending %hu chars", len);
 
-    //int n = [self.rscMgr write:bytes Length:len];
+    int n = [rscMgr write:buffer Length:len];
 
-    /*
+    
     if (n == len)
     {
         NSLog(@"send_uart_bytes: output %d chars", n);
@@ -65,7 +66,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     {
         NSLog(@"send_uart_bytes: FAILED (only %d sent)", n);
     }
-     */
+     
 }
 
 
