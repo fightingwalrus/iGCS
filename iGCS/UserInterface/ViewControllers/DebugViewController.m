@@ -65,7 +65,6 @@
     [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
     
-    [[NSArray array] objectAtIndex:0];
     
 }
 
@@ -91,6 +90,7 @@
 
 -(void)consoleMessage:(NSString*)messageText
 {
+    /*
     NSString *currentText = self.consoleTextView.text;
     
     NSString *updatedText;
@@ -105,6 +105,14 @@
     }
     
     self.consoleTextView.text = updatedText;
+     */
+    self.consoleTextView.text = [[self.consoleTextView.text stringByAppendingString:messageText] stringByAppendingString:@"\n"];
+    //[self.consoleTextView.textStorage.mutableString appendString:string];
+    
+    
+    
+    
+    [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
     
 }
 
