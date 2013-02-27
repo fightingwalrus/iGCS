@@ -29,10 +29,12 @@
 
 -(void)addSource:(MavLinkInterface*)interface
 {
+    interface.connectionPool = self;
     [self.sourceInterfaces addObject:interface];
 }
 -(void)addDestination:(MavLinkInterface*)interface
 {
+    interface.connectionPool = self;
     [self.destinationInterfaces addObject:interface];
 }
 
