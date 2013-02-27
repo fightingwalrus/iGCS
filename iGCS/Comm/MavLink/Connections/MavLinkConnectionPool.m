@@ -99,6 +99,7 @@
         {
             if ([connection.source isEqual:interface])
             {
+                [Logger console:[NSString stringWithFormat:@"ConnectionPool forwarding %i bytes to interface: %@",length,[interface description]]];
                 // Send the bytes to the destination for each matched connection
                 [connection.destination consumeData:bytes length:length];
             }

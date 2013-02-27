@@ -21,6 +21,7 @@
 
 #import "GaugeViewCommon.h"
 
+#import "Logger.h"
 
 
 
@@ -68,8 +69,10 @@ mavlink_heartbeat_t heartbeat;
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
+                [Logger console:@"Completed packet"];
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
+                        [Logger console:@"MavLink Heartbeat."];
                         self.heartbeatOnlyCount = [NSNumber numberWithInt:[self.heartbeatOnlyCount intValue] + 1];
                         //If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
                         if([self.heartbeatOnlyCount intValue] > 5)
@@ -78,12 +81,17 @@ mavlink_heartbeat_t heartbeat;
                         }
                         if (!self.mavLinkInitialized) {
                             TESTFLIGHT_CHECKPOINT(@"FIRST HEARTBEAT");
+                            
+                            [Logger console:@"First MavLink Heartbeat."];
+                            
                             self.mavLinkInitialized = YES;
                             
                             // Decode the heartbeat message
                             mavlink_msg_heartbeat_decode(&msg, &heartbeat);
                             mavlink_system.sysid = msg.sysid;
                             mavlink_system.compid = msg.compid;
+                            
+                            [Logger console:@"Sending request for MavLink messages."];
                             
                             // Send request sto set the stream rates
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
@@ -131,6 +139,8 @@ mavlink_heartbeat_t heartbeat;
                         
                     case MAVLINK_MSG_ID_MISSION_COUNT:
                     {
+                        [Logger console:@"MavLink MissionCount."];
+                        
                         mavlink_mission_count_t count;
                         mavlink_msg_mission_count_decode(&msg, &count);
                         
@@ -141,6 +151,8 @@ mavlink_heartbeat_t heartbeat;
                         
                     case MAVLINK_MSG_ID_MISSION_ITEM:
                     {
+                        [Logger console:@"MavLink MissionItem."];
+                        
                         mavlink_mission_item_t waypoint;
                         mavlink_msg_mission_item_decode(&msg, &waypoint);
                         
