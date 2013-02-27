@@ -14,7 +14,7 @@
 
 #define REQUIRE_WALRUS 0
 
-#define ENABLE_BUGSENSE 0
+#define ENABLE_BUGSENSE 1
 
 
 @implementation AppDelegate
