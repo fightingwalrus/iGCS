@@ -105,6 +105,16 @@
     
     self.consoleTextView.text = updatedText;
      */
+    NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
+    NSUInteger maxLength = 1000;
+    if(consoleMessagesStringLength > maxLength)
+    {
+        NSUInteger startIdx = consoleMessagesStringLength - maxLength;
+        NSString *cutString = [self.consoleTextView.text substringFromIndex:startIdx];
+        NSRange firstReturn = [cutString rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]];
+        firstReturn.length = cutString.length - firstReturn.location;
+        self.consoleTextView.text = [cutString substringWithRange:firstReturn];
+    }
     self.consoleTextView.text = [[self.consoleTextView.text stringByAppendingString:messageText] stringByAppendingString:@"\n"];
     //[self.consoleTextView.textStorage.mutableString appendString:string];
     
