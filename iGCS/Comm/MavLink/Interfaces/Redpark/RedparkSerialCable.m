@@ -43,6 +43,7 @@
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
+    [Logger console:@"consumeData"];
     rscMgr = self.rscMgr;
     send_uart_bytes(0, bytes, length);
 }
