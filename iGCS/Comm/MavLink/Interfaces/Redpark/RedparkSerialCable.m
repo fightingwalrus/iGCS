@@ -45,7 +45,7 @@
 {
     [Logger console:@"consumeData"];
     rscMgr = self.rscMgr;
-    send_uart_bytes(0, bytes, length);
+    send_uart_bytes(1, bytes, length);
 }
 
 
