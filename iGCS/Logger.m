@@ -34,12 +34,12 @@ static DebugViewController *debugVC;
     if (debugVC)
     {
         NSLog(@"Console: %@",message);
-        [debugVC consoleMessage:messageString];
+        //[debugVC consoleMessage:messageString];
     }
     else
     {
         NSLog(@"Pending Console: %@",message);
-        [self addPendingConsoleMessage:messageString];
+        //[self addPendingConsoleMessage:messageString];
     }
 
 }
