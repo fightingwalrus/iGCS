@@ -215,7 +215,7 @@
             
         case NETWORK_MAVLINK:
         {
-            NSLog(@"GKSession: Received MavLink: %i bytes",[data length]);
+            //NSLog(@"GKSession: Received MavLink: %i bytes",[data length]);
             
             int headerSize = 2 * sizeof(int);
             uint8_t *mavlinkData = (uint8_t*)&incomingPacket[headerSize];
@@ -234,7 +234,7 @@
 
 - (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length reliable:(BOOL)howtosend
 {
-    [Logger console:[NSString stringWithFormat:@"GKSession: sending %i bytes.",length]];
+    //[Logger console:[NSString stringWithFormat:@"GKSession: sending %i bytes.",length]];
 	// the packet we'll send is resued
 	static unsigned char networkPacket[kMaxPacketSize];
 	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
