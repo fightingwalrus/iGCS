@@ -125,6 +125,10 @@
 			self.protocolString = [protocolStrings objectAtIndex:0];
 		}
 	}
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:) name:EAAccessoryDidConnectNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:) name:EAAccessoryDidDisconnectNotification object:nil];
+    
     return self;
 }
 
