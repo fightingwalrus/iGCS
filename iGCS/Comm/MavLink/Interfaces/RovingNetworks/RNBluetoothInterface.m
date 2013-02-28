@@ -22,7 +22,10 @@
     
     if (rn.selectedAccessory)
     {
-        [Logger console:@"RovingNetworks: ready."];
+        
+        [Logger console:@"RovingNetworks: Starting accessory session.."];
+        [rn openSession];
+        [Logger console:@"RovingNetworks: Ready."];
         return rn;
     }
     else
@@ -126,8 +129,12 @@
 		}
 	}
     
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:) name:EAAccessoryDidConnectNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:) name:EAAccessoryDidDisconnectNotification object:nil];
+    
+    [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
     
     return self;
 }
