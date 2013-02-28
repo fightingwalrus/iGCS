@@ -49,6 +49,7 @@
     {
         self.parentStream = bts;
         
+        
         GKPeerPickerController*		picker;
         
         picker = [[GKPeerPickerController alloc] init]; // note: picker is released in various picker delegate methods when picker use is done.
@@ -171,6 +172,8 @@
 	if(packetTime < lastPacketTime && packetID != NETWORK_COINTOSS) {
 		return;
 	}
+    
+    //NSLog(@"GKSession receiveData: %i bytes",[data length]);
 	
 	lastPacketTime = packetTime;
 	switch( packetID ) {
@@ -210,7 +213,8 @@
             
         case NETWORK_MAVLINK:
         {
-            uint8_t *mavlinkData = incomingPacket[2];
+            //NSLog(@"GKSession: Received MavLink: %i bytes",[data length]);
+            uint8_t *mavlinkData = (uint8_t*)&incomingPacket[2];
             int mavlinkSize = [data length] - 2;
             
             // TODO: Refactor to delegate interface to parentStream can be eliminated

@@ -66,7 +66,8 @@ static RNBluetoothInterface *rnBluetooth;
     
     
     [Logger console: @"Creating RovingNetworks connection."];
-    rnBluetooth = [RNBluetoothInterface create];
+    //rnBluetooth = [RNBluetoothInterface create];
+    [Logger console:@"RovingNetworks disabled..."];
     
     if (rnBluetooth)
     {

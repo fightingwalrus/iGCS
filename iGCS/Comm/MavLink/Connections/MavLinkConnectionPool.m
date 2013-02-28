@@ -82,6 +82,10 @@
     
         [self.connections addObject:conn];
         
+        // TODO: refactor this to use a delegate interface to allow many-to-many routing
+        source.connectionPool = self;
+        destination.connectionPool = self;
+        
     }
     @catch (NSException *e)
     {
@@ -99,7 +103,7 @@
         {
             if ([connection.source isEqual:interface])
             {
-                //[Logger console:[NSString stringWithFormat:@"ConnectionPool forwarding %i bytes to interface: %@",length,[interface description]]];
+                //[Logger console:[NSString stringWithFormat:@"ConnectionPool forwarding %i bytes from: %@ to %@",length,[interface description],[connection.destination description]]];
                 // Send the bytes to the destination for each matched connection
                 [connection.destination consumeData:bytes length:length];
             }

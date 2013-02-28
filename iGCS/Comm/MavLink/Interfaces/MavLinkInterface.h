@@ -19,6 +19,7 @@
 @interface MavLinkInterface : NSObject
 
 
+// subsclasses must assign this property to use produceData
 @property (strong) MavLinkConnectionPool *connectionPool;
 
 
