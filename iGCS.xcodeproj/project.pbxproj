@@ -17,6 +17,8 @@
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		49369FA616DC919D00D98370 /* BugSense-iOS 2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */; };
 		49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FB216DC949600D98370 /* BugSense-iOS */; };
+		49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
+		49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -130,6 +132,8 @@
 		49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "BugSense-iOS 2.framework"; path = "iGCS/BugSense-iOS 2.framework"; sourceTree = "<group>"; };
 		49369FB216DC949600D98370 /* BugSense-iOS */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "BugSense-iOS"; path = "iGCS/BugSense-iOS 2.framework/Versions/A/BugSense-iOS"; sourceTree = "<group>"; };
+		49369FB516DEEC1900D98370 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
+		49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -675,6 +679,15 @@
 			path = GKSession;
 			sourceTree = "<group>";
 		};
+		49369FB416DEEC0600D98370 /* RovingNetworks */ = {
+			isa = PBXGroup;
+			children = (
+				49369FB516DEEC1900D98370 /* RNBluetoothInterface.h */,
+				49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */,
+			);
+			path = RovingNetworks;
+			sourceTree = "<group>";
+		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +799,7 @@
 		496E62A816DAFBF600E52E4A /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				49369FB416DEEC0600D98370 /* RovingNetworks */,
 				496E62A916DAFBF600E52E4A /* Bluetooth */,
 				496E62B116DAFBF600E52E4A /* FightingWalrus */,
 				496E62B816DAFBF600E52E4A /* iGCS */,
@@ -1581,6 +1595,7 @@
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
+				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1632,7 @@
 				492C813516DBD32F004001FF /* GKSessionController.m in Sources */,
 				49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */,
 				49C1FA1816DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
+				49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

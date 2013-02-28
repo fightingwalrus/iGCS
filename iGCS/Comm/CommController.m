@@ -12,6 +12,9 @@
 
 #import "Logger.h"
 
+#import "RNBluetoothInterface.h"
+
+
 @implementation CommController
 
 
@@ -22,6 +25,8 @@ static MainViewController *mainVC;
 static iGCSMavLinkInterface *appMLI;
 
 static RedparkSerialCable *redParkCable;
+
+static RNBluetoothInterface *rnBluetooth;
 
 
 // called at startup for app to initialize interfaces
@@ -55,34 +60,62 @@ static RedparkSerialCable *redParkCable;
 {
     
     appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
-    
-    // configure input connection as redpark cable
-    [Logger console:@"Starting Redpark connection."];
-    redParkCable = [RedparkSerialCable createWithViews:mainVC];
-    
-    [Logger console:@"Redpark started."];
-    [connections addSource:redParkCable];
-    
-    
-    // configure output connection as iGCSMavLinkInterface
     [connections addDestination:appMLI];
-    
     [Logger console:@"Configured iGCS Application as MavLink consumer."];
     
     
     
-    // Forward redpark RX to app input
-    [connections createConnection:redParkCable destination:appMLI];
+    [Logger console: @"Creating RovingNetworks connection."];
+    rnBluetooth = [RNBluetoothInterface create];
+    
+    if (rnBluetooth)
+    {
+        [connections addSource:rnBluetooth];
+        
+        [connections createConnection:rnBluetooth destination:appMLI];
+        
+        [Logger console:@"Connected RN Bluetooth Rx to iGCS Application input."];
+        
+        [connections createConnection:appMLI destination:rnBluetooth];
+        
+        [Logger console:@"Connected iGCS Application output to RN Bluetooth Tx."];
+    }
+    
+    else
+        // Do Redpark instead
+    {
+        
+        // configure input connection as redpark cable
+        [Logger console:@"Starting Redpark connection."];
+        redParkCable = [RedparkSerialCable createWithViews:mainVC];
+        
+        [Logger console:@"Redpark started."];
+        [connections addSource:redParkCable];
+    
+        
+        // Forward redpark RX to app input
+        [connections createConnection:redParkCable destination:appMLI];
+        
+        
+        [Logger console:@"Connected Redpark Rx to iGCS Application input."];
+        
+        
+        // Forward app output to redpark TX
+        [connections createConnection:appMLI destination:redParkCable];
+    
+        
+        [Logger console:@"Connected iGCS Application output to Redpark Tx."];
+        
+    }
     
     
-    [Logger console:@"Connected Redpark Rx to iGCS Application input."];
     
     
-    // Forward app output to redpark TX
-    [connections createConnection:appMLI destination:redParkCable];
     
     
-    [Logger console:@"Connected iGCS Application output to Redpark Tx."];
+    
+    
+    
 }
 
 
