@@ -73,7 +73,7 @@ mavlink_heartbeat_t heartbeat;
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
-                [Logger console:@"Completed packet"];
+                //[Logger console:@"Completed packet"];
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
                         [Logger console:@"MavLink Heartbeat."];
