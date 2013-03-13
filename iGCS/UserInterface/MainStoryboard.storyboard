@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -481,39 +481,35 @@
             </objects>
             <point key="canvasLocation" x="3165" y="1102"/>
         </scene>
-        <!--Waypoints View Controller - Title-->
-        <scene sceneID="XWQ-rZ-czi">
+        <!--Waypoints View Controller - Waypoints-->
+        <scene sceneID="0et-J8-twP">
             <objects>
-                <tableViewController id="6PW-mq-Ukt" customClass="WaypointsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="40" sectionHeaderHeight="30" sectionFooterHeight="22" id="5Hr-bM-cSx">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <viewController id="ZiK-du-awU" userLabel="Waypoints View Controller - Waypoints" customClass="WaypointsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JlU-a8-ntD">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="699"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NJM-RI-WhY">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="699"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="qaC-XP-dCX">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WaypointCellID" rowHeight="40" id="wUy-D4-9ls">
-                                <rect key="frame" x="0.0" y="30" width="1024" height="40"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="39"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="6PW-mq-Ukt" id="W7b-oA-N06"/>
-                            <outlet property="delegate" destination="6PW-mq-Ukt" id="Yzj-y3-OvY"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Waypoints" image="07-map-marker.png" id="8jJ-SF-ow0"/>
-                    <navigationItem key="navigationItem" title="Title" id="98d-75-YIa"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoe-aA-Q9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Waypoints" image="07-map-marker.png" id="4vf-Da-43r"/>
+                    <connections>
+                        <outlet property="tableView" destination="NJM-RI-WhY" id="dcU-Vg-c4m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A2Q-qM-qMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3170" y="1965"/>
+            <point key="canvasLocation" x="3165" y="1964"/>
         </scene>
         <!--Debug View Controller - Debug-->
         <scene sceneID="Yyi-2s-IEH">
@@ -631,8 +627,8 @@
                     <connections>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="27"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="28"/>
-                        <segue destination="6PW-mq-Ukt" kind="relationship" relationship="viewControllers" id="SI1-ot-DsY"/>
-                        <segue destination="PSV-eg-xmf" kind="relationship" relationship="viewControllers" id="iT2-C3-V01"/>
+                        <segue destination="ZiK-du-awU" kind="relationship" relationship="viewControllers" id="BlP-Dz-NAh"/>
+                        <segue destination="PSV-eg-xmf" kind="relationship" relationship="viewControllers" id="9Av-ZW-itt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -657,8 +653,6 @@
         <class className="CommsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="bluetoothCentralClicked:"/>
-                <relationship kind="action" name="bluetoothPeripheralClicked:"/>
                 <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
@@ -723,8 +717,11 @@
         <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
         </class>
-        <class className="WaypointsViewController" superclassName="UITableViewController">
+        <class className="WaypointsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

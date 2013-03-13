@@ -15,16 +15,7 @@
 
 @implementation WaypointsViewController
 
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-        waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
-    }
-    return self;
-}
+@synthesize tableView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -45,6 +36,13 @@
 {
     [super viewDidLoad];
 
+    // Custom initialization
+    [tableView setDelegate:self];
+    [tableView setDataSource:self];
+    
+    waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
