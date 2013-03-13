@@ -61,7 +61,7 @@
 
 - (void)writeDataFromBufferToStream
 {
-	NSLog(@"EAController::writeDataFromBufferToStream");
+	NSLog(@"RNBluetoothInterface::writeDataFromBufferToStream");
     while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0))
     {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
@@ -84,16 +84,13 @@
 
 - (void)readDataFromStreamToBuffer
 {
-	NSLog(@"EAController::readDataFromStreamToBuffer");
+	//NSLog(@"RNBluetoothInterface::readDataFromStreamToBuffer");
 	uint8_t buf[EAD_INPUT_BUFFER_SIZE];
 	while ([[_session inputStream] hasBytesAvailable])
 	{
 		NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
 		NSLog(@"read %d bytes from input stream", bytesRead);
         
-		// For a real app, you would want to queue up the data (or handle it directly) and notify
-		// the local app that data was received.
-		//NSString *s = [[NSString alloc] initWithBytes:buf length:(NSUInteger)bytesRead encoding:NSUTF8StringEncoding];
 
         [self produceData:buf length:bytesRead];
 	}
@@ -161,7 +158,7 @@
 
 - (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString
 {
-	NSLog(@"EAController::setupControllerForAccessory:");
+	NSLog(@"RNBluetoothInterface::setupControllerForAccessory:");
     _selectedAccessory = accessory;
     _protocolString = [protocolString copy];
 }
@@ -171,7 +168,7 @@
 {
 	if (_session == nil)
 	{
-		NSLog(@"EAController::openSession");
+		NSLog(@"RNBluetoothInterface::openSession");
 		[_selectedAccessory setDelegate:self];
 		_session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];
         
@@ -198,7 +195,7 @@
 
 - (void)closeSession
 {
-	NSLog(@"EAController::closeSession");
+	NSLog(@"RNBluetoothInterface::closeSession");
     [[_session inputStream] close];
     [[_session inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [[_session inputStream] setDelegate:nil];
@@ -213,7 +210,7 @@
 
 - (void)writeData:(NSData *)data
 {
-	NSLog(@"EAController::writeData:");
+	//NSLog(@"RNBluetoothInterface::writeData:");
     [_writeDataBuffer appendData:data];
     [self writeDataFromBufferToStream];
 }
@@ -221,7 +218,7 @@
 
 - (BOOL)isAccessoryConnected
 {
-	NSLog(@"EAController::isAccessoryConnected");
+	NSLog(@"RNBluetoothInterface::isAccessoryConnected");
 	if (_selectedAccessory && [_selectedAccessory isConnected])
 		return YES;
 	else
@@ -234,7 +231,7 @@
 
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory
 {
-	NSLog(@"EAController::accessoryDidDisconnect:");
+	NSLog(@"RNBluetoothInterface::accessoryDidDisconnect:");
     // do something ...
 }
 
@@ -244,7 +241,7 @@
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode
 {
-	NSLog(@"EAController::handleEvent:");
+	NSLog(@"RNBluetoothInterface::handleEvent:");
     switch (eventCode) {
         case NSStreamEventNone:
             NSLog(@"stream %@ event none", aStream);
@@ -253,11 +250,11 @@
             NSLog(@"stream %@ event open completed", aStream);
             break;
         case NSStreamEventHasBytesAvailable:
-            NSLog(@"stream %@ event bytes available", aStream);
+            //NSLog(@"stream %@ event bytes available", aStream);
             [self readDataFromStreamToBuffer];
             break;
         case NSStreamEventHasSpaceAvailable:
-            NSLog(@"stream %@ event space available", aStream);
+            //NSLog(@"stream %@ event space available", aStream);
             [self writeDataFromBufferToStream];
             break;
         case NSStreamEventErrorOccurred:
@@ -277,7 +274,7 @@
 
 - (void)accessoryConnected:(NSNotification *)notification
 {
-	NSLog(@"EAController::accessoryConnected");
+	NSLog(@"RNBluetoothInterface::accessoryConnected");
 	if (![self isAccessoryConnected])
 	{
 		EAAccessory *a = [self selectedAccessory];
@@ -290,7 +287,7 @@
 
 - (void)accessoryDisconnected:(NSNotification *)notification
 {
-	NSLog(@"EAController::accessoryDisconnected");
+	NSLog(@"RNBluetoothInterface::accessoryDisconnected");
 	if (![self isAccessoryConnected])
 	{
 		EAAccessory *a = [self selectedAccessory];
