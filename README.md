@@ -14,6 +14,7 @@ For further details, see:
 License
 =======
 All iGCS code is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+For other code and assets, see ATTRIBUTION.md.
 
 The MIT License (MIT)
 Copyright (c) 2013 Claudio Natoli et al
