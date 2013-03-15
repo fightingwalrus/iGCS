@@ -36,7 +36,8 @@ static AppDelegate *shared;
     
     if (ENABLE_BUGSENSE)
     {
-        [BugSenseController sharedControllerWithBugSenseAPIKey:@"e83f12f9"];
+        // removed key until open source bugsense key is set up
+        //[BugSenseController sharedControllerWithBugSenseAPIKey:@"key_removed_for_open_source_port"];
     }
     
 
