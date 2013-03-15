@@ -10,10 +10,12 @@
 #import "MavLinkPacketHandler.h"
 #import "WaypointsHolder.h"
 
-@interface WaypointsViewController : UITableViewController <MavLinkPacketHandler> {
+@interface WaypointsViewController : UIViewController <MavLinkPacketHandler, UITableViewDelegate, UITableViewDataSource> {
     WaypointsHolder *waypoints;
 }
 
 - (void) updateWaypoints:(WaypointsHolder*)_waypoints;
+
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end

@@ -616,7 +616,6 @@
 		CAF0B8821657A8960033B0BC /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CAF8ADA314E1FD1400DB3D84 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO.txt; path = iGCS/TODO.txt; sourceTree = "<group>"; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -1260,7 +1259,6 @@
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
-				CAF8ADA314E1FD1400DB3D84 /* TODO.txt */,
 				CAA2CFD0161BFFB700267615 /* TestFlight SDK */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
 				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
