@@ -26,6 +26,7 @@
     
 @protected
     MKMapView *map;
+    bool draggableWaypointsP;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *_mapView;
@@ -34,6 +35,10 @@
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq;
 - (void) resetWaypoints:(WaypointsHolder *)_waypoints;
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
+
+- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
+- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 

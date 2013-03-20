@@ -275,19 +275,37 @@ static NSString* CELL_HEADERS[] = {
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
 
+- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+    int index = [waypoints getIndexOfWaypointWithSeq:waypointSeq];
+    if (index != -1) {
+        mavlink_mission_item_t waypoint = [waypoints getWaypoint:index];
+        waypoint.x = latitude;
+        waypoint.y = longitude;
+        [waypoints replaceWaypoint:index with:waypoint];
+        
+        // Reset the map and table views
+        [super resetWaypoints:waypoints]; // FIXME: this is a little heavy handed. Want more fine-grained
+                                          // control here (like not resetting the map bounds in this case)
+        [tableView reloadData];
+    }
+}
+
 - (IBAction)editDoneClicked:(id)sender {
     bool isEditing = !tableView.editing;
+    
+    // Update the table and edit button styles
     [tableView setEditing:isEditing animated:true];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
-    
+
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
-    
+
+    // Slide/grow/shrink the map and table views
     CGRect tableRect = tableView.frame;
     CGRect mapRect   = map.frame;
 
     tableRect.origin.y += delta;
-    tableRect.size.height -=delta;
+    tableRect.size.height -= delta;
     mapRect.size.height += delta;
     
     [UIView beginAnimations:nil context:NULL];
@@ -297,6 +315,9 @@ static NSString* CELL_HEADERS[] = {
     tableView.frame = tableRect;
     map.frame = mapRect;
     [UIView commitAnimations];
+    
+    // Update the map view with non/editable waypoints
+    [self makeWaypointsDraggable:isEditing];
 }
 
 

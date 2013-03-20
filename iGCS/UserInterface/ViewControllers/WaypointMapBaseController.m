@@ -33,6 +33,8 @@
     trackMKMapPointsLen = 1000;
     trackMKMapPoints = malloc(trackMKMapPointsLen * sizeof(MKMapPoint));
     numTrackPoints = 0;
+    
+    draggableWaypointsP = false;
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,21 +43,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray*) getWaypointAnnotations {
+    return [map.annotations
+            filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)",
+                                         [WaypointAnnotation class]]];
+}
+
 - (void) removeExistingWaypointAnnotations {
-    [map removeAnnotations:
-     [map.annotations
-      filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)",
-                                   [WaypointAnnotation class]]]];
+    [map removeAnnotations:[self getWaypointAnnotations]];
 }
 
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
-    for (unsigned int i =0; i < [map.annotations count]; i++) {
-        id annotation = [map.annotations objectAtIndex:i];
-        if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-            WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
-            if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
-                return waypointAnnotation;
-            }
+    NSArray* waypointAnnotations = [self getWaypointAnnotations];
+    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)[waypointAnnotations objectAtIndex:i];;
+        if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
+            return waypointAnnotation;
         }
     }
     return nil;
@@ -100,7 +103,7 @@
 
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
     if (currentWaypointNum != newCurrentWaypointSeq) {
-        // We've seen a new waypoint, so...
+        // We've reached a new waypoint, so...
 
         // Reset the associated annotations
         for (int i = 0; i < 2; i++) {
@@ -116,6 +119,39 @@
             }
         }
     }
+}
+
+- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP {
+    draggableWaypointsP = _draggableWaypointsP;
+    
+    NSArray* waypointAnnotations = [self getWaypointAnnotations];
+    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)[waypointAnnotations objectAtIndex:i];
+        
+        // See also viewForAnnotation
+        MKAnnotationView *av = [map viewForAnnotation:waypointAnnotation];
+        [av setCanShowCallout: !draggableWaypointsP];
+        [av setDraggable: draggableWaypointsP];
+        [av setSelected: draggableWaypointsP];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView
+   didChangeDragState:(MKAnnotationViewDragState)newState
+   fromOldState:(MKAnnotationViewDragState)oldState
+{
+    if (newState == MKAnnotationViewDragStateEnding) {
+        if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
+            WaypointAnnotation* annot = annotationView.annotation;
+            CLLocationCoordinate2D coord = annot.coordinate;
+            [self waypointWithSeq:annot.waypoint.seq wasMovedToLat:coord.latitude andLong:coord.longitude];
+        }
+    }
+}
+
+// FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
+// the subclass (which overrides this method). Adopt a more idomatic pattern for this?
+- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
 }
 
 // FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
@@ -197,8 +233,12 @@
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
         
         view.enabled = YES;
-        view.canShowCallout = YES;
         
+        // See also makeWaypointsDraggable
+        view.canShowCallout = !draggableWaypointsP;
+        view.draggable = draggableWaypointsP;
+        view.selected = draggableWaypointsP;
+
         // FIXME: memoize view.image generation
         if ([waypointAnnotation isCurrentWaypointP:currentWaypointNum]) {
             view.centerOffset = CGPointMake(0,0);
