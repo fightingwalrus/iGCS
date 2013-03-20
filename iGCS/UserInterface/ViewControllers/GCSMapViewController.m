@@ -7,10 +7,8 @@
 //
 
 #import "GCSMapViewController.h"
-#import <MapKit/MKUserLocation.h>
 
 #import "MainViewController.h"
-#import "WaypointAnnotation.h"
 #import "GaugeViewCommon.h"
 
 #import "CommController.h"
@@ -19,7 +17,6 @@
 
 @implementation GCSMapViewController
 
-@synthesize map;
 @synthesize windIconView;
 @synthesize ahIndicatorView;
 @synthesize compassView;
@@ -84,10 +81,6 @@
     
     gotoPos = nil;
     gotoAltitude = 50;
-    
-    trackMKMapPointsLen = 1000;
-    trackMKMapPoints = malloc(trackMKMapPointsLen * sizeof(MKMapPoint));
-    numTrackPoints = 0;
 }
 
 #pragma mark - View lifecycle
@@ -113,10 +106,8 @@
     //FIXME inherited from sample, I don't like it without a self
     gamePacketNumber = 0;
 	gameUniqueID = [uid hash];
-    
 
 	// Do any additional setup after loading the view, typically from a nib.
-    map.delegate = self;
     [map addAnnotation:uavPos];
     
     // Add recognizer for long holds => GOTO point
@@ -610,102 +601,6 @@
                       gotoCoordinates.longitude, gotoCoordinates.latitude, gotoAltitude]];    
 }
 
-- (void) removeExistingWaypointAnnotations {
-    [map removeAnnotations:
-        [map.annotations
-            filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)",
-                                         [WaypointAnnotation class]]]];
-}
-
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
-    for (unsigned int i =0; i < [map.annotations count]; i++) {
-        id annotation = [map.annotations objectAtIndex:i];
-        if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-            WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
-            if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
-                return waypointAnnotation;
-            }
-        }
-    }
-    return nil;
-}
-
-- (void) updateWaypoints:(WaypointsHolder *)_waypoints {
-
-    // Clean up existing objects
-    [self removeExistingWaypointAnnotations];
-    [map removeOverlay:waypointRoutePolyline];
-
-    // Get the nav-specfic waypoints
-    WaypointsHolder *navWaypoints = [_waypoints getNavWaypoints];
-    unsigned int numWaypoints = [navWaypoints numWaypoints];
-
-    MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
-    
-    // Add waypoint annotations, and convert to array of MKMapPoints
-    for (unsigned int i = 0; i < numWaypoints; i++) {
-        mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
-        
-        // Add the annotation
-        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate andWayPoint:waypoint];
-        [map addAnnotation:annotation];
-        
-        // Construct the MKMapPoint
-        navMKMapPoints[i] = MKMapPointForCoordinate(coordinate);
-    }
-        
-    // Add the polyline overlay
-    waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
-    [map addOverlay:waypointRoutePolyline];
-    
-    // Set the map extents
-    [map setVisibleMapRect:[waypointRoutePolyline boundingMapRect]];
-    
-    [map setNeedsDisplay];
-    
-    free(navMKMapPoints);
-}
-
-// FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
-- (void) updateTrack:(CLLocationCoordinate2D)pos {
-    MKMapPoint newPoint = MKMapPointForCoordinate(pos);
-    
-    // Check distance from 0
-    if (MKMetersBetweenMapPoints(newPoint, MKMapPointForCoordinate(CLLocationCoordinate2DMake(0, 0))) < 1.0) {
-        return;
-    }
-
-    // Check distance from last point
-    if (numTrackPoints > 0) {
-        if (MKMetersBetweenMapPoints(newPoint, trackMKMapPoints[numTrackPoints-1]) < 1.0) {
-            return;
-        }
-    }
-
-    // Check array bounds
-    if (numTrackPoints == trackMKMapPointsLen) {
-        MKMapPoint *newAlloc = realloc(trackMKMapPoints, trackMKMapPointsLen*2 * sizeof(MKMapPoint));
-        if (newAlloc == nil)
-            return;
-        trackMKMapPoints = newAlloc;
-        trackMKMapPointsLen *= 2;
-    }
-    
-    // Add the next coord
-    trackMKMapPoints[numTrackPoints] = newPoint;
-    numTrackPoints++;
-    
-    // Clean up existing objects
-    [map removeOverlay:trackPolyline];
-
-    trackPolyline = [MKPolyline polylineWithPoints:trackMKMapPoints count:numTrackPoints];
-    
-    // Add the polyline overlay
-    [map addOverlay:trackPolyline];
-    [map setNeedsDisplay];
-}
-
 // FIXME: move the below utilities to some "utils" file
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode {
     NSString *str = [NSString stringWithFormat:@""];
@@ -770,7 +665,7 @@
             
             CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(gpsPosIntPkt.lat/10000000.0, gpsPosIntPkt.lon/10000000.0);
             [uavPos setCoordinate:pos];
-            [self updateTrack:pos];
+            [self addToTrack:pos];
         }
         break;
         */
@@ -781,7 +676,7 @@
             
             CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(gpsRawIntPkt.lat/10000000.0, gpsRawIntPkt.lon/10000000.0);
             [uavPos setCoordinate:pos];
-            [self updateTrack:pos];
+            [self addToTrack:pos];
             
             [numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsRawIntPkt.satellites_visible]];
             [gpsFixTypeLabel    setText: (gpsRawIntPkt.fix_type == 3) ? @"3D" :
@@ -847,24 +742,7 @@
         {
             mavlink_mission_current_t currentWaypoint;
             mavlink_msg_mission_current_decode(msg, &currentWaypoint);
-
-            // We've seen a new waypoint, so...
-            if (currentWaypointNum != currentWaypoint.seq) {
-    
-                // Reset the associated annotations
-                for (int i = 0; i < 2; i++) {
-                    WaypointAnnotation *annotation = [self getWaypointAnnotation:currentWaypointNum];
-                    
-                    // Update the current value (on the first iteration, we want this after the
-                    // getWaypointAnnotation call, but before the addAnnotation)
-                    currentWaypointNum = currentWaypoint.seq;
-
-                    if (annotation) {
-                        [map removeAnnotation:annotation];
-                        [map addAnnotation:annotation];
-                    }
-                }
-            }
+            [self maybeUpdateCurrentWaypoint:currentWaypoint.seq];
         }
         break;
             
@@ -923,99 +801,14 @@
     }
 }
 
-+ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang
-{
-    UIGraphicsBeginImageContext( newSize );
-    //[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();   
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    transform = CGAffineTransformTranslate(transform, newSize.width/2, newSize.height/2);
-    transform = CGAffineTransformRotate(transform, ang);
-    CGContextConcatCTM(context, transform);
-    
-    [image drawInRect:CGRectMake(-newSize.width/2,-newSize.width/2,newSize.width,newSize.height)];
-
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-// FIXME: move to some "utils" file
-// ref: http://coffeeshopped.com/2010/09/iphone-how-to-dynamically-color-a-uiimage
-+ (UIImage *)image:(UIImage*)img withColor:(UIColor*)color {
-    
-    
-    // begin a new image context, to draw our colored image onto
-    UIGraphicsBeginImageContext(img.size);
-    
-    // get a reference to that context we created
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // translate/flip the graphics context (for transforming from CG* coords to UI* coords
-    CGContextTranslateCTM(context, 0, img.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
-    CGContextDrawImage(context, rect, img.CGImage);
-    
-    // Set a mask that matches the shape of the image, then draw as black
-    [[UIColor blackColor] setFill];
-    CGContextSetBlendMode(context, kCGBlendModeDarken);
-    CGContextClipToMask(context, rect, img.CGImage);
-    CGContextAddRect(context, rect);
-    CGContextDrawPath(context,kCGPathFill);
-
-    // Now replace with the desired color
-    [color setFill];
-    CGContextSetBlendMode(context, kCGBlendModeLighten);
-    CGContextClipToMask(context, rect, img.CGImage);
-    CGContextAddRect(context, rect);
-    CGContextDrawPath(context,kCGPathFill);
-    
-    // generate a new UIImage from the graphics context we drew onto
-    UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-     
-    //return the color-burned image
-    return coloredImg;  
-}
-
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // If it's the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
+    MKAnnotationView* v = [super mapView:theMapView viewForAnnotation:annotation];
+    if (v != nil)
+        return v;
     
     // Handle our custom annotations
     //
-    if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-        
-        NSString* identifier = @"WAYPOINT";
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (view == nil) {
-            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        } else {
-            view.annotation = annotation;
-        }
-        
-        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
-        
-        view.enabled = YES;
-        view.canShowCallout = YES;
-        
-        // FIXME: memoize view.image generation
-        if ([waypointAnnotation isCurrentWaypointP:currentWaypointNum]) {
-            view.centerOffset = CGPointMake(0,0);      
-            view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"] 
-                                           withColor:WAYPOINT_NAV_NEXT_COLOR];
-        } else {
-            view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker        
-            view.image = [GCSMapViewController image:[UIImage imageNamed:@"07-map-marker.png"] 
-                                           withColor:[waypointAnnotation getColor]]; 
-        }
-        return view;
-    }
-    
     if ([annotation isKindOfClass:[GotoPointAnnotation class]]) {
         NSString* identifier = @"GOTOPOINT";
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
@@ -1028,32 +821,13 @@
         view.enabled = YES;
         view.canShowCallout = YES;
         view.centerOffset = CGPointMake(0,0);      
-        view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"] 
+        view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
                                         withColor:WAYPOINT_LINE_COLOR];
         return view;
     }
     
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         return uavView;
-    }
-    
-    return nil;
-}
-
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
-{
-    if (overlay == waypointRoutePolyline) {
-        waypointRouteView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        waypointRouteView.fillColor     = WAYPOINT_LINE_COLOR;
-        waypointRouteView.strokeColor   = WAYPOINT_LINE_COLOR;
-        waypointRouteView.lineWidth     = 3;
-        return waypointRouteView;
-    } else if (overlay == trackPolyline) {
-        trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        trackView.fillColor     = TRACK_LINE_COLOR;
-        trackView.strokeColor   = TRACK_LINE_COLOR;
-        trackView.lineWidth     = 2;
-        return trackView;
     }
     
     return nil;

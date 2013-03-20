@@ -15,7 +15,6 @@
 
 @implementation WaypointsViewController
 
-@synthesize mapView;
 @synthesize tableView;
 
 @synthesize editDoneButton;
@@ -199,6 +198,9 @@ static NSString* CELL_HEADERS[] = {
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+    
+    // Reset the map and table views
+    [super resetWaypoints:waypoints];
     [tableView reloadData];
 }
 
@@ -207,6 +209,9 @@ static NSString* CELL_HEADERS[] = {
 {
     assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
     [waypoints swapWaypoints:fromIndexPath.row :toIndexPath.row];
+
+    // Reset the map and table views
+    [super resetWaypoints:waypoints];
     [tableView reloadData];
 }
 
@@ -260,7 +265,9 @@ static NSString* CELL_HEADERS[] = {
      */
 }
 
-- (void) updateWaypoints:(WaypointsHolder*)_waypoints {
+- (void) resetWaypoints:(WaypointsHolder*)_waypoints {
+    [super resetWaypoints:_waypoints];
+    
     waypoints = _waypoints;
     [[self tableView] reloadData];
 }
@@ -277,7 +284,7 @@ static NSString* CELL_HEADERS[] = {
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
     
     CGRect tableRect = tableView.frame;
-    CGRect mapRect   = mapView.frame;
+    CGRect mapRect   = map.frame;
 
     tableRect.origin.y += delta;
     tableRect.size.height -=delta;
@@ -288,7 +295,7 @@ static NSString* CELL_HEADERS[] = {
     [UIView setAnimationDuration:0.75];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     tableView.frame = tableRect;
-    mapView.frame = mapRect;
+    map.frame = mapRect;
     [UIView commitAnimations];
 }
 

@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <MapKit/MKMapView.h>
+#import "WaypointMapBaseController.h"
 #import <GameKit/GameKit.h>
 
 #import "ArtificialHorizonView.h"
@@ -17,9 +16,7 @@
 
 #import "GotoPointAnnotation.h"
 
-#import "WaypointsHolder.h"
-
-@interface GCSMapViewController : UIViewController <MavLinkPacketHandler, MKMapViewDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -28,19 +25,8 @@
     CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;
     
-    MKPolyline *waypointRoutePolyline;
-    MKPolylineView *waypointRouteView;
-    int currentWaypointNum;
-
-    MKPolyline *trackPolyline;
-    MKPolylineView *trackView;
-    MKMapPoint *trackMKMapPoints;
-    unsigned int trackMKMapPointsLen;
-    unsigned int numTrackPoints;
-    
     int				gamePacketNumber;
     int				gameUniqueID;
-
 }
 
 @property(nonatomic) NSInteger		gameState;
@@ -58,7 +44,6 @@
 
 #define WIND_ICON_OFFSET_ANG 135
 
-@property (nonatomic, retain) IBOutlet MKMapView *map;
 @property (nonatomic, retain) IBOutlet UIImageView *windIconView;
 @property (nonatomic, retain) IBOutlet ArtificialHorizonView *ahIndicatorView;
 @property (nonatomic, retain) IBOutlet CompassView           *compassView;
@@ -87,12 +72,8 @@
 
 @property (nonatomic, retain) IBOutlet UIButton    *autoButton;
 
-+ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang;
-
 - (IBAction) readWaypointButtonClick;
 - (IBAction) autoButtonClick;
 - (IBAction) externalButtonClick;
-
-- (void) updateWaypoints:(WaypointsHolder*)_waypoints;
 
 @end

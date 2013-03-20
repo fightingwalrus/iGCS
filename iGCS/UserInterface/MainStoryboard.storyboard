@@ -312,6 +312,7 @@
                     <tabBarItem key="tabBarItem" title="GCS" image="73-radar.png" id="7"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
+                        <outlet property="_mapView" destination="GAr-p0-3d5" id="rWD-J5-9gw"/>
                         <outlet property="ahIndicatorView" destination="yLv-Ho-H5N" id="pxN-tw-mSA"/>
                         <outlet property="airspeedView" destination="6dV-1w-Z5N" id="dKS-mD-QoW"/>
                         <outlet property="altitudeView" destination="MXV-5t-BKj" id="UDS-e5-o0H"/>
@@ -323,7 +324,6 @@
                         <outlet property="customModeLabel" destination="NOu-t9-D3C" id="JVt-9w-a5P"/>
                         <outlet property="gpsFixTypeLabel" destination="3Tt-Ox-nW4" id="wWD-3I-ZoG"/>
                         <outlet property="groundSpeedLabel" destination="hNa-T9-4kL" id="569-yd-Usa"/>
-                        <outlet property="map" destination="GAr-p0-3d5" id="CI0-nk-8Tl"/>
                         <outlet property="numSatellitesLabel" destination="dYk-g5-LG9" id="qFX-8J-4MO"/>
                         <outlet property="statusLabel" destination="8Et-TC-jF7" id="yVr-jQ-MBz"/>
                         <outlet property="sysMemFreeLabel" destination="eml-za-FOA" id="Gfe-9O-Spi"/>
@@ -518,8 +518,8 @@
                     <tabBarItem key="tabBarItem" title="Waypoints" image="07-map-marker.png" id="4vf-Da-43r"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="_mapView" destination="qaC-XP-dCX" id="WMk-cu-uD9"/>
                         <outlet property="editDoneButton" destination="eve-2l-AG8" id="riq-XP-SnL"/>
-                        <outlet property="mapView" destination="qaC-XP-dCX" id="xjI-sA-PMD"/>
                         <outlet property="tableView" destination="NJM-RI-WhY" id="dcU-Vg-c4m"/>
                     </connections>
                 </viewController>
@@ -659,6 +659,94 @@
         <image name="73-radar.png" width="27" height="27"/>
         <image name="hazard-stripes-texture.png" width="100" height="75"/>
     </resources>
+    <classes>
+        <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtificialHorizonView.h"/>
+        </class>
+        <class className="CPTGraphHostingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
+        </class>
+        <class className="CommsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
+                <relationship kind="outlet" name="defaultTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsIntTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsRawTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsStatusView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navControllerOutputTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sysStatusView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="vfrHUDTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="CompassView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CompassView.h"/>
+        </class>
+        <class className="DebugViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bluetoothRxClicked:"/>
+                <relationship kind="action" name="bluetoothTxClicked:"/>
+                <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="DoubleBufferedAsyncView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoubleBufferedAsyncView.h"/>
+        </class>
+        <class className="GCSMapViewController" superclassName="WaypointMapBaseController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="autoButtonClick"/>
+                <relationship kind="action" name="externalButtonClick"/>
+                <relationship kind="action" name="readWaypointButtonClick"/>
+                <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
+                <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
+                <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
+                <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
+                <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysMemFreeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="windSpeedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+        </class>
+        <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
+        </class>
+        <class className="WaypointMapBaseController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointMapBaseController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="WaypointsViewController" superclassName="WaypointMapBaseController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editDoneClicked:"/>
+                <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

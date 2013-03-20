@@ -210,7 +210,9 @@ mavlink_heartbeat_t heartbeat;
     waypoint.command = 16; waypoint.x = 47.258757; waypoint.y = 11.330380; waypoint.z =  50; [zz addWaypoint:waypoint];
     waypoint.command = 16; waypoint.x = 47.259427; waypoint.y = 11.336904; waypoint.z =  20; [zz addWaypoint:waypoint];
     waypoint.command = 21; waypoint.x = 47.259864; waypoint.y = 11.340809; waypoint.z = 100; [zz addWaypoint:waypoint];
-    [self.mainVC.waypointVC updateWaypoints: zz];
+    
+    [self.mainVC.gcsMapVC resetWaypoints: zz];
+    [self.mainVC.waypointVC resetWaypoints: zz];
 #endif
     mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0); // send ACK just in case...
     
@@ -232,8 +234,8 @@ mavlink_heartbeat_t heartbeat;
         mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
         
         // Let the GCSMapView and WaypointsView know we've got new waypoints
-        [self.mainVC.gcsMapVC   updateWaypoints: self.waypoints];
-        [self.mainVC.waypointVC updateWaypoints: self.waypoints];
+        [self.mainVC.gcsMapVC   resetWaypoints: self.waypoints];
+        [self.mainVC.waypointVC resetWaypoints: self.waypoints];
     } else {
         mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
     }
