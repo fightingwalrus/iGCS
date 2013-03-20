@@ -20,6 +20,9 @@
 - (unsigned int)numWaypoints;
 
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint;
+- (void) removeWaypoint:(unsigned int) index;
+- (void) swapWaypoints:(unsigned int) index1 :(unsigned int)index2;
+
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index;
 
 - (WaypointsHolder*) getNavWaypoints;

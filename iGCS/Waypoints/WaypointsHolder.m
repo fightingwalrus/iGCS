@@ -34,6 +34,23 @@
     [array addObject:boxedWP];
 }
 
+- (void) removeWaypoint:(unsigned int) index {
+    assert(index >= 0 && index < [self numWaypoints]);
+    [array removeObjectAtIndex: index];
+}
+
+- (void) swapWaypoints:(unsigned int) index1 :(unsigned int)index2 {
+    mavlink_mission_item_t wp1 = [self getWaypoint: index1];
+    mavlink_mission_item_t wp2 = [self getWaypoint: index2];
+    
+    NSValue *boxedWP1 = [NSValue valueWithBytes:&wp1 objCType:@encode(mavlink_mission_item_t)];
+    NSValue *boxedWP2 = [NSValue valueWithBytes:&wp2 objCType:@encode(mavlink_mission_item_t)];
+    
+    [array replaceObjectAtIndex:index1 withObject:boxedWP2];
+    [array replaceObjectAtIndex:index2 withObject:boxedWP1];
+}
+
+
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
     assert(index >= 0 && index < [self numWaypoints]);
     mavlink_mission_item_t waypoint;
