@@ -33,6 +33,8 @@
 @property (nonatomic, readonly) mavlink_mission_item_t      waypoint;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint;
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
+
 - (UIColor*) getColor;
 - (bool) isCurrentWaypointP:(int)currentWaypointSeq;
 

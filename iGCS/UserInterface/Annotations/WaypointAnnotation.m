@@ -22,6 +22,10 @@
     return self;
 }
 
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
+    _coordinate = newCoordinate;
+}
+
 - (NSString*) title {
     return [NSString stringWithFormat:@"%d: %@", _waypoint.seq, [WaypointHelper commandIDToString: _waypoint.command]];
 }
