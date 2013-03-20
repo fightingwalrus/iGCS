@@ -21,6 +21,10 @@
     return self;
 }
 
+- (NSValue*) createBoxedWaypoint:(mavlink_mission_item_t)waypoint {
+    return [NSValue valueWithBytes:&waypoint objCType:@encode(mavlink_mission_item_t)];
+}
+
 - (bool)allWaypointsReceivedP {
     return ([array count] == expectedCount);
 }
@@ -30,8 +34,7 @@
 }
 
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint {
-    NSValue *boxedWP = [NSValue valueWithBytes:&waypoint objCType:@encode(mavlink_mission_item_t)];
-    [array addObject:boxedWP];
+    [array addObject:[self createBoxedWaypoint:waypoint]];
 }
 
 - (void) removeWaypoint:(unsigned int) index {
@@ -39,17 +42,18 @@
     [array removeObjectAtIndex: index];
 }
 
+- (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint {
+    assert(index >= 0 && index < [self numWaypoints]);
+    [array replaceObjectAtIndex:index withObject:[self createBoxedWaypoint:waypoint]];
+}
+
 - (void) swapWaypoints:(unsigned int) index1 :(unsigned int)index2 {
     mavlink_mission_item_t wp1 = [self getWaypoint: index1];
     mavlink_mission_item_t wp2 = [self getWaypoint: index2];
     
-    NSValue *boxedWP1 = [NSValue valueWithBytes:&wp1 objCType:@encode(mavlink_mission_item_t)];
-    NSValue *boxedWP2 = [NSValue valueWithBytes:&wp2 objCType:@encode(mavlink_mission_item_t)];
-    
-    [array replaceObjectAtIndex:index1 withObject:boxedWP2];
-    [array replaceObjectAtIndex:index2 withObject:boxedWP1];
+    [array replaceObjectAtIndex:index1 withObject:[self createBoxedWaypoint:wp2]];
+    [array replaceObjectAtIndex:index2 withObject:[self createBoxedWaypoint:wp1]];
 }
-
 
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
     assert(index >= 0 && index < [self numWaypoints]);
@@ -60,6 +64,16 @@
     [boxedWP getValue:&waypoint];
     
     return waypoint;
+}
+
+- (int)getIndexOfWaypointWithSeq:(int)sequence {
+    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+        mavlink_mission_item_t waypoint = [self getWaypoint:i];
+        if (waypoint.seq == sequence) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 - (WaypointsHolder*) getNavWaypoints {
