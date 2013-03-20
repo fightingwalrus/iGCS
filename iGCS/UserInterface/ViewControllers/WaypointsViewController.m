@@ -15,7 +15,10 @@
 
 @implementation WaypointsViewController
 
+@synthesize mapView;
 @synthesize tableView;
+
+@synthesize editDoneButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -42,12 +45,8 @@
     
     waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
     
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -81,22 +80,24 @@
 #define TABLE_CELL_FONT_SIZE   12
 
 static unsigned int CELL_WIDTHS[] = {    
-    65,                 // row #
-    170,                // command
-    80, 80, 110,        // x, y, z
-    80, 80, 80, 110,    // param1-4
-    100                  // autocontinue
+    60,               // row #
+    60,               // row #
+    170,              // command
+    80, 80, 90,       // x, y, z
+    80, 80, 80, 90,  // param1-4
+    85               // autocontinue
 };
 
 static NSString* CELL_HEADERS[] = {
-    @" Row #",
+    @" Row #", // FIXME: temporary?
+    @" Seq #",
     @"Command",
     @"X", @"Y", @"Z",
     @"Param1", @"Param2", @"Param3", @"Param4",
     @"Autocontinue"
 };
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"WaypointCellID";    
     int TAG_INDEX = 100;
@@ -128,6 +129,10 @@ static NSString* CELL_HEADERS[] = {
     // Row number
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"  %d:", indexPath.row];
+
+    // Seq number
+    label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
+    label.text = [NSString stringWithFormat:@"  %d:", waypoint.seq];
 
     // Command
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
@@ -167,10 +172,6 @@ static NSString* CELL_HEADERS[] = {
     label.text = [NSString stringWithFormat:@"%@", waypoint.autocontinue ? @"Yes" : @"No"];
     
 /*
-    // Seq
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%d", waypoint.seq];
-
     // current
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"%d", waypoint.current];
@@ -178,44 +179,43 @@ static NSString* CELL_HEADERS[] = {
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
+// Support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+// Support editing the table view.
+- (void)tableView:(UITableView *)_tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        assert (indexPath.section == 0);
+        
         // Delete the row from the data source
+        [waypoints removeWaypoint:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
+    [tableView reloadData];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+// Support rearranging the table view.
+- (void)tableView:(UITableView *)_tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
+    [waypoints swapWaypoints:fromIndexPath.row :toIndexPath.row];
+    [tableView reloadData];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
+// Support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -267,5 +267,30 @@ static NSString* CELL_HEADERS[] = {
 
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
+
+- (IBAction)editDoneClicked:(id)sender {
+    bool isEditing = !tableView.editing;
+    [tableView setEditing:isEditing animated:true];
+    editDoneButton.title = isEditing ? @"Done" : @"Edit";
+    editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+    
+    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    
+    CGRect tableRect = tableView.frame;
+    CGRect mapRect   = mapView.frame;
+
+    tableRect.origin.y += delta;
+    tableRect.size.height -=delta;
+    mapRect.size.height += delta;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    tableView.frame = tableRect;
+    mapView.frame = mapRect;
+    [UIView commitAnimations];
+}
+
 
 @end

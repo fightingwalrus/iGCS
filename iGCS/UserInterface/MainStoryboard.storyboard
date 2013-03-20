@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -348,7 +348,7 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="699"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="23">
+                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="23">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -490,20 +490,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NJM-RI-WhY">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="699"/>
+                                <rect key="frame" x="0.0" y="242" width="1024" height="514"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="qaC-XP-dCX">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="0.0"/>
+                                <rect key="frame" x="0.0" y="44" width="1024" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="CCn-PO-kYQ">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="42B-zn-n5q">
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="eve-2l-AG8">
+                                            <connections>
+                                                <action selector="editDoneClicked:" destination="ZiK-du-awU" id="anN-yf-elb"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Waypoints" image="07-map-marker.png" id="4vf-Da-43r"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="editDoneButton" destination="eve-2l-AG8" id="riq-XP-SnL"/>
+                        <outlet property="mapView" destination="qaC-XP-dCX" id="xjI-sA-PMD"/>
                         <outlet property="tableView" destination="NJM-RI-WhY" id="dcU-Vg-c4m"/>
                     </connections>
                 </viewController>
@@ -643,87 +659,6 @@
         <image name="73-radar.png" width="27" height="27"/>
         <image name="hazard-stripes-texture.png" width="100" height="75"/>
     </resources>
-    <classes>
-        <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtificialHorizonView.h"/>
-        </class>
-        <class className="CPTGraphHostingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
-        </class>
-        <class className="CommsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
-                <relationship kind="outlet" name="defaultTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsIntTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsRawTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="navControllerOutputTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sysStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="vfrHUDTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="CompassView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CompassView.h"/>
-        </class>
-        <class className="DebugViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bluetoothRxClicked:"/>
-                <relationship kind="action" name="bluetoothTxClicked:"/>
-                <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="DoubleBufferedAsyncView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoubleBufferedAsyncView.h"/>
-        </class>
-        <class className="GCSMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="autoButtonClick"/>
-                <relationship kind="action" name="externalButtonClick"/>
-                <relationship kind="action" name="readWaypointButtonClick"/>
-                <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
-                <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
-                <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysMemFreeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="windSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
-        </class>
-        <class className="WaypointsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
