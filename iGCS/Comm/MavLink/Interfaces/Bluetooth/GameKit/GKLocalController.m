@@ -6,7 +6,7 @@
 //
 //
 
-#import "GKSessionController.h"
+#import "GKLocalController.h"
 
 #import <GameKit/GameKit.h>
 
@@ -20,7 +20,7 @@
 
 
 
-@interface GKSessionController () <GKSessionDelegate,GKPeerPickerControllerDelegate> {
+@interface GKLocalController () <GKSessionDelegate,GKPeerPickerControllerDelegate> {
     int				gamePacketNumber;
     int				gameUniqueID;
 }
@@ -39,7 +39,7 @@
 
 @end
 
-@implementation GKSessionController
+@implementation GKLocalController
 
 
 

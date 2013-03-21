@@ -17,7 +17,8 @@
 		49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FB216DC949600D98370 /* BugSense-iOS */; };
 		49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
-		495253E116FB98BB006E27B0 /* GKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E016FB98BB006E27B0 /* GKSessionController.m */; };
+		495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E016FB98BB006E27B0 /* GKLocalController.m */; };
+		495253E416FB9971006E27B0 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E316FB9971006E27B0 /* GKNetController.m */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -132,8 +133,10 @@
 		49369FB216DC949600D98370 /* BugSense-iOS */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "BugSense-iOS"; path = "iGCS/BugSense-iOS 2.framework/Versions/A/BugSense-iOS"; sourceTree = "<group>"; };
 		49369FB516DEEC1900D98370 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
-		495253DF16FB98BB006E27B0 /* GKSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKSessionController.h; sourceTree = "<group>"; };
-		495253E016FB98BB006E27B0 /* GKSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKSessionController.m; sourceTree = "<group>"; };
+		495253DF16FB98BB006E27B0 /* GKLocalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalController.h; sourceTree = "<group>"; };
+		495253E016FB98BB006E27B0 /* GKLocalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalController.m; sourceTree = "<group>"; };
+		495253E216FB9971006E27B0 /* GKNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNetController.h; sourceTree = "<group>"; };
+		495253E316FB9971006E27B0 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -683,8 +686,10 @@
 		495253DE16FB98BB006E27B0 /* GameKit */ = {
 			isa = PBXGroup;
 			children = (
-				495253DF16FB98BB006E27B0 /* GKSessionController.h */,
-				495253E016FB98BB006E27B0 /* GKSessionController.m */,
+				495253DF16FB98BB006E27B0 /* GKLocalController.h */,
+				495253E016FB98BB006E27B0 /* GKLocalController.m */,
+				495253E216FB9971006E27B0 /* GKNetController.h */,
+				495253E316FB9971006E27B0 /* GKNetController.m */,
 			);
 			path = GameKit;
 			sourceTree = "<group>";
@@ -1598,7 +1603,8 @@
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
-				495253E116FB98BB006E27B0 /* GKSessionController.m in Sources */,
+				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
+				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@ typedef enum {
 
 
 
-@interface GKSessionController : NSObject
+@interface GKLocalController : NSObject
 
 
 -(id)init:(BluetoothStream*)bts;

@@ -13,7 +13,6 @@
 
 #import "CommController.h"
 
-#import "GKSessionController.h"
 
 @implementation GCSMapViewController
 

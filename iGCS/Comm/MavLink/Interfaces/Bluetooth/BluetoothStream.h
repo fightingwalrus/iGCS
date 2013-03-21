@@ -11,7 +11,7 @@
 
 #import "BTLEMavLinkCentral.h"
 #import "BTLEMavLinkPeripheral.h"
-#import "GKSessionController.h"
+#import "GKLocalController.h"
 
 
 @interface BluetoothStream : MavLinkInterface
@@ -22,7 +22,7 @@
 @property (strong) BTLEMavLinkCentral *streamCentral;
 @property (strong) BTLEMavLinkPeripheral *streamPeripheral;
 
-@property (strong) GKSessionController *gkSessionController;
+@property (strong) GKLocalController *gkLocalController;
 
 +(BluetoothStream*)createForTx;
 +(BluetoothStream*)createForRx;
