@@ -5,7 +5,6 @@
 //  Created by Claudio Natoli on 5/02/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "AppDelegate.h" // For TestFlight control
 
 #import "MainViewController.h"
 
@@ -77,6 +76,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     
     // Access view of all controllers to force load
     for (id controller in [self viewControllers]) {

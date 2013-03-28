@@ -19,6 +19,14 @@
 		49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E016FB98BB006E27B0 /* GKLocalController.m */; };
 		495253E416FB9971006E27B0 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E316FB9971006E27B0 /* GKNetController.m */; };
+		495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253E61703EC8B006E27B0 /* FacebookSDK.framework */; };
+		495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E91703EFAE006E27B0 /* ProfileViewController.m */; };
+		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; };
+		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; };
+		495253F01703F1CD006E27B0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; };
+		495253F21703F213006E27B0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253F11703F213006E27B0 /* libsqlite3.0.dylib */; };
+		495253F51703F3E5006E27B0 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F31703F3E5006E27B0 /* 111-user.png */; };
+		495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F41703F3E5006E27B0 /* 181-hammer.png */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -137,6 +145,15 @@
 		495253E016FB98BB006E27B0 /* GKLocalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalController.m; sourceTree = "<group>"; };
 		495253E216FB9971006E27B0 /* GKNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNetController.h; sourceTree = "<group>"; };
 		495253E316FB9971006E27B0 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
+		495253E61703EC8B006E27B0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = iGCS/Login/FacebookSDK.framework; sourceTree = "<group>"; };
+		495253E81703EFAE006E27B0 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		495253E91703EFAE006E27B0 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		495253EB1703F1C3006E27B0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		495253EC1703F1C3006E27B0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		495253EF1703F1CD006E27B0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		495253F11703F213006E27B0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		495253F31703F3E5006E27B0 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
+		495253F41703F3E5006E27B0 /* 181-hammer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "181-hammer.png"; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
@@ -629,6 +646,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495253F21703F213006E27B0 /* libsqlite3.0.dylib in Frameworks */,
+				495253F01703F1CD006E27B0 /* Social.framework in Frameworks */,
+				495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */,
+				495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */,
 				49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */,
 				49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */,
 				492C813116DBD102004001FF /* GameKit.framework in Frameworks */,
@@ -645,6 +666,7 @@
 				CAA2CFD5161BFFB700267615 /* libTestFlight.a in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
 				CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */,
+				495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,9 +716,18 @@
 			path = GameKit;
 			sourceTree = "<group>";
 		};
+		495253E51703EC8B006E27B0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				495253F31703F3E5006E27B0 /* 111-user.png */,
+				495253F41703F3E5006E27B0 /* 181-hammer.png */,
 				49C1FA0D16DC654100BAE96B /* wrench.png */,
 				496E625D16DAFAD700E52E4A /* airplane.png */,
 				496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */,
@@ -753,6 +784,8 @@
 				CA92514516F9761A0008E92F /* WaypointMapBaseController.m */,
 				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
+				495253E81703EFAE006E27B0 /* ProfileViewController.h */,
+				495253E91703EFAE006E27B0 /* ProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1288,6 +1321,11 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				495253F11703F213006E27B0 /* libsqlite3.0.dylib */,
+				495253EF1703F1CD006E27B0 /* Social.framework */,
+				495253EB1703F1C3006E27B0 /* Accounts.framework */,
+				495253EC1703F1C3006E27B0 /* AdSupport.framework */,
+				495253E61703EC8B006E27B0 /* FacebookSDK.framework */,
 				49369FB216DC949600D98370 /* BugSense-iOS */,
 				49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */,
 				49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */,
@@ -1309,6 +1347,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				495253E51703EC8B006E27B0 /* Login */,
 				496E629F16DAFBF600E52E4A /* Comm */,
 				496E626F16DAFB8B00E52E4A /* UserInterface */,
 				496E626616DAFAF600E52E4A /* Waypoints */,
@@ -1532,6 +1571,8 @@
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
+				495253F51703F3E5006E27B0 /* 111-user.png in Resources */,
+				495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1605,6 +1646,7 @@
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
 				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
+				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,6 +1772,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/iGCS\"",
+					"\"$(SRCROOT)/iGCS/Login\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -1761,6 +1804,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/iGCS\"",
+					"\"$(SRCROOT)/iGCS/Login\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";

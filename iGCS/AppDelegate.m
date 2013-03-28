@@ -23,8 +23,11 @@ static AppDelegate *shared;
 
 @synthesize window = _window;
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
 #ifdef TESTING
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
@@ -32,6 +35,14 @@ static AppDelegate *shared;
     //[TestFlight takeOff:@"e7a70336421df8ce9b4d667ef9c6c8e3_MTM4ODI5MjAxMi0xMC0wMiAyMzo1ODowOC4xNzc0NTk"];
 #endif
     
+    
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        // Yes, so just open the session (this won't display any UX).
+        [self openSession];
+    } else {
+        // No, display the login page.
+        //[self showLoginView];
+    }
     
     
     if (ENABLE_BUGSENSE)
@@ -114,6 +125,8 @@ static AppDelegate *shared;
     NSLog(@"Became Active");
 	// startup my application update timer
     
+    [self.session handleDidBecomeActive];
+    
     // TODO: Move this timer into the FightingWalrus radio only as radio poll rate
     updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100msecs
 												   target:self
@@ -132,6 +145,8 @@ static AppDelegate *shared;
      */
     
     [CommController closeAllInterfaces];
+    
+    [self.session close];
     
     if (alertView.visible) {
 		[alertView dismissWithClickedButtonIndex:0 animated:YES];
@@ -185,5 +200,97 @@ static AppDelegate *shared;
     }
 }
 
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    
+    NSLog(@"FacebookAPI:openURL: %@",[url description]);
+    return [self.session handleOpenURL:url];
+}
+
+
+
+- (void)sessionStateChanged:(FBSession *)session
+                      state:(FBSessionState) state
+                      error:(NSError *)error
+{
+    NSLog(@"FBSession state changed: %u",state);
+    switch (state) {
+        case FBSessionStateOpen: {
+            NSLog(@"FBSessionStateOpen");
+            // UIViewController *topViewController = [self.navController topViewController];
+            /*
+            if ([[topViewController modalViewController]
+                 isKindOfClass:[SCLoginViewController class]]) {
+                [topViewController dismissModalViewControllerAnimated:YES];
+            }*/
+        }
+            break;
+        case FBSessionStateClosed:
+            NSLog(@"FBSessionStateClosed");
+        case FBSessionStateClosedLoginFailed:
+            NSLog(@"FBSessionStateClosedLoginFailed");
+            // Once the user has logged in, we want them to
+            // be looking at the root view.
+            //[self.navController popToRootViewControllerAnimated:NO];
+            
+            [FBSession.activeSession closeAndClearTokenInformation];
+            
+            //[self showLoginView];
+            break;
+        default:
+            NSLog(@"default");
+            break;
+    }
+    
+    if (error) {
+        UIAlertView *loginFailView = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:error.localizedDescription
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [loginFailView show];
+    }
+}
+
+- (void)openSession
+{
+    if (self.session.isOpen) {
+        // if a user logs out explicitly, we delete any cached token information, and next
+        // time they run the applicaiton they will be presented with log in UX again; most
+        // users will simply close the app or switch away, without logging out; this will
+        // cause the implicit cached-token login to occur on next launch of the application
+        [self.session closeAndClearTokenInformation];
+        
+    } else {
+        if (self.session.state != FBSessionStateCreated) {
+            // Create a new, logged out session.
+            self.session = [[FBSession alloc] init];
+        }
+        
+        // if the session isn't open, let's open it now and present the login UX to the user
+        [self.session openWithCompletionHandler:^(FBSession *session,
+                                                         FBSessionState status,
+                                                         NSError *error) {
+            // and here we make sure to update our UX according to the new session state
+            NSLog(@"FBSession open callback");  
+            //[self updateView];
+        }];
+    }
+    
+    /*
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:YES
+                                  completionHandler:
+     ^(FBSession *session,
+       FBSessionState state, NSError *error) {
+         [self sessionStateChanged:session state:state error:error];
+     }];
+     */
+}
 
 @end
