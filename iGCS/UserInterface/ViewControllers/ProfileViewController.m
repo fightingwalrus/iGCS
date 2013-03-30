@@ -51,12 +51,14 @@
     if (self.appDelegate.session.isOpen) {
         // valid account UI is shown whenever the session is open
         [self.facebookLoginButton setTitle:@"Log out" forState:UIControlStateNormal];
-        [self.facebookStatusLabel setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
-                                      self.appDelegate.session.accessTokenData.accessToken]];
+        /*[self.facebookStatusLabel setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
+                                           self.appDelegate.session.accessTokenData.accessToken]];
+        */
+         [self.facebookStatusLabel setText:[NSString stringWithFormat:@"Logged in."]];
     } else {
         // login-needed account UI is shown whenever the session is closed
         [self.facebookLoginButton setTitle:@"Log in" forState:UIControlStateNormal];
-        [self.facebookStatusLabel setText:@"Login to create a link to fetch account data"];
+        [self.facebookStatusLabel setText:@"Click to log in with Facebook."];
     }
 }
 

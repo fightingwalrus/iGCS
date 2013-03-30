@@ -21,9 +21,9 @@
 		495253E416FB9971006E27B0 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E316FB9971006E27B0 /* GKNetController.m */; };
 		495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253E61703EC8B006E27B0 /* FacebookSDK.framework */; };
 		495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E91703EFAE006E27B0 /* ProfileViewController.m */; };
-		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; };
-		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; };
-		495253F01703F1CD006E27B0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; };
+		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		495253F01703F1CD006E27B0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253F21703F213006E27B0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253F11703F213006E27B0 /* libsqlite3.0.dylib */; };
 		495253F51703F3E5006E27B0 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F31703F3E5006E27B0 /* 111-user.png */; };
 		495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F41703F3E5006E27B0 /* 181-hammer.png */; };
