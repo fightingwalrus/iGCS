@@ -305,6 +305,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JU5-Hk-0MJ">
+                                <rect key="frame" x="514" y="7" width="499" height="673"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -322,6 +329,7 @@
                         <outlet property="compassView" destination="Ydo-PK-dGh" id="4HB-Lh-7Zg"/>
                         <outlet property="currentLabel" destination="DAe-Q0-ZRd" id="bYs-Ij-LSW"/>
                         <outlet property="customModeLabel" destination="NOu-t9-D3C" id="JVt-9w-a5P"/>
+                        <outlet property="debugConsoleLabel" destination="JU5-Hk-0MJ" id="InN-iF-RbY"/>
                         <outlet property="gpsFixTypeLabel" destination="3Tt-Ox-nW4" id="wWD-3I-ZoG"/>
                         <outlet property="groundSpeedLabel" destination="hNa-T9-4kL" id="569-yd-Usa"/>
                         <outlet property="numSatellitesLabel" destination="dYk-g5-LG9" id="qFX-8J-4MO"/>
@@ -815,6 +823,7 @@
                 <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
                 <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>

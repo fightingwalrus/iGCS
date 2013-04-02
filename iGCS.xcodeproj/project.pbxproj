@@ -83,6 +83,7 @@
 		496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		49AC435C17089ACD008225A3 /* bigwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 49AC435B17089ACD008225A3 /* bigwheel.png */; };
+		49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -90,6 +91,10 @@
 		49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
 		49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
 		49C1FA1816DC7B5200BAE96B /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
+		49C45CB0170A7810007C9999 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CAF170A7810007C9999 /* CFNetwork.framework */; };
+		49C45CB2170A7820007C9999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB1170A7820007C9999 /* MobileCoreServices.framework */; };
+		49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
+		49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C45CB8170A7EA4007C9999 /* DebugLogger.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -210,6 +215,7 @@
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
 		49AC435B17089ACD008225A3 /* bigwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigwheel.png; sourceTree = "<group>"; };
+		49AC435D1708B8EF008225A3 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = iGCS/Dropbox.framework; sourceTree = "<group>"; };
 		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
@@ -217,6 +223,11 @@
 		49C1FA1116DC74DB00BAE96B /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		49C1FA1516DC7B5200BAE96B /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
 		49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
+		49C45CAF170A7810007C9999 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		49C45CB1170A7820007C9999 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		49C45CB3170A7832007C9999 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		49C45CB7170A7EA4007C9999 /* DebugLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogger.h; sourceTree = "<group>"; };
+		49C45CB8170A7EA4007C9999 /* DebugLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLogger.m; sourceTree = "<group>"; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA20FD26164E4754005187A8 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		CA20FD27164E4754005187A8 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
@@ -648,6 +659,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */,
+				49C45CB2170A7820007C9999 /* MobileCoreServices.framework in Frameworks */,
+				49C45CB0170A7810007C9999 /* CFNetwork.framework in Frameworks */,
 				495253F21703F213006E27B0 /* libsqlite3.0.dylib in Frameworks */,
 				495253F01703F1CD006E27B0 /* Social.framework in Frameworks */,
 				495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */,
@@ -669,6 +683,7 @@
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
 				CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */,
 				495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */,
+				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1300,6 +1315,9 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,
+				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
+				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1324,6 +1342,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49AC435D1708B8EF008225A3 /* Dropbox.framework */,
 				495253F11703F213006E27B0 /* libsqlite3.0.dylib */,
 				495253EF1703F1CD006E27B0 /* Social.framework */,
 				495253EB1703F1C3006E27B0 /* Accounts.framework */,
@@ -1373,6 +1392,8 @@
 				49C1FA1116DC74DB00BAE96B /* Logger.m */,
 				49C1FA1516DC7B5200BAE96B /* ExceptionHandler.h */,
 				49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */,
+				49C45CB7170A7EA4007C9999 /* DebugLogger.h */,
+				49C45CB8170A7EA4007C9999 /* DebugLogger.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1651,6 +1672,7 @@
 				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
 				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
+				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1774,7 +1796,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/iGCS\"",
 					"\"$(SRCROOT)/iGCS/Login\"",
 				);
@@ -1806,7 +1827,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/iGCS\"",
 					"\"$(SRCROOT)/iGCS/Login\"",
 				);

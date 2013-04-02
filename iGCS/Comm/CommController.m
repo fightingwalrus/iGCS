@@ -10,7 +10,7 @@
 
 #import "DebugViewController.h"
 
-#import "Logger.h"
+#import "DebugLogger.h"
 
 #import "RNBluetoothInterface.h"
 
@@ -40,10 +40,10 @@ static RNBluetoothInterface *rnBluetooth;
         
         [self createDefaultConnections];
         
-        [Logger console:@"Created default connections in CommController."];
+        [DebugLogger console:@"Created default connections in CommController."];
     }
     @catch (NSException *exception) {
-        [Logger dumpException:exception];
+        [DebugLogger dumpException:exception];
     }
     
     
@@ -61,13 +61,13 @@ static RNBluetoothInterface *rnBluetooth;
     
     appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
     [connections addDestination:appMLI];
-    [Logger console:@"Configured iGCS Application as MavLink consumer."];
+    [DebugLogger console:@"Configured iGCS Application as MavLink consumer."];
     
     
     
-    [Logger console: @"Creating RovingNetworks connection."];
+    [DebugLogger console: @"Creating RovingNetworks connection."];
     rnBluetooth = [RNBluetoothInterface create];
-    [Logger console:@"RovingNetworks disabled..."];
+    [DebugLogger console:@"RovingNetworks disabled..."];
     
     if (rnBluetooth)
     {
@@ -75,11 +75,11 @@ static RNBluetoothInterface *rnBluetooth;
         
         [connections createConnection:rnBluetooth destination:appMLI];
         
-        [Logger console:@"Connected RN Bluetooth Rx to iGCS Application input."];
+        [DebugLogger console:@"Connected RN Bluetooth Rx to iGCS Application input."];
         
         [connections createConnection:appMLI destination:rnBluetooth];
         
-        [Logger console:@"Connected iGCS Application output to RN Bluetooth Tx."];
+        [DebugLogger console:@"Connected iGCS Application output to RN Bluetooth Tx."];
     }
     
     else
@@ -87,10 +87,10 @@ static RNBluetoothInterface *rnBluetooth;
     {
         
         // configure input connection as redpark cable
-        [Logger console:@"Starting Redpark connection."];
+        [DebugLogger console:@"Starting Redpark connection."];
         redParkCable = [RedparkSerialCable createWithViews:mainVC];
         
-        [Logger console:@"Redpark started."];
+        [DebugLogger console:@"Redpark started."];
         [connections addSource:redParkCable];
     
         
@@ -98,14 +98,14 @@ static RNBluetoothInterface *rnBluetooth;
         [connections createConnection:redParkCable destination:appMLI];
         
         
-        [Logger console:@"Connected Redpark Rx to iGCS Application input."];
+        [DebugLogger console:@"Connected Redpark Rx to iGCS Application input."];
         
         
         // Forward app output to redpark TX
         [connections createConnection:appMLI destination:redParkCable];
     
         
-        [Logger console:@"Connected iGCS Application output to Redpark Tx."];
+        [DebugLogger console:@"Connected iGCS Application output to Redpark Tx."];
         
     }
     
@@ -137,7 +137,7 @@ static RNBluetoothInterface *rnBluetooth;
     [connections createConnection:redParkCable destination:bts];
     
     
-    [Logger console:@"Created BluetoothStream for Tx."];
+    [DebugLogger console:@"Created BluetoothStream for Tx."];
     
     NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
     
@@ -153,7 +153,7 @@ static RNBluetoothInterface *rnBluetooth;
     [connections createConnection:bts destination:appMLI];
     
     
-    [Logger console:@"Created BluetoothStream for Rx."];
+    [DebugLogger console:@"Created BluetoothStream for Rx."];
     NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
     
 }

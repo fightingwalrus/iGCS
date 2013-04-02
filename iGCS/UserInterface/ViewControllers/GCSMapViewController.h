@@ -41,6 +41,7 @@
 @property(nonatomic) BOOL matchStarted;
 @property(nonatomic, strong) NSArray *myFriends;
 @property(nonatomic, strong) NSArray *myIdentifiers;
+@property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
 
 #define WIND_ICON_OFFSET_ANG 135
 

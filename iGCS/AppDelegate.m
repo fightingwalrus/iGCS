@@ -12,7 +12,12 @@
 
 #import <BugSense-iOS 2/BugSenseController.h>
 
-#define REQUIRE_WALRUS 0
+#include <Dropbox/Dropbox.h>
+
+
+#import "DebugLogger.h"
+
+#define REQUIRE_WALRUS 1
 
 #define ENABLE_BUGSENSE 1
 
@@ -52,6 +57,15 @@ static AppDelegate *shared;
     }
     
 
+    
+    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"upqcuw4fwo1hotd" secret:@"bqbhx0yn1my6emt"];
+    [DBAccountManager setSharedManager:accountMgr];
+    DBAccount *account = accountMgr.linkedAccount;
+    
+    if (account) {
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+        [DBFilesystem setSharedFilesystem:filesystem];
+    }
     
     
     // TODO: Move this into FightingWalrus Interface to support non-FW operation
@@ -175,11 +189,14 @@ static AppDelegate *shared;
     return shared;
 }
 
+static int counter = 0;
 
 // periodic timer to poll the accessory
 // TODO: Move this into FW Interface
 - (void)appUpdate:(NSTimer*)theTimer
 {
+    //[DebugLogger console:@"appUpdate: %i",counter];
+    //counter++;
     
 	if([walrus isConnected])
 	{
@@ -207,8 +224,27 @@ static AppDelegate *shared;
          annotation:(id)annotation
 {
     
-    NSLog(@"FacebookAPI:openURL: %@",[url description]);
-    return [self.session handleOpenURL:url];
+    if([[url scheme] caseInsensitiveCompare:@"fb"] == NSOrderedSame)
+    {
+        NSLog(@"FacebookAPI:openURL: %@",[url description]);
+        return [self.session handleOpenURL:url];
+    }
+    else
+    {
+        NSLog(@"openURL: Assuming URL is for Dropbox API.");
+        
+        DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+        if (account) {
+            DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+            [DBFilesystem setSharedFilesystem:filesystem];
+            NSLog(@"App linked successfully!");
+            return YES;
+        }
+    }
+    
+    return NO;
+    
+    
 }
 
 

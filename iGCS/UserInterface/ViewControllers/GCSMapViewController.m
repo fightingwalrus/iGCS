@@ -13,6 +13,7 @@
 
 #import "CommController.h"
 
+#import "DebugLogger.h"
 
 @implementation GCSMapViewController
 
@@ -91,6 +92,9 @@
     //Authenticate the local player as soon as possible
     [self authenticateLocalPlayer];
     
+    // initialize debug console buffer
+    [DebugLogger start:self.debugConsoleLabel];
+    
     //Initialize GK peer variables
     self.peerStatus = kServer;
 	//FIXME inherited from sample, I don't like it without a self
@@ -136,6 +140,7 @@
 
 - (void)viewDidUnload
 {
+    [self setDebugConsoleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -251,12 +256,12 @@
             // Process the array of GKPlayer objects.
             if ([friends count] > 0)
             {
-                NSLog(@"You have friends!  You aren't a loner after all!");
+                [DebugLogger console:@"You have friends!  You aren't a loner after all!"];
                 self.myFriends = friends;
             }
             else
             {
-                NSLog(@"There is only but one in the wolfpack");
+                [DebugLogger console:@"There is only but one in the wolfpack"];
             }
         }
     }];

@@ -8,7 +8,7 @@
 
 #import "RNBluetoothInterface.h"
 
-#import "Logger.h"
+#import "DebugLogger.h"
 
 @implementation RNBluetoothInterface
 
@@ -23,14 +23,14 @@
     if (rn.selectedAccessory)
     {
         
-        [Logger console:@"RovingNetworks: Starting accessory session.."];
+        [DebugLogger console:@"RovingNetworks: Starting accessory session.."];
         [rn openSession];
-        [Logger console:@"RovingNetworks: Ready."];
+        [DebugLogger console:@"RovingNetworks: Ready."];
         return rn;
     }
     else
     {
-        [Logger console:@"RovingNetworks: No accessory found."];
+        [DebugLogger console:@"RovingNetworks: No accessory found."];
         return nil;
     }
 }
@@ -43,7 +43,7 @@
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
-    [Logger console:@"RovingNetworks: consumeData (stubbed)."];
+    [DebugLogger console:@"RovingNetworks: consumeData (stubbed)."];
     
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];

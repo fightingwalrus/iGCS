@@ -7,6 +7,7 @@
 // Ported from Microchip Demo App mchp_mfi
 
 #import "FightingWalrusMFI.h"
+#import "DebugLogger.h"
 
 @implementation FightingWalrusMFI
 
@@ -36,7 +37,7 @@
     
     [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
     
-    NSLog(@"initWithProtocol complete.");
+    [DebugLogger console:@"initWithProtocol complete."];
     return self;
 }
 
@@ -58,24 +59,24 @@
 
 - (EASession *)openSessionForProtocol:(NSString *)protocolString
 {
-    NSLog(@"getting a list of accessories");
+    [DebugLogger console:@"getting a list of accessories"];
     NSArray *accessories = [[EAAccessoryManager sharedAccessoryManager]
                             connectedAccessories];
 	
     EAAccessory *accessory = nil;
     EASession *session = nil;
     
-	NSLog(@"Found %d accessories",[accessories count]);
-    NSLog(@"looking for %@",protocolString);
+	[DebugLogger console:@"Found %d accessories",[accessories count]];
+    [DebugLogger console:@"looking for %@",protocolString];
     
 	for (EAAccessory *obj in accessories)
     {
 		NSArray *sa = [obj protocolStrings];
-		NSLog(@"a string dump of %d strings",[sa count]);
+		[DebugLogger console:@"a string dump of %d strings",[sa count]];
 		
 		for(NSString *s in sa)
 		{
-			NSLog(@"%@",s);
+			[DebugLogger console:@"%@",s];
 		}
 		
         if ([[obj protocolStrings] containsObject:protocolString])
@@ -85,14 +86,14 @@
         }
     }
     
-    NSLog(@"Scanned the list of accessories");
+    [DebugLogger console:@"Scanned the list of accessories"];
     if (accessory)
     {
         session = [[EASession alloc] initWithAccessory:accessory
                                            forProtocol:protocolString];
         if (session)
         {
-            NSLog(@"opening the streams for this accessory");
+            [DebugLogger console:@"opening the streams for this accessory"];
             [[session inputStream] setDelegate:self];
             [[session inputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                              forMode:NSDefaultRunLoopMode];
@@ -160,7 +161,7 @@
                     
                 }
                 @catch (NSException *e) {
-                    NSLog(@"Warning: stream read failed.");
+                    [DebugLogger console:@"Warning: stream read failed."];
                 }
 			}
             
@@ -179,12 +180,12 @@
                     }
                     
                     @catch (NSException *e) {
-                        NSLog(@"Warning: stream reset failed.");
+                        [DebugLogger console:@"Warning: stream reset failed."];
                     }
                 }
                 else
                 {
-                    NSLog(@"WARNING: Unhandled case of received data, not consumed...");
+                    [DebugLogger console:@"WARNING: Unhandled case of received data, not consumed..."];
                 }
 			}
         }
@@ -201,7 +202,7 @@
         break;
         case NSStreamEventErrorOccurred:
         {
-            NSLog(@"Stream error Occured");
+            [DebugLogger console:@"Stream error Occured"];
         }
         break;
         default:
@@ -215,7 +216,7 @@
 /* this is the notification function if we register for the did disconnect notification event */
 - (void)accessoryDidDisconnect:(NSNotification *)notification
 {
-    NSLog(@"Accessory Disconnected");
+    [DebugLogger console:@"Accessory Disconnected"];
     [[eas inputStream] close];
     [[eas outputStream] close];
     eas = nil;
@@ -223,7 +224,7 @@
 
 - (void)accessoryDidConnect:(NSNotification *)notification
 {
-    NSLog(@"Accessory Connected");
+    [DebugLogger console:@"Accessory Connected"];
     // This method is recieved in response to the EAAccessoryDidCOnnectNotification event
     eas = [self openSessionForProtocol:theProtocol];
     if(eas != nil)
@@ -283,7 +284,7 @@
                     [txData setData:[txData subdataWithRange:range]];
                 }
                 @catch (NSException *e) {
-                    NSLog(@"Warning: stream tx failed.");
+                    [DebugLogger console:@"Warning: stream tx failed."];
                 }
             }
             else

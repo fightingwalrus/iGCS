@@ -8,6 +8,8 @@
 
 #import "FightingWalrusProtocol.h"
 
+#import "DebugLogger.h"
+
 
 @interface FightingWalrusProtocol ()
 
@@ -39,7 +41,7 @@
 {
     // FIXME define protocol name and move to config file
 	self = [super initWithProtocol:@"com.fightingwalrus.prototype"];
-	NSLog(@"starting update thread");
+	[DebugLogger console:@"starting update thread"];
 	updateThread = [[NSThread alloc] initWithTarget:self selector:@selector(updateData) object:nil];
 	[updateThread start];
     
@@ -74,13 +76,13 @@
 			
 			if ((++c % (int)(1.0/updateRate))==0) // update the temperature once per second
 			{
-                //NSLog(@"Requesting debug instrum...");
+                //[DebugLogger console:@"Requesting debug instrum...");
 				//[self queueTxBytes:[NSData dataWithBytes:requestTemp length:sizeof(requestTemp)]];
                 //[self queueTxBytes:[NSData dataWithBytes:requestPot length:sizeof(requestPot)]];
 				[self queueTxBytes:[NSData dataWithBytes:requestDebugInstrum length:sizeof(requestDebugInstrum)]];
                 [self queueTxBytes:[NSData dataWithBytes:requestMavLinkData length:sizeof(requestMavLinkData)]];
                 
-                //NSLog(@"Sent accessory data requests.");
+                //[DebugLogger console:@"Sent accessory data requests.");
 			}
             
 		}
@@ -96,7 +98,7 @@
 
 - (int) readData:(NSData *) data
 {
-    //NSLog(@"readData");
+    //[DebugLogger console:@"readData");
 	int ret;
 	ret = 0;
 	if([data length] >= 6)
@@ -162,7 +164,7 @@
                 int idx = 1;
                 for (NSString *msg in messages)
                 {
-                    NSLog(@"Received message %i: %@",idx,msg);
+                    [DebugLogger console:@"Received message %i: %@",idx,msg];
                     //[Logger logDebug:msg];
                     idx++;
                 }
@@ -170,21 +172,21 @@
                 break;
             case 31: // ReturnMavLinkData
             {
-                NSLog(@"Walrus received MavLink data: %i",expectedNumBytes);
+                [DebugLogger console:@"Walrus received MavLink data: %i",expectedNumBytes];
                 /*MAVMessage *message = [MAVParseMessage parseMAVMessage:data];
                 
                 if (message)
                 {
-                    NSLog(@"Parsed MAVMessage: %@",[message description]);
+                    [DebugLogger console:@"Parsed MAVMessage: %@",[message description]);
                 }
                 else
                 {
-                    NSLog(@"Warning: Message data was invalid.");
+                    [DebugLogger console:@"Warning: Message data was invalid.");
                 }*/
             }
 				break;
 			default: // unknown command
-				NSLog(@"%@ : Unknown Message: %d",theProtocol,buf[0]);
+				[DebugLogger console:@"%@ : Unknown Message: %d",theProtocol,buf[0]];
 				break;
 		}
 	}
