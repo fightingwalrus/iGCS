@@ -17,7 +17,7 @@
 
 #import "DebugLogger.h"
 
-#define REQUIRE_WALRUS 1
+#define REQUIRE_WALRUS 0
 
 #define ENABLE_BUGSENSE 1
 
