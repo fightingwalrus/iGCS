@@ -8,6 +8,7 @@
 
 #import "WaypointMapBaseController.h"
 #import <GameKit/GameKit.h>
+#import <GLKit/GLKit.h>
 
 #import "ArtificialHorizonView.h"
 #import "CompassView.h"
@@ -16,11 +17,14 @@
 
 #import "GotoPointAnnotation.h"
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
     
+    GLKView *videoOverlayView;
+    EAGLContext *_context;
+
     GotoPointAnnotation *gotoPos;
     CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;

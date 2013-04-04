@@ -116,6 +116,8 @@
 		CAA2CFD6161BFFB700267615 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD2161BFFB700267615 /* README.md */; };
 		CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD3161BFFB700267615 /* release_notes.md */; };
 		CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
+		CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
+		CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
 		CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
 		CAE20224152EA67A00D659E2 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
@@ -572,6 +574,8 @@
 		CAA2CFD3161BFFB700267615 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		CAA2CFD4161BFFB700267615 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		CAA2CFD9161C000C00267615 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CAB48D39170D3B520013D035 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CAB48D3B170D3D040013D035 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		CAF0B8391657A8960033B0BC /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
 		CAF0B83A1657A8960033B0BC /* CPTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotation.h; sourceTree = "<group>"; };
@@ -682,6 +686,8 @@
 				CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */,
 				495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */,
 				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
+				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
+				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1342,8 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAB48D3B170D3D040013D035 /* OpenGLES.framework */,
+				CAB48D39170D3B520013D035 /* GLKit.framework */,
 				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
 				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
 				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,

@@ -5,6 +5,7 @@
 //  Created by Claudio Natoli on 5/02/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import <QuartzCore/QuartzCore.h>
 
 #import "GCSMapViewController.h"
 
@@ -81,6 +82,28 @@
     
     gotoPos = nil;
     gotoAltitude = 50;
+    
+    
+    // Initialize the video overlay view
+    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
+    videoOverlayView.context = _context;
+    videoOverlayView.delegate = self;
+    videoOverlayView.enableSetNeedsDisplay = NO;
+
+    uavPos.title = @"On-board Video"; // Some value is required to ensure callout is displayed
+    uavView.canShowCallout = YES;
+    uavView.leftCalloutAccessoryView = videoOverlayView;
+    
+    [EAGLContext setCurrentContext:_context];
+    glEnable(GL_DEPTH_TEST);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrthof(0, 1, 0, 1, -1, 1);
+    glViewport(0, 0, videoOverlayView.bounds.size.width, videoOverlayView.bounds.size.height);
+    
+    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderVideoOverlayView:)];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 #pragma mark - View lifecycle
@@ -835,6 +858,31 @@
     }
     
     return nil;
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    // FIXME: should check if callout is actually displayed before performing
+    // any serious work (alt: check in renderVideoOverlayView)
+    static bool goingUp = false;
+    static float redVal = 0;
+    
+    redVal += goingUp ? 0.02 : -0.02;
+    if (redVal >= 1.0) {
+        redVal = 1.0;
+        goingUp = NO;
+    }
+    if (redVal <= 0.0) {
+        redVal = 0.0;
+        goingUp = YES;
+    }
+    
+    //NSLog(@"glkView");
+    glClearColor(redVal, 0.0, 1.0, 0.1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+- (void)renderVideoOverlayView:(CADisplayLink*)displayLink {
+    [videoOverlayView display];
 }
 
 @end
