@@ -82,7 +82,6 @@
 		496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
 		496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
-		49AC435C17089ACD008225A3 /* bigwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 49AC435B17089ACD008225A3 /* bigwheel.png */; };
 		49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -214,7 +213,6 @@
 		496E62C216DAFBF600E52E4A /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
-		49AC435B17089ACD008225A3 /* bigwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigwheel.png; sourceTree = "<group>"; };
 		49AC435D1708B8EF008225A3 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = iGCS/Dropbox.framework; sourceTree = "<group>"; };
 		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
@@ -1314,9 +1312,6 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
-				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,
-				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
-				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1341,6 +1336,9 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
+				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
+				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,
 				49AC435D1708B8EF008225A3 /* Dropbox.framework */,
 				495253F11703F213006E27B0 /* libsqlite3.0.dylib */,
 				495253EF1703F1CD006E27B0 /* Social.framework */,
