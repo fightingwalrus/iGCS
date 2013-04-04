@@ -74,11 +74,11 @@
     [uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     uavView = [[MKAnnotationView  alloc] initWithAnnotation:uavPos reuseIdentifier:@"uavView"];
-    uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"bigwheel.png"] 
+    uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"airplane.png"] 
                                                 scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                                 rotation: 0];
     uavView.centerOffset = CGPointMake(0, 0);
-        
+    
     gotoPos = nil;
     gotoAltitude = 50;
 }
@@ -701,7 +701,7 @@
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"bigwheel.png"]
+            uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"airplane.png"] 
                                                     scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                                         rotation: attitudePkt.yaw];
             
