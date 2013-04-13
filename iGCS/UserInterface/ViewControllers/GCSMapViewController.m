@@ -116,10 +116,10 @@
 -(NSDictionary *)availableStreams {
     if (!_availableStreams) {
         _availableStreams = [NSMutableDictionary dictionary];
-        _availableStreams[kGCSBryansTestStream] = @{@"url": @"rtsp://70.36.196.50/axis-media/media.amp", @"size": [NSValue valueWithCGSize:CGSizeMake(640, 480)]};
+        _availableStreams[kGCSBryansTestStream] = @{@"url": @"rtsp://70.36.196.50/axis-media/media.amp", @"size": [NSValue valueWithCGSize:CGSizeMake(640, 480)], @"minBufferedDuration": @(2.0f), @"maxBufferedDuration": @(6.0f)};
         
         NSString *bryansTestStreamURL = [NSString stringWithFormat:@"file:/%@",[[NSBundle mainBundle] pathForResource:@"multicast_h264_aac_48000" ofType:@"sdp"]];
-        _availableStreams[kGCSZ3Stream] = @{@"url": bryansTestStreamURL, @"size": [NSValue valueWithCGSize:CGSizeMake(1024, 768)]};
+        _availableStreams[kGCSZ3Stream] = @{@"url": bryansTestStreamURL, @"size": [NSValue valueWithCGSize:CGSizeMake(1024, 768)], @"minBufferedDuration": @(0.2f), @"maxBufferedDuration": @(0.6f)};
     }
     return (NSDictionary *)_availableStreams;
 }
@@ -129,8 +129,8 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[KxMovieParameterDisableDeinterlacing] = @(YES);
-    params[KxMovieParameterMinBufferedDuration] = @(2.0f);
-    params[KxMovieParameterMaxBufferedDuration] = @(6.0f);
+    params[KxMovieParameterMinBufferedDuration] = self.availableStreams[streamName][@"minBufferedDuration"];
+    params[KxMovieParameterMaxBufferedDuration] = self.availableStreams[streamName][@"maxBufferedDuration"];
     self.kxMovieVC = [KxMovieViewController movieViewControllerWithContentPath:self.availableStreams[streamName][@"url"] parameters:params];
     
     NSValue *videoResolution = self.availableStreams[streamName][@"size"];
