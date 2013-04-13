@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
+		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
+		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
+		1888DE6E170F7D3400ADA039 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
+		1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
+		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
+		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
+		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
 		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
@@ -127,6 +135,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1888DE80170F954C00ADA039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87E793F816390F6D000A0848;
+			remoteInfo = KxMovieExample;
+		};
+		1888DE82170F954C00ADA039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87FD6175163A75440090956E;
+			remoteInfo = kxmovie;
+		};
 		CA499F8F14DE33BC00FCC9FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
@@ -137,6 +159,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1888DE6D170F7D3400ADA039 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = kxmovie.xcodeproj; path = submodules/kxmovie/kxmovie.xcodeproj; sourceTree = "<group>"; };
+		1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multicast_h264_aac_48000.sdp; sourceTree = "<group>"; };
+		189E23231710CFF600548C88 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = submodules/kxmovie/kxmovie/KxMovieViewController.h; sourceTree = "<group>"; };
+		189E23241710D00000548C88 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = submodules/kxmovie/kxmovie/kxmovie.bundle; sourceTree = "<group>"; };
+		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		18E62664171101D9006A5D43 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = submodules/kxmovie/libs/libkxmovie.a; sourceTree = "<group>"; };
 		492C812616DBCCE9004001FF /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
 		492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
 		492C812816DBCCE9004001FF /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
@@ -661,6 +693,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */,
+				1888DE6E170F7D3400ADA039 /* Accelerate.framework in Frameworks */,
+				1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */,
+				1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */,
+				1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */,
 				49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */,
 				49C45CB2170A7820007C9999 /* MobileCoreServices.framework in Frameworks */,
 				49C45CB0170A7810007C9999 /* CFNetwork.framework in Frameworks */,
@@ -688,6 +725,7 @@
 				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
+				18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +743,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1888DE7C170F954B00ADA039 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1888DE81170F954C00ADA039 /* KxMovieExample.app */,
+				1888DE83170F954C00ADA039 /* libkxmovie.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1888DE921710C85400ADA039 /* sdpFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */,
+			);
+			path = sdpFiles;
+			sourceTree = "<group>";
+		};
+		189E231F1710CFB200548C88 /* submodules */ = {
+			isa = PBXGroup;
+			children = (
+				189E23201710CFBE00548C88 /* kxmovie */,
+			);
+			name = submodules;
+			sourceTree = "<group>";
+		};
+		189E23201710CFBE00548C88 /* kxmovie */ = {
+			isa = PBXGroup;
+			children = (
+				189E23241710D00000548C88 /* kxmovie.bundle */,
+				189E23231710CFF600548C88 /* KxMovieViewController.h */,
+			);
+			name = kxmovie;
+			sourceTree = "<group>";
+		};
 		492C812516DBCCE9004001FF /* BTLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,6 +1390,8 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				189E231F1710CFB200548C88 /* submodules */,
+				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				CAF0B8381657A8960033B0BC /* CorePlotHeaders */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
@@ -1342,6 +1416,12 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18E62664171101D9006A5D43 /* libkxmovie.a */,
+				189E235D1710DBBC00548C88 /* libiconv.dylib */,
+				1888DE6D170F7D3400ADA039 /* Accelerate.framework */,
+				1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */,
+				1888DE69170F7D1F00ADA039 /* CoreAudio.framework */,
+				1888DE67170F7D1800ADA039 /* MediaPlayer.framework */,
 				CAB48D3B170D3D040013D035 /* OpenGLES.framework */,
 				CAB48D39170D3B520013D035 /* GLKit.framework */,
 				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
@@ -1374,6 +1454,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				1888DE921710C85400ADA039 /* sdpFiles */,
 				495253E51703EC8B006E27B0 /* Login */,
 				496E629F16DAFBF600E52E4A /* Comm */,
 				496E626F16DAFB8B00E52E4A /* UserInterface */,
@@ -1574,6 +1655,12 @@
 			mainGroup = CA499F5314DE33BC00FCC9FB;
 			productRefGroup = CA499F5F14DE33BC00FCC9FB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1888DE7C170F954B00ADA039 /* Products */;
+					ProjectRef = 1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CA499F5D14DE33BC00FCC9FB /* iGCS */,
@@ -1581,6 +1668,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1888DE81170F954C00ADA039 /* KxMovieExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = KxMovieExample.app;
+			remoteRef = 1888DE80170F954C00ADA039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1888DE83170F954C00ADA039 /* libkxmovie.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkxmovie.a;
+			remoteRef = 1888DE82170F954C00ADA039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA499F5C14DE33BC00FCC9FB /* Resources */ = {
@@ -1602,6 +1706,8 @@
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
 				495253F51703F3E5006E27B0 /* 111-user.png in Resources */,
 				495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */,
+				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
+				189E23251710D00000548C88 /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1766,7 +1872,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1785,7 +1891,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1806,6 +1912,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/FFmpeg\"",
+					"\"$(SRCROOT)/submodules/kxmovie\"",
+				);
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1813,6 +1923,10 @@
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
 					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
+					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1837,6 +1951,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/FFmpeg\"",
+					"\"$(SRCROOT)/submodules/kxmovie\"",
+				);
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1844,6 +1962,10 @@
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
 					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
+					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";

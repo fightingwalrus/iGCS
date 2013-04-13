@@ -1,0 +1,3 @@
+[submodule "submodules/kxmovie"]
+	path = submodules/kxmovie
+	url = git://github.com/andymoe/kxmovie.git
