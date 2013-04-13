@@ -13,6 +13,7 @@
 #import "GaugeViewCommon.h"
 
 #import "CommController.h"
+#import "AppDelegate.h"
 
 #import "DebugLogger.h"
 
@@ -45,10 +46,13 @@
 @synthesize currentLabel;
 
 @synthesize autoButton;
+@synthesize kxMovieVC = _kxMovieVC;
+@synthesize availableStreams = _availableStreams;
 
 #define kMaxPacketSize 1024
-
-
+#define kGCSBryansTestStream @"kGCSBryansTestStream"
+#define kGCSZ3Stream @"kGCSZ3Stream"
+#define kGCSVideoScaleFactor 0.4
 
 // GameKit Session ID for app
 #define kTankSessionID @"groundStation"
@@ -71,6 +75,7 @@
 }
 
 - (void)awakeFromNib {
+    
     uavPos  = [[MKPointAnnotation alloc] init];
     [uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
@@ -78,32 +83,94 @@
     uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"airplane.png"] 
                                                 scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                                 rotation: 0];
+    uavView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(airplanTapped:)];
+    [uavView addGestureRecognizer:tap];
     uavView.centerOffset = CGPointMake(0, 0);
     
     gotoPos = nil;
     gotoAltitude = 50;
-    
-    
-    // Initialize the video overlay view
-    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
-    videoOverlayView.context = _context;
-    videoOverlayView.delegate = self;
-    videoOverlayView.enableSetNeedsDisplay = NO;
 
-    uavPos.title = @"On-board Video"; // Some value is required to ensure callout is displayed
-    uavView.canShowCallout = YES;
-    uavView.leftCalloutAccessoryView = videoOverlayView;
+//    // Initialize the video overlay view
+//    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+//    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
+//    videoOverlayView.context = _context;
+//    videoOverlayView.delegate = self;
+//    videoOverlayView.enableSetNeedsDisplay = NO;
+//
+//    uavPos.title = @"On-board Video"; // Some value is required to ensure callout is displayed
+//    uavView.canShowCallout = YES;
+//    uavView.leftCalloutAccessoryView  = videoOverlayView;
+//
+//    [EAGLContext setCurrentContext:_context];
+//    glEnable(GL_DEPTH_TEST);
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
+//    glOrthof(0, 1, 0, 1, -1, 1);
+//    glViewport(0, 0, videoOverlayView.bounds.size.width, videoOverlayView.bounds.size.height);
+//    
+//    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderVideoOverlayView:)];
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+-(NSDictionary *)availableStreams {
+    if (!_availableStreams) {
+        _availableStreams = [NSMutableDictionary dictionary];
+        _availableStreams[kGCSBryansTestStream] = @{@"url": @"rtsp://70.36.196.50/axis-media/media.amp", @"size": [NSValue valueWithCGSize:CGSizeMake(640, 480)]};
+        
+        NSString *bryansTestStreamURL = [NSString stringWithFormat:@"file:/%@",[[NSBundle mainBundle] pathForResource:@"multicast_h264_aac_48000" ofType:@"sdp"]];
+        _availableStreams[kGCSZ3Stream] = @{@"url": bryansTestStreamURL, @"size": [NSValue valueWithCGSize:CGSizeMake(1024, 768)]};
+    }
+    return (NSDictionary *)_availableStreams;
+}
+
+-(void)configureVideoStreamWithName:(NSString *) streamName
+                     andScaleFactor:(float) scaleFactor {
     
-    [EAGLContext setCurrentContext:_context];
-    glEnable(GL_DEPTH_TEST);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrthof(0, 1, 0, 1, -1, 1);
-    glViewport(0, 0, videoOverlayView.bounds.size.width, videoOverlayView.bounds.size.height);
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[KxMovieParameterDisableDeinterlacing] = @(YES);
+    params[KxMovieParameterMinBufferedDuration] = @(2.0f);
+    params[KxMovieParameterMaxBufferedDuration] = @(6.0f);
+    self.kxMovieVC = [KxMovieViewController movieViewControllerWithContentPath:self.availableStreams[streamName][@"url"] parameters:params];
     
-    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderVideoOverlayView:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    NSValue *videoResolution = self.availableStreams[streamName][@"size"];
+    CGSize videoDisplaySize = [self CGSizeFromSize:[videoResolution CGSizeValue] withScaleFactor:scaleFactor];
+    CGRect f = [self videoFrameWithSize:videoDisplaySize andUAVPoint:uavView.frame.origin];
+    NSLog(@"videoFrame: x:%f y:%f w:%f h:%f", f.origin.x, f.origin.y, f.size.width, f.size.height);
+    self.kxMovieVC.view.frame  =  f;
+}
+
+-(CGSize)CGSizeFromSize:(CGSize) size
+        withScaleFactor:(float) scaleFactor {
+    CGSize newSize = CGSizeZero;
+    newSize.width = size.width * scaleFactor;
+    newSize.height = size.height * scaleFactor;
+    return newSize;
+}
+
+-(void)connectToVideoStream {
+    if ([self.kxMovieVC.view isDescendantOfView:self.parentViewController.view]) {
+        [self.kxMovieVC.view removeFromSuperview];
+    } else {
+        [self.parentViewController.view addSubview:self.kxMovieVC.view];
+        [self.view bringSubviewToFront:self.kxMovieVC.view];
+        [self.kxMovieVC play];
+    }
+}
+
+-(CGRect)videoFrameWithSize:(CGSize)size andUAVPoint:(CGPoint) uavPoint{
+    CGRect rect = CGRectZero;
+    rect.size.height = size.height;
+    rect.size.width = size.width;
+    rect.origin.x = (self.parentViewController.view.bounds.size.width - (size.width)); //+ size.height + 8;
+    rect.origin.y = 20; //uavPoint.y;
+    
+    return rect;
+}
+
+-(void)airplanTapped:(UITapGestureRecognizer *)gesture {
+    NSLog(@"airplane tapped");
+    [self connectToVideoStream];
 }
 
 #pragma mark - View lifecycle
@@ -159,6 +226,7 @@
     windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+    
 }
 
 - (void)viewDidUnload
@@ -177,6 +245,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:kGCSVideoScaleFactor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
