@@ -1,0 +1,15 @@
+v=0                                                                             
+o=- 305419896 1 IN IP4 192.168.0.65                                             
+s=DM365 streaming encoder                                                       
+t=0 0                                                                           
+a=tool:DM3xx                                                                    
+a=recvonly                                                                      
+a=type:broadcast                                                                
+m=audio 8892 RTP/AVP 97                                                         
+c=IN IP4 225.1.2.3/2                                                            
+a=rtpmap:97 mpeg4-generic/48000/2
+a=fmtp:97 streamtype=5; profile-level-id=14; mode=AAC-hbr; config=0990; sizeLength=13; indexLength=3; indexDeltaLength=3; constantDuration=1024
+m=video 8888 RTP/AVP 96                                                         
+c=IN IP4 225.1.2.3/2                                                            
+a=rtpmap:96 H264/90000                                                          
+a=fmtp:96 packetization-mode=1;profile-level-id=42801F;sprop-parameter-sets=QoAA

@@ -16,6 +16,7 @@
 #import "MavLinkPacketHandler.h"
 
 #import "GotoPointAnnotation.h"
+#import "KxMovieViewController.h"
 
 @interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
@@ -27,8 +28,9 @@
 
     GotoPointAnnotation *gotoPos;
     CLLocationCoordinate2D gotoCoordinates;
-    float gotoAltitude;
+    NSMutableDictionary *_availableStreams;
     
+    float gotoAltitude;
     int				gamePacketNumber;
     int				gameUniqueID;
 }
@@ -76,6 +78,8 @@
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
 @property (nonatomic, retain) IBOutlet UIButton    *autoButton;
+@property (nonatomic, retain) KxMovieViewController *kxMovieVC;
+@property (nonatomic, retain) NSDictionary *availableStreams;
 
 - (IBAction) readWaypointButtonClick;
 - (IBAction) autoButtonClick;
