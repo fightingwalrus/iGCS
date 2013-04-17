@@ -19,14 +19,11 @@ Recent additions to the project include the kxvideo submodule. kxvideo in turn r
 
 1. clone the project
 2. cd iGCS
-3. git fetch origin integrate-kxmovie-and-ffmpeg
-4. git checkout -t origin/integrate-kxmovie-and-ffmpeg
-5. git submodule update --init --recursive
-6. cd submodules/kxmovie
-7. rake build_ffmpeg
+3. git submodule update --init --recursive
+4. cd submodules/kxmovie
+5. rake build_ffmpeg
 (The first time you will be warned to install the gas preprocessor, follow the instructions provided)
 8. Run the iCGS project in Xcode
->>>>>>> integrate-kxmovie-and-ffmpeg
 
 License
 =======
