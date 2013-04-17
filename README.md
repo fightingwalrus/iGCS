@@ -10,7 +10,6 @@ For further details, see:
 - http://diydrones.com/profiles/blogs/ipad-ground-control-station
 - http://www.youtube.com/watch?v=S1YOwLGsUrs
 
-<<<<<<< HEAD
 =======
 Building
 ========
