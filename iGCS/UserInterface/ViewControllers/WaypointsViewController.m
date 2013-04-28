@@ -41,6 +41,7 @@
     // Custom initialization
     [tableView setDelegate:self];
     [tableView setDataSource:self];
+    [tableView setAllowsSelectionDuringEditing: true];
     
     waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
     
@@ -78,9 +79,9 @@
 #define TABLE_CELL_CMD_FONT_SIZE 16
 #define TABLE_CELL_FONT_SIZE   12
 
-static unsigned int CELL_WIDTHS[] = {    
+static unsigned int CELL_WIDTHS[] = {
     60,               // row #
-    60,               // row #
+    60,               // seq #
     170,              // command
     80, 80, 90,       // x, y, z
     80, 80, 80, 90,  // param1-4
@@ -104,6 +105,7 @@ static NSString* CELL_HEADERS[] = {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // FIXME: outside the above "if (cell == nil)..." because it seems cells are already pre-created. Why? Precreated in nib?
