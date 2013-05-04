@@ -268,8 +268,8 @@
 #pragma mark -
 #pragma mark Button Click callbacks
 
-- (IBAction) readWaypointButtonClick {
-    [[CommController appMLI] issueReadWaypointsRequest];
+- (IBAction) readMissionButtonClick {
+    [[CommController appMLI] issueReadMissionRequest];
 }
 
 - (IBAction) autoButtonClick {

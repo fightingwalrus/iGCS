@@ -30,7 +30,7 @@
 
 
 - (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints;
-- (void) issueReadWaypointsRequest;
+- (void) issueReadMissionRequest;
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 

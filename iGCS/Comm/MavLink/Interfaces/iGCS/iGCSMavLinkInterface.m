@@ -116,7 +116,7 @@ mavlink_heartbeat_t heartbeat;
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                             
-                            [self issueReadWaypointsRequest];
+                            [self issueReadMissionRequest];
                         }
                         
                         /* // Cheat to turn heartbeats into waypoints for iterative display on CommsView
@@ -196,9 +196,10 @@ mavlink_heartbeat_t heartbeat;
 
 
 // TODO: Move me into requests class
-- (void) issueReadWaypointsRequest {
+- (void) issueReadMissionRequest {
     
-#if 1
+// FIXME: DON'T LEAVE ME AS 1!
+#if 1 
     // Debug - add a couple fake waypoints when requested
     mavlink_mission_item_t waypoint;
     WaypointsHolder *zz = [[WaypointsHolder alloc] initWithExpectedCount:2];
@@ -211,6 +212,7 @@ mavlink_heartbeat_t heartbeat;
 
     waypoint.seq = 4; waypoint.command = 16; waypoint.x = 47.262573; waypoint.y = 11.324630; waypoint.z = 100; [zz addWaypoint:waypoint];
     waypoint.seq = 5; waypoint.command = 16; waypoint.x = 47.258262; waypoint.y = 11.325445; waypoint.z = 100; [zz addWaypoint:waypoint];
+    
     // MAV_CMD_DO_JUMP
     waypoint.seq = 6; waypoint.command = 177; waypoint.x = 0; waypoint.y = 0; waypoint.z = 0; waypoint.param1 = 1; waypoint.param3 = 5; [zz addWaypoint:waypoint];
 
