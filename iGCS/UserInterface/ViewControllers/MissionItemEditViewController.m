@@ -8,6 +8,8 @@
 
 #import "MissionItemEditViewController.h"
 
+#import "WaypointHelper.h"
+
 @interface MissionItemEditViewController ()
 
 @end
@@ -34,37 +36,35 @@
 	// Do any additional setup after loading the view.
     missionItemTypes = [[NSMutableArray alloc] init];
     
-    [missionItemTypes addObject:@"MAV_CMD_NAV_WAYPOINT"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_LOITER_UNLIM"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_LOITER_TURNS"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_LOITER_TIME"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_RETURN_TO_LAUNCH"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_LAND"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_TAKEOFF"];
-    [missionItemTypes addObject:@"MAV_CMD_NAV_TARGET"];
+    [missionItemTypes addObject:[NSNumber numberWithInt: 16] /* @"MAV_CMD_NAV_WAYPOINT" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 17] /* @"MAV_CMD_NAV_LOITER_UNLIM" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 18] /* @"MAV_CMD_NAV_LOITER_TURNS" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 19] /* @"MAV_CMD_NAV_LOITER_TIME" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 20] /* @"MAV_CMD_NAV_RETURN_TO_LAUNCH" */];
+    [missionItemTypes addObject:[NSNumber numberWithInt: 21] /* @"MAV_CMD_NAV_LAND" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 22] /* @"MAV_CMD_NAV_TAKEOFF" */];
     
-    [missionItemTypes addObject:@"MAV_CMD_CONDITION_DELAY"];
-    [missionItemTypes addObject:@"MAV_CMD_CONDITION_CHANGE_ALT"];
-    [missionItemTypes addObject:@"MAV_CMD_CONDITION_DISTANCE"];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 112]  /* @"MAV_CMD_CONDITION_DELAY" */];
+    [missionItemTypes addObject:[NSNumber numberWithInt: 113]  /* @"MAV_CMD_CONDITION_CHANGE_ALT" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 114]  /* @"MAV_CMD_CONDITION_DISTANCE" */];
     
-    [missionItemTypes addObject:@"MAV_CMD_DO_JUMP"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_CHANGE_SPEED"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_SET_HOME"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_SET_PARAMETER"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_SET_RELAY"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_REPEAT_RELAY"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_SET_SERVO"];
-    [missionItemTypes addObject:@"MAV_CMD_DO_REPEAT_SERVO"];
+    [missionItemTypes addObject:[NSNumber numberWithInt: 177]  /* @"MAV_CMD_DO_JUMP" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 178]  /* @"MAV_CMD_DO_CHANGE_SPEED" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 179]  /* @"MAV_CMD_DO_SET_HOME" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 180]  /* @"MAV_CMD_DO_SET_PARAMETER" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 181]  /* @"MAV_CMD_DO_SET_RELAY" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 182]  /* @"MAV_CMD_DO_REPEAT_RELAY" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 183]  /* @"MAV_CMD_DO_SET_SERVO" */];
+    //[missionItemTypes addObject:[NSNumber numberWithInt: 184]  /* @"MAV_CMD_DO_REPEAT_SERVO" */];
     
-    // FIXME: finish me!
-    static int foo = 0;
-    foo++;
-    [self selectWaypointType: foo];
+    ////////////////////////////////////////
+    //
     
     // FIXME: this could prove confusing. Likely want to hide seq numbers and use table row numbers
     // instead (or keep row numbers and seq numbers aligned during shuffling/deletion etc, which we
     // might need anyway)
     [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", missionItem.seq]];
+    [self refreshWithMissionItem];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,15 +82,31 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [missionItemTypes objectAtIndex:row];
+    return [WaypointHelper commandIDToString: ((NSNumber*)[missionItemTypes objectAtIndex:row]).intValue];
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"Selected Mission Item: %@ at index %i", [missionItemTypes objectAtIndex:row], row);
 }
 
-- (void) selectWaypointType:(uint16_t)itemType {
-    [pickerView selectRow:itemType inComponent:0 animated:NO];
+- (void) refreshWithMissionItem {
+    // Check that we have a supported mission item 
+    int row = -1;
+    for (unsigned int i = 0; i < [missionItemTypes count]; i++) {
+        uint16_t commandID = ((NSNumber*)[missionItemTypes objectAtIndex:i]).intValue;
+        if (commandID == missionItem.command) {
+            row = i;
+            break;
+        }
+    }
+    
+    if (row == -1) {
+        // FIXME: think about how to handle unsupported row?
+        return;
+    }
+    
+    // For now, just set the picker view
+    [pickerView selectRow:row inComponent:0 animated:NO];
 }
 
 @end
