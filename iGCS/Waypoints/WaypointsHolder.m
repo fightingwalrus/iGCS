@@ -21,8 +21,18 @@
     return self;
 }
 
-- (NSValue*) createBoxedWaypoint:(mavlink_mission_item_t)waypoint {
++ (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint {
     return [NSValue valueWithBytes:&waypoint objCType:@encode(mavlink_mission_item_t)];
+}
+
++ (mavlink_mission_item_t) unBoxWaypoint:(id)obj {
+    mavlink_mission_item_t waypoint;
+
+    NSValue *boxedWP = obj;
+    //if (strcmp([boxedWP objCType], @encode(mavlink_waypoint_t)) == 0)
+    [boxedWP getValue:&waypoint];
+    
+    return waypoint;
 }
 
 - (bool)allWaypointsReceivedP {
@@ -34,7 +44,7 @@
 }
 
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint {
-    [array addObject:[self createBoxedWaypoint:waypoint]];
+    [array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
 }
 
 - (void) removeWaypoint:(unsigned int) index {
@@ -44,26 +54,20 @@
 
 - (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint {
     assert(index >= 0 && index < [self numWaypoints]);
-    [array replaceObjectAtIndex:index withObject:[self createBoxedWaypoint:waypoint]];
+    [array replaceObjectAtIndex:index withObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
 }
 
 - (void) swapWaypoints:(unsigned int) index1 :(unsigned int)index2 {
     mavlink_mission_item_t wp1 = [self getWaypoint: index1];
     mavlink_mission_item_t wp2 = [self getWaypoint: index2];
     
-    [array replaceObjectAtIndex:index1 withObject:[self createBoxedWaypoint:wp2]];
-    [array replaceObjectAtIndex:index2 withObject:[self createBoxedWaypoint:wp1]];
+    [array replaceObjectAtIndex:index1 withObject:[WaypointsHolder makeBoxedWaypoint:wp2]];
+    [array replaceObjectAtIndex:index2 withObject:[WaypointsHolder makeBoxedWaypoint:wp1]];
 }
 
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
     assert(index >= 0 && index < [self numWaypoints]);
-    mavlink_mission_item_t waypoint;
-
-    NSValue *boxedWP = [array objectAtIndex:index];
-    //if (strcmp([boxedWP objCType], @encode(mavlink_waypoint_t)) == 0)
-    [boxedWP getValue:&waypoint];
-    
-    return waypoint;
+    return [WaypointsHolder unBoxWaypoint: [array objectAtIndex:index]];
 }
 
 - (int)getIndexOfWaypointWithSeq:(int)sequence {

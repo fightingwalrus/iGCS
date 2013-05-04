@@ -19,6 +19,9 @@
 - (bool) allWaypointsReceivedP;
 - (unsigned int)numWaypoints;
 
++ (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint;
++ (mavlink_mission_item_t) unBoxWaypoint:(id)obj;
+
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint;
 - (void) removeWaypoint:(unsigned int) index;
 - (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint;
