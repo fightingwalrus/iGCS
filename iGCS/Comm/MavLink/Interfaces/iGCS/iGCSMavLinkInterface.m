@@ -205,11 +205,19 @@ mavlink_heartbeat_t heartbeat;
     waypoint.seq = 0; waypoint.command =  0; waypoint.x = 47.258842; waypoint.y = 11.331070; waypoint.z = 584; [zz addWaypoint:waypoint];
     waypoint.seq = 1; waypoint.command = 16; waypoint.x = 47.260709; waypoint.y = 11.348920; waypoint.z = 100; [zz addWaypoint:waypoint];
     waypoint.seq = 2; waypoint.command = 16; waypoint.x = 47.264815; waypoint.y = 11.347847; waypoint.z = 100; [zz addWaypoint:waypoint];
-    waypoint.seq = 3; waypoint.command = 16; waypoint.x = 47.262573; waypoint.y = 11.324630; waypoint.z = 100; [zz addWaypoint:waypoint];
-    waypoint.seq = 4; waypoint.command = 16; waypoint.x = 47.258262; waypoint.y = 11.325445; waypoint.z = 100; [zz addWaypoint:waypoint];
-    waypoint.seq = 5; waypoint.command = 16; waypoint.x = 47.258757; waypoint.y = 11.330380; waypoint.z =  50; [zz addWaypoint:waypoint];
-    waypoint.seq = 6; waypoint.command = 16; waypoint.x = 47.259427; waypoint.y = 11.336904; waypoint.z =  20; [zz addWaypoint:waypoint];
-    waypoint.seq = 7; waypoint.command = 21; waypoint.x = 47.259864; waypoint.y = 11.340809; waypoint.z = 100; [zz addWaypoint:waypoint];
+    
+    // MAV_CMD_CONDITION_CHANGE_ALT
+    waypoint.seq = 3; waypoint.command = 113; waypoint.x = 0; waypoint.y = 0; waypoint.z = 0; waypoint.param1 = 100; waypoint.param2 = 2000; [zz addWaypoint:waypoint];
+
+    waypoint.seq = 4; waypoint.command = 16; waypoint.x = 47.262573; waypoint.y = 11.324630; waypoint.z = 100; [zz addWaypoint:waypoint];
+    waypoint.seq = 5; waypoint.command = 16; waypoint.x = 47.258262; waypoint.y = 11.325445; waypoint.z = 100; [zz addWaypoint:waypoint];
+    // MAV_CMD_DO_JUMP
+    waypoint.seq = 6; waypoint.command = 177; waypoint.x = 0; waypoint.y = 0; waypoint.z = 0; waypoint.param1 = 1; waypoint.param3 = 5; [zz addWaypoint:waypoint];
+
+    
+    waypoint.seq = 7; waypoint.command = 16; waypoint.x = 47.258757; waypoint.y = 11.330380; waypoint.z =  50; [zz addWaypoint:waypoint];
+    waypoint.seq = 8; waypoint.command = 16; waypoint.x = 47.259427; waypoint.y = 11.336904; waypoint.z =  20; [zz addWaypoint:waypoint];
+    waypoint.seq = 9; waypoint.command = 21; waypoint.x = 47.259864; waypoint.y = 11.340809; waypoint.z = 100; [zz addWaypoint:waypoint];
     
     [self.mainVC.gcsMapVC resetWaypoints: zz];
     [self.mainVC.waypointVC resetWaypoints: zz];
