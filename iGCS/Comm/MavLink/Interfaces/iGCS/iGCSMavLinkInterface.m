@@ -198,7 +198,7 @@ mavlink_heartbeat_t heartbeat;
 // TODO: Move me into requests class
 - (void) issueReadWaypointsRequest {
     
-#if 0
+#if 1
     // Debug - add a couple fake waypoints when requested
     mavlink_mission_item_t waypoint;
     WaypointsHolder *zz = [[WaypointsHolder alloc] initWithExpectedCount:2];
