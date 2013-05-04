@@ -15,6 +15,8 @@
     NSMutableArray *missionItemTypes;
     
     mavlink_mission_item_t missionItem;
+    
+    UITabBarController* tabVCDetailItemVC;
 }
 
 - (void) initInstance:(mavlink_mission_item_t)_missionItem;

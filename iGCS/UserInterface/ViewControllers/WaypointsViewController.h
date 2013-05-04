@@ -7,8 +7,6 @@
 //
 
 #import "WaypointMapBaseController.h"
-
-#import "MavLinkPacketHandler.h"
 #import "WaypointsHolder.h"
 
 #define TABLE_MAP_SLIDE_AMOUNT 190

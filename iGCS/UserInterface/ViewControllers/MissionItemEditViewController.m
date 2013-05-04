@@ -67,6 +67,22 @@
     [self refreshWithMissionItem];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString * segueName = segue.identifier;
+    if ([segueName isEqualToString: @"detailItemVC_embed"]) {
+        tabVCDetailItemVC = (UITabBarController*) [segue destinationViewController];
+        
+        // Hack - we're really just using the UITabBarController as a container for our subviews.
+        // Hide the tab bar, and use up the missing space. FIXME: is there a nicer pattern for this?
+        [tabVCDetailItemVC.tabBar setHidden:YES];
+        for (unsigned int i = 0; i < [tabVCDetailItemVC.view.subviews count]; i++) {
+            [[tabVCDetailItemVC.view.subviews objectAtIndex:i] setFrame:tabVCDetailItemVC.view.frame];
+        }
+        NSLog(@"detailItemVC_embed found");
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -87,6 +103,7 @@
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"Selected Mission Item: %@ at index %i", [missionItemTypes objectAtIndex:row], row);
+    [self showTabBarViewForRow: row];
 }
 
 - (void) refreshWithMissionItem {
@@ -105,8 +122,31 @@
         return;
     }
     
-    // For now, just set the picker view
+    // Set the corresponding picker view row, and drop in the correct window 
     [pickerView selectRow:row inComponent:0 animated:NO];
+    [self showTabBarViewForRow: row];
 }
 
+- (void) showTabBarViewForRow:(int)row {
+    int tabBarIndex = row; // FIXME: choose correct controller - perhaps tag controllers based on command ID?
+    
+#if 0
+    [tabVCDetailItemVC setSelectedIndex: tabBarIndex];
+#else
+    // Alternative. c.f. http://stackoverflow.com/questions/5161730/iphone-how-to-switch-tabs-with-an-animation
+    UIView *fromView = tabVCDetailItemVC.selectedViewController.view;
+    UIView *toView = [[tabVCDetailItemVC.viewControllers objectAtIndex:tabBarIndex] view];
+    
+    // Transition using a page curl.
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.3
+                       options:UIViewAnimationCurveLinear|(tabBarIndex > tabVCDetailItemVC.selectedIndex ? UIViewAnimationOptionTransitionFlipFromLeft :UIViewAnimationOptionTransitionFlipFromRight)
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            tabVCDetailItemVC.selectedIndex = tabBarIndex;
+                        }
+                    }];
+#endif
+}
 @end
