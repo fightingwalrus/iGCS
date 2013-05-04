@@ -17,7 +17,9 @@
 
 @synthesize tableView;
 
+@synthesize detailBackButton;
 @synthesize editDoneButton;
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -265,6 +267,16 @@ static NSString* CELL_HEADERS[] = {
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    if (tableView.isEditing) {
+        pushedDetailView = [[UIView alloc] init];
+        [UIView transitionFromView:tableView
+                            toView:pushedDetailView duration:0.75
+                           options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:NULL];
+        [detailBackButton setEnabled:YES];
+        [editDoneButton setEnabled:NO];
+    }
 }
 
 - (void) resetWaypoints:(WaypointsHolder*)_waypoints {
@@ -292,6 +304,15 @@ static NSString* CELL_HEADERS[] = {
     }
 }
 
+- (IBAction)detailBackClicked:(id)sender {
+    [detailBackButton setEnabled:NO];
+    [editDoneButton setEnabled:YES];
+    [UIView transitionFromView:pushedDetailView
+                        toView:tableView duration:0.75
+                       options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionTransitionFlipFromRight
+                    completion:NULL];
+}
+
 - (IBAction)editDoneClicked:(id)sender {
     bool isEditing = !tableView.editing;
     
@@ -300,7 +321,7 @@ static NSString* CELL_HEADERS[] = {
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
 
-    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    int delta = isEditing ? -TABLE_MAP_SLIDE_AMOUNT : TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
     CGRect tableRect = tableView.frame;
