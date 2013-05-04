@@ -11,7 +11,7 @@
 #import "MavLinkPacketHandler.h"
 #import "WaypointsHolder.h"
 
-#define TABLE_MAP_SLIDE_AMOUNT 100
+#define TABLE_MAP_SLIDE_AMOUNT 190
 
 @interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler> {
     WaypointsHolder *waypoints;

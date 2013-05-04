@@ -262,7 +262,7 @@ static NSString* CELL_HEADERS[] = {
     NSString * segueName = segue.identifier;
     NSLog(@"prepareForSeque %@", segueName);
     
-    if ([segueName isEqualToString: @"editItemVC_embed"]) {
+    if ([segueName isEqualToString: @"editItemVC_segue"]) {
         mavlink_mission_item_t missionItem = [WaypointsHolder unBoxWaypoint:sender];
         [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:missionItem];
     }

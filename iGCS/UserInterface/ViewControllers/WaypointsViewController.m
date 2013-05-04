@@ -115,7 +115,7 @@
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
 
-    int delta = isEditing ? -TABLE_MAP_SLIDE_AMOUNT : TABLE_MAP_SLIDE_AMOUNT;
+    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
     CGRect tableRect = editVCContainerView.frame;

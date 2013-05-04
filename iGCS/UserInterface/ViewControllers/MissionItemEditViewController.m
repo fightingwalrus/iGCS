@@ -60,6 +60,11 @@
     static int foo = 0;
     foo++;
     [self selectWaypointType: foo];
+    
+    // FIXME: this could prove confusing. Likely want to hide seq numbers and use table row numbers
+    // instead (or keep row numbers and seq numbers aligned during shuffling/deletion etc, which we
+    // might need anyway)
+    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", missionItem.seq]];
 }
 
 - (void)didReceiveMemoryWarning

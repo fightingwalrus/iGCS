@@ -970,7 +970,7 @@
             <objects>
                 <viewController id="imi-5L-OxZ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EAj-FF-ABB">
-                        <rect key="frame" x="0.0" y="0.0" width="655" height="304"/>
+                        <rect key="frame" x="0.0" y="0.0" width="655" height="216"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -978,7 +978,6 @@
                     <connections>
                         <segue destination="ByT-ZR-NNR" kind="push" id="D0e-ar-GLL"/>
                         <segue destination="JKH-zF-Naf" kind="push" id="6hU-vn-5eB"/>
-                        <segue destination="u73-AV-Dpa" kind="push" id="QGN-f8-eps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5a-Bp-H51" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -994,7 +993,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" id="rV1-fU-mDN">
-                                <rect key="frame" x="369" y="0.0" width="655" height="304"/>
+                                <rect key="frame" x="369" y="0.0" width="655" height="216"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -1061,7 +1060,7 @@
             <objects>
                 <tableViewController id="JKH-zF-Naf" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="StK-r3-6hp">
-                        <rect key="frame" x="0.0" y="0.0" width="655" height="304"/>
+                        <rect key="frame" x="0.0" y="0.0" width="655" height="216"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1141,7 +1140,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4w-9V-eMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="ByT-ZR-NNR" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AtH-yE-Q8G">
-                        <rect key="frame" x="0.0" y="0.0" width="655" height="304"/>
+                        <rect key="frame" x="0.0" y="0.0" width="655" height="216"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1213,85 +1212,6 @@
             </objects>
             <point key="canvasLocation" x="5522" y="3424"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="qk6-6U-WiM">
-            <objects>
-                <tableViewController id="u73-AV-Dpa" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="yXH-ca-ak9">
-                        <rect key="frame" x="0.0" y="0.0" width="655" height="304"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <sections>
-                            <tableViewSection id="9Az-QF-TGA">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EmQ-qu-bze">
-                                        <rect key="frame" x="0.0" y="30" width="655" height="46"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="40" y="1" width="575" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sP7-C6-axm">
-                                                    <rect key="frame" x="20" y="11" width="128" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 23' 35.6N 1 23' 35.6W" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oks-px-RsL">
-                                                    <rect key="frame" x="156" y="11" width="256" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="x77-x3-bbI">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9Or-Xm-CTW">
-                                        <rect key="frame" x="0.0" y="96" width="655" height="46"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="40" y="1" width="575" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2aa-nk-PAd">
-                                                    <rect key="frame" x="20" y="11" width="128" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" id="g2X-zr-kg5">
-                                                    <rect key="frame" x="156" y="7" width="97" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <attributedString key="attributedText"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="u73-AV-Dpa" id="tjp-F0-ESd"/>
-                            <outlet property="delegate" destination="u73-AV-Dpa" id="BEq-2S-Npu"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="Ptg-1V-HeQ"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e3P-1E-af9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6298" y="3424"/>
-        </scene>
     </scenes>
     <resources>
         <image name="05-shuffle.png" width="28" height="20"/>
@@ -1301,114 +1221,6 @@
         <image name="73-radar.png" width="27" height="27"/>
         <image name="hazard-stripes-texture.png" width="100" height="75"/>
     </resources>
-    <classes>
-        <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtificialHorizonView.h"/>
-        </class>
-        <class className="CPTGraphHostingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
-        </class>
-        <class className="CommsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
-                <relationship kind="outlet" name="defaultTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsIntTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsRawTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="navControllerOutputTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sysStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="vfrHUDTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="CompassView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CompassView.h"/>
-        </class>
-        <class className="DebugViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bluetoothRxClicked:"/>
-                <relationship kind="action" name="bluetoothTxClicked:"/>
-                <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="DoubleBufferedAsyncView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoubleBufferedAsyncView.h"/>
-        </class>
-        <class className="GCSMapViewController" superclassName="WaypointMapBaseController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="autoButtonClick"/>
-                <relationship kind="action" name="externalButtonClick"/>
-                <relationship kind="action" name="readMissionButtonClick"/>
-                <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
-                <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
-                <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysMemFreeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="windSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="MissionItemEditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionItemEditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="MissionItemTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionItemTableViewController.h"/>
-        </class>
-        <class className="ProfileViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="facebookLoginButtonPressed:"/>
-                <relationship kind="outlet" name="crashesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="facebookLoginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="facebookStatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalFlightHoursLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
-        </class>
-        <class className="WaypointMapBaseController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointMapBaseController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WaypointsViewController" superclassName="WaypointMapBaseController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editDoneClicked:"/>
-                <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="editVCContainerView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
