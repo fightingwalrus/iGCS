@@ -77,7 +77,10 @@
         // Hide the tab bar, and use up the missing space. FIXME: is there a nicer pattern for this?
         [tabVCDetailItemVC.tabBar setHidden:YES];
         for (unsigned int i = 0; i < [tabVCDetailItemVC.view.subviews count]; i++) {
-            [[tabVCDetailItemVC.view.subviews objectAtIndex:i] setFrame:tabVCDetailItemVC.view.frame];
+            UIView* v = [tabVCDetailItemVC.view.subviews objectAtIndex:i];
+            CGRect frame = v.frame;
+            frame.size.height += tabVCDetailItemVC.tabBar.frame.size.height;
+            [v setFrame:frame];
         }
         NSLog(@"detailItemVC_embed found");
     }
@@ -136,12 +139,11 @@
     // Alternative. c.f. http://stackoverflow.com/questions/5161730/iphone-how-to-switch-tabs-with-an-animation
     UIView *fromView = tabVCDetailItemVC.selectedViewController.view;
     UIView *toView = [[tabVCDetailItemVC.viewControllers objectAtIndex:tabBarIndex] view];
-    
-    // Transition using a page curl.
     [UIView transitionFromView:fromView
                         toView:toView
-                      duration:0.3
-                       options:UIViewAnimationCurveLinear|(tabBarIndex > tabVCDetailItemVC.selectedIndex ? UIViewAnimationOptionTransitionFlipFromLeft :UIViewAnimationOptionTransitionFlipFromRight)
+                      duration:0.5
+                       options:(tabBarIndex > tabVCDetailItemVC.selectedIndex ?
+                                UIViewAnimationOptionTransitionCurlUp :UIViewAnimationOptionTransitionCurlDown)
                     completion:^(BOOL finished) {
                         if (finished) {
                             tabVCDetailItemVC.selectedIndex = tabBarIndex;
