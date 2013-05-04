@@ -13,20 +13,19 @@
 
 #define TABLE_MAP_SLIDE_AMOUNT 100
 
-@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, UITableViewDelegate, UITableViewDataSource> {
+@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler> {
     WaypointsHolder *waypoints;
     
-    UIView *pushedDetailView;
+    UINavigationController* navVCEditItemVC;
 }
 
+- (WaypointsHolder*) getWaypointsHolder;  // for MissionItemEditViewController
+- (void) resetWaypoints;
 - (void) resetWaypoints:(WaypointsHolder*)_waypoints;
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *detailBackButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
+@property (nonatomic, retain) IBOutlet UIView *editVCContainerView;
 
-- (IBAction)detailBackClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;
 
 @end

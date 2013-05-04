@@ -132,6 +132,8 @@
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
+		CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -686,6 +688,10 @@
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemEditViewController.h; sourceTree = "<group>"; };
+		CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemEditViewController.m; sourceTree = "<group>"; };
+		CAFEE7971734C28D006BEF6A /* MissionItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemTableViewController.h; sourceTree = "<group>"; };
+		CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -871,6 +877,10 @@
 				496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */,
 				496E627B16DAFB8B00E52E4A /* MainViewController.h */,
 				496E627C16DAFB8B00E52E4A /* MainViewController.m */,
+				CAFEE7971734C28D006BEF6A /* MissionItemTableViewController.h */,
+				CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */,
+				CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */,
+				CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */,
 				496E627D16DAFB8B00E52E4A /* WaypointsViewController.h */,
 				496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */,
 				CA92514416F9761A0008E92F /* WaypointMapBaseController.h */,
@@ -1783,6 +1793,8 @@
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
 				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
 				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
+				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
+				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
