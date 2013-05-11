@@ -43,6 +43,16 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Register for keyboard show/hide notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardShowing:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardHiding:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)viewDidUnload
@@ -59,6 +69,46 @@
         navVCEditItemVC = (UINavigationController*) [segue destinationViewController];
         NSLog(@"editItemVC_embed found");
     }
+}
+
+- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(bool)showing {
+    
+    // Determine amount to slide the map and table views
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
+    CGFloat y = (keyboardSize.width - tabBarSize.height);
+    if (!showing) y = -y;
+    
+    // Compute new frames
+    CGRect tableRect = editVCContainerView.frame;
+    CGRect mapRect   = map.frame;
+    tableRect.origin.y -= y;
+    mapRect.origin.y   -= y;
+    
+    // Attempt to match the keyboard animation speed/curve
+    NSDictionary* userInfo = [notification userInfo];
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    editVCContainerView.frame = tableRect;
+    map.frame = mapRect;
+    [UIView commitAnimations];
+}
+
+- (void)keyboardShowing:(NSNotification *)notification
+{
+    [self handleKeyboardDisplay: notification showing:YES];
+}
+
+- (void)keyboardHiding:(NSNotification *)notification
+{
+    [self handleKeyboardDisplay: notification showing:NO];
 }
 
 - (UITableView*) getTableView
