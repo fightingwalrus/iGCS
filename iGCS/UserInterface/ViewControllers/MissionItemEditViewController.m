@@ -239,4 +239,68 @@
 }
 
 
+// FIXME: if the user changes the picker view while editing, this fires (as the text field is disappearing!)
+//   - however, by this time we have changed the missionItem command, and hence modified what
+//     getMetaDataOfCurrentMissionItem will return => Boom!
+//   - ensure this operation is not performed on a textfield that is being unloaded
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already)
+    // using for another purpose
+    NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+
+    MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
+
+    // Modify the respective field
+    float val = [textField.text floatValue];
+    switch ([field fieldType]) {
+        case kPARAM_Z:
+            missionItem.z = val;
+            break;
+
+        case kPARAM_1:
+            missionItem.param1 = val;
+            break;
+
+        case kPARAM_2:
+            missionItem.param2 = val;
+            break;
+
+        case kPARAM_3:
+            missionItem.param3 = val;
+            break;
+
+        case kPARAM_4:
+            missionItem.param4 = val;
+            break;
+            
+        default:
+            assert(false);
+            break;
+    }
+    NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+// Limit textfields to numeric values only
+// ref: http://stackoverflow.com/questions/9344159/validate-numeric-input-to-uitextfield-as-the-user-enters-input
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression = @"^(-)?([0-9]+)?(\\.([0-9]*)?)?$";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
+                                                        options:0
+                                                          range:NSMakeRange(0, [newString length])];
+    if (numberOfMatches == 0)
+        return NO;
+    return YES;
+}
+
 @end

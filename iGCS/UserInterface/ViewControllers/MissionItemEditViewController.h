@@ -10,7 +10,7 @@
 #import "WaypointsHolder.h"
 #import "MissionItemField.h"
 
-@interface MissionItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDataSource> {
+@interface MissionItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UIPickerView *pickerView;
     
     NSArray *missionItemCommandIDs;
