@@ -106,6 +106,7 @@
     }
 }
 
+// FIXME: also need to check and close the detail view if open
 - (IBAction)editDoneClicked:(id)sender {
     UITableView* tableView = [self getTableView];
     bool isEditing = !tableView.editing;

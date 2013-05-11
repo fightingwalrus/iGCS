@@ -204,7 +204,7 @@ mavlink_heartbeat_t heartbeat;
     mavlink_mission_item_t waypoint;
     WaypointsHolder *zz = [[WaypointsHolder alloc] initWithExpectedCount:2];
     waypoint.seq = 0; waypoint.command =  0; waypoint.x = 47.258842; waypoint.y = 11.331070; waypoint.z = 584; [zz addWaypoint:waypoint];
-    waypoint.seq = 1; waypoint.command = 16; waypoint.x = 47.260709; waypoint.y = 11.348920; waypoint.z = 100; [zz addWaypoint:waypoint];
+    waypoint.seq = 1; waypoint.command = 16; waypoint.x = 47.260709; waypoint.y = 11.348920; waypoint.z = 100; waypoint.param1 = 1; waypoint.param2 = 2; waypoint.param3 = 3; waypoint.param4 = 4; [zz addWaypoint:waypoint];
     waypoint.seq = 2; waypoint.command = 16; waypoint.x = 47.264815; waypoint.y = 11.347847; waypoint.z = 100; [zz addWaypoint:waypoint];
     
     // MAV_CMD_CONDITION_CHANGE_ALT
