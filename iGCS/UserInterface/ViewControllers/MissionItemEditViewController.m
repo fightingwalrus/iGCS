@@ -169,7 +169,10 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
+    //NSLog(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
+    
+    // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
+    [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
     missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
@@ -202,7 +205,7 @@
 
 - (NSArray*)getMetaDataOfCurrentMissionItem
 {
-    NSLog(@" - getMetaDataOfCurrentMissionItem with id = %@", [NSNumber numberWithInt: missionItem.command]);
+    //NSLog(@" - getMetaDataOfCurrentMissionItem with id = %@", [NSNumber numberWithInt: missionItem.command]);
     return [missionItemMetaData objectForKey: [NSNumber numberWithInt: missionItem.command]];
 }
 
@@ -239,7 +242,6 @@
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
 {
     unsigned int count = [[self getMetaDataOfCurrentMissionItem] count];
-    NSLog(@" - num fields = %d", count);
     return [[self getMetaDataOfCurrentMissionItem] count];
 }
 
@@ -256,15 +258,11 @@
     return cell;
 }
 
-
-// FIXME: if the user changes the picker view while editing, this fires (as the text field is disappearing!)
-//   - however, by this time we have changed the missionItem command, and hence modified what
-//     getMetaDataOfCurrentMissionItem will return => Boom!
-//   - ensure this operation is not performed on a textfield that is being unloaded
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already)
     // using for another purpose
     NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
 
@@ -295,7 +293,6 @@
             assert(false);
             break;
     }
-    NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
