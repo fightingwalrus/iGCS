@@ -26,6 +26,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[[self getWaypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Prevent the edit/done button being touched while editing a mission item
+    [[[self getWaypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
