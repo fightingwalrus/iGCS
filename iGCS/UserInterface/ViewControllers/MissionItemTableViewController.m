@@ -26,11 +26,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    // Hide the nav bar in the (contained) table view, but show it in the detail view
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -269,8 +264,20 @@ static NSString* CELL_HEADERS[] = {
     
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         mavlink_mission_item_t missionItem = [WaypointsHolder unBoxWaypoint:sender];
-        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:missionItem];
+        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:missionItem withTableVC:self];
     }
 }
+
+- (void) detailViewModifiedMissionItem:(mavlink_mission_item_t)missionItem {
+    // Swap in the modified mission item
+    WaypointsHolder *waypoints = [[self getWaypointsVC] getWaypointsHolder];
+    int index = [waypoints getIndexOfWaypointWithSeq:missionItem.seq];
+    assert(index != -1);
+    [waypoints replaceWaypoint:index with:missionItem];
+    
+    // Reset the map and table views
+    [[self getWaypointsVC] resetWaypoints];
+}
+
 
 @end

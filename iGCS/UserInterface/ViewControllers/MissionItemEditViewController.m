@@ -29,13 +29,26 @@
     return self;
 }
 
-- (void) initInstance:(mavlink_mission_item_t)_missionItem {
+- (void) initInstance:(mavlink_mission_item_t)_missionItem withTableVC:(MissionItemTableViewController*)_tableVC  {
     missionItem = _missionItem;
+    tableVC = _tableVC;
+    saveEdits = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Hide the nav bar in the (contained) table view, but show it in the detail view
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Hide the nav bar in the (contained) table view, but show it in the detail view
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+    // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
+    [self.view.window endEditing: YES];
+    if (saveEdits) {
+        [tableVC detailViewModifiedMissionItem:missionItem];
+    }
 }
 
 - (void)viewDidLoad
@@ -306,6 +319,16 @@
     if (numberOfMatches == 0)
         return NO;
     return YES;
+}
+
+- (IBAction)cancelButtonClicked:(id)sender {
+    saveEdits = false;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)saveButtonClicked:(id)sender {
+    saveEdits = true;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

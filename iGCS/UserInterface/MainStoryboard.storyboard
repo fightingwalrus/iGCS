@@ -1024,7 +1024,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="y4C-FS-ca4"/>
+                    <navigationItem key="navigationItem" id="y4C-FS-ca4">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fvK-RO-Yrf">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="B4z-V1-5G5" id="mPC-T9-lwb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="1eK-Mc-UoI">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="B4z-V1-5G5" id="ccI-bU-KTp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="pickerView" destination="6i9-lU-q16" id="duB-Lp-j8k"/>
@@ -1153,6 +1164,8 @@
         <class className="MissionItemEditViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionItemEditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonClicked:"/>
+                <relationship kind="action" name="saveButtonClicked:"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
