@@ -262,7 +262,7 @@ static NSString* CELL_HEADERS[] = {
 {
     if (tableView.isEditing) {
         [self performSegueWithIdentifier:@"editItemVC_segue"
-                                  sender:[WaypointsHolder makeBoxedWaypoint:[[self getWaypointsHolder] getWaypoint:indexPath.row]]];
+                                  sender:[NSNumber numberWithInteger:indexPath.row]];
     }
 }
 
@@ -272,17 +272,15 @@ static NSString* CELL_HEADERS[] = {
     NSLog(@"prepareForSeque %@", segueName);
     
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
-        mavlink_mission_item_t missionItem = [WaypointsHolder unBoxWaypoint:sender];
-        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:missionItem withTableVC:self];
+        NSNumber *rowNum = (NSNumber*)sender;
+        unsigned int row = [rowNum unsignedIntValue];
+        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row withTableVC:self];
     }
 }
 
-- (void) detailViewModifiedMissionItem:(mavlink_mission_item_t)missionItem {
+- (void) replaceMissionItem:(mavlink_mission_item_t)missionItem atRow:(unsigned int)row {
     // Swap in the modified mission item
-    WaypointsHolder *waypoints = [[self getWaypointsVC] getWaypointsHolder];
-    int index = [waypoints getIndexOfWaypointWithSeq:missionItem.seq];
-    assert(index != -1);
-    [waypoints replaceWaypoint:index with:missionItem];
+    [[self getWaypointsHolder] replaceWaypoint:row with:missionItem];
     
     // Reset the map and table views
     [[self getWaypointsVC] resetWaypoints];

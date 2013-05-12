@@ -19,7 +19,6 @@
 
 @synthesize tableView;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,10 +28,13 @@
     return self;
 }
 
-- (void) initInstance:(mavlink_mission_item_t)_missionItem withTableVC:(MissionItemTableViewController*)_tableVC  {
-    missionItem = _missionItem;
-    tableVC = _tableVC;
+- (void) initInstance:(unsigned int)_missionItemRow withTableVC:(MissionItemTableViewController*)_missionTableVC  {
+    missionTableVC = _missionTableVC;
+    missionItemRow = _missionItemRow;
     saveEdits = NO;
+
+    // Cache the original value
+    originalMissionItem = [self getCurrentMissionItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,8 +48,8 @@
 
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
-    if (saveEdits) {
-        [tableVC detailViewModifiedMissionItem:missionItem];
+    if (!saveEdits) {
+        [missionTableVC replaceMissionItem:originalMissionItem atRow:missionItemRow];
     }
 }
 
@@ -145,9 +147,8 @@
     // FIXME: this could prove confusing. Likely want to hide seq numbers and use table row numbers
     // instead (or keep row numbers and seq numbers aligned during shuffling/deletion etc, which we
     // might need anyway)
-    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", missionItem.seq]];
+    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", [self getCurrentMissionItem].seq]];
     [self refreshWithMissionItem];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,7 +176,9 @@
     [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
+    mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
     missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
+    [missionTableVC replaceMissionItem:missionItem atRow:missionItemRow];
     [self.tableView reloadData];
 }
 
@@ -184,7 +187,7 @@
     int row = -1;
     for (unsigned int i = 0; i < [missionItemCommandIDs count]; i++) {
         uint16_t commandID = ((NSNumber*)[missionItemCommandIDs objectAtIndex:i]).intValue;
-        if (commandID == missionItem.command) {
+        if (commandID == [self getCurrentMissionItem].command) {
             row = i;
             break;
         }
@@ -202,35 +205,38 @@
     [self.tableView reloadData];
 }
 
+- (mavlink_mission_item_t)getCurrentMissionItem {
+    return [[missionTableVC getWaypointsHolder] getWaypoint:missionItemRow];
+}
 
 - (NSArray*)getMetaDataOfCurrentMissionItem
 {
-    //NSLog(@" - getMetaDataOfCurrentMissionItem with id = %@", [NSNumber numberWithInt: missionItem.command]);
-    return [missionItemMetaData objectForKey: [NSNumber numberWithInt: missionItem.command]];
+    return [missionItemMetaData objectForKey: [NSNumber numberWithInt: [self getCurrentMissionItem].command]];
 }
 
 - (NSString*) getValueOfFieldInCurentMissionItem:(MissionItemField*)field
 {
-   switch ([field fieldType]) {
-       case kPARAM_Z:
-           return [NSString stringWithFormat:@"%f", missionItem.z];
-           
-       case kPARAM_1:
-           return [NSString stringWithFormat:@"%f", missionItem.param1];
-           
-       case kPARAM_2:
-           return [NSString stringWithFormat:@"%f", missionItem.param2];
-           
-       case kPARAM_3:
-           return [NSString stringWithFormat:@"%f", missionItem.param3];
-           
-       case kPARAM_4:
-           return [NSString stringWithFormat:@"%f", missionItem.param4];
-           
-       default:
-           assert(false);
-           break;
-   }
+    mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
+    switch ([field fieldType]) {
+        case kPARAM_Z:
+            return [NSString stringWithFormat:@"%f", missionItem.z];
+            
+        case kPARAM_1:
+            return [NSString stringWithFormat:@"%f", missionItem.param1];
+            
+        case kPARAM_2:
+            return [NSString stringWithFormat:@"%f", missionItem.param2];
+            
+        case kPARAM_3:
+            return [NSString stringWithFormat:@"%f", missionItem.param3];
+            
+        case kPARAM_4:
+            return [NSString stringWithFormat:@"%f", missionItem.param4];
+            
+        default:
+            assert(false);
+            break;
+    }
 }
 
 
@@ -241,7 +247,6 @@
 
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
 {
-    unsigned int count = [[self getMetaDataOfCurrentMissionItem] count];
     return [[self getMetaDataOfCurrentMissionItem] count];
 }
 
@@ -266,6 +271,8 @@
 
     MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
 
+    mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
+    
     // Modify the respective field
     float val = [textField.text floatValue];
     switch ([field fieldType]) {
@@ -293,6 +300,7 @@
             assert(false);
             break;
     }
+    [missionTableVC replaceMissionItem:missionItem atRow:missionItemRow];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

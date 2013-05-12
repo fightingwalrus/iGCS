@@ -17,14 +17,14 @@
     NSArray *missionItemCommandIDs;
     NSMutableDictionary *missionItemMetaData;
     
-    mavlink_mission_item_t missionItem;
-    BOOL saveEdits;
-
-    MissionItemTableViewController *tableVC;
+    MissionItemTableViewController *missionTableVC;
     
+    mavlink_mission_item_t originalMissionItem;
+    unsigned int missionItemRow;
+    BOOL saveEdits;
 }
 
-- (void) initInstance:(mavlink_mission_item_t)_missionItem withTableVC:(MissionItemTableViewController*)_tableVC;
+- (void) initInstance:(unsigned int)_missionItemRow withTableVC:(MissionItemTableViewController*)_parentTableVC;
 
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;

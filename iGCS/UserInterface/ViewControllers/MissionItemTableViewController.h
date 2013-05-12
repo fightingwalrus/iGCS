@@ -15,6 +15,6 @@
 - (WaypointsViewController*) getWaypointsVC;
 - (WaypointsHolder*) getWaypointsHolder;
 
-- (void) detailViewModifiedMissionItem:(mavlink_mission_item_t)missionItem;
+- (void) replaceMissionItem:(mavlink_mission_item_t)missionItem atRow:(unsigned int)row;
 
 @end
