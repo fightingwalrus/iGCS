@@ -498,7 +498,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="qaC-XP-dCX">
-                                <rect key="frame" x="0.0" y="44" width="1024" height="210"/>
+                                <rect key="frame" x="0.0" y="44" width="1024" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="CCn-PO-kYQ">
@@ -515,7 +515,7 @@
                                 </items>
                             </navigationBar>
                             <containerView contentMode="scaleToFill" id="5D9-Dd-q69">
-                                <rect key="frame" x="0.0" y="252" width="1024" height="447"/>
+                                <rect key="frame" x="0.0" y="342" width="1024" height="357"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -968,10 +968,9 @@
         <!--Mission Item Edit View Controller-->
         <scene sceneID="Jq1-yJ-rwT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fDa-8a-dzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="B4z-V1-5G5" userLabel="Mission Item Edit View Controller" customClass="MissionItemEditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1X-0T-qMo">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="383"/>
+                        <rect key="frame" x="0.0" y="44" width="1024" height="313"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="6i9-lU-q16">
@@ -983,7 +982,7 @@
                                 </connections>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="L6t-zQ-1Ho">
-                                <rect key="frame" x="281" y="0.0" width="743" height="383"/>
+                                <rect key="frame" x="281" y="0.0" width="743" height="313"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1026,25 +1025,27 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="y4C-FS-ca4"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="pickerView" destination="6i9-lU-q16" id="duB-Lp-j8k"/>
                         <outlet property="tableView" destination="L6t-zQ-1Ho" id="ztP-q1-9AV"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDa-8a-dzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6492" y="2187"/>
         </scene>
-        <!--Mission Item Table View Controller - Mission Items-->
+        <!--Mission Item Table View Controller-->
         <scene sceneID="cVi-Id-eoD">
             <objects>
                 <tableViewController id="g0h-Hk-vw4" customClass="MissionItemTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J2H-Pu-dEF">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="383"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="357"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mission Items" id="IpT-ky-HX3"/>
+                    <navigationItem key="navigationItem" id="IpT-ky-HX3"/>
                     <connections>
                         <segue destination="B4z-V1-5G5" kind="push" identifier="editItemVC_segue" id="jjm-Oq-64i"/>
                     </connections>
@@ -1056,7 +1057,8 @@
         <!--Navigation Controller-->
         <scene sceneID="UUQ-BX-b3M">
             <objects>
-                <navigationController definesPresentationContext="YES" id="vcb-J4-96F" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="vcb-J4-96F" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5r1-5Q-I8J">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1145,7 +1147,7 @@
                 <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="MainViewController" superclassName="UIViewController">
+        <class className="MainViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
         </class>
         <class className="MissionItemEditViewController" superclassName="UIViewController">

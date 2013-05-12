@@ -9,7 +9,7 @@
 #import "WaypointMapBaseController.h"
 #import "WaypointsHolder.h"
 
-#define TABLE_MAP_SLIDE_AMOUNT 190
+#define TABLE_MAP_SLIDE_AMOUNT 100
 
 @interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler> {
     WaypointsHolder *waypoints;

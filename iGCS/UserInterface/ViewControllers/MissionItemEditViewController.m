@@ -33,6 +33,11 @@
     missionItem = _missionItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Hide the nav bar in the (contained) table view, but show it in the detail view
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
