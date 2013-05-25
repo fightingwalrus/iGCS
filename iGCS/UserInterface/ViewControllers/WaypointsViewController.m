@@ -18,6 +18,7 @@
 
 @implementation WaypointsViewController
 
+@synthesize addButton;
 @synthesize editDoneButton;
 @synthesize uploadButton;
 @synthesize editVCContainerView;
@@ -159,15 +160,46 @@
     }
 }
 
+- (IBAction)addClicked:(id)sender {
+    // FIXME: smarter default location (configurable default alt, locate near GPS home etc)
+    mavlink_mission_item_t waypoint;
+    
+    waypoint.autocontinue = 0;
+    waypoint.command = MAV_CMD_NAV_WAYPOINT;
+    waypoint.current = 0;
+    waypoint.frame   = MAV_FRAME_GLOBAL_RELATIVE_ALT;
+    waypoint.param1 = waypoint.param2 = waypoint.param3 = waypoint.param4 = 0;
+    waypoint.x = waypoint.y = 0;
+    waypoint.z = 100;
+    waypoint.seq = 0;
+    
+    // Get default position
+    WaypointsHolder *currentNavPoints = [waypoints getNavWaypoints];
+    if ([currentNavPoints numWaypoints] > 0) {
+        // Add a new point slightly to the east of the last one
+        mavlink_mission_item_t lastNavItem = [currentNavPoints getWaypoint:[waypoints numWaypoints]-1];
+        waypoint.x = lastNavItem.x;
+        waypoint.y = lastNavItem.y + 0.005;
+        if (waypoint.y > 180) {
+            waypoint.y -= 360;
+        }
+    }
+    
+    [waypoints addWaypoint:waypoint];
+    [self resetWaypoints];
+}
+
 // FIXME: also need to check and close the detail view if open
 - (IBAction)editDoneClicked:(id)sender {
     UITableView* tableView = [self getTableView];
     bool isEditing = !tableView.editing;
     
-    // Update the table and edit/upload buttons
+    // Update the table and edit/add/upload buttons
     [tableView setEditing:isEditing animated:true];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
-    editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
+    editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+    
+    addButton.enabled    = isEditing;
     uploadButton.enabled = !isEditing;
     
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;

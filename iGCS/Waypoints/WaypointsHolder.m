@@ -44,6 +44,15 @@
 }
 
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint {
+    // FIXME: We require unique seq numbers, thanks to the dubious usages of getIndexOfWaypointWithSeq.
+    //  This seems fragile, and prone to error. Probably best to bite the bullet, wrap each waypoint
+    // in an actual object, and use a guid for association.
+    int seqNum = -1;
+    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+        mavlink_mission_item_t wi = [self getWaypoint:i];
+        seqNum = MAX(wi.seq, seqNum);
+    }
+    waypoint.seq = seqNum+1;
     [array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
 }
 
@@ -88,7 +97,7 @@
             // We didn't get a nav command
             continue;
         }
-        [navWayPoints addWaypoint:waypoint];
+        [navWayPoints->array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
     }
     return navWayPoints;
 }

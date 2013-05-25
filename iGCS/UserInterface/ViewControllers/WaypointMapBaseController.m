@@ -94,8 +94,12 @@
     [map addOverlay:waypointRoutePolyline];
     
     // Set the map extents
-    [map setVisibleMapRect:[waypointRoutePolyline boundingMapRect]];
-    
+    if ([_waypoints numWaypoints] > 1) {
+        // FIXME: and if there is only 1?
+        // FIXME: and perhaps only change the view if a point is outside the existing map view? (i.e preserve current user zoom)
+        MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
+        [map setVisibleMapRect:bounds edgePadding:UIEdgeInsetsMake(40,40,40,40) animated:YES];
+    }
     [map setNeedsDisplay];
     
     free(navMKMapPoints);
@@ -140,14 +144,19 @@
    didChangeDragState:(MKAnnotationViewDragState)newState
    fromOldState:(MKAnnotationViewDragState)oldState
 {
-    if (newState == MKAnnotationViewDragStateEnding) {
-        if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
-            WaypointAnnotation* annot = annotationView.annotation;
+    if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
+        static WaypointAnnotation *draggedAnnot = nil;
+        WaypointAnnotation* annot = annotationView.annotation;
+        if (newState == MKAnnotationViewDragStateStarting) {
+            draggedAnnot = annot;
+        }
+        if (newState == MKAnnotationViewDragStateEnding && annot == draggedAnnot) {
             CLLocationCoordinate2D coord = annot.coordinate;
             [self waypointWithSeq:annot.waypoint.seq wasMovedToLat:coord.latitude andLong:coord.longitude];
         }
     }
 }
+
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?

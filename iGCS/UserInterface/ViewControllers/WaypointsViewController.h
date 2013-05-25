@@ -21,10 +21,12 @@
 - (void) resetWaypoints;
 - (void) resetWaypoints:(WaypointsHolder*)_waypoints;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *uploadButton;
 @property (nonatomic, retain) IBOutlet UIView *editVCContainerView;
 
+- (IBAction)addClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;
 - (IBAction)uploadClicked:  (id)sender;
 
