@@ -269,7 +269,7 @@
 #pragma mark Button Click callbacks
 
 - (IBAction) readMissionButtonClick {
-    [[CommController appMLI] issueReadMissionRequest];
+    [[CommController appMLI] issueStartReadMissionRequest];
 }
 
 - (IBAction) autoButtonClick {
@@ -653,6 +653,7 @@
         [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
     }
 }
+
 
 -(void)handleLongPressGesture:(UIGestureRecognizer*)sender {
     if (sender.state != UIGestureRecognizerStateBegan)

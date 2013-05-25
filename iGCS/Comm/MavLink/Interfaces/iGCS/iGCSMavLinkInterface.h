@@ -15,24 +15,21 @@
 
 @interface iGCSMavLinkInterface : MavLinkInterface
 
-
-
-
-
-
 @property (strong) MainViewController *mainVC;
 @property (strong) NSNumber *heartbeatOnlyCount;
 @property BOOL mavLinkInitialized;
-@property (strong) WaypointsHolder *waypoints;
+@property (strong) WaypointsHolder *rxWaypoints;
+@property (strong) WaypointsHolder *txWaypoints;
 
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
-
 - (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints;
-- (void) issueReadMissionRequest;
+- (void) issueStartReadMissionRequest;
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 
+- (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
+- (void)sendMissionItemRequest:(mavlink_mission_request_t)request;
 
 @end

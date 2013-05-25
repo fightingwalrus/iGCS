@@ -10,6 +10,8 @@
 
 #import "MissionItemEditViewController.h"
 
+#import "CommController.h"
+
 @interface WaypointsViewController ()
 
 @end
@@ -17,6 +19,7 @@
 @implementation WaypointsViewController
 
 @synthesize editDoneButton;
+@synthesize uploadButton;
 @synthesize editVCContainerView;
 
 - (void)didReceiveMemoryWarning
@@ -161,11 +164,12 @@
     UITableView* tableView = [self getTableView];
     bool isEditing = !tableView.editing;
     
-    // Update the table and edit button styles
+    // Update the table and edit/upload buttons
     [tableView setEditing:isEditing animated:true];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStylePlain;
-
+    uploadButton.enabled = !isEditing;
+    
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
@@ -188,5 +192,8 @@
     [self makeWaypointsDraggable:isEditing];
 }
 
+- (IBAction)uploadClicked:(id)sender {
+    [[CommController appMLI] issueStartWriteMissionRequest: waypoints];
+}
 
 @end

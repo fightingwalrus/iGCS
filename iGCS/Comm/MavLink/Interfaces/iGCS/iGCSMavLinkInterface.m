@@ -116,7 +116,7 @@ mavlink_heartbeat_t heartbeat;
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                             
-                            [self issueReadMissionRequest];
+                            [self issueStartReadMissionRequest];
                         }
                         
                         /* // Cheat to turn heartbeats into waypoints for iterative display on CommsView
@@ -146,8 +146,8 @@ mavlink_heartbeat_t heartbeat;
                         mavlink_mission_count_t count;
                         mavlink_msg_mission_count_decode(&msg, &count);
                         
-                        self.waypoints = [[WaypointsHolder alloc] initWithExpectedCount:count.count];
-                        [self requestNextWaypointOrACK:self.waypoints];
+                        self.rxWaypoints = [[WaypointsHolder alloc] initWithExpectedCount:count.count];
+                        [self requestNextWaypointOrACK:self.rxWaypoints];
                     }
                         break;
                         
@@ -158,14 +158,34 @@ mavlink_heartbeat_t heartbeat;
                         mavlink_mission_item_t waypoint;
                         mavlink_msg_mission_item_decode(&msg, &waypoint);
                         
-                        [self.waypoints addWaypoint:waypoint];
-                        [self requestNextWaypointOrACK:self.waypoints];
+                        [self.rxWaypoints addWaypoint:waypoint];
+                        [self requestNextWaypointOrACK:self.rxWaypoints];
                     }
                         break;
                         
                     case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
                     case MAVLINK_MSG_ID_ATTITUDE:
                     case MAVLINK_MSG_ID_VFR_HUD:
+                        break;
+                        
+                    // Mission transmission
+                    case MAVLINK_MSG_ID_MISSION_ACK:
+                    {
+                        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Mission Sent"
+                                                                            message:@"Waypoint transmission complete"
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"OK"
+                                                                  otherButtonTitles:nil];
+                        [alertView show];
+                    }
+                        break;
+                    
+                    case MAVLINK_MSG_ID_MISSION_REQUEST:
+                    {
+                        mavlink_mission_request_t request;
+                        mavlink_msg_mission_request_decode(&msg, &request);
+                        [self sendMissionItemRequest: request];
+                    }
                         break;
                         
                     default:
@@ -196,7 +216,7 @@ mavlink_heartbeat_t heartbeat;
 
 
 // TODO: Move me into requests class
-- (void) issueReadMissionRequest {
+- (void) issueStartReadMissionRequest {
     
 // FIXME: DON'T LEAVE ME AS 1!
 #if 1 
@@ -230,6 +250,26 @@ mavlink_heartbeat_t heartbeat;
     mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
 }
 
+// c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
+// FIXME: handle timeouts/retries per MAVLINK protocol spec
+- (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
+    // FIXME: handle synchronization issues, like if we're already sending or receiving a mission
+    self.txWaypoints = waypoints;
+    
+    // Send the vehicle the new mission count, and await WAYPOINT request responses
+    mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, self.txWaypoints.numWaypoints);
+}
+
+- (void)sendMissionItemRequest:(mavlink_mission_request_t)request {
+    // FIXME: check request.seq is in range
+    mavlink_mission_item_t item = [self.txWaypoints getWaypoint:request.seq];
+    
+    // For now, we assume that all coords are in the MAV_FRAME_GLOBAL_RELATIVE_ALT frame; see also issueGOTOCommand
+    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, request.seq, MAV_FRAME_GLOBAL_RELATIVE_ALT, item.command,
+                                  0,
+                                  item.autocontinue, item.param1, item.param2, item.param3, item.param4,
+                                  item.x, item.y, item.z);
+}
 
 - (void) issueSetAUTOModeCommand {
     for (unsigned int i = 0; i < 2; i++) {
@@ -244,8 +284,8 @@ mavlink_heartbeat_t heartbeat;
         mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
         
         // Let the GCSMapView and WaypointsView know we've got new waypoints
-        [self.mainVC.gcsMapVC   resetWaypoints: self.waypoints];
-        [self.mainVC.waypointVC resetWaypoints: self.waypoints];
+        [self.mainVC.gcsMapVC   resetWaypoints: self.rxWaypoints];
+        [self.mainVC.waypointVC resetWaypoints: self.rxWaypoints];
     } else {
         mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
     }
