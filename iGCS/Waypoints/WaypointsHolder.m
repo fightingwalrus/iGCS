@@ -79,6 +79,10 @@
     return [WaypointsHolder unBoxWaypoint: [array objectAtIndex:index]];
 }
 
+- (mavlink_mission_item_t) getLastWaypoint {
+    return [self getWaypoint: ([self numWaypoints]-1)];
+}
+
 - (int)getIndexOfWaypointWithSeq:(int)sequence {
     for (unsigned int i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];

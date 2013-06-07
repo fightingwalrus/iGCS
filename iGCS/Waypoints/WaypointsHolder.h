@@ -29,6 +29,7 @@
 
 - (int) getIndexOfWaypointWithSeq:(int)sequence;
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index;
+- (mavlink_mission_item_t) getLastWaypoint;
 
 - (WaypointsHolder*) getNavWaypoints;
 

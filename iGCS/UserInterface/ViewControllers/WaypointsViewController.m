@@ -177,7 +177,7 @@
     WaypointsHolder *currentNavPoints = [waypoints getNavWaypoints];
     if ([currentNavPoints numWaypoints] > 0) {
         // Add a new point slightly to the east of the last one
-        mavlink_mission_item_t lastNavItem = [currentNavPoints getWaypoint:[waypoints numWaypoints]-1];
+        mavlink_mission_item_t lastNavItem = [currentNavPoints getLastWaypoint];
         waypoint.x = lastNavItem.x;
         waypoint.y = lastNavItem.y + 0.005;
         if (waypoint.y > 180) {
