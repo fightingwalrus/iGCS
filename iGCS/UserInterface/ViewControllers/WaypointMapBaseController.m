@@ -105,23 +105,25 @@
     free(navMKMapPoints);
 }
 
+- (void)resetWaypointAnnotation:(WaypointAnnotation*)annotation {
+    if (annotation) {
+        [map removeAnnotation:annotation];
+        [map addAnnotation:annotation];
+    }
+}
+
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
     if (currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
+        int previousWaypointNum = currentWaypointNum;
+        
+        //  first, update the current value (so we get the desired
+        // side-effect when resetting the waypoints), then...
+        currentWaypointNum = newCurrentWaypointSeq;
 
-        // Reset the associated annotations
-        for (int i = 0; i < 2; i++) {
-            WaypointAnnotation *annotation = [self getWaypointAnnotation:currentWaypointNum];
-            
-            // Update the current value (on the first iteration, we want this after the
-            // getWaypointAnnotation call, but before the addAnnotation)
-            currentWaypointNum = newCurrentWaypointSeq;
-            
-            if (annotation) {
-                [map removeAnnotation:annotation];
-                [map addAnnotation:annotation];
-            }
-        }
+        //  reset the previous and new current waypoints
+        [self resetWaypointAnnotation: [self getWaypointAnnotation:previousWaypointNum]];        
+        [self resetWaypointAnnotation: [self getWaypointAnnotation:currentWaypointNum]];
     }
 }
 

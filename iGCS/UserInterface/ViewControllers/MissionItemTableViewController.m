@@ -28,6 +28,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [[[self getWaypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
+    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:-1];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -261,8 +262,10 @@ static NSString* CELL_HEADERS[] = {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.isEditing) {
+        int idx = indexPath.row;
+        [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq];
         [self performSegueWithIdentifier:@"editItemVC_segue"
-                                  sender:[NSNumber numberWithInteger:indexPath.row]];
+                                  sender:[NSNumber numberWithInteger:idx]];
     }
 }
 
