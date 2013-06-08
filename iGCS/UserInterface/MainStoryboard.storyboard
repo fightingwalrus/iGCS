@@ -506,10 +506,30 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
-                                        <barButtonItem key="leftBarButtonItem" title="Upload" id="di6-Zt-zDe" userLabel="Upload">
-                                            <connections>
-                                                <action selector="uploadClicked:" destination="ZiK-du-awU" id="yce-Gq-Q1t"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="US5-We-JEo">
+                                            <view key="customView" contentMode="scaleToFill" id="ElK-1M-BSX">
+                                                <rect key="frame" x="7" y="5" width="227" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="GvJ-8y-VKF">
+                                                        <rect key="frame" x="0.0" y="-5" width="227" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <items>
+                                                            <barButtonItem title="Upload" id="di6-Zt-zDe" userLabel="Upload">
+                                                                <connections>
+                                                                    <action selector="uploadClicked:" destination="ZiK-du-awU" id="yce-Gq-Q1t"/>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                            <barButtonItem title="Load Demo" id="n19-Dy-xrH" userLabel="Load Demo">
+                                                                <connections>
+                                                                    <action selector="loadDemoMision:" destination="ZiK-du-awU" id="UUF-HU-Lqg"/>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                        </items>
+                                                    </toolbar>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="LKm-N4-6Op">
                                             <view key="customView" contentMode="scaleToFill" id="SGe-U7-fU6">
@@ -559,6 +579,7 @@
                         <outlet property="addButton" destination="4gU-lS-xY5" id="Gd1-w6-ae7"/>
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
+                        <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>
                         <outlet property="uploadButton" destination="di6-Zt-zDe" id="chh-WO-G2f"/>
                     </connections>
                 </viewController>
@@ -1186,7 +1207,7 @@
                 <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="MainViewController" superclassName="UIViewController">
+        <class className="MainViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
         </class>
         <class className="MissionItemEditViewController" superclassName="UIViewController">
@@ -1225,10 +1246,12 @@
             <relationships>
                 <relationship kind="action" name="addClicked:"/>
                 <relationship kind="action" name="editDoneClicked:"/>
+                <relationship kind="action" name="loadDemoMision:"/>
                 <relationship kind="action" name="uploadClicked:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="containerForTableView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="loadDemoButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="uploadButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

@@ -29,7 +29,9 @@
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 
-- (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
-- (void)sendMissionItemRequest:(mavlink_mission_request_t)request;
+- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
+- (void) sendMissionItemRequest:(mavlink_mission_request_t)request;
+
+- (void) loadDemoMission;
 
 @end

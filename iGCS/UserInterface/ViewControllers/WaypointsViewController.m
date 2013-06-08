@@ -18,9 +18,12 @@
 
 @implementation WaypointsViewController
 
+@synthesize uploadButton;
+@synthesize loadDemoButton;
+
 @synthesize addButton;
 @synthesize editDoneButton;
-@synthesize uploadButton;
+
 @synthesize containerForTableView;
 
 - (void)didReceiveMemoryWarning
@@ -200,8 +203,9 @@
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
     addButton.enabled    = isEditing;
-    uploadButton.enabled = !isEditing;
-    
+    uploadButton.enabled   = !isEditing;
+    loadDemoButton.enabled = !isEditing;
+
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
@@ -247,5 +251,10 @@
     [self resetWaypoints]; // Reset the map and table views
 }
 // end @protocol MissionItemEditingDelegate
+
+
+- (IBAction)loadDemoMision: (id)sender {
+    [[CommController appMLI] loadDemoMission];
+}
 
 @end
