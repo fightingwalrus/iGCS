@@ -21,6 +21,14 @@
     return self;
 }
 
+- (id) mutableCopyWithZone:(NSZone *)zone
+{
+    WaypointsHolder *copy = [[WaypointsHolder allocWithZone: zone] init];
+    copy->array = [array mutableCopyWithZone: zone];
+    copy->expectedCount = expectedCount;
+    return copy;
+}
+
 + (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint {
     return [NSValue valueWithBytes:&waypoint objCType:@encode(mavlink_mission_item_t)];
 }

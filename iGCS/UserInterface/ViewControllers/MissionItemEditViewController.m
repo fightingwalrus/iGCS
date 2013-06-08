@@ -33,8 +33,8 @@
     missionItemRow = _missionItemRow;
     saveEdits = NO;
 
-    // Cache the original value
-    originalMissionItem = [self getCurrentMissionItem];
+    // Clone the original mission
+    originalMission = [[missionTableVC getWaypointsHolder] mutableCopy];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,7 +49,7 @@
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     if (!saveEdits) {
-        [missionTableVC replaceMissionItem:originalMissionItem atRow:missionItemRow];
+        [missionTableVC resetMission: originalMission];
     }
 }
 

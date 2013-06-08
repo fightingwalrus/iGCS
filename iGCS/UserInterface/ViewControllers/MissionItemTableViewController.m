@@ -286,5 +286,9 @@ static NSString* CELL_HEADERS[] = {
     [[self getWaypointsVC] resetWaypoints];
 }
 
+- (void)resetMission:(WaypointsHolder*)originalMission {
+    // Reset the map and table views
+    [[self getWaypointsVC] resetWaypoints: originalMission];
+}
 
 @end

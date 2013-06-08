@@ -17,9 +17,10 @@
     NSArray *missionItemCommandIDs;
     NSMutableDictionary *missionItemMetaData;
     
-    MissionItemTableViewController *missionTableVC;
+    MissionItemTableViewController *missionTableVC; // FIXME: cut out the middle man, and replace with delegate interface direct to WaypointsViewController
     
-    mavlink_mission_item_t originalMissionItem;
+    WaypointsHolder *originalMission;
+
     unsigned int missionItemRow;
     BOOL saveEdits;
 }
