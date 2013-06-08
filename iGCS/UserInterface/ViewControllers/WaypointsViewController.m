@@ -228,4 +228,24 @@
     [[CommController appMLI] issueStartWriteMissionRequest: waypoints];
 }
 
+
+// @protocol MissionItemEditingDelegate
+- (WaypointsHolder*) cloneMission {
+    return [waypoints mutableCopy];
+}
+
+- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx {
+    return [waypoints getWaypoint:idx];
+}
+
+- (void) resetMission:(WaypointsHolder*) mission {
+    [self resetWaypoints: mission];
+}
+
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx {
+    [waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
+    [self resetWaypoints]; // Reset the map and table views
+}
+// end @protocol MissionItemEditingDelegate
+
 @end

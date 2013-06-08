@@ -9,27 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "WaypointsHolder.h"
 #import "MissionItemField.h"
-#import "MissionItemTableViewController.h"
+#import "WaypointsViewController.h"
 
 @interface MissionItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UIPickerView *pickerView;
     
     NSArray *missionItemCommandIDs;
     NSMutableDictionary *missionItemMetaData;
-    
-    MissionItemTableViewController *missionTableVC; // FIXME: cut out the middle man, and replace with delegate interface direct to WaypointsViewController
-    
+        
     WaypointsHolder *originalMission;
 
-    unsigned int missionItemRow;
+    unsigned int itemIndex;
     BOOL saveEdits;
 }
 
-- (void) initInstance:(unsigned int)_missionItemRow withTableVC:(MissionItemTableViewController*)_parentTableVC;
+- (void) initInstance:(unsigned int)_missionItemRow with:(id <MissionItemEditingDelegate>)_delegate;
 
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (weak, readonly) id <MissionItemEditingDelegate> delegate;
 
 @end

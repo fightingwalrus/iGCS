@@ -18,6 +18,7 @@
 @implementation MissionItemEditViewController
 
 @synthesize tableView;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,13 +29,13 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_missionItemRow withTableVC:(MissionItemTableViewController*)_missionTableVC  {
-    missionTableVC = _missionTableVC;
-    missionItemRow = _missionItemRow;
+- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate  {
+    delegate = _delegate;
+    itemIndex = _idx;
     saveEdits = NO;
 
     // Clone the original mission
-    originalMission = [[missionTableVC getWaypointsHolder] mutableCopy];
+    originalMission = [delegate cloneMission];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,7 +50,7 @@
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     if (!saveEdits) {
-        [missionTableVC resetMission: originalMission];
+        [delegate resetMission: originalMission];
     }
 }
 
@@ -178,7 +179,7 @@
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
     missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
-    [missionTableVC replaceMissionItem:missionItem atRow:missionItemRow];
+    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
     [self.tableView reloadData];
 }
 
@@ -206,11 +207,10 @@
 }
 
 - (mavlink_mission_item_t)getCurrentMissionItem {
-    return [[missionTableVC getWaypointsHolder] getWaypoint:missionItemRow];
+    return [delegate getMissionItemAtIndex:itemIndex];
 }
 
-- (NSArray*)getMetaDataOfCurrentMissionItem
-{
+- (NSArray*)getMetaDataOfCurrentMissionItem {
     return [missionItemMetaData objectForKey: [NSNumber numberWithInt: [self getCurrentMissionItem].command]];
 }
 
@@ -300,7 +300,7 @@
             assert(false);
             break;
     }
-    [missionTableVC replaceMissionItem:missionItem atRow:missionItemRow];
+    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

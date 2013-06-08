@@ -274,21 +274,8 @@ static NSString* CELL_HEADERS[] = {
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;
         unsigned int row = [rowNum unsignedIntValue];
-        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row withTableVC:self];
+        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row with:[self getWaypointsVC]];
     }
-}
-
-- (void) replaceMissionItem:(mavlink_mission_item_t)missionItem atRow:(unsigned int)row {
-    // Swap in the modified mission item
-    [[self getWaypointsHolder] replaceWaypoint:row with:missionItem];
-    
-    // Reset the map and table views
-    [[self getWaypointsVC] resetWaypoints];
-}
-
-- (void)resetMission:(WaypointsHolder*)originalMission {
-    // Reset the map and table views
-    [[self getWaypointsVC] resetWaypoints: originalMission];
 }
 
 @end

@@ -9,14 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "WaypointsViewController.h"
 
-@interface MissionItemTableViewController : UITableViewController {
-    WaypointsHolder* preEditMissionItems;
-}
-
-- (WaypointsViewController*) getWaypointsVC;
-- (WaypointsHolder*) getWaypointsHolder;
-
-- (void) replaceMissionItem:(mavlink_mission_item_t)missionItem atRow:(unsigned int)row;
-- (void) resetMission:(WaypointsHolder*)originalMission;
-
+@interface MissionItemTableViewController : UITableViewController
 @end
