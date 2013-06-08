@@ -140,9 +140,11 @@
 }
 
 - (void) resetWaypoints:(WaypointsHolder*)_waypoints {
+    // set waypoints ahead of getWaypointNumberForAnnotationView calls from [super resetWaypoints:...]
+    waypoints = _waypoints;
+    
     [super resetWaypoints:_waypoints];
     
-    waypoints = _waypoints;
     [[self getTableView] reloadData];
 }
 
@@ -161,6 +163,11 @@
         [self resetWaypoints];  // FIXME: this is a little heavy handed. Want more fine-grained
                                 // control here (like not resetting the map bounds in this case)
     }
+}
+
+- (NSString*) getWaypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+    // This subclass uses the row number
+    return [NSString stringWithFormat:@"%d", [waypoints getIndexOfWaypointWithSeq:item.seq]];
 }
 
 - (IBAction)addClicked:(id)sender {

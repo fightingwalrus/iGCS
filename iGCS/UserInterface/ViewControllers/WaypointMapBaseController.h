@@ -38,7 +38,7 @@
 
 - (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
 - (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
-
+- (NSString*) getWaypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 

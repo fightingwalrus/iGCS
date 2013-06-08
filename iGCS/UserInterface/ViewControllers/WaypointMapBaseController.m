@@ -82,7 +82,9 @@
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
         // Add the annotation
-        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate andWayPoint:waypoint];
+        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
+                                                                            andWayPoint:waypoint
+                                                                                atIndex:[_waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
         [map addAnnotation:annotation];
         
         // Construct the MKMapPoint
@@ -223,8 +225,15 @@
     return nil;
 }
 
+- (NSString*) getWaypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+    // Base class uses the mission item sequence number
+    return [NSString stringWithFormat:@"%d", item.seq];
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    static const int LABEL_TAG = 100;
+    
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -237,6 +246,12 @@
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, -16, 32, 32)];
+            label.backgroundColor = [UIColor clearColor];
+            label.textColor = [UIColor whiteColor];
+            label.tag = LABEL_TAG;
+            [view addSubview:label];
         } else {
             view.annotation = annotation;
         }
@@ -260,6 +275,10 @@
             view.image = [WaypointMapBaseController image:[UIImage imageNamed:@"07-map-marker.png"]
                                            withColor:[waypointAnnotation getColor]];
         }
+        
+        UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
+        label.text = [self getWaypointNumberForAnnotationView: waypointAnnotation.waypoint];
+        
         return view;
     }
     
