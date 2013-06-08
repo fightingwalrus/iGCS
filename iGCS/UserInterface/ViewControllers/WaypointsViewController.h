@@ -30,7 +30,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *uploadButton;
-@property (nonatomic, retain) IBOutlet UIView *editVCContainerView;
+@property (nonatomic, retain) IBOutlet UIView *containerForTableView;
 
 - (IBAction)addClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;

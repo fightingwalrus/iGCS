@@ -17,7 +17,7 @@
 
 @implementation MissionItemEditViewController
 
-@synthesize tableView;
+@synthesize itemDetails;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -180,7 +180,7 @@
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
     missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
     [delegate replaceMissionItem:missionItem atIndex:itemIndex];
-    [self.tableView reloadData];
+    [self.itemDetails reloadData];
 }
 
 - (void) refreshWithMissionItem {
@@ -203,7 +203,7 @@
     
     // Set the corresponding picker view row, and refresh the table view
     [pickerView selectRow:row inComponent:0 animated:NO];
-    [self.tableView reloadData];
+    [self.itemDetails reloadData];
 }
 
 - (mavlink_mission_item_t)getCurrentMissionItem {
@@ -253,7 +253,7 @@
 - (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
 {
     MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"missionItemCell"];
+    UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     UILabel *label = (UILabel *)[cell viewWithTag:100]; // see prototype cell for magic #
     [label setText:[field label]];
@@ -266,7 +266,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already)
     // using for another purpose
-    NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
     //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];

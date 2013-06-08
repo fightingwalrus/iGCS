@@ -21,7 +21,7 @@
 @synthesize addButton;
 @synthesize editDoneButton;
 @synthesize uploadButton;
-@synthesize editVCContainerView;
+@synthesize containerForTableView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -84,7 +84,7 @@
     if (!showing) y = -y;
     
     // Compute new frames
-    CGRect tableRect = editVCContainerView.frame;
+    CGRect tableRect = containerForTableView.frame;
     CGRect mapRect   = map.frame;
     tableRect.origin.y -= y;
     mapRect.origin.y   -= y;
@@ -100,7 +100,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    editVCContainerView.frame = tableRect;
+    containerForTableView.frame = tableRect;
     map.frame = mapRect;
     [UIView commitAnimations];
 }
@@ -205,7 +205,7 @@
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
-    CGRect tableRect = editVCContainerView.frame;
+    CGRect tableRect = containerForTableView.frame;
     CGRect mapRect   = map.frame;
 
     tableRect.origin.y += delta;
@@ -216,7 +216,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.75];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    editVCContainerView.frame = tableRect;
+    containerForTableView.frame = tableRect;
     map.frame = mapRect;
     [UIView commitAnimations];
     

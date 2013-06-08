@@ -28,7 +28,7 @@
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableView *itemDetails;
 @property (weak, readonly) id <MissionItemEditingDelegate> delegate;
 
 @end

@@ -557,8 +557,8 @@
                     <connections>
                         <outlet property="_mapView" destination="qaC-XP-dCX" id="WMk-cu-uD9"/>
                         <outlet property="addButton" destination="4gU-lS-xY5" id="Gd1-w6-ae7"/>
+                        <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
-                        <outlet property="editVCContainerView" destination="5D9-Dd-q69" id="yin-0O-ygI"/>
                         <outlet property="uploadButton" destination="di6-Zt-zDe" id="chh-WO-G2f"/>
                     </connections>
                 </viewController>
@@ -1066,8 +1066,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="itemDetails" destination="L6t-zQ-1Ho" id="7Zq-cU-05p"/>
                         <outlet property="pickerView" destination="6i9-lU-q16" id="duB-Lp-j8k"/>
-                        <outlet property="tableView" destination="L6t-zQ-1Ho" id="ztP-q1-9AV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDa-8a-dzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1194,8 +1194,8 @@
             <relationships>
                 <relationship kind="action" name="cancelButtonClicked:"/>
                 <relationship kind="action" name="saveButtonClicked:"/>
+                <relationship kind="outlet" name="itemDetails" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="MissionItemTableViewController" superclassName="UITableViewController">
@@ -1227,8 +1227,8 @@
                 <relationship kind="action" name="editDoneClicked:"/>
                 <relationship kind="action" name="uploadClicked:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="containerForTableView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="editVCContainerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="uploadButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
