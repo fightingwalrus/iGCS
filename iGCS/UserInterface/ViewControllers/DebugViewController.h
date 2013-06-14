@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
 @property (strong, nonatomic) IBOutlet UITextView *errorsTextView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *videoSource;
 
 @property (strong) NSMutableArray *pendingConsoleMessages;
 @property (strong) NSMutableArray *pendingErrorMessages;
@@ -21,7 +22,7 @@
 
 - (IBAction)bluetoothRxClicked:(id)sender;
 - (IBAction)bluetoothTxClicked:(id)sender;
-
+- (IBAction)videoSourceValueChanged:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;

@@ -32,6 +32,9 @@ static AppDelegate *shared;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    // set up defaults
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1}];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 #ifdef TESTING
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
