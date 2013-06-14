@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -624,19 +624,38 @@
                                     <action selector="bluetoothTxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="nSV-tJ-0zA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Video Stream" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E3I-9g-Mub" userLabel="Label - Video Source">
+                                <rect key="frame" x="620" y="20" width="166" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="UfW-BU-E7h">
+                                <rect key="frame" x="620" y="54" width="105" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Test"/>
+                                    <segment title="Z3"/>
+                                </segments>
+                                <connections>
+                                    <action selector="videoSourceValueChanged:" destination="PSV-eg-xmf" eventType="valueChanged" id="5hz-aU-3ou"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Debug" image="181-hammer.png" id="gXy-H4-2Hl"/>
                     <connections>
-                        <outlet property="consoleTextView" destination="yF1-8o-Uj0" id="rig-Mb-zva"/>
+                        <outlet property="consoleTextView" destination="yF1-8o-Uj0" id="tz7-lU-HLL"/>
                         <outlet property="errorsTextView" destination="z9D-OV-EQr" id="QtZ-Eb-1rf"/>
+                        <outlet property="videoSource" destination="UfW-BU-E7h" id="3Mx-uS-llT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIl-9f-qkK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3170" y="2847"/>
+            <point key="canvasLocation" x="3243" y="2863"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="15">
@@ -771,6 +790,107 @@
         <image name="73-radar.png" width="27" height="27"/>
         <image name="hazard-stripes-texture.png" width="100" height="75"/>
     </resources>
+    <classes>
+        <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtificialHorizonView.h"/>
+        </class>
+        <class className="CPTGraphHostingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
+        </class>
+        <class className="CommsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
+                <relationship kind="outlet" name="defaultTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsIntTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsRawTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gpsStatusView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navControllerOutputTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sysStatusView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="vfrHUDTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="CompassView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CompassView.h"/>
+        </class>
+        <class className="DebugViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bluetoothRxClicked:"/>
+                <relationship kind="action" name="bluetoothTxClicked:"/>
+                <relationship kind="action" name="videoSourceValueChanged:"/>
+                <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="videoSource" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="DoubleBufferedAsyncView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoubleBufferedAsyncView.h"/>
+        </class>
+        <class className="GCSMapViewController" superclassName="WaypointMapBaseController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="autoButtonClick"/>
+                <relationship kind="action" name="externalButtonClick"/>
+                <relationship kind="action" name="readWaypointButtonClick"/>
+                <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
+                <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
+                <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
+                <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
+                <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysMemFreeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="windSpeedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+        </class>
+        <class className="ProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookLoginButtonPressed:"/>
+                <relationship kind="outlet" name="crashesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="facebookLoginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="facebookStatusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="totalFlightHoursLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
+        </class>
+        <class className="WaypointMapBaseController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointMapBaseController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="WaypointsViewController" superclassName="WaypointMapBaseController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editDoneClicked:"/>
+                <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

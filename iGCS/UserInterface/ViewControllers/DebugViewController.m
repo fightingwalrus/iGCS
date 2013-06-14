@@ -86,6 +86,15 @@
     [CommController startBluetoothTx];
 }
 
+- (IBAction)videoSourceValueChanged:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    
+    if ([segmentedControl selectedSegmentIndex] == UISegmentedControlSegmentLeft) {
+        NSLog(@"Video Source: Z3");
+    } else {
+        NSLog(@"Video Source: Test Stream");
+    }
+}
 
 -(void)consoleMessage:(NSString*)messageText
 {
