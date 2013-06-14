@@ -36,10 +36,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    NSString *videoSource = [[NSUserDefaults standardUserDefaults] valueForKey:@"videoSource"];
+    if ([videoSource isEqualToString:@"testStream"]) {
+        self.videoSource.selectedSegmentIndex = 0;
+    } else {
+        self.videoSource.selectedSegmentIndex = 1;
+    }
+
     [ExceptionHandler start:self];
-    
-    
 }
 
 
@@ -88,12 +92,16 @@
 
 - (IBAction)videoSourceValueChanged:(id)sender {
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([segmentedControl selectedSegmentIndex] == UISegmentedControlSegmentLeft) {
+    if ([segmentedControl selectedSegmentIndex] == 1) {
         NSLog(@"Video Source: Z3");
+        [userDefaults setObject:@"Z3" forKey:@"videoSource"];
     } else {
         NSLog(@"Video Source: Test Stream");
+        [userDefaults setObject:@"testStream" forKey:@"videoSource"];
     }
+    [userDefaults synchronize];
 }
 
 -(void)consoleMessage:(NSString*)messageText

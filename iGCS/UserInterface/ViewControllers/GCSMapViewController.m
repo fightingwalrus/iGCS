@@ -245,7 +245,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:kGCSVideoScaleFactor];
+
+     NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
+    
+    if ([videoSource isEqualToString:@"Z3"]) {
+        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:kGCSVideoScaleFactor];
+    }else {
+        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:kGCSVideoScaleFactor];
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
