@@ -29,6 +29,9 @@
 
 @implementation iGCSMavLinkInterface
 
+@synthesize mavlinkTransactionProgressDialog;
+@synthesize mavlinkRequestAttempts;
+
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC
 {
@@ -116,27 +119,8 @@ mavlink_heartbeat_t heartbeat;
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                             
-                            [self issueStartReadMissionRequest];
+                            [self issueStartReadMissionRequest]; // FIXME: move me - don't make this automatic
                         }
-                        
-                        /* // Cheat to turn heartbeats into waypoints for iterative display on CommsView
-                         static int z = 0;
-                         if ([waypoints allWaypointsReceivedP]) {
-                         mavlink_waypoint_t waypoint = [waypoints getWaypoint:(z % [waypoints numWaypoints])];
-                         mavlink_msg_waypoint_encode(msg.sysid, msg.compid, &msg, &waypoint);
-                         }
-                         z++;
-                         //*/
-                        
-                        /* // Check to turn heartbeats into next waypoint updates
-                         static int z = 0;
-                         if (z++ % 10 == 0) {
-                         mavlink_waypoint_current_t currentWaypoint;
-                         currentWaypoint.seq = z/50;
-                         mavlink_msg_waypoint_current_encode(msg.sysid, msg.compid, &msg, &currentWaypoint);
-                         
-                         }
-                         //*/
                         break;
                         
                     case MAVLINK_MSG_ID_MISSION_COUNT:
@@ -146,6 +130,7 @@ mavlink_heartbeat_t heartbeat;
                         mavlink_mission_count_t count;
                         mavlink_msg_mission_count_decode(&msg, &count);
                         
+                        mavlinkRequestAttempts = 0;
                         self.rxWaypoints = [[WaypointsHolder alloc] initWithExpectedCount:count.count];
                         [self requestNextWaypointOrACK:self.rxWaypoints];
                     }
@@ -158,6 +143,7 @@ mavlink_heartbeat_t heartbeat;
                         mavlink_mission_item_t waypoint;
                         mavlink_msg_mission_item_decode(&msg, &waypoint);
                         
+                        mavlinkRequestAttempts = 0;
                         [self.rxWaypoints addWaypoint:waypoint];
                         [self requestNextWaypointOrACK:self.rxWaypoints];
                     }
@@ -191,6 +177,7 @@ mavlink_heartbeat_t heartbeat;
                     default:
                     {
                         //If we get any other message than heartbeat, we are getting the messages we requested
+                        // FIXME: placement is incorrect - move me outside of switch!
                         self.heartbeatOnlyCount = [NSNumber numberWithInt:0];
                     }
                         //NSLog(@"UNHANDLED message with ID %d", msg.msgid);
@@ -211,14 +198,77 @@ mavlink_heartbeat_t heartbeat;
     }
 }
 
+- (void) prepareToStartMavlinkTransaction:(NSString*)title {
+    mavlinkRequestAttempts = 0;
+    // FIXME: replace with custom view, with progress bar, modal until success/failure etc
+    mavlinkTransactionProgressDialog = [[UIAlertView alloc] initWithTitle:title
+                                                              message:@"Starting Request..."
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel" // FIXME: not really. This view should be modal.
+                                                    otherButtonTitles:nil];
+    [mavlinkTransactionProgressDialog show];
+}
 
+- (void) updateMavlinkTransactionStatus:(NSString*)message {
+    [mavlinkTransactionProgressDialog
+     setMessage:(mavlinkRequestAttempts == 1) ? message : [NSString stringWithFormat:@"%@ - attempt %d", message, mavlinkRequestAttempts]];
+}
+
+- (void) endMavLinkTransactionWithSuccess:(BOOL)success {
+    if (success) {
+        [mavlinkTransactionProgressDialog dismissWithClickedButtonIndex:0 animated:YES];
+    } else {
+        [mavlinkTransactionProgressDialog setMessage:@"Failed"];
+    }
+}
 
 // TODO: Move me into requests class
 - (void) issueStartReadMissionRequest {    
-    mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0); // send ACK just in case...
+    //mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0); // send ACK just in case...
+    [self prepareToStartMavlinkTransaction:@"Requesting Mission"];
+    [self requestMissionList];
+}
+
+- (void) requestMissionList {
+    // FIXME: abstract this "cancel/if retries left/dialog status" pattern
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
+        [self updateMavlinkTransactionStatus:@"Initiating Request"];
+
+        // Start Read MAV waypoint protocol transaction
+        mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
+        [self performSelector:@selector(requestMissionList) withObject:nil afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+    } else {
+        [self endMavLinkTransactionWithSuccess: NO];
+    }
+}
+
+- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints {
     
-    // Start Read MAV waypoint protocol transaction
-    mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
+    // FIXME: abstract this "cancel/if retries left/dialog status" pattern
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
+        
+        if ([waypoints allWaypointsReceivedP]) {
+            [self endMavLinkTransactionWithSuccess: YES];
+
+            // Finish Read MAV waypoint protocol transaction
+            mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
+            
+            // Let the GCSMapView and WaypointsView know we've got new waypoints
+            [self.mainVC.gcsMapVC   resetWaypoints: waypoints];
+            [self.mainVC.waypointVC resetWaypoints: waypoints];
+
+        } else {
+            [self updateMavlinkTransactionStatus:[NSString stringWithFormat:@"Getting Waypoint %d", [waypoints numWaypoints]+1]];
+             
+            mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
+            [self performSelector:@selector(requestNextWaypointOrACK:) withObject:waypoints afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+        }
+        
+    } else {
+        [self endMavLinkTransactionWithSuccess: NO];
+    }
 }
 
 // c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
@@ -248,20 +298,6 @@ mavlink_heartbeat_t heartbeat;
         [NSThread sleepForTimeInterval:0.01];
     }
 }
-
-- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints {
-    if ([waypoints allWaypointsReceivedP]) {
-        // Finish Read MAV waypoint protocol transaction
-        mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
-        
-        // Let the GCSMapView and WaypointsView know we've got new waypoints
-        [self.mainVC.gcsMapVC   resetWaypoints: self.rxWaypoints];
-        [self.mainVC.waypointVC resetWaypoints: self.rxWaypoints];
-    } else {
-        mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
-    }
-}
-
 
 - (void) loadDemoMission {
     // Debug demo mission
