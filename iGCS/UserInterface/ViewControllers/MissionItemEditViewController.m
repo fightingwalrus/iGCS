@@ -64,81 +64,81 @@
     // NAV mission items
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: 16]]; // MAV_CMD_NAV_WAYPOINT
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_WAYPOINT]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: 17]]; // MAV_CMD_NAV_LOITER_UNLIM
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_UNLIM]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z],
                                     [[MissionItemField alloc] initWithLabel:@"# Turns" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: 18]]; // MAV_CMD_NAV_LOITER_TURNS
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TURNS]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude"          andType:kPARAM_Z],
                                     [[MissionItemField alloc] initWithLabel:@"Time (seconds*10)" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: 19]]; // MAV_CMD_NAV_LOITER_TIME
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TIME]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: 20]]; // MAV_CMD_NAV_RETURN_TO_LAUNCH
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_RETURN_TO_LAUNCH]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: 21]]; // MAV_CMD_NAV_LAND
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LAND]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Altitude"      andType:kPARAM_Z],
                                     [[MissionItemField alloc] initWithLabel:@"Takeoff Pitch" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: 22]]; // MAV_CMD_NAV_TAKEOFF
+                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_TAKEOFF]];
     
     // Conditional CMD mission items
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 112]]; // MAV_CMD_CONDITION_DELAY
+                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DELAY]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Rate (cm/s)"       andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Altitude (finish)" andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: 113]]; // MAV_CMD_CONDITION_CHANGE_ALT
+                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_CHANGE_ALT]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Distance (m)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 114]]; // MAV_CMD_CONDITION_DISTANCE
+                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DISTANCE]];
     
     // DO CMD mission items
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Index"        andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Repeat Count" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 177]]; // MAV_CMD_DO_JUMP
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_JUMP]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Speed type"   andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Speed (m/s)"  andType:kPARAM_2],
                                     [[MissionItemField alloc] initWithLabel:@"Throttle (%)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 178]]; // MAV_CMD_DO_CHANGE_SPEED
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_CHANGE_SPEED]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Use current" andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Altitude"    andType:kPARAM_2],
                                     [[MissionItemField alloc] initWithLabel:@"Latitude"    andType:kPARAM_3],
                                     [[MissionItemField alloc] initWithLabel:@"Longitude"   andType:kPARAM_4], nil]
-                            forKey:[NSNumber numberWithInt: 179]]; // MAV_CMD_DO_SET_HOME
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_HOME]];
     /*
      [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Param #"     andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Param Value" andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: 180]]; // MAV_CMD_DO_SET_PARAMETER
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_PARAMETER]];
      */
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Relay #" andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"On/Off"  andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: 181]]; // MAV_CMD_DO_SET_RELAY
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_RELAY]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Relay #"        andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Cycle count"    andType:kPARAM_2],
                                     [[MissionItemField alloc] initWithLabel:@"Cycle time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 182]]; // MAV_CMD_DO_REPEAT_RELAY
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_RELAY]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)" andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"On/Off"        andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: 183]]; // MAV_CMD_DO_SET_SERVO
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_SERVO]];
     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                     [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)"  andType:kPARAM_1],
                                     [[MissionItemField alloc] initWithLabel:@"Cycle count"    andType:kPARAM_2],
                                     [[MissionItemField alloc] initWithLabel:@"Cycle time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: 184]]; // MAV_CMD_DO_REPEAT_SERVO
+                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_SERVO]];
     
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
