@@ -8,11 +8,9 @@
 
 #import "AppDelegate.h" // For TestFlight control
 
-
 #import "MavLinkTools.h"
 
 #import "iGCSMavLinkInterface.h"
-
 
 #import "CommsViewController.h"
 #import "GCSMapViewController.h"
@@ -20,48 +18,34 @@
 
 #import "mavlink_helpers.h"
 
-
 #import "GaugeViewCommon.h"
 
 #import "Logger.h"
-
-
 
 @implementation iGCSMavLinkInterface
 
 @synthesize mavlinkTransactionProgressDialog;
 @synthesize mavlinkRequestAttempts;
 
-
-+(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC
-{
-    iGCSMavLinkInterface *interface = [[iGCSMavLinkInterface alloc] init];
-    
-    interface.mainVC = mainVC;
-    
-    appMLI = interface;
-    
-    return interface;
-}
-
-- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
-    /*
-     //FIXME CAUSED PILOT TO LOSE CONTROL IN STABILIZE MODE
-    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                  2, // Special flag that indicates this is a GUIDED mode packet
-                                  0, 0, 0, 0, 0,
-                                  coordinates.latitude, coordinates.longitude, altitude);
-     */
-    // FIXME: should check for ACK, and retry a few times if not ACKnowledged
-
-}
-
-
 // TODO: Limit scope of these variables
+iGCSMavLinkInterface *appMLI;
 mavlink_message_t msg;
 mavlink_status_t status;
 mavlink_heartbeat_t heartbeat;
 
++(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC
+{
+    iGCSMavLinkInterface *interface = [[iGCSMavLinkInterface alloc] init];
+    interface.mainVC = mainVC;
+    appMLI = interface;
+    return interface;
+}
+
+static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
+{
+    NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
+    [appMLI produceData:buffer length:len];
+}
 
 
 // MavLink destination override
@@ -198,6 +182,12 @@ mavlink_heartbeat_t heartbeat;
     }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////
+// General mission transaction handling
+// c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
+///////////////////////////////////////////////////////////////////////////////////////
+
 - (void) prepareToStartMavlinkTransaction:(NSString*)title {
     mavlinkRequestAttempts = 0;
     // FIXME: replace with custom view, with progress bar, modal until success/failure etc
@@ -222,8 +212,12 @@ mavlink_heartbeat_t heartbeat;
     }
 }
 
-// TODO: Move me into requests class
-- (void) issueStartReadMissionRequest {    
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Mission transaction: receiving
+///////////////////////////////////////////////////////////////////////////////////////
+
+- (void) issueStartReadMissionRequest {
     //mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0); // send ACK just in case...
     [self prepareToStartMavlinkTransaction:@"Requesting Mission"];
     [self requestMissionList];
@@ -271,7 +265,11 @@ mavlink_heartbeat_t heartbeat;
     }
 }
 
-// c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Mission transaction: sending
+///////////////////////////////////////////////////////////////////////////////////////
+
 // FIXME: handle timeouts/retries per MAVLINK protocol spec
 - (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
     // FIXME: handle synchronization issues, like if we're already sending or receiving a mission
@@ -290,6 +288,23 @@ mavlink_heartbeat_t heartbeat;
                                   0,
                                   item.autocontinue, item.param1, item.param2, item.param3, item.param4,
                                   item.x, item.y, item.z);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Miscellaneous requests
+///////////////////////////////////////////////////////////////////////////////////////
+
+- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
+    /*
+     //FIXME CAUSED PILOT TO LOSE CONTROL IN STABILIZE MODE
+     mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
+     2, // Special flag that indicates this is a GUIDED mode packet
+     0, 0, 0, 0, 0,
+     coordinates.latitude, coordinates.longitude, altitude);
+     */
+    // FIXME: should check for ACK, and retry a few times if not ACKnowledged
 }
 
 - (void) issueSetAUTOModeCommand {
@@ -325,21 +340,5 @@ mavlink_heartbeat_t heartbeat;
     [self.mainVC.gcsMapVC resetWaypoints: zz];
     [self.mainVC.waypointVC resetWaypoints: zz];
 }
-
-
-iGCSMavLinkInterface *appMLI;
-
-static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
-{
-    
-    NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
-    
-    [appMLI produceData:buffer length:len];
-    
-
-
-}
-
-
 
 @end
