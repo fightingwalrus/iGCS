@@ -28,13 +28,12 @@
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
-- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints;
 - (void) issueStartReadMissionRequest;
+- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
+
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 
-- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
-- (void) sendMissionItemRequest:(mavlink_mission_request_t)request;
 
 - (void) loadDemoMission;
 

@@ -76,12 +76,12 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                             
                             // Decode the heartbeat message
                             mavlink_msg_heartbeat_decode(&msg, &heartbeat);
-                            mavlink_system.sysid = msg.sysid;
-                            mavlink_system.compid = msg.compid;
+                            mavlink_system.sysid  = msg.sysid;
+                            mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
                             
                             [Logger console:@"Sending request for MavLink messages."];
                             
-                            // Send request sto set the stream rates
+                            // Send requests to set the stream rates
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_ALL, 0, 0); // stop all
                             
@@ -136,21 +136,19 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 
                     // Mission transmission
                     case MAVLINK_MSG_ID_MISSION_ACK:
-                    {
-                        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Mission Sent"
-                                                                            message:@"Waypoint transmission complete"
-                                                                           delegate:self
-                                                                  cancelButtonTitle:@"OK"
-                                                                  otherButtonTitles:nil];
-                        [alertView show];
-                    }
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        
+                        // FIXME: boolean should reflect that we were in a sending transaction, and that we've sent the last waypoint
+                        [self endMavLinkTransactionWithSuccess: YES];
                         break;
                     
                     case MAVLINK_MSG_ID_MISSION_REQUEST:
                     {
                         mavlink_mission_request_t request;
                         mavlink_msg_mission_request_decode(&msg, &request);
-                        [self sendMissionItemRequest: request];
+                        
+                        mavlinkRequestAttempts = 0;
+                        [self sendMissionItemRequest: [NSNumber numberWithUnsignedInt:request.seq]];
                     }
                         break;
                 }
@@ -210,20 +208,25 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 // Mission transaction: receiving
 ///////////////////////////////////////////////////////////////////////////////////////
 
+// FIXME: Find an idiomatic way to represent the "cancel/if retries left/updatestatus" that is
+//  repeated in the various mission transmission functions
+//   - something like a generic method which took COMPLETED?, DO, and FAILURE closures,
+//     and would call FAILURE if too many retries, test COMPLETED? and then conditionally
+//     DO and RETRY itself with a delayed performSelector.
+//
 - (void) issueStartReadMissionRequest {
-    //mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0); // send ACK just in case...
     [self prepareToStartMavlinkTransaction:@"Requesting Mission"];
     [self requestMissionList];
 }
 
 - (void) requestMissionList {
-    // FIXME: abstract this "cancel/if retries left/dialog status" pattern
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
         [self updateMavlinkTransactionStatus:@"Initiating Request"];
 
         // Start Read MAV waypoint protocol transaction
         mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
+
         [self performSelector:@selector(requestMissionList) withObject:nil afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
     } else {
         [self endMavLinkTransactionWithSuccess: NO];
@@ -231,8 +234,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 }
 
 - (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints {
-    
-    // FIXME: abstract this "cancel/if retries left/dialog status" pattern
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
         
@@ -247,9 +248,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
             [self.mainVC.waypointVC resetWaypoints: waypoints];
 
         } else {
-            [self updateMavlinkTransactionStatus:[NSString stringWithFormat:@"Getting Waypoint %d", [waypoints numWaypoints]+1]];
-             
+            [self updateMavlinkTransactionStatus:[NSString stringWithFormat:@"Getting Waypoint #%d", [waypoints numWaypoints]]];
+            
+            // Request the next waypoint
             mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
+
             [self performSelector:@selector(requestNextWaypointOrACK:) withObject:waypoints afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
         }
         
@@ -262,27 +265,51 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: sending
 ///////////////////////////////////////////////////////////////////////////////////////
-
-// FIXME: handle timeouts/retries per MAVLINK protocol spec
 - (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
     // FIXME: handle synchronization issues, like if we're already sending or receiving a mission
     self.txWaypoints = waypoints;
     
-    // Send the vehicle the new mission count, and await WAYPOINT request responses
-    mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, self.txWaypoints.numWaypoints);
+    [self prepareToStartMavlinkTransaction:@"Transmitting Mission"];
+    [self transmitMissionCount:self.txWaypoints];
 }
 
-- (void)sendMissionItemRequest:(mavlink_mission_request_t)request {
-    // FIXME: check request.seq is in range
-    mavlink_mission_item_t item = [self.txWaypoints getWaypoint:request.seq];
+- (void) transmitMissionCount:(WaypointsHolder*)waypoints {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
+        [self updateMavlinkTransactionStatus:@"Sending Waypoint count"];
+        
+        // Send the vehicle the new mission count, and await WAYPOINT request responses
+        mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, self.txWaypoints.numWaypoints);
+
+        [self performSelector:@selector(transmitMissionCount:) withObject:waypoints afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+    } else {
+        [self endMavLinkTransactionWithSuccess: NO];
+    }
+}
+
+- (void)sendMissionItemRequest:(NSNumber*)itemNumber {
+    // FIXME: ugh, member variable txWaypoints. Perhaps package item into an NSObject before calling this method to avoid this dependency?
+    // FIXME: And check sequenceNumber is in range
+    unsigned int itemNum = [itemNumber unsignedIntValue];
+    mavlink_mission_item_t item = [self.txWaypoints getWaypoint:itemNum];
     
-    // For now, we assume that all coords are in the MAV_FRAME_GLOBAL_RELATIVE_ALT frame; see also issueGOTOCommand
-    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, request.seq, MAV_FRAME_GLOBAL_RELATIVE_ALT, item.command,
-                                  0,
-                                  item.autocontinue, item.param1, item.param2, item.param3, item.param4,
-                                  item.x, item.y, item.z);
-}
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (mavlinkRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
+        [self updateMavlinkTransactionStatus:[NSString stringWithFormat:@"Sending Waypoint #%d", itemNum]];
+        
+        // Send the requested mission item
+        //   - for now, we assume that all coords are in the MAV_FRAME_GLOBAL_RELATIVE_ALT
+        //     frame; see also issueGOTOCommand
+        mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, itemNum, MAV_FRAME_GLOBAL_RELATIVE_ALT, item.command,
+                                      0,
+                                      item.autocontinue, item.param1, item.param2, item.param3, item.param4,
+                                      item.x, item.y, item.z);
 
+        [self performSelector:@selector(sendMissionItemRequest:) withObject:itemNumber afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+    } else {
+        [self endMavLinkTransactionWithSuccess: NO];
+    }
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
