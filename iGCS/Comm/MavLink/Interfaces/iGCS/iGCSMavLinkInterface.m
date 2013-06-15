@@ -65,7 +65,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         [Logger console:@"MavLink Heartbeat."];
                         
                         // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
-                        if (++heartbeatOnlyCount >= 5) {
+                        if (++self.heartbeatOnlyCount >= 5) {
                             self.mavLinkInitialized = NO;
                         }
                         
@@ -157,7 +157,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                 
                 // If we get any other message than heartbeat, we are getting the messages we requested
                 if (msg.msgid != MAVLINK_MSG_ID_HEARTBEAT) {
-                    heartbeatOnlyCount = 0;
+                    self.heartbeatOnlyCount = 0;
                 }
                 
                 // Then send the packet on to the child views

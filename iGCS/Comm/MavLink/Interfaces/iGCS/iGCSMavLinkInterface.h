@@ -15,11 +15,10 @@
 #define iGCS_MAVLINK_RETRANSMISSION_TIMEOUT 0.5 // seconds
 #define iGCS_MAVLINK_MAX_RETRIES 5
 
-@interface iGCSMavLinkInterface : MavLinkInterface {
-    unsigned int heartbeatOnlyCount;
-}
+@interface iGCSMavLinkInterface : MavLinkInterface;
 
 @property (strong) MainViewController *mainVC;
+@property unsigned int heartbeatOnlyCount;
 @property BOOL mavLinkInitialized;
 @property (strong) WaypointsHolder *rxWaypoints;
 @property (strong) WaypointsHolder *txWaypoints;
