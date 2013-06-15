@@ -60,16 +60,15 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
-                //[Logger console:@"Completed packet"];
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
                         [Logger console:@"MavLink Heartbeat."];
-                        self.heartbeatOnlyCount = [NSNumber numberWithInt:[self.heartbeatOnlyCount intValue] + 1];
-                        //If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
-                        if([self.heartbeatOnlyCount intValue] > 5)
-                        {
+                        
+                        // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
+                        if (++heartbeatOnlyCount >= 5) {
                             self.mavLinkInitialized = NO;
                         }
+                        
                         if (!self.mavLinkInitialized) {
                             TESTFLIGHT_CHECKPOINT(@"FIRST HEARTBEAT");
                             
@@ -103,10 +102,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                             
-                            [self issueStartReadMissionRequest]; // FIXME: move me - don't make this automatic
+                            [self issueStartReadMissionRequest]; // FIXME: move me - don't make this automatic?
                         }
                         break;
                         
+                    // Mission reception
                     case MAVLINK_MSG_ID_MISSION_COUNT:
                     {
                         [Logger console:@"MavLink MissionCount."];
@@ -133,11 +133,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                     }
                         break;
                         
-                    case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-                    case MAVLINK_MSG_ID_ATTITUDE:
-                    case MAVLINK_MSG_ID_VFR_HUD:
-                        break;
-                        
+
                     // Mission transmission
                     case MAVLINK_MSG_ID_MISSION_ACK:
                     {
@@ -157,16 +153,13 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         [self sendMissionItemRequest: request];
                     }
                         break;
-                        
-                    default:
-                    {
-                        //If we get any other message than heartbeat, we are getting the messages we requested
-                        // FIXME: placement is incorrect - move me outside of switch!
-                        self.heartbeatOnlyCount = [NSNumber numberWithInt:0];
-                    }
-                        //NSLog(@"UNHANDLED message with ID %d", msg.msgid);
-                        break;
                 }
+                
+                // If we get any other message than heartbeat, we are getting the messages we requested
+                if (msg.msgid != MAVLINK_MSG_ID_HEARTBEAT) {
+                    heartbeatOnlyCount = 0;
+                }
+                
                 // Then send the packet on to the child views
 #if 0
                 for (id view in [self viewControllers]) {
