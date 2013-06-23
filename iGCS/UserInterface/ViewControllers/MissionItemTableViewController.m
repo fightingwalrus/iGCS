@@ -91,9 +91,9 @@ static unsigned int CELL_WIDTHS[] = {
     50,              // seq #
 #endif
     170,             // command
-    85, 85, 85,      // x, y, z
+    90, 90, 65,      // x, y, z
     85, 85, 85, 85,  // param1-4
-    85               // autocontinue
+    110              // autocontinue
 };
 
 static NSString* CELL_HEADERS[] = {
@@ -102,11 +102,39 @@ static NSString* CELL_HEADERS[] = {
     @"Debug #",
 #endif
     @"Command",
-    @"X", @"Y", @"Z",
+    @"Latitude", @"Longitude", @"Altitude",
     @"Param1", @"Param2", @"Param3", @"Param4",
     @"Autocontinue"
 };
 
+static UITextAlignment CELL_HEADER_ALIGN[] = {
+    UITextAlignmentLeft,
+#if DEBUG_SHOW_SEQ
+    UITextAlignmentRight,
+#endif
+    UITextAlignmentLeft,
+    UITextAlignmentCenter, UITextAlignmentCenter, UITextAlignmentCenter,
+    UITextAlignmentRight, UITextAlignmentRight, UITextAlignmentRight, UITextAlignmentRight,
+    UITextAlignmentCenter
+};
+
+// FIXME: move to utility file
+- (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat {
+    char letter = (val > 0) ? 'E' : 'W';
+    if (isLat) {
+        letter = (val > 0) ? 'N' : 'S';
+    }
+    
+    val = fabs(val);
+    
+    int deg = (int)val;
+    val = (val - deg) * 60;
+    
+    int min = (int)val;
+    float sec = (val - min) * 60;
+    
+    return [NSString stringWithFormat:@"%02d° %02d' %02.2f%c", deg, min, sec, letter];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,15 +152,14 @@ static NSString* CELL_HEADERS[] = {
         unsigned int x = 0;
         for (unsigned int i = 0; i < sizeof(CELL_WIDTHS)/sizeof(unsigned int); i++) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, CELL_WIDTHS[i], tableView.rowHeight)];
-            x += CELL_WIDTHS[i];
             label.tag = TAG_INDEX+i;
-            //
             label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
-            label.textAlignment = UITextAlignmentLeft;
+            label.textAlignment = UITextAlignmentRight;
             label.textColor = [UIColor blackColor];
             label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-            //
             [cell.contentView addSubview:label];
+            //
+            x += CELL_WIDTHS[i];
         }
     }
     
@@ -141,55 +168,55 @@ static NSString* CELL_HEADERS[] = {
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"   %d: ", indexPath.row];
+    label.textAlignment = UITextAlignmentLeft;
 
 #if DEBUG_SHOW_SEQ
     // Seq number
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"  %d:", waypoint.seq];
+    label.textAlignment = UITextAlignmentLeft;
 #endif
     
     // Command
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
     label.font = [UIFont systemFontOfSize:TABLE_CELL_CMD_FONT_SIZE];
     label.text = [NSString stringWithFormat:@"%@", [WaypointHelper commandIDToString: waypoint.command]];
-    
+    label.textAlignment = UITextAlignmentLeft;
+
     // X
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%f", waypoint.x];
+    //label.text = [NSString stringWithFormat:@"%f", waypoint.x];
+    label.text = [self coordinateToNiceLatLong: waypoint.x isLat:YES];
     
     // Y
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%f", waypoint.y];
-    
+    label.text = [self coordinateToNiceLatLong: waypoint.y isLat:NO];
+
     // Z
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%f", waypoint.z];
+    label.text = [NSString stringWithFormat:@"%0.3f", waypoint.z];
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%f", waypoint.param1];
+    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param1];
     
     // param2
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%f", waypoint.param2];
+    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param2];
     
     // param3
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%f", waypoint.param3];
+    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param3];
     
     // param4
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%f", waypoint.param4];
+    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param4];
     
     // autocontinue
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"%@", waypoint.autocontinue ? @"Yes" : @"No"];
-    
-    /*
-     // current
-     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-     label.text = [NSString stringWithFormat:@"%d", waypoint.current];
-     */
+    label.textAlignment = UITextAlignmentCenter;
+
     return cell;
 }
 
@@ -247,20 +274,17 @@ static NSString* CELL_HEADERS[] = {
     unsigned int x = 0;
     for (unsigned int i = 0; i < sizeof(CELL_WIDTHS)/sizeof(unsigned int); i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, CELL_WIDTHS[i], 40)];
-        x += CELL_WIDTHS[i];
-        //
         label.text = CELL_HEADERS[i];
-        //
         label.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
-        label.textAlignment = UITextAlignmentLeft;
+        label.textAlignment = CELL_HEADER_ALIGN[i];
         label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-        //
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.shadowColor = [UIColor darkGrayColor];
         label.shadowOffset = CGSizeMake(0,1);
-        //
         [sectionHead addSubview:label];
+        //
+        x += CELL_WIDTHS[i];
     }
     
     return sectionHead;
