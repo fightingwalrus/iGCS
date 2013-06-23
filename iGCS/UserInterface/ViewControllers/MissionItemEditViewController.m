@@ -215,19 +215,19 @@
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
     switch ([field fieldType]) {
         case kPARAM_Z:
-            return [NSString stringWithFormat:@"%f", missionItem.z];
+            return [NSString stringWithFormat:@"%0.3f", missionItem.z];
             
         case kPARAM_1:
-            return [NSString stringWithFormat:@"%f", missionItem.param1];
+            return [NSString stringWithFormat:@"%0.3f", missionItem.param1];
             
         case kPARAM_2:
-            return [NSString stringWithFormat:@"%f", missionItem.param2];
+            return [NSString stringWithFormat:@"%0.3f", missionItem.param2];
             
         case kPARAM_3:
-            return [NSString stringWithFormat:@"%f", missionItem.param3];
+            return [NSString stringWithFormat:@"%0.3f", missionItem.param3];
             
         case kPARAM_4:
-            return [NSString stringWithFormat:@"%f", missionItem.param4];
+            return [NSString stringWithFormat:@"%0.3f", missionItem.param4];
             
         default:
             assert(false);
