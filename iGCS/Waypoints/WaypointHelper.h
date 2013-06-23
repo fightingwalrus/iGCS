@@ -15,5 +15,6 @@
 
 + (NSString*) commandIDToString:(uint8_t)cmdID;
 + (NSString*) navWaypointToDetailString:(mavlink_mission_item_t)waypoint;
++ (BOOL) isNavCommand:(mavlink_mission_item_t)waypoint;
 
 @end

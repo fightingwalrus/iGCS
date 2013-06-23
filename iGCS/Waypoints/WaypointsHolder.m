@@ -8,6 +8,8 @@
 
 #import "WaypointsHolder.h"
 
+#import "WaypointHelper.h"
+
 @implementation WaypointsHolder
 
 - (id)initWithExpectedCount:(unsigned int)_expectedCount
@@ -105,11 +107,9 @@
     WaypointsHolder *navWayPoints = [[WaypointsHolder alloc] initWithExpectedCount:[self numWaypoints]];
     for (unsigned int i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
-        if (waypoint.command >= MAV_CMD_NAV_LAST) {
-            // We didn't get a nav command
-            continue;
+        if ([WaypointHelper isNavCommand: waypoint]) {
+            [navWayPoints->array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
         }
-        [navWayPoints->array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
     }
     return navWayPoints;
 }

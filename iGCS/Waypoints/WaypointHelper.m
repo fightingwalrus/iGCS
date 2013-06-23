@@ -89,4 +89,8 @@ static bool staticsInitializedP = false;
     return str;
 }
 
++ (BOOL) isNavCommand:(mavlink_mission_item_t)waypoint {
+    return (waypoint.command < MAV_CMD_NAV_LAST);
+}
+
 @end
