@@ -83,18 +83,24 @@
 #define TABLE_CELL_CMD_FONT_SIZE 16
 #define TABLE_CELL_FONT_SIZE   12
 
+#define DEBUG_SHOW_SEQ 0
+
 static unsigned int CELL_WIDTHS[] = {
-    60,               // row #
-    60,               // seq #
-    170,              // command
-    80, 80, 90,       // x, y, z
-    80, 80, 80, 90,  // param1-4
+    60,              // row #
+#if DEBUG_SHOW_SEQ
+    50,              // seq #
+#endif
+    170,             // command
+    85, 85, 85,      // x, y, z
+    85, 85, 85, 85,  // param1-4
     85               // autocontinue
 };
 
 static NSString* CELL_HEADERS[] = {
-    @" Row #", // FIXME: temporary?
-    @" Seq #",
+    @" Seq #", // This will actually be the row index
+#if DEBUG_SHOW_SEQ
+    @"Debug #",
+#endif
     @"Command",
     @"X", @"Y", @"Z",
     @"Param1", @"Param2", @"Param3", @"Param4",
@@ -132,13 +138,15 @@ static NSString* CELL_HEADERS[] = {
     
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint: indexPath.row];
     
-    // Row number
+    // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"  %d:", indexPath.row];
-    
+    label.text = [NSString stringWithFormat:@"   %d: ", indexPath.row];
+
+#if DEBUG_SHOW_SEQ
     // Seq number
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
     label.text = [NSString stringWithFormat:@"  %d:", waypoint.seq];
+#endif
     
     // Command
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
@@ -264,7 +272,7 @@ static NSString* CELL_HEADERS[] = {
 {
     if (tableView.isEditing) {
         int idx = indexPath.row;
-        [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq];
+        [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
         [self performSegueWithIdentifier:@"editItemVC_segue"
                                   sender:[NSNumber numberWithInteger:idx]];
     }
