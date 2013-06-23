@@ -164,6 +164,7 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
     }
     
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint: indexPath.row];
+    BOOL isNavCommand = [WaypointHelper isNavCommand:waypoint];
     
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
@@ -183,18 +184,17 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
     label.text = [NSString stringWithFormat:@"%@", [WaypointHelper commandIDToString: waypoint.command]];
     label.textAlignment = UITextAlignmentLeft;
 
-    // X
+    // X (Latitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    //label.text = [NSString stringWithFormat:@"%f", waypoint.x];
-    label.text = [self coordinateToNiceLatLong: waypoint.x isLat:YES];
+    label.text = isNavCommand ? [self coordinateToNiceLatLong: waypoint.x isLat:YES] : @"-";
     
-    // Y
+    // Y (Longitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [self coordinateToNiceLatLong: waypoint.y isLat:NO];
+    label.text = isNavCommand ? [self coordinateToNiceLatLong: waypoint.y isLat:NO] : @"-";
 
-    // Z
+    // Z (Altitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%0.3f", waypoint.z];
+    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.3f", waypoint.z] : @"-";
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
