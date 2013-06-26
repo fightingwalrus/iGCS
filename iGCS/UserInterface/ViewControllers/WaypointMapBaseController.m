@@ -82,7 +82,9 @@
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
         // Add the annotation
-        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate andWayPoint:waypoint];
+        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
+                                                                            andWayPoint:waypoint
+                                                                                atIndex:[_waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
         [map addAnnotation:annotation];
         
         // Construct the MKMapPoint
@@ -94,30 +96,36 @@
     [map addOverlay:waypointRoutePolyline];
     
     // Set the map extents
-    [map setVisibleMapRect:[waypointRoutePolyline boundingMapRect]];
-    
+    if ([_waypoints numWaypoints] > 1) {
+        // FIXME: and if there is only 1?
+        // FIXME: and perhaps only change the view if a point is outside the existing map view? (i.e preserve current user zoom)
+        MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
+        [map setVisibleMapRect:bounds edgePadding:UIEdgeInsetsMake(40,40,40,40) animated:YES];
+    }
     [map setNeedsDisplay];
     
     free(navMKMapPoints);
 }
 
+- (void)resetWaypointAnnotation:(WaypointAnnotation*)annotation {
+    if (annotation) {
+        [map removeAnnotation:annotation];
+        [map addAnnotation:annotation];
+    }
+}
+
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
     if (currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
+        int previousWaypointNum = currentWaypointNum;
+        
+        //  first, update the current value (so we get the desired
+        // side-effect when resetting the waypoints), then...
+        currentWaypointNum = newCurrentWaypointSeq;
 
-        // Reset the associated annotations
-        for (int i = 0; i < 2; i++) {
-            WaypointAnnotation *annotation = [self getWaypointAnnotation:currentWaypointNum];
-            
-            // Update the current value (on the first iteration, we want this after the
-            // getWaypointAnnotation call, but before the addAnnotation)
-            currentWaypointNum = newCurrentWaypointSeq;
-            
-            if (annotation) {
-                [map removeAnnotation:annotation];
-                [map addAnnotation:annotation];
-            }
-        }
+        //  reset the previous and new current waypoints
+        [self resetWaypointAnnotation: [self getWaypointAnnotation:previousWaypointNum]];        
+        [self resetWaypointAnnotation: [self getWaypointAnnotation:currentWaypointNum]];
     }
 }
 
@@ -140,14 +148,19 @@
    didChangeDragState:(MKAnnotationViewDragState)newState
    fromOldState:(MKAnnotationViewDragState)oldState
 {
-    if (newState == MKAnnotationViewDragStateEnding) {
-        if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
-            WaypointAnnotation* annot = annotationView.annotation;
+    if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
+        static WaypointAnnotation *draggedAnnot = nil;
+        WaypointAnnotation* annot = annotationView.annotation;
+        if (newState == MKAnnotationViewDragStateStarting) {
+            draggedAnnot = annot;
+        }
+        if (newState == MKAnnotationViewDragStateEnding && annot == draggedAnnot) {
             CLLocationCoordinate2D coord = annot.coordinate;
             [self waypointWithSeq:annot.waypoint.seq wasMovedToLat:coord.latitude andLong:coord.longitude];
         }
     }
 }
+
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?
@@ -212,8 +225,15 @@
     return nil;
 }
 
+- (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+    // Base class uses the mission item sequence number
+    return [NSString stringWithFormat:@"%d", item.seq];
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    static const int LABEL_TAG = 100;
+    
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -226,6 +246,12 @@
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, -16, 32, 32)];
+            label.backgroundColor = [UIColor clearColor];
+            label.textColor = [UIColor whiteColor];
+            label.tag = LABEL_TAG;
+            [view addSubview:label];
         } else {
             view.annotation = annotation;
         }
@@ -249,6 +275,10 @@
             view.image = [WaypointMapBaseController image:[UIImage imageNamed:@"07-map-marker.png"]
                                            withColor:[waypointAnnotation getColor]];
         }
+        
+        UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
+        label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
+        
         return view;
     }
     

@@ -103,6 +103,7 @@
 		49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
 		49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C45CB8170A7EA4007C9999 /* DebugLogger.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
+		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
 		CA43E09715143E940014F7C8 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
@@ -132,6 +133,8 @@
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
+		CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +378,8 @@
 		CA20FD96164E4754005187A8 /* mavlink_protobuf_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mavlink_protobuf_manager.hpp; sourceTree = "<group>"; };
 		CA20FD97164E4754005187A8 /* mavlink_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_types.h; sourceTree = "<group>"; };
 		CA20FD98164E4754005187A8 /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
+		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
+		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* 00-Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-Read me first - license.txt"; sourceTree = "<group>"; };
 		CA43DE0A15143E570014F7C8 /* glyphish-icons.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "glyphish-icons.pdf"; sourceTree = "<group>"; };
 		CA43DE0B15143E570014F7C8 /* glyphish-icons.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphish-icons.psd"; sourceTree = "<group>"; };
@@ -686,6 +691,10 @@
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemEditViewController.h; sourceTree = "<group>"; };
+		CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemEditViewController.m; sourceTree = "<group>"; };
+		CAFEE7971734C28D006BEF6A /* MissionItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemTableViewController.h; sourceTree = "<group>"; };
+		CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -847,6 +856,8 @@
 				496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */,
 				496E627616DAFB8B00E52E4A /* ViewControllers */,
 				496E627F16DAFB8B00E52E4A /* Views */,
+				CA26AD69173E22E300F8E7B3 /* MissionItemField.h */,
+				CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -871,6 +882,10 @@
 				496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */,
 				496E627B16DAFB8B00E52E4A /* MainViewController.h */,
 				496E627C16DAFB8B00E52E4A /* MainViewController.m */,
+				CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */,
+				CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */,
+				CAFEE7971734C28D006BEF6A /* MissionItemTableViewController.h */,
+				CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */,
 				496E627D16DAFB8B00E52E4A /* WaypointsViewController.h */,
 				496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */,
 				CA92514416F9761A0008E92F /* WaypointMapBaseController.h */,
@@ -1783,6 +1798,9 @@
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
 				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
 				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
+				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
+				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
+				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
