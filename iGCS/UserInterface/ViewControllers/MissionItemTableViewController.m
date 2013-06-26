@@ -11,6 +11,33 @@
 
 #import "WaypointHelper.h"
 
+@interface HeaderSpec : NSObject
+@property (nonatomic, assign) NSInteger *width;
+@property (nonatomic, assign) UITextAlignment *align;
+@property (nonatomic, retain) NSString *text;
+@end
+
+
+@implementation HeaderSpec
+
+@synthesize width;
+@synthesize align;
+@synthesize text;
+
+- (id) initWithWidth:(NSInteger)_width alignment:(UITextAlignment)_align text:(NSString*)_text {
+    self = [super init];
+    if (self) {
+        self.text =  _text;
+        self.width = _width;
+        self.align = _align;
+    }
+    return self;
+}
+
+@end
+
+
+
 @interface MissionItemTableViewController ()
 
 @end
@@ -85,38 +112,29 @@
 
 #define DEBUG_SHOW_SEQ 0
 
-static unsigned int CELL_WIDTHS[] = {
-    60,              // row #
-#if DEBUG_SHOW_SEQ
-    50,              // seq #
-#endif
-    170,             // command
-    90, 90, 65,      // x, y, z
-    85, 85, 85, 85,  // param1-4
-    110              // autocontinue
-};
+NSArray* headerSpecs = nil;
 
-static NSString* CELL_HEADERS[] = {
-    @" Seq #", // This will actually be the row index
++ (void) initialize {
+    if (!headerSpecs) { 
+        headerSpecs = @[ [[HeaderSpec alloc] initWithWidth:60  alignment:UITextAlignmentLeft   text:@" Seq #"], // row #
 #if DEBUG_SHOW_SEQ
-    @"Debug #",
+                         [[HeaderSpec alloc] initWithWidth:50  alignment:UITextAlignmentRight  text:@"Debug #"], // the real seq #
 #endif
-    @"Command",
-    @"Latitude", @"Longitude", @"Altitude",
-    @"Param1", @"Param2", @"Param3", @"Param4",
-    @"Autocontinue"
-};
-
-static UITextAlignment CELL_HEADER_ALIGN[] = {
-    UITextAlignmentLeft,
-#if DEBUG_SHOW_SEQ
-    UITextAlignmentRight,
-#endif
-    UITextAlignmentLeft,
-    UITextAlignmentCenter, UITextAlignmentCenter, UITextAlignmentCenter,
-    UITextAlignmentRight, UITextAlignmentRight, UITextAlignmentRight, UITextAlignmentRight,
-    UITextAlignmentCenter
-};
+                         [[HeaderSpec alloc] initWithWidth:170 alignment:UITextAlignmentLeft   text:@"Command"], // command
+                         //
+                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Latitude"],  // x
+                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Longitude"], // y
+                         [[HeaderSpec alloc] initWithWidth: 65 alignment:UITextAlignmentCenter text:@"Altitude"],  // z
+                         //
+                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param1"], // param1
+                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param2"], // param2
+                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param3"], // param3
+                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param4"], // param4
+                         //
+                         [[HeaderSpec alloc] initWithWidth:110 alignment:UITextAlignmentCenter text:@"Autocontinue"] 
+                       ];
+    }
+}
 
 // FIXME: move to utility file
 - (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat {
@@ -150,8 +168,9 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
     // FIXME: outside the above "if (cell == nil)..." because it seems cells are already pre-created. Why? Precreated in nib?
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
         unsigned int x = 0;
-        for (unsigned int i = 0; i < sizeof(CELL_WIDTHS)/sizeof(unsigned int); i++) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, CELL_WIDTHS[i], tableView.rowHeight)];
+        for (unsigned int i = 0; i < [headerSpecs count]; i++) {
+            int width = [((HeaderSpec*)[headerSpecs objectAtIndex:i]) width];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, tableView.rowHeight)];
             label.tag = TAG_INDEX+i;
             label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
             label.textAlignment = UITextAlignmentRight;
@@ -159,7 +178,7 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
             label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
             [cell.contentView addSubview:label];
             //
-            x += CELL_WIDTHS[i];
+            x += width;
         }
     }
     
@@ -272,11 +291,12 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
     sectionHead.userInteractionEnabled = YES;
     
     unsigned int x = 0;
-    for (unsigned int i = 0; i < sizeof(CELL_WIDTHS)/sizeof(unsigned int); i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, CELL_WIDTHS[i], 40)];
-        label.text = CELL_HEADERS[i];
+    for (HeaderSpec *spec in headerSpecs) {
+        int width = [spec width];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 40)];
+        label.text = [spec text];
         label.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
-        label.textAlignment = CELL_HEADER_ALIGN[i];
+        label.textAlignment = [spec align];
         label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
@@ -284,7 +304,7 @@ static UITextAlignment CELL_HEADER_ALIGN[] = {
         label.shadowOffset = CGSizeMake(0,1);
         [sectionHead addSubview:label];
         //
-        x += CELL_WIDTHS[i];
+        x += width;
     }
     
     return sectionHead;
