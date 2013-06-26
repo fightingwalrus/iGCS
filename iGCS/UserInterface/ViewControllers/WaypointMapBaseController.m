@@ -225,7 +225,7 @@
     return nil;
 }
 
-- (NSString*) getWaypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+- (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
     // Base class uses the mission item sequence number
     return [NSString stringWithFormat:@"%d", item.seq];
 }
@@ -277,7 +277,7 @@
         }
         
         UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
-        label.text = [self getWaypointNumberForAnnotationView: waypointAnnotation.waypoint];
+        label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         return view;
     }

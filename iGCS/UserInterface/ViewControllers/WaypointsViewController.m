@@ -140,7 +140,7 @@
 }
 
 - (void) resetWaypoints:(WaypointsHolder*)_waypoints {
-    // set waypoints ahead of getWaypointNumberForAnnotationView calls from [super resetWaypoints:...]
+    // set waypoints ahead of waypointNumberForAnnotationView calls from [super resetWaypoints:...]
     waypoints = _waypoints;
     
     [super resetWaypoints:_waypoints];
@@ -165,7 +165,7 @@
     }
 }
 
-- (NSString*) getWaypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+- (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
     // This subclass uses the row number
     return [NSString stringWithFormat:@"%d", [waypoints getIndexOfWaypointWithSeq:item.seq]];
 }
