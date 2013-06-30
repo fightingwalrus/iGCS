@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkPacketHandler.h"
 
-@interface WaypointsHolder : NSObject  {
+@interface WaypointsHolder : NSObject <NSMutableCopying> {
     NSMutableArray *array;
     unsigned int expectedCount;
 }
@@ -19,6 +19,9 @@
 - (bool) allWaypointsReceivedP;
 - (unsigned int)numWaypoints;
 
++ (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint;
++ (mavlink_mission_item_t) unBoxWaypoint:(id)obj;
+
 - (void) addWaypoint:(mavlink_mission_item_t)waypoint;
 - (void) removeWaypoint:(unsigned int) index;
 - (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint;
@@ -26,6 +29,7 @@
 
 - (int) getIndexOfWaypointWithSeq:(int)sequence;
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index;
+- (mavlink_mission_item_t) getLastWaypoint;
 
 - (WaypointsHolder*) getNavWaypoints;
 

@@ -14,10 +14,11 @@
 @synthesize coordinate  = _coordinate;
 @synthesize waypoint    = _waypoint;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint {
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
+        _index      = index;
     }
     return self;
 }
@@ -27,7 +28,7 @@
 }
 
 - (NSString*) title {
-    return [NSString stringWithFormat:@"%d: %@", _waypoint.seq, [WaypointHelper commandIDToString: _waypoint.command]];
+    return [NSString stringWithFormat:@"%d: %@", _index, [WaypointHelper commandIDToString: _waypoint.command]];
 }
 
 - (NSString*) subtitle {
