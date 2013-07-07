@@ -38,8 +38,6 @@
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
-		496E626216DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */; };
-		496E626316DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */; };
 		496E626416DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
 		496E626516DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
 		496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
@@ -198,7 +196,6 @@
 		495253F41703F3E5006E27B0 /* 181-hammer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "181-hammer.png"; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
-		496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hazard-stripes-texture.png"; sourceTree = "<group>"; };
 		496E625F16DAFAD700E52E4A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		496E626716DAFAF600E52E4A /* WaypointHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHelper.h; sourceTree = "<group>"; };
 		496E626816DAFAF600E52E4A /* WaypointHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHelper.m; sourceTree = "<group>"; };
@@ -832,7 +829,6 @@
 				495253F41703F3E5006E27B0 /* 181-hammer.png */,
 				49C1FA0D16DC654100BAE96B /* wrench.png */,
 				496E625D16DAFAD700E52E4A /* airplane.png */,
-				496E625E16DAFAD700E52E4A /* hazard-stripes-texture.png */,
 				496E625F16DAFAD700E52E4A /* Icon-72.png */,
 			);
 			path = Images;
@@ -1715,7 +1711,6 @@
 				CAA2CFD6161BFFB700267615 /* README.md in Resources */,
 				CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */,
 				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
-				496E626216DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
@@ -1732,7 +1727,6 @@
 			files = (
 				CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
 				496E626116DAFAD700E52E4A /* airplane.png in Resources */,
-				496E626316DAFAD700E52E4A /* hazard-stripes-texture.png in Resources */,
 				496E626516DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 				49C1FA0F16DC654100BAE96B /* wrench.png in Resources */,

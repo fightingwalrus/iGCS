@@ -45,7 +45,19 @@
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
-@synthesize autoButton;
+// 4 modes
+//  * misc (manual, stabilize, etc; not selectable)
+//  * auto (initiates/returns to mission)
+//  * goto (guided; single point; not selectiable)
+//  * follow me (guided; periodic update based on offset from current GPS position)
+@synthesize controlModeSegment;
+enum {
+    CONTROL_MODE_MISC   = 0,
+    CONTROL_MODE_AUTO   = 1,
+    CONTROL_MODE_GOTO   = 2,
+    CONTROL_MODE_FOLLOW = 3
+};
+
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
 
@@ -280,8 +292,24 @@
     [[CommController appMLI] issueStartReadMissionRequest];
 }
 
-- (IBAction) autoButtonClick {
-    [[CommController appMLI] issueSetAUTOModeCommand];
+- (IBAction)changeControlModeSegment {
+    NSInteger idx = controlModeSegment.selectedSegmentIndex;
+    NSLog(@"changeControlModeSegment: %d", idx);
+    switch (idx) {
+        case CONTROL_MODE_MISC:
+            break;
+            
+        case CONTROL_MODE_AUTO:
+            [[CommController appMLI] issueSetAUTOModeCommand];
+            break;
+            
+        case CONTROL_MODE_GOTO:
+            break;
+            
+        case CONTROL_MODE_FOLLOW:
+            // FIXME: todo!
+            break;
+    }
 }
 
 - (IBAction) externalButtonClick {
@@ -896,10 +924,26 @@
             [customModeLabel    setText:[GCSMapViewController mavCustomModeToString:  heartbeat.custom_mode]];
             [baseModeLabel      setText:[GCSMapViewController mavModeEnumToString:    heartbeat.base_mode]];
             [statusLabel        setText:[GCSMapViewController mavStateEnumToString:   heartbeat.system_status]];
-                        
-            // Dis/enable the AUTO button
-            if ((heartbeat.custom_mode == AUTO) == autoButton.isEnabled) {
-                autoButton.enabled = !autoButton.isEnabled;
+            
+            NSInteger idx = CONTROL_MODE_MISC;
+            switch (heartbeat.custom_mode)
+            {
+                case AUTO:
+                    idx = CONTROL_MODE_AUTO;
+                    break;
+
+                case GUIDED:
+                    // FIXME: assume goto, for now
+                    idx = CONTROL_MODE_GOTO;
+                    break;
+            }
+            
+            if (idx != controlModeSegment.selectedSegmentIndex) {
+                // FIXME: test if this causes changeControlModeSegment to be called
+                // (it shouldn't, and we don't want it to... except we might need some logic
+                //  to handle removal of follow me update timers etc when the system reports 
+                //  an external custom mode change)
+                controlModeSegment.selectedSegmentIndex = idx;
             }
         }
         break;

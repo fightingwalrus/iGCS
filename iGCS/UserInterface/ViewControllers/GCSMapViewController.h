@@ -77,12 +77,13 @@
 @property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton    *autoButton;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
 
 - (IBAction) readMissionButtonClick;
-- (IBAction) autoButtonClick;
+- (IBAction) changeControlModeSegment;
 - (IBAction) externalButtonClick;
 
 @end
