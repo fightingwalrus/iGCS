@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
-                                <rect key="frame" x="140" y="456" width="220" height="44"/>
+                                <rect key="frame" x="129" y="456" width="220" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Misc" width="50" enabled="NO"/>
@@ -64,6 +64,27 @@
                                     <action selector="changeControlModeSegment" destination="2" eventType="valueChanged" id="1Cs-BN-1Xe"/>
                                 </connections>
                             </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
+                                <rect key="frame" x="355" y="456" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="Mi0-yh-GEE"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
+                                <rect key="frame" x="355" y="477" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="1dV-2y-IeR"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
+                                <rect key="frame" x="355" y="498" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="nvb-Dq-Yf8"/>
+                                </connections>
+                            </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nav Mode:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="mmg-kf-Gci">
                                 <rect key="frame" x="1" y="500" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -313,6 +334,9 @@
                         <outlet property="currentLabel" destination="DAe-Q0-ZRd" id="bYs-Ij-LSW"/>
                         <outlet property="customModeLabel" destination="NOu-t9-D3C" id="JVt-9w-a5P"/>
                         <outlet property="debugConsoleLabel" destination="JU5-Hk-0MJ" id="InN-iF-RbY"/>
+                        <outlet property="followMeBearingSlider" destination="BZD-fE-EKS" id="gjA-7e-SOi"/>
+                        <outlet property="followMeDistanceSlider" destination="3U7-Wa-XLe" id="azr-6s-MZv"/>
+                        <outlet property="followMeHeightSlider" destination="KV7-Pe-atM" id="plq-B2-Iow"/>
                         <outlet property="gpsFixTypeLabel" destination="3Tt-Ox-nW4" id="wWD-3I-ZoG"/>
                         <outlet property="groundSpeedLabel" destination="hNa-T9-4kL" id="569-yd-Usa"/>
                         <outlet property="numSatellitesLabel" destination="dYk-g5-LG9" id="qFX-8J-4MO"/>
@@ -1184,6 +1208,7 @@
             <relationships>
                 <relationship kind="action" name="changeControlModeSegment"/>
                 <relationship kind="action" name="externalButtonClick"/>
+                <relationship kind="action" name="followMeSliderChanged:" candidateClass="UISlider"/>
                 <relationship kind="action" name="readMissionButtonClick"/>
                 <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
                 <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
@@ -1195,6 +1220,9 @@
                 <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="followMeBearingSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="followMeDistanceSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="followMeHeightSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>

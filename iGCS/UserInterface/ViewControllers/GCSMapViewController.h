@@ -15,6 +15,7 @@
 #import "VerticalScaleView.h"
 #import "MavLinkPacketHandler.h"
 
+#import "FollowMePointAnnotation.h"
 #import "GotoPointAnnotation.h"
 #import "KxMovieViewController.h"
 
@@ -29,6 +30,10 @@
     GotoPointAnnotation *gotoPos;
     CLLocationCoordinate2D gotoCoordinates;
     NSMutableDictionary *_availableStreams;
+    
+    FollowMePointAnnotation *followMePos;
+    CLLocationCoordinate2D followMeCoords;
+    float followMeHeightOffset; // relative to home
     
     float gotoAltitude;
     int				gamePacketNumber;
@@ -78,6 +83,12 @@
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+
+// Temporary sliders to mock out future UI control of "follow" me mode
+@property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
+@property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
+@property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
+- (IBAction) followMeSliderChanged:(UISlider*)slider;
 
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;

@@ -58,6 +58,10 @@ enum {
     CONTROL_MODE_FOLLOW = 3
 };
 
+@synthesize followMeBearingSlider;
+@synthesize followMeDistanceSlider;
+@synthesize followMeHeightSlider;
+
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
 
@@ -102,6 +106,8 @@ enum {
     
     gotoPos = nil;
     gotoAltitude = 50;
+    
+    followMePos = nil;
 
 //    // Initialize the video overlay view
 //    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -292,7 +298,7 @@ enum {
     [[CommController appMLI] issueStartReadMissionRequest];
 }
 
-- (IBAction)changeControlModeSegment {
+- (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);
     switch (idx) {
@@ -310,6 +316,44 @@ enum {
             // FIXME: todo!
             break;
     }
+}
+
+- (IBAction) followMeSliderChanged:(UISlider*)slider {
+    [self updateFollowMePosition];
+}
+
+- (void) updateFollowMePosition {
+    // Determine user coord
+    // FIXME: get CLLocation from location manager, ensure accurate fix, etc
+    CLLocationCoordinate2D currentUserPos = CLLocationCoordinate2DMake(47.258842, 11.331070);
+    
+    // Determine new position
+    float bearing  = M_PI + (2 * M_PI * followMeBearingSlider.value);
+    float distance = (5 + 195 * followMeDistanceSlider.value); // 5 - 200 m away
+    followMeHeightOffset = (30 * followMeHeightSlider.value);  // 0 -  30 m relative to home
+    
+    static const float R = 6371000;
+    
+    float origLat  = currentUserPos.latitude*DEG2RAD;
+    float origLong = currentUserPos.longitude*DEG2RAD;
+    
+    float angD = distance/R;
+    float followMeLat  = asin(sin(origLat)*cos(angD) + cos(origLat)*sin(angD)*cos(bearing));
+    float followMeLong = origLong + atan2(sin(bearing)*sin(angD)*cos(origLat), cos(angD) - sin(origLat)*sin(followMeLat));
+
+    followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
+    NSLog(@"FollowMe lat/long: %f,%f", followMeLat*RAD2DEG, followMeLong*RAD2DEG);
+    
+    // Update map
+    if (followMePos != nil)
+        [map removeAnnotation:followMePos];
+    
+    followMePos = [[FollowMePointAnnotation alloc] initWithCoordinate:followMeCoords];
+    [map addAnnotation:followMePos];
+    [map setNeedsDisplay];
+    
+    // FIXME: start getting updates from location manager, and send
+    // guided mode commands to aircraft, if "Follow Me" mode is current
 }
 
 - (IBAction) externalButtonClick {
