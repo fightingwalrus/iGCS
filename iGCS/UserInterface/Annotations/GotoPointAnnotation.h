@@ -6,14 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import "CustomPointAnnotation.h"
 
-@interface GotoPointAnnotation :  NSObject <MKAnnotation> {
-    CLLocationCoordinate2D _coordinate;
-}
-
-@property (nonatomic, readonly) CLLocationCoordinate2D  coordinate;
+@interface GotoPointAnnotation :  CustomPointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 

@@ -7,24 +7,18 @@
 //
 
 #import "GotoPointAnnotation.h"
+#import "WaypointAnnotation.h"
 
 @implementation GotoPointAnnotation
-
-@synthesize coordinate  = _coordinate;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
+        _title = @"GOTO point";
+        _viewIdentifer = @"GOTO";
+        _color = WAYPOINT_NAV_COLOR;
     }
     return self;
-}
-
-- (NSString*) title {
-    return @"GOTO point";
-}
-
-- (NSString*) subtitle {
-    return [NSString stringWithFormat:@"%f,%f", _coordinate.longitude, _coordinate.latitude];
 }
 
 @end

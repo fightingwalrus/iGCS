@@ -956,22 +956,22 @@ enum {
     if (v != nil)
         return v;
     
-    // Handle our custom annotations
-    //
-    if ([annotation isKindOfClass:[GotoPointAnnotation class]]) {
-        NSString* identifier = @"GOTOPOINT";
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+    // Handle our custom point annotations
+    if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
+        CustomPointAnnotation *customPoint = (CustomPointAnnotation*)annotation;
+        
+        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
         if (view == nil) {
-            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            view = [[MKAnnotationView alloc] initWithAnnotation:customPoint reuseIdentifier:[customPoint viewIdentifier]];
         } else {
-            view.annotation = annotation;
+            view.annotation = customPoint;
         }
         
         view.enabled = YES;
         view.canShowCallout = YES;
         view.centerOffset = CGPointMake(0,0);      
         view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
-                                        withColor:WAYPOINT_LINE_COLOR];
+                                        withColor:[customPoint color]];
         return view;
     }
     
