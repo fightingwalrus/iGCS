@@ -246,12 +246,28 @@
 {
     [super viewDidAppear:animated];
 
-     NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
+    NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
+    NSString *videoDisplayLocation =  [[NSUserDefaults standardUserDefaults] objectForKey:@"videoDisplayLocation"];
+    
+    float scaleFactor;
     
     if ([videoSource isEqualToString:@"Z3"]) {
-        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:kGCSVideoScaleFactor];
+        
+        if ([videoDisplayLocation isEqualToString:@"corner"]) {
+            scaleFactor = 0.4;
+        } else {
+            scaleFactor = 1.0;
+        }
+        
+        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:scaleFactor];
     }else {
-        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:kGCSVideoScaleFactor];
+        
+        if ([videoDisplayLocation isEqualToString:@"corner"]) {
+            scaleFactor = 0.4;
+        } else {
+            scaleFactor = 1.0;
+        }
+        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
     }
 
 }
