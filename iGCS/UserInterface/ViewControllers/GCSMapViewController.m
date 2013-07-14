@@ -309,11 +309,11 @@ enum {
     NSLog(@"changeControlModeSegment: %d", idx);
     switch (idx) {
         case CONTROL_MODE_RC:
-            [followMeSwitch setOn:NO animated:YES];
+            [self disableFollowMeMode];
             break;
             
         case CONTROL_MODE_AUTO:
-            [followMeSwitch setOn:NO animated:YES];
+            [self disableFollowMeMode];
             [[CommController appMLI] issueSetAUTOModeCommand];
             break;
             
@@ -328,6 +328,10 @@ enum {
 
 - (IBAction) followMeSwitchChanged:(UISwitch*)s {
     [self updateFollowMePosition];
+}
+
+- (void) disableFollowMeMode {
+    [followMeSwitch setOn:NO animated:YES];
 }
 
 - (void) updateFollowMePosition {
@@ -1006,7 +1010,7 @@ enum {
             
             // If the current mode is not GUIDED, and has just changed, unconditionally switch out of Follow Me mode
             if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
-                [followMeSwitch setOn:NO animated:YES];
+                [self disableFollowMeMode];
             }
             lastCustomMode = heartbeat.custom_mode;
         }
