@@ -317,13 +317,10 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
-    /*
-     //FIXME CAUSED PILOT TO LOSE CONTROL IN STABILIZE MODE
      mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-     2, // Special flag that indicates this is a GUIDED mode packet
-     0, 0, 0, 0, 0,
-     coordinates.latitude, coordinates.longitude, altitude);
-     */
+                                   2, // Special flag that indicates this is a GUIDED mode packet
+                                   0, 0, 0, 0, 0,
+                                   coordinates.latitude, coordinates.longitude, altitude);
     // FIXME: should check for ACK, and retry a few times if not ACKnowledged
 }
 
