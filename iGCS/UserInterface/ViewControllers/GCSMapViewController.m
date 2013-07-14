@@ -45,6 +45,8 @@
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
+@synthesize userLocationAccuracyLabel;
+
 // 3 modes
 //  * auto (initiates/returns to mission)
 //  * misc (manual, stabilize, etc; not selectable)
@@ -375,7 +377,7 @@ enum {
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
     if (followMeSwitch.isOn &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
-        userPosition.horizontalAccuracy > 0 &&
+        userPosition.horizontalAccuracy >= 0 &&
         userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
         NSLog(@" - issueGOTOCommand");
         lastFollowMeUpdate = [NSDate date];
@@ -1088,12 +1090,17 @@ enum {
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locationManager.location;
-    NSLog(@"locationManager didUpdateLocations: %@", location.description);
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
-    if (age > 5.0 || location.horizontalAccuracy < 0) return;
-    if (location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+    NSLog(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
+    if (age > 5.0) return;
+    
+    userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
+    if (location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        userLocationAccuracyLabel.textColor = [UIColor greenColor];
         userPosition = location;
         [self updateFollowMePosition];
+    } else {
+        userLocationAccuracyLabel.textColor = [UIColor redColor];
     }
 }
 

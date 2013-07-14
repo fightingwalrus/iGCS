@@ -90,6 +90,8 @@
 @property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
+@property (nonatomic, retain) IBOutlet UILabel     *userLocationAccuracyLabel;
+
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
 
 // Temporary controls to mock out future UI control of "follow" me mode
