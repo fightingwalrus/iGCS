@@ -42,7 +42,14 @@
     } else {
         self.videoSource.selectedSegmentIndex = 1;
     }
-
+    
+    NSString *videoDisplayLocation = [[NSUserDefaults standardUserDefaults] valueForKey:@"videoDisplayLocation"];
+    if ([videoDisplayLocation isEqualToString:@"corner"]) {
+        self.videoDisplayLocation.selectedSegmentIndex = 0;
+    } else {
+        self.videoDisplayLocation.selectedSegmentIndex = 1;
+    }
+    
     [ExceptionHandler start:self];
 }
 
@@ -100,6 +107,21 @@
     } else {
         NSLog(@"Video Source: Test Stream");
         [userDefaults setObject:@"testStream" forKey:@"videoSource"];
+    }
+    [userDefaults synchronize];
+}
+
+
+- (IBAction)videoDisplayLocationValueChanged:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([segmentedControl selectedSegmentIndex] == 1) {
+        NSLog(@"Video Location: Full Screen");
+        [userDefaults setObject:@"fullScreen" forKey:@"videoDisplayLocation"];
+    } else {
+        NSLog(@"Video Source: Test Stream");
+        [userDefaults setObject:@"corner" forKey:@"videoDisplayLocation"];
     }
     [userDefaults synchronize];
 }
