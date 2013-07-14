@@ -19,23 +19,31 @@
 #import "GotoPointAnnotation.h"
 #import "KxMovieViewController.h"
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
+#define FOLLOW_ME_MIN_UPDATE_TIME 2
+#define FOLLOW_ME_REQUIRED_ACCURACY 10.0
+
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, CLLocationManagerDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
     
     GLKView *videoOverlayView;
     EAGLContext *_context;
+    NSMutableDictionary *_availableStreams;
 
     GotoPointAnnotation *gotoPos;
     CLLocationCoordinate2D gotoCoordinates;
-    NSMutableDictionary *_availableStreams;
+    float gotoAltitude;
     
     FollowMePointAnnotation *followMePos;
     CLLocationCoordinate2D followMeCoords;
     float followMeHeightOffset; // relative to home
+    NSDate *lastFollowMeUpdate;
+    uint32_t lastCustomMode;
     
-    float gotoAltitude;
+    CLLocationManager *locationManager;
+    CLLocation *userPosition;
+
     int				gamePacketNumber;
     int				gameUniqueID;
 }
@@ -84,10 +92,12 @@
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
 
-// Temporary sliders to mock out future UI control of "follow" me mode
+// Temporary controls to mock out future UI control of "follow" me mode
+@property (nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
 @property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
 @property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
 @property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
+- (IBAction) followMeSwitchChanged:(UISwitch*)s;
 - (IBAction) followMeSliderChanged:(UISlider*)slider;
 
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;

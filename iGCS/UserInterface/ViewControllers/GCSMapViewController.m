@@ -45,19 +45,18 @@
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
-// 4 modes
-//  * misc (manual, stabilize, etc; not selectable)
+// 3 modes
 //  * auto (initiates/returns to mission)
-//  * goto (guided; single point; not selectiable)
-//  * follow me (guided; periodic update based on offset from current GPS position)
+//  * misc (manual, stabilize, etc; not selectable)
+//  * guided (goto/follow me)
 @synthesize controlModeSegment;
 enum {
-    CONTROL_MODE_MISC   = 0,
-    CONTROL_MODE_AUTO   = 1,
-    CONTROL_MODE_GOTO   = 2,
-    CONTROL_MODE_FOLLOW = 3
+    CONTROL_MODE_RC       = 0,
+    CONTROL_MODE_AUTO     = 1,
+    CONTROL_MODE_GUIDED   = 2
 };
 
+@synthesize followMeSwitch;
 @synthesize followMeBearingSlider;
 @synthesize followMeDistanceSlider;
 @synthesize followMeHeightSlider;
@@ -108,6 +107,13 @@ enum {
     gotoAltitude = 50;
     
     followMePos = nil;
+    lastFollowMeUpdate = [NSDate date];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 2.0f;
+    [locationManager startUpdatingLocation];
 
 //    // Initialize the video overlay view
 //    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -302,18 +308,16 @@ enum {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);
     switch (idx) {
-        case CONTROL_MODE_MISC:
+        case CONTROL_MODE_RC:
+            [followMeSwitch setOn:NO animated:YES];
             break;
             
         case CONTROL_MODE_AUTO:
+            [followMeSwitch setOn:NO animated:YES];
             [[CommController appMLI] issueSetAUTOModeCommand];
             break;
             
-        case CONTROL_MODE_GOTO:
-            break;
-            
-        case CONTROL_MODE_FOLLOW:
-            // FIXME: todo!
+        case CONTROL_MODE_GUIDED:
             break;
     }
 }
@@ -322,10 +326,15 @@ enum {
     [self updateFollowMePosition];
 }
 
+- (IBAction) followMeSwitchChanged:(UISwitch*)s {
+    [self updateFollowMePosition];
+}
+
 - (void) updateFollowMePosition {
     // Determine user coord
     // FIXME: get CLLocation from location manager, ensure accurate fix, etc
-    CLLocationCoordinate2D currentUserPos = CLLocationCoordinate2DMake(47.258842, 11.331070);
+    CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070);
+    //CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
     float bearing  = M_PI + (2 * M_PI * followMeBearingSlider.value);
@@ -334,15 +343,15 @@ enum {
     
     static const float R = 6371000;
     
-    float origLat  = currentUserPos.latitude*DEG2RAD;
-    float origLong = currentUserPos.longitude*DEG2RAD;
+    float userLat  = userCoord.latitude*DEG2RAD;
+    float userLong = userCoord.longitude*DEG2RAD;
     
     float angD = distance/R;
-    float followMeLat  = asin(sin(origLat)*cos(angD) + cos(origLat)*sin(angD)*cos(bearing));
-    float followMeLong = origLong + atan2(sin(bearing)*sin(angD)*cos(origLat), cos(angD) - sin(origLat)*sin(followMeLat));
+    float followMeLat  = asin(sin(userLat)*cos(angD) + cos(userLat)*sin(angD)*cos(bearing));
+    float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
+    followMeLong = fmod((followMeLong + 3*M_PI), (2*M_PI)) - M_PI;
 
     followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
-    NSLog(@"FollowMe lat/long: %f,%f", followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
     if (followMePos != nil)
@@ -352,8 +361,17 @@ enum {
     [map addAnnotation:followMePos];
     [map setNeedsDisplay];
     
-    // FIXME: start getting updates from location manager, and send
-    // guided mode commands to aircraft, if "Follow Me" mode is current
+    // FIXME: need some UI feedback for when commands are being issued
+    //  (and when they are not, such as when GPS is inaccurate)
+    NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
+    if (followMeSwitch.isOn &&
+        (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
+        userPosition.horizontalAccuracy > 0 &&
+        userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        NSLog(@" - issueGOTOCommand");
+        lastFollowMeUpdate = [NSDate date];
+        [[CommController appMLI] issueGOTOCommand:followMeCoords withAltitude:followMeHeightOffset];
+    }
 }
 
 - (IBAction) externalButtonClick {
@@ -969,7 +987,7 @@ enum {
             [baseModeLabel      setText:[GCSMapViewController mavModeEnumToString:    heartbeat.base_mode]];
             [statusLabel        setText:[GCSMapViewController mavStateEnumToString:   heartbeat.system_status]];
             
-            NSInteger idx = CONTROL_MODE_MISC;
+            NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode)
             {
                 case AUTO:
@@ -977,18 +995,20 @@ enum {
                     break;
 
                 case GUIDED:
-                    // FIXME: assume goto, for now
-                    idx = CONTROL_MODE_GOTO;
+                    idx = CONTROL_MODE_GUIDED;
                     break;
             }
             
+            // Change the segmented control to reflect the heartbeat
             if (idx != controlModeSegment.selectedSegmentIndex) {
-                // FIXME: test if this causes changeControlModeSegment to be called
-                // (it shouldn't, and we don't want it to... except we might need some logic
-                //  to handle removal of follow me update timers etc when the system reports 
-                //  an external custom mode change)
                 controlModeSegment.selectedSegmentIndex = idx;
             }
+            
+            // If the current mode is not GUIDED, and has just changed, unconditionally switch out of Follow Me mode
+            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
+                [followMeSwitch setOn:NO animated:YES];
+            }
+            lastCustomMode = heartbeat.custom_mode;
         }
         break;
     }
@@ -1049,6 +1069,21 @@ enum {
 
 - (void)renderVideoOverlayView:(CADisplayLink*)displayLink {
     [videoOverlayView display];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // FIXME: mark some error
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = locationManager.location;
+    NSLog(@"locationManager didUpdateLocations: %@", location.description);
+    NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
+    if (age > 5.0 || location.horizontalAccuracy < 0) return;
+    if (location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        userPosition = location;
+        [self updateFollowMePosition];
+    }
 }
 
 @end
