@@ -307,13 +307,12 @@ enum {
 - (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);
+    [self disableFollowMeMode];
     switch (idx) {
         case CONTROL_MODE_RC:
-            [self disableFollowMeMode];
             break;
             
         case CONTROL_MODE_AUTO:
-            [self disableFollowMeMode];
             [[CommController appMLI] issueSetAUTOModeCommand];
             break;
             
@@ -332,6 +331,12 @@ enum {
 
 - (void) disableFollowMeMode {
     [followMeSwitch setOn:NO animated:YES];
+}
+
+- (void) clearGotoPos {
+    if (gotoPos != nil)
+        [map removeAnnotation:gotoPos];
+    gotoPos = nil;
 }
 
 - (void) updateFollowMePosition {
@@ -743,10 +748,9 @@ enum {
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {
+        [self clearGotoPos];
+        
         // Drop an icon for the proposed GOTO point
-        if (gotoPos != nil)
-            [map removeAnnotation:gotoPos];
-
         gotoPos = [[GotoPointAnnotation alloc] initWithCoordinate:gotoCoordinates];
         [map addAnnotation:gotoPos];
         [map setNeedsDisplay];
@@ -1008,9 +1012,12 @@ enum {
                 controlModeSegment.selectedSegmentIndex = idx;
             }
             
-            // If the current mode is not GUIDED, and has just changed, unconditionally switch out of Follow Me mode
+            // If the current mode is not GUIDED, and has just changed
+            //   - unconditionally switch out of Follow Me mode
+            //   - clear the goto position
             if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
                 [self disableFollowMeMode];
+                [self clearGotoPos];
             }
             lastCustomMode = heartbeat.custom_mode;
         }
