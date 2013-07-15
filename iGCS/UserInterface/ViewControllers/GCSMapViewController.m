@@ -90,6 +90,8 @@
     
     gotoPos = nil;
     gotoAltitude = 50;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
 
 //    // Initialize the video overlay view
 //    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
