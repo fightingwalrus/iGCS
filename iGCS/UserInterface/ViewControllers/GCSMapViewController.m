@@ -341,6 +341,17 @@ enum {
     gotoPos = nil;
 }
 
+- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
+    NSLog(@" - issueGuidedCommand");
+    if (following) {
+        [self clearGotoPos];
+    } else {
+        [self disableFollowMeMode];
+    }
+    [[CommController appMLI] issueGOTOCommand:coordinates withAltitude:altitude];
+}
+
+
 - (void) updateFollowMePosition {
     // Determine user coord
     // FIXME: get CLLocation from location manager, ensure accurate fix, etc
@@ -379,9 +390,9 @@ enum {
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
         userPosition.horizontalAccuracy >= 0 &&
         userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
-        NSLog(@" - issueGOTOCommand");
         lastFollowMeUpdate = [NSDate date];
-        [[CommController appMLI] issueGOTOCommand:followMeCoords withAltitude:followMeHeightOffset];
+        
+        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
     }
 }
 
@@ -758,7 +769,7 @@ enum {
         [map setNeedsDisplay];
         
         // Let's go!
-        [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
+        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
     }
 }
 
