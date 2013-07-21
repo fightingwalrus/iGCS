@@ -131,6 +131,8 @@
 		CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
 		CAE20224152EA67A00D659E2 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
+		CAF37A0A179BC2AB00183159 /* MavLinkUtiility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtiility.m */; };
+		CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A0F179BC52000183159 /* MiscUtilities.m */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
 		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
@@ -689,6 +691,10 @@
 		CAF0B8811657A8960033B0BC /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		CAF0B8821657A8960033B0BC /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		CAF37A08179BC2AB00183159 /* MavLinkUtiility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkUtiility.h; sourceTree = "<group>"; };
+		CAF37A09179BC2AB00183159 /* MavLinkUtiility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkUtiility.m; sourceTree = "<group>"; };
+		CAF37A0E179BC52000183159 /* MiscUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscUtilities.h; path = Utility/MiscUtilities.h; sourceTree = "<group>"; };
+		CAF37A0F179BC52000183159 /* MiscUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscUtilities.m; path = Utility/MiscUtilities.m; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemEditViewController.h; sourceTree = "<group>"; };
@@ -854,6 +860,7 @@
 			children = (
 				496E627016DAFB8B00E52E4A /* Annotations */,
 				496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */,
+				CAF37A0D179BC4C000183159 /* Utility */,
 				496E627616DAFB8B00E52E4A /* ViewControllers */,
 				496E627F16DAFB8B00E52E4A /* Views */,
 				CA26AD69173E22E300F8E7B3 /* MissionItemField.h */,
@@ -1016,6 +1023,8 @@
 			children = (
 				496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */,
 				496E62C516DAFBF600E52E4A /* MavLinkTools.h */,
+				CAF37A08179BC2AB00183159 /* MavLinkUtiility.h */,
+				CAF37A09179BC2AB00183159 /* MavLinkUtiility.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1613,6 +1622,15 @@
 			path = CorePlot_1.1/Binaries/iOS/CorePlotHeaders;
 			sourceTree = "<group>";
 		};
+		CAF37A0D179BC4C000183159 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CAF37A0E179BC52000183159 /* MiscUtilities.h */,
+				CAF37A0F179BC52000183159 /* MiscUtilities.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1801,6 +1819,8 @@
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
+				CAF37A0A179BC2AB00183159 /* MavLinkUtiility.m in Sources */,
+				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
