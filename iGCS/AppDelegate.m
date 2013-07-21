@@ -33,7 +33,9 @@ static AppDelegate *shared;
 {
     
     // set up defaults
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1}];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1,
+     @"videoDisplayLocation": @"corner"}];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 #ifdef TESTING

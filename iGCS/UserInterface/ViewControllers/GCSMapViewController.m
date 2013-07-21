@@ -119,6 +119,8 @@ enum {
     locationManager.distanceFilter = 2.0f;
     [locationManager startUpdatingLocation];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
+
 //    // Initialize the video overlay view
 //    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 //    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
@@ -274,12 +276,28 @@ enum {
 {
     [super viewDidAppear:animated];
 
-     NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
+    NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
+    NSString *videoDisplayLocation =  [[NSUserDefaults standardUserDefaults] objectForKey:@"videoDisplayLocation"];
+    
+    float scaleFactor;
     
     if ([videoSource isEqualToString:@"Z3"]) {
-        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:kGCSVideoScaleFactor];
+        
+        if ([videoDisplayLocation isEqualToString:@"corner"]) {
+            scaleFactor = 0.4;
+        } else {
+            scaleFactor = 1.0;
+        }
+        
+        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:scaleFactor];
     }else {
-        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:kGCSVideoScaleFactor];
+        
+        if ([videoDisplayLocation isEqualToString:@"corner"]) {
+            scaleFactor = 0.4;
+        } else {
+            scaleFactor = 1.0;
+        }
+        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
     }
 
 }

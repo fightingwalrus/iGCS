@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A497d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -484,7 +484,8 @@
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View " id="epM-NP-sgK" userLabel="Default View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View
+" id="epM-NP-sgK" userLabel="Default View">
                                 <rect key="frame" x="0.0" y="328" width="768" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -930,8 +931,8 @@
                                     <action selector="bluetoothTxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="nSV-tJ-0zA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Video Stream" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E3I-9g-Mub" userLabel="Label - Video Source">
-                                <rect key="frame" x="620" y="20" width="166" height="26"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Video Source" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E3I-9g-Mub" userLabel="Label - Video Source">
+                                <rect key="frame" x="620" y="20" width="126" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -948,6 +949,24 @@
                                     <action selector="videoSourceValueChanged:" destination="PSV-eg-xmf" eventType="valueChanged" id="5hz-aU-3ou"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Video Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4pe-GY-KsJ">
+                                <rect key="frame" x="764" y="20" width="133" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="syq-fH-S2E">
+                                <rect key="frame" x="764" y="54" width="225" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Corner"/>
+                                    <segment title="Full Screen"/>
+                                </segments>
+                                <connections>
+                                    <action selector="videoDisplayLocationValueChanged:" destination="PSV-eg-xmf" eventType="valueChanged" id="pRf-zN-ygA"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -956,6 +975,7 @@
                     <connections>
                         <outlet property="consoleTextView" destination="yF1-8o-Uj0" id="tz7-lU-HLL"/>
                         <outlet property="errorsTextView" destination="z9D-OV-EQr" id="QtZ-Eb-1rf"/>
+                        <outlet property="videoDisplayLocation" destination="syq-fH-S2E" id="fis-8e-e5e"/>
                         <outlet property="videoSource" destination="UfW-BU-E7h" id="3Mx-uS-llT"/>
                     </connections>
                 </viewController>
@@ -1241,9 +1261,11 @@
             <relationships>
                 <relationship kind="action" name="bluetoothRxClicked:"/>
                 <relationship kind="action" name="bluetoothTxClicked:"/>
+                <relationship kind="action" name="videoDisplayLocationValueChanged:"/>
                 <relationship kind="action" name="videoSourceValueChanged:"/>
                 <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="videoDisplayLocation" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="videoSource" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>

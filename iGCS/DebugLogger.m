@@ -29,6 +29,7 @@ static UILabel *consoleLabelRef;
 
 +(void)console:(NSString*)format, ...
 {
+#ifndef DEBUG
     // put varargs into variable args
     va_list args;
     // put everything after message into varargs list
@@ -39,6 +40,7 @@ static UILabel *consoleLabelRef;
     [self addToConsole:[NSString stringWithFormat:@"%@: %@",[[NSDate date] description],message]];
     
     consoleLabelRef.text = [self getConsoleText];
+#endif
 }
 
 
