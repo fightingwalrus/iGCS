@@ -121,10 +121,6 @@
     CGContextSelectFont(ctx, "Arial Rounded MT Bold", FONT_SIZE_LARGE, kCGEncodingMacRoman);
     NSString *label = [NSString stringWithFormat:@"%d", (int)round(val)];
 
-    // Determine size of text
-    //  - can't safely use [label sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE_LARGE]] in background threads
-    //  - FIXME: move me to common class and reuse
-    //  - FIXME: if non-performant, consider memoization
     float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
     CGContextSetTextPosition(ctx, c.x - labelWidth/2, c.y + FONT_SIZE_LARGE/3.0);
