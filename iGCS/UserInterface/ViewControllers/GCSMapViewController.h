@@ -39,6 +39,7 @@
     
     CLLocationCoordinate2D followMeCoords;
     float followMeHeightOffset; // relative to home
+    BOOL showProposedFollowPos;
     NSDate *lastFollowMeUpdate;
     uint32_t lastCustomMode;
     

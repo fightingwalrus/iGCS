@@ -110,6 +110,7 @@ enum {
     
     gotoAltitude = 50;
     
+    showProposedFollowPos = false;
     lastFollowMeUpdate = [NSDate date];
     
     locationManager = [[CLLocationManager alloc] init];
@@ -325,15 +326,18 @@ enum {
 }
 
 - (IBAction) followMeSliderChanged:(UISlider*)slider {
+    showProposedFollowPos = true;
     [self updateFollowMePosition];
 }
 
 - (IBAction) followMeSwitchChanged:(UISwitch*)s {
+    showProposedFollowPos = true;
     [self updateFollowMePosition];
 }
 
 - (void) disableFollowMeMode {
     [followMeSwitch setOn:NO animated:YES];
+    showProposedFollowPos = false;
 }
 
 - (void) clearGuidedPositions {
@@ -348,8 +352,11 @@ enum {
     requestedGuidedAnnotation = nil;
 }
 
-- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
+- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
     NSLog(@" - issueGuidedCommand");
+    if (!following) {
+        [self disableFollowMeMode];
+    }
     
     [self clearGuidedPositions];
 
@@ -389,9 +396,11 @@ enum {
     if (requestedGuidedAnnotation != nil)
         [map removeAnnotation:requestedGuidedAnnotation];
     
-    requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
-    [map addAnnotation:requestedGuidedAnnotation];
-    [map setNeedsDisplay];
+    if (showProposedFollowPos) {
+        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
+        [map addAnnotation:requestedGuidedAnnotation];
+        [map setNeedsDisplay];
+    }
     
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
     if (followMeSwitch.isOn &&
@@ -400,7 +409,7 @@ enum {
         userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
         lastFollowMeUpdate = [NSDate date];
         
-        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset];
+        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
     }
 }
 
@@ -770,7 +779,7 @@ enum {
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {
         // Let's go!
-        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude];
+        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
     }
 }
 
@@ -1119,13 +1128,15 @@ enum {
     if (age > 5.0) return;
     
     userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
+
     if (location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
         userLocationAccuracyLabel.textColor = [UIColor greenColor];
-        userPosition = location;
-        [self updateFollowMePosition];
     } else {
         userLocationAccuracyLabel.textColor = [UIColor redColor];
     }
+    
+    userPosition = location;
+    [self updateFollowMePosition];
 }
 
 @end
