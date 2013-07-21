@@ -44,8 +44,8 @@
 		496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
 		496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
 		496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
-		496E628916DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */; };
-		496E628A16DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */; };
+		496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
+		496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
 		496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
 		496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
 		496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
@@ -131,7 +131,7 @@
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
-		CAFD1CC517895E6000B5EC88 /* FollowMePointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* FollowMePointAnnotation.m */; };
+		CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */; };
 		CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */; };
 		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
 		CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */; };
@@ -203,8 +203,8 @@
 		496E626816DAFAF600E52E4A /* WaypointHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHelper.m; sourceTree = "<group>"; };
 		496E626916DAFAF600E52E4A /* WaypointsHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsHolder.h; sourceTree = "<group>"; };
 		496E626A16DAFAF600E52E4A /* WaypointsHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsHolder.m; sourceTree = "<group>"; };
-		496E627116DAFB8B00E52E4A /* GotoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoPointAnnotation.h; sourceTree = "<group>"; };
-		496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoPointAnnotation.m; sourceTree = "<group>"; };
+		496E627116DAFB8B00E52E4A /* GuidedPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidedPointAnnotation.h; sourceTree = "<group>"; };
+		496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidedPointAnnotation.m; sourceTree = "<group>"; };
 		496E627316DAFB8B00E52E4A /* WaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotation.h; sourceTree = "<group>"; };
 		496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointAnnotation.m; sourceTree = "<group>"; };
 		496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -690,8 +690,8 @@
 		CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		CAFD1CC317895E6000B5EC88 /* FollowMePointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowMePointAnnotation.h; sourceTree = "<group>"; };
-		CAFD1CC417895E6000B5EC88 /* FollowMePointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowMePointAnnotation.m; sourceTree = "<group>"; };
+		CAFD1CC317895E6000B5EC88 /* RequestedPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestedPointAnnotation.h; sourceTree = "<group>"; };
+		CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestedPointAnnotation.m; sourceTree = "<group>"; };
 		CAFD1CC71789670E00B5EC88 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
 		CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
 		CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemEditViewController.h; sourceTree = "<group>"; };
@@ -869,10 +869,10 @@
 			children = (
 				CAFD1CC71789670E00B5EC88 /* CustomPointAnnotation.h */,
 				CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */,
-				CAFD1CC317895E6000B5EC88 /* FollowMePointAnnotation.h */,
-				CAFD1CC417895E6000B5EC88 /* FollowMePointAnnotation.m */,
-				496E627116DAFB8B00E52E4A /* GotoPointAnnotation.h */,
-				496E627216DAFB8B00E52E4A /* GotoPointAnnotation.m */,
+				CAFD1CC317895E6000B5EC88 /* RequestedPointAnnotation.h */,
+				CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */,
+				496E627116DAFB8B00E52E4A /* GuidedPointAnnotation.h */,
+				496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */,
 				496E627316DAFB8B00E52E4A /* WaypointAnnotation.h */,
 				496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */,
 			);
@@ -1770,7 +1770,7 @@
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
-				496E628916DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */,
+				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
 				496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
@@ -1805,7 +1805,7 @@
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
-				CAFD1CC517895E6000B5EC88 /* FollowMePointAnnotation.m in Sources */,
+				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1817,7 +1817,7 @@
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
 				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
-				496E628A16DAFB8B00E52E4A /* GotoPointAnnotation.m in Sources */,
+				496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,
 				496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "CustomPointAnnotation.h"
 
-@interface GotoPointAnnotation :  CustomPointAnnotation
+@interface GuidedPointAnnotation :  CustomPointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 

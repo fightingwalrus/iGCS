@@ -15,8 +15,8 @@
 #import "VerticalScaleView.h"
 #import "MavLinkPacketHandler.h"
 
-#import "FollowMePointAnnotation.h"
-#import "GotoPointAnnotation.h"
+#import "RequestedPointAnnotation.h"
+#import "GuidedPointAnnotation.h"
 #import "KxMovieViewController.h"
 
 #define FOLLOW_ME_MIN_UPDATE_TIME 2
@@ -31,8 +31,8 @@
     EAGLContext *_context;
     NSMutableDictionary *_availableStreams;
 
-    GotoPointAnnotation *currentGuidedAnnotation;
-    FollowMePointAnnotation *requestedGuidedAnnotation;
+    GuidedPointAnnotation *currentGuidedAnnotation;
+    RequestedPointAnnotation *requestedGuidedAnnotation;
 
     CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;

@@ -6,15 +6,15 @@
 //
 //
 
-#import "FollowMePointAnnotation.h"
+#import "RequestedPointAnnotation.h"
 
-@implementation FollowMePointAnnotation
+@implementation RequestedPointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
-        _title = @"FOLLOWME point";
-        _viewIdentifer = @"FOLLOWME";
+        _title = @"REQUESTED point";
+        _viewIdentifer = @"REQUESTED";
         _color = [UIColor orangeColor];
         _doAnimation = NO;
     }

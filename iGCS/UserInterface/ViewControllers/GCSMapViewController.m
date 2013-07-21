@@ -354,7 +354,7 @@ enum {
     [self clearGuidedPositions];
 
     // Drop an icon for the proposed GUIDED point
-    currentGuidedAnnotation = [[GotoPointAnnotation alloc] initWithCoordinate:coordinates];
+    currentGuidedAnnotation = [[GuidedPointAnnotation alloc] initWithCoordinate:coordinates];
     [map addAnnotation:currentGuidedAnnotation];
     [map setNeedsDisplay];
 
@@ -389,7 +389,7 @@ enum {
     if (requestedGuidedAnnotation != nil)
         [map removeAnnotation:requestedGuidedAnnotation];
     
-    requestedGuidedAnnotation = [[FollowMePointAnnotation alloc] initWithCoordinate:followMeCoords];
+    requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
     [map addAnnotation:requestedGuidedAnnotation];
     [map setNeedsDisplay];
     

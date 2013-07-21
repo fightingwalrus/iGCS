@@ -8,7 +8,7 @@
 
 #import "CustomPointAnnotation.h"
 
-@interface FollowMePointAnnotation :  CustomPointAnnotation
+@interface RequestedPointAnnotation :  CustomPointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 
