@@ -17,6 +17,7 @@
         _title = @"GOTO point";
         _viewIdentifer = @"GOTO";
         _color = WAYPOINT_NAV_COLOR;
+        _animationRepeatCount = HUGE_VAL;
     }
     return self;
 }

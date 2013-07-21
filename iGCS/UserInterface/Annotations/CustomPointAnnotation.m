@@ -14,6 +14,7 @@
 @synthesize title          = _title;
 @synthesize viewIdentifier = _viewIdentifer;
 @synthesize color          = _color;
+@synthesize animationRepeatCount = _animationRepeatCount;
 
 - (NSString*) subtitle {
     return [NSString stringWithFormat:@"%f,%f", _coordinate.longitude, _coordinate.latitude];

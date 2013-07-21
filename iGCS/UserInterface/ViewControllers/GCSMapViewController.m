@@ -1051,6 +1051,7 @@ enum {
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:customPoint reuseIdentifier:[customPoint viewIdentifier]];
+            [view.layer removeAllAnimations];
         } else {
             view.annotation = customPoint;
         }
@@ -1060,6 +1061,15 @@ enum {
         view.centerOffset = CGPointMake(0,0);      
         view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
                                         withColor:[customPoint color]];
+        
+        CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        scaleAnimation.duration = 2.0;
+        scaleAnimation.repeatCount = [customPoint animationRepeatCount];
+        scaleAnimation.autoreverses = YES;
+        scaleAnimation.fromValue = [NSNumber numberWithFloat:1.2];
+        scaleAnimation.toValue = [NSNumber numberWithFloat:0.8];
+        [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+        
         return view;
     }
     

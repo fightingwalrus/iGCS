@@ -16,6 +16,7 @@
         _title = @"FOLLOWME point";
         _viewIdentifer = @"FOLLOWME";
         _color = [UIColor redColor];
+        _animationRepeatCount = 0;
     }
     return self;
 }
