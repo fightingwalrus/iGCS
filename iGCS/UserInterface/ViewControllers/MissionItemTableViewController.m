@@ -9,6 +9,8 @@
 #import "MissionItemTableViewController.h"
 #import "MissionItemEditViewController.h"
 
+#import "MiscUtilities.h"
+
 #import "WaypointHelper.h"
 
 @interface HeaderSpec : NSObject
@@ -136,24 +138,6 @@ NSArray* headerSpecs = nil;
     }
 }
 
-// FIXME: move to utility file
-- (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat {
-    char letter = (val > 0) ? 'E' : 'W';
-    if (isLat) {
-        letter = (val > 0) ? 'N' : 'S';
-    }
-    
-    val = fabs(val);
-    
-    int deg = (int)val;
-    val = (val - deg) * 60;
-    
-    int min = (int)val;
-    float sec = (val - min) * 60;
-    
-    return [NSString stringWithFormat:@"%02d° %02d' %02.2f%c", deg, min, sec, letter];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"MissionItemCellID";
@@ -205,11 +189,11 @@ NSArray* headerSpecs = nil;
 
     // X (Latitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [self coordinateToNiceLatLong: waypoint.x isLat:YES] : @"-";
+    label.text = isNavCommand ? [MiscUtilities coordinateToNiceLatLong: waypoint.x isLat:YES] : @"-";
     
     // Y (Longitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [self coordinateToNiceLatLong: waypoint.y isLat:NO] : @"-";
+    label.text = isNavCommand ? [MiscUtilities coordinateToNiceLatLong: waypoint.y isLat:NO] : @"-";
 
     // Z (Altitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
