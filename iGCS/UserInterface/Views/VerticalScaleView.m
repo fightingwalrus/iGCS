@@ -8,6 +8,7 @@
 
 #import "VerticalScaleView.h"
 #import "GaugeViewCommon.h"
+#import "MiscUtilities.h"
 
 @implementation VerticalScaleView
 
@@ -109,24 +110,6 @@
     
     // Draw centre pointer over the top
     //
-#if 0
-    CGContextSaveGState(ctx);
-    CGContextSetShadow (ctx, CGSizeMake (TICK_HEIGHT, TICK_HEIGHT), 2.5);
-    for (int i = 0; i < 2; i++) {
-        CGContextBeginPath(ctx);
-        CGContextMoveToPoint(ctx,    c.x-w/2, c.y);
-        CGContextAddLineToPoint(ctx, c.x+w/2, c.y);    
-        if (i == 0) {
-            CGContextSetLineWidth(ctx, TICK_HEIGHT);
-            CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor] CGColor]);
-        } else {
-            CGContextSetLineWidth(ctx, TICK_HEIGHT/3);
-            CGContextSetRGBStrokeColor(ctx, ORANGE_COLOUR);    
-        }
-        CGContextStrokePath(ctx);
-    }
-    CGContextRestoreGState(ctx);
-#else
     CGContextSetFillColorWithColor(ctx, [[UIColor blackColor] CGColor]);
     CGContextSetRGBStrokeColor(ctx, ORANGE_COLOUR);
 
@@ -142,15 +125,10 @@
     //  - can't safely use [label sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE_LARGE]] in background threads
     //  - FIXME: move me to common class and reuse
     //  - FIXME: if non-performant, consider memoization
-    CGContextSetTextDrawingMode(ctx, kCGTextInvisible);
-    CGContextSetTextPosition(ctx, c.x, c.y);
-    CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
-    CGPoint newPos = CGContextGetTextPosition(ctx);
-    
+    float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
-    CGContextSetTextPosition(ctx, c.x - (newPos.x - c.x)/2, c.y + FONT_SIZE_LARGE/3.0);
+    CGContextSetTextPosition(ctx, c.x - labelWidth/2, c.y + FONT_SIZE_LARGE/3.0);
     CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
-#endif
     
 
     CGRect gaugeBoundary = CGRectMake(c.x - w/2, c.y-h/2, w, h);

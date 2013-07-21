@@ -231,7 +231,6 @@
     windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
-    
 }
 
 - (void)viewDidUnload

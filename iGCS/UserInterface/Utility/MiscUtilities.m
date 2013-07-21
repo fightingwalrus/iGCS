@@ -10,6 +10,15 @@
 
 @implementation MiscUtilities
 
+// Determine size of text
+//  - can't safely use [label sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE_LARGE]] in background threads
++ (float) getTextWidth:(NSString*)label withContext:(CGContextRef)ctx {
+    CGContextSetTextDrawingMode(ctx, kCGTextInvisible);
+    CGContextSetTextPosition(ctx, 0, 0);
+    CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
+    CGPoint newPos = CGContextGetTextPosition(ctx);
+    return newPos.x;
+}
 
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang
 {
