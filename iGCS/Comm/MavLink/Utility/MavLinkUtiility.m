@@ -10,7 +10,6 @@
 
 @implementation MavLinkUtiility
 
-// FIXME: move the below utilities to some "utils" file
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode {
     NSString *str = [NSString stringWithFormat:@""];
     if (mode & MAV_MODE_FLAG_TEST_ENABLED)          str = [str stringByAppendingString:@"Test "];
