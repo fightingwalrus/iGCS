@@ -21,7 +21,6 @@
 }
 
 - (void) setHeading:(float)_heading {
-    // FIXME: low pass filter here?
     if (_heading >= 0 && _heading <= 360) heading = _heading;
 }
 

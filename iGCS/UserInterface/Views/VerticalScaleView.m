@@ -25,7 +25,6 @@
 }
 
 - (void)setValue:(float)_val {
-    // FIXME: low pass filter here?
     val = _val;
 }
 
