@@ -15,8 +15,8 @@
         _coordinate = coordinate;
         _title = @"FOLLOWME point";
         _viewIdentifer = @"FOLLOWME";
-        _color = [UIColor redColor];
-        _animationRepeatCount = 0;
+        _color = [UIColor orangeColor];
+        _doAnimation = NO;
     }
     return self;
 }

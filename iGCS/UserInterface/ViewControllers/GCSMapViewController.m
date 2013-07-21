@@ -105,10 +105,11 @@ enum {
     [uavView addGestureRecognizer:tap];
     uavView.centerOffset = CGPointMake(0, 0);
     
-    gotoPos = nil;
+    currentGuidedAnnotation   = nil;
+    requestedGuidedAnnotation = nil;
+    
     gotoAltitude = 50;
     
-    followMePos = nil;
     lastFollowMeUpdate = [NSDate date];
     
     locationManager = [[CLLocationManager alloc] init];
@@ -335,19 +336,28 @@ enum {
     [followMeSwitch setOn:NO animated:YES];
 }
 
-- (void) clearGotoPos {
-    if (gotoPos != nil)
-        [map removeAnnotation:gotoPos];
-    gotoPos = nil;
+- (void) clearGuidedPositions {
+    if (currentGuidedAnnotation != nil) {
+        [map removeAnnotation:currentGuidedAnnotation];
+    }
+    currentGuidedAnnotation = nil;
+    
+    if (requestedGuidedAnnotation != nil) {
+        [map removeAnnotation:requestedGuidedAnnotation];
+    }
+    requestedGuidedAnnotation = nil;
 }
 
-- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
+- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
     NSLog(@" - issueGuidedCommand");
-    if (following) {
-        [self clearGotoPos];
-    } else {
-        [self disableFollowMeMode];
-    }
+    
+    [self clearGuidedPositions];
+
+    // Drop an icon for the proposed GUIDED point
+    currentGuidedAnnotation = [[GotoPointAnnotation alloc] initWithCoordinate:coordinates];
+    [map addAnnotation:currentGuidedAnnotation];
+    [map setNeedsDisplay];
+
     [[CommController appMLI] issueGOTOCommand:coordinates withAltitude:altitude];
 }
 
@@ -376,15 +386,13 @@ enum {
     followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
-    if (followMePos != nil)
-        [map removeAnnotation:followMePos];
+    if (requestedGuidedAnnotation != nil)
+        [map removeAnnotation:requestedGuidedAnnotation];
     
-    followMePos = [[FollowMePointAnnotation alloc] initWithCoordinate:followMeCoords];
-    [map addAnnotation:followMePos];
+    requestedGuidedAnnotation = [[FollowMePointAnnotation alloc] initWithCoordinate:followMeCoords];
+    [map addAnnotation:requestedGuidedAnnotation];
     [map setNeedsDisplay];
     
-    // FIXME: need some UI feedback for when commands are being issued
-    //  (and when they are not, such as when GPS is inaccurate)
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
     if (followMeSwitch.isOn &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
@@ -392,7 +400,7 @@ enum {
         userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
         lastFollowMeUpdate = [NSDate date];
         
-        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
+        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset];
     }
 }
 
@@ -761,15 +769,8 @@ enum {
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {
-        [self clearGotoPos];
-        
-        // Drop an icon for the proposed GOTO point
-        gotoPos = [[GotoPointAnnotation alloc] initWithCoordinate:gotoCoordinates];
-        [map addAnnotation:gotoPos];
-        [map setNeedsDisplay];
-        
         // Let's go!
-        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
+        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude];
     }
 }
 
@@ -1027,10 +1028,10 @@ enum {
             
             // If the current mode is not GUIDED, and has just changed
             //   - unconditionally switch out of Follow Me mode
-            //   - clear the goto position
+            //   - clear the guided position annotation markers
             if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
                 [self disableFollowMeMode];
-                [self clearGotoPos];
+                [self clearGuidedPositions];
             }
             lastCustomMode = heartbeat.custom_mode;
         }
@@ -1062,13 +1063,15 @@ enum {
         view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
                                         withColor:[customPoint color]];
         
-        CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-        scaleAnimation.duration = 2.0;
-        scaleAnimation.repeatCount = [customPoint animationRepeatCount];
-        scaleAnimation.autoreverses = YES;
-        scaleAnimation.fromValue = [NSNumber numberWithFloat:1.2];
-        scaleAnimation.toValue = [NSNumber numberWithFloat:0.8];
-        [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+        if ([customPoint doAnimation]) {
+            CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            scaleAnimation.duration = 2.0;
+            scaleAnimation.repeatCount = HUGE_VAL;
+            scaleAnimation.autoreverses = YES;
+            scaleAnimation.fromValue = [NSNumber numberWithFloat:1.2];
+            scaleAnimation.toValue = [NSNumber numberWithFloat:0.8];
+            [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+        }
         
         return view;
     }

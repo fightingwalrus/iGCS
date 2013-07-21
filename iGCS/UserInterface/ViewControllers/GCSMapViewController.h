@@ -31,11 +31,12 @@
     EAGLContext *_context;
     NSMutableDictionary *_availableStreams;
 
-    GotoPointAnnotation *gotoPos;
+    GotoPointAnnotation *currentGuidedAnnotation;
+    FollowMePointAnnotation *requestedGuidedAnnotation;
+
     CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;
     
-    FollowMePointAnnotation *followMePos;
     CLLocationCoordinate2D followMeCoords;
     float followMeHeightOffset; // relative to home
     NSDate *lastFollowMeUpdate;

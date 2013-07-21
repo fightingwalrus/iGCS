@@ -13,13 +13,13 @@
     NSString *_title;
     NSString *_viewIdentifer;
     UIColor  *_color;
-    float    _animationRepeatCount;
+    BOOL     _doAnimation;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *viewIdentifier;
 @property (nonatomic, readonly, copy) UIColor  *color;
-@property (nonatomic, readonly) float animationRepeatCount;
+@property (nonatomic, readonly) BOOL doAnimation;
 
 @end
