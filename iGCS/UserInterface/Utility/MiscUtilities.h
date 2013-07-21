@@ -10,6 +10,8 @@
 
 @interface MiscUtilities : NSObject
 
-+ (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat;
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang;
++ (UIImage *)image:(UIImage*)img withColor:(UIColor*)color;
++ (NSString*)coordinateToNiceLatLong:(float)val isLat:(bool)isLat;
 
 @end

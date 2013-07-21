@@ -13,6 +13,7 @@
 #import "GaugeViewCommon.h"
 
 #import "MavLinkUtiility.h"
+#import "MiscUtilities.h"
 
 #import "CommController.h"
 #import "AppDelegate.h"
@@ -82,9 +83,9 @@
     [uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     uavView = [[MKAnnotationView  alloc] initWithAnnotation:uavPos reuseIdentifier:@"uavView"];
-    uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"airplane.png"] 
-                                                scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
-                                                rotation: 0];
+    uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
+                                     scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
+                                         rotation: 0];
     uavView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(airplanTapped:)];
     [uavView addGestureRecognizer:tap];
@@ -225,8 +226,8 @@
     [altitudeView setScale:100];
     [altitudeView setValue:0];
     
-    windIconView = [[UIImageView alloc] initWithImage:[GCSMapViewController image:[UIImage imageNamed:@"193-location-arrow.png"]
-                                                                        withColor:[UIColor redColor]]];
+    windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
+                                                                 withColor:[UIColor redColor]]];
     windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
@@ -773,9 +774,9 @@
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            uavView.image = [GCSMapViewController imageWithImage: [UIImage imageNamed:@"airplane.png"] 
-                                                    scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
-                                                        rotation: attitudePkt.yaw];
+            uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
+                                             scaledToSize: CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
+                                                 rotation: attitudePkt.yaw];
             
             [ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [ahIndicatorView requestRedraw];
@@ -897,8 +898,8 @@
         view.enabled = YES;
         view.canShowCallout = YES;
         view.centerOffset = CGPointMake(0,0);      
-        view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
-                                        withColor:WAYPOINT_LINE_COLOR];
+        view.image = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
+                                withColor:WAYPOINT_LINE_COLOR];
         return view;
     }
     

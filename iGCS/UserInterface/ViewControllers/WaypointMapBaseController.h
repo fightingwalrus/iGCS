@@ -42,9 +42,4 @@
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
-// FIXME: move to some utils file
-+ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang;
-+ (UIImage *)image:(UIImage*)img withColor:(UIColor*)color;
-
-
 @end
