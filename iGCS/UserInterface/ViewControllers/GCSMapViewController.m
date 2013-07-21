@@ -45,7 +45,24 @@
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
-@synthesize autoButton;
+@synthesize userLocationAccuracyLabel;
+
+// 3 modes
+//  * auto (initiates/returns to mission)
+//  * misc (manual, stabilize, etc; not selectable)
+//  * guided (goto/follow me)
+@synthesize controlModeSegment;
+enum {
+    CONTROL_MODE_RC       = 0,
+    CONTROL_MODE_AUTO     = 1,
+    CONTROL_MODE_GUIDED   = 2
+};
+
+@synthesize followMeSwitch;
+@synthesize followMeBearingSlider;
+@synthesize followMeDistanceSlider;
+@synthesize followMeHeightSlider;
+
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
 
@@ -88,9 +105,20 @@
     [uavView addGestureRecognizer:tap];
     uavView.centerOffset = CGPointMake(0, 0);
     
-    gotoPos = nil;
+    currentGuidedAnnotation   = nil;
+    requestedGuidedAnnotation = nil;
+    
     gotoAltitude = 50;
     
+    showProposedFollowPos = false;
+    lastFollowMeUpdate = [NSDate date];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 2.0f;
+    [locationManager startUpdatingLocation];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
 
 //    // Initialize the video overlay view
@@ -298,8 +326,109 @@
     [[CommController appMLI] issueStartReadMissionRequest];
 }
 
-- (IBAction) autoButtonClick {
-    [[CommController appMLI] issueSetAUTOModeCommand];
+- (IBAction) changeControlModeSegment {
+    NSInteger idx = controlModeSegment.selectedSegmentIndex;
+    NSLog(@"changeControlModeSegment: %d", idx);
+    [self disableFollowMeMode];
+    switch (idx) {
+        case CONTROL_MODE_RC:
+            break;
+            
+        case CONTROL_MODE_AUTO:
+            [[CommController appMLI] issueSetAUTOModeCommand];
+            break;
+            
+        case CONTROL_MODE_GUIDED:
+            break;
+    }
+}
+
+- (IBAction) followMeSliderChanged:(UISlider*)slider {
+    showProposedFollowPos = true;
+    [self updateFollowMePosition];
+}
+
+- (IBAction) followMeSwitchChanged:(UISwitch*)s {
+    showProposedFollowPos = true;
+    [self updateFollowMePosition];
+}
+
+- (void) disableFollowMeMode {
+    [followMeSwitch setOn:NO animated:YES];
+    showProposedFollowPos = false;
+}
+
+- (void) clearGuidedPositions {
+    if (currentGuidedAnnotation != nil) {
+        [map removeAnnotation:currentGuidedAnnotation];
+    }
+    currentGuidedAnnotation = nil;
+    
+    if (requestedGuidedAnnotation != nil) {
+        [map removeAnnotation:requestedGuidedAnnotation];
+    }
+    requestedGuidedAnnotation = nil;
+}
+
+- (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
+    NSLog(@" - issueGuidedCommand");
+    if (!following) {
+        [self disableFollowMeMode];
+    }
+    
+    [self clearGuidedPositions];
+
+    // Drop an icon for the proposed GUIDED point
+    currentGuidedAnnotation = [[GuidedPointAnnotation alloc] initWithCoordinate:coordinates];
+    [map addAnnotation:currentGuidedAnnotation];
+    [map setNeedsDisplay];
+
+    [[CommController appMLI] issueGOTOCommand:coordinates withAltitude:altitude];
+}
+
+
+- (void) updateFollowMePosition {
+    // Determine user coord
+    // FIXME: get CLLocation from location manager, ensure accurate fix, etc
+    //CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
+    CLLocationCoordinate2D userCoord = userPosition.coordinate;
+    
+    // Determine new position
+    float bearing  = M_PI + (2 * M_PI * followMeBearingSlider.value);
+    float distance = (5 + 195 * followMeDistanceSlider.value); // 5 - 200 m away
+    followMeHeightOffset = (30 * followMeHeightSlider.value);  // 0 -  30 m relative to home
+    
+    static const float R = 6371000;
+    
+    float userLat  = userCoord.latitude*DEG2RAD;
+    float userLong = userCoord.longitude*DEG2RAD;
+    
+    float angD = distance/R;
+    float followMeLat  = asin(sin(userLat)*cos(angD) + cos(userLat)*sin(angD)*cos(bearing));
+    float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
+    followMeLong = fmod((followMeLong + 3*M_PI), (2*M_PI)) - M_PI;
+
+    followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
+    
+    // Update map
+    if (requestedGuidedAnnotation != nil)
+        [map removeAnnotation:requestedGuidedAnnotation];
+    
+    if (showProposedFollowPos) {
+        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
+        [map addAnnotation:requestedGuidedAnnotation];
+        [map setNeedsDisplay];
+    }
+    
+    NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
+    if (followMeSwitch.isOn &&
+        (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
+        userPosition.horizontalAccuracy >= 0 &&
+        userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        lastFollowMeUpdate = [NSDate date];
+        
+        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
+    }
 }
 
 - (IBAction) externalButtonClick {
@@ -667,16 +796,8 @@
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {
-        // Drop an icon for the proposed GOTO point
-        if (gotoPos != nil)
-            [map removeAnnotation:gotoPos];
-
-        gotoPos = [[GotoPointAnnotation alloc] initWithCoordinate:gotoCoordinates];
-        [map addAnnotation:gotoPos];
-        [map setNeedsDisplay];
-        
         // Let's go!
-        [[CommController appMLI] issueGOTOCommand: gotoCoordinates withAltitude:gotoAltitude];
+        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
     }
 }
 
@@ -914,11 +1035,32 @@
             [customModeLabel    setText:[GCSMapViewController mavCustomModeToString:  heartbeat.custom_mode]];
             [baseModeLabel      setText:[GCSMapViewController mavModeEnumToString:    heartbeat.base_mode]];
             [statusLabel        setText:[GCSMapViewController mavStateEnumToString:   heartbeat.system_status]];
-                        
-            // Dis/enable the AUTO button
-            if ((heartbeat.custom_mode == AUTO) == autoButton.isEnabled) {
-                autoButton.enabled = !autoButton.isEnabled;
+            
+            NSInteger idx = CONTROL_MODE_RC;
+            switch (heartbeat.custom_mode)
+            {
+                case AUTO:
+                    idx = CONTROL_MODE_AUTO;
+                    break;
+
+                case GUIDED:
+                    idx = CONTROL_MODE_GUIDED;
+                    break;
             }
+            
+            // Change the segmented control to reflect the heartbeat
+            if (idx != controlModeSegment.selectedSegmentIndex) {
+                controlModeSegment.selectedSegmentIndex = idx;
+            }
+            
+            // If the current mode is not GUIDED, and has just changed
+            //   - unconditionally switch out of Follow Me mode
+            //   - clear the guided position annotation markers
+            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
+                [self disableFollowMeMode];
+                [self clearGuidedPositions];
+            }
+            lastCustomMode = heartbeat.custom_mode;
         }
         break;
     }
@@ -930,22 +1072,34 @@
     if (v != nil)
         return v;
     
-    // Handle our custom annotations
-    //
-    if ([annotation isKindOfClass:[GotoPointAnnotation class]]) {
-        NSString* identifier = @"GOTOPOINT";
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+    // Handle our custom point annotations
+    if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
+        CustomPointAnnotation *customPoint = (CustomPointAnnotation*)annotation;
+        
+        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
         if (view == nil) {
-            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            view = [[MKAnnotationView alloc] initWithAnnotation:customPoint reuseIdentifier:[customPoint viewIdentifier]];
+            [view.layer removeAllAnimations];
         } else {
-            view.annotation = annotation;
+            view.annotation = customPoint;
         }
         
         view.enabled = YES;
         view.canShowCallout = YES;
         view.centerOffset = CGPointMake(0,0);      
         view.image = [GCSMapViewController image:[UIImage imageNamed:@"13-target.png"]
-                                        withColor:WAYPOINT_LINE_COLOR];
+                                        withColor:[customPoint color]];
+        
+        if ([customPoint doAnimation]) {
+            CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            scaleAnimation.duration = 2.0;
+            scaleAnimation.repeatCount = HUGE_VAL;
+            scaleAnimation.autoreverses = YES;
+            scaleAnimation.fromValue = [NSNumber numberWithFloat:1.2];
+            scaleAnimation.toValue = [NSNumber numberWithFloat:0.8];
+            [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+        }
+        
         return view;
     }
     
@@ -979,6 +1133,28 @@
 
 - (void)renderVideoOverlayView:(CADisplayLink*)displayLink {
     [videoOverlayView display];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // FIXME: mark some error
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = locationManager.location;
+    NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
+    NSLog(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
+    if (age > 5.0) return;
+    
+    userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
+
+    if (location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        userLocationAccuracyLabel.textColor = [UIColor greenColor];
+    } else {
+        userLocationAccuracyLabel.textColor = [UIColor redColor];
+    }
+    
+    userPosition = location;
+    [self updateFollowMePosition];
 }
 
 @end

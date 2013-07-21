@@ -15,22 +15,37 @@
 #import "VerticalScaleView.h"
 #import "MavLinkPacketHandler.h"
 
-#import "GotoPointAnnotation.h"
+#import "RequestedPointAnnotation.h"
+#import "GuidedPointAnnotation.h"
 #import "KxMovieViewController.h"
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
+#define FOLLOW_ME_MIN_UPDATE_TIME 2
+#define FOLLOW_ME_REQUIRED_ACCURACY 10.0
+
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, CLLocationManagerDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
     
     GLKView *videoOverlayView;
     EAGLContext *_context;
-
-    GotoPointAnnotation *gotoPos;
-    CLLocationCoordinate2D gotoCoordinates;
     NSMutableDictionary *_availableStreams;
-    
+
+    GuidedPointAnnotation *currentGuidedAnnotation;
+    RequestedPointAnnotation *requestedGuidedAnnotation;
+
+    CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;
+    
+    CLLocationCoordinate2D followMeCoords;
+    float followMeHeightOffset; // relative to home
+    BOOL showProposedFollowPos;
+    NSDate *lastFollowMeUpdate;
+    uint32_t lastCustomMode;
+    
+    CLLocationManager *locationManager;
+    CLLocation *userPosition;
+
     int				gamePacketNumber;
     int				gameUniqueID;
 }
@@ -77,12 +92,23 @@
 @property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton    *autoButton;
+@property (nonatomic, retain) IBOutlet UILabel     *userLocationAccuracyLabel;
+
+@property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+
+// Temporary controls to mock out future UI control of "follow" me mode
+@property (nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
+@property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
+@property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
+@property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
+- (IBAction) followMeSwitchChanged:(UISwitch*)s;
+- (IBAction) followMeSliderChanged:(UISlider*)slider;
+
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
 
 - (IBAction) readMissionButtonClick;
-- (IBAction) autoButtonClick;
+- (IBAction) changeControlModeSegment;
 - (IBAction) externalButtonClick;
 
 @end
