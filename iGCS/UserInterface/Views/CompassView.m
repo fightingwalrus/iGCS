@@ -8,6 +8,7 @@
 
 #import "CompassView.h"
 #import "GaugeViewCommon.h"
+#import "MiscUtilities.h"
 
 @implementation CompassView
 
@@ -21,7 +22,6 @@
 }
 
 - (void) setHeading:(float)_heading {
-    // FIXME: low pass filter here?
     if (_heading >= 0 && _heading <= 360) heading = _heading;
 }
 
@@ -112,17 +112,9 @@
                 label = [NSString stringWithFormat:@"%03d", ang];
             }
             
-            // Determine size of text
-            //  - can't safely use [label sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE_LARGE]] in background threads
-            //  - FIXME: move me to common class and reuse
-            //  - FIXME: if non-performant, consider memoization
-            CGContextSetTextDrawingMode(ctx, kCGTextInvisible);
-            CGContextSetTextPosition(ctx, x, c.y);
-            CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
-            CGPoint newPos = CGContextGetTextPosition(ctx);
-            
+            float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
             CGContextSetTextDrawingMode(ctx, kCGTextFill);
-            CGContextSetTextPosition(ctx, x - (newPos.x - x)/2, c.y);
+            CGContextSetTextPosition(ctx, x - labelWidth/2, c.y);
             CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
         }
     }

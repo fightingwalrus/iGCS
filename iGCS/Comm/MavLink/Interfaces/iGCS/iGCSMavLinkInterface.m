@@ -102,7 +102,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                             
-                            [self issueStartReadMissionRequest]; // FIXME: move me - don't make this automatic?
+                            [self issueStartReadMissionRequest];
                         }
                         break;
                         
