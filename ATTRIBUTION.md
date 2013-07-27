@@ -6,9 +6,6 @@ Airplane icon
 glypish-icons
 - http://glyphish.com/ (Free set published under a Creative Commons Attribution license)
 
-hazard-hash
-- http://www.psdgraphics.com/backgrounds/yellow-hazard-stripes-texture/
-
 CorePlot
 - as per License.txt file
 

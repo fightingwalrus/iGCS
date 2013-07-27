@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="GAr-p0-3d5">
-                                <rect key="frame" x="500" y="0.0" width="524" height="699"/>
+                                <rect key="frame" x="500" y="0.0" width="524" height="646"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                             <view contentMode="scaleToFill" id="Ydo-PK-dGh" customClass="CompassView">
@@ -37,50 +37,57 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GMk-Rk-jOU">
-                                <rect key="frame" x="20" y="460" width="162" height="37"/>
+                                <rect key="frame" x="1" y="460" width="120" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal" title="READ MISSION">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="readMissionButtonClick" destination="2" eventType="touchUpInside" id="GH6-DZ-Ylf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H6g-gR-0gf" userLabel="Button - AUTO">
-                                <rect key="frame" x="190" y="460" width="72" height="37"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
+                                <rect key="frame" x="129" y="456" width="251" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="AUTO">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <segments>
+                                    <segment title="Misc/RC"/>
+                                    <segment title="Auto"/>
+                                    <segment title="Guided" enabled="NO"/>
+                                </segments>
                                 <connections>
-                                    <action selector="autoButtonClick" destination="2" eventType="touchUpInside" id="sMC-6B-ehb"/>
+                                    <action selector="changeControlModeSegment" destination="2" eventType="valueChanged" id="1Cs-BN-1Xe"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4S6-bw-H0z">
-                                <rect key="frame" x="270" y="460" width="55" height="37"/>
+                            </segmentedControl>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
+                                <rect key="frame" x="500" y="672" width="79" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="RTL" backgroundImage="hazard-stripes-texture.png">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                                <connections>
+                                    <action selector="followMeSwitchChanged:" destination="2" eventType="valueChanged" id="NfE-TT-W3Z"/>
+                                </connections>
+                            </switch>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
+                                <rect key="frame" x="652" y="675" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="Mi0-yh-GEE"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
+                                <rect key="frame" x="877" y="675" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="1dV-2y-IeR"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
+                                <rect key="frame" x="877" y="650" width="142" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="nvb-Dq-Yf8"/>
+                                </connections>
+                            </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nav Mode:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="mmg-kf-Gci">
                                 <rect key="frame" x="1" y="500" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -306,9 +313,51 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JU5-Hk-0MJ">
-                                <rect key="frame" x="514" y="7" width="499" height="673"/>
+                                <rect key="frame" x="513" y="7" width="499" height="639"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="FOLLOW ME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J62-Hn-rqr">
+                                <rect key="frame" x="503" y="648" width="103" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User location accuracy: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="QuE-Lo-pG0" userLabel="Label - User location accuracy:">
+                                <rect key="frame" x="594" y="652" width="150" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Height:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nLL-oU-xZw" userLabel="Label - User location accuracy:">
+                                <rect key="frame" x="811" y="652" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="rSx-Jt-QgJ" userLabel="Label - User location accuracy:">
+                                <rect key="frame" x="811" y="675" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bearing:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="efn-kG-BgQ" userLabel="Label - User location accuracy:">
+                                <rect key="frame" x="591" y="675" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="url-wL-5V2" userLabel="User location accuracy Label">
+                                <rect key="frame" x="746" y="652" width="100" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -323,13 +372,17 @@
                         <outlet property="ahIndicatorView" destination="yLv-Ho-H5N" id="pxN-tw-mSA"/>
                         <outlet property="airspeedView" destination="6dV-1w-Z5N" id="dKS-mD-QoW"/>
                         <outlet property="altitudeView" destination="MXV-5t-BKj" id="UDS-e5-o0H"/>
-                        <outlet property="autoButton" destination="H6g-gR-0gf" id="Kqu-fG-quL"/>
                         <outlet property="baseModeLabel" destination="ZBS-yl-qVk" id="9Yz-sq-vzE"/>
                         <outlet property="climbRateLabel" destination="3i9-lC-1Rq" id="mgW-1T-oDK"/>
                         <outlet property="compassView" destination="Ydo-PK-dGh" id="4HB-Lh-7Zg"/>
+                        <outlet property="controlModeSegment" destination="GB7-I2-mGW" id="RYL-5X-apa"/>
                         <outlet property="currentLabel" destination="DAe-Q0-ZRd" id="bYs-Ij-LSW"/>
                         <outlet property="customModeLabel" destination="NOu-t9-D3C" id="JVt-9w-a5P"/>
                         <outlet property="debugConsoleLabel" destination="JU5-Hk-0MJ" id="InN-iF-RbY"/>
+                        <outlet property="followMeBearingSlider" destination="BZD-fE-EKS" id="gjA-7e-SOi"/>
+                        <outlet property="followMeDistanceSlider" destination="3U7-Wa-XLe" id="azr-6s-MZv"/>
+                        <outlet property="followMeHeightSlider" destination="KV7-Pe-atM" id="plq-B2-Iow"/>
+                        <outlet property="followMeSwitch" destination="0xE-vX-yl8" id="4Ec-HI-OWh"/>
                         <outlet property="gpsFixTypeLabel" destination="3Tt-Ox-nW4" id="wWD-3I-ZoG"/>
                         <outlet property="groundSpeedLabel" destination="hNa-T9-4kL" id="569-yd-Usa"/>
                         <outlet property="numSatellitesLabel" destination="dYk-g5-LG9" id="qFX-8J-4MO"/>
@@ -338,6 +391,7 @@
                         <outlet property="sysUptimeLabel" destination="n4U-TQ-dwF" id="rUs-Y7-3MX"/>
                         <outlet property="sysVoltageLabel" destination="NTJ-lG-l7n" id="SHm-Lp-M07"/>
                         <outlet property="throttleLabel" destination="KXz-Ag-EUc" id="esA-Zj-HDj"/>
+                        <outlet property="userLocationAccuracyLabel" destination="url-wL-5V2" id="70V-ec-2NQ"/>
                         <outlet property="voltageLabel" destination="QcI-s1-ehf" id="Lg5-TQ-Idv"/>
                         <outlet property="windDirLabel" destination="6Nx-u0-cis" id="M4u-yC-Phu"/>
                         <outlet property="windSpeedLabel" destination="dZW-Rg-QGB" id="pdD-9q-EB8"/>
@@ -430,7 +484,8 @@
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View " id="epM-NP-sgK" userLabel="Default View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View
+" id="epM-NP-sgK" userLabel="Default View">
                                 <rect key="frame" x="0.0" y="328" width="768" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1175,7 +1230,6 @@
         <image name="111-user.png" width="24" height="21"/>
         <image name="181-hammer.png" width="14" height="26"/>
         <image name="73-radar.png" width="27" height="27"/>
-        <image name="hazard-stripes-texture.png" width="100" height="75"/>
     </resources>
     <classes>
         <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
@@ -1221,19 +1275,25 @@
         <class className="GCSMapViewController" superclassName="WaypointMapBaseController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoButtonClick"/>
+                <relationship kind="action" name="changeControlModeSegment"/>
                 <relationship kind="action" name="externalButtonClick"/>
+                <relationship kind="action" name="followMeSliderChanged:" candidateClass="UISlider"/>
+                <relationship kind="action" name="followMeSwitchChanged:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="readMissionButtonClick"/>
                 <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
                 <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
                 <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
+                <relationship kind="outlet" name="controlModeSegment" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="followMeBearingSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="followMeDistanceSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="followMeHeightSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="followMeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
@@ -1242,6 +1302,7 @@
                 <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLocationAccuracyLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
@@ -1249,7 +1310,7 @@
                 <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="MainViewController" superclassName="UITabBarController">
+        <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
         </class>
         <class className="MissionItemEditViewController" superclassName="UIViewController">

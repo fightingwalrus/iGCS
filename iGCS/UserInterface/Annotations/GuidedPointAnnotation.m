@@ -6,25 +6,20 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GotoPointAnnotation.h"
+#import "GuidedPointAnnotation.h"
+#import "WaypointAnnotation.h"
 
-@implementation GotoPointAnnotation
-
-@synthesize coordinate  = _coordinate;
+@implementation GuidedPointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
+        _title = @"GUIDED point";
+        _viewIdentifer = @"GUIDED";
+        _color = WAYPOINT_NAV_COLOR;
+        _doAnimation = YES;
     }
     return self;
-}
-
-- (NSString*) title {
-    return @"GOTO point";
-}
-
-- (NSString*) subtitle {
-    return [NSString stringWithFormat:@"%f,%f", _coordinate.longitude, _coordinate.latitude];
 }
 
 @end
