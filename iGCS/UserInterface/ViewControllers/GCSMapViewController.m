@@ -405,6 +405,7 @@ enum {
     float userLat  = userCoord.latitude*DEG2RAD;
     float userLong = userCoord.longitude*DEG2RAD;
     
+    // FIXME: fix loss of precision that leads to minor offset errors
     float angD = distance/R;
     float followMeLat  = asin(sin(userLat)*cos(angD) + cos(userLat)*sin(angD)*cos(bearing));
     float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
