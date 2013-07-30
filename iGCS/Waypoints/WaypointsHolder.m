@@ -76,12 +76,10 @@
     [array replaceObjectAtIndex:index withObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
 }
 
-- (void) swapWaypoints:(unsigned int) index1 :(unsigned int)index2 {
-    mavlink_mission_item_t wp1 = [self getWaypoint: index1];
-    mavlink_mission_item_t wp2 = [self getWaypoint: index2];
-    
-    [array replaceObjectAtIndex:index1 withObject:[WaypointsHolder makeBoxedWaypoint:wp2]];
-    [array replaceObjectAtIndex:index2 withObject:[WaypointsHolder makeBoxedWaypoint:wp1]];
+- (void) moveWaypoint:(unsigned int)from to:(unsigned int)to {
+    mavlink_mission_item_t wp = [self getWaypoint: from];
+    [array removeObjectAtIndex:from];
+    [array insertObject:[WaypointsHolder makeBoxedWaypoint:wp] atIndex:to];
 }
 
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
