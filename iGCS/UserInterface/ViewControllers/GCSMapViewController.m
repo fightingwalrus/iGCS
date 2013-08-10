@@ -391,8 +391,7 @@ enum {
 
 - (void) updateFollowMePosition {
     // Determine user coord
-    // FIXME: get CLLocation from location manager, ensure accurate fix, etc
-    //CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
+    // CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
     CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
