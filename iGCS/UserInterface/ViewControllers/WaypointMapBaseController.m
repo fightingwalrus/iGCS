@@ -234,6 +234,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static const int LABEL_TAG = 100;
+    static const int ICON_VIEW_TAG = 101;
     
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -248,16 +249,15 @@
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, -16, 32, 32)];
+            UILabel *label = [[UILabel alloc]  initWithFrame:CGRectMake(WAYPOINT_TOUCH_TARGET_SIZE/2, -WAYPOINT_TOUCH_TARGET_SIZE/2, 32, 32)];
             label.backgroundColor = [UIColor clearColor];
             label.textColor = [UIColor whiteColor];
             label.tag = LABEL_TAG;
             [view addSubview:label];
         } else {
+            [[view viewWithTag:ICON_VIEW_TAG] removeFromSuperview];
             view.annotation = annotation;
         }
-        
-        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
         
         view.enabled = YES;
         
@@ -265,19 +265,29 @@
         view.canShowCallout = !draggableWaypointsP;
         view.draggable = draggableWaypointsP;
         view.selected = draggableWaypointsP;
+        [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
 
-        if ([waypointAnnotation isCurrentWaypointP:currentWaypointNum]) {
-            view.centerOffset = CGPointMake(0,0);
-            view.image = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
-                                    withColor:WAYPOINT_NAV_NEXT_COLOR];
-        } else {
-            view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
-            view.image = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
-                                    withColor:[waypointAnnotation getColor]];
-        }
-        
+        // Set the waypoint label
+        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
         UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
+
+        // Add appropriate icon
+        //  - we don't just set view.image, as we want a touch target that is larger than the icon itself
+        UIImage *icon = nil;
+        if ([waypointAnnotation isCurrentWaypointP:currentWaypointNum]) {
+            view.centerOffset = CGPointMake(0,0);
+            icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
+                              withColor:WAYPOINT_NAV_NEXT_COLOR];
+        } else {
+            view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
+            icon = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
+                              withColor:[waypointAnnotation getColor]];
+        }
+        UIImageView *imgSubView = [[UIImageView alloc] initWithImage:icon];
+        imgSubView.tag = ICON_VIEW_TAG;
+        imgSubView.center = [view convertPoint:view.center fromView:view.superview];
+        [view addSubview:imgSubView];
         
         return view;
     }

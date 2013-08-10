@@ -12,6 +12,8 @@
 #import "WaypointsHolder.h"
 #import "WaypointAnnotation.h"
 
+#define WAYPOINT_TOUCH_TARGET_SIZE 36
+
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
