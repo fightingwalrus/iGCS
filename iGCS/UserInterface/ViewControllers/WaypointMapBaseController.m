@@ -36,6 +36,14 @@
     numTrackPoints = 0;
     
     draggableWaypointsP = false;
+    
+    // Add recognizer for long press gestures
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]
+                                                      initWithTarget:self action:@selector(handleLongPressGesture:)];
+    longPressGesture.numberOfTapsRequired = 0;
+    longPressGesture.numberOfTouchesRequired = 1;
+    longPressGesture.minimumPressDuration = 1.0;
+    [map addGestureRecognizer:longPressGesture];
 }
 
 - (void)didReceiveMemoryWarning

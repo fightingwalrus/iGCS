@@ -170,8 +170,8 @@
     return [NSString stringWithFormat:@"%d", [waypoints getIndexOfWaypointWithSeq:item.seq]];
 }
 
-- (IBAction)addClicked:(id)sender {
-    // FIXME: smarter default location (configurable default alt, locate near GPS home etc)
+
+- (mavlink_mission_item_t) createDefaultWaypointFromCoords:(CLLocationCoordinate2D)pos {
     mavlink_mission_item_t waypoint;
     
     waypoint.autocontinue = 0;
@@ -179,25 +179,44 @@
     waypoint.current = 0;
     waypoint.frame   = MAV_FRAME_GLOBAL_RELATIVE_ALT;
     waypoint.param1 = waypoint.param2 = waypoint.param3 = waypoint.param4 = 0;
-    waypoint.x = waypoint.y = 0;
-    waypoint.z = 100;
+    waypoint.x = pos.latitude;
+    waypoint.y = pos.longitude;
+    waypoint.z = WAYPOINT_DEFAULT_ALTITUDE;
     waypoint.seq = 0;
     
+    return waypoint;
+}
+
+// FIXME: smarter default location (configurable default alt, locate near GPS home etc)
+- (IBAction) addClicked:(id)sender {
     // Get default position
+    CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(0, 0);
     WaypointsHolder *currentNavPoints = [waypoints getNavWaypoints];
     if ([currentNavPoints numWaypoints] > 0) {
         // Add a new point slightly to the east of the last one
         mavlink_mission_item_t lastNavItem = [currentNavPoints getLastWaypoint];
-        waypoint.x = lastNavItem.x;
-        waypoint.y = lastNavItem.y + 0.005;
-        if (waypoint.y > 180) {
-            waypoint.y -= 360;
+        pos.latitude  = lastNavItem.x;
+        pos.longitude = lastNavItem.y + 0.005;
+        if (pos.longitude > 180) {
+            pos.longitude -= 360;
         }
     }
     
-    [waypoints addWaypoint:waypoint];
+    [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
     [self resetWaypoints];
 }
+
+// Recognizer for long press gestures => add waypoint
+-(void) handleLongPressGesture:(UIGestureRecognizer*)sender {
+    if (!([self getTableView].editing && sender.state == UIGestureRecognizerStateBegan))
+        return;
+    
+    // Set the coordinates of the map point being held down
+    CLLocationCoordinate2D pos = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
+    [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
+    [self resetWaypoints];
+}
+
 
 // FIXME: also need to check and close the detail view if open
 - (IBAction)editDoneClicked:(id)sender {

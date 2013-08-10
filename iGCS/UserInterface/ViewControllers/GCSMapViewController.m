@@ -236,14 +236,6 @@ enum {
 	// Do any additional setup after loading the view, typically from a nib.
     [map addAnnotation:uavPos];
     
-    // Add recognizer for long holds => GOTO point
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] 
-                                                      initWithTarget:self action:@selector(handleLongPressGesture:)];
-    longPressGesture.numberOfTapsRequired = 0;
-    longPressGesture.numberOfTouchesRequired = 1;
-    longPressGesture.minimumPressDuration = 1.0;
-    [map addGestureRecognizer:longPressGesture];
-    
     // Initialize subviews
     [ahIndicatorView setRoll: 0 pitch: 0];
     [compassView setHeading: 0];
@@ -804,6 +796,7 @@ enum {
 }
 
 
+// Recognizer for long press gestures => GOTO point
 -(void)handleLongPressGesture:(UIGestureRecognizer*)sender {
     if (sender.state != UIGestureRecognizerStateBegan)
         return;
