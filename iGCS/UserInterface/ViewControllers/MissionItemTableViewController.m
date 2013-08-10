@@ -253,7 +253,7 @@ NSArray* headerSpecs = nil;
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
-    [[self getWaypointsHolder] swapWaypoints:fromIndexPath.row :toIndexPath.row];
+    [[self getWaypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
     
     // Reset the map and table views
     [[self getWaypointsVC] resetWaypoints];
