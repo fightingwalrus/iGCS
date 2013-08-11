@@ -105,11 +105,11 @@
     [map addOverlay:waypointRoutePolyline];
     
     // Set the map extents
-    if ([_waypoints numWaypoints] > 1) {
-        // FIXME: and if there is only 1?
-        // FIXME: and perhaps only change the view if a point is outside the existing map view? (i.e preserve current user zoom)
-        MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
-        [map setVisibleMapRect:bounds edgePadding:UIEdgeInsetsMake(40,40,40,40) animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionForMapRect([waypointRoutePolyline boundingMapRect]);
+    if ([waypointRoutePolyline pointCount] >= 1) {
+        region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
+        region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
+        [map setRegion:region animated:YES];
     }
     [map setNeedsDisplay];
     

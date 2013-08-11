@@ -14,6 +14,10 @@
 
 #define WAYPOINT_TOUCH_TARGET_SIZE 36
 
+#define MAP_MINIMUM_ARC       0.0010 // ~100m
+#define MAP_REGION_PAD_FACTOR 1.10
+
+
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
