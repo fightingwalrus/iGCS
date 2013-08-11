@@ -413,8 +413,10 @@ enum {
         [map addAnnotation:requestedGuidedAnnotation];
         [map setNeedsDisplay];
     }
-    
+
+#if DO_NSLOG
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
+#endif
     if (followMeSwitch.isOn &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
         userPosition.horizontalAccuracy >= 0 &&
@@ -1087,7 +1089,9 @@ enum {
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locationManager.location;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
+#if DO_NSLOG
     NSLog(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
+#endif
     if (age > 5.0) return;
     
     userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
