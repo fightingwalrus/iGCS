@@ -187,19 +187,30 @@
     return waypoint;
 }
 
-// FIXME: smarter default location (configurable default alt, locate near GPS home etc)
 - (IBAction) addClicked:(id)sender {
-    // Get default position
-    CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(0, 0);
+    CLLocationCoordinate2D pos;
+
+    // Determine the next "default" waypoint position
     WaypointsHolder *currentNavPoints = [waypoints getNavWaypoints];
     if ([currentNavPoints numWaypoints] > 0) {
         // Add a new point slightly to the east of the last one
         mavlink_mission_item_t lastNavItem = [currentNavPoints getLastWaypoint];
         pos.latitude  = lastNavItem.x;
-        pos.longitude = lastNavItem.y + 0.005;
+        pos.longitude = lastNavItem.y + 0.002; // ~200m equatorially
         if (pos.longitude > 180) {
             pos.longitude -= 360;
         }
+    } else if (userPosition != nil) {
+        // Place the first point near the current user
+        pos = userPosition.coordinate;
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to determine default waypoint"
+                                                        message:@"Place the first waypoint manually, or enable GPS"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
     }
     
     [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
@@ -228,7 +239,7 @@
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
-    addButton.enabled    = isEditing;
+    addButton.enabled      = isEditing;
     uploadButton.enabled   = !isEditing;
     loadDemoButton.enabled = !isEditing;
 
