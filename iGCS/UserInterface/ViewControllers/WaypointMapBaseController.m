@@ -44,6 +44,13 @@
     longPressGesture.numberOfTouchesRequired = 1;
     longPressGesture.minimumPressDuration = 1.0;
     [map addGestureRecognizer:longPressGesture];
+    
+    // Start listening for location updates
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 2.0f;
+    [locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -301,6 +308,14 @@
     }
     
     return nil;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // FIXME: mark some error
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    userPosition = locationManager.location;
 }
 
 @end

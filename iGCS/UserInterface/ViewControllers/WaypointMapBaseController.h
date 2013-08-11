@@ -18,7 +18,7 @@
 #define MAP_REGION_PAD_FACTOR 1.10
 
 
-@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate> {
+@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
     MKPolylineView *waypointRouteView;
@@ -33,6 +33,9 @@
 @protected
     MKMapView *map;
     bool draggableWaypointsP;
+    
+    CLLocationManager *locationManager;
+    CLLocation *userPosition;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *_mapView;

@@ -115,12 +115,6 @@ enum {
     
     showProposedFollowPos = false;
     lastFollowMeUpdate = [NSDate date];
-    
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 2.0f;
-    [locationManager startUpdatingLocation];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
 
@@ -1082,10 +1076,7 @@ enum {
     [videoOverlayView display];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    // FIXME: mark some error
-}
-
+// Override the base locationManager: didUpdateLocations
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locationManager.location;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
