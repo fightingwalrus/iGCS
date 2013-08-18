@@ -92,5 +92,12 @@
     return [NSString stringWithFormat:@"%02d° %02d' %02.2f%c", deg, min, sec, letter];
 }
 
+// works on iOS 2.0+, could replace with NSUUID if we ever drop iOS 5.x support
++ (NSString *)UUIDUsingDefaultAllocator {
+    CFUUIDRef cfuuid = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef cfuuidstring = CFUUIDCreateString(kCFAllocatorDefault, cfuuid);
+    CFRelease(cfuuid);
+    return (__bridge_transfer NSString *)cfuuidstring;
+}
 
 @end
