@@ -227,7 +227,7 @@ enum {
 	self.lastHeartbeatDate = nil;
     
     //FIXME This will prevent app approval
-	NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+	NSString *uid = [MiscUtilities UUIDUsingDefaultAllocator];
 	
     //FIXME inherited from sample, I don't like it without a self
     gamePacketNumber = 0;
