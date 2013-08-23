@@ -7,19 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TestFlight.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "FightingWalrusProtocol.h"
 
 #define TESTING 1
-
-#ifdef TESTING
-#define TESTFLIGHT_CHECKPOINT(X) [TestFlight passCheckpoint:(X)]
-#else
-#define TESTFLIGHT_CHECKPOINT(X)
-#endif
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     FightingWalrusProtocol *walrus;

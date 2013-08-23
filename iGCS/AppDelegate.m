@@ -38,14 +38,6 @@ static AppDelegate *shared;
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-#ifdef TESTING
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-//    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#pragma GCC diagnostic warning "-Wdeprecated-declarations"
-    //[TestFlight takeOff:@"e7a70336421df8ce9b4d667ef9c6c8e3_MTM4ODI5MjAxMi0xMC0wMiAyMzo1ODowOC4xNzc0NTk"];
-#endif
-    
-    
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         // Yes, so just open the session (this won't display any UX).
         [self openSession];
