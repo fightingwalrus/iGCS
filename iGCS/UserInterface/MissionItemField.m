@@ -60,5 +60,18 @@
     return [NSString stringWithFormat:@"%0.2f", val];
 }
 
+- (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)item {
+    switch (fieldType) {
+        case kPARAM_Z: item->z      = val; break;
+        case kPARAM_1: item->param1 = val; break;
+        case kPARAM_2: item->param2 = val; break;
+        case kPARAM_3: item->param3 = val; break;
+        case kPARAM_4: item->param4 = val; break;
+        default:
+            assert(false);
+            break;
+    }
+}
+
 @end
 

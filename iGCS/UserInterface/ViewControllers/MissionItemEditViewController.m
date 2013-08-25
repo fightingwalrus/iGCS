@@ -251,34 +251,9 @@
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[[self getMissionItemMetaData: item.command] objectAtIndex: indexPath.row];
 
-    
-    // Modify the respective field
-    float val = [textField.text floatValue];
-    switch ([field fieldType]) {
-        case kPARAM_Z:
-            item.z = val;
-            break;
+    // Modify the respective field in the item
+    [field setValue:[textField.text floatValue] inMissionItem:&item];
 
-        case kPARAM_1:
-            item.param1 = val;
-            break;
-
-        case kPARAM_2:
-            item.param2 = val;
-            break;
-
-        case kPARAM_3:
-            item.param3 = val;
-            break;
-
-        case kPARAM_4:
-            item.param4 = val;
-            break;
-            
-        default:
-            assert(false);
-            break;
-    }
     [delegate replaceMissionItem:item atIndex:itemIndex];
 }
 

@@ -37,5 +37,6 @@ typedef enum {
 
 - (NSString*)unitsToString;
 - (NSString*)valueToString:(mavlink_mission_item_t)mission_item;
+- (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)mission_item;
 
 @end
