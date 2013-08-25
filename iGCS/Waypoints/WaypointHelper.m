@@ -67,22 +67,18 @@ static bool staticsInitializedP = false;
 }
 
 + (NSString*) navWaypointToDetailString:(mavlink_mission_item_t)waypoint {
-    NSString *str = [NSString stringWithFormat:@"Alt: %0.1fm\n", waypoint.z];
+    NSString *str = [NSString stringWithFormat:@"Alt: %0.2fm\n", waypoint.z];
     switch (waypoint.command) {
         case MAV_CMD_NAV_WAYPOINT:
-            str = [str stringByAppendingFormat:@"\nRadius: %0.1fm (pass by %0.1fm)\n", waypoint.param2, waypoint.param3];
-            break;
-            
         case MAV_CMD_NAV_LOITER_UNLIM:
-            str = [str stringByAppendingFormat:@"\nRadius: %0.1fm\n", waypoint.param3];
             break;
             
         case MAV_CMD_NAV_LOITER_TURNS:
-            str = [str stringByAppendingFormat:@"\nNum Turns: %d\n Radius: %0.1fm\n", (int)waypoint.param1, waypoint.param3];
+            str = [str stringByAppendingFormat:@"\nNum Turns: %d\n", (int)waypoint.param1];
             break;
             
         case MAV_CMD_NAV_LOITER_TIME:
-            str = [str stringByAppendingFormat:@"Time: %ds\n Radius: %0.1fm\n", (int)waypoint.param1, waypoint.param3];
+            str = [str stringByAppendingFormat:@"Time: %0.2fs\n", waypoint.param1];
             break;
             
     }
