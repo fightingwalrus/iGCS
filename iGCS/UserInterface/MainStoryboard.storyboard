@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A497d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -484,8 +484,7 @@
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View
-" id="epM-NP-sgK" userLabel="Default View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Default View " id="epM-NP-sgK" userLabel="Default View">
                                 <rect key="frame" x="0.0" y="328" width="768" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1143,8 +1142,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Bf6-oO-z75">
-                                                    <rect key="frame" x="171" y="7" width="162" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="Bf6-oO-z75">
+                                                    <rect key="frame" x="171" y="7" width="120" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1152,6 +1151,13 @@
                                                         <outlet property="delegate" destination="B4z-V1-5G5" id="mbP-Pa-Gtz"/>
                                                     </connections>
                                                 </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="300" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZIB-YB-92M" userLabel="Label - Units">
+                                                    <rect key="frame" x="299" y="11" width="143" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1231,134 +1237,6 @@
         <image name="181-hammer.png" width="14" height="26"/>
         <image name="73-radar.png" width="27" height="27"/>
     </resources>
-    <classes>
-        <class className="ArtificialHorizonView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtificialHorizonView.h"/>
-        </class>
-        <class className="CPTGraphHostingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
-        </class>
-        <class className="CommsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="attitudeTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="connectionStatus" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dataRateGraphView" candidateClass="CPTGraphHostingView"/>
-                <relationship kind="outlet" name="defaultTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsIntTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsRawTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gpsStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="navControllerOutputTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sysStatusView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="vfrHUDTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="CompassView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CompassView.h"/>
-        </class>
-        <class className="DebugViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bluetoothRxClicked:"/>
-                <relationship kind="action" name="bluetoothTxClicked:"/>
-                <relationship kind="action" name="videoDisplayLocationValueChanged:"/>
-                <relationship kind="action" name="videoSourceValueChanged:"/>
-                <relationship kind="outlet" name="consoleTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="errorsTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="videoDisplayLocation" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="videoSource" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="DoubleBufferedAsyncView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoubleBufferedAsyncView.h"/>
-        </class>
-        <class className="GCSMapViewController" superclassName="WaypointMapBaseController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GCSMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeControlModeSegment"/>
-                <relationship kind="action" name="externalButtonClick"/>
-                <relationship kind="action" name="followMeSliderChanged:" candidateClass="UISlider"/>
-                <relationship kind="action" name="followMeSwitchChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="readMissionButtonClick"/>
-                <relationship kind="outlet" name="ahIndicatorView" candidateClass="ArtificialHorizonView"/>
-                <relationship kind="outlet" name="airspeedView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="altitudeView" candidateClass="VerticalScaleView"/>
-                <relationship kind="outlet" name="baseModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="climbRateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="compassView" candidateClass="CompassView"/>
-                <relationship kind="outlet" name="controlModeSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="currentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="customModeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="debugConsoleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="followMeBearingSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="followMeDistanceSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="followMeHeightSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="followMeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="gpsFixTypeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groundSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numSatellitesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysMemFreeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysUptimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sysVoltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="throttleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userLocationAccuracyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="voltageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windDirLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windIconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="windSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windSpeedZLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="MissionItemEditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionItemEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:"/>
-                <relationship kind="action" name="saveButtonClicked:"/>
-                <relationship kind="outlet" name="itemDetails" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="MissionItemTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionItemTableViewController.h"/>
-        </class>
-        <class className="ProfileViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="facebookLoginButtonPressed:"/>
-                <relationship kind="outlet" name="crashesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="facebookLoginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="facebookStatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalFlightHoursLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="VerticalScaleView" superclassName="DoubleBufferedAsyncView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VerticalScaleView.h"/>
-        </class>
-        <class className="WaypointMapBaseController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointMapBaseController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WaypointsViewController" superclassName="WaypointMapBaseController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaypointsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addClicked:"/>
-                <relationship kind="action" name="editDoneClicked:"/>
-                <relationship kind="action" name="loadDemoMision:"/>
-                <relationship kind="action" name="uploadClicked:"/>
-                <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="containerForTableView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="editDoneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="loadDemoButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="uploadButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
