@@ -118,11 +118,11 @@ NSArray* headerSpecs = nil;
 
 + (void) initialize {
     if (!headerSpecs) { 
-        headerSpecs = @[ [[HeaderSpec alloc] initWithWidth:60  alignment:UITextAlignmentLeft   text:@" Seq #"], // row #
+        headerSpecs = @[ [[HeaderSpec alloc] initWithWidth: 50 alignment:UITextAlignmentLeft   text:@" Seq #"], // row #
 #if DEBUG_SHOW_SEQ
-                         [[HeaderSpec alloc] initWithWidth:50  alignment:UITextAlignmentRight  text:@"Debug #"], // the real seq #
+                         [[HeaderSpec alloc] initWithWidth: 50 alignment:UITextAlignmentRight  text:@"Debug #"], // the real seq #
 #endif
-                         [[HeaderSpec alloc] initWithWidth:170 alignment:UITextAlignmentLeft   text:@"Command"], // command
+                         [[HeaderSpec alloc] initWithWidth:140 alignment:UITextAlignmentLeft   text:@"Command"], // command
                          //
                          [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Latitude"],  // x
                          [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Longitude"], // y
@@ -171,13 +171,13 @@ NSArray* headerSpecs = nil;
     
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"   %d: ", indexPath.row];
+    label.text = [NSString stringWithFormat:@"%4d:", indexPath.row];
     label.textAlignment = UITextAlignmentLeft;
 
 #if DEBUG_SHOW_SEQ
     // Seq number
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"  %d:", waypoint.seq];
+    label.text = [NSString stringWithFormat:@"%d:", waypoint.seq];
     label.textAlignment = UITextAlignmentLeft;
 #endif
     
@@ -197,23 +197,23 @@ NSArray* headerSpecs = nil;
 
     // Z (Altitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.3f", waypoint.z] : @"-";
+    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param1];
+    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param1];
     
     // param2
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param2];
+    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param2];
     
     // param3
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param3];
+    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param3];
     
     // param4
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param4];
+    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param4];
     
     // autocontinue
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];

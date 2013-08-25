@@ -57,7 +57,7 @@
             assert(false);
             break;
     }
-    return [NSString stringWithFormat:@"%0.3f", val];
+    return [NSString stringWithFormat:@"%0.2f", val];
 }
 
 @end
