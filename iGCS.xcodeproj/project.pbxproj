@@ -15,6 +15,7 @@
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
 		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
+		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
@@ -174,6 +175,8 @@
 		189E23241710D00000548C88 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = submodules/kxmovie/kxmovie/kxmovie.bundle; sourceTree = "<group>"; };
 		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		18E62664171101D9006A5D43 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = submodules/kxmovie/libs/libkxmovie.a; sourceTree = "<group>"; };
+		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
+		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
 		492C812616DBCCE9004001FF /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
 		492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkCentral.m; sourceTree = "<group>"; };
 		492C812816DBCCE9004001FF /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
@@ -1028,6 +1031,8 @@
 			isa = PBXGroup;
 			children = (
 				496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */,
+				447C4B8C17C6E3A400440678 /* MavLinkLogger.h */,
+				447C4B8D17C6E3A400440678 /* MavLinkLogger.m */,
 				496E62C516DAFBF600E52E4A /* MavLinkTools.h */,
 				CAF37A08179BC2AB00183159 /* MavLinkUtiility.h */,
 				CAF37A09179BC2AB00183159 /* MavLinkUtiility.m */,
@@ -1827,6 +1832,7 @@
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtiility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
+				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

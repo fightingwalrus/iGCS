@@ -27,10 +27,6 @@
 
 @interface CommController : NSObject
 
-
-
-
-
 +(void)start:(MainViewController*)mvc;
 
 +(void) startBluetoothTx;
