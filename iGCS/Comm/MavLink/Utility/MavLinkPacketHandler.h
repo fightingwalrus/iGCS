@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define MAVLINK_SEPARATE_HELPERS
-#include "mavlink_types.h"
+#include "MavLinkTools.h"
 
 @protocol MavLinkPacketHandler <NSObject>
 @required
