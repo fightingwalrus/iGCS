@@ -16,7 +16,7 @@
 
 - (id)initWithExpectedCount:(unsigned int)_expectedCount;
 
-- (bool) allWaypointsReceivedP;
+- (bool) allWaypointsReceived;
 - (unsigned int)numWaypoints;
 
 + (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint;

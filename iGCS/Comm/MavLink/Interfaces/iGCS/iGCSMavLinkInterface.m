@@ -38,7 +38,17 @@ mavlink_heartbeat_t heartbeat;
     iGCSMavLinkInterface *interface = [[iGCSMavLinkInterface alloc] init];
     interface.mainVC = mainVC;
     appMLI = interface;
+
     return interface;
+}
+
+-(id)init {
+    self = [super init];
+    if (self) {
+        // set up logger
+        _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:@"mavlinkBinary.log"];
+        }
+    return self;
 }
 
 static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
@@ -46,7 +56,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
     [appMLI produceData:buffer length:len];
 }
-
 
 // MavLink destination override
 -(void)consumeData:(uint8_t*)bytes length:(int)length
@@ -167,6 +176,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                 [self.mainVC.gcsMapVC handlePacket:&msg];
                 [self.mainVC.commsVC  handlePacket:&msg];
                 [self.mainVC.waypointVC handlePacket:&msg];
+                [self.mavlinkLogger handlePacket:&msg];
 #endif
             }
         }

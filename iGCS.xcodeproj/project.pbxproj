@@ -14,6 +14,7 @@
 		1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
+		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
 		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
@@ -174,6 +175,8 @@
 		189E23231710CFF600548C88 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = submodules/kxmovie/kxmovie/KxMovieViewController.h; sourceTree = "<group>"; };
 		189E23241710D00000548C88 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = submodules/kxmovie/kxmovie/kxmovie.bundle; sourceTree = "<group>"; };
 		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
+		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		18E62664171101D9006A5D43 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = submodules/kxmovie/libs/libkxmovie.a; sourceTree = "<group>"; };
 		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
 		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
@@ -796,6 +799,15 @@
 				189E23231710CFF600548C88 /* KxMovieViewController.h */,
 			);
 			name = kxmovie;
+			sourceTree = "<group>";
+		};
+		18A777ED17CE9E710014451B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				18A777F017CE9E910014451B /* FileUtils.h */,
+				18A777F117CE9E910014451B /* FileUtils.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		492C812516DBCCE9004001FF /* BTLE */ = {
@@ -1489,6 +1501,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
 				495253E51703EC8B006E27B0 /* Login */,
 				496E629F16DAFBF600E52E4A /* Comm */,
@@ -1688,6 +1701,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					CA499F5D14DE33BC00FCC9FB = {
+						DevelopmentTeam = BQ8K4NN6TH;
+					};
+				};
 			};
 			buildConfigurationList = CA499F5814DE33BC00FCC9FB /* Build configuration list for PBXProject "iGCS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1819,6 +1837,7 @@
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
+				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
 				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
@@ -1952,6 +1971,7 @@
 		CA499F9D14DE33BC00FCC9FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1981,7 +2001,8 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1990,6 +2011,7 @@
 		CA499F9E14DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2020,6 +2042,7 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
