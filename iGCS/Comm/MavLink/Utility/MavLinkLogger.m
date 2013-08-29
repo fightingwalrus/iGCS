@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         _writeBuffer = [[NSMutableData alloc] init];
-        NSString *fullLogPath = [[FileUtils URLToFileInDocumentsDirWithFileName:logName] absoluteString];
+        NSString *fullLogPath = [[FileUtils URLToFileInDocumentsDirWithFileName:logName] path];
         _fileHandle = [FileUtils fileHandleForWritingAtPath:fullLogPath create:YES];
         if (_fileHandle) {
             [_fileHandle seekToEndOfFile];
@@ -51,9 +51,5 @@
     uint64_t nanoseconds = mach_time * info.numer / info.denom;
     return (uint64_t)nanoseconds/1000; // nanoseconds to microseconds
 }
-
-#pragma mark -
-#pragma mark helpers
-
 
 @end
