@@ -69,6 +69,11 @@ enum {
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
 
+static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
+static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
+
+static const int AIRPLANE_ICON_SIZE = 48;
+
 #define kMaxPacketSize 1024
 #define kGCSBryansTestStream @"kGCSBryansTestStream"
 #define kGCSZ3Stream @"kGCSZ3Stream"
@@ -77,7 +82,6 @@ enum {
 // GameKit Session ID for app
 #define kTankSessionID @"groundStation"
 
-#define AIRPLANE_ICON_SIZE 48
 
 - (void)didReceiveMemoryWarning
 {
@@ -115,12 +119,6 @@ enum {
     
     showProposedFollowPos = false;
     lastFollowMeUpdate = [NSDate date];
-    
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 2.0f;
-    [locationManager startUpdatingLocation];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
 
@@ -235,14 +233,6 @@ enum {
 
 	// Do any additional setup after loading the view, typically from a nib.
     [map addAnnotation:uavPos];
-    
-    // Add recognizer for long holds => GOTO point
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] 
-                                                      initWithTarget:self action:@selector(handleLongPressGesture:)];
-    longPressGesture.numberOfTapsRequired = 0;
-    longPressGesture.numberOfTouchesRequired = 1;
-    longPressGesture.minimumPressDuration = 1.0;
-    [map addGestureRecognizer:longPressGesture];
     
     // Initialize subviews
     [ahIndicatorView setRoll: 0 pitch: 0];
@@ -391,8 +381,7 @@ enum {
 
 - (void) updateFollowMePosition {
     // Determine user coord
-    // FIXME: get CLLocation from location manager, ensure accurate fix, etc
-    //CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
+    // CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
     CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
@@ -422,8 +411,10 @@ enum {
         [map addAnnotation:requestedGuidedAnnotation];
         [map setNeedsDisplay];
     }
-    
+
+#if DO_NSLOG
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
+#endif
     if (followMeSwitch.isOn &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
         userPosition.horizontalAccuracy >= 0 &&
@@ -805,6 +796,7 @@ enum {
 }
 
 
+// Recognizer for long press gestures => GOTO point
 -(void)handleLongPressGesture:(UIGestureRecognizer*)sender {
     if (sender.state != UIGestureRecognizerStateBegan)
         return;
@@ -1088,14 +1080,13 @@ enum {
     [videoOverlayView display];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    // FIXME: mark some error
-}
-
+// Override the base locationManager: didUpdateLocations
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locationManager.location;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
+#if DO_NSLOG
     NSLog(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
+#endif
     if (age > 5.0) return;
     
     userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
