@@ -12,6 +12,8 @@
 @interface MavLinkLogger : NSObject <MavLinkPacketHandler> {
     NSMutableData *_writeBuffer;
     NSFileHandle *_fileHandle;
+    dispatch_queue_t serialQueue;
+    
 }
 
 -(id)initWithLogName:(NSString *)logName;
