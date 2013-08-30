@@ -69,6 +69,11 @@ enum {
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
 
+static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
+static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
+
+static const int AIRPLANE_ICON_SIZE = 48;
+
 #define kMaxPacketSize 1024
 #define kGCSBryansTestStream @"kGCSBryansTestStream"
 #define kGCSZ3Stream @"kGCSZ3Stream"
@@ -77,7 +82,6 @@ enum {
 // GameKit Session ID for app
 #define kTankSessionID @"groundStation"
 
-#define AIRPLANE_ICON_SIZE 48
 
 - (void)didReceiveMemoryWarning
 {

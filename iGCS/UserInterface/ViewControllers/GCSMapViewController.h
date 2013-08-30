@@ -19,9 +19,6 @@
 #import "GuidedPointAnnotation.h"
 #import "KxMovieViewController.h"
 
-#define FOLLOW_ME_MIN_UPDATE_TIME 2
-#define FOLLOW_ME_REQUIRED_ACCURACY 10.0
-
 @interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
