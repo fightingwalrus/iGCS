@@ -24,10 +24,8 @@
         }
         
         if (!serialQueue) {
-            serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlink.tlog", NULL);
+            serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlinklogger", NULL);
         }
-        
-        
     }
     return self;
 }
