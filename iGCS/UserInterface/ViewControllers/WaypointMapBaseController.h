@@ -12,7 +12,13 @@
 #import "WaypointsHolder.h"
 #import "WaypointAnnotation.h"
 
-@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate> {
+#define WAYPOINT_TOUCH_TARGET_SIZE 36
+
+#define MAP_MINIMUM_ARC       0.0010 // ~100m
+#define MAP_REGION_PAD_FACTOR 1.10
+
+
+@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
     MKPolylineView *waypointRouteView;
@@ -27,6 +33,9 @@
 @protected
     MKMapView *map;
     bool draggableWaypointsP;
+    
+    CLLocationManager *locationManager;
+    CLLocation *userPosition;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *_mapView;

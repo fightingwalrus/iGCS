@@ -122,9 +122,6 @@
 		CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
-		CAA2CFD5161BFFB700267615 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD1161BFFB700267615 /* libTestFlight.a */; };
-		CAA2CFD6161BFFB700267615 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD2161BFFB700267615 /* README.md */; };
-		CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = CAA2CFD3161BFFB700267615 /* release_notes.md */; };
 		CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
 		CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
@@ -616,10 +613,6 @@
 		CA8CA89216576557003C6D50 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CA92514416F9761A0008E92F /* WaypointMapBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointMapBaseController.h; sourceTree = "<group>"; };
 		CA92514516F9761A0008E92F /* WaypointMapBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointMapBaseController.m; sourceTree = "<group>"; };
-		CAA2CFD1161BFFB700267615 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		CAA2CFD2161BFFB700267615 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		CAA2CFD3161BFFB700267615 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		CAA2CFD4161BFFB700267615 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		CAA2CFD9161C000C00267615 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CAB48D39170D3B520013D035 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CAB48D3B170D3D040013D035 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -745,7 +738,6 @@
 				CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */,
 				CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */,
 				CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */,
-				CAA2CFD5161BFFB700267615 /* libTestFlight.a in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
 				CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */,
 				495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */,
@@ -1448,7 +1440,6 @@
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
-				CAA2CFD0161BFFB700267615 /* TestFlight SDK */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
 				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
 				CA499F6114DE33BC00FCC9FB /* Frameworks */,
@@ -1468,6 +1459,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAA2CFD9161C000C00267615 /* libz.dylib */,
 				18E62664171101D9006A5D43 /* libkxmovie.a */,
 				189E235D1710DBBC00548C88 /* libiconv.dylib */,
 				1888DE6D170F7D3400ADA039 /* Accelerate.framework */,
@@ -1554,18 +1546,6 @@
 				CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CAA2CFD0161BFFB700267615 /* TestFlight SDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAA2CFD9161C000C00267615 /* libz.dylib */,
-				CAA2CFD1161BFFB700267615 /* libTestFlight.a */,
-				CAA2CFD2161BFFB700267615 /* README.md */,
-				CAA2CFD3161BFFB700267615 /* release_notes.md */,
-				CAA2CFD4161BFFB700267615 /* TestFlight.h */,
-			);
-			path = "TestFlight SDK";
 			sourceTree = "<group>";
 		};
 		CAF0B8381657A8960033B0BC /* CorePlotHeaders */ = {
@@ -1764,8 +1744,6 @@
 				CAE20224152EA67A00D659E2 /* 13-target.png in Resources */,
 				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
 				CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */,
-				CAA2CFD6161BFFB700267615 /* README.md in Resources */,
-				CAA2CFD7161BFFB700267615 /* release_notes.md in Resources */,
 				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
@@ -1947,7 +1925,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1959,14 +1937,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
