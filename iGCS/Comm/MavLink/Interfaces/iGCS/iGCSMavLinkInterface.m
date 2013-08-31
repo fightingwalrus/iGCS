@@ -9,7 +9,7 @@
 #import "AppDelegate.h" // For TestFlight control
 
 #import "MavLinkTools.h"
-
+#import "DateTimeUtils.h"
 #import "iGCSMavLinkInterface.h"
 
 #import "CommsViewController.h"
@@ -46,7 +46,9 @@ mavlink_heartbeat_t heartbeat;
     self = [super init];
     if (self) {
         // set up logger
-        _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:@"mavlinkBinary.log"];
+        DateTimeUtils *dtUtils = [[DateTimeUtils alloc] init];
+        NSString *logName = [dtUtils logNameForCurrentDateTimeInGMTWithExtention:@"log"];
+        _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
         }
     return self;
 }
