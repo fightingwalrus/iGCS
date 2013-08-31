@@ -47,7 +47,7 @@ mavlink_heartbeat_t heartbeat;
     if (self) {
         // set up logger
         DateTimeUtils *dtUtils = [[DateTimeUtils alloc] init];
-        NSString *logName = [dtUtils logNameForCurrentDateTimeInGMTWithExtention:@"log"];
+        NSString *logName = [dtUtils dateStringInUTCWithExtension:@"log"];
         _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
         }
     return self;

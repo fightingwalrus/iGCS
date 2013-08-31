@@ -11,21 +11,21 @@
 
 @implementation DateTimeUtils
 
--(NSString *)logNameForCurrentDateTimeInGMTWithExtention:(NSString *) ext {
-    NSDate *currentDateTime = [NSDate date];
-    NSString *logName = [self dateStringForDate:currentDateTime
+-(NSString *)dateStringInUTCWithExtension:(NSString *) ext {
+    NSDate *currentDate = [NSDate date];
+    NSString *name = [self dateStringForDate:currentDate
                                      withFormat:@"yyyy-MM-dd-HHmmss"
-                                    andTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    return [logName stringByAppendingPathExtension:ext];
+                                    andTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    return [name stringByAppendingPathExtension:ext];
 }
 
--(NSString *)logNameForCurrentDateTimeInDefaultTimeZoneWithExtention:(NSString *) ext {
-    NSDate *currentDateTime = [NSDate date];
-    NSString *logName = [self dateStringForDate:currentDateTime
+-(NSString *)dateStringInDefaultTimeZoneWithExtension:(NSString *) ext {
+    NSDate *currentDate = [NSDate date];
+    NSString *name = [self dateStringForDate:currentDate
                                      withFormat:@"yyyy-MM-dd-HHmmss"
                                     andTimeZone:[NSTimeZone defaultTimeZone]];
     
-    return [logName stringByAppendingPathExtension:ext];
+    return [name stringByAppendingPathExtension:ext];
 }
 
 -(NSString *)dateStringForDate:(NSDate *)date
@@ -45,7 +45,7 @@
 }
 
 // TODO - I think this is still wrong...
--(uint64_t)systemTimeInUSecs {
+-(uint64_t)systemTimeInMicroseconds {
     // see https://developer.apple.com/library/mac/qa/qa1398/
     static mach_timebase_info_data_t info;
     if (info.denom == 0) {
@@ -57,9 +57,5 @@
     uint64_t microseconds = (mach_time * info.numer) / (info.denom * 1000.0);
     return (uint64_t)microseconds;
 }
-
-
-#pragma progra mark -
-#pragma mark Private
 
 @end

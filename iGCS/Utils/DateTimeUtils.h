@@ -10,10 +10,19 @@
 
 @interface DateTimeUtils : NSObject
 
-// YYYY-MM-DD-HHMMSS
--(NSString *)logNameForCurrentDateTimeInGMTWithExtention:(NSString *) ext;
--(NSString *)logNameForCurrentDateTimeInDefaultTimeZoneWithExtention:(NSString *) ext;
+// Convenience method to return current date and time
+// as a string in the format yyyy-MM-dd-HHmmss in UTC
+-(NSString *)dateStringInUTCWithExtension:(NSString *) ext;
+
+// Convenience method to return current date and time
+// as a string in the format yyyy-MM-dd-HHmmss in the apps defaultTimeZone
+-(NSString *)dateStringInDefaultTimeZoneWithExtension:(NSString *) ext;
+
+-(NSString *)dateStringForDate:(NSDate *)date
+                    withFormat:(NSString *)formatString
+                   andTimeZone:(NSTimeZone *)timeZone;
+
 -(uint64_t) unixTimeInMicroseconds;
--(uint64_t) systemTimeInUSecs;
+-(uint64_t) systemTimeInMicroseconds;
 
 @end
