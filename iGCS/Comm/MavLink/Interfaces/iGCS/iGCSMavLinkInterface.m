@@ -42,15 +42,10 @@ mavlink_heartbeat_t heartbeat;
     return interface;
 }
 
--(id)init {
-    self = [super init];
-    if (self) {
-        // set up logger
-        DateTimeUtils *dtUtils = [[DateTimeUtils alloc] init];
-        NSString *logName = [dtUtils dateStringInUTCWithExtension:@"log"];
-        _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
-        }
-    return self;
+-(void)setupLogger{
+    DateTimeUtils *dtUtils = [[DateTimeUtils alloc] init];
+    NSString *logName = [dtUtils dateStringInUTCWithExtension:@"log"];
+    _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
 }
 
 static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
@@ -67,6 +62,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
         // Notify the comms view of receipt of n bytes
         [self.mainVC.commsVC bytesReceived: length];
         
+        // set up log file the first time we get any data
+        if (!_mavlinkLogger) {
+            [self setupLogger];
+        }
+
         // Pass each byte to the MAVLINK parser
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
