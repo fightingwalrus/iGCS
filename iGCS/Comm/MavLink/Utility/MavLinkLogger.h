@@ -11,11 +11,9 @@
 #import "DateTimeUtils.h"
 
 @interface MavLinkLogger : NSObject <MavLinkPacketHandler> {
-    NSMutableData *_writeBuffer;
     NSFileHandle *_fileHandle;
     DateTimeUtils *_dateTimeUtils;
     dispatch_queue_t serialQueue;
-    
 }
 
 -(id)initWithLogName:(NSString *)logName;

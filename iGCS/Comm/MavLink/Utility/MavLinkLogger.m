@@ -15,7 +15,6 @@
 -(id)initWithLogName:(NSString *)logName {
     self = [super init];
     if (self) {
-        _writeBuffer = [[NSMutableData alloc] init];
         NSString *fullLogPath = [[FileUtils URLToFileInDocumentsDirWithFileName:logName] path];
         _fileHandle = [FileUtils fileHandleForWritingAtPath:fullLogPath create:YES];
         if (_fileHandle) {
