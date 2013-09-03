@@ -40,7 +40,7 @@
 }
 
 -(uint64_t) unixTimeInMicroseconds {
-    uint64_t unixtime = (uint64_t)[[NSDate date] timeIntervalSince1970] * 1000.0;
+    uint64_t unixtime = (uint64_t)[[NSDate date] timeIntervalSince1970] * 1000000.0;
     return unixtime;
 }
 

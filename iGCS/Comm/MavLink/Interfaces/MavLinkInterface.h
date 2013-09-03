@@ -10,7 +10,7 @@
 
 @class MavLinkConnectionPool;
 
-@protocol MavLinkInterfaceProtocal <NSObject>
+@protocol MavLinkInterfaceProtocol <NSObject>
 // subsclasses must assign this property to use produceData
 @property (strong) MavLinkConnectionPool *connectionPool;
 
@@ -20,7 +20,7 @@
 -(void) close;
 @end
 
-@interface MavLinkInterface : NSObject <MavLinkInterfaceProtocal>
+@interface MavLinkInterface : NSObject <MavLinkInterfaceProtocol>
 
 // subsclasses must assign this property to use produceData
 @property (strong) MavLinkConnectionPool *connectionPool;
