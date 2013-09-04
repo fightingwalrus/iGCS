@@ -12,13 +12,9 @@
 
 @implementation RNBluetoothInterface
 
-
-
 +(RNBluetoothInterface*)create
 {
     RNBluetoothInterface *rn = [[RNBluetoothInterface alloc] init];
-    
-    
     
     if (rn.selectedAccessory)
     {
@@ -35,12 +31,6 @@
     }
 }
 
-
-
-
-
-
-
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
     [DebugLogger console:@"RovingNetworks: consumeData (stubbed)."];
@@ -49,14 +39,6 @@
     [self writeData:dataToStream];
     
 }
-
-
-
-
-
-
-
-
 
 #pragma mark Internal
 
@@ -137,7 +119,6 @@
     return self;
 }
 
-
 - (EAAccessory *)selectedAccessory
 {
 	if (_selectedAccessory == nil)
@@ -154,16 +135,12 @@
 	return _selectedAccessory;
 }
 
-
-
-
 - (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString
 {
 	NSLog(@"RNBluetoothInterface::setupControllerForAccessory:");
     _selectedAccessory = accessory;
     _protocolString = [protocolString copy];
 }
-
 
 - (BOOL)openSession
 {
@@ -193,7 +170,6 @@
     return (_session != nil);
 }
 
-
 - (void)closeSession
 {
 	NSLog(@"RNBluetoothInterface::closeSession");
@@ -208,14 +184,12 @@
 	NSLog(@"closed the session");
 }
 
-
 - (void)writeData:(NSData *)data
 {
 	//NSLog(@"RNBluetoothInterface::writeData:");
     [_writeDataBuffer appendData:data];
     [self writeDataFromBufferToStream];
 }
-
 
 - (BOOL)isAccessoryConnected
 {
@@ -285,7 +259,6 @@
 	}
 }
 
-
 - (void)accessoryDisconnected:(NSNotification *)notification
 {
 	NSLog(@"RNBluetoothInterface::accessoryDisconnected");
@@ -297,12 +270,5 @@
 		[self openSession];
 	}
 }
-
-
-
-
-
-
-
 
 @end

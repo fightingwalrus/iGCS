@@ -10,8 +10,6 @@
 
 @implementation BluetoothStream
 
-
-
 +(BluetoothStream*) createForTx
 {
     NSLog(@"Creating BluetoothStream for Peripheral mode (Tx).");
@@ -47,11 +45,6 @@
     return bts;
 }
 
-
-
-
-
-
 #pragma mark -
 #pragma mark MavLinkInterface methods
 
@@ -65,12 +58,6 @@
     }
 }
 
-
-
-
-
-
-
 -(void) close
 {
     if (self.streamCentral)
@@ -83,8 +70,5 @@
         [self.streamPeripheral stopStream];
     }
 }
-
-
-
 
 @end
