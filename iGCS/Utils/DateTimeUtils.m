@@ -46,18 +46,4 @@
     return unixtime;
 }
 
-// TODO - I think this is still wrong...
--(uint64_t)systemTimeInMicroseconds {
-    // see https://developer.apple.com/library/mac/qa/qa1398/
-    static mach_timebase_info_data_t info;
-    if (info.denom == 0) {
-        (void) mach_timebase_info(&info);
-    }
-    
-    uint64_t mach_time = mach_absolute_time();
-    // should convert to microseconds
-    uint64_t microseconds = (mach_time * info.numer) / (info.denom * 1000.0);
-    return (uint64_t)microseconds;
-}
-
 @end
