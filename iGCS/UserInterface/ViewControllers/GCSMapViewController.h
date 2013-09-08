@@ -19,10 +19,7 @@
 #import "GuidedPointAnnotation.h"
 #import "KxMovieViewController.h"
 
-#define FOLLOW_ME_MIN_UPDATE_TIME 2
-#define FOLLOW_ME_REQUIRED_ACCURACY 10.0
-
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, CLLocationManagerDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -42,9 +39,6 @@
     BOOL showProposedFollowPos;
     NSDate *lastFollowMeUpdate;
     uint32_t lastCustomMode;
-    
-    CLLocationManager *locationManager;
-    CLLocation *userPosition;
 
     int				gamePacketNumber;
     int				gameUniqueID;

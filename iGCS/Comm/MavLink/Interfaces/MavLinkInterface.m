@@ -7,14 +7,10 @@
 //
 
 #import "MavLinkInterface.h"
-
 #import "MavLinkConnectionPool.h"
-
 #import "Logger.h"
 
 @implementation MavLinkInterface
-
-
 
 -(void)consumeData:(uint8_t*)bytes length:(int)length
 {
@@ -25,8 +21,6 @@
     assert(0);
 
 }
-
-
 
 // call this method for source interfaces when new data is available
 -(void)produceData:(uint8_t*)bytes length:(int)length

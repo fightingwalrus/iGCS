@@ -16,9 +16,6 @@
 
 @interface BluetoothStream : MavLinkInterface
 
-
-
-
 @property (strong) BTLEMavLinkCentral *streamCentral;
 @property (strong) BTLEMavLinkPeripheral *streamPeripheral;
 

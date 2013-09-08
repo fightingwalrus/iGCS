@@ -9,9 +9,7 @@
 #import "CommController.h"
 
 #import "DebugViewController.h"
-
 #import "DebugLogger.h"
-
 #import "RNBluetoothInterface.h"
 
 
@@ -21,11 +19,8 @@
 
 static MavLinkConnectionPool *connections;
 static MainViewController *mainVC;
-
 static iGCSMavLinkInterface *appMLI;
-
 static RedparkSerialCable *redParkCable;
-
 static RNBluetoothInterface *rnBluetooth;
 
 
@@ -46,13 +41,7 @@ static RNBluetoothInterface *rnBluetooth;
         [DebugLogger dumpException:exception];
     }
     
-    
-    
-    
-    
-    
 }
-
 
 
 // TODO: Move this stuff to user defaults controllable in app views
@@ -62,8 +51,6 @@ static RNBluetoothInterface *rnBluetooth;
     appMLI = [iGCSMavLinkInterface createWithViewController:mainVC];
     [connections addDestination:appMLI];
     [DebugLogger console:@"Configured iGCS Application as MavLink consumer."];
-    
-    
     
     [DebugLogger console: @"Creating RovingNetworks connection."];
 //    rnBluetooth = [RNBluetoothInterface create];
@@ -108,15 +95,7 @@ static RNBluetoothInterface *rnBluetooth;
         [DebugLogger console:@"Connected iGCS Application output to Redpark Tx."];
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 
@@ -124,7 +103,6 @@ static RNBluetoothInterface *rnBluetooth;
 {
     return appMLI;
 }
-
 
 
 +(void) startBluetoothTx
