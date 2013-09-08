@@ -146,6 +146,10 @@ NSArray* headerSpecs = nil;
     }
 }
 
+- (NSString*) formatParam:(float)param {
+    return param == 0 ? @"0" : [NSString stringWithFormat:@"%0.2f", param];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"MissionItemCellID";
@@ -208,21 +212,24 @@ NSArray* headerSpecs = nil;
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
     label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
     
+    
+    NSMutableDictionary *map = [self getParamTagToLabelMap: waypoint.command];
+    
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param1];
+    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM1]]) ? [self formatParam:waypoint.param1] : @"-";
     
     // param2
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param2];
+    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM2]]) ? [self formatParam:waypoint.param2] : @"-";
     
     // param3
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param3];
+    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM3]]) ? [self formatParam:waypoint.param3] : @"-";
     
     // param4
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%0.2f", waypoint.param4];
+    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM4]]) ? [self formatParam:waypoint.param4] : @"-";
     
     // autocontinue
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
@@ -305,32 +312,40 @@ NSArray* headerSpecs = nil;
     return sectionHead;
 }
 
+- (NSMutableDictionary*) getParamTagToLabelMap:(uint16_t)command {
+    NSArray* fields = [MavLinkUtility getMissionItemMetaData:command];
+    if (!fields) return nil;
+    
+    NSMutableDictionary* map = [[NSMutableDictionary alloc] init];
+    for (MissionItemField* field in fields) {
+        NSInteger tag;
+        switch (field.fieldType) {
+            case kPARAM_Z: continue;
+            case kPARAM_1: tag = TAG_PARAM1; break;
+            case kPARAM_2: tag = TAG_PARAM2; break;
+            case kPARAM_3: tag = TAG_PARAM3; break;
+            case kPARAM_4: tag = TAG_PARAM4; break;
+        }
+        
+        [map setObject:field.label forKey:[NSNumber numberWithInt: tag]];
+    }
+    return map;
+}
+
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
-    NSArray* fields = [MavLinkUtility getMissionItemMetaData:waypoint.command];
+    NSMutableDictionary *map = [self getParamTagToLabelMap:waypoint.command];
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
-    NSString* param1 = fields ? @"" : @"Param1";
-    NSString* param2 = fields ? @"" : @"Param2";
-    NSString* param3 = fields ? @"" : @"Param3";
-    NSString* param4 = fields ? @"" : @"Param4";
-    if (fields) {
-        for (MissionItemField* field in fields) {
-            switch (field.fieldType) {
-                case kPARAM_Z: break;
-                case kPARAM_1: param1 = field.label; break;
-                case kPARAM_2: param2 = field.label; break;
-                case kPARAM_3: param3 = field.label; break;
-                case kPARAM_4: param4 = field.label; break;
-            }
-        }
-    }
-    
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text = param1;
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text = param2;
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text = param3;
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text = param4;
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text =
+        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM1]] ?: @"") : @"Param1";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text =
+        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM2]] ?: @"") : @"Param2";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text =
+        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM3]] ?: @"") : @"Param3";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text =
+        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM4]] ?: @"") : @"Param4";
 }
 
 - (void)unmarkSelectedRow {

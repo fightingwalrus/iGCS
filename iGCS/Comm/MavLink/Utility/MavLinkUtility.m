@@ -50,7 +50,7 @@ NSMutableDictionary *missionItemMetaData;
                                 forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DELAY]];
         [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                         [[MissionItemField alloc] initWithLabel:@"Rate"              units:kUNIT_CM_S andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude (finish)" units:kUNIT_M    andType:kPARAM_2], nil]
+                                        [[MissionItemField alloc] initWithLabel:@"Final Altitude" units:kUNIT_M    andType:kPARAM_2], nil]
                                 forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_CHANGE_ALT]];
         [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
                                         [[MissionItemField alloc] initWithLabel:@"Distance" units:kUNIT_M andType:kPARAM_3], nil]
