@@ -10,7 +10,7 @@
 #import "MissionItemEditViewController.h"
 
 #import "MiscUtilities.h"
-
+#import "MavLinkUtility.h"
 #import "WaypointHelper.h"
 
 @interface HeaderSpec : NSObject
@@ -136,12 +136,12 @@ NSArray* headerSpecs = nil;
                          [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Longitude" tag:0], // y
                          [[HeaderSpec alloc] initWithWidth: 65 alignment:UITextAlignmentCenter text:@"Altitude"  tag:0], // z
                          //
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param1" tag:TAG_PARAM1], // param1
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param2" tag:TAG_PARAM2], // param2
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param3" tag:TAG_PARAM3], // param3
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param4" tag:TAG_PARAM4], // param4
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param1" tag:TAG_PARAM1], // param1
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param2" tag:TAG_PARAM2], // param2
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param3" tag:TAG_PARAM3], // param3
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param4" tag:TAG_PARAM4], // param4
                          //
-                         [[HeaderSpec alloc] initWithWidth:110 alignment:UITextAlignmentCenter text:@"Autocontinue" tag:0] 
+                         [[HeaderSpec alloc] initWithWidth:100 alignment:UITextAlignmentCenter text:@"Autocontinue" tag:0]
                        ];
     }
 }
@@ -306,7 +306,31 @@ NSArray* headerSpecs = nil;
 }
 
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
-    //((UILabel*)[self.sectionHeader viewWithTag:TAG_PARAM1]).text = @"foo";
+    mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
+    NSArray* fields = [MavLinkUtility getMissionItemMetaData:waypoint.command];
+    
+    // If we recognise this mission item type, then populate the fields (default is ""),
+    // otherwise, fallback to "ParamX"
+    NSString* param1 = fields ? @"" : @"Param1";
+    NSString* param2 = fields ? @"" : @"Param2";
+    NSString* param3 = fields ? @"" : @"Param3";
+    NSString* param4 = fields ? @"" : @"Param4";
+    if (fields) {
+        for (MissionItemField* field in fields) {
+            switch (field.fieldType) {
+                case kPARAM_Z: break;
+                case kPARAM_1: param1 = field.label; break;
+                case kPARAM_2: param2 = field.label; break;
+                case kPARAM_3: param3 = field.label; break;
+                case kPARAM_4: param4 = field.label; break;
+            }
+        }
+    }
+    
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text = param1;
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text = param2;
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text = param3;
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text = param4;
 }
 
 - (void)unmarkSelectedRow {
