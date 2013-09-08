@@ -12,7 +12,7 @@
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
-#import "MavLinkUtiility.h"
+#import "MavLinkUtility.h"
 #import "MiscUtilities.h"
 
 #import "CommController.h"
@@ -978,9 +978,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
             
-            [customModeLabel    setText:[MavLinkUtiility mavCustomModeToString:  heartbeat.custom_mode]];
-            [baseModeLabel      setText:[MavLinkUtiility mavModeEnumToString:    heartbeat.base_mode]];
-            [statusLabel        setText:[MavLinkUtiility mavStateEnumToString:   heartbeat.system_status]];
+            [customModeLabel    setText:[MavLinkUtility mavCustomModeToString:  heartbeat.custom_mode]];
+            [baseModeLabel      setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
+            [statusLabel        setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
             
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode)

@@ -1,14 +1,14 @@
 //
-//  MavLinkUtiility.m
+//  MavLinkUtility.m
 //  iGCS
 //
 //  Created by Claudio Natoli on 21/07/13.
 //
 //
 
-#import "MavLinkUtiility.h"
+#import "MavLinkUtility.h"
 
-@implementation MavLinkUtiility
+@implementation MavLinkUtility
 
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode {
     NSString *str = [NSString stringWithFormat:@""];
