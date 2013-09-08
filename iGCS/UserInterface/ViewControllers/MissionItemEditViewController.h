@@ -15,8 +15,7 @@
     IBOutlet UIPickerView *pickerView;
     
     NSArray *missionItemCommandIDs;
-    NSMutableDictionary *missionItemMetaData;
-        
+    
     WaypointsHolder *originalMission;
 
     unsigned int itemIndex;

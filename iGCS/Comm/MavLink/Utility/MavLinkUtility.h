@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #include "MavLinkTools.h"
+#include "MissionItemField.h"
 
 @interface MavLinkUtility : NSObject
 
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode;
 + (NSString*) mavStateEnumToString:(enum MAV_STATE)state;
 + (NSString*) mavCustomModeToString:(int)customMode;
+
++ (NSArray*) supportedMissionItemTypes;
++ (NSArray*) getMissionItemMetaData:(uint16_t)command;
 
 @end
