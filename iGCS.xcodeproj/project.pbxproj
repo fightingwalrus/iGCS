@@ -104,6 +104,7 @@
 		182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
+		18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
@@ -274,6 +275,8 @@
 /* Begin PBXFileReference section */
 		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
+		18285C8A17D91C3100C48EA3 /* iGCSRadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig.h; sourceTree = "<group>"; };
+		18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSRadioConfig.m; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1171,6 +1174,8 @@
 			children = (
 				496E62B916DAFBF600E52E4A /* iGCSMavLinkInterface.h */,
 				496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */,
+				18285C8A17D91C3100C48EA3 /* iGCSRadioConfig.h */,
+				18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */,
 			);
 			path = iGCS;
 			sourceTree = "<group>";
@@ -2100,6 +2105,7 @@
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
+				18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,

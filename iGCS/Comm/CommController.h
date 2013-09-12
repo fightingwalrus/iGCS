@@ -17,7 +17,7 @@
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
-
+#import "iGCSRadioConfig.h"
 
 #import "MavLinkInterface.h"
 

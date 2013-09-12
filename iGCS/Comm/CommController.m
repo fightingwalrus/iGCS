@@ -22,7 +22,7 @@ static MainViewController *mainVC;
 static iGCSMavLinkInterface *appMLI;
 static RedparkSerialCable *redParkCable;
 static RNBluetoothInterface *rnBluetooth;
-
+static iGCSRadioConfig *radioConfig;
 
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
