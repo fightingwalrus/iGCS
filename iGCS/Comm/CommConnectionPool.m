@@ -6,11 +6,11 @@
 //
 //
 
-#import "MavLinkConnectionPool.h"
+#import "CommConnectionPool.h"
 
 #import "Logger.h"
 
-@implementation MavLinkConnectionPool
+@implementation CommConnectionPool
 
 
 -(id)init
@@ -27,23 +27,23 @@
 }
 
 
--(void)addSource:(MavLinkInterface*)interface
+-(void)addSource:(CommInterface*)interface
 {
     interface.connectionPool = self;
     [self.sourceInterfaces addObject:interface];
 }
--(void)addDestination:(MavLinkInterface*)interface
+-(void)addDestination:(CommInterface*)interface
 {
     interface.connectionPool = self;
     [self.destinationInterfaces addObject:interface];
 }
 
--(void)removeSource:(MavLinkInterface*)interface
+-(void)removeSource:(CommInterface*)interface
 {
     [self.sourceInterfaces removeObject:interface];
     [interface close];
 }
--(void)removeDestination:(MavLinkInterface*)interface
+-(void)removeDestination:(CommInterface*)interface
 {
     [self.destinationInterfaces removeObject:interface];
     [interface close];
@@ -57,11 +57,11 @@
 
 -(void)closeAllInterfaces
 {
-    for (MavLinkInterface *interface in self.sourceInterfaces)
+    for (CommInterface *interface in self.sourceInterfaces)
     {
         [interface close];
     }
-    for (MavLinkInterface *interface in self.destinationInterfaces)
+    for (CommInterface *interface in self.destinationInterfaces)
     {
         [interface close];
     }
@@ -70,7 +70,7 @@
 }
 
 
--(void)createConnection:(MavLinkInterface*)source destination:(MavLinkInterface*)destination
+-(void)createConnection:(CommInterface*)source destination:(CommInterface*)destination
 {
     // TODO: Check to see if source and destination are already in source/destination lists,
     // if not, add them
@@ -78,7 +78,7 @@
     // TODO: Make sure a connection with these interfaces doesn't already exist
     
     @try {
-        MavLinkConnection *conn = [MavLinkConnection createForSource:source destination:destination];
+        CommConnection *conn = [CommConnection createForSource:source destination:destination];
     
         [self.connections addObject:conn];
         
@@ -96,10 +96,10 @@
 
 
 
--(void)interface:(MavLinkInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length
+-(void)interface:(CommInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length
 {
     @try {
-        for (MavLinkConnection *connection in self.connections)
+        for (CommConnection *connection in self.connections)
         {
             if ([connection.source isEqual:interface])
             {

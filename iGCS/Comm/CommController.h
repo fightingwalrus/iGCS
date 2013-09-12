@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MavLinkConnection.h"
-#import "MavLinkConnectionPool.h"
+#import "CommConnection.h"
+#import "CommConnectionPool.h"
 
 #import "RedparkSerialCable.h"
 #import "FightingWalrusRadio.h"
@@ -19,7 +19,7 @@
 #import "iGCSMavLinkInterface.h"
 #import "iGCSRadioConfig.h"
 
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 
 #import "MainViewController.h"
 

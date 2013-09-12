@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 #import <ExternalAccessory/ExternalAccessory.h>
 
 
 
-@interface RNBluetoothInterface : MavLinkInterface <EAAccessoryDelegate, NSStreamDelegate>
+@interface RNBluetoothInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate>
 {
     NSMutableArray *_accessoryList;
     EAAccessory *_selectedAccessory;

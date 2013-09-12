@@ -17,7 +17,7 @@
 
 
 
-static MavLinkConnectionPool *connections;
+static CommConnectionPool *connections;
 static MainViewController *mainVC;
 static iGCSMavLinkInterface *appMLI;
 static RedparkSerialCable *redParkCable;
@@ -29,7 +29,7 @@ static iGCSRadioConfig *radioConfig;
 +(void)start:(MainViewController*)mvc
 {
     @try {
-        connections = [[MavLinkConnectionPool alloc] init];
+        connections = [[CommConnectionPool alloc] init];
         
         mainVC = mvc;
         

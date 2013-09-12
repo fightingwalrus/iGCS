@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class MavLinkConnectionPool;
+@class CommConnectionPool;
 
-@protocol MavLinkInterfaceProtocol <NSObject>
+@protocol CommInterfaceProtocol <NSObject>
 // subsclasses must assign this property to use produceData
-@property (strong) MavLinkConnectionPool *connectionPool;
+@property (strong) CommConnectionPool *connectionPool;
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length;
@@ -20,10 +20,10 @@
 -(void) close;
 @end
 
-@interface MavLinkInterface : NSObject <MavLinkInterfaceProtocol>
+@interface CommInterface : NSObject <CommInterfaceProtocol>
 
 // subsclasses must assign this property to use produceData
-@property (strong) MavLinkConnectionPool *connectionPool;
+@property (strong) CommConnectionPool *connectionPool;
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length;

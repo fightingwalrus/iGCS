@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"    
-@interface SocketStream : MavLinkInterface
+#import "CommInterface.h"    
+@interface SocketStream : CommInterface
 
 @end

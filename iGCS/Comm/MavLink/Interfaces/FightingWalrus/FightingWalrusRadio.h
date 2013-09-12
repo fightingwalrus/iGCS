@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 
-@interface FightingWalrusRadio : MavLinkInterface
+@interface FightingWalrusRadio : CommInterface
 
 @end

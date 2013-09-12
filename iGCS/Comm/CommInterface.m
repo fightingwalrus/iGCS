@@ -6,11 +6,11 @@
 //
 //
 
-#import "MavLinkInterface.h"
-#import "MavLinkConnectionPool.h"
+#import "CommInterface.h"
+#import "CommConnectionPool.h"
 #import "Logger.h"
 
-@implementation MavLinkInterface
+@implementation CommInterface
 
 -(void)consumeData:(uint8_t*)bytes length:(int)length
 {

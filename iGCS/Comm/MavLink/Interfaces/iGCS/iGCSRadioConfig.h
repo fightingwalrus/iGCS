@@ -6,11 +6,11 @@
 //
 //
 
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 
-@interface iGCSRadioConfig : MavLinkInterface
+@interface iGCSRadioConfig : CommInterface
 // subsclasses must assign this property to use produceData
-@property (strong) MavLinkConnectionPool *connectionPool;
+@property (strong) CommConnectionPool *connectionPool;
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length;

@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 #import "RscMgr.h"
 
 #import "MainViewController.h"
 
-@interface RedparkSerialCable : MavLinkInterface <RscMgrDelegate>
+@interface RedparkSerialCable : CommInterface <RscMgrDelegate>
 
 +(RedparkSerialCable*)createWithViews:(MainViewController*)mvc;
 
