@@ -53,12 +53,7 @@
     // Initialize MavLink Interfaces
     
     // TODO: Use NSNotifications for view updates instead of passing ref to self
-    [CommController start:self];
-    
-    
-    
-    
-    
+    [[CommController sharedInstance] start:self];
 }
 
 #pragma mark - View lifecycle

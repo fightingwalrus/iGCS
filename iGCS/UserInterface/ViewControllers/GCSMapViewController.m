@@ -334,7 +334,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             break;
             
         case CONTROL_MODE_AUTO:
-            [[CommController appMLI] issueSetAUTOModeCommand];
+            [[[CommController sharedInstance] mavLinkInterface] issueSetAUTOModeCommand];
             break;
             
         case CONTROL_MODE_GUIDED:
@@ -382,7 +382,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [map addAnnotation:currentGuidedAnnotation];
     [map setNeedsDisplay];
 
-    [[CommController appMLI] issueGOTOCommand:coordinates withAltitude:altitude];
+    [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
 }
 
 

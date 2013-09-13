@@ -18,6 +18,7 @@
 
 #import "iGCSMavLinkInterface.h"
 #import "iGCSRadioConfig.h"
+#import "RNBluetoothInterface.h"
 
 #import "CommInterface.h"
 
@@ -27,13 +28,19 @@
 
 @interface CommController : NSObject
 
-+(void)start:(MainViewController*)mvc;
+@property (nonatomic, retain) CommConnectionPool *connectionPool;
+@property (nonatomic, retain) MainViewController *mainVC;
+@property (nonatomic, retain) iGCSMavLinkInterface *mavLinkInterface;
+@property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
+@property (nonatomic, retain) RedparkSerialCable *redParkCable;
+@property (nonatomic, retain) iGCSRadioConfig *radioConfig;
 
-+(void) startBluetoothTx;
-+(void) startBluetoothRx;
++(CommController *)sharedInstance;
 
-+(iGCSMavLinkInterface*)appMLI;
+-(void)start:(MainViewController*)mvc;
 
-+(void) closeAllInterfaces;
+-(void) startBluetoothTx;
+-(void) startBluetoothRx;
+-(void) closeAllInterfaces;
 
 @end

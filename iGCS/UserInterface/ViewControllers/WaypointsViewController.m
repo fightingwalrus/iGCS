@@ -267,12 +267,13 @@
     [self makeWaypointsDraggable:isEditing];
 }
 
+
 - (IBAction)mavTxMissionClicked:(id)sender {
-    [[CommController appMLI] startWriteMissionRequest: waypoints];
+    [[[CommController sharedInstance] mavLinkInterface  ]startWriteMissionRequest: waypoints];
 }
 
 - (IBAction)mavRxMissionClicked:(id)sender {
-    [[CommController appMLI] startReadMissionRequest];
+    [[[CommController sharedInstance] mavLinkInterface ]startReadMissionRequest];
 }
 
 // @protocol MissionItemEditingDelegate
@@ -296,7 +297,7 @@
 
 
 - (IBAction)loadDemoMision: (id)sender {
-    [[CommController appMLI] loadDemoMission];
+    [[[CommController sharedInstance] mavLinkInterface] loadDemoMission];
 }
 
 @end
