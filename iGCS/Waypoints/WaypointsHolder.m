@@ -114,7 +114,7 @@
 
 - (NSString*) toOutputFormat {
     NSString *res = @"QGC WPL 110\n";
-    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+    for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t item = [self getWaypoint:i];
         res = [res stringByAppendingFormat:@"%d\t%d\t\%d\t%d\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%d\n",
                i, i==0, item.frame, item.command,
@@ -122,6 +122,54 @@
                item.x, item.y, item.z, item.autocontinue];
     }
     return res;
+}
+
++ (BOOL) readLine:(NSString*)line intoMissionItem:(mavlink_mission_item_t*)item {
+    NSScanner *scanner = [NSScanner scannerWithString:line];
+    int x;
+    
+    BOOL ret = [scanner scanInt:&x]; item->seq     = x;
+    ret &= [scanner scanInt:&x];     item->current = x;
+    ret &= [scanner scanInt:&x];     item->frame   = x;
+    ret &= [scanner scanInt:&x];     item->frame   = x;
+    ret &= [scanner scanInt:&x];     item->command = x;
+    ret &= [scanner scanFloat:&item->param1];
+    ret &= [scanner scanFloat:&item->param2];
+    ret &= [scanner scanFloat:&item->param3];
+    ret &= [scanner scanFloat:&item->param4];
+    ret &= [scanner scanFloat:&item->x];
+    ret &= [scanner scanFloat:&item->y];
+    ret &= [scanner scanFloat:&item->z];
+    ret &= [scanner scanInt:&x];     item->autocontinue = x;
+    
+    return ret;
+}
+
++ (WaypointsHolder*) createFromQGCString:(NSString*)str {
+    NSArray* lines = [str componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSUInteger numLines = [lines count];
+    
+    // Check header
+    if (numLines == 0 || ![((NSString*)[lines objectAtIndex:0]) isEqualToString:@"QGC WPL 110"]) {
+        return nil;
+    }
+    
+    // Read waypoints
+    WaypointsHolder *mission = [[WaypointsHolder alloc] initWithExpectedCount:numLines];
+    for (NSUInteger i = 1; i < numLines; i++) {
+        NSString *line = [lines objectAtIndex:i];
+        if ([line length] == 0 && (i == numLines - 1)) {
+            break; // allow an empty line at the end
+        }
+        
+        mavlink_mission_item_t item;
+        if ([WaypointsHolder readLine:line intoMissionItem:&item]) {
+            [mission addWaypoint:item];
+        } else {
+            return nil; // something got borked
+        }
+    }
+    return mission;
 }
 
 @end

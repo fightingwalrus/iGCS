@@ -34,5 +34,7 @@
 - (WaypointsHolder*) getNavWaypoints;
 
 - (NSString*) toOutputFormat;
++ (WaypointsHolder*) createFromQGCString:(NSString*)str;
+
 
 @end
