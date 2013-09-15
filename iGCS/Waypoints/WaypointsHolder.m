@@ -112,4 +112,16 @@
     return navWayPoints;
 }
 
+- (NSString*) toOutputFormat {
+    NSString *res = @"QGC WPL 110\n";
+    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+        mavlink_mission_item_t item = [self getWaypoint:i];
+        res = [res stringByAppendingFormat:@"%d\t%d\t\%d\t%d\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%d\n",
+               i, i==0, item.frame, item.command,
+               item.param1, item.param2, item.param3, item.param4,
+               item.x, item.y, item.z, item.autocontinue];
+    }
+    return res;
+}
+
 @end

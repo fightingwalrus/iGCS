@@ -33,4 +33,6 @@
 
 - (WaypointsHolder*) getNavWaypoints;
 
+- (NSString*) toOutputFormat;
+
 @end

@@ -255,6 +255,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
             mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
             
             // Let the GCSMapView and WaypointsView know we've got new waypoints
+            //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
             [self.mainVC.gcsMapVC   resetWaypoints: waypoints];
             [self.mainVC.waypointVC resetWaypoints: waypoints];
 
@@ -364,7 +365,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     waypoint.seq = 7; waypoint.command = 16; waypoint.x = 47.258757; waypoint.y = 11.330380; waypoint.z =  50; [zz addWaypoint:waypoint];
     waypoint.seq = 8; waypoint.command = 16; waypoint.x = 47.259427; waypoint.y = 11.336904; waypoint.z =  20; [zz addWaypoint:waypoint];
     waypoint.seq = 9; waypoint.command = 21; waypoint.x = 47.259864; waypoint.y = 11.340809; waypoint.z = 100; [zz addWaypoint:waypoint];
-    
+        
     [self.mainVC.gcsMapVC resetWaypoints: zz];
     [self.mainVC.waypointVC resetWaypoints: zz];
 }
