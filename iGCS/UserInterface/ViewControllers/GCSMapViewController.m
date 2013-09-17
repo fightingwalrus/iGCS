@@ -441,7 +441,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
                                          initWithMatchRequest:request];
     mmvc.matchmakerDelegate = self;
-    [self presentModalViewController:mmvc animated:YES];
+    [self presentViewController:mmvc animated:YES completion:nil];
     
     //Comment out local for now
     /*
@@ -519,7 +519,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
                                                  initWithInvite:acceptedInvite];
             mmvc.matchmakerDelegate = self;
-            [self presentModalViewController:mmvc animated:YES];
+            [self presentViewController:mmvc animated:YES completion:nil];
         }
         else if (playersToInvite)
         {
@@ -530,7 +530,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc]
                                                  initWithMatchRequest:request];
             mmvc.matchmakerDelegate = self;
-            [self presentModalViewController:mmvc animated:YES];
+            [self presentViewController:mmvc animated:YES completion:nil];
         }
     };
     
@@ -621,7 +621,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 //Completing a Match Request
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
 {
-    [viewController dismissModalViewControllerAnimated:YES];
+    [viewController dismissViewControllerAnimated:YES completion:nil];
     self.myMatch = match; // Use a retaining property to retain the match.
     match.delegate = self;
     if (!self.matchStarted && match.expectedPlayerCount == 0)
@@ -640,13 +640,13 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
 {
     NSLog(@"MatchMaker Cancelled");
-    [viewController dismissModalViewControllerAnimated:YES];
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 //Handling Errors (required method)
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
     NSLog(@"Error occurred:%@",error);
-    [viewController dismissModalViewControllerAnimated:YES];
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 //Hosted Matches not yet supported
 //Hosted Matches
