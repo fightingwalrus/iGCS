@@ -320,11 +320,11 @@ NSArray* headerSpecs = nil;
     for (MissionItemField* field in fields) {
         NSInteger tag;
         switch (field.fieldType) {
-            case kPARAM_Z: continue;
-            case kPARAM_1: tag = TAG_PARAM1; break;
-            case kPARAM_2: tag = TAG_PARAM2; break;
-            case kPARAM_3: tag = TAG_PARAM3; break;
-            case kPARAM_4: tag = TAG_PARAM4; break;
+            case GCSItemParamZ: continue;
+            case GCSItemParam1: tag = TAG_PARAM1; break;
+            case GCSItemParam2: tag = TAG_PARAM2; break;
+            case GCSItemParam3: tag = TAG_PARAM3; break;
+            case GCSItemParam4: tag = TAG_PARAM4; break;
         }
         
         map[@(tag)] = field.label;

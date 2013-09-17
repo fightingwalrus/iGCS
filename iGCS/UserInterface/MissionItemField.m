@@ -14,7 +14,7 @@
 @synthesize units;
 @synthesize fieldType;
 
-- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(MissionItemFieldType)_fieldType
+- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(GCSMissionItemParamField)_fieldType
 {
     if ((self = [super init])) {
         label     = _label;
@@ -24,7 +24,7 @@
     return self;
 }
 
-- (id)initWithLabel:(NSString*)_label andType:(MissionItemFieldType)_fieldType
+- (id)initWithLabel:(NSString*)_label andType:(GCSMissionItemParamField)_fieldType
 {
     return [self initWithLabel:_label units:GCSItemUnitNone andType:_fieldType];
 }
@@ -48,11 +48,11 @@
 {
     float val;
     switch (fieldType) {
-        case kPARAM_Z: val = item.z;      break;
-        case kPARAM_1: val = item.param1; break;
-        case kPARAM_2: val = item.param2; break;
-        case kPARAM_3: val = item.param3; break;
-        case kPARAM_4: val = item.param4; break;
+        case GCSItemParamZ: val = item.z;      break;
+        case GCSItemParam1: val = item.param1; break;
+        case GCSItemParam2: val = item.param2; break;
+        case GCSItemParam3: val = item.param3; break;
+        case GCSItemParam4: val = item.param4; break;
         default:
             assert(false);
             break;
@@ -62,11 +62,11 @@
 
 - (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)item {
     switch (fieldType) {
-        case kPARAM_Z: item->z      = val; break;
-        case kPARAM_1: item->param1 = val; break;
-        case kPARAM_2: item->param2 = val; break;
-        case kPARAM_3: item->param3 = val; break;
-        case kPARAM_4: item->param4 = val; break;
+        case GCSItemParamZ: item->z      = val; break;
+        case GCSItemParam1: item->param1 = val; break;
+        case GCSItemParam2: item->param2 = val; break;
+        case GCSItemParam3: item->param3 = val; break;
+        case GCSItemParam4: item->param4 = val; break;
         default:
             assert(false);
             break;
