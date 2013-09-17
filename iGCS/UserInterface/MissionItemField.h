@@ -17,23 +17,23 @@ typedef enum {
     kPARAM_4
 } MissionItemFieldType;
 
-typedef enum {
-    kUNIT_NONE,
-    kUNIT_DEG,
-    kUNIT_S,
-    kUNIT_M,
-    kUNIT_M_S,
-    kUNIT_CM_S
-} MissionItemUnits;
+typedef NS_ENUM(NSInteger, GCSMissionItemUnit) {
+    GCSItemUnitNone,
+    GCSItemUnitDegrees,
+    GCSItemUnitSeconds,
+    GCSItemUnitMetres,
+    GCSItemUnitMetresPerSecond,
+    GCSItemUnitCentimetresPerSecond
+};
 
 @interface MissionItemField : NSObject
 
-@property (readonly) NSString         *label;
-@property (readonly) MissionItemUnits  units;
+@property (readonly) NSString            *label;
+@property (readonly) GCSMissionItemUnit  units;
 @property (readonly) MissionItemFieldType fieldType;
 
 - (id)initWithLabel:(NSString*)_label andType:(MissionItemFieldType)_fieldType;
-- (id)initWithLabel:(NSString*)_label units:(MissionItemUnits)_units andType:(MissionItemFieldType)_fieldType;
+- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(MissionItemFieldType)_fieldType;
 
 - (NSString*)unitsToString;
 - (NSString*)valueToString:(mavlink_mission_item_t)mission_item;

@@ -60,7 +60,7 @@
     [super viewDidLoad];
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
-    missionItemCommandIDs = [[MavLinkUtility supportedMissionItemTypes] sortedArrayUsingSelector: @selector(compare:)];
+    missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
 
     [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", itemIndex]];
     [self refreshWithMissionItem];
@@ -129,13 +129,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
-    return [[MavLinkUtility getMissionItemMetaData: [self getCurrentMissionItem].command] count];
+    return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
 - (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
 {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility getMissionItemMetaData: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
     UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
@@ -156,7 +156,7 @@
     //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility getMissionItemMetaData: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
 
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];

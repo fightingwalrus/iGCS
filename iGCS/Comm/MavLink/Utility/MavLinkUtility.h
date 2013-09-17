@@ -17,6 +17,6 @@
 + (NSString*) mavCustomModeToString:(int)customMode;
 
 + (NSArray*) supportedMissionItemTypes;
-+ (NSArray*) getMissionItemMetaData:(uint16_t)command;
++ (NSArray*) missionItemMetadataWith:(uint16_t)command;
 
 @end

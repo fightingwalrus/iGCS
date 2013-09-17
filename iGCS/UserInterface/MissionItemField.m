@@ -14,7 +14,7 @@
 @synthesize units;
 @synthesize fieldType;
 
-- (id)initWithLabel:(NSString*)_label units:(MissionItemUnits)_units andType:(MissionItemFieldType)_fieldType
+- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(MissionItemFieldType)_fieldType
 {
     if ((self = [super init])) {
         label     = _label;
@@ -26,18 +26,18 @@
 
 - (id)initWithLabel:(NSString*)_label andType:(MissionItemFieldType)_fieldType
 {
-    return [self initWithLabel:_label units:kUNIT_NONE andType:_fieldType];
+    return [self initWithLabel:_label units:GCSItemUnitNone andType:_fieldType];
 }
 
 - (NSString*)unitsToString
 {
     switch (units) {
-        case kUNIT_NONE: return @"";
-        case kUNIT_DEG:  return @"degrees";
-        case kUNIT_S:    return @"s";
-        case kUNIT_M:    return @"m";
-        case kUNIT_M_S:  return @"m/s";
-        case kUNIT_CM_S: return @"cm/s";
+        case GCSItemUnitNone:                 return @"";
+        case GCSItemUnitDegrees:              return @"degrees";
+        case GCSItemUnitSeconds:              return @"s";
+        case GCSItemUnitMetres:               return @"m";
+        case GCSItemUnitMetresPerSecond:      return @"m/s";
+        case GCSItemUnitCentimetresPerSecond: return @"cm/s";
         default:
             assert(false);
             break;

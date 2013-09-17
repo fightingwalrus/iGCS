@@ -213,23 +213,23 @@ NSArray* headerSpecs = nil;
     label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
     
     
-    NSMutableDictionary *map = [self getParamTagToLabelMap: waypoint.command];
+    NSMutableDictionary *dict = [self paramTagToLabelDictWith: waypoint.command];
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM1]]) ? [self formatParam:waypoint.param1] : @"-";
+    label.text = (dict && dict[@(TAG_PARAM1)]) ? [self formatParam:waypoint.param1] : @"-";
     
     // param2
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM2]]) ? [self formatParam:waypoint.param2] : @"-";
+    label.text = (dict && dict[@(TAG_PARAM2)]) ? [self formatParam:waypoint.param2] : @"-";
     
     // param3
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM3]]) ? [self formatParam:waypoint.param3] : @"-";
+    label.text = (dict && dict[@(TAG_PARAM3)]) ? [self formatParam:waypoint.param3] : @"-";
     
     // param4
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (map && [map objectForKey:[NSNumber numberWithInt:TAG_PARAM4]]) ? [self formatParam:waypoint.param4] : @"-";
+    label.text = (dict && dict[@(TAG_PARAM4)]) ? [self formatParam:waypoint.param4] : @"-";
     
     // autocontinue
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
@@ -312,11 +312,11 @@ NSArray* headerSpecs = nil;
     return sectionHead;
 }
 
-- (NSMutableDictionary*) getParamTagToLabelMap:(uint16_t)command {
-    NSArray* fields = [MavLinkUtility getMissionItemMetaData:command];
+- (NSMutableDictionary*) paramTagToLabelDictWith:(uint16_t)command {
+    NSArray* fields = [MavLinkUtility missionItemMetadataWith: command];
     if (!fields) return nil;
     
-    NSMutableDictionary* map = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* map = [NSMutableDictionary dictionary];
     for (MissionItemField* field in fields) {
         NSInteger tag;
         switch (field.fieldType) {
@@ -327,25 +327,21 @@ NSArray* headerSpecs = nil;
             case kPARAM_4: tag = TAG_PARAM4; break;
         }
         
-        [map setObject:field.label forKey:[NSNumber numberWithInt: tag]];
+        map[@(tag)] = field.label;
     }
     return map;
 }
 
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
-    NSMutableDictionary *map = [self getParamTagToLabelMap:waypoint.command];
+    NSMutableDictionary *dict = [self paramTagToLabelDictWith:waypoint.command];
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text =
-        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM1]] ?: @"") : @"Param1";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text =
-        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM2]] ?: @"") : @"Param2";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text =
-        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM3]] ?: @"") : @"Param3";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text =
-        map ? ([map objectForKey:[NSNumber numberWithInt:TAG_PARAM4]] ?: @"") : @"Param4";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
 }
 
 - (void)unmarkSelectedRow {
