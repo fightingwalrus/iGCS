@@ -8,6 +8,8 @@
 
 #import "MavLinkLogger.h"
 #import "FileUtils.h"
+
+#undef MAVLINK_USE_CONVENIENCE_FUNCTIONS // Prevents definitions of _mavlink_send_uart
 #import "mavlink_helpers.h"
 
 @implementation MavLinkLogger

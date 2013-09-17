@@ -10,4 +10,8 @@
 #import "WaypointsViewController.h"
 
 @interface MissionItemTableViewController : UITableViewController
+
+@property (nonatomic, retain) UIView *sectionHeader;
+@property (nonatomic, retain) NSIndexPath *lastIndexPath;
+
 @end

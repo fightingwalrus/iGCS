@@ -10,13 +10,14 @@
 #import "MissionItemEditViewController.h"
 
 #import "MiscUtilities.h"
-
+#import "MavLinkUtility.h"
 #import "WaypointHelper.h"
 
 @interface HeaderSpec : NSObject
-@property (nonatomic, assign) NSInteger *width;
-@property (nonatomic, assign) UITextAlignment *align;
+@property (nonatomic, assign) NSInteger width;
+@property (nonatomic, assign) UITextAlignment align;
 @property (nonatomic, retain) NSString *text;
+@property (nonatomic, assign) NSInteger tag;
 @end
 
 
@@ -25,13 +26,15 @@
 @synthesize width;
 @synthesize align;
 @synthesize text;
+@synthesize tag;
 
-- (id) initWithWidth:(NSInteger)_width alignment:(UITextAlignment)_align text:(NSString*)_text {
+- (id) initWithWidth:(NSInteger)_width alignment:(UITextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
     self = [super init];
     if (self) {
         self.text =  _text;
         self.width = _width;
         self.align = _align;
+        self.tag   = _tag;
     }
     return self;
 }
@@ -57,7 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [[[self getWaypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
-    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:-1];
+    [self unmarkSelectedRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -75,7 +78,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    [self.tableView setAllowsSelection: false];
+    [self.tableView setAllowsSelection: true];
     [self.tableView setAllowsSelectionDuringEditing: true];
 }
 
@@ -114,28 +117,37 @@
 
 #define DEBUG_SHOW_SEQ 0
 
+#define TAG_PARAM1 100
+#define TAG_PARAM2 200
+#define TAG_PARAM3 300
+#define TAG_PARAM4 400
+
 NSArray* headerSpecs = nil;
 
 + (void) initialize {
     if (!headerSpecs) { 
-        headerSpecs = @[ [[HeaderSpec alloc] initWithWidth:60  alignment:UITextAlignmentLeft   text:@" Seq #"], // row #
+        headerSpecs = @[ [[HeaderSpec alloc] initWithWidth: 50 alignment:UITextAlignmentLeft   text:@" Seq #"  tag:0], // row #
 #if DEBUG_SHOW_SEQ
-                         [[HeaderSpec alloc] initWithWidth:50  alignment:UITextAlignmentRight  text:@"Debug #"], // the real seq #
+                         [[HeaderSpec alloc] initWithWidth: 50 alignment:UITextAlignmentRight  text:@"Debug #" tag:0], // the real seq #
 #endif
-                         [[HeaderSpec alloc] initWithWidth:170 alignment:UITextAlignmentLeft   text:@"Command"], // command
+                         [[HeaderSpec alloc] initWithWidth:140 alignment:UITextAlignmentLeft   text:@"Command" tag:0], // command
                          //
-                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Latitude"],  // x
-                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Longitude"], // y
-                         [[HeaderSpec alloc] initWithWidth: 65 alignment:UITextAlignmentCenter text:@"Altitude"],  // z
+                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Latitude"  tag:0], // x
+                         [[HeaderSpec alloc] initWithWidth: 90 alignment:UITextAlignmentCenter text:@"Longitude" tag:0], // y
+                         [[HeaderSpec alloc] initWithWidth: 65 alignment:UITextAlignmentCenter text:@"Altitude"  tag:0], // z
                          //
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param1"], // param1
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param2"], // param2
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param3"], // param3
-                         [[HeaderSpec alloc] initWithWidth: 85 alignment:UITextAlignmentRight  text:@"Param4"], // param4
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param1" tag:TAG_PARAM1], // param1
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param2" tag:TAG_PARAM2], // param2
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param3" tag:TAG_PARAM3], // param3
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:UITextAlignmentRight  text:@"Param4" tag:TAG_PARAM4], // param4
                          //
-                         [[HeaderSpec alloc] initWithWidth:110 alignment:UITextAlignmentCenter text:@"Autocontinue"] 
+                         [[HeaderSpec alloc] initWithWidth:100 alignment:UITextAlignmentCenter text:@"Autocontinue" tag:0]
                        ];
     }
+}
+
+- (NSString*) formatParam:(float)param {
+    return param == 0 ? @"0" : [NSString stringWithFormat:@"%0.2f", param];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,6 +159,7 @@ NSArray* headerSpecs = nil;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
     // FIXME: outside the above "if (cell == nil)..." because it seems cells are already pre-created. Why? Precreated in nib?
@@ -171,13 +184,13 @@ NSArray* headerSpecs = nil;
     
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"   %d: ", indexPath.row];
+    label.text = [NSString stringWithFormat:@"%4d:", indexPath.row];
     label.textAlignment = UITextAlignmentLeft;
 
 #if DEBUG_SHOW_SEQ
     // Seq number
     label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"  %d:", waypoint.seq];
+    label.text = [NSString stringWithFormat:@"%d:", waypoint.seq];
     label.textAlignment = UITextAlignmentLeft;
 #endif
     
@@ -197,23 +210,26 @@ NSArray* headerSpecs = nil;
 
     // Z (Altitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.3f", waypoint.z] : @"-";
+    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
+    
+    // Used to determine whether we have a named header for the respective param
+    NSMutableDictionary *dict = [self headerTagToLabelDictWith: waypoint.command];
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param1 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param1];
+    label.text = (dict && dict[@(TAG_PARAM1)]) ? [self formatParam:waypoint.param1] : @"-";
     
     // param2
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param2 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param2];
+    label.text = (dict && dict[@(TAG_PARAM2)]) ? [self formatParam:waypoint.param2] : @"-";
     
     // param3
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param3 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param3];
+    label.text = (dict && dict[@(TAG_PARAM3)]) ? [self formatParam:waypoint.param3] : @"-";
     
     // param4
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (waypoint.param4 == 0) ? @"0" : [NSString stringWithFormat:@"%0.3f", waypoint.param4];
+    label.text = (dict && dict[@(TAG_PARAM4)]) ? [self formatParam:waypoint.param4] : @"-";
     
     // autocontinue
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
@@ -278,6 +294,7 @@ NSArray* headerSpecs = nil;
     for (HeaderSpec *spec in headerSpecs) {
         int width = [spec width];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 40)];
+        label.tag  = spec.tag;
         label.text = [spec text];
         label.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
         label.textAlignment = [spec align];
@@ -291,18 +308,69 @@ NSArray* headerSpecs = nil;
         x += width;
     }
     
+    self.sectionHeader = sectionHead;
     return sectionHead;
+}
+
+- (NSMutableDictionary*) headerTagToLabelDictWith:(uint16_t)command {
+    NSArray* fields = [MavLinkUtility missionItemMetadataWith: command];
+    if (!fields) return nil;
+    
+    NSDictionary *fieldTypeToHeaderTag = @{
+                                           @(GCSItemParam1) : @(TAG_PARAM1),
+                                           @(GCSItemParam2) : @(TAG_PARAM2),
+                                           @(GCSItemParam3) : @(TAG_PARAM3),
+                                           @(GCSItemParam4) : @(TAG_PARAM4)
+                                           };
+    
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    for (MissionItemField* field in fields) {
+        NSNumber *tag = fieldTypeToHeaderTag[@(field.fieldType)];
+        if (tag) {
+            dict[tag] = field.label;
+        }
+    }
+    return dict;
+}
+
+- (void)modifyHeadersForSelectedRow:(NSInteger)row {
+    mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
+    NSMutableDictionary *dict = [self headerTagToLabelDictWith:waypoint.command];
+    
+    // If we recognise this mission item type, then populate the fields (default is ""),
+    // otherwise, fallback to "ParamX"
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
+    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
+}
+
+- (void)unmarkSelectedRow {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
+    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:-1];
+    self.lastIndexPath = nil;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger idx = indexPath.row;
+    
     if (tableView.isEditing) {
-        int idx = indexPath.row;
+        [self unmarkSelectedRow];
         [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+
         [self performSegueWithIdentifier:@"editItemVC_segue"
                                   sender:[NSNumber numberWithInteger:idx]];
+    } else {
+        [self modifyHeadersForSelectedRow:idx];
+        if ([self.lastIndexPath isEqual:indexPath]) {
+            [self unmarkSelectedRow];
+        } else {
+            self.lastIndexPath = indexPath;
+            [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+        }
     }
 }
 

@@ -9,6 +9,7 @@
 #import "MissionItemEditViewController.h"
 
 #import "WaypointHelper.h"
+#import "MavLinkUtility.h"
 
 @interface MissionItemEditViewController ()
 
@@ -57,92 +58,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-	// Define the list of mission item meta-data
-    missionItemMetaData = [[NSMutableDictionary alloc] init];
-    
-    // NAV mission items
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_WAYPOINT]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_UNLIM]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z],
-                                    [[MissionItemField alloc] initWithLabel:@"# Turns" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TURNS]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude"          andType:kPARAM_Z],
-                                    [[MissionItemField alloc] initWithLabel:@"Time (seconds*10)" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TIME]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_RETURN_TO_LAUNCH]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude" andType:kPARAM_Z], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LAND]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude"      andType:kPARAM_Z],
-                                    [[MissionItemField alloc] initWithLabel:@"Takeoff Pitch" andType:kPARAM_1], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_NAV_TAKEOFF]];
-    
-    // Conditional CMD mission items
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DELAY]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Rate (cm/s)"       andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude (finish)" andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_CHANGE_ALT]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Distance (m)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DISTANCE]];
-    
-    // DO CMD mission items
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Index"        andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Repeat Count" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_JUMP]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Speed type"   andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Speed (m/s)"  andType:kPARAM_2],
-                                    [[MissionItemField alloc] initWithLabel:@"Throttle (%)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_CHANGE_SPEED]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Use current" andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Altitude"    andType:kPARAM_2],
-                                    [[MissionItemField alloc] initWithLabel:@"Latitude"    andType:kPARAM_3],
-                                    [[MissionItemField alloc] initWithLabel:@"Longitude"   andType:kPARAM_4], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_HOME]];
-    /*
-     [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Param #"     andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Param Value" andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_PARAMETER]];
-     */
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Relay #" andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"On/Off"  andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_RELAY]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Relay #"        andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Cycle count"    andType:kPARAM_2],
-                                    [[MissionItemField alloc] initWithLabel:@"Cycle time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_RELAY]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)" andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"On/Off"        andType:kPARAM_2], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_SERVO]];
-    [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                    [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)"  andType:kPARAM_1],
-                                    [[MissionItemField alloc] initWithLabel:@"Cycle count"    andType:kPARAM_2],
-                                    [[MissionItemField alloc] initWithLabel:@"Cycle time (s)" andType:kPARAM_3], nil]
-                            forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_SERVO]];
-    
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
-    missionItemCommandIDs = [[missionItemMetaData allKeys] sortedArrayUsingSelector: @selector(compare:)];
+    missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
 
     [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", itemIndex]];
     [self refreshWithMissionItem];
@@ -191,7 +109,7 @@
     }
     
     if (row == -1) {
-        // FIXME: think about how to handle unsupported row?
+        // FIXME: IGCS-13 think about how to handle unsupported row?
         //  - raw input of all fields?
         //  - perhaps refuse to even permit editing such rows?
         return;
@@ -206,56 +124,28 @@
     return [delegate getMissionItemAtIndex:itemIndex];
 }
 
-- (NSArray*)getMetaDataOfCurrentMissionItem {
-    return [missionItemMetaData objectForKey: [NSNumber numberWithInt: [self getCurrentMissionItem].command]];
-}
-
-- (NSString*) getValueOfFieldInCurentMissionItem:(MissionItemField*)field
-{
-    mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    switch ([field fieldType]) {
-        case kPARAM_Z:
-            return [NSString stringWithFormat:@"%0.3f", missionItem.z];
-            
-        case kPARAM_1:
-            return [NSString stringWithFormat:@"%0.3f", missionItem.param1];
-            
-        case kPARAM_2:
-            return [NSString stringWithFormat:@"%0.3f", missionItem.param2];
-            
-        case kPARAM_3:
-            return [NSString stringWithFormat:@"%0.3f", missionItem.param3];
-            
-        case kPARAM_4:
-            return [NSString stringWithFormat:@"%0.3f", missionItem.param4];
-            
-        default:
-            assert(false);
-            break;
-    }
-}
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[self getMetaDataOfCurrentMissionItem] count];
+- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
+    return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
 - (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
+    mavlink_mission_item_t item = [self getCurrentMissionItem];
+    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
     UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
-    UILabel *label = (UILabel *)[cell viewWithTag:100]; // see prototype cell for magic #
-    [label setText:[field label]];
+    // Note: see prototype cell for magic #'s
+    UILabel *label    = (UILabel *)    [cell viewWithTag:100];
+    UITextField *text = (UITextField *)[cell viewWithTag:200];
+    UILabel *units    = (UILabel *)    [cell viewWithTag:300];
     
-    UITextField *text = (UITextField *)[cell viewWithTag:200]; // see prototype cell for magic #
-    [text setText: [self getValueOfFieldInCurentMissionItem:field]];
+    [label setText:[field label]];
+    [text  setText:[field valueToString:item]];
+    [units setText:[field unitsToString]];
     return cell;
 }
 
@@ -265,38 +155,13 @@
     NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
     //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
-    MissionItemField *field = (MissionItemField*)[[self getMetaDataOfCurrentMissionItem] objectAtIndex: indexPath.row];
+    mavlink_mission_item_t item = [self getCurrentMissionItem];
+    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
 
-    mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    
-    // Modify the respective field
-    float val = [textField.text floatValue];
-    switch ([field fieldType]) {
-        case kPARAM_Z:
-            missionItem.z = val;
-            break;
+    // Modify the respective field in the item
+    [field setValue:[textField.text floatValue] inMissionItem:&item];
 
-        case kPARAM_1:
-            missionItem.param1 = val;
-            break;
-
-        case kPARAM_2:
-            missionItem.param2 = val;
-            break;
-
-        case kPARAM_3:
-            missionItem.param3 = val;
-            break;
-
-        case kPARAM_4:
-            missionItem.param4 = val;
-            break;
-            
-        default:
-            assert(false);
-            break;
-    }
-    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
+    [delegate replaceMissionItem:item atIndex:itemIndex];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
