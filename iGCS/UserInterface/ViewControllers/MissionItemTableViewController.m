@@ -212,8 +212,8 @@ NSArray* headerSpecs = nil;
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
     label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
     
-    
-    NSMutableDictionary *dict = [self paramTagToLabelDictWith: waypoint.command];
+    // Used to determine whether we have a named header for the respective param
+    NSMutableDictionary *dict = [self headerTagToLabelDictWith: waypoint.command];
     
     // param1
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
@@ -312,29 +312,30 @@ NSArray* headerSpecs = nil;
     return sectionHead;
 }
 
-- (NSMutableDictionary*) paramTagToLabelDictWith:(uint16_t)command {
+- (NSMutableDictionary*) headerTagToLabelDictWith:(uint16_t)command {
     NSArray* fields = [MavLinkUtility missionItemMetadataWith: command];
     if (!fields) return nil;
     
-    NSMutableDictionary* map = [NSMutableDictionary dictionary];
+    NSDictionary *fieldTypeToHeaderTag = @{
+                                           @(GCSItemParam1) : @(TAG_PARAM1),
+                                           @(GCSItemParam2) : @(TAG_PARAM2),
+                                           @(GCSItemParam3) : @(TAG_PARAM3),
+                                           @(GCSItemParam4) : @(TAG_PARAM4)
+                                           };
+    
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for (MissionItemField* field in fields) {
-        NSInteger tag;
-        switch (field.fieldType) {
-            case GCSItemParamZ: continue;
-            case GCSItemParam1: tag = TAG_PARAM1; break;
-            case GCSItemParam2: tag = TAG_PARAM2; break;
-            case GCSItemParam3: tag = TAG_PARAM3; break;
-            case GCSItemParam4: tag = TAG_PARAM4; break;
+        NSNumber *tag = fieldTypeToHeaderTag[@(field.fieldType)];
+        if (tag) {
+            dict[tag] = field.label;
         }
-        
-        map[@(tag)] = field.label;
     }
-    return map;
+    return dict;
 }
 
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
-    NSMutableDictionary *dict = [self paramTagToLabelDictWith:waypoint.command];
+    NSMutableDictionary *dict = [self headerTagToLabelDictWith:waypoint.command];
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
