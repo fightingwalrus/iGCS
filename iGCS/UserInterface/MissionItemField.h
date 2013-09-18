@@ -28,12 +28,12 @@ typedef NS_ENUM(NSInteger, GCSMissionItemUnit) {
 
 @interface MissionItemField : NSObject
 
-@property (readonly) NSString               *label;
-@property (readonly) GCSMissionItemUnit      units;
+@property (readonly) NSString   *label;
+@property (readonly) GCSMissionItemUnit units;
 @property (readonly) GCSMissionItemParamField fieldType;
 
-- (id)initWithLabel:(NSString*)_label andType:(GCSMissionItemParamField)_fieldType;
-- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(GCSMissionItemParamField)_fieldType;
+- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType;
+- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType;
 
 - (NSString*)unitsToString;
 - (NSString*)valueToString:(mavlink_mission_item_t)mission_item;
