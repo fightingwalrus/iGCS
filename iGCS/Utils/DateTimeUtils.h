@@ -29,6 +29,5 @@
                    andTimeZone:(NSTimeZone *)timeZone;
 
 -(uint64_t) unixTimeInMicroseconds;
--(uint64_t) systemTimeInMicroseconds;
 
 @end
