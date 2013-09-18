@@ -10,28 +10,24 @@
 
 @implementation MissionItemField
 
-@synthesize label;
-@synthesize units;
-@synthesize fieldType;
-
-- (id)initWithLabel:(NSString*)_label units:(GCSMissionItemUnit)_units andType:(GCSMissionItemParamField)_fieldType
+- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType
 {
     if ((self = [super init])) {
-        label     = _label;
-        units     = _units;
-        fieldType = _fieldType;
+        _label     = aLabel;
+        _units     = units;
+        _fieldType = fieldType;
     }
     return self;
 }
 
-- (id)initWithLabel:(NSString*)_label andType:(GCSMissionItemParamField)_fieldType
+- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType
 {
-    return [self initWithLabel:_label units:GCSItemUnitNone andType:_fieldType];
+    return [self initWithLabel:aLabel andUnits:GCSItemUnitNone andFieldType:fieldType];
 }
 
 - (NSString*)unitsToString
 {
-    switch (units) {
+    switch (_units) {
         case GCSItemUnitNone:                 return @"";
         case GCSItemUnitDegrees:              return @"degrees";
         case GCSItemUnitSeconds:              return @"s";
@@ -47,7 +43,7 @@
 - (NSString*)valueToString:(mavlink_mission_item_t)item
 {
     float val;
-    switch (fieldType) {
+    switch (_fieldType) {
         case GCSItemParamZ: val = item.z;      break;
         case GCSItemParam1: val = item.param1; break;
         case GCSItemParam2: val = item.param2; break;
@@ -61,7 +57,7 @@
 }
 
 - (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)item {
-    switch (fieldType) {
+    switch (_fieldType) {
         case GCSItemParamZ: item->z      = val; break;
         case GCSItemParam1: item->param1 = val; break;
         case GCSItemParam2: item->param2 = val; break;
