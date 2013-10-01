@@ -44,7 +44,8 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     @try {
         self.mainVC = mvc;
         
-        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
+//        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
+        [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
         
         [DebugLogger console:@"Created default connections in CommController."];
     }
@@ -67,13 +68,13 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     if (commInterface == GCSRovingBluetoothNetworkCommInterface) {
         [DebugLogger console: @"Creating RovingNetworks connection."];
         [self setupBluetoothConnections];
-        [DebugLogger console:@"RovingNetworks disabled..."];
         
     } else if (commInterface ==  GCSRedparkCommInterface) {
         [self setupRedparkConnections];
         
     } else if (commInterface == GCSFightingWalrusRadioCommInterface) {
-        NSLog(@"FWR Not currectly supported");
+        [DebugLogger console: @"Creating FWR connection."];
+        [self setupFightingWalrusConnections];
     } else {
         NSLog(@"createDefaultConnections: unsupported Inteface specificed");
     }
@@ -117,6 +118,28 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         // Forward app output to redpark TX
         [_connectionPool createConnection:_mavLinkInterface destination:_redParkCable];
         [DebugLogger console:@"Connected iGCS Application output to Redpark Tx."];
+    }
+}
+
+-(void)setupFightingWalrusConnections {
+    if (!_fightingWalrusInterface) {
+        [DebugLogger console:@"Starting FWR connection"];
+        _fightingWalrusInterface = [FightingWalrusInterface create];
+    }
+    
+    if (_fightingWalrusInterface) {
+        
+        // configure input connection as FWI
+        [DebugLogger console:@"FWR started"];
+        [_connectionPool addSource:_fightingWalrusInterface];
+        
+        // Forward FWR RX to app input
+        [_connectionPool createConnection:_fightingWalrusInterface destination:_mavLinkInterface];
+        [DebugLogger console:@"Connected FWR Rx to iGCS Application input."];
+        
+        // Forward app output to FWR TX
+        [_connectionPool createConnection:_mavLinkInterface destination:_fightingWalrusInterface];
+        
     }
 }
 

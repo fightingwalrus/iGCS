@@ -49,6 +49,7 @@
 	</array>
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
+		<string>com.etal.walrusradio</string>
 		<string>com.RovingNetworks.btdemo</string>
 		<string>com.fightingwalrus.prototype</string>
 		<string>com.redpark.serdb9</string>

@@ -37,11 +37,11 @@
 -(void) handlePacket:(mavlink_message_t *)msg {
     const int len = MAVLINK_MAX_PACKET_LEN+sizeof(uint64_t);
     uint8_t buffer[len];
-    uint64_t currentTime = [_dateTimeUtils unixTimeInMicroseconds];
+    uint64_t currentTime = CFSwapInt64HostToBig([_dateTimeUtils unixTimeInMicroseconds]);
     memcpy(buffer, (void *)&currentTime, sizeof(uint64_t));
-    mavlink_msg_to_send_buffer(buffer+sizeof(uint64_t), msg);
+    uint16_t bufferLen = mavlink_msg_to_send_buffer(buffer+sizeof(uint64_t), msg);
     
-    NSData *data = [NSData dataWithBytes:buffer length:len];
+    NSData *data = [NSData dataWithBytes:buffer length:bufferLen+sizeof(u_int64_t)];
     
     dispatch_async(serialQueue ,
                    ^ {

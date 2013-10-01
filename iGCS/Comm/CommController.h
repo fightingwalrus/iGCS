@@ -19,6 +19,7 @@
 #import "iGCSMavLinkInterface.h"
 #import "iGCSRadioConfig.h"
 #import "RNBluetoothInterface.h"
+#import "FightingWalrusInterface.h"
 
 #import "CommInterface.h"
 
@@ -34,6 +35,7 @@
 @property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
 @property (nonatomic, retain) RedparkSerialCable *redParkCable;
 @property (nonatomic, retain) iGCSRadioConfig *radioConfig;
+@property (nonatomic, retain) FightingWalrusInterface *fightingWalrusInterface;
 
 +(CommController *)sharedInstance;
 

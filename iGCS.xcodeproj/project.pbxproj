@@ -104,6 +104,7 @@
 		182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
+		181E943917EF75D000AEBEF1 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */; };
 		18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
@@ -273,6 +274,8 @@
 /* Begin PBXFileReference section */
 		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
+		181E943717EF75D000AEBEF1 /* FightingWalrusInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusInterface.h; sourceTree = "<group>"; };
+		181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusInterface.m; sourceTree = "<group>"; };
 		18285C8A17D91C3100C48EA3 /* iGCSRadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig.h; sourceTree = "<group>"; };
 		18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSRadioConfig.m; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
@@ -921,6 +924,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181E943417EF745500AEBEF1 /* FightingWalrus2 */ = {
+			isa = PBXGroup;
+			children = (
+				181E943717EF75D000AEBEF1 /* FightingWalrusInterface.h */,
+				181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */,
+			);
+			path = FightingWalrus2;
+			sourceTree = "<group>";
+		};
 		1888DE7C170F954B00ADA039 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1125,6 +1137,7 @@
 		496E62A816DAFBF600E52E4A /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				181E943417EF745500AEBEF1 /* FightingWalrus2 */,
 				49369FB416DEEC0600D98370 /* RovingNetworks */,
 				496E62A916DAFBF600E52E4A /* Bluetooth */,
 				496E62B116DAFBF600E52E4A /* FightingWalrus */,
@@ -2064,6 +2077,7 @@
 				CA499F6F14DE33BC00FCC9FB /* main.m in Sources */,
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
+				181E943917EF75D000AEBEF1 /* FightingWalrusInterface.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
