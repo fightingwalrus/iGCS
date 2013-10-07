@@ -131,7 +131,6 @@
     BOOL ret = [scanner scanInt:&x]; item->seq     = x;
     ret &= [scanner scanInt:&x];     item->current = x;
     ret &= [scanner scanInt:&x];     item->frame   = x;
-    ret &= [scanner scanInt:&x];     item->frame   = x;
     ret &= [scanner scanInt:&x];     item->command = x;
     ret &= [scanner scanFloat:&item->param1];
     ret &= [scanner scanFloat:&item->param2];
