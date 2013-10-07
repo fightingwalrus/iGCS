@@ -175,8 +175,8 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                 }
 #else
                 [self.mainVC.gcsMapVC handlePacket:&msg];
-                [self.mainVC.commsVC  handlePacket:&msg];
                 [self.mainVC.waypointVC handlePacket:&msg];
+                [self.mainVC.commsVC  handlePacket:&msg];
                 [self.mavlinkLogger handlePacket:&msg];
 #endif
             }

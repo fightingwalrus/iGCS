@@ -314,10 +314,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #pragma mark -
 #pragma mark Button Click callbacks
 
-- (IBAction) readMissionButtonClick {
-    [[CommController appMLI] issueStartReadMissionRequest];
-}
-
 - (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);

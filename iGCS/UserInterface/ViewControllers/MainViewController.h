@@ -23,8 +23,8 @@
 @property (weak) AppDelegate *appDelegate;
 
 @property (strong) GCSMapViewController *gcsMapVC;
-@property (strong) CommsViewController *commsVC;
 @property (strong) WaypointsViewController *waypointVC;
+@property (strong) CommsViewController *commsVC;
 @property (strong) DebugViewController *debugVC;
 
 
