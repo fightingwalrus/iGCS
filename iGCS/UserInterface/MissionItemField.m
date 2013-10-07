@@ -10,34 +10,30 @@
 
 @implementation MissionItemField
 
-@synthesize label;
-@synthesize units;
-@synthesize fieldType;
-
-- (id)initWithLabel:(NSString*)_label units:(MissionItemUnits)_units andType:(MissionItemFieldType)_fieldType
+- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType
 {
     if ((self = [super init])) {
-        label     = _label;
-        units     = _units;
-        fieldType = _fieldType;
+        _label     = aLabel;
+        _units     = units;
+        _fieldType = fieldType;
     }
     return self;
 }
 
-- (id)initWithLabel:(NSString*)_label andType:(MissionItemFieldType)_fieldType
+- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType
 {
-    return [self initWithLabel:_label units:kUNIT_NONE andType:_fieldType];
+    return [self initWithLabel:aLabel andUnits:GCSItemUnitNone andFieldType:fieldType];
 }
 
 - (NSString*)unitsToString
 {
-    switch (units) {
-        case kUNIT_NONE: return @"";
-        case kUNIT_DEG:  return @"degrees";
-        case kUNIT_S:    return @"s";
-        case kUNIT_M:    return @"m";
-        case kUNIT_M_S:  return @"m/s";
-        case kUNIT_CM_S: return @"cm/s";
+    switch (_units) {
+        case GCSItemUnitNone:                 return @"";
+        case GCSItemUnitDegrees:              return @"degrees";
+        case GCSItemUnitSeconds:              return @"s";
+        case GCSItemUnitMetres:               return @"m";
+        case GCSItemUnitMetresPerSecond:      return @"m/s";
+        case GCSItemUnitCentimetresPerSecond: return @"cm/s";
         default:
             assert(false);
             break;
@@ -47,12 +43,12 @@
 - (NSString*)valueToString:(mavlink_mission_item_t)item
 {
     float val;
-    switch (fieldType) {
-        case kPARAM_Z: val = item.z;      break;
-        case kPARAM_1: val = item.param1; break;
-        case kPARAM_2: val = item.param2; break;
-        case kPARAM_3: val = item.param3; break;
-        case kPARAM_4: val = item.param4; break;
+    switch (_fieldType) {
+        case GCSItemParamZ: val = item.z;      break;
+        case GCSItemParam1: val = item.param1; break;
+        case GCSItemParam2: val = item.param2; break;
+        case GCSItemParam3: val = item.param3; break;
+        case GCSItemParam4: val = item.param4; break;
         default:
             assert(false);
             break;
@@ -61,12 +57,12 @@
 }
 
 - (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)item {
-    switch (fieldType) {
-        case kPARAM_Z: item->z      = val; break;
-        case kPARAM_1: item->param1 = val; break;
-        case kPARAM_2: item->param2 = val; break;
-        case kPARAM_3: item->param3 = val; break;
-        case kPARAM_4: item->param4 = val; break;
+    switch (_fieldType) {
+        case GCSItemParamZ: item->z      = val; break;
+        case GCSItemParam1: item->param1 = val; break;
+        case GCSItemParam2: item->param2 = val; break;
+        case GCSItemParam3: item->param3 = val; break;
+        case GCSItemParam4: item->param4 = val; break;
         default:
             assert(false);
             break;

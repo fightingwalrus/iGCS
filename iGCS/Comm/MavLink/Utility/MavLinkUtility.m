@@ -10,96 +10,121 @@
 
 @implementation MavLinkUtility
 
-NSMutableDictionary *missionItemMetaData;
+NSMutableDictionary *_missionItemMetadata;
 
 + (void) initialize {
     if (self == [MavLinkUtility class]) {
         // Define the list of mission item meta-data
-        missionItemMetaData = [[NSMutableDictionary alloc] init];
+        _missionItemMetadata = [NSMutableDictionary dictionary];
         
         // NAV mission items
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_WAYPOINT]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_UNLIM]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z],
-                                        [[MissionItemField alloc] initWithLabel:@"# Turns"                andType:kPARAM_1], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TURNS]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z],
-                                        // FIXME: test this - older docs say (seconds*10), code suggests it is in seconds
-                                        [[MissionItemField alloc] initWithLabel:@"Time"     units:kUNIT_S andType:kPARAM_1], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LOITER_TIME]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_RETURN_TO_LAUNCH]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude" units:kUNIT_M andType:kPARAM_Z], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_LAND]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Altitude"      units:kUNIT_M   andType:kPARAM_Z],
-                                        [[MissionItemField alloc] initWithLabel:@"Takeoff Pitch" units:kUNIT_DEG andType:kPARAM_1], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_NAV_TAKEOFF]];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ]]
+                                 forKey:@(MAV_CMD_NAV_WAYPOINT)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ]]
+                                 forKey:@(MAV_CMD_NAV_LOITER_UNLIM)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ],
+                                          [[MissionItemField alloc] initWithLabel:@"# Turns"
+                                                                          andFieldType:GCSItemParam1]]
+                                 forKey:@(MAV_CMD_NAV_LOITER_TURNS)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ],
+                                          // FIXME: test this - older docs say (seconds*10), code suggests it is in seconds
+                                          [[MissionItemField alloc] initWithLabel:@"Time"
+                                                                            andUnits:GCSItemUnitSeconds
+                                                                          andFieldType:GCSItemParam1]]
+                                 forKey:@(MAV_CMD_NAV_LOITER_TIME)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ]]
+                                 forKey:@(MAV_CMD_NAV_RETURN_TO_LAUNCH)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ]]
+                                 forKey:@(MAV_CMD_NAV_LAND)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParamZ],
+                                          [[MissionItemField alloc] initWithLabel:@"Takeoff Pitch"
+                                                                            andUnits:GCSItemUnitDegrees
+                                                                          andFieldType:GCSItemParam1]]
+                                 forKey:@(MAV_CMD_NAV_TAKEOFF)];
         
         // Conditional CMD mission items
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Time" units:kUNIT_S andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DELAY]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Rate"              units:kUNIT_CM_S andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Final Altitude" units:kUNIT_M    andType:kPARAM_2], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_CHANGE_ALT]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Distance" units:kUNIT_M andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_CONDITION_DISTANCE]];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Time"
+                                                                            andUnits:GCSItemUnitSeconds
+                                                                          andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_CONDITION_DELAY)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Rate"
+                                                                            andUnits:GCSItemUnitCentimetresPerSecond
+                                                                          andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"Final Altitude"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParam2]]
+                                 forKey:@(MAV_CMD_CONDITION_CHANGE_ALT)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Distance"
+                                                                            andUnits:GCSItemUnitMetres
+                                                                          andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_CONDITION_DISTANCE)];
         
         // DO CMD mission items
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Index"        andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Repeat Count" andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_JUMP]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Speed type"                   andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Speed"        units:kUNIT_M_S andType:kPARAM_2],
-                                        [[MissionItemField alloc] initWithLabel:@"Throttle (%)"                 andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_CHANGE_SPEED]];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Index" andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"Repeat Count" andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_DO_JUMP)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Speed type"
+                                                                          andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"Speed"
+                                                                            andUnits:GCSItemUnitMetresPerSecond
+                                                                          andFieldType:GCSItemParam2],
+                                          [[MissionItemField alloc] initWithLabel:@"Throttle (%)"
+                                                                          andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_DO_CHANGE_SPEED)];
         
         /* FIXME: review implementation of do_set_home - appears that lat/lon/alt are from x/y/z a(nd not param2/3/4 as per earlier doc)
-         [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-         [[MissionItemField alloc] initWithLabel:@"Use current" andType:kPARAM_1],
-         [[MissionItemField alloc] initWithLabel:@"Altitude"    andType:kPARAM_2],
-         [[MissionItemField alloc] initWithLabel:@"Latitude"    andType:kPARAM_3],
-         [[MissionItemField alloc] initWithLabel:@"Longitude"   andType:kPARAM_4], nil]
-         forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_HOME]];
+         [_missionItemMetadata setObject:@[
+         [[MissionItemField alloc] initWithLabel:@"Use current" andFieldType:GCSItemParam1],
+         [[MissionItemField alloc] initWithLabel:@"Altitude"    andFieldType:GCSItemParam2],
+         [[MissionItemField alloc] initWithLabel:@"Latitude"    andFieldType:GCSItemParam3],
+         [[MissionItemField alloc] initWithLabel:@"Longitude"   andFieldType:GCSItemParam4]]
+         forKey:@(MAV_CMD_DO_SET_HOME)];
          */
         
         /*
-         [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-         [[MissionItemField alloc] initWithLabel:@"Param #"     andType:kPARAM_1],
-         [[MissionItemField alloc] initWithLabel:@"Param Value" andType:kPARAM_2], nil]
-         forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_PARAMETER]];
+         [_missionItemMetadata setObject:@[
+         [[MissionItemField alloc] initWithLabel:@"Param #" andFieldType:GCSItemParam1],
+         [[MissionItemField alloc] initWithLabel:@"Param Value" andFieldType:GCSItemParam2]]
+         forKey:@(MAV_CMD_DO_SET_PARAMETER)];
          */
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Relay #" andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"On/Off"  andType:kPARAM_2], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_RELAY]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Relay #"                   andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Cycle count"               andType:kPARAM_2],
-                                        [[MissionItemField alloc] initWithLabel:@"Cycle time"  units:kUNIT_S andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_RELAY]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)" andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"On/Off"        andType:kPARAM_2], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_SET_SERVO]];
-        [missionItemMetaData setObject:[[NSArray alloc] initWithObjects:
-                                        [[MissionItemField alloc] initWithLabel:@"Servo # (5-8)"            andType:kPARAM_1],
-                                        [[MissionItemField alloc] initWithLabel:@"Cycle count"              andType:kPARAM_2],
-                                        [[MissionItemField alloc] initWithLabel:@"Cycle time" units:kUNIT_S andType:kPARAM_3], nil]
-                                forKey:[NSNumber numberWithInt: MAV_CMD_DO_REPEAT_SERVO]];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Relay #" andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"On/Off" andFieldType:GCSItemParam2]]
+                                 forKey:@(MAV_CMD_DO_SET_RELAY)];
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Relay #"
+                                                                          andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"Cycle count"
+                                                                          andFieldType:GCSItemParam2],
+                                          [[MissionItemField alloc] initWithLabel:@"Cycle time"
+                                                                            andUnits:GCSItemUnitSeconds
+                                                                          andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_DO_REPEAT_RELAY)];
+        
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Servo # (5-8)" andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"On/Off" andFieldType:GCSItemParam2]]
+                                 forKey:@(MAV_CMD_DO_SET_SERVO)];
+        
+        [_missionItemMetadata setObject:@[[[MissionItemField alloc] initWithLabel:@"Servo # (5-8)"
+                                                                          andFieldType:GCSItemParam1],
+                                          [[MissionItemField alloc] initWithLabel:@"Cycle count"
+                                                                          andFieldType:GCSItemParam2],
+                                          [[MissionItemField alloc] initWithLabel:@"Cycle time"
+                                                                            andUnits:GCSItemUnitSeconds
+                                                                          andFieldType:GCSItemParam3]]
+                                 forKey:@(MAV_CMD_DO_REPEAT_SERVO)];
     }
 }
 
@@ -153,11 +178,11 @@ NSMutableDictionary *missionItemMetaData;
 
 
 + (NSArray*) supportedMissionItemTypes {
-    return [missionItemMetaData allKeys];
+    return [[_missionItemMetadata allKeys] sortedArrayUsingSelector: @selector(compare:)];
 }
 
-+ (NSArray*) getMissionItemMetaData:(uint16_t)command {
-    return [missionItemMetaData objectForKey: [NSNumber numberWithInt: command]];
++ (NSArray*) missionItemMetadataWith:(uint16_t)command {
+    return _missionItemMetadata[@(command)];
 }
 
 @end

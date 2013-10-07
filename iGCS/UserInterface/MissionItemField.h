@@ -9,31 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkPacketHandler.h"
 
-typedef enum {
-    kPARAM_Z,
-    kPARAM_1,
-    kPARAM_2,
-    kPARAM_3,
-    kPARAM_4
-} MissionItemFieldType;
+typedef NS_ENUM(NSInteger, GCSMissionItemParamField) {
+    GCSItemParamZ,
+    GCSItemParam1,
+    GCSItemParam2,
+    GCSItemParam3,
+    GCSItemParam4
+};
 
-typedef enum {
-    kUNIT_NONE,
-    kUNIT_DEG,
-    kUNIT_S,
-    kUNIT_M,
-    kUNIT_M_S,
-    kUNIT_CM_S
-} MissionItemUnits;
+typedef NS_ENUM(NSInteger, GCSMissionItemUnit) {
+    GCSItemUnitNone,
+    GCSItemUnitDegrees,
+    GCSItemUnitSeconds,
+    GCSItemUnitMetres,
+    GCSItemUnitMetresPerSecond,
+    GCSItemUnitCentimetresPerSecond
+};
 
 @interface MissionItemField : NSObject
 
-@property (readonly) NSString         *label;
-@property (readonly) MissionItemUnits  units;
-@property (readonly) MissionItemFieldType fieldType;
+@property (readonly) NSString   *label;
+@property (readonly) GCSMissionItemUnit units;
+@property (readonly) GCSMissionItemParamField fieldType;
 
-- (id)initWithLabel:(NSString*)_label andType:(MissionItemFieldType)_fieldType;
-- (id)initWithLabel:(NSString*)_label units:(MissionItemUnits)_units andType:(MissionItemFieldType)_fieldType;
+- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType;
+- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType;
 
 - (NSString*)unitsToString;
 - (NSString*)valueToString:(mavlink_mission_item_t)mission_item;

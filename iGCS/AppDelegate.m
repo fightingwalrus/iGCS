@@ -193,7 +193,7 @@ static int counter = 0;
 - (void)appUpdate:(NSTimer*)theTimer
 {
     //[DebugLogger console:@"appUpdate: %i",counter];
-    //counter++;
+    counter++;
     
 	if([walrus isConnected])
 	{
