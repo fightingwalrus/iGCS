@@ -36,5 +36,6 @@
 - (NSString*) toOutputFormat;
 + (WaypointsHolder*) createFromQGCString:(NSString*)str;
 
++ (WaypointsHolder*) createDemoMission;
 
 @end
