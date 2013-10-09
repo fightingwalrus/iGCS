@@ -113,13 +113,13 @@
 }
 
 - (NSString*) toOutputFormat {
-    NSString *res = @"QGC WPL 110\n";
+    NSMutableString *res = [NSMutableString stringWithString:@"QGC WPL 110\n"];
     for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t item = [self getWaypoint:i];
-        res = [res stringByAppendingFormat:@"%d\t%d\t\%d\t%d\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%d\n",
-               i, i==0, item.frame, item.command,
-               item.param1, item.param2, item.param3, item.param4,
-               item.x, item.y, item.z, item.autocontinue];
+        [res appendFormat:@"%d\t%d\t\%d\t%d\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%d\n",
+         i, i==0, item.frame, item.command,
+         item.param1, item.param2, item.param3, item.param4,
+         item.x, item.y, item.z, item.autocontinue];
     }
     return res;
 }
@@ -144,8 +144,8 @@
     return ret;
 }
 
-+ (WaypointsHolder*) createFromQGCString:(NSString*)str {
-    NSArray* lines = [str componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
++ (WaypointsHolder*) createFromQGCString:(NSString*)qgcString {
+    NSArray* lines = [qgcString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     NSUInteger numLines = [lines count];
     
     // Check header

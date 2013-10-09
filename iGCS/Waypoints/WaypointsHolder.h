@@ -34,7 +34,7 @@
 - (WaypointsHolder*) getNavWaypoints;
 
 - (NSString*) toOutputFormat;
-+ (WaypointsHolder*) createFromQGCString:(NSString*)str;
++ (WaypointsHolder*) createFromQGCString:(NSString*)qgcString;
 
 + (WaypointsHolder*) createDemoMission;
 
