@@ -28,14 +28,17 @@
 - (WaypointsHolder*) getWaypointsHolder;  // for MissionItemEditViewController
 - (void) resetWaypoints;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *uploadButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *rxMissionButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *txMissionButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *loadDemoButton;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
 @property (nonatomic, retain) IBOutlet UIView *containerForTableView;
 
-- (IBAction)uploadClicked:  (id)sender;
+- (IBAction)mavRxMissionClicked: (id)sender;
+- (IBAction)mavTxMissionClicked: (id)sender;
+
 - (IBAction)loadDemoMision: (id)sender;
 
 - (IBAction)addClicked:(id)sender;
