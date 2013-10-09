@@ -24,7 +24,6 @@
 		492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
 		492C813116DBD102004001FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
-		49369FA616DC919D00D98370 /* BugSense-iOS 2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */; };
 		49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FB216DC949600D98370 /* BugSense-iOS */; };
 		49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
@@ -36,8 +35,6 @@
 		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253F01703F1CD006E27B0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253F21703F213006E27B0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253F11703F213006E27B0 /* libsqlite3.0.dylib */; };
-		495253F51703F3E5006E27B0 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F31703F3E5006E27B0 /* 111-user.png */; };
-		495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = 495253F41703F3E5006E27B0 /* 181-hammer.png */; };
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
@@ -120,12 +117,25 @@
 		CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F9814DE33BC00FCC9FB /* iGCSTests.m */; };
 		CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
+		CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
+		CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
 		CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
 		CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
+		CABD957918024F5B003557A3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253E61703EC8B006E27B0 /* FacebookSDK.framework */; };
+		CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
+		CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */; };
+		CABD957E1802500A003557A3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
+		CABD95801802508A003557A3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
+		CABD9581180250A4003557A3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
+		CABD9582180250D3003557A3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
+		CABD958318025115003557A3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
+		CACDAAB61802718A00B5A62A /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE2415143E570014F7C8 /* 111-user.png */; };
+		CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7115143E570014F7C8 /* 181-hammer.png */; };
 		CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
 		CAE20224152EA67A00D659E2 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
 		CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
@@ -202,8 +212,6 @@
 		495253EC1703F1C3006E27B0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		495253EF1703F1CD006E27B0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		495253F11703F213006E27B0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		495253F31703F3E5006E27B0 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
-		495253F41703F3E5006E27B0 /* 181-hammer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "181-hammer.png"; sourceTree = "<group>"; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
 		496E625F16DAFAD700E52E4A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -617,6 +625,9 @@
 		CAB48D39170D3B520013D035 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CAB48D3B170D3D040013D035 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		CABD957518024F3A003557A3 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FacebookSDK; path = iGCS/Login/FacebookSDK.framework/Versions/A/FacebookSDK; sourceTree = "<group>"; };
+		CACDAAB41802717F00B5A62A /* mission-mavread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mission-mavread.png"; sourceTree = "<group>"; };
+		CACDAAB8180271B100B5A62A /* mission-mavwrite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mission-mavwrite.png"; sourceTree = "<group>"; };
 		CAF0B8391657A8960033B0BC /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
 		CAF0B83A1657A8960033B0BC /* CPTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotation.h; sourceTree = "<group>"; };
 		CAF0B83B1657A8960033B0BC /* CPTAnnotationHostLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotationHostLayer.h; sourceTree = "<group>"; };
@@ -752,10 +763,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CABD958318025115003557A3 /* OpenGLES.framework in Frameworks */,
+				CABD9582180250D3003557A3 /* MapKit.framework in Frameworks */,
+				CABD9581180250A4003557A3 /* ExternalAccessory.framework in Frameworks */,
+				CABD95801802508A003557A3 /* CoreBluetooth.framework in Frameworks */,
+				CABD957E1802500A003557A3 /* GameKit.framework in Frameworks */,
+				CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */,
+				CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */,
+				CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */,
+				CABD957918024F5B003557A3 /* FacebookSDK.framework in Frameworks */,
 				CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */,
 				CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
-				49369FA616DC919D00D98370 /* BugSense-iOS 2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,11 +868,11 @@
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				495253F31703F3E5006E27B0 /* 111-user.png */,
-				495253F41703F3E5006E27B0 /* 181-hammer.png */,
-				49C1FA0D16DC654100BAE96B /* wrench.png */,
-				496E625D16DAFAD700E52E4A /* airplane.png */,
 				496E625F16DAFAD700E52E4A /* Icon-72.png */,
+				496E625D16DAFAD700E52E4A /* airplane.png */,
+				CACDAAB41802717F00B5A62A /* mission-mavread.png */,
+				CACDAAB8180271B100B5A62A /* mission-mavwrite.png */,
+				49C1FA0D16DC654100BAE96B /* wrench.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1459,6 +1478,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CABD957518024F3A003557A3 /* FacebookSDK */,
 				CAA2CFD9161C000C00267615 /* libz.dylib */,
 				18E62664171101D9006A5D43 /* libkxmovie.a */,
 				189E235D1710DBBC00548C88 /* libiconv.dylib */,
@@ -1738,18 +1758,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
 				CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */,
 				CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */,
 				CAE20224152EA67A00D659E2 /* 13-target.png in Resources */,
 				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
+				CACDAAB61802718A00B5A62A /* 111-user.png in Resources */,
+				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
 				CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */,
-				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
-				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
+				CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */,
+				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
-				495253F51703F3E5006E27B0 /* 111-user.png in Resources */,
-				495253F61703F3E5006E27B0 /* 181-hammer.png in Resources */,
+				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
+				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
 				189E23251710D00000548C88 /* kxmovie.bundle in Resources */,
 			);
@@ -2041,12 +2063,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/iGCS\"",
+					"$(SRCROOT)",
+					"\\\"$(SRCROOT)/iGCS\\\"",
+					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login/FacebookSDK.framework/Versions/A",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -2060,12 +2087,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/iGCS\"",
+					"$(SRCROOT)",
+					"\\\"$(SRCROOT)/iGCS\\\"",
+					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login/FacebookSDK.framework/Versions/A",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

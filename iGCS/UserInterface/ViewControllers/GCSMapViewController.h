@@ -101,7 +101,6 @@
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
 
-- (IBAction) readMissionButtonClick;
 - (IBAction) changeControlModeSegment;
 - (IBAction) externalButtonClick;
 

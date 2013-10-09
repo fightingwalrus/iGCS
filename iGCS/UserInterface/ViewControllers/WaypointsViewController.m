@@ -18,7 +18,8 @@
 
 @implementation WaypointsViewController
 
-@synthesize uploadButton;
+@synthesize rxMissionButton;
+@synthesize txMissionButton;
 @synthesize loadDemoButton;
 
 @synthesize addButton;
@@ -239,9 +240,10 @@
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
-    addButton.enabled      = isEditing;
-    uploadButton.enabled   = !isEditing;
-    loadDemoButton.enabled = !isEditing;
+    addButton.enabled       = isEditing;
+    rxMissionButton.enabled = !isEditing;
+    txMissionButton.enabled = !isEditing;
+    loadDemoButton.enabled  = !isEditing;
 
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
@@ -265,10 +267,13 @@
     [self makeWaypointsDraggable:isEditing];
 }
 
-- (IBAction)uploadClicked:(id)sender {
+- (IBAction)mavTxMissionClicked:(id)sender {
     [[CommController appMLI] issueStartWriteMissionRequest: waypoints];
 }
 
+- (IBAction)mavRxMissionClicked:(id)sender {
+    [[CommController appMLI] issueStartReadMissionRequest];
+}
 
 // @protocol MissionItemEditingDelegate
 - (WaypointsHolder*) cloneMission {
