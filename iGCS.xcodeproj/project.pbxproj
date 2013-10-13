@@ -145,6 +145,8 @@
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
 		CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */; };
 		CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD037180A67C000F5BCDB /* SetWPRequest.m */; };
+		CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
+		CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */; };
 		CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */; };
 		CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */; };
 		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
@@ -715,6 +717,10 @@
 		CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MavLinkRetryingRequestHandler.m; path = Requests/MavLinkRetryingRequestHandler.m; sourceTree = "<group>"; };
 		CAFBD036180A67C000F5BCDB /* SetWPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetWPRequest.h; path = Requests/SetWPRequest.h; sourceTree = "<group>"; };
 		CAFBD037180A67C000F5BCDB /* SetWPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetWPRequest.m; path = Requests/SetWPRequest.m; sourceTree = "<group>"; };
+		CAFBD043180A83E000F5BCDB /* TxMissionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionItem.h; path = Requests/TxMissionItem.h; sourceTree = "<group>"; };
+		CAFBD044180A83E000F5BCDB /* TxMissionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionItem.m; path = Requests/TxMissionItem.m; sourceTree = "<group>"; };
+		CAFBD045180A83E000F5BCDB /* TxMissionItemCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionItemCount.h; path = Requests/TxMissionItemCount.h; sourceTree = "<group>"; };
+		CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionItemCount.m; path = Requests/TxMissionItemCount.m; sourceTree = "<group>"; };
 		CAFD1CC317895E6000B5EC88 /* RequestedPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestedPointAnnotation.h; sourceTree = "<group>"; };
 		CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestedPointAnnotation.m; sourceTree = "<group>"; };
 		CAFD1CC71789670E00B5EC88 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
@@ -1674,6 +1680,10 @@
 				CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */,
 				CAFBD036180A67C000F5BCDB /* SetWPRequest.h */,
 				CAFBD037180A67C000F5BCDB /* SetWPRequest.m */,
+				CAFBD043180A83E000F5BCDB /* TxMissionItem.h */,
+				CAFBD044180A83E000F5BCDB /* TxMissionItem.m */,
+				CAFBD045180A83E000F5BCDB /* TxMissionItemCount.h */,
+				CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -1861,6 +1871,7 @@
 				492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
+				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
@@ -1874,6 +1885,7 @@
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
+				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,

@@ -24,6 +24,7 @@
 
 #import "MavLinkRetryingRequestHandler.h"
 #import "SetWPRequest.h"
+#import "TxMissionItemCount.h"
 
 @implementation iGCSMavLinkInterface
 
@@ -143,25 +144,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         _mavlinkMissionRxTxAttempts = 0;
                         [self.rxWaypoints addWaypoint:waypoint];
                         [self requestNextWaypointOrACK:self.rxWaypoints];
-                    }
-                        break;
-                        
-
-                    // Mission transmission
-                    case MAVLINK_MSG_ID_MISSION_ACK:
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                        
-                        // FIXME: boolean should reflect that we were in a sending transaction, and that we've sent the last waypoint
-                        [self completedMavLinkRequestStatusWithSuccess: YES];
-                        break;
-                    
-                    case MAVLINK_MSG_ID_MISSION_REQUEST:
-                    {
-                        mavlink_mission_request_t request;
-                        mavlink_msg_mission_request_decode(&msg, &request);
-                        
-                        _mavlinkMissionRxTxAttempts = 0;
-                        [self sendMissionItemRequest: [NSNumber numberWithUnsignedInt:request.seq]];
                     }
                         break;
                 }
@@ -291,56 +273,24 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: sending
 ///////////////////////////////////////////////////////////////////////////////////////
-- (void)issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
-    // FIXME: handle synchronization issues, like if we're already sending or receiving a mission
-    self.txWaypoints = waypoints;
-    
-    [self prepareToStartMavlinkTransaction:@"Transmitting Mission"];
-    [self transmitMissionCount:self.txWaypoints];
+- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
+    [retryRequestHandler startRetryingRequest:[[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints]];
 }
 
-- (void) transmitMissionCount:(WaypointsHolder*)waypoints {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (_mavlinkMissionRxTxAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
-        [self updateMavlinkRequestStatusDialog:@"Sending Waypoint count" withAttemptNum:_mavlinkMissionRxTxAttempts];
-        
-        // Send the vehicle the new mission count, and await WAYPOINT request responses
-        mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, self.txWaypoints.numWaypoints);
-
-        [self performSelector:@selector(transmitMissionCount:) withObject:waypoints afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
-    } else {
-        [self completedMavLinkRequestStatusWithSuccess: NO];
-    }
+- (void) issueRawMissionCount:(uint16_t)numItems {
+    mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, numItems);
 }
 
-- (void)sendMissionItemRequest:(NSNumber*)itemNumber {
-    // FIXME: ugh, member variable txWaypoints. Perhaps package item into an NSObject before calling this method to avoid this dependency?
-    // FIXME: And check sequenceNumber is in range
-    unsigned int itemNum = [itemNumber unsignedIntValue];
-    mavlink_mission_item_t item = [self.txWaypoints getWaypoint:itemNum];
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (_mavlinkMissionRxTxAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
-        [self updateMavlinkRequestStatusDialog:[NSString stringWithFormat:@"Sending Waypoint #%d", itemNum]
-                                withAttemptNum:_mavlinkMissionRxTxAttempts];
-        
-        // Send the requested mission item
-        //   - for now, we assume that all coords are in the MAV_FRAME_GLOBAL_RELATIVE_ALT
-        //     frame; see also issueGOTOCommand
-        mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, itemNum, MAV_FRAME_GLOBAL_RELATIVE_ALT, item.command,
-                                      0,
-                                      item.autocontinue, item.param1, item.param2, item.param3, item.param4,
-                                      item.x, item.y, item.z);
-
-        [self performSelector:@selector(sendMissionItemRequest:) withObject:itemNumber afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
-    } else {
-        [self completedMavLinkRequestStatusWithSuccess: NO];
-    }
+- (void) issueRawMissionItem:(mavlink_mission_item_t)item {
+    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                  item.seq, item.frame, item.command, item.current, item.autocontinue,
+                                  item.param1, item.param2, item.param3, item.param4,
+                                  item.x, item.y, item.z);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// Miscellaneous requests
+// Set current waypoint
 ///////////////////////////////////////////////////////////////////////////////////////
 - (void) issueStartSetWPCommand:(uint16_t)sequence {
     [retryRequestHandler startRetryingRequest:[[SetWPRequest alloc] initWithInterface:self andSequence:sequence]];
@@ -350,6 +300,10 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     mavlink_msg_mission_set_current_send(MAVLINK_COMM_0, msg.sysid, msg.compid, sequence);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Miscellaneous requests
+///////////////////////////////////////////////////////////////////////////////////////
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
      mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
                                    2, // Special flag that indicates this is a GUIDED mode packet

@@ -67,7 +67,7 @@
     [self retryRequest:request];
 }
 
-- (void) continueRetryingRequest:(id<MavLinkRetryableRequest>)request {
+- (void) continueWithRequest:(id<MavLinkRetryableRequest>)request {
     [self resetRequest:request];
     [self retryRequest:request];
 }
@@ -77,7 +77,7 @@
 }
 
 - (void) requestCompleted:(bool)success {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self resetRequest:nil];
     [self completedRequestStatusWithSuccess:success];
 }
 

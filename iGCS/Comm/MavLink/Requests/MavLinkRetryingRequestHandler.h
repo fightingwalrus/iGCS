@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkUtility.h"
 
+#define MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT 0.5 // seconds
+#define MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT       2.0 // seconds
+
 @class MavLinkRetryingRequestHandler;
 
 @protocol MavLinkRetryableRequest <NSObject>
@@ -30,7 +33,7 @@
 @property (nonatomic, retain) UIAlertView* requestStatusDialog;
 
 - (void) startRetryingRequest:(id<MavLinkRetryableRequest>)request;
-- (void) continueRetryingRequest:(id<MavLinkRetryableRequest>)request;
+- (void) continueWithRequest:(id<MavLinkRetryableRequest>)request;
 
 - (void) checkForAckOnCurrentRequest:(mavlink_message_t)packet;
 - (void) requestCompleted:(bool)success;

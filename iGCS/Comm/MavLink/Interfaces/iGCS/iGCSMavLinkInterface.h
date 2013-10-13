@@ -22,7 +22,6 @@
 @property unsigned int heartbeatOnlyCount;
 @property BOOL mavLinkInitialized;
 @property (strong) WaypointsHolder *rxWaypoints;
-@property (strong) WaypointsHolder *txWaypoints;
 
 @property (nonatomic, readonly) NSUInteger mavlinkMissionRxTxAttempts;
 @property (nonatomic, readonly) NSUInteger mavlinkSetWPRequestAttempts;
@@ -33,7 +32,10 @@
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
 - (void) issueStartReadMissionRequest;
+
 - (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
+- (void) issueRawMissionCount:(uint16_t)numItems;
+- (void) issueRawMissionItem:(mavlink_mission_item_t)item;
 
 - (void) issueStartSetWPCommand:(uint16_t)sequence;
 - (void) issueRawSetWPCommand:(uint16_t)sequence;
