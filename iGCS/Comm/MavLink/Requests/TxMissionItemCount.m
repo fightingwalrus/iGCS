@@ -28,6 +28,8 @@
     if (packet.msgid == MAVLINK_MSG_ID_MISSION_REQUEST) {
         mavlink_mission_request_t request;
         mavlink_msg_mission_request_decode(&packet, &request);
+        
+        // As we've just sent the count, only respond if the request is for mission item 0
         if (request.seq == 0) {
             // Now start sending waypoints...
             [handler continueWithRequest:[[TxMissionItem alloc] initWithInterface:_interface withMission:_mission andCurrentIndex:0]];

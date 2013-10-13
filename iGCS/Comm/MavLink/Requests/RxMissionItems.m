@@ -34,7 +34,7 @@
 
             // Are we done?
             if ([_mission allWaypointsReceivedP]) {
-                [handler requestCompleted:YES];
+                [handler completedWithSuccess:YES];
                 [_interface issueRawMissionAck]; // acknowledge completion of mission reception
                 [_interface loadNewMission:_mission]; // load the mission
             } else {

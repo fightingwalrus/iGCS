@@ -36,6 +36,6 @@
 - (void) continueWithRequest:(id<MavLinkRetryableRequest>)request;
 
 - (void) checkForAckOnCurrentRequest:(mavlink_message_t)packet;
-- (void) requestCompleted:(bool)success;
+- (void) completedWithSuccess:(bool)success;
 
 @end

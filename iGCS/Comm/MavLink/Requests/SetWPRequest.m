@@ -27,8 +27,10 @@
     if (packet.msgid == MAVLINK_MSG_ID_MISSION_CURRENT) {
         mavlink_mission_current_t current;
         mavlink_msg_mission_current_decode(&packet, &current);
+        
+        // Is this the ACK we were waiting for?
         if (current.seq == _sequence) {
-            [handler requestCompleted:YES];
+            [handler completedWithSuccess:YES];
         }
     }
 }

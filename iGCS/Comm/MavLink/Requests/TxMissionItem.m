@@ -25,19 +25,18 @@
 }
 
 - (void) checkForACK:(mavlink_message_t)packet withHandler:(MavLinkRetryingRequestHandler*)handler {
+    mavlink_mission_request_t request;
+
     switch (packet.msgid) {
         case MAVLINK_MSG_ID_MISSION_REQUEST:
-        {
-            mavlink_mission_request_t request;
+            // Send requested waypoint
             mavlink_msg_mission_request_decode(&packet, &request);
-            
-            // Send next/current waypoint
             [handler continueWithRequest:[[TxMissionItem alloc] initWithInterface:_interface withMission:_mission andCurrentIndex:request.seq]];
-        }
             break;
-            
+
         case MAVLINK_MSG_ID_MISSION_ACK:
-            [handler requestCompleted:YES];
+            // Vehicle confirmed all mission items received
+            [handler completedWithSuccess:YES];
             break;
     }
 }

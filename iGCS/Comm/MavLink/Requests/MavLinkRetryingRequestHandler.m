@@ -77,7 +77,7 @@
     [_currentRequest checkForACK:packet withHandler:self];
 }
 
-- (void) requestCompleted:(bool)success {
+- (void) completedWithSuccess:(bool)success {
     [self resetRequest:nil];
     [self completedRequestStatusWithSuccess:success];
 }
