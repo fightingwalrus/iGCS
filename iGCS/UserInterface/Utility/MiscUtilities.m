@@ -75,6 +75,21 @@
 }
 
 
+// ref: http://stackoverflow.com/questions/990976/how-to-create-a-colored-1x1-uiimage-on-the-iphone-dynamically
++ (UIImage*) imageWithColor:(UIColor*)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 + (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat {
     char letter = (val > 0) ? 'E' : 'W';
     if (isLat) {

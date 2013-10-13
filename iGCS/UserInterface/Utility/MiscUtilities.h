@@ -13,6 +13,8 @@
 + (float) getTextWidth:(NSString*)label withContext:(CGContextRef)ctx;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang;
 + (UIImage *)image:(UIImage*)img withColor:(UIColor*)color;
++ (UIImage *)imageWithColor:(UIColor*)color;
+
 + (NSString*)coordinateToNiceLatLong:(float)val isLat:(bool)isLat;
 + (NSString *)UUIDUsingDefaultAllocator;
 
