@@ -24,6 +24,7 @@
 
 #import "MavLinkRetryingRequestHandler.h"
 #import "SetWPRequest.h"
+#import "RxMissionRequestList.h"
 #import "TxMissionItemCount.h"
 
 @implementation iGCSMavLinkInterface
@@ -75,81 +76,50 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
-                switch (msg.msgid) {
-                    case MAVLINK_MSG_ID_HEARTBEAT:
-                        [Logger console:@"MavLink Heartbeat."];
-                        
-                        // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
-                        if (++self.heartbeatOnlyCount >= 5) {
-                            self.mavLinkInitialized = NO;
-                        }
-                        
-                        if (!self.mavLinkInitialized) {
-                            
-                            self.mavLinkInitialized = YES;
-                            
-                            // Decode the heartbeat message
-                            mavlink_msg_heartbeat_decode(&msg, &heartbeat);
-                            mavlink_system.sysid  = msg.sysid;
-                            mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
-                            
-                            [Logger console:@"Sending request for MavLink messages."];
-                            
-                            // Send requests to set the stream rates
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_ALL, 0, 0); // stop all
-                            
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
-                            
-                            [self issueStartReadMissionRequest];
-                        }
-                        break;
-                        
-                    // Mission reception
-                    case MAVLINK_MSG_ID_MISSION_COUNT:
-                    {
-                        [Logger console:@"MavLink MissionCount."];
-                        
-                        mavlink_mission_count_t count;
-                        mavlink_msg_mission_count_decode(&msg, &count);
-                        
-                        _mavlinkMissionRxTxAttempts = 0;
-                        self.rxWaypoints = [[WaypointsHolder alloc] initWithExpectedCount:count.count];
-                        [self requestNextWaypointOrACK:self.rxWaypoints];
+                if (msg.msgid == MAVLINK_MSG_ID_HEARTBEAT) {
+                    [Logger console:@"MavLink Heartbeat."];
+                    
+                    // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
+                    if (++self.heartbeatOnlyCount >= 5) {
+                        self.mavLinkInitialized = NO;
                     }
-                        break;
+                    
+                    if (!self.mavLinkInitialized) {
                         
-                    case MAVLINK_MSG_ID_MISSION_ITEM:
-                    {
-                        [Logger console:@"MavLink MissionItem."];
+                        self.mavLinkInitialized = YES;
                         
-                        mavlink_mission_item_t waypoint;
-                        mavlink_msg_mission_item_decode(&msg, &waypoint);
+                        // Decode the heartbeat message
+                        mavlink_msg_heartbeat_decode(&msg, &heartbeat);
+                        mavlink_system.sysid  = msg.sysid;
+                        mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
                         
-                        _mavlinkMissionRxTxAttempts = 0;
-                        [self.rxWaypoints addWaypoint:waypoint];
-                        [self requestNextWaypointOrACK:self.rxWaypoints];
+                        [Logger console:@"Sending request for MavLink messages."];
+                        
+                        // Send requests to set the stream rates
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_ALL, 0, 0); // stop all
+                        
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
+                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                             MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
+                        
+                        [self issueStartReadMissionRequest];
                     }
-                        break;
-                }
-                
-                // If we get any other message than heartbeat, we are getting the messages we requested
-                if (msg.msgid != MAVLINK_MSG_ID_HEARTBEAT) {
+                } else {
+                    // If we get any other message than heartbeat, we are getting the messages we requested
                     self.heartbeatOnlyCount = 0;
                 }
                 
@@ -173,102 +143,34 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 }
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////
-// General purpose "modal request dialog" helpers
-///////////////////////////////////////////////////////////////////////////////////////
-- (void) presentMavlinkRequestStatusDialog:(NSString*)title {
-    // FIXME: replace with custom view, with progress bar, modal until success/failure etc
-    _mavlinkRequestStatusDialog = [[UIAlertView alloc] initWithTitle:title
-                                                             message:@"Starting Request..."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"Cancel" // FIXME: not really. This view should be modal.
-                                                   otherButtonTitles:nil];
-    [_mavlinkRequestStatusDialog show];
-}
-
-- (void) updateMavlinkRequestStatusDialog:(NSString*)message withAttemptNum:(NSUInteger)attemptNum {
-    [_mavlinkRequestStatusDialog
-     setMessage:(attemptNum == 1) ? message : [NSString stringWithFormat:@"%@ - attempt %d", message, attemptNum]];
-}
-
-- (void) completedMavLinkRequestStatusWithSuccess:(BOOL)success {
-    if (success) {
-        [_mavlinkRequestStatusDialog dismissWithClickedButtonIndex:0 animated:YES];
-    } else {
-        [_mavlinkRequestStatusDialog setMessage:@"Failed"];
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////
-// General mission transaction handling
-// c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
-///////////////////////////////////////////////////////////////////////////////////////
-- (void) prepareToStartMavlinkTransaction:(NSString*)title {
-    _mavlinkMissionRxTxAttempts = 0;
-    [self presentMavlinkRequestStatusDialog:title];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: receiving
 ///////////////////////////////////////////////////////////////////////////////////////
-
-// FIXME: Find an idiomatic way to represent the "cancel/if retries left/updatestatus" that is
-//  repeated in the various mission transmission functions
-//   - something like a generic method which took COMPLETED?, DO, and FAILURE closures,
-//     and would call FAILURE if too many retries, test COMPLETED? and then conditionally
-//     DO and RETRY itself with a delayed performSelector.
-//
 - (void) issueStartReadMissionRequest {
-    [self prepareToStartMavlinkTransaction:@"Requesting Mission"];
-    [self requestMissionList];
+    [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
 
-- (void) requestMissionList {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (_mavlinkMissionRxTxAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
-        [self updateMavlinkRequestStatusDialog:@"Initiating Request" withAttemptNum:_mavlinkMissionRxTxAttempts];
-
-        // Start Read MAV waypoint protocol transaction
-        mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
-
-        [self performSelector:@selector(requestMissionList) withObject:nil afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
-    } else {
-        [self completedMavLinkRequestStatusWithSuccess: NO];
-    }
+- (void) issueRawMissionRequestList {
+    // Start Read MAV waypoint protocol transaction
+    mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
 }
 
-- (void) requestNextWaypointOrACK:(WaypointsHolder*)waypoints {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (_mavlinkMissionRxTxAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
-        
-        if ([waypoints allWaypointsReceivedP]) {
-            [self completedMavLinkRequestStatusWithSuccess: YES];
-
-            // Finish Read MAV waypoint protocol transaction
-            mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
-            
-            // Let the GCSMapView and WaypointsView know we've got new waypoints
-            //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
-            [self.mainVC.gcsMapVC   resetWaypoints: waypoints];
-            [self.mainVC.waypointVC resetWaypoints: waypoints];
-
-        } else {
-            [self updateMavlinkRequestStatusDialog:[NSString stringWithFormat:@"Getting Waypoint #%d", [waypoints numWaypoints]]
-                                    withAttemptNum:_mavlinkMissionRxTxAttempts];
-            
-            // Request the next waypoint
-            mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
-
-            [self performSelector:@selector(requestNextWaypointOrACK:) withObject:waypoints afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
-        }
-        
-    } else {
-        [self completedMavLinkRequestStatusWithSuccess: NO];
-    }
+- (void) issueRawMissionRequest:(uint16_t)sequence {
+    // Request the waypoint with sequence
+    mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, sequence);
 }
 
+- (void) issueRawMissionAck {
+    // Finish Read MAV waypoint protocol transaction
+    mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
+}
+
+- (void) loadNewMission:(WaypointsHolder*)mission {
+    // Let the GCSMapView and WaypointsView know we've got new waypoints
+    //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
+    [self.mainVC.gcsMapVC   resetWaypoints:mission];
+    [self.mainVC.waypointVC resetWaypoints:mission];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: sending
