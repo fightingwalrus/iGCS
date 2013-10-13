@@ -17,7 +17,7 @@
         _mission   = mission;
         //
         _title    = @"Requesting Mission";
-        _subtitle = @"Initiating Request";
+        _subtitle = [NSString stringWithFormat:@"Getting Waypoint #%d", [_mission numWaypoints]];
         _timeout  = MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT;
     }
     return self;
@@ -34,9 +34,9 @@
 
             // Are we done?
             if ([_mission allWaypointsReceivedP]) {
-                [handler completedWithSuccess:YES];
-                [_interface issueRawMissionAck]; // acknowledge completion of mission reception
+                [_interface issueRawMissionAck];      // acknowledge completion of mission reception
                 [_interface loadNewMission:_mission]; // load the mission
+                [handler completedWithSuccess:YES];   // FIXME: was originally the first line of this branch but caused crashes; investigate why.
             } else {
                 // Let's get the next waypoint
                 [handler continueWithRequest:[[RxMissionItems alloc] initWithInterface:_interface andMission:_mission]];
