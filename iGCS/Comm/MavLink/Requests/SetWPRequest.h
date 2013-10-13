@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "MavLinkRetryingRequestHandler.h"
+#import "MavLinkRetryingRequestHandler.h"
 #import "iGCSMavLinkInterface.h"
 
 @interface SetWPRequest : NSObject <MavLinkRetryableRequest>
