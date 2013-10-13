@@ -10,7 +10,7 @@
 
 @implementation TxMissionItem
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface withMission:(WaypointsHolder*)mission andCurrentIndex:(uint16_t)currentIndex;
+- (id)initWithInterface:(iGCSMavLinkInterface*)interface withMission:(WaypointsHolder*)mission andCurrentIndex:(uint16_t)currentIndex
 {
     if ((self = [super init])) {
         _interface    = interface;

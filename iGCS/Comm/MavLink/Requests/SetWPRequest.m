@@ -10,7 +10,7 @@
 
 @implementation SetWPRequest
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface andSequence:(uint16_t)sequence;
+- (id)initWithInterface:(iGCSMavLinkInterface*)interface andSequence:(uint16_t)sequence
 {
     if ((self = [super init])) {
         _interface = interface;
