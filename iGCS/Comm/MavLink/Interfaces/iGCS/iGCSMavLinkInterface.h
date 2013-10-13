@@ -23,8 +23,8 @@
 @property (strong) WaypointsHolder *rxWaypoints;
 @property (strong) WaypointsHolder *txWaypoints;
 
-@property (nonatomic, readonly) unsigned int mavlinkRequestAttempts;
-@property (nonatomic, retain) UIAlertView* mavlinkTransactionProgressDialog;
+@property (nonatomic, readonly) NSUInteger mavlinkMissionRxTxAttempts;
+@property (nonatomic, retain) UIAlertView* mavlinkRequestStatusDialog;
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
