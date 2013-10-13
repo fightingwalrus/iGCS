@@ -162,6 +162,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         
                     // Set WP ack
                     case MAVLINK_MSG_ID_MISSION_CURRENT:
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
                         [self completedMavLinkRequestStatusWithSuccess: YES];
                         break;
                 }
