@@ -246,6 +246,10 @@
     return [NSString stringWithFormat:@"%d", item.seq];
 }
 
+// NOOP - intended to be overrriden as needed
+- (void) customizeWaypointAnnotationView:(MKAnnotationView*)view {
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static const int LABEL_TAG = 100;
@@ -258,7 +262,6 @@
     // Handle our custom annotations
     //
     if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-        
         NSString* identifier = @"WAYPOINT";
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (view == nil) {
@@ -281,12 +284,12 @@
         view.draggable = draggableWaypointsP;
         view.selected = draggableWaypointsP;
         [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
-
+        
         // Set the waypoint label
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
         UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
-
+        
         // Add appropriate icon
         //  - we don't just set view.image, as we want a touch target that is larger than the icon itself
         UIImage *icon = nil;
@@ -303,6 +306,9 @@
         imgSubView.tag = ICON_VIEW_TAG;
         imgSubView.center = [view convertPoint:view.center fromView:view.superview];
         [view addSubview:imgSubView];
+
+        // Provide subclasses with a chance to customize the waypoint annotation view
+        [self customizeWaypointAnnotationView:view];
         
         return view;
     }
