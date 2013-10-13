@@ -1008,6 +1008,15 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
 }
 
+// Handle taps on "Set Waypoint" inside WaypointAnnotation view callouts
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    if ([[view annotation] isKindOfClass:[WaypointAnnotation class]]) {
+        WaypointAnnotation *annotation = (WaypointAnnotation*)[view annotation];
+        mavlink_mission_item_t item = annotation.waypoint;
+        [[CommController appMLI] issueSetWPCommand:item.seq];
+    }
+}
+
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view {
     // Add a setWP button
     UIButton *setWPButton = [UIButton buttonWithType:UIButtonTypeCustom];

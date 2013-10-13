@@ -159,6 +159,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         [self sendMissionItemRequest: [NSNumber numberWithUnsignedInt:request.seq]];
                     }
                         break;
+                        
+                    // Set WP ack
+                    case MAVLINK_MSG_ID_MISSION_CURRENT:
+                        [self completedMavLinkRequestStatusWithSuccess: YES];
+                        break;
                 }
                 
                 // If we get any other message than heartbeat, we are getting the messages we requested
@@ -243,7 +248,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
         // Start Read MAV waypoint protocol transaction
         mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
 
-        [self performSelector:@selector(requestMissionList) withObject:nil afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+        [self performSelector:@selector(requestMissionList) withObject:nil afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
     } else {
         [self completedMavLinkRequestStatusWithSuccess: NO];
     }
@@ -271,7 +276,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
             // Request the next waypoint
             mavlink_msg_mission_request_send(MAVLINK_COMM_0, msg.sysid, msg.compid, [waypoints numWaypoints]);
 
-            [self performSelector:@selector(requestNextWaypointOrACK:) withObject:waypoints afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+            [self performSelector:@selector(requestNextWaypointOrACK:) withObject:waypoints afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
         }
         
     } else {
@@ -299,7 +304,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
         // Send the vehicle the new mission count, and await WAYPOINT request responses
         mavlink_msg_mission_count_send(MAVLINK_COMM_0, msg.sysid, msg.compid, self.txWaypoints.numWaypoints);
 
-        [self performSelector:@selector(transmitMissionCount:) withObject:waypoints afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+        [self performSelector:@selector(transmitMissionCount:) withObject:waypoints afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
     } else {
         [self completedMavLinkRequestStatusWithSuccess: NO];
     }
@@ -324,7 +329,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                                       item.autocontinue, item.param1, item.param2, item.param3, item.param4,
                                       item.x, item.y, item.z);
 
-        [self performSelector:@selector(sendMissionItemRequest:) withObject:itemNumber afterDelay:iGCS_MAVLINK_RETRANSMISSION_TIMEOUT];
+        [self performSelector:@selector(sendMissionItemRequest:) withObject:itemNumber afterDelay:iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT];
     } else {
         [self completedMavLinkRequestStatusWithSuccess: NO];
     }
@@ -334,6 +339,29 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Miscellaneous requests
 ///////////////////////////////////////////////////////////////////////////////////////
+- (void) issueSetWPCommand:(uint16_t)sequence {
+    _mavlinkSetWPRequestAttempts = 0;
+
+    [self presentMavlinkRequestStatusDialog:[NSString stringWithFormat:@"Setting Waypoint %d", sequence]];
+    [self transmitSetWPCommand:[NSNumber numberWithUnsignedInt:sequence]];
+}
+
+- (void) transmitSetWPCommand:(NSNumber*)sequence {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (_mavlinkSetWPRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
+        uint16_t seq = [sequence unsignedIntValue];
+        [self updateMavlinkRequestStatusDialog:@"Sending"
+                                withAttemptNum:_mavlinkSetWPRequestAttempts];
+        
+        // Send the vehicle the new current waypoint
+        mavlink_msg_mission_set_current_send(MAVLINK_COMM_0, msg.sysid, msg.compid, seq);
+        
+        [self performSelector:@selector(transmitSetWPCommand:) withObject:sequence afterDelay:iGCS_MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT];
+    } else {
+        [self completedMavLinkRequestStatusWithSuccess: NO];
+    }
+}
+
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
      mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
                                    2, // Special flag that indicates this is a GUIDED mode packet

@@ -12,7 +12,8 @@
 #import "MavLinkLogger.h"
 #import "WaypointsHolder.h"
 
-#define iGCS_MAVLINK_RETRANSMISSION_TIMEOUT 0.5 // seconds
+#define iGCS_MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT 0.5 // seconds
+#define iGCS_MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT       2.0 // seconds
 #define iGCS_MAVLINK_MAX_RETRIES 5
 
 @interface iGCSMavLinkInterface : MavLinkInterface
@@ -24,6 +25,8 @@
 @property (strong) WaypointsHolder *txWaypoints;
 
 @property (nonatomic, readonly) NSUInteger mavlinkMissionRxTxAttempts;
+@property (nonatomic, readonly) NSUInteger mavlinkSetWPRequestAttempts;
+
 @property (nonatomic, retain) UIAlertView* mavlinkRequestStatusDialog;
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;
 
@@ -32,6 +35,7 @@
 - (void) issueStartReadMissionRequest;
 - (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
 
+- (void) issueSetWPCommand:(uint16_t)sequence;
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 
