@@ -22,6 +22,9 @@
 
 #import "Logger.h"
 
+#import "MavLinkRetryingRequestHandler.h"
+#import "SetWPRequest.h"
+
 @implementation iGCSMavLinkInterface
 
 
@@ -30,13 +33,15 @@ iGCSMavLinkInterface *appMLI;
 mavlink_message_t msg;
 mavlink_status_t status;
 mavlink_heartbeat_t heartbeat;
+MavLinkRetryingRequestHandler* retryRequestHandler;
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC
 {
     iGCSMavLinkInterface *interface = [[iGCSMavLinkInterface alloc] init];
     interface.mainVC = mainVC;
     appMLI = interface;
-
+    retryRequestHandler = [[MavLinkRetryingRequestHandler alloc] init];
+    
     return interface;
 }
 
@@ -159,18 +164,15 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         [self sendMissionItemRequest: [NSNumber numberWithUnsignedInt:request.seq]];
                     }
                         break;
-                        
-                    // Set WP ack
-                    case MAVLINK_MSG_ID_MISSION_CURRENT:
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                        [self completedMavLinkRequestStatusWithSuccess: YES];
-                        break;
                 }
                 
                 // If we get any other message than heartbeat, we are getting the messages we requested
                 if (msg.msgid != MAVLINK_MSG_ID_HEARTBEAT) {
                     self.heartbeatOnlyCount = 0;
                 }
+                
+                // Pass to the retrying request handler in case we need to process an ACK
+                [retryRequestHandler checkForAckOnCurrentRequest:msg];
                 
                 // Then send the packet on to the child views
 #if 0
@@ -340,27 +342,12 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Miscellaneous requests
 ///////////////////////////////////////////////////////////////////////////////////////
-- (void) issueSetWPCommand:(uint16_t)sequence {
-    _mavlinkSetWPRequestAttempts = 0;
-
-    [self presentMavlinkRequestStatusDialog:[NSString stringWithFormat:@"Setting Waypoint %d", sequence]];
-    [self transmitSetWPCommand:[NSNumber numberWithUnsignedInt:sequence]];
+- (void) issueStartSetWPCommand:(uint16_t)sequence {
+    [retryRequestHandler startRetryingRequest:[[SetWPRequest alloc] initWithInterface:self andSequence:sequence]];
 }
 
-- (void) transmitSetWPCommand:(NSNumber*)sequence {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (_mavlinkSetWPRequestAttempts++ < iGCS_MAVLINK_MAX_RETRIES) {
-        uint16_t seq = [sequence unsignedIntValue];
-        [self updateMavlinkRequestStatusDialog:@"Sending"
-                                withAttemptNum:_mavlinkSetWPRequestAttempts];
-        
-        // Send the vehicle the new current waypoint
-        mavlink_msg_mission_set_current_send(MAVLINK_COMM_0, msg.sysid, msg.compid, seq);
-        
-        [self performSelector:@selector(transmitSetWPCommand:) withObject:sequence afterDelay:iGCS_MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT];
-    } else {
-        [self completedMavLinkRequestStatusWithSuccess: NO];
-    }
+- (void) issueRawSetWPCommand:(uint16_t)sequence {
+    mavlink_msg_mission_set_current_send(MAVLINK_COMM_0, msg.sysid, msg.compid, sequence);
 }
 
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {

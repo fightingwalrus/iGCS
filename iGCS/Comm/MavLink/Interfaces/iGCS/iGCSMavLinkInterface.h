@@ -35,7 +35,9 @@
 - (void) issueStartReadMissionRequest;
 - (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
 
-- (void) issueSetWPCommand:(uint16_t)sequence;
+- (void) issueStartSetWPCommand:(uint16_t)sequence;
+- (void) issueRawSetWPCommand:(uint16_t)sequence;
+
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
 
