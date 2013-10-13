@@ -22,17 +22,17 @@
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
-- (void) issueStartReadMissionRequest;
+- (void) startReadMissionRequest;
 - (void) issueRawMissionRequestList;
 - (void) issueRawMissionRequest:(uint16_t)sequence;
 - (void) issueRawMissionAck;
 - (void) loadNewMission:(WaypointsHolder*)mission;
 
-- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints;
+- (void) startWriteMissionRequest:(WaypointsHolder*)waypoints;
 - (void) issueRawMissionCount:(uint16_t)numItems;
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item;
 
-- (void) issueStartSetWPCommand:(uint16_t)sequence;
+- (void) startSetWPRequest:(uint16_t)sequence;
 - (void) issueRawSetWPCommand:(uint16_t)sequence;
 
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;

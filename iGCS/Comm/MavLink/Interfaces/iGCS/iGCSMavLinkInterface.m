@@ -116,7 +116,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
                         
-                        [self issueStartReadMissionRequest];
+                        [self startReadMissionRequest];
                     }
                 } else {
                     // If we get any other message than heartbeat, we are getting the messages we requested
@@ -146,7 +146,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: receiving
 ///////////////////////////////////////////////////////////////////////////////////////
-- (void) issueStartReadMissionRequest {
+- (void) startReadMissionRequest {
     [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
 
@@ -175,7 +175,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Mission transaction: sending
 ///////////////////////////////////////////////////////////////////////////////////////
-- (void) issueStartWriteMissionRequest:(WaypointsHolder*)waypoints {
+- (void) startWriteMissionRequest:(WaypointsHolder*)waypoints {
     [retryRequestHandler startRetryingRequest:[[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints]];
 }
 
@@ -194,7 +194,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 ///////////////////////////////////////////////////////////////////////////////////////
 // Set current waypoint
 ///////////////////////////////////////////////////////////////////////////////////////
-- (void) issueStartSetWPCommand:(uint16_t)sequence {
+- (void) startSetWPRequest:(uint16_t)sequence {
     [retryRequestHandler startRetryingRequest:[[SetWPRequest alloc] initWithInterface:self andSequence:sequence]];
 }
 
