@@ -162,7 +162,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 
 - (void) issueRawMissionAck {
     // Finish Read MAV waypoint protocol transaction
-    mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0);
+    mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_MISSION_ACCEPTED);
 }
 
 - (void) loadNewMission:(WaypointsHolder*)mission {
