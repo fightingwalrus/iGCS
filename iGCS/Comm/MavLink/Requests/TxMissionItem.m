@@ -26,7 +26,8 @@
 
 - (void) checkForACK:(mavlink_message_t)packet withHandler:(MavLinkRetryingRequestHandler*)handler {
     mavlink_mission_request_t request;
-
+    mavlink_mission_ack_t ack;
+    
     switch (packet.msgid) {
         case MAVLINK_MSG_ID_MISSION_REQUEST:
             // Send requested waypoint
@@ -35,8 +36,9 @@
             break;
 
         case MAVLINK_MSG_ID_MISSION_ACK:
-            // Vehicle confirmed all mission items received
-            [handler completedWithSuccess:YES];
+            // Vehicle confirmed all mission items received, or otherwise
+            mavlink_msg_mission_ack_decode(&packet, &ack);
+            [handler completedWithSuccess:(ack.type == MAV_MISSION_ACCEPTED)];
             break;
     }
 }
