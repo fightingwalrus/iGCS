@@ -19,7 +19,7 @@
         //
         _title    = @"Transmitting Mission";
         _subtitle = @"Sending Waypoint count";
-        _timeout  = MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT;
+        _timeout  = MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT;
     }
     return self;
 }

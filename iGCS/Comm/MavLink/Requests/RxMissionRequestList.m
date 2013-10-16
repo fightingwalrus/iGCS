@@ -18,7 +18,7 @@
         //
         _title    = @"Requesting Mission";
         _subtitle = @"Initiating Request";
-        _timeout  = MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT;
+        _timeout  = MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT;
     }
     return self;
 }

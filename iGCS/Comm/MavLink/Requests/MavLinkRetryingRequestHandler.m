@@ -10,7 +10,7 @@
 
 @implementation MavLinkRetryingRequestHandler
 
-#define MAX_RETRIES 5
+#define MAX_RETRIES 7
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // General purpose "modal request dialog" helpers

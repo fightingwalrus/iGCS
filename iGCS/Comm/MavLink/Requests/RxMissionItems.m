@@ -18,7 +18,7 @@
         //
         _title    = @"Requesting Mission";
         _subtitle = [NSString stringWithFormat:@"Getting Waypoint #%d", [_mission numWaypoints]];
-        _timeout  = MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT;
+        _timeout  = MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT;
     }
     return self;
 }

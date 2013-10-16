@@ -19,7 +19,7 @@
         //
         _title    = @"Transmitting Mission";
         _subtitle = [NSString stringWithFormat:@"Sending Waypoint #%d", currentIndex];
-        _timeout  = MAVLINK_MISSION_RXTX_RETRANSMISSION_TIMEOUT;
+        _timeout  = MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT;
     }
     return self;
 }
@@ -36,9 +36,14 @@
             break;
 
         case MAVLINK_MSG_ID_MISSION_ACK:
-            // Vehicle confirmed all mission items received, or otherwise
+            // Vehicle responded with
+            //  * out of sequence: ignore, and await the next request
+            //  * mission accepted: we're done
+            //  * anything else: something broke
             mavlink_msg_mission_ack_decode(&packet, &ack);
-            [handler completedWithSuccess:(ack.type == MAV_MISSION_ACCEPTED)];
+            if (ack.type != MAV_MISSION_INVALID_SEQUENCE) {
+                [handler completedWithSuccess:(ack.type == MAV_MISSION_ACCEPTED)];
+            }
             break;
     }
 }
