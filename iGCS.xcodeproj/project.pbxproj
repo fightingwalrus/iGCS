@@ -24,13 +24,10 @@
 		492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
 		492C813116DBD102004001FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
-		49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369FB216DC949600D98370 /* BugSense-iOS */; };
 		49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		49369FB816DEEC1900D98370 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
 		495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E016FB98BB006E27B0 /* GKLocalController.m */; };
 		495253E416FB9971006E27B0 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E316FB9971006E27B0 /* GKNetController.m */; };
-		495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253E61703EC8B006E27B0 /* FacebookSDK.framework */; };
-		495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E91703EFAE006E27B0 /* ProfileViewController.m */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253F01703F1CD006E27B0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -125,7 +122,6 @@
 		CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
-		CABD957918024F5B003557A3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253E61703EC8B006E27B0 /* FacebookSDK.framework */; };
 		CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
 		CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */; };
@@ -203,17 +199,12 @@
 		492C812A16DBCCE9004001FF /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "BugSense-iOS 2.framework"; path = "iGCS/BugSense-iOS 2.framework"; sourceTree = "<group>"; };
-		49369FB216DC949600D98370 /* BugSense-iOS */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "BugSense-iOS"; path = "iGCS/BugSense-iOS 2.framework/Versions/A/BugSense-iOS"; sourceTree = "<group>"; };
 		49369FB516DEEC1900D98370 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
 		495253DF16FB98BB006E27B0 /* GKLocalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalController.h; sourceTree = "<group>"; };
 		495253E016FB98BB006E27B0 /* GKLocalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalController.m; sourceTree = "<group>"; };
 		495253E216FB9971006E27B0 /* GKNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNetController.h; sourceTree = "<group>"; };
 		495253E316FB9971006E27B0 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
-		495253E61703EC8B006E27B0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = iGCS/Login/FacebookSDK.framework; sourceTree = "<group>"; };
-		495253E81703EFAE006E27B0 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		495253E91703EFAE006E27B0 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		495253EB1703F1C3006E27B0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		495253EC1703F1C3006E27B0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		495253EF1703F1CD006E27B0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -631,7 +622,6 @@
 		CAB48D39170D3B520013D035 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CAB48D3B170D3D040013D035 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
-		CABD957518024F3A003557A3 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FacebookSDK; path = iGCS/Login/FacebookSDK.framework/Versions/A/FacebookSDK; sourceTree = "<group>"; };
 		CACDAAB41802717F00B5A62A /* mission-mavread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mission-mavread.png"; sourceTree = "<group>"; };
 		CACDAAB8180271B100B5A62A /* mission-mavwrite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mission-mavwrite.png"; sourceTree = "<group>"; };
 		CAF0B8391657A8960033B0BC /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
@@ -754,7 +744,6 @@
 				495253F01703F1CD006E27B0 /* Social.framework in Frameworks */,
 				495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */,
 				495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */,
-				49369FB316DC949600D98370 /* BugSense-iOS in Frameworks */,
 				49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */,
 				492C813116DBD102004001FF /* GameKit.framework in Frameworks */,
 				496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */,
@@ -769,7 +758,6 @@
 				CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
 				CAF0B8841657A8960033B0BC /* libCorePlot-CocoaTouch.a in Frameworks */,
-				495253E71703EC8B006E27B0 /* FacebookSDK.framework in Frameworks */,
 				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
@@ -789,7 +777,6 @@
 				CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */,
 				CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */,
 				CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */,
-				CABD957918024F5B003557A3 /* FacebookSDK.framework in Frameworks */,
 				CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */,
 				CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
@@ -954,8 +941,6 @@
 				CA92514516F9761A0008E92F /* WaypointMapBaseController.m */,
 				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
-				495253E81703EFAE006E27B0 /* ProfileViewController.h */,
-				495253E91703EFAE006E27B0 /* ProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1497,7 +1482,6 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CABD957518024F3A003557A3 /* FacebookSDK */,
 				CAA2CFD9161C000C00267615 /* libz.dylib */,
 				18E62664171101D9006A5D43 /* libkxmovie.a */,
 				189E235D1710DBBC00548C88 /* libiconv.dylib */,
@@ -1515,9 +1499,6 @@
 				495253EF1703F1CD006E27B0 /* Social.framework */,
 				495253EB1703F1C3006E27B0 /* Accounts.framework */,
 				495253EC1703F1C3006E27B0 /* AdSupport.framework */,
-				495253E61703EC8B006E27B0 /* FacebookSDK.framework */,
-				49369FB216DC949600D98370 /* BugSense-iOS */,
-				49369FA416DC919D00D98370 /* BugSense-iOS 2.framework */,
 				49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */,
 				492C813016DBD102004001FF /* GameKit.framework */,
 				496E625A16DADDB100E52E4A /* CoreBluetooth.framework */,
@@ -1975,7 +1956,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1994,6 +1975,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -2001,7 +1983,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -2016,6 +1998,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -2028,7 +2011,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/iGCS\"",
-					"\"$(SRCROOT)/iGCS/Login\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -2041,9 +2023,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
@@ -2054,7 +2034,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
-				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2069,7 +2048,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/iGCS\"",
-					"\"$(SRCROOT)/iGCS/Login\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -2082,9 +2060,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/iGCS/BugSense-iOS 2.framework/Versions/A\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
@@ -2095,7 +2071,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
