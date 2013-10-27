@@ -143,9 +143,8 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Mission transaction: receiving
-///////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Mission Transactions: receiving
+
 - (void) startReadMissionRequest {
     [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
@@ -172,9 +171,9 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     [self.mainVC.waypointVC resetWaypoints:mission];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Mission transaction: sending
-///////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Mission Transactions: sending
+
 - (void) startWriteMissionRequest:(WaypointsHolder*)waypoints {
     [retryRequestHandler startRetryingRequest:[[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints]];
 }
@@ -191,21 +190,19 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Set current waypoint
-///////////////////////////////////////////////////////////////////////////////////////
-- (void) startSetWPRequest:(uint16_t)sequence {
+#pragma mark - Set current waypoint
+
+- (void) startSetWaypointRequest:(uint16_t)sequence {
     [retryRequestHandler startRetryingRequest:[[SetWPRequest alloc] initWithInterface:self andSequence:sequence]];
 }
 
-- (void) issueRawSetWPCommand:(uint16_t)sequence {
+- (void) issueRawSetWaypointCommand:(uint16_t)sequence {
     mavlink_msg_mission_set_current_send(MAVLINK_COMM_0, msg.sysid, msg.compid, sequence);
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Miscellaneous requests
-///////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Miscellaneous requests
+
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
      mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
                                    2, // Special flag that indicates this is a GUIDED mode packet

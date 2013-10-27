@@ -12,9 +12,9 @@
 
 #define MAX_RETRIES 7
 
-///////////////////////////////////////////////////////////////////////////////////////
-// General purpose "modal request dialog" helpers
-///////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - General purpose "modal request dialog" helpers
+
 - (void) presentRequestStatusDialog:(NSString*)title {
     // FIXME: replace with custom view, with progress bar, modal until success/failure etc
     _requestStatusDialog = [[UIAlertView alloc] initWithTitle:title
@@ -38,10 +38,9 @@
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Internal methods
+#pragma mark - Internal Methods
+
 // c.f. http://qgroundcontrol.org/mavlink/waypoint_protocol#communication_state_machine
-///////////////////////////////////////////////////////////////////////////////////////
 - (void) retryRequest:(id<MavLinkRetryableRequest>)request {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if (_numAttempts++ < MAX_RETRIES) {
@@ -59,9 +58,9 @@
     _currentRequest = request;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
-// Public methods
-///////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Public Methods
+
 - (void) startRetryingRequest:(id<MavLinkRetryableRequest>)request {
     [self resetRequest:request];
     [self presentRequestStatusDialog:[request title]];

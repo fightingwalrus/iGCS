@@ -16,7 +16,7 @@
     if ((self = [super init])) {
         _interface = interface;
         _mission   = mission;
-        //
+
         _title    = @"Transmitting Mission";
         _subtitle = @"Sending Waypoint count";
         _timeout  = MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT;

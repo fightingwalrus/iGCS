@@ -15,7 +15,7 @@
     if ((self = [super init])) {
         _interface = interface;
         _sequence  = sequence;
-        //
+
         _title    = [NSString stringWithFormat:@"Setting Waypoint %d", sequence];
         _subtitle = @"Sending";
         _timeout  = MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT;
@@ -36,7 +36,7 @@
 }
 
 - (void) performRequest {
-    [_interface issueRawSetWPCommand:_sequence];
+    [_interface issueRawSetWaypointCommand:_sequence];
 }
 
 @end

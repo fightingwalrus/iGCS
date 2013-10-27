@@ -15,7 +15,7 @@
 {
     if ((self = [super init])) {
         _interface = interface;
-        //
+
         _title    = @"Requesting Mission";
         _subtitle = @"Initiating Request";
         _timeout  = MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT;

@@ -16,7 +16,7 @@
         _interface    = interface;
         _mission      = mission;
         _currentIndex = currentIndex;
-        //
+
         _title    = @"Transmitting Mission";
         _subtitle = [NSString stringWithFormat:@"Sending Waypoint #%d", currentIndex];
         _timeout  = MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT;

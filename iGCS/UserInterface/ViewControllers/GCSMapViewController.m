@@ -1013,12 +1013,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
     if ([[view annotation] isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)[view annotation];
         mavlink_mission_item_t item = annotation.waypoint;
-        [[CommController appMLI] startSetWPRequest:item.seq];
+        [[CommController appMLI] startSetWaypointRequest:item.seq];
     }
 }
 
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view {
-    // Add a setWP button
+    // Add a Set Waypoint button
     UIButton *setWPButton = [UIButton buttonWithType:UIButtonTypeCustom];
     setWPButton.frame = CGRectMake(0, 0, 90, 32);
     [setWPButton setTitle:@"Set Waypoint" forState:UIControlStateNormal];

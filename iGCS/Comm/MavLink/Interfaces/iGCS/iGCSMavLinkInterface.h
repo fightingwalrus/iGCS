@@ -32,8 +32,8 @@
 - (void) issueRawMissionCount:(uint16_t)numItems;
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item;
 
-- (void) startSetWPRequest:(uint16_t)sequence;
-- (void) issueRawSetWPCommand:(uint16_t)sequence;
+- (void) startSetWaypointRequest:(uint16_t)sequence;
+- (void) issueRawSetWaypointCommand:(uint16_t)sequence;
 
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;

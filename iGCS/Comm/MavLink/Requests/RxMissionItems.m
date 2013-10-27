@@ -15,7 +15,7 @@
     if ((self = [super init])) {
         _interface = interface;
         _mission   = mission;
-        //
+
         _title    = @"Requesting Mission";
         _subtitle = [NSString stringWithFormat:@"Getting Waypoint #%d", [_mission numWaypoints]];
         _timeout  = MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT;
