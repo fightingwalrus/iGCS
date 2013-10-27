@@ -1008,6 +1008,30 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
 }
 
+// Handle taps on "Set Waypoint" inside WaypointAnnotation view callouts
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    if ([[view annotation] isKindOfClass:[WaypointAnnotation class]]) {
+        WaypointAnnotation *annotation = (WaypointAnnotation*)[view annotation];
+        mavlink_mission_item_t item = annotation.waypoint;
+        [[CommController appMLI] startSetWaypointRequest:item.seq];
+    }
+}
+
+- (void) customizeWaypointAnnotationView:(MKAnnotationView*)view {
+    // Add a Set Waypoint button
+    UIButton *setWPButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    setWPButton.frame = CGRectMake(0, 0, 90, 32);
+    [setWPButton setTitle:@"Set Waypoint" forState:UIControlStateNormal];
+    [setWPButton setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+    setWPButton.titleLabel.font = [UIFont fontWithName: @"Helvetica" size: 14];
+    [setWPButton setBackgroundImage:[MiscUtilities imageWithColor:[UIColor darkGrayColor]] forState:UIControlStateNormal];
+    setWPButton.layer.cornerRadius = 6.0;
+    setWPButton.layer.borderWidth  = 1.0;
+    setWPButton.layer.borderColor = [UIColor darkTextColor].CGColor;
+    setWPButton.clipsToBounds = YES;
+    view.rightCalloutAccessoryView = setWPButton;
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     MKAnnotationView* v = [super mapView:theMapView viewForAnnotation:annotation];

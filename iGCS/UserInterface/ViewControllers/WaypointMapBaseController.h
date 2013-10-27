@@ -46,9 +46,13 @@
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
+
+// Following methods are intended to be overridden by subclasses
+- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
+
 
 @end

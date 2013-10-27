@@ -139,6 +139,12 @@
 		CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A0F179BC52000183159 /* MiscUtilities.m */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
 		CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */; };
+		CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD037180A67C000F5BCDB /* SetWPRequest.m */; };
+		CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
+		CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */; };
+		CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04C180A87C900F5BCDB /* RxMissionRequestList.m */; };
+		CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */; };
 		CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */; };
 		CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */; };
 		CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
@@ -699,6 +705,18 @@
 		CAF37A0F179BC52000183159 /* MiscUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscUtilities.m; path = Utility/MiscUtilities.m; sourceTree = "<group>"; };
 		CAF7508E14DE3C2D008B8480 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CAFBD033180A674100F5BCDB /* MavLinkRetryingRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MavLinkRetryingRequestHandler.h; path = Requests/MavLinkRetryingRequestHandler.h; sourceTree = "<group>"; };
+		CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MavLinkRetryingRequestHandler.m; path = Requests/MavLinkRetryingRequestHandler.m; sourceTree = "<group>"; };
+		CAFBD036180A67C000F5BCDB /* SetWPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetWPRequest.h; path = Requests/SetWPRequest.h; sourceTree = "<group>"; };
+		CAFBD037180A67C000F5BCDB /* SetWPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetWPRequest.m; path = Requests/SetWPRequest.m; sourceTree = "<group>"; };
+		CAFBD043180A83E000F5BCDB /* TxMissionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionItem.h; path = Requests/TxMissionItem.h; sourceTree = "<group>"; };
+		CAFBD044180A83E000F5BCDB /* TxMissionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionItem.m; path = Requests/TxMissionItem.m; sourceTree = "<group>"; };
+		CAFBD045180A83E000F5BCDB /* TxMissionItemCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionItemCount.h; path = Requests/TxMissionItemCount.h; sourceTree = "<group>"; };
+		CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionItemCount.m; path = Requests/TxMissionItemCount.m; sourceTree = "<group>"; };
+		CAFBD04B180A87C900F5BCDB /* RxMissionRequestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RxMissionRequestList.h; path = Requests/RxMissionRequestList.h; sourceTree = "<group>"; };
+		CAFBD04C180A87C900F5BCDB /* RxMissionRequestList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RxMissionRequestList.m; path = Requests/RxMissionRequestList.m; sourceTree = "<group>"; };
+		CAFBD04E180A8C9200F5BCDB /* RxMissionItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RxMissionItems.h; path = Requests/RxMissionItems.h; sourceTree = "<group>"; };
+		CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RxMissionItems.m; path = Requests/RxMissionItems.m; sourceTree = "<group>"; };
 		CAFD1CC317895E6000B5EC88 /* RequestedPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestedPointAnnotation.h; sourceTree = "<group>"; };
 		CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestedPointAnnotation.m; sourceTree = "<group>"; };
 		CAFD1CC71789670E00B5EC88 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
@@ -958,6 +976,7 @@
 			children = (
 				496E62A316DAFBF600E52E4A /* Connections */,
 				496E62A816DAFBF600E52E4A /* Interfaces */,
+				CAFBD032180A66CB00F5BCDB /* Requests */,
 				496E62C316DAFBF600E52E4A /* Utility */,
 			);
 			path = MavLink;
@@ -1641,6 +1660,25 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		CAFBD032180A66CB00F5BCDB /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				CAFBD033180A674100F5BCDB /* MavLinkRetryingRequestHandler.h */,
+				CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */,
+				CAFBD04B180A87C900F5BCDB /* RxMissionRequestList.h */,
+				CAFBD04C180A87C900F5BCDB /* RxMissionRequestList.m */,
+				CAFBD04E180A8C9200F5BCDB /* RxMissionItems.h */,
+				CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */,
+				CAFBD036180A67C000F5BCDB /* SetWPRequest.h */,
+				CAFBD037180A67C000F5BCDB /* SetWPRequest.m */,
+				CAFBD043180A83E000F5BCDB /* TxMissionItem.h */,
+				CAFBD044180A83E000F5BCDB /* TxMissionItem.m */,
+				CAFBD045180A83E000F5BCDB /* TxMissionItemCount.h */,
+				CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1806,12 +1844,15 @@
 				1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */,
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
+				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				496E62C816DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
 				496E62CA16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
+				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
+				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				496E62D216DAFBF600E52E4A /* FightingWalrusMFI.m in Sources */,
 				496E62D416DAFBF600E52E4A /* FightingWalrusProtocol.m in Sources */,
 				496E62D616DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
@@ -1823,17 +1864,21 @@
 				492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
+				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				49369FB716DEEC1900D98370 /* RNBluetoothInterface.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
 				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
+				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
+				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
 				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
+				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
