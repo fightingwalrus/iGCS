@@ -17,7 +17,10 @@
 
 #import "RequestedPointAnnotation.h"
 #import "GuidedPointAnnotation.h"
+
+#ifdef VIDEOSTREAMING
 #import "KxMovieViewController.h"
+#endif
 
 @interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
 {
@@ -98,8 +101,11 @@
 - (IBAction) followMeSwitchChanged:(UISwitch*)s;
 - (IBAction) followMeSliderChanged:(UISlider*)slider;
 
+#ifdef VIDEOSTREAMING
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
+#endif
+
 
 - (IBAction) changeControlModeSegment;
 - (IBAction) externalButtonClick;
