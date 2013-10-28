@@ -7,6 +7,103 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182FFA99181F0C9100A8C31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
+		182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
+		182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
+		182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
+		182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
+		182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
+		182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
+		182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
+		182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
+		182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
+		182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
+		182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
+		182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
+		182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04C180A87C900F5BCDB /* RxMissionRequestList.m */; };
+		182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
+		182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
+		182FFAA9181F0C9100A8C31C /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
+		182FFAAA181F0C9100A8C31C /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A516DAFBF600E52E4A /* MavLinkConnection.m */; };
+		182FFAAB181F0C9100A8C31C /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */; };
+		182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */; };
+		182FFAAD181F0C9100A8C31C /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
+		182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */; };
+		182FFAAF181F0C9100A8C31C /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B316DAFBF600E52E4A /* FightingWalrusMFI.m */; };
+		182FFAB0181F0C9100A8C31C /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */; };
+		182FFAB1181F0C9100A8C31C /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */; };
+		182FFAB2181F0C9100A8C31C /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */; };
+		182FFAB3181F0C9100A8C31C /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */; };
+		182FFAB4181F0C9100A8C31C /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
+		182FFAB5181F0C9100A8C31C /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
+		182FFAB6181F0C9100A8C31C /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
+		182FFAB7181F0C9100A8C31C /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
+		182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
+		182FFAB9181F0C9100A8C31C /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
+		182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
+		182FFABB181F0C9100A8C31C /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
+		182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		182FFABD181F0C9100A8C31C /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 49369FB616DEEC1900D98370 /* RNBluetoothInterface.m */; };
+		182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
+		182FFABF181F0C9100A8C31C /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E016FB98BB006E27B0 /* GKLocalController.m */; };
+		182FFAC0181F0C9100A8C31C /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495253E316FB9971006E27B0 /* GKNetController.m */; };
+		182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD037180A67C000F5BCDB /* SetWPRequest.m */; };
+		182FFAC2181F0C9100A8C31C /* DebugLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C45CB8170A7EA4007C9999 /* DebugLogger.m */; };
+		182FFAC3181F0C9100A8C31C /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
+		182FFAC4181F0C9100A8C31C /* MissionItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */; };
+		182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
+		182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */; };
+		182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */; };
+		182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */; };
+		182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtility.m */; };
+		182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A0F179BC52000183159 /* MiscUtilities.m */; };
+		182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
+		182FFACD181F0C9100A8C31C /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
+		182FFACE181F0C9100A8C31C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
+		182FFACF181F0C9100A8C31C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
+		182FFAD0181F0C9100A8C31C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
+		182FFAD1181F0C9100A8C31C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
+		182FFAD2181F0C9100A8C31C /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
+		182FFAD3181F0C9100A8C31C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB1170A7820007C9999 /* MobileCoreServices.framework */; };
+		182FFAD4181F0C9100A8C31C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CAF170A7810007C9999 /* CFNetwork.framework */; };
+		182FFAD5181F0C9100A8C31C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253F11703F213006E27B0 /* libsqlite3.0.dylib */; };
+		182FFAD6181F0C9100A8C31C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		182FFAD7181F0C9100A8C31C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		182FFAD8181F0C9100A8C31C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		182FFAD9181F0C9100A8C31C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
+		182FFADA181F0C9100A8C31C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
+		182FFADB181F0C9100A8C31C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
+		182FFADC181F0C9100A8C31C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
+		182FFADD181F0C9100A8C31C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
+		182FFADE181F0C9100A8C31C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
+		182FFADF181F0C9100A8C31C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */; };
+		182FFAE0181F0C9100A8C31C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
+		182FFAE1181F0C9100A8C31C /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
+		182FFAE2181F0C9100A8C31C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
+		182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
+		182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
+		182FFAE6181F0C9100A8C31C /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF0B8831657A8960033B0BC /* libCorePlot-CocoaTouch.a */; };
+		182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
+		182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
+		182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
+		182FFAEA181F0C9100A8C31C /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
+		182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
+		182FFAED181F0C9100A8C31C /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
+		182FFAEE181F0C9100A8C31C /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
+		182FFAEF181F0C9100A8C31C /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
+		182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE2415143E570014F7C8 /* 111-user.png */; };
+		182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7115143E570014F7C8 /* 181-hammer.png */; };
+		182FFAF2181F0C9100A8C31C /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
+		182FFAF3181F0C9100A8C31C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
+		182FFAF4181F0C9100A8C31C /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
+		182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
+		182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
+		182FFAF7181F0C9100A8C31C /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
+		182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
+		182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
+		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
+		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
@@ -16,7 +113,7 @@
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
-		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
+		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
@@ -176,6 +273,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -728,6 +827,43 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		182FFACC181F0C9100A8C31C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182FFACD181F0C9100A8C31C /* libiconv.dylib in Frameworks */,
+				182FFACE181F0C9100A8C31C /* Accelerate.framework in Frameworks */,
+				182FFACF181F0C9100A8C31C /* AudioToolbox.framework in Frameworks */,
+				182FFAD0181F0C9100A8C31C /* CoreAudio.framework in Frameworks */,
+				182FFAD1181F0C9100A8C31C /* MediaPlayer.framework in Frameworks */,
+				182FFAD2181F0C9100A8C31C /* libxml2.2.dylib in Frameworks */,
+				182FFAD3181F0C9100A8C31C /* MobileCoreServices.framework in Frameworks */,
+				182FFAD4181F0C9100A8C31C /* CFNetwork.framework in Frameworks */,
+				182FFAD5181F0C9100A8C31C /* libsqlite3.0.dylib in Frameworks */,
+				182FFAD6181F0C9100A8C31C /* Social.framework in Frameworks */,
+				182FFAD7181F0C9100A8C31C /* Accounts.framework in Frameworks */,
+				182FFAD8181F0C9100A8C31C /* AdSupport.framework in Frameworks */,
+				182FFAD9181F0C9100A8C31C /* SystemConfiguration.framework in Frameworks */,
+				182FFADA181F0C9100A8C31C /* GameKit.framework in Frameworks */,
+				182FFADB181F0C9100A8C31C /* CoreBluetooth.framework in Frameworks */,
+				182FFADC181F0C9100A8C31C /* Security.framework in Frameworks */,
+				182FFADD181F0C9100A8C31C /* UIKit.framework in Frameworks */,
+				182FFADE181F0C9100A8C31C /* Foundation.framework in Frameworks */,
+				182FFADF181F0C9100A8C31C /* CoreGraphics.framework in Frameworks */,
+				182FFAE0181F0C9100A8C31C /* MapKit.framework in Frameworks */,
+				182FFAE1181F0C9100A8C31C /* ExternalAccessory.framework in Frameworks */,
+				182FFAE2181F0C9100A8C31C /* CoreLocation.framework in Frameworks */,
+				182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */,
+				182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */,
+				182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */,
+				182FFAE6181F0C9100A8C31C /* libCorePlot-CocoaTouch.a in Frameworks */,
+				182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */,
+				182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */,
+				182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */,
+				182FFAEA181F0C9100A8C31C /* libkxmovie.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5B14DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1475,6 +1611,7 @@
 			children = (
 				CA499F5E14DE33BC00FCC9FB /* iGCS.app */,
 				CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */,
+				182FFAFF181F0C9100A8C31C /* iGCS copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1535,6 +1672,7 @@
 		CA499F6914DE33BC00FCC9FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */,
 				CA499F6A14DE33BC00FCC9FB /* iGCS-Info.plist */,
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
 				CA499F6E14DE33BC00FCC9FB /* main.m */,
@@ -1682,6 +1820,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		182FFA97181F0C9100A8C31C /* iGCS-video-streaming */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 182FFAFC181F0C9100A8C31C /* Build configuration list for PBXNativeTarget "iGCS-video-streaming" */;
+			buildPhases = (
+				182FFA98181F0C9100A8C31C /* Sources */,
+				182FFACC181F0C9100A8C31C /* Frameworks */,
+				182FFAEB181F0C9100A8C31C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iGCS-video-streaming";
+			productName = iGCS;
+			productReference = 182FFAFF181F0C9100A8C31C /* iGCS copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CA499F5D14DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA499F9C14DE33BC00FCC9FB /* Build configuration list for PBXNativeTarget "iGCS" */;
@@ -1750,6 +1905,7 @@
 			projectRoot = "";
 			targets = (
 				CA499F5D14DE33BC00FCC9FB /* iGCS */,
+				182FFA97181F0C9100A8C31C /* iGCS-video-streaming */,
 				CA499F8914DE33BC00FCC9FB /* iGCSTests */,
 			);
 		};
@@ -1773,6 +1929,29 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		182FFAEB181F0C9100A8C31C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */,
+				182FFAED181F0C9100A8C31C /* 07-map-marker.png in Resources */,
+				182FFAEE181F0C9100A8C31C /* 13-target.png in Resources */,
+				182FFAEF181F0C9100A8C31C /* 73-radar.png in Resources */,
+				182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */,
+				182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */,
+				182FFAF2181F0C9100A8C31C /* 193-location-arrow.png in Resources */,
+				182FFAF3181F0C9100A8C31C /* Icon-72.png in Resources */,
+				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
+				182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */,
+				182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */,
+				182FFAF7181F0C9100A8C31C /* wrench.png in Resources */,
+				182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */,
+				182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */,
+				182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */,
+				182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5C14DE33BC00FCC9FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1827,6 +2006,64 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		182FFA98181F0C9100A8C31C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182FFA99181F0C9100A8C31C /* main.m in Sources */,
+				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
+				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
+				182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */,
+				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
+				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
+				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
+				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
+				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
+				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
+				182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */,
+				182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */,
+				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
+				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
+				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
+				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
+				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
+				182FFAAA181F0C9100A8C31C /* MavLinkConnection.m in Sources */,
+				182FFAAB181F0C9100A8C31C /* MavLinkConnectionPool.m in Sources */,
+				182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */,
+				182FFAAD181F0C9100A8C31C /* BluetoothStream.m in Sources */,
+				182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */,
+				182FFAAF181F0C9100A8C31C /* FightingWalrusMFI.m in Sources */,
+				182FFAB0181F0C9100A8C31C /* FightingWalrusProtocol.m in Sources */,
+				182FFAB1181F0C9100A8C31C /* FightingWalrusRadio.m in Sources */,
+				182FFAB2181F0C9100A8C31C /* iGCSMavLinkInterface.m in Sources */,
+				182FFAB3181F0C9100A8C31C /* MavLinkInterface.m in Sources */,
+				182FFAB4181F0C9100A8C31C /* RedparkSerialCable.m in Sources */,
+				182FFAB5181F0C9100A8C31C /* SocketStream.m in Sources */,
+				182FFAB6181F0C9100A8C31C /* BTLEMavLinkCentral.m in Sources */,
+				182FFAB7181F0C9100A8C31C /* BTLEMavLinkPeripheral.m in Sources */,
+				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
+				182FFAB9181F0C9100A8C31C /* Logger.m in Sources */,
+				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
+				182FFABB181F0C9100A8C31C /* ExceptionHandler.m in Sources */,
+				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
+				182FFABD181F0C9100A8C31C /* RNBluetoothInterface.m in Sources */,
+				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
+				182FFABF181F0C9100A8C31C /* GKLocalController.m in Sources */,
+				182FFAC0181F0C9100A8C31C /* GKNetController.m in Sources */,
+				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
+				182FFAC2181F0C9100A8C31C /* DebugLogger.m in Sources */,
+				182FFAC3181F0C9100A8C31C /* MissionItemEditViewController.m in Sources */,
+				182FFAC4181F0C9100A8C31C /* MissionItemTableViewController.m in Sources */,
+				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
+				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
+				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
+				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
+				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
+				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
+				182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5A14DE33BC00FCC9FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1872,7 +2109,6 @@
 				495253E116FB98BB006E27B0 /* GKLocalController.m in Sources */,
 				495253E416FB9971006E27B0 /* GKNetController.m in Sources */,
 				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
-				495253EA1703EFAE006E27B0 /* ProfileViewController.m in Sources */,
 				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
@@ -1952,6 +2188,84 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		182FFAFD181F0C9100A8C31C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"VIDEOSTREAMING=1",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/FFmpeg\"",
+					"\"$(SRCROOT)/submodules/kxmovie\"",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-video-streaming.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
+					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
+				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "iGCS copy";
+				PROVISIONING_PROFILE = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		182FFAFE181F0C9100A8C31C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "VIDEOSTREAMING=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/FFmpeg\"",
+					"\"$(SRCROOT)/submodules/kxmovie\"",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-video-streaming.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
+					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
+					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
+				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "iGCS copy";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		CA499F9A14DE33BC00FCC9FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2126,6 +2440,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		182FFAFC181F0C9100A8C31C /* Build configuration list for PBXNativeTarget "iGCS-video-streaming" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				182FFAFD181F0C9100A8C31C /* Debug */,
+				182FFAFE181F0C9100A8C31C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CA499F5814DE33BC00FCC9FB /* Build configuration list for PBXProject "iGCS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

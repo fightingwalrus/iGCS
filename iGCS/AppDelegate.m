@@ -27,12 +27,14 @@ static AppDelegate *shared;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+#ifdef VIDEOSTREAMING
     // set up defaults
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1,
      @"videoDisplayLocation": @"corner"}];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-
+#endif
+    
     DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"upqcuw4fwo1hotd" secret:@"bqbhx0yn1my6emt"];
     [DBAccountManager setSharedManager:accountMgr];
     DBAccount *account = accountMgr.linkedAccount;

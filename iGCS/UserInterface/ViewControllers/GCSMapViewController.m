@@ -66,8 +66,10 @@ enum {
 @synthesize followMeDistanceSlider;
 @synthesize followMeHeightSlider;
 
+#ifdef VIDEOSTREAMING
 @synthesize kxMovieVC = _kxMovieVC;
 @synthesize availableStreams = _availableStreams;
+#endif
 
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
@@ -120,8 +122,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
     showProposedFollowPos = false;
     lastFollowMeUpdate = [NSDate date];
 
+#ifdef VIDEOSTREAMING
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
-
+#endif
+    
 //    // Initialize the video overlay view
 //    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 //    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
@@ -155,6 +159,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     return (NSDictionary *)_availableStreams;
 }
 
+#ifdef VIDEOSTREAMING
 -(void)configureVideoStreamWithName:(NSString *) streamName
                      andScaleFactor:(float) scaleFactor {
     
@@ -170,6 +175,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     NSLog(@"videoFrame: x:%f y:%f w:%f h:%f", f.origin.x, f.origin.y, f.size.width, f.size.height);
     self.kxMovieVC.view.frame  =  f;
 }
+#endif
 
 -(CGSize)CGSizeFromSize:(CGSize) size
         withScaleFactor:(float) scaleFactor {
@@ -179,6 +185,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     return newSize;
 }
 
+#ifdef VIDEOSTREAMING
 -(void)connectToVideoStream {
     if ([self.kxMovieVC.view isDescendantOfView:self.parentViewController.view]) {
         [self.kxMovieVC.view removeFromSuperview];
@@ -188,6 +195,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         [self.kxMovieVC play];
     }
 }
+#endif
 
 -(CGRect)videoFrameWithSize:(CGSize)size andUAVPoint:(CGPoint) uavPoint{
     CGRect rect = CGRectZero;
@@ -201,7 +209,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 -(void)airplanTapped:(UITapGestureRecognizer *)gesture {
     NSLog(@"airplane tapped");
+#ifdef VIDEOSTREAMING
     [self connectToVideoStream];
+#endif
 }
 
 #pragma mark - View lifecycle
@@ -224,7 +234,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 	self.gamePeerId = nil;
 	self.lastHeartbeatDate = nil;
     
-    //FIXME This will prevent app approval
 	NSString *uid = [MiscUtilities UUIDUsingDefaultAllocator];
 	
     //FIXME inherited from sample, I don't like it without a self
@@ -268,6 +277,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 {
     [super viewDidAppear:animated];
 
+#ifdef VIDEOSTREAMING
     NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
     NSString *videoDisplayLocation =  [[NSUserDefaults standardUserDefaults] objectForKey:@"videoDisplayLocation"];
     
@@ -291,6 +301,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
     }
+#endif
 
 }
 
