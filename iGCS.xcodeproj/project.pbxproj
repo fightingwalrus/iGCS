@@ -113,7 +113,6 @@
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
-		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
@@ -897,7 +896,6 @@
 				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
-				18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2329,19 +2327,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/FFmpeg\"",
-					"\"$(SRCROOT)/submodules/kxmovie\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
-					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -2366,19 +2357,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/FFmpeg\"",
-					"\"$(SRCROOT)/submodules/kxmovie\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
-					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
-					"\"$(SRCROOT)/submodules/kxmovie/libs\"",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
