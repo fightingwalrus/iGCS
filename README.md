@@ -24,6 +24,9 @@ Recent additions to the project include the kxvideo submodule. kxvideo in turn r
 (The first time you will be warned to install the gas preprocessor, follow the instructions provided)
 8. Run the iCGS project in Xcode
 
+*Note: building ffmpeg as outlined above no longer works with Xcode 5. Please use the main iGCS target 
+for now as the kxmovie/ffmpeg dependencies have been temporarily moved to the iGCS-video-streaming target.*
+
 License
 =======
 All iGCS code is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
