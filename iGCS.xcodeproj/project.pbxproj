@@ -107,6 +107,7 @@
 		181E943917EF75D000AEBEF1 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */; };
 		18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
+		18857D65182C2F3000AD1C49 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18857D64182C2F3000AD1C49 /* FightingWalrusInterface.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
@@ -280,6 +281,8 @@
 		18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSRadioConfig.m; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
+		18857D63182C2F3000AD1C49 /* FightingWalrusInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusInterface.h; sourceTree = "<group>"; };
+		18857D64182C2F3000AD1C49 /* FightingWalrusInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusInterface.m; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -927,8 +930,8 @@
 		181E943417EF745500AEBEF1 /* FightingWalrus2 */ = {
 			isa = PBXGroup;
 			children = (
-				181E943717EF75D000AEBEF1 /* FightingWalrusInterface.h */,
-				181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */,
+				18857D63182C2F3000AD1C49 /* FightingWalrusInterface.h */,
+				18857D64182C2F3000AD1C49 /* FightingWalrusInterface.m */,
 			);
 			path = FightingWalrus2;
 			sourceTree = "<group>";
@@ -2077,7 +2080,7 @@
 				CA499F6F14DE33BC00FCC9FB /* main.m in Sources */,
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
-				181E943917EF75D000AEBEF1 /* FightingWalrusInterface.m in Sources */,
+				18857D65182C2F3000AD1C49 /* FightingWalrusInterface.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
