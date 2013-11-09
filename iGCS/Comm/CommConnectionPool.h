@@ -1,5 +1,5 @@
 //
-//  MavLinkConnectionPool.h
+//  CommConnectionPool.h
 //  iGCS
 //
 //  Created by Andrew Aarestad on 2/22/13.
