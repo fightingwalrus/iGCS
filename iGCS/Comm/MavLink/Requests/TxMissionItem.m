@@ -42,7 +42,11 @@
             //  * anything else: something broke
             mavlink_msg_mission_ack_decode(&packet, &ack);
             if (ack.type != MAV_MISSION_INVALID_SEQUENCE) {
-                [handler completedWithSuccess:(ack.type == MAV_MISSION_ACCEPTED)];
+                bool success = (ack.type == MAV_MISSION_ACCEPTED);
+                if (success) {
+                    [_interface loadNewMission:_mission];
+                }
+                [handler completedWithSuccess:success];
             }
             break;
     }
