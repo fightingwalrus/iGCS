@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         [DebugLogger console: @"Creating FWR connection."];
         [self setupFightingWalrusConnections];
     } else {
-        NSLog(@"createDefaultConnections: unsupported Inteface specificed");
+        NSLog(@"createDefaultConnections: unsupported interface specified");
     }
 }
 
