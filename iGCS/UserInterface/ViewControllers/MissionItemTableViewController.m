@@ -351,6 +351,12 @@ NSArray* headerSpecs = nil;
     self.lastIndexPath = nil;
 }
 
+- (void) markSelectedRow:(NSInteger)idx {
+    NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
+    [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -360,7 +366,6 @@ NSArray* headerSpecs = nil;
     if (tableView.isEditing) {
         [self unmarkSelectedRow];
         [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-
         [self performSegueWithIdentifier:@"editItemVC_segue"
                                   sender:[NSNumber numberWithInteger:idx]];
     } else {

@@ -8,6 +8,7 @@
 
 #import "WaypointsViewController.h"
 
+#import "MissionItemTableViewController.h"
 #import "MissionItemEditViewController.h"
 
 #import "CommController.h"
@@ -121,8 +122,13 @@
 
 - (UITableView*) getTableView
 {
+    return [self getTableViewController].tableView;
+}
+
+- (MissionItemTableViewController*) getTableViewController
+{
     assert(navVCEditItemVC);
-    return ((UITableViewController*)[navVCEditItemVC.viewControllers objectAtIndex:0]).tableView;
+    return [navVCEditItemVC.viewControllers objectAtIndex:0];
 }
 
 - (WaypointsHolder*)getWaypointsHolder
@@ -163,6 +169,13 @@
         // Reset the map and table views
         [self resetWaypoints];  // FIXME: this is a little heavy handed. Want more fine-grained
                                 // control here (like not resetting the map bounds in this case)
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    if ([view.annotation isKindOfClass:[WaypointAnnotation class]]) {
+        WaypointAnnotation *annotation = (WaypointAnnotation*)view.annotation;
+        [[self getTableViewController] markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
     }
 }
 
