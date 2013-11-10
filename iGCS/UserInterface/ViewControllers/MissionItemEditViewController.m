@@ -145,6 +145,7 @@
     
     [label setText:[field label]];
     [text  setText:[field valueToString:item]];
+    [text setClearButtonMode:UITextFieldViewModeWhileEditing];
     [units setText:[field unitsToString]];
     return cell;
 }
