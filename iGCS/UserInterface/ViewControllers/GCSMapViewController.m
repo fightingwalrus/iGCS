@@ -1024,7 +1024,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     if ([[view annotation] isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)[view annotation];
         mavlink_mission_item_t item = annotation.waypoint;
-        [[CommController appMLI] startSetWaypointRequest:item.seq];
+        [[[CommController sharedInstance] mavLinkInterface] startSetWaypointRequest:item.seq];
     }
 }
 
