@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */; };
 		182FFA99181F0C9100A8C31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
@@ -24,8 +25,8 @@
 		182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
 		182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
 		182FFAA9181F0C9100A8C31C /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
-		182FFAAA181F0C9100A8C31C /* MavLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A516DAFBF600E52E4A /* MavLinkConnection.m */; };
-		182FFAAB181F0C9100A8C31C /* MavLinkConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A716DAFBF600E52E4A /* MavLinkConnectionPool.m */; };
+		182FFAAA181F0C9100A8C31C /* (null) in Sources */ = {isa = PBXBuildFile; };
+		182FFAAB181F0C9100A8C31C /* (null) in Sources */ = {isa = PBXBuildFile; };
 		182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */; };
 		182FFAAD181F0C9100A8C31C /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62AB16DAFBF600E52E4A /* BluetoothStream.m */; };
 		182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */; };
@@ -33,9 +34,8 @@
 		182FFAB0181F0C9100A8C31C /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B516DAFBF600E52E4A /* FightingWalrusProtocol.m */; };
 		182FFAB1181F0C9100A8C31C /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62B716DAFBF600E52E4A /* FightingWalrusRadio.m */; };
 		182FFAB2181F0C9100A8C31C /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */; };
-		182FFAB3181F0C9100A8C31C /* MavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BC16DAFBF600E52E4A /* MavLinkInterface.m */; };
+		182FFAB3181F0C9100A8C31C /* (null) in Sources */ = {isa = PBXBuildFile; };
 		182FFAB4181F0C9100A8C31C /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
-		182FFAB5181F0C9100A8C31C /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		182FFAB6181F0C9100A8C31C /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812716DBCCE9004001FF /* BTLEMavLinkCentral.m */; };
 		182FFAB7181F0C9100A8C31C /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C812916DBCCE9004001FF /* BTLEMavLinkPeripheral.m */; };
 		182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
@@ -104,8 +104,6 @@
 		182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
-		181E943917EF75D000AEBEF1 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */; };
-		18285C8C17D91C3100C48EA3 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		18857D65182C2F3000AD1C49 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18857D64182C2F3000AD1C49 /* FightingWalrusInterface.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
@@ -116,7 +114,6 @@
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
-		18E62665171101D9006A5D43 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E62664171101D9006A5D43 /* libkxmovie.a */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
@@ -180,8 +177,6 @@
 		496E62D916DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */; };
 		496E62DC16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
 		496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */; };
-		496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
-		496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62C216DAFBF600E52E4A /* SocketStream.m */; };
 		49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -273,12 +268,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
-		181E943717EF75D000AEBEF1 /* FightingWalrusInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusInterface.h; sourceTree = "<group>"; };
-		181E943817EF75D000AEBEF1 /* FightingWalrusInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusInterface.m; sourceTree = "<group>"; };
 		18285C8A17D91C3100C48EA3 /* iGCSRadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig.h; sourceTree = "<group>"; };
 		18285C8B17D91C3100C48EA3 /* iGCSRadioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSRadioConfig.m; sourceTree = "<group>"; };
+		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
 		18857D63182C2F3000AD1C49 /* FightingWalrusInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusInterface.h; sourceTree = "<group>"; };
@@ -363,8 +356,6 @@
 		496E62BA16DAFBF600E52E4A /* iGCSMavLinkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGCSMavLinkInterface.m; sourceTree = "<group>"; };
 		496E62BE16DAFBF600E52E4A /* RedparkSerialCable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedparkSerialCable.h; sourceTree = "<group>"; };
 		496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
-		496E62C116DAFBF600E52E4A /* SocketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketStream.h; sourceTree = "<group>"; };
-		496E62C216DAFBF600E52E4A /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
 		49AC435D1708B8EF008225A3 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = iGCS/Dropbox.framework; sourceTree = "<group>"; };
@@ -1146,7 +1137,6 @@
 				496E62B116DAFBF600E52E4A /* FightingWalrus */,
 				496E62B816DAFBF600E52E4A /* iGCS */,
 				496E62BD16DAFBF600E52E4A /* Redpark */,
-				496E62C016DAFBF600E52E4A /* Socket */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1193,15 +1183,6 @@
 				496E62BF16DAFBF600E52E4A /* RedparkSerialCable.m */,
 			);
 			path = Redpark;
-			sourceTree = "<group>";
-		};
-		496E62C016DAFBF600E52E4A /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-				496E62C116DAFBF600E52E4A /* SocketStream.h */,
-				496E62C216DAFBF600E52E4A /* SocketStream.m */,
-			);
-			path = Socket;
 			sourceTree = "<group>";
 		};
 		496E62C316DAFBF600E52E4A /* Utility */ = {
@@ -2036,8 +2017,8 @@
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
-				182FFAAA181F0C9100A8C31C /* MavLinkConnection.m in Sources */,
-				182FFAAB181F0C9100A8C31C /* MavLinkConnectionPool.m in Sources */,
+				182FFAAA181F0C9100A8C31C /* (null) in Sources */,
+				182FFAAB181F0C9100A8C31C /* (null) in Sources */,
 				182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */,
 				182FFAAD181F0C9100A8C31C /* BluetoothStream.m in Sources */,
 				182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */,
@@ -2045,9 +2026,8 @@
 				182FFAB0181F0C9100A8C31C /* FightingWalrusProtocol.m in Sources */,
 				182FFAB1181F0C9100A8C31C /* FightingWalrusRadio.m in Sources */,
 				182FFAB2181F0C9100A8C31C /* iGCSMavLinkInterface.m in Sources */,
-				182FFAB3181F0C9100A8C31C /* MavLinkInterface.m in Sources */,
+				182FFAB3181F0C9100A8C31C /* (null) in Sources */,
 				182FFAB4181F0C9100A8C31C /* RedparkSerialCable.m in Sources */,
-				182FFAB5181F0C9100A8C31C /* SocketStream.m in Sources */,
 				182FFAB6181F0C9100A8C31C /* BTLEMavLinkCentral.m in Sources */,
 				182FFAB7181F0C9100A8C31C /* BTLEMavLinkPeripheral.m in Sources */,
 				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
@@ -2096,8 +2076,6 @@
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
-				496E62C816DAFBF600E52E4A /* MavLinkConnection.m in Sources */,
-				496E62CA16DAFBF600E52E4A /* MavLinkConnectionPool.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				496E62CC16DAFBF600E52E4A /* BluetoothStream.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
@@ -2107,7 +2085,6 @@
 				496E62D616DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
 				496E62D816DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */,
 				496E62DC16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
-				496E62DE16DAFBF600E52E4A /* SocketStream.m in Sources */,
 				492C812C16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				492C812E16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
@@ -2159,7 +2136,6 @@
 				496E62D716DAFBF600E52E4A /* FightingWalrusRadio.m in Sources */,
 				496E62D916DAFBF600E52E4A /* iGCSMavLinkInterface.m in Sources */,
 				496E62DD16DAFBF600E52E4A /* RedparkSerialCable.m in Sources */,
-				496E62DF16DAFBF600E52E4A /* SocketStream.m in Sources */,
 				492C812D16DBCCE9004001FF /* BTLEMavLinkCentral.m in Sources */,
 				492C812F16DBCCE9004001FF /* BTLEMavLinkPeripheral.m in Sources */,
 				49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */,
@@ -2349,8 +2325,6 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "278E7D42-F683-4C37-A714-C332B4AC6A4E";
 				PROVISIONING_PROFILE = "04929BE2-01FF-459B-8B2F-E1F7D15BA85B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04929BE2-01FF-459B-8B2F-E1F7D15BA85B";
 				VALID_ARCHS = armv7;
