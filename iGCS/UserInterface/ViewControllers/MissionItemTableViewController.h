@@ -14,4 +14,6 @@
 @property (nonatomic, retain) UIView *sectionHeader;
 @property (nonatomic, retain) NSIndexPath *lastIndexPath;
 
+- (void) markSelectedRow:(NSInteger)idx;
+
 @end
