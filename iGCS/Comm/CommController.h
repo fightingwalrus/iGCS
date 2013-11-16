@@ -13,7 +13,6 @@
 
 #import "RedparkSerialCable.h"
 #import "FightingWalrusRadio.h"
-#import "SocketStream.h"
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
