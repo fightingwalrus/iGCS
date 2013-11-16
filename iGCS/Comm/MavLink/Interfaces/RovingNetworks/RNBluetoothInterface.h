@@ -23,9 +23,6 @@
 	
 }
 
-
-
-
 @property (nonatomic, retain, readonly) EAAccessory *selectedAccessory;
 @property (nonatomic, copy) NSString *protocolString;
 @property (retain) NSMutableData *writeDataBuffer;
@@ -35,12 +32,9 @@
 
 
 - (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString;
-
 - (BOOL)openSession;
 - (void)closeSession;
-
 - (void)writeData:(NSData *)data;
-
 - (BOOL)isAccessoryConnected;
 
 // from EAAccessoryDelegate
@@ -49,6 +43,4 @@
 // from EAAccessory notifications
 - (void)accessoryConnected:(NSNotification *)notification;
 - (void)accessoryDisconnected:(NSNotification *)notification;
-
-
 @end

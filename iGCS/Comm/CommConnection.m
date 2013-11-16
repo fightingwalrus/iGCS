@@ -11,8 +11,7 @@
 @implementation CommConnection
 
 
-+(CommConnection*)createForSource:(CommInterface*)source destination:(CommInterface*)destination
-{
++(CommConnection*)createForSource:(CommInterface*)source destination:(CommInterface*)destination {
     
     CommConnection *conn = [[CommConnection alloc] init];
     
@@ -20,7 +19,6 @@
     conn.destination = destination;
     
     return conn;
-    
 }
 
 @end

@@ -12,19 +12,16 @@
 
 @implementation CommInterface
 
--(void)consumeData:(uint8_t*)bytes length:(int)length
-{
+-(void)consumeData:(uint8_t*)bytes length:(int)length {
     // gets called when matching source interface in a MavLinkConnection has new data
     
     // must always be overridden for destination interfaces
     [Logger error:@"Error: Tried to call consumeData that was not overridden by subclass."];
     assert(0);
-
 }
 
 // call this method for source interfaces when new data is available
--(void)produceData:(uint8_t*)bytes length:(int)length
-{
+-(void)produceData:(uint8_t*)bytes length:(int)length {
     
     // ConnectionPool must be assigned
     if (!self.connectionPool)
@@ -34,13 +31,11 @@
     assert(self.connectionPool);
     
     [self.connectionPool interface:self producedBytes:bytes length:length];
-    
-    
+
 }
 
 
--(void) close
-{
+-(void) close {
     // override to handle interface-specific shutdown
 }
 
