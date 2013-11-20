@@ -133,7 +133,7 @@ static AppDelegate *shared;
      See also applicationDidEnterBackground:.
      */
     
-    [CommController closeAllInterfaces];
+    [[CommController sharedInstance] closeAllInterfaces];
     
     if (alertView.visible) {
 		[alertView dismissWithClickedButtonIndex:0 animated:YES];

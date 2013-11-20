@@ -86,15 +86,12 @@
 
 
 - (IBAction)bluetoothRxClicked:(id)sender {
-    
-    [CommController startBluetoothRx];
-    
+    [[CommController sharedInstance] startBluetoothRx];
 }
 
 
 - (IBAction)bluetoothTxClicked:(id)sender {
-    
-    [CommController startBluetoothTx];
+    [[CommController sharedInstance] startBluetoothTx];
 }
 
 - (IBAction)videoSourceValueChanged:(id)sender {

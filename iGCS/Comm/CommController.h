@@ -8,18 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MavLinkConnection.h"
-#import "MavLinkConnectionPool.h"
+#import "CommConnection.h"
+#import "CommConnectionPool.h"
 
 #import "RedparkSerialCable.h"
 #import "FightingWalrusRadio.h"
-#import "SocketStream.h"
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
+#import "iGCSRadioConfig.h"
+#import "RNBluetoothInterface.h"
+#import "FightingWalrusInterface.h"
 
-
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 
 #import "MainViewController.h"
 
@@ -27,13 +28,20 @@
 
 @interface CommController : NSObject
 
-+(void)start:(MainViewController*)mvc;
+@property (nonatomic, retain) CommConnectionPool *connectionPool;
+@property (nonatomic, retain) MainViewController *mainVC;
+@property (nonatomic, retain) iGCSMavLinkInterface *mavLinkInterface;
+@property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
+@property (nonatomic, retain) RedparkSerialCable *redParkCable;
+@property (nonatomic, retain) iGCSRadioConfig *radioConfig;
+@property (nonatomic, retain) FightingWalrusInterface *fightingWalrusInterface;
 
-+(void) startBluetoothTx;
-+(void) startBluetoothRx;
++(CommController *)sharedInstance;
 
-+(iGCSMavLinkInterface*)appMLI;
+-(void)start:(MainViewController*)mvc;
 
-+(void) closeAllInterfaces;
+-(void) startBluetoothTx;
+-(void) startBluetoothRx;
+-(void) closeAllInterfaces;
 
 @end

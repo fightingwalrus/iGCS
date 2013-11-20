@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 #import "MainViewController.h"
 #import "MavLinkLogger.h"
 #import "WaypointsHolder.h"
 
-@interface iGCSMavLinkInterface : MavLinkInterface
+
+#define iGCS_MAVLINK_RETRANSMISSION_TIMEOUT 0.5 // seconds
+#define iGCS_MAVLINK_MAX_RETRIES 5
+
+@interface iGCSMavLinkInterface : CommInterface
+
 
 @property (strong) MainViewController *mainVC;
 @property unsigned int heartbeatOnlyCount;

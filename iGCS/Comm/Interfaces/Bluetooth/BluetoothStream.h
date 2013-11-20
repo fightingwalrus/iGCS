@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkInterface.h"
+#import "CommInterface.h"
 
 #import "BTLEMavLinkCentral.h"
 #import "BTLEMavLinkPeripheral.h"
 #import "GKLocalController.h"
 
 
-@interface BluetoothStream : MavLinkInterface
+@interface BluetoothStream : CommInterface
 
 @property (strong) BTLEMavLinkCentral *streamCentral;
 @property (strong) BTLEMavLinkPeripheral *streamPeripheral;
