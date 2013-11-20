@@ -334,7 +334,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             break;
             
         case CONTROL_MODE_AUTO:
-            [[CommController appMLI] issueSetAUTOModeCommand];
+            [[[CommController sharedInstance] mavLinkInterface] issueSetAUTOModeCommand];
             break;
             
         case CONTROL_MODE_GUIDED:
@@ -382,7 +382,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [map addAnnotation:currentGuidedAnnotation];
     [map setNeedsDisplay];
 
-    [[CommController appMLI] issueGOTOCommand:coordinates withAltitude:altitude];
+    [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
 }
 
 
@@ -1024,7 +1024,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     if ([[view annotation] isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)[view annotation];
         mavlink_mission_item_t item = annotation.waypoint;
-        [[CommController appMLI] startSetWaypointRequest:item.seq];
+        [[[CommController sharedInstance] mavLinkInterface] startSetWaypointRequest:item.seq];
     }
 }
 
