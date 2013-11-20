@@ -43,10 +43,11 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 {
     @try {
         self.mainVC = mvc;
-        
-        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
-//      [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
-        
+//        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
+//        [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
+
+        [self createDefaultConnections:GCSRedparkCommInterface];
+
         [DebugLogger console:@"Created default connections in CommController."];
     }
     @catch (NSException *exception) {

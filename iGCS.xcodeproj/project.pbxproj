@@ -2291,8 +2291,8 @@
 		CA499F9D14DE33BC00FCC9FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Brown (EEE2WHYBR4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Brown (EEE2WHYBR4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2311,8 +2311,8 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04929BE2-01FF-459B-8B2F-E1F7D15BA85B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04929BE2-01FF-459B-8B2F-E1F7D15BA85B";
+				PROVISIONING_PROFILE = "BD9588C2-FDBC-42F0-BB2C-C552A6D9EE47";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD9588C2-FDBC-42F0-BB2C-C552A6D9EE47";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
