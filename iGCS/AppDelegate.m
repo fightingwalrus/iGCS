@@ -61,16 +61,19 @@ static AppDelegate *shared;
 
     
     shared = self;
+
+    // Configure ios version specific settings
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+
+    } else {
+        // Status bar content is black by default on ios7
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
     
     NSLog(@"Application finished launching.");
     
-    
-    
-    
-    
+
     return YES;
-    
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
