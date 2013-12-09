@@ -160,41 +160,51 @@ NSMutableDictionary *_missionItemMetadata;
 + (NSString*) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat {
 
     // ArduPlane Auto Pilot Modes
+    NSString *modeName;
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_FIXED_WING) {
-        switch (heartbeat.custom_mode) {
-            case MANUAL:        return @"Manual";
-            case CIRCLE:        return @"Circle";
-            case STABILIZE:     return @"Stabilize";
-            case FLY_BY_WIRE_A: return @"FBW_A";
-            case FLY_BY_WIRE_B: return @"FBW_B";
-            case FLY_BY_WIRE_C: return @"FBW_C";
-            case AUTO:          return @"Auto";
-            case RTL:           return @"RTL";
-            case LOITER:        return @"Loiter";
-            case TAKEOFF:       return @"Takeoff";
-            case LAND:          return @"Land";
-            case GUIDED:        return @"Guided";
-            case INITIALISING:  return @"Initialising";
-                
+        static NSDictionary *ardupilotmegaFixedwing;
+        if (!ardupilotmegaFixedwing) {
+            ardupilotmegaFixedwing = @{@(MANUAL): @"Manual",
+                                       @(CIRCLE): @"Circle",
+                                       @(STABILIZE): @"Stabilize",
+                                       @(FLY_BY_WIRE_A): @"FBW_A",
+                                       @(FLY_BY_WIRE_B): @"FBW_B",
+                                       @(FLY_BY_WIRE_C): @"FBW_C",
+                                       @(AUTO): @"Auto",
+                                       @(RTL): @"RTL",
+                                       @(LOITER): @"Loiter",
+                                       @(TAKEOFF): @"Takeoff",
+                                       @(LAND): @"Land",
+                                       @(GUIDED): @"Guided",
+                                       @(INITIALISING): @"Initialising"};
+        }
+        modeName = ardupilotmegaFixedwing[@(heartbeat.custom_mode)];
+        if (modeName) {
+            return modeName;
         }
     }
 
     // ArduCopter Auto Pilot Modes
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_QUADROTOR) {
-        switch (heartbeat.custom_mode) {
-            case Stabilize: return @"Stabilize";
-            case Acro: return @"Acro";
-            case AltHold: return @"AltHold";
-            case Auto: return @"Auto";
-            case Guided: return @"Guided";
-            case Loiter: return @"Loiter";
-            case Rtl: return @"Rtl";
-            case Circle: return @"Circle";
-            case Position: return @"Position";
-            case Land: return @"Land";
-            case OfLoiter: return @"OfLoiter";
-            case Drift: return @"Drift";
-            case Sport: return @"Sport";
+        static NSDictionary *ardupilotmegaQuadrotor;
+        if (!ardupilotmegaQuadrotor) {
+            ardupilotmegaQuadrotor = @{@(Stabilize): @"Stabilize",
+                                     @(Acro): @"Acro",
+                                     @(AltHold): @"AltHold",
+                                     @(Auto): @"Auto",
+                                     @(Guided): @"Guided",
+                                     @(Loiter): @"Loiter",
+                                     @(Rtl): @"RTL",
+                                     @(Circle): @"Circle",
+                                     @(Position): @"Position",
+                                     @(Land): @"Land",
+                                     @(OfLoiter): @"OfLoiter",
+                                     @(Drift): @"Drift",
+                                     @(Sport): @"Sport"};
+        }
+        modeName = ardupilotmegaQuadrotor[@(heartbeat.custom_mode)];
+        if (modeName) {
+            return modeName;
         }
     }
 
