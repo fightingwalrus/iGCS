@@ -114,7 +114,7 @@ static void print_message(mavlink_message_t *msg)
 ref: ArduPlane defines.h 
  */
 
-// Auto Pilot modes
+// ArduPlane Auto Pilot modes
 // ----------------
 #define MANUAL 0
 #define CIRCLE 1                         // When flying sans GPS, and we loose the radio, just circle
@@ -132,6 +132,23 @@ ref: ArduPlane defines.h
 #define GUIDED 15
 #define INITIALISING 16     // in startup routines
 
-
-
 #endif
+
+
+// ArduCopter Auto Pilot Modes
+typedef NS_ENUM(uint32_t, GCSArduCopterModes) {
+    Stabilize = 0,  // hold level position
+    Acro = 1,       // rate control
+    AltHold = 2,    // AUTO control
+    Auto = 3,       // AUTO control
+    Guided = 4,     // AUTO control
+    Loiter = 5,     // Hold a single location
+    Rtl = 6,        // AUTO control
+    Circle = 7,     // AUTO control
+    Position = 8,   // AUTO control
+    Land = 9,       // AUTO control
+    OfLoiter = 10,  // Hold a single location using optical flow sensor
+    Drift = 11,     // DRIFT mode (Note: 12 is no longer used)
+    Sport = 13,     // earth frame rate control
+    NumModes = 14
+};

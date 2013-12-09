@@ -985,7 +985,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
             
-            [customModeLabel    setText:[MavLinkUtility mavCustomModeToString:  heartbeat.custom_mode]];
+            [customModeLabel    setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
             [baseModeLabel      setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
             [statusLabel        setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
             
