@@ -12,6 +12,8 @@
 
 
 NSMutableDictionary *_missionItemMetadata;
+NSDictionary *_ardupilotFixedwingCustomModes;
+NSDictionary *_ardupilotQuadrotorCustomModes;
 
 + (void) initialize {
     if (self == [MavLinkUtility class]) {
@@ -126,10 +128,40 @@ NSMutableDictionary *_missionItemMetadata;
                                                                             andUnits:GCSItemUnitSeconds
                                                                           andFieldType:GCSItemParam3]]
                                  forKey:@(MAV_CMD_DO_REPEAT_SERVO)];
+
+        _ardupilotFixedwingCustomModes = @{@(MANUAL): @"Manual",
+                                           @(CIRCLE): @"Circle",
+                                           @(STABILIZE): @"Stabilize",
+                                           @(FLY_BY_WIRE_A): @"FBW_A",
+                                           @(FLY_BY_WIRE_B): @"FBW_B",
+                                           @(FLY_BY_WIRE_C): @"FBW_C",
+                                           @(AUTO): @"Auto",
+                                           @(RTL): @"RTL",
+                                           @(LOITER): @"Loiter",
+                                           @(TAKEOFF): @"Takeoff",
+                                           @(LAND): @"Land",
+                                           @(GUIDED): @"Guided",
+                                           @(INITIALISING): @"Initialising"};
+
+
+        _ardupilotQuadrotorCustomModes = @{@(Stabilize): @"Stabilize",
+                                           @(Acro): @"Acro",
+                                           @(AltHold): @"AltHold",
+                                           @(Auto): @"Auto",
+                                           @(Guided): @"Guided",
+                                           @(Loiter): @"Loiter",
+                                           @(Rtl): @"RTL",
+                                           @(Circle): @"Circle",
+                                           @(Position): @"Position",
+                                           @(Land): @"Land",
+                                           @(OfLoiter): @"OfLoiter",
+                                           @(Drift): @"Drift",
+                                           @(Sport): @"Sport"};
+
     }
 }
 
-+ (NSString*) mavModeEnumToString:(enum MAV_MODE)mode {
++ (NSString *) mavModeEnumToString:(enum MAV_MODE)mode {
     NSString *str = [NSString stringWithFormat:@""];
     if (mode & MAV_MODE_FLAG_TEST_ENABLED)          str = [str stringByAppendingString:@"Test "];
     if (mode & MAV_MODE_FLAG_AUTO_ENABLED)          str = [str stringByAppendingString:@"Auto "];
@@ -142,7 +174,7 @@ NSMutableDictionary *_missionItemMetadata;
     return str;
 }
 
-+ (NSString*) mavStateEnumToString:(enum MAV_STATE)state {
++ (NSString *) mavStateEnumToString:(enum MAV_STATE)state {
     switch (state) {
         case MAV_STATE_UNINIT:      return @"Uninitialized";
         case MAV_STATE_BOOT:        return @"Boot";
@@ -157,52 +189,20 @@ NSMutableDictionary *_missionItemMetadata;
     return [NSString stringWithFormat:@"MAV_STATE (%d)", state];
 }
 
-+ (NSString*) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat {
++ (NSString *) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat {
 
     // ArduPlane Auto Pilot Modes
     NSString *modeName;
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_FIXED_WING) {
-        static NSDictionary *ardupilotmegaFixedwing;
-        if (!ardupilotmegaFixedwing) {
-            ardupilotmegaFixedwing = @{@(MANUAL): @"Manual",
-                                       @(CIRCLE): @"Circle",
-                                       @(STABILIZE): @"Stabilize",
-                                       @(FLY_BY_WIRE_A): @"FBW_A",
-                                       @(FLY_BY_WIRE_B): @"FBW_B",
-                                       @(FLY_BY_WIRE_C): @"FBW_C",
-                                       @(AUTO): @"Auto",
-                                       @(RTL): @"RTL",
-                                       @(LOITER): @"Loiter",
-                                       @(TAKEOFF): @"Takeoff",
-                                       @(LAND): @"Land",
-                                       @(GUIDED): @"Guided",
-                                       @(INITIALISING): @"Initialising"};
-        }
-        modeName = ardupilotmegaFixedwing[@(heartbeat.custom_mode)];
+        modeName = _ardupilotFixedwingCustomModes[@(heartbeat.custom_mode)];
         if (modeName) {
             return modeName;
         }
     }
 
-    // ArduCopter Auto Pilot Modes
+    // ArduCopter Quad Auto Pilot Modes
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_QUADROTOR) {
-        static NSDictionary *ardupilotmegaQuadrotor;
-        if (!ardupilotmegaQuadrotor) {
-            ardupilotmegaQuadrotor = @{@(Stabilize): @"Stabilize",
-                                     @(Acro): @"Acro",
-                                     @(AltHold): @"AltHold",
-                                     @(Auto): @"Auto",
-                                     @(Guided): @"Guided",
-                                     @(Loiter): @"Loiter",
-                                     @(Rtl): @"RTL",
-                                     @(Circle): @"Circle",
-                                     @(Position): @"Position",
-                                     @(Land): @"Land",
-                                     @(OfLoiter): @"OfLoiter",
-                                     @(Drift): @"Drift",
-                                     @(Sport): @"Sport"};
-        }
-        modeName = ardupilotmegaQuadrotor[@(heartbeat.custom_mode)];
+        modeName = _ardupilotQuadrotorCustomModes[@(heartbeat.custom_mode)];
         if (modeName) {
             return modeName;
         }
@@ -211,12 +211,19 @@ NSMutableDictionary *_missionItemMetadata;
    return [NSString stringWithFormat:@"CUSTOM_MODE (%d)", heartbeat.custom_mode];
 }
 
++ (NSDictionary *)ardupilotFixedwingCustomModes {
+    return _ardupilotFixedwingCustomModes;
+}
 
-+ (NSArray*) supportedMissionItemTypes {
++ (NSDictionary *)ardupilotQuadrotorCustomModes {
+    return _ardupilotQuadrotorCustomModes;
+}
+
++ (NSArray *) supportedMissionItemTypes {
     return [[_missionItemMetadata allKeys] sortedArrayUsingSelector: @selector(compare:)];
 }
 
-+ (NSArray*) missionItemMetadataWith:(uint16_t)command {
++ (NSArray *) missionItemMetadataWith:(uint16_t)command {
     return _missionItemMetadata[@(command)];
 }
 
