@@ -14,7 +14,7 @@
 
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode;
 + (NSString*) mavStateEnumToString:(enum MAV_STATE)state;
-+ (NSString*) mavCustomModeToString:(int)customMode;
++ (NSString*) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat;
 
 + (NSArray*) supportedMissionItemTypes;
 + (NSArray*) missionItemMetadataWith:(uint16_t)command;
