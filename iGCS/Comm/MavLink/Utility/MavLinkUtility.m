@@ -193,20 +193,24 @@ NSDictionary *_ardupilotQuadrotorCustomModes;
 
     // ArduPlane Auto Pilot Modes
     NSString *modeName;
+
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_FIXED_WING) {
         modeName = _ardupilotFixedwingCustomModes[@(heartbeat.custom_mode)];
-        if (modeName) {
-            return modeName;
-        }
+    }
+
+    if (modeName) {
+        return modeName;
     }
 
     // ArduCopter Quad Auto Pilot Modes
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA && heartbeat.type == MAV_TYPE_QUADROTOR) {
         modeName = _ardupilotQuadrotorCustomModes[@(heartbeat.custom_mode)];
-        if (modeName) {
-            return modeName;
-        }
     }
+
+    if (modeName) {
+        return modeName;
+    }
+
 
    return [NSString stringWithFormat:@"CUSTOM_MODE (%d)", heartbeat.custom_mode];
 }
