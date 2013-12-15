@@ -8,6 +8,7 @@
 
 #import "iGCSTests.h"
 
+#import "MavLinkUtility.h"
 #import "WaypointsHolder.h"
 
 @implementation iGCSTests
@@ -78,6 +79,31 @@
     
     // Check that string from converted mission matches original string
     STAssertEqualObjects(demoQGC, [demo2 toOutputFormat], @"Failed to match original QGC after conversion");
+}
+
+- (void)testMavCustomModeToString
+{
+    mavlink_heartbeat_t heartbeat;
+    
+    heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
+    heartbeat.type      = MAV_TYPE_FIXED_WING;
+    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    STAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"FBW_C", @"Incorrect fixed wing mode");
+    
+    heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
+    heartbeat.type      = MAV_TYPE_QUADROTOR;
+    heartbeat.custom_mode = Circle;
+    STAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"Circle", @"Incorrect quadcopter mode");
+
+    heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
+    heartbeat.type      = MAV_TYPE_GENERIC;
+    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    STAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"CUSTOM_MODE (7)", @"Incorrect generic type mode");
+
+    heartbeat.autopilot = MAV_AUTOPILOT_GENERIC;
+    heartbeat.type      = MAV_TYPE_FIXED_WING;
+    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    STAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"CUSTOM_MODE (7)", @"Incorrect generic autopilot mode");
 }
 
 @end
