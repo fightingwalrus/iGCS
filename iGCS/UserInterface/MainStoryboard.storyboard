@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4511" systemVersion="13A598" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3745"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Map View Controller - GCS-->
@@ -14,31 +14,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="GAr-p0-3d5">
-                                <rect key="frame" x="500" y="69" width="524" height="646"/>
+                                <rect key="frame" x="500" y="20" width="523" height="620"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="-49" maxX="0.0" maxY="69"/>
                             </mapView>
                             <view contentMode="scaleToFill" id="Ydo-PK-dGh" customClass="CompassView">
-                                <rect key="frame" x="50" y="0.0" width="400" height="119"/>
+                                <rect key="frame" x="50" y="20" width="400" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="48"/>
                             </view>
                             <view contentMode="scaleToFill" id="6dV-1w-Z5N" userLabel="Airspeed View" customClass="VerticalScaleView">
-                                <rect key="frame" x="0.0" y="52" width="50" height="400"/>
+                                <rect key="frame" x="0.0" y="72" width="50" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                             <view contentMode="scaleToFill" id="yLv-Ho-H5N" customClass="ArtificialHorizonView">
-                                <rect key="frame" x="50" y="52" width="400" height="400"/>
+                                <rect key="frame" x="50" y="72" width="400" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                             <view contentMode="scaleToFill" id="MXV-5t-BKj" customClass="VerticalScaleView">
-                                <rect key="frame" x="449" y="52" width="50" height="400"/>
+                                <rect key="frame" x="449" y="72" width="50" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
-                                <rect key="frame" x="125" y="460" width="251" height="29"/>
+                                <rect key="frame" x="125" y="459" width="251" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Misc/RC"/>
@@ -50,28 +55,28 @@
                                 </connections>
                             </segmentedControl>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
-                                <rect key="frame" x="500" y="672" width="51" height="31"/>
+                                <rect key="frame" x="500" y="670" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSwitchChanged:" destination="2" eventType="valueChanged" id="NfE-TT-W3Z"/>
                                 </connections>
                             </switch>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
-                                <rect key="frame" x="652" y="675" width="142" height="29"/>
+                                <rect key="frame" x="652" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="Mi0-yh-GEE"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
-                                <rect key="frame" x="877" y="675" width="142" height="29"/>
+                                <rect key="frame" x="877" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="1dV-2y-IeR"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
-                                <rect key="frame" x="877" y="650" width="142" height="29"/>
+                                <rect key="frame" x="877" y="644" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="nvb-Dq-Yf8"/>
@@ -302,56 +307,56 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JU5-Hk-0MJ">
-                                <rect key="frame" x="513" y="7" width="499" height="639"/>
+                                <rect key="frame" x="513" y="7" width="500" height="639"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="FOLLOW ME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J62-Hn-rqr">
-                                <rect key="frame" x="503" y="648" width="103" height="27"/>
+                                <rect key="frame" x="503" y="644" width="103" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User location accuracy: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="QuE-Lo-pG0" userLabel="Label - User location accuracy:">
-                                <rect key="frame" x="594" y="652" width="150" height="20"/>
+                                <rect key="frame" x="594" y="648" width="150" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Height:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nLL-oU-xZw" userLabel="Label - User location accuracy:">
-                                <rect key="frame" x="811" y="652" width="60" height="20"/>
+                                <rect key="frame" x="811" y="648" width="60" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="rSx-Jt-QgJ" userLabel="Label - User location accuracy:">
-                                <rect key="frame" x="811" y="675" width="60" height="20"/>
+                                <rect key="frame" x="811" y="677" width="60" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bearing:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="efn-kG-BgQ" userLabel="Label - User location accuracy:">
-                                <rect key="frame" x="591" y="675" width="60" height="20"/>
+                                <rect key="frame" x="591" y="677" width="60" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="url-wL-5V2" userLabel="User location accuracy Label">
-                                <rect key="frame" x="746" y="652" width="100" height="20"/>
+                                <rect key="frame" x="746" y="648" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="GCS" image="73-radar.png" id="7"/>
@@ -399,23 +404,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="23">
+                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="23">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="24">
                                         <nil key="title"/>
-                                        <barButtonItem key="rightBarButtonItem" id="Hgy-Do-TM5">
-                                            <button key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bi0-oE-MAw">
-                                                <rect key="frame" x="936" y="3" width="72" height="37"/>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="SVi-ii-JFL">
+                                            <view key="customView" contentMode="scaleToFill" id="Kk7-4t-bPp">
+                                                <rect key="frame" x="848" y="5" width="160" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="OFF">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected" title="ON">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                            </button>
+                                                <subviews>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="j0t-rl-w59">
+                                                        <rect key="frame" x="0.0" y="-5" width="160" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <items>
+                                                            <barButtonItem style="plain" id="Gj3-1q-iJD">
+                                                                <button key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8P1-b3-QoO">
+                                                                    <rect key="frame" x="16" y="4" width="72" height="37"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <state key="normal" title="OFF">
+                                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <state key="selected" title="ON">
+                                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                </button>
+                                                            </barButtonItem>
+                                                        </items>
+                                                    </toolbar>
+                                                </subviews>
+                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="-76" maxY="0.0"/>
+                                            </view>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -496,6 +516,7 @@
                     <tabBarItem key="tabBarItem" title="Comms" image="05-shuffle.png" id="6"/>
                     <connections>
                         <outlet property="attitudeTextView" destination="Su5-yQ-gkS" id="iyP-bg-4nG"/>
+                        <outlet property="connectionStatus" destination="8P1-b3-QoO" id="8Td-64-Img"/>
                         <outlet property="dataRateGraphView" destination="fHH-YH-A05" id="kdk-0Q-t6o"/>
                         <outlet property="defaultTextView" destination="epM-NP-sgK" id="CKe-UB-zja"/>
                         <outlet property="gpsIntTextView" destination="JK9-qX-wep" id="Fnp-CK-S4p"/>
@@ -531,23 +552,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="qaC-XP-dCX">
-                                <rect key="frame" x="0.0" y="113" width="1024" height="300"/>
+                                <rect key="frame" x="0.0" y="44" width="1024" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="-68" maxX="0.0" maxY="68"/>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" id="CCn-PO-kYQ">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="CCn-PO-kYQ">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="US5-We-JEo">
                                             <view key="customView" contentMode="scaleToFill" id="ElK-1M-BSX">
-                                                <rect key="frame" x="16" y="5" width="227" height="33"/>
+                                                <rect key="frame" x="16" y="5" width="306" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="GvJ-8y-VKF">
-                                                        <rect key="frame" x="0.0" y="-5" width="227" height="44"/>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="GvJ-8y-VKF">
+                                                        <rect key="frame" x="0.0" y="-5" width="304" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <inset key="insetFor6xAndEarlier" minX="55" minY="0.0" maxX="-55" maxY="0.0"/>
                                                         <items>
+                                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="hIh-iN-4ek"/>
                                                             <barButtonItem image="mission-mavread.png" id="di6-Zt-zDe" userLabel="MavRxMission">
                                                                 <connections>
                                                                     <action selector="mavRxMissionClicked:" destination="ZiK-du-awU" id="Sg5-o4-yK3"/>
@@ -566,19 +590,17 @@
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="LKm-N4-6Op">
                                             <view key="customView" contentMode="scaleToFill" id="SGe-U7-fU6">
-                                                <rect key="frame" x="808" y="5" width="200" height="33"/>
+                                                <rect key="frame" x="850" y="5" width="158" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="VTU-hR-O8m">
-                                                        <rect key="frame" x="0.0" y="-5" width="205" height="44"/>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="VTU-hR-O8m">
+                                                        <rect key="frame" x="0.0" y="-5" width="163" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <items>
-                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="jjU-5J-7zn"/>
                                                             <barButtonItem enabled="NO" style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
                                                                 <connections>
                                                                     <action selector="addClicked:" destination="ZiK-du-awU" id="7k4-2W-smt"/>
@@ -592,16 +614,17 @@
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="-60" maxY="0.0"/>
                                             </view>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <containerView contentMode="scaleToFill" id="5D9-Dd-q69">
-                                <rect key="frame" x="0.0" y="342" width="1024" height="357"/>
+                                <rect key="frame" x="0.0" y="342" width="1024" height="377"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
                                 <connections>
                                     <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
                                 </connections>
@@ -624,7 +647,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A2Q-qM-qMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3165" y="1148"/>
+            <point key="canvasLocation" x="3165" y="1153"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="w4u-f5-Pws">
@@ -936,7 +959,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Debug" image="181-hammer.png" id="gXy-H4-2Hl"/>
@@ -977,22 +1000,24 @@
             <objects>
                 <viewController id="B4z-V1-5G5" userLabel="Mission Item Edit View Controller" customClass="MissionItemEditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1X-0T-qMo">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="357"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="377"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="6i9-lU-q16">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="216"/>
+                                <rect key="frame" x="0.0" y="46" width="280" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="46" maxX="0.0" maxY="-46"/>
                                 <connections>
                                     <outlet property="dataSource" destination="B4z-V1-5G5" id="qY3-Xp-kcg"/>
                                     <outlet property="delegate" destination="B4z-V1-5G5" id="jsY-Ig-nNg"/>
                                 </connections>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="L6t-zQ-1Ho">
-                                <rect key="frame" x="281" y="0.0" width="743" height="357"/>
+                                <rect key="frame" x="281" y="46" width="743" height="329"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="46" maxX="0.0" maxY="-46"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="missionItemCell" id="09z-Hi-Fj9">
                                         <rect key="frame" x="0.0" y="55" width="743" height="44"/>
@@ -1064,7 +1089,7 @@
             <objects>
                 <tableViewController id="g0h-Hk-vw4" customClass="MissionItemTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J2H-Pu-dEF">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="357"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="377"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
