@@ -112,11 +112,17 @@
     [map addOverlay:waypointRoutePolyline];
     
     // Set the map extents
-    MKCoordinateRegion region = MKCoordinateRegionForMapRect([waypointRoutePolyline boundingMapRect]);
-    if ([waypointRoutePolyline pointCount] >= 1) {
+    MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
+    if (!MKMapRectIsNull(bounds)) {
+        // Extend the bounding rect of the polyline slightly
+        MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
         region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
         region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
         [map setRegion:region animated:YES];
+    } else if ([waypointRoutePolyline pointCount] == 1) {
+        // Fallback to a padded box centered on the single waypoint
+        CLLocationCoordinate2D coord = MKCoordinateForMapPoint([waypointRoutePolyline points][0]);
+        [map setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
     }
     [map setNeedsDisplay];
     
