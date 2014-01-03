@@ -1865,7 +1865,7 @@
 				LastUpgradeCheck = 0420;
 				TargetAttributes = {
 					CA499F5D14DE33BC00FCC9FB = {
-						DevelopmentTeam = BQ8K4NN6TH;
+						DevelopmentTeam = V693RD5AXN;
 					};
 				};
 			};
@@ -2313,8 +2313,8 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "730D9AB7-5403-40EA-BEBC-C818E7E1C2D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "730D9AB7-5403-40EA-BEBC-C818E7E1C2D9";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2345,8 +2345,8 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
