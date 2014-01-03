@@ -48,32 +48,25 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         for (EAAccessory *accessory in accessories) {
             NSLog(@"%@",accessory.manufacturer);
             [DebugLogger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
-            if([accessory.manufacturer isEqualToString:@"Roving Networks"])
-            {
+            
+            if([accessory.manufacturer isEqualToString:@"Roving Networks"]) {
                 [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
                 foundValid = YES;
                 break;
             }
+            
             if ([accessory.manufacturer isEqualToString:@"Redpark"]) {
                 [self createDefaultConnections:GCSRedparkCommInterface];
                 foundValid = YES;
                 break;
             }
         }
-        if(foundValid == NO)
-        {
+        
+        if(foundValid == NO) {
             NSLog(@"No devices connected, defaulting to Redpark");
             [self createDefaultConnections:GCSRedparkCommInterface];
         }
         
-        
-                                       
-        
-//        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
-//        [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
-
-//        [self createDefaultConnections:GCSRedparkCommInterface];
-
         [DebugLogger console:@"Created default connections in CommController."];
     }
     @catch (NSException *exception) {
