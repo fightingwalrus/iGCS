@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ExternalAccessory/ExternalAccessory.h>
+
 
 #import "CommConnection.h"
 #import "CommConnectionPool.h"
