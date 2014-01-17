@@ -21,7 +21,7 @@
 #import "KxMovieViewController.h"
 #endif
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler,GLKViewDelegate>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -100,6 +100,5 @@
 
 
 - (IBAction) changeControlModeSegment;
-- (IBAction) externalButtonClick;
 
 @end

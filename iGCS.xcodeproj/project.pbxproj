@@ -1054,13 +1054,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		495253E51703EC8B006E27B0 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1640,7 +1633,6 @@
 			children = (
 				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
-				495253E51703EC8B006E27B0 /* Login */,
 				496E629F16DAFBF600E52E4A /* Comm */,
 				496E626F16DAFB8B00E52E4A /* UserInterface */,
 				496E626616DAFAF600E52E4A /* Waypoints */,
