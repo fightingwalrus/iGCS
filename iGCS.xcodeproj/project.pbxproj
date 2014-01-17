@@ -13,10 +13,6 @@
 		18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
 		18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
 		18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
-		18069FC61836F7C70068E7A5 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA81836F7C70068E7A5 /* GKLocalController.m */; };
-		18069FC71836F7C70068E7A5 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA81836F7C70068E7A5 /* GKLocalController.m */; };
-		18069FC81836F7C70068E7A5 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAA1836F7C70068E7A5 /* GKNetController.m */; };
-		18069FC91836F7C70068E7A5 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAA1836F7C70068E7A5 /* GKNetController.m */; };
 		18069FCA1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */; };
 		18069FCB1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */; };
 		18069FCC1836F7C70068E7A5 /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAF1836F7C70068E7A5 /* FightingWalrusProtocol.m */; };
@@ -85,7 +81,6 @@
 		182FFAD7181F0C9100A8C31C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		182FFAD8181F0C9100A8C31C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		182FFAD9181F0C9100A8C31C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
-		182FFADA181F0C9100A8C31C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		182FFADB181F0C9100A8C31C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		182FFADC181F0C9100A8C31C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
 		182FFADD181F0C9100A8C31C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
@@ -126,12 +121,17 @@
 		1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
+		18A42CD318895B3700408D71 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD018895B3700408D71 /* GKLocalController.m */; };
+		18A42CD418895B3700408D71 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD018895B3700408D71 /* GKLocalController.m */; };
+		18A42CD518895B3700408D71 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
+		18A42CD618895B3700408D71 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
+		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
+		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
-		492C813116DBD102004001FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -268,10 +268,6 @@
 		18069FA31836F7C70068E7A5 /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
 		18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
 		18069FA51836F7C70068E7A5 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		18069FA71836F7C70068E7A5 /* GKLocalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalController.h; sourceTree = "<group>"; };
-		18069FA81836F7C70068E7A5 /* GKLocalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalController.m; sourceTree = "<group>"; };
-		18069FA91836F7C70068E7A5 /* GKNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNetController.h; sourceTree = "<group>"; };
-		18069FAA1836F7C70068E7A5 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18069FAC1836F7C70068E7A5 /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
 		18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
 		18069FAE1836F7C70068E7A5 /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
@@ -301,6 +297,10 @@
 		189E23231710CFF600548C88 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = submodules/kxmovie/kxmovie/KxMovieViewController.h; sourceTree = "<group>"; };
 		189E23241710D00000548C88 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = submodules/kxmovie/kxmovie/kxmovie.bundle; sourceTree = "<group>"; };
 		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		18A42CCF18895B3700408D71 /* GKLocalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalController.h; sourceTree = "<group>"; };
+		18A42CD018895B3700408D71 /* GKLocalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalController.m; sourceTree = "<group>"; };
+		18A42CD118895B3700408D71 /* GKNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNetController.h; sourceTree = "<group>"; };
+		18A42CD218895B3700408D71 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		18E62664171101D9006A5D43 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = submodules/kxmovie/libs/libkxmovie.a; sourceTree = "<group>"; };
@@ -821,6 +821,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */,
 				182FFACD181F0C9100A8C31C /* libiconv.dylib in Frameworks */,
 				182FFACE181F0C9100A8C31C /* Accelerate.framework in Frameworks */,
 				182FFACF181F0C9100A8C31C /* AudioToolbox.framework in Frameworks */,
@@ -834,7 +835,6 @@
 				182FFAD7181F0C9100A8C31C /* Accounts.framework in Frameworks */,
 				182FFAD8181F0C9100A8C31C /* AdSupport.framework in Frameworks */,
 				182FFAD9181F0C9100A8C31C /* SystemConfiguration.framework in Frameworks */,
-				182FFADA181F0C9100A8C31C /* GameKit.framework in Frameworks */,
 				182FFADB181F0C9100A8C31C /* CoreBluetooth.framework in Frameworks */,
 				182FFADC181F0C9100A8C31C /* Security.framework in Frameworks */,
 				182FFADD181F0C9100A8C31C /* UIKit.framework in Frameworks */,
@@ -858,6 +858,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */,
 				189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */,
 				1888DE6E170F7D3400ADA039 /* Accelerate.framework in Frameworks */,
 				1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */,
@@ -871,7 +872,6 @@
 				495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */,
 				495253EE1703F1C3006E27B0 /* AdSupport.framework in Frameworks */,
 				49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */,
-				492C813116DBD102004001FF /* GameKit.framework in Frameworks */,
 				496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */,
 				49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */,
 				CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
@@ -927,10 +927,10 @@
 		18069F9D1836F7C70068E7A5 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				18A42CCE18895B3700408D71 /* GameKit */,
 				18069F9E1836F7C70068E7A5 /* BluetoothStream.h */,
 				18069F9F1836F7C70068E7A5 /* BluetoothStream.m */,
 				18069FA01836F7C70068E7A5 /* BTLE */,
-				18069FA61836F7C70068E7A5 /* GameKit */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -945,17 +945,6 @@
 				18069FA51836F7C70068E7A5 /* TransferService.h */,
 			);
 			path = BTLE;
-			sourceTree = "<group>";
-		};
-		18069FA61836F7C70068E7A5 /* GameKit */ = {
-			isa = PBXGroup;
-			children = (
-				18069FA71836F7C70068E7A5 /* GKLocalController.h */,
-				18069FA81836F7C70068E7A5 /* GKLocalController.m */,
-				18069FA91836F7C70068E7A5 /* GKNetController.h */,
-				18069FAA1836F7C70068E7A5 /* GKNetController.m */,
-			);
-			path = GameKit;
 			sourceTree = "<group>";
 		};
 		18069FAB1836F7C70068E7A5 /* FightingWalrus */ = {
@@ -1041,6 +1030,17 @@
 				189E23231710CFF600548C88 /* KxMovieViewController.h */,
 			);
 			name = kxmovie;
+			sourceTree = "<group>";
+		};
+		18A42CCE18895B3700408D71 /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+				18A42CCF18895B3700408D71 /* GKLocalController.h */,
+				18A42CD018895B3700408D71 /* GKLocalController.m */,
+				18A42CD118895B3700408D71 /* GKNetController.h */,
+				18A42CD218895B3700408D71 /* GKNetController.m */,
+			);
+			path = GameKit;
 			sourceTree = "<group>";
 		};
 		18A777ED17CE9E710014451B /* Utils */ = {
@@ -2014,6 +2014,7 @@
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
 				182FFAAA181F0C9100A8C31C /* (null) in Sources */,
 				182FFAAB181F0C9100A8C31C /* (null) in Sources */,
@@ -2025,7 +2026,6 @@
 				182FFAB9181F0C9100A8C31C /* Logger.m in Sources */,
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
 				182FFABB181F0C9100A8C31C /* ExceptionHandler.m in Sources */,
-				18069FC71836F7C70068E7A5 /* GKLocalController.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
@@ -2035,11 +2035,11 @@
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
-				18069FC91836F7C70068E7A5 /* GKNetController.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
 				18069FCB1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */,
+				18A42CD418895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FCF1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
@@ -2073,6 +2073,7 @@
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
@@ -2084,7 +2085,6 @@
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
-				18069FC61836F7C70068E7A5 /* GKLocalController.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
 				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
@@ -2094,11 +2094,11 @@
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
-				18069FC81836F7C70068E7A5 /* GKNetController.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
 				18069FCA1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */,
+				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FCE1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
