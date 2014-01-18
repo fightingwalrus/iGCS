@@ -54,28 +54,28 @@
                                     <action selector="changeControlModeSegment" destination="2" eventType="valueChanged" id="1Cs-BN-1Xe"/>
                                 </connections>
                             </segmentedControl>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
+                            <switch opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
                                 <rect key="frame" x="500" y="670" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSwitchChanged:" destination="2" eventType="valueChanged" id="NfE-TT-W3Z"/>
                                 </connections>
                             </switch>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
                                 <rect key="frame" x="652" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="Mi0-yh-GEE"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
                                 <rect key="frame" x="877" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="1dV-2y-IeR"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
                                 <rect key="frame" x="877" y="644" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
