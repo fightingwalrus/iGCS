@@ -67,6 +67,12 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
             [self createDefaultConnections:GCSRedparkCommInterface];
         }
         
+
+//        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
+//        [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
+
+//        [self createDefaultConnections:GCSRedparkCommInterface];
+
         [DebugLogger console:@"Created default connections in CommController."];
     }
     @catch (NSException *exception) {
