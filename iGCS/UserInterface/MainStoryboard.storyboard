@@ -410,7 +410,7 @@
                                 <items>
                                     <navigationItem id="24">
                                         <nil key="title"/>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="SVi-ii-JFL">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="SVi-ii-JFL">
                                             <view key="customView" contentMode="scaleToFill" id="Kk7-4t-bPp">
                                                 <rect key="frame" x="848" y="5" width="160" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -561,7 +561,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="US5-We-JEo">
+                                        <barButtonItem key="leftBarButtonItem" style="done" id="US5-We-JEo">
                                             <view key="customView" contentMode="scaleToFill" id="ElK-1M-BSX">
                                                 <rect key="frame" x="16" y="5" width="312" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -594,7 +594,7 @@
                                                 </subviews>
                                             </view>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="LKm-N4-6Op">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="LKm-N4-6Op">
                                             <view key="customView" contentMode="scaleToFill" id="SGe-U7-fU6">
                                                 <rect key="frame" x="845" y="5" width="163" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -982,7 +982,7 @@
             <objects>
                 <tabBarController extendedLayoutIncludesOpaqueBars="YES" id="4" customClass="MainViewController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="5">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
