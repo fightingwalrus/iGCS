@@ -17,12 +17,15 @@
 
 - (void) presentRequestStatusDialog:(NSString*)title {
     // FIXME: replace with custom view, with progress bar, modal until success/failure etc
+    /*
+     //FIXME: This causes an infinite loop when the messages don't get through
     _requestStatusDialog = [[UIAlertView alloc] initWithTitle:title
                                                       message:@"Starting Request..."
                                                      delegate:self
                                             cancelButtonTitle:@"Cancel" // FIXME: not really. This view should be modal. Alternatively, we should reset/cancel the request on cancel
                                             otherButtonTitles:nil];
     [_requestStatusDialog show];
+     */
 }
 
 - (void) updateRequestStatusDialog:(NSString*)message withAttemptNum:(NSUInteger)attemptNum {
