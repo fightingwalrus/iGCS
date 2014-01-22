@@ -7,7 +7,6 @@
 //
 
 #import "WaypointMapBaseController.h"
-#import <GameKit/GameKit.h>
 #import <GLKit/GLKit.h>
 
 #import "ArtificialHorizonView.h"
@@ -22,7 +21,7 @@
 #import "KxMovieViewController.h"
 #endif
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GLKViewDelegate>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -47,16 +46,9 @@
     int				gameUniqueID;
 }
 
-@property(nonatomic) NSInteger		gameState;
-@property(nonatomic) NSInteger		peerStatus;
-
-@property(nonatomic, retain) GKSession	 *gameSession;
-@property(nonatomic, copy)	 NSString	 *gamePeerId;
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
 
-@property(nonatomic, strong) GKMatch *myMatch;
-@property(nonatomic) BOOL matchStarted;
 @property(nonatomic, strong) NSArray *myFriends;
 @property(nonatomic, strong) NSArray *myIdentifiers;
 @property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
@@ -108,6 +100,5 @@
 
 
 - (IBAction) changeControlModeSegment;
-- (IBAction) externalButtonClick;
 
 @end
