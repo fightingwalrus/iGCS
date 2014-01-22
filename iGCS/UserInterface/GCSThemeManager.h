@@ -10,7 +10,7 @@
 
 @interface GCSThemeManager : NSObject
 
-+ (instancetype) instance;
++ (instancetype) sharedInstance;
 
 @property (readonly) UIColor *appTintColor;
 

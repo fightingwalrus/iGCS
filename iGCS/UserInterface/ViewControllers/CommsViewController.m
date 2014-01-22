@@ -118,7 +118,7 @@
     dateRatePlot.identifier = @"Data Rate Plot";
     dateRatePlot.dataSource = self;
     lineStyle.lineWidth = 1.0f;
-    lineStyle.lineColor = [CPTColor colorWithCGColor:[[GCSThemeManager instance] appTintColor].CGColor];
+    lineStyle.lineColor = [CPTColor colorWithCGColor:[[GCSThemeManager sharedInstance] appTintColor].CGColor];
     
     dateRatePlot.dataLineStyle = lineStyle;
     dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
