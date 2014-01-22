@@ -371,7 +371,13 @@ NSArray* headerSpecs = nil;
     // Slide the section header along to match the table cells
     CGRect r = [_sectionHeaderContainer frame];
     r.origin.x += isEditing ? HEADER_SPEC_EDIT_OFFSET : -HEADER_SPEC_EDIT_OFFSET;
-    [_sectionHeaderContainer setFrame:r];
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [_sectionHeaderContainer setFrame:r];
+                     }
+                     completion:nil];
     
     return isEditing; // return the current editing state
 }
