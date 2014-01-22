@@ -54,6 +54,6 @@
 // Following methods are intended to be overridden by subclasses
 - (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
-
+- (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 
 @end

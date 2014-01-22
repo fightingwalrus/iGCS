@@ -28,7 +28,7 @@
 @synthesize text;
 @synthesize tag;
 
-- (id) initWithWidth:(NSInteger)_width alignment:(UITextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
+- (id) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
     self = [super init];
     if (self) {
         self.text =  _text;
