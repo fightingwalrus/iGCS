@@ -287,7 +287,7 @@ NSArray* headerSpecs = nil;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // create the view that will hold the header labels
-    UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake([self isEditing] ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
+    UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
     unsigned int x = 0;
     for (HeaderSpec *spec in headerSpecs) {
         int width = [spec width];
@@ -362,8 +362,8 @@ NSArray* headerSpecs = nil;
     [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
 }
 
-- (bool) toggleEditing {
-    bool isEditing = ![self isEditing];
+- (BOOL) toggleEditing {
+    BOOL isEditing = !self.isEditing;
     
     // Toggle the table editing state
     [self setEditing:isEditing animated:true];

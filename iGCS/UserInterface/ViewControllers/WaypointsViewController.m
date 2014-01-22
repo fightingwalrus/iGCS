@@ -120,7 +120,7 @@
     [self handleKeyboardDisplay: notification showing:NO];
 }
 
-- (MissionItemTableViewController*) getTableViewController
+- (MissionItemTableViewController*) missionTableViewController
 {
     assert(navVCEditItemVC);
     return [navVCEditItemVC.viewControllers objectAtIndex:0];
@@ -147,7 +147,7 @@
     
     [super resetWaypoints:_waypoints];
     
-    [[self getTableViewController] resetWaypoints];
+    [self.missionTableViewController resetWaypoints];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
@@ -170,7 +170,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)view.annotation;
-        [[self getTableViewController] markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
+        [self.missionTableViewController markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
     }
 }
 
@@ -228,7 +228,7 @@
 
 // Recognizer for long press gestures => add waypoint
 -(void) handleLongPressGesture:(UIGestureRecognizer*)sender {
-    if (!([[self getTableViewController] isEditing] && sender.state == UIGestureRecognizerStateBegan))
+    if (!(self.missionTableViewController.isEditing && sender.state == UIGestureRecognizerStateBegan))
         return;
     
     // Set the coordinates of the map point being held down
@@ -241,7 +241,7 @@
 - (IBAction)editDoneClicked:(id)sender {
     
     // Update the table and edit/add/upload buttons
-    bool isEditing = [[self getTableViewController] toggleEditing];
+    BOOL isEditing = [self.missionTableViewController toggleEditing];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
