@@ -309,7 +309,7 @@ NSArray* headerSpecs = nil;
     // Create a parent section view (which will only hold the headerContainer)
     UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,400)];
     [sectionHeader addSubview:headerContainer];
-    sectionHeader.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+    sectionHeader.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
     sectionHeader.tag = section;
 
     _sectionHeaderContainer = headerContainer;
