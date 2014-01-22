@@ -120,11 +120,6 @@
     [self handleKeyboardDisplay: notification showing:NO];
 }
 
-- (UITableView*) getTableView
-{
-    return [self getTableViewController].tableView;
-}
-
 - (MissionItemTableViewController*) getTableViewController
 {
     assert(navVCEditItemVC);
@@ -152,7 +147,7 @@
     
     [super resetWaypoints:_waypoints];
     
-    [[self getTableView] reloadData];
+    [[self getTableViewController] resetWaypoints];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
@@ -233,7 +228,7 @@
 
 // Recognizer for long press gestures => add waypoint
 -(void) handleLongPressGesture:(UIGestureRecognizer*)sender {
-    if (!([self getTableView].editing && sender.state == UIGestureRecognizerStateBegan))
+    if (!([[self getTableViewController] isEditing] && sender.state == UIGestureRecognizerStateBegan))
         return;
     
     // Set the coordinates of the map point being held down
@@ -242,14 +237,11 @@
     [self resetWaypoints];
 }
 
-
 // FIXME: also need to check and close the detail view if open
 - (IBAction)editDoneClicked:(id)sender {
-    UITableView* tableView = [self getTableView];
-    bool isEditing = !tableView.editing;
     
     // Update the table and edit/add/upload buttons
-    [tableView setEditing:isEditing animated:true];
+    bool isEditing = [[self getTableViewController] toggleEditing];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
