@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "FightingWalrusProtocol.h"
+#import "GCSThemeManager.h"
 
 #define TESTING 1
 

@@ -68,10 +68,10 @@ static AppDelegate *shared;
     } else {
         // Status bar content is black by default on ios7
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        self.window.tintColor = [[GCSThemeManager sharedInstance] appTintColor];
     }
     
     NSLog(@"Application finished launching.");
-    
 
     return YES;
 }

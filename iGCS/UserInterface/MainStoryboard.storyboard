@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -54,28 +54,28 @@
                                     <action selector="changeControlModeSegment" destination="2" eventType="valueChanged" id="1Cs-BN-1Xe"/>
                                 </connections>
                             </segmentedControl>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
+                            <switch opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0xE-vX-yl8" userLabel="Follow Me - Switch">
                                 <rect key="frame" x="500" y="670" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSwitchChanged:" destination="2" eventType="valueChanged" id="NfE-TT-W3Z"/>
                                 </connections>
                             </switch>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="BZD-fE-EKS" userLabel="Slider - bearing">
                                 <rect key="frame" x="652" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="Mi0-yh-GEE"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3U7-Wa-XLe" userLabel="Slider - distance">
                                 <rect key="frame" x="877" y="673" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="followMeSliderChanged:" destination="2" eventType="valueChanged" id="1dV-2y-IeR"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
+                            <slider opaque="NO" alpha="0.84999999999999987" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="KV7-Pe-atM" userLabel="Slider - height">
                                 <rect key="frame" x="877" y="644" width="142" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -410,7 +410,7 @@
                                 <items>
                                     <navigationItem id="24">
                                         <nil key="title"/>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="SVi-ii-JFL">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="SVi-ii-JFL">
                                             <view key="customView" contentMode="scaleToFill" id="Kk7-4t-bPp">
                                                 <rect key="frame" x="848" y="5" width="160" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -561,27 +561,29 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="US5-We-JEo">
+                                        <barButtonItem key="leftBarButtonItem" style="done" id="US5-We-JEo">
                                             <view key="customView" contentMode="scaleToFill" id="ElK-1M-BSX">
-                                                <rect key="frame" x="16" y="5" width="306" height="33"/>
+                                                <rect key="frame" x="16" y="5" width="312" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="GvJ-8y-VKF">
-                                                        <rect key="frame" x="0.0" y="-5" width="304" height="44"/>
+                                                        <rect key="frame" x="0.0" y="-5" width="312" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <inset key="insetFor6xAndEarlier" minX="55" minY="0.0" maxX="-55" maxY="0.0"/>
+                                                        <inset key="insetFor6xAndEarlier" minX="75" minY="0.0" maxX="-45" maxY="0.0"/>
                                                         <items>
-                                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="hIh-iN-4ek"/>
+                                                            <barButtonItem width="62" style="plain" systemItem="fixedSpace" id="hIh-iN-4ek" userLabel="Carrier Padding"/>
                                                             <barButtonItem image="mission-mavread.png" id="di6-Zt-zDe" userLabel="MavRxMission">
                                                                 <connections>
                                                                     <action selector="mavRxMissionClicked:" destination="ZiK-du-awU" id="Sg5-o4-yK3"/>
                                                                 </connections>
                                                             </barButtonItem>
+                                                            <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="RAn-Ck-DFw" userLabel="Padding"/>
                                                             <barButtonItem image="mission-mavwrite.png" id="SRA-QZ-232" userLabel="MavTxMission">
                                                                 <connections>
                                                                     <action selector="mavTxMissionClicked:" destination="ZiK-du-awU" id="kwN-wd-LCI"/>
                                                                 </connections>
                                                             </barButtonItem>
+                                                            <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="fto-0K-fug" userLabel="Padding"/>
                                                             <barButtonItem title="Load Demo" id="n19-Dy-xrH" userLabel="Load Demo">
                                                                 <connections>
                                                                     <action selector="loadDemoMision:" destination="ZiK-du-awU" id="UUF-HU-Lqg"/>
@@ -592,13 +594,13 @@
                                                 </subviews>
                                             </view>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="LKm-N4-6Op">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="LKm-N4-6Op">
                                             <view key="customView" contentMode="scaleToFill" id="SGe-U7-fU6">
-                                                <rect key="frame" x="850" y="5" width="158" height="33"/>
+                                                <rect key="frame" x="845" y="5" width="163" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="VTU-hR-O8m">
-                                                        <rect key="frame" x="0.0" y="-5" width="163" height="44"/>
+                                                        <rect key="frame" x="0.0" y="-5" width="168" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <items>
                                                             <barButtonItem enabled="NO" style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
@@ -606,6 +608,7 @@
                                                                     <action selector="addClicked:" destination="ZiK-du-awU" id="7k4-2W-smt"/>
                                                                 </connections>
                                                             </barButtonItem>
+                                                            <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="kUl-Du-vFa" userLabel="Padding"/>
                                                             <barButtonItem title="Edit" id="Jzr-xS-XcN" userLabel="Edit/Done">
                                                                 <connections>
                                                                     <action selector="editDoneClicked:" destination="ZiK-du-awU" id="gVu-iF-zV0"/>
@@ -614,23 +617,23 @@
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
-                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="-60" maxY="0.0"/>
+                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="-65" maxY="0.0"/>
                                             </view>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <containerView contentMode="scaleToFill" id="5D9-Dd-q69">
-                                <rect key="frame" x="0.0" y="342" width="1024" height="377"/>
+                                <rect key="frame" x="0.0" y="342" width="1024" height="369"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                                 <connections>
                                     <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mission" image="07-map-marker.png" id="4vf-Da-43r"/>
@@ -977,9 +980,10 @@
         <!--Main View Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" customClass="MainViewController" sceneMemberID="viewController">
+                <tabBarController extendedLayoutIncludesOpaqueBars="YES" id="4" customClass="MainViewController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="5">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="5">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1000,7 +1004,7 @@
             <objects>
                 <viewController id="B4z-V1-5G5" userLabel="Mission Item Edit View Controller" customClass="MissionItemEditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1X-0T-qMo">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="377"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="369"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="6i9-lU-q16">
@@ -1013,7 +1017,7 @@
                                 </connections>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="L6t-zQ-1Ho">
-                                <rect key="frame" x="281" y="46" width="743" height="329"/>
+                                <rect key="frame" x="281" y="46" width="743" height="321"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1089,7 +1093,7 @@
             <objects>
                 <tableViewController id="g0h-Hk-vw4" customClass="MissionItemTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J2H-Pu-dEF">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="377"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="369"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
