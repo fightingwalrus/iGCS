@@ -114,6 +114,26 @@
 		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
+		1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
+		1842F8CB1892D2F80050F680 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
+		1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
+		1842F8CD1892D2F80050F680 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
+		1842F8CE1892D2F80050F680 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C61892D2F80050F680 /* Icon-50.png */; };
+		1842F8CF1892D2F80050F680 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C61892D2F80050F680 /* Icon-50.png */; };
+		1842F8D01892D2F80050F680 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C71892D2F80050F680 /* Icon-58.png */; };
+		1842F8D11892D2F80050F680 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C71892D2F80050F680 /* Icon-58.png */; };
+		1842F8D21892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
+		1842F8D31892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
+		1842F8D41892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		1842F8D51892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		1875978D189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
+		1875978E189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
+		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
+		18759790189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
+		1875979318910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
+		1875979418910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
+		1875979518910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
+		1875979618910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
@@ -289,6 +309,16 @@
 		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
+		1842F8C41892D2F80050F680 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		1842F8C51892D2F80050F680 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		1842F8C61892D2F80050F680 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		1842F8C71892D2F80050F680 /* Icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-58.png"; sourceTree = "<group>"; };
+		1842F8C81892D2F80050F680 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
+		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
+		18759789189108980012DF6D /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
+		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		1875979218910AC50012DF6D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1001,6 +1031,23 @@
 			path = RovingNetworks;
 			sourceTree = "<group>";
 		};
+		18759787189108980012DF6D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				1842F8C41892D2F80050F680 /* Icon-29.png */,
+				1842F8C51892D2F80050F680 /* Icon-40.png */,
+				1842F8C61892D2F80050F680 /* Icon-50.png */,
+				1842F8C71892D2F80050F680 /* Icon-58.png */,
+				1842F8C81892D2F80050F680 /* Icon-80.png */,
+				1842F8C91892D2F80050F680 /* Icon-100.png */,
+				1875979118910AC50012DF6D /* Icon-72.png */,
+				1875979218910AC50012DF6D /* Icon-144.png */,
+				18759789189108980012DF6D /* Icon-152.png */,
+				1875978A189108980012DF6D /* Icon-76.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		1888DE7C170F954B00ADA039 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1636,6 +1683,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				18759787189108980012DF6D /* Icons */,
 				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
 				496E629F16DAFBF600E52E4A /* Comm */,
@@ -1919,15 +1967,25 @@
 				182FFAEF181F0C9100A8C31C /* 73-radar.png in Resources */,
 				182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */,
 				182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */,
+				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF2181F0C9100A8C31C /* 193-location-arrow.png in Resources */,
 				182FFAF3181F0C9100A8C31C /* Icon-72.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */,
 				182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */,
+				1842F8CF1892D2F80050F680 /* Icon-50.png in Resources */,
+				1875979418910AC50012DF6D /* Icon-72.png in Resources */,
+				1842F8D51892D2F80050F680 /* Icon-100.png in Resources */,
 				182FFAF7181F0C9100A8C31C /* wrench.png in Resources */,
+				1842F8CB1892D2F80050F680 /* Icon-29.png in Resources */,
 				182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */,
+				1842F8D11892D2F80050F680 /* Icon-58.png in Resources */,
 				182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */,
+				18759790189108980012DF6D /* Icon-76.png in Resources */,
 				182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */,
+				1842F8D31892D2F80050F680 /* Icon-80.png in Resources */,
+				1875979618910AC50012DF6D /* Icon-144.png in Resources */,
+				1842F8CD1892D2F80050F680 /* Icon-40.png in Resources */,
 				182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1942,15 +2000,25 @@
 				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
 				CACDAAB61802718A00B5A62A /* 111-user.png in Resources */,
 				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
+				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */,
 				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
 				CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */,
 				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
+				1842F8CE1892D2F80050F680 /* Icon-50.png in Resources */,
+				1875979318910AC50012DF6D /* Icon-72.png in Resources */,
+				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
+				1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */,
 				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
+				1842F8D01892D2F80050F680 /* Icon-58.png in Resources */,
 				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				1875978F189108980012DF6D /* Icon-76.png in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
+				1842F8D21892D2F80050F680 /* Icon-80.png in Resources */,
+				1875979518910AC50012DF6D /* Icon-144.png in Resources */,
+				1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */,
 				189E23251710D00000548C88 /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

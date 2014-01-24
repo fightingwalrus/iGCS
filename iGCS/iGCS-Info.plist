@@ -10,6 +10,19 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array/>
+	<key>CFBundleIconFiles~ipad</key>
+	<array>
+		<string>Icon</string>
+		<string>Icon-58</string>
+		<string>Icon-29</string>
+		<string>Icon-80</string>
+		<string>Icon-40</string>
+		<string>Icon-100</string>
+		<string>Icon-50</string>
+		<string>Icon-144</string>
+		<string>Icon-76</string>
+		<string>Icon-152</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.fightingwalrus.igcs</string>
 	<key>CFBundleInfoDictionaryVersion</key>
