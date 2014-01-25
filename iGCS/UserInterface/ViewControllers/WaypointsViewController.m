@@ -120,12 +120,7 @@
     [self handleKeyboardDisplay: notification showing:NO];
 }
 
-- (UITableView*) getTableView
-{
-    return [self getTableViewController].tableView;
-}
-
-- (MissionItemTableViewController*) getTableViewController
+- (MissionItemTableViewController*) missionTableViewController
 {
     assert(navVCEditItemVC);
     return [navVCEditItemVC.viewControllers objectAtIndex:0];
@@ -152,7 +147,7 @@
     
     [super resetWaypoints:_waypoints];
     
-    [[self getTableView] reloadData];
+    [self.missionTableViewController resetWaypoints];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
@@ -175,7 +170,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)view.annotation;
-        [[self getTableViewController] markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
+        [self.missionTableViewController markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
     }
 }
 
@@ -233,7 +228,7 @@
 
 // Recognizer for long press gestures => add waypoint
 -(void) handleLongPressGesture:(UIGestureRecognizer*)sender {
-    if (!([self getTableView].editing && sender.state == UIGestureRecognizerStateBegan))
+    if (!(self.missionTableViewController.isEditing && sender.state == UIGestureRecognizerStateBegan))
         return;
     
     // Set the coordinates of the map point being held down
@@ -242,14 +237,11 @@
     [self resetWaypoints];
 }
 
-
 // FIXME: also need to check and close the detail view if open
 - (IBAction)editDoneClicked:(id)sender {
-    UITableView* tableView = [self getTableView];
-    bool isEditing = !tableView.editing;
     
     // Update the table and edit/add/upload buttons
-    [tableView setEditing:isEditing animated:true];
+    BOOL isEditing = [self.missionTableViewController toggleEditing];
     editDoneButton.title = isEditing ? @"Done" : @"Edit";
     editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     

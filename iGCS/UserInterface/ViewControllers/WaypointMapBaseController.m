@@ -252,8 +252,10 @@
     return [NSString stringWithFormat:@"%d", item.seq];
 }
 
-// NOOP - intended to be overrriden as needed
+// NOOPs - intended to be overrriden as needed
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view {
+}
+- (void) handleLongPressGesture:(UIGestureRecognizer*)sender {
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation

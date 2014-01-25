@@ -28,7 +28,7 @@
 @synthesize text;
 @synthesize tag;
 
-- (id) initWithWidth:(NSInteger)_width alignment:(UITextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
+- (id) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
     self = [super init];
     if (self) {
         self.text =  _text;
@@ -116,6 +116,8 @@
 #define TABLE_CELL_FONT_SIZE   12
 
 #define DEBUG_SHOW_SEQ 0
+
+#define HEADER_SPEC_EDIT_OFFSET 40
 
 #define TAG_PARAM1 100
 #define TAG_PARAM2 200
@@ -284,16 +286,12 @@ NSArray* headerSpecs = nil;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // create the parent view that will hold header Label
-    UIView* sectionHead = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,40)];
-    sectionHead.tag = section;
-    sectionHead.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
-    sectionHead.userInteractionEnabled = YES;
-    
+    // create the view that will hold the header labels
+    UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
     unsigned int x = 0;
     for (HeaderSpec *spec in headerSpecs) {
         int width = [spec width];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 40)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 20)];
         label.tag  = spec.tag;
         label.text = [spec text];
         label.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
@@ -303,13 +301,20 @@ NSArray* headerSpecs = nil;
         label.textColor = [UIColor whiteColor];
         label.shadowColor = [UIColor darkGrayColor];
         label.shadowOffset = CGSizeMake(0,1);
-        [sectionHead addSubview:label];
+        [headerContainer addSubview:label];
         //
         x += width;
     }
     
-    self.sectionHeader = sectionHead;
-    return sectionHead;
+    // Create a parent section view (which will only hold the headerContainer)
+    UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,400)];
+    [sectionHeader addSubview:headerContainer];
+    sectionHeader.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
+    sectionHeader.tag = section;
+
+    _sectionHeaderContainer = headerContainer;
+    
+    return sectionHeader;
 }
 
 - (NSMutableDictionary*) headerTagToLabelDictWith:(uint16_t)command {
@@ -339,10 +344,10 @@ NSArray* headerSpecs = nil;
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
-    ((UILabel*)[self.sectionHeader viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
+    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
+    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
+    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
+    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
 }
 
 - (void)unmarkSelectedRow {
@@ -355,6 +360,30 @@ NSArray* headerSpecs = nil;
     NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+}
+
+- (BOOL) toggleEditing {
+    BOOL isEditing = !self.isEditing;
+    
+    // Toggle the table editing state
+    [self setEditing:isEditing animated:true];
+    
+    // Slide the section header along to match the table cells
+    CGRect r = [_sectionHeaderContainer frame];
+    r.origin.x += isEditing ? HEADER_SPEC_EDIT_OFFSET : -HEADER_SPEC_EDIT_OFFSET;
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [_sectionHeaderContainer setFrame:r];
+                     }
+                     completion:nil];
+    
+    return isEditing; // return the current editing state
+}
+
+- (void) resetWaypoints {
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view delegate
