@@ -1,3 +1,6 @@
 [submodule "submodules/kxmovie"]
 	path = submodules/kxmovie
 	url = git://github.com/andymoe/kxmovie.git
+[submodule "submodules/core-plot"]
+	path = submodules/core-plot
+	url = git@github.com:fightingwalrus/core-plot.git
