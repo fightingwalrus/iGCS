@@ -104,7 +104,6 @@
 		182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE2415143E570014F7C8 /* 111-user.png */; };
 		182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7115143E570014F7C8 /* 181-hammer.png */; };
 		182FFAF2181F0C9100A8C31C /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
-		182FFAF3181F0C9100A8C31C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
 		182FFAF4181F0C9100A8C31C /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
 		182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
@@ -160,8 +159,6 @@
 		496E625B16DADDB100E52E4A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
-		496E626416DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
-		496E626516DAFAD700E52E4A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625F16DAFAD700E52E4A /* Icon-72.png */; };
 		496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
 		496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
 		496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
@@ -351,7 +348,6 @@
 		495253F11703F213006E27B0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		496E625A16DADDB100E52E4A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		496E625D16DAFAD700E52E4A /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airplane.png; sourceTree = "<group>"; };
-		496E625F16DAFAD700E52E4A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		496E626716DAFAF600E52E4A /* WaypointHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHelper.h; sourceTree = "<group>"; };
 		496E626816DAFAF600E52E4A /* WaypointHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHelper.m; sourceTree = "<group>"; };
 		496E626916DAFAF600E52E4A /* WaypointsHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsHolder.h; sourceTree = "<group>"; };
@@ -1107,7 +1103,6 @@
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				496E625F16DAFAD700E52E4A /* Icon-72.png */,
 				496E625D16DAFAD700E52E4A /* airplane.png */,
 				CACDAAB41802717F00B5A62A /* mission-mavread.png */,
 				CACDAAB8180271B100B5A62A /* mission-mavwrite.png */,
@@ -1969,7 +1964,6 @@
 				182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */,
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF2181F0C9100A8C31C /* 193-location-arrow.png in Resources */,
-				182FFAF3181F0C9100A8C31C /* Icon-72.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */,
 				182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */,
@@ -2002,7 +1996,6 @@
 				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */,
-				496E626416DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E626016DAFAD700E52E4A /* airplane.png in Resources */,
 				CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */,
 				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
@@ -2029,7 +2022,6 @@
 			files = (
 				CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
 				496E626116DAFAD700E52E4A /* airplane.png in Resources */,
-				496E626516DAFAD700E52E4A /* Icon-72.png in Resources */,
 				496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
 				49C1FA0F16DC654100BAE96B /* wrench.png in Resources */,
 			);

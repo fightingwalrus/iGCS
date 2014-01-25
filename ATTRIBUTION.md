@@ -9,6 +9,3 @@ glypish-icons
 CorePlot
 - as per License.txt file
 
-App icon
-- http://www.diydrones.com (temporary - to be replaced)
-
