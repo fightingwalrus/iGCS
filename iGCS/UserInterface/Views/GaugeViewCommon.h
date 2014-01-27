@@ -16,7 +16,17 @@
 #define RATE_VFR_HUD      5
 #define RATE_EXTRA3       1
 
-#define RATE_RAW_SENSORS  1
+// High data rates
+/*
+#define RATE_CHAN2        1  // SYS_STATUS, GPS_STATUS, WAYPOINT_CURRENT, GPS_RAW
+#define RATE_GPS_POS_INT  10
+#define RATE_ATTITUDE     30
+#define RATE_VFR_HUD      5
+#define RATE_EXTRA3       1
+ */
+
+
+#define RATE_RAW_SENSORS  5
 #define RATE_RC_CHANNELS  1
 #define RATE_RAW_CONTROLLER 1
 
