@@ -2123,7 +2123,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
@@ -2161,7 +2160,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/armv7s\"",
 					"\"$(SRCROOT)/submodules/kxmovie/FFmpeg/i386\"",
@@ -2257,8 +2255,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/iGCS/submodules/core-plot/framework\"/**",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -2290,8 +2286,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-					"\"$(SRCROOT)/CorePlot_1.1/Binaries/iOS\"",
-					"\"$(SRCROOT)/iGCS/submodules/core-plot/framework\"/**",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
