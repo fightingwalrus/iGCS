@@ -9,3 +9,5 @@ glypish-icons
 CorePlot
 - as per License.txt file
 
+SWRevealViewController
+- public domain: https://github.com/John-Lluch/SWRevealViewController
