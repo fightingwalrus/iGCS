@@ -38,4 +38,25 @@
     [cell setBackgroundColor:[UIColor clearColor]];
 }
 
+- (void) handlePacket:(mavlink_message_t*)msg {
+    switch (msg->msgid) {
+        case MAVLINK_MSG_ID_GPS_RAW_INT:
+        {
+            mavlink_gps_raw_int_t gpsRawIntPkt;
+            mavlink_msg_gps_raw_int_decode(msg, &gpsRawIntPkt);
+            [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsRawIntPkt.satellites_visible]];
+            [_gpsFixTypeLabel    setText: (gpsRawIntPkt.fix_type == 3) ? @"3D" : ((gpsRawIntPkt.fix_type == 2) ? @"2D" : @"No fix")];
+        }
+            break;
+
+        case MAVLINK_MSG_ID_GPS_STATUS:
+        {
+            mavlink_gps_status_t gpsStatus;
+            mavlink_msg_gps_status_decode(msg, &gpsStatus);
+            [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
+        }
+            break;
+    }
+}
+
 @end

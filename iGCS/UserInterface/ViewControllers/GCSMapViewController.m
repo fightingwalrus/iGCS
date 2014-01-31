@@ -33,9 +33,6 @@
 @synthesize baseModeLabel;
 @synthesize statusLabel;
 
-@synthesize gpsFixTypeLabel;
-@synthesize numSatellitesLabel;
-
 @synthesize sysUptimeLabel;
 @synthesize sysVoltageLabel;
 @synthesize sysMemFreeLabel;
@@ -501,18 +498,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(gpsRawIntPkt.lat/10000000.0, gpsRawIntPkt.lon/10000000.0);
             [uavPos setCoordinate:pos];
             [self addToTrack:pos];
-            
-            [numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsRawIntPkt.satellites_visible]];
-            [gpsFixTypeLabel    setText: (gpsRawIntPkt.fix_type == 3) ? @"3D" :
-                                        ((gpsRawIntPkt.fix_type == 2) ? @"2D" : @"No fix")];
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_GPS_STATUS:
-        {
-            mavlink_gps_status_t gpsStatus;
-            mavlink_msg_gps_status_decode(msg, &gpsStatus);
-            [numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
         }
         break;
             

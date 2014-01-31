@@ -68,9 +68,6 @@
 @property (nonatomic, retain) IBOutlet UILabel     *baseModeLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *statusLabel;
 
-@property (nonatomic, retain) IBOutlet UILabel     *gpsFixTypeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *numSatellitesLabel;
-
 @property (nonatomic, retain) IBOutlet UILabel     *sysUptimeLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *sysVoltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *sysMemFreeLabel;
