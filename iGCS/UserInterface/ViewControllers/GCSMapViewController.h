@@ -53,6 +53,9 @@
 @property(nonatomic, strong) NSArray *myIdentifiers;
 @property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
 
+@property (nonatomic, retain) IBOutlet UIButton *sidebarButton;
+- (IBAction)toggleSidebar:(id)sender;
+
 #define WIND_ICON_OFFSET_ANG 135
 
 @property (nonatomic, retain) IBOutlet UIImageView *windIconView;

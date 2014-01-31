@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "GCSMapViewController.h"
+#import "SWRevealViewController.h"
 
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
@@ -242,6 +243,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
     windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+}
+
+- (void)toggleSidebar:(id)sender {
+    self.revealViewController.rearViewRevealWidth = 210;
+    [self.revealViewController revealToggle:sender];
 }
 
 - (void)viewDidUnload
