@@ -68,10 +68,6 @@
 @property (nonatomic, retain) IBOutlet UILabel     *baseModeLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *statusLabel;
 
-@property (nonatomic, retain) IBOutlet UILabel     *sysUptimeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *sysVoltageLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *sysMemFreeLabel;
-
 @property (nonatomic, retain) IBOutlet UILabel     *throttleLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *climbRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *groundSpeedLabel;

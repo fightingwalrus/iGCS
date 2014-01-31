@@ -33,10 +33,6 @@
 @synthesize baseModeLabel;
 @synthesize statusLabel;
 
-@synthesize sysUptimeLabel;
-@synthesize sysVoltageLabel;
-@synthesize sysMemFreeLabel;
-
 @synthesize throttleLabel;
 @synthesize climbRateLabel;
 @synthesize groundSpeedLabel;
@@ -512,8 +508,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             
             [ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [ahIndicatorView requestRedraw];
-            
-            [sysUptimeLabel  setText:[NSString stringWithFormat:@"%0.1f s", attitudePkt.time_boot_ms/1000.0f]];
         }
         break;
 
@@ -573,22 +567,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             [windSpeedZLabel setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed_z]];
             
             windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_HWSTATUS:
-        {
-            mavlink_hwstatus_t hwStatus;
-            mavlink_msg_hwstatus_decode(msg, &hwStatus);
-            [sysVoltageLabel setText:[NSString stringWithFormat:@"%0.2fV", hwStatus.Vcc/1000.f]];
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_MEMINFO:
-        {
-            mavlink_meminfo_t memFree;
-            mavlink_msg_meminfo_decode(msg, &memFree);
-            [sysMemFreeLabel setText:[NSString stringWithFormat:@"%0.1fkB", memFree.freemem/1024.0f]];
         }
         break;
             

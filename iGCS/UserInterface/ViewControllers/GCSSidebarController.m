@@ -40,6 +40,8 @@
 
 - (void) handlePacket:(mavlink_message_t*)msg {
     switch (msg->msgid) {
+            
+        // GPS section
         case MAVLINK_MSG_ID_GPS_RAW_INT:
         {
             mavlink_gps_raw_int_t gpsRawIntPkt;
@@ -54,6 +56,32 @@
             mavlink_gps_status_t gpsStatus;
             mavlink_msg_gps_status_decode(msg, &gpsStatus);
             [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
+        }
+            break;
+    
+
+        // System section
+        case MAVLINK_MSG_ID_ATTITUDE:
+        {
+            mavlink_attitude_t attitudePkt;
+            mavlink_msg_attitude_decode(msg, &attitudePkt);
+            [_sysUptimeLabel  setText:[NSString stringWithFormat:@"%0.1f s", attitudePkt.time_boot_ms/1000.0f]];
+        }
+            break;
+            
+        case MAVLINK_MSG_ID_HWSTATUS:
+        {
+            mavlink_hwstatus_t hwStatus;
+            mavlink_msg_hwstatus_decode(msg, &hwStatus);
+            [_sysVoltageLabel setText:[NSString stringWithFormat:@"%0.2fV", hwStatus.Vcc/1000.f]];
+        }
+            break;
+            
+        case MAVLINK_MSG_ID_MEMINFO:
+        {
+            mavlink_meminfo_t memFree;
+            mavlink_msg_meminfo_decode(msg, &memFree);
+            [_sysMemFreeLabel setText:[NSString stringWithFormat:@"%0.1fkB", memFree.freemem/1024.0f]];
         }
             break;
     }
