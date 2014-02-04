@@ -543,6 +543,9 @@
                     <connections>
                         <outlet property="gpsFixTypeLabel" destination="8rd-1e-ddz" id="gYC-U3-637"/>
                         <outlet property="numSatellitesLabel" destination="EwW-9x-jc8" id="eYh-28-5fM"/>
+                        <outlet property="sysMemFreeLabel" destination="rly-E3-Ti1" id="eq4-If-bIM"/>
+                        <outlet property="sysUptimeLabel" destination="y0y-nd-Ka1" id="5Y5-xd-0WX"/>
+                        <outlet property="sysVoltageLabel" destination="hDz-2I-H2f" id="Heb-W8-omx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inH-gA-5ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
