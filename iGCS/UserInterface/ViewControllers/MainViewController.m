@@ -8,6 +8,8 @@
 
 #import "MainViewController.h"
 
+#import "SWRevealViewController.h"
+
 #import "CommsViewController.h"
 #import "GCSMapViewController.h"
 
@@ -45,7 +47,12 @@
 - (void)awakeFromNib   
 {
     // Get the views for convenience
-    self.gcsMapVC   = [[self viewControllers] objectAtIndex:0];
+    // FIXME: adopt a cleaner pattern for this (see also viewDidLoad)
+    SWRevealViewController *gcsRevealVC = [[self viewControllers] objectAtIndex:0];
+    [gcsRevealVC view];
+    self.gcsMapVC     = (GCSMapViewController*)[gcsRevealVC frontViewController];
+    self.gcsSidebarVC = (GCSSidebarController*)[gcsRevealVC rearViewController];
+    
     self.waypointVC = [[self viewControllers] objectAtIndex:1];
     self.commsVC    = [[self viewControllers] objectAtIndex:2];
     self.debugVC    = [[self viewControllers] objectAtIndex:3];
