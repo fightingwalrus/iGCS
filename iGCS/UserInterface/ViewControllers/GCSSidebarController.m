@@ -41,6 +41,27 @@
 - (void) handlePacket:(mavlink_message_t*)msg {
     switch (msg->msgid) {
             
+        // Aircraft section
+        case MAVLINK_MSG_ID_VFR_HUD:
+        {
+            mavlink_vfr_hud_t  vfrHudPkt;
+            mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
+            [_acThrottleLabel    setText:[NSString stringWithFormat:@"%d%%", vfrHudPkt.throttle]];
+            [_acClimbRateLabel   setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.climb]];
+            [_acGroundSpeedLabel setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.groundspeed]];
+        }
+            break;
+            
+        case MAVLINK_MSG_ID_SYS_STATUS:
+        {
+            mavlink_sys_status_t sysStatus;
+            mavlink_msg_sys_status_decode(msg, &sysStatus);
+            [_acVoltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
+            [_acCurrentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
+        }
+            break;
+
+            
         // GPS section
         case MAVLINK_MSG_ID_GPS_RAW_INT:
         {

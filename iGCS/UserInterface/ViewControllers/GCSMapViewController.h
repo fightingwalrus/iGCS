@@ -68,10 +68,6 @@
 @property (nonatomic, retain) IBOutlet UILabel     *baseModeLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *statusLabel;
 
-@property (nonatomic, retain) IBOutlet UILabel     *throttleLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *climbRateLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *groundSpeedLabel;
-
 @property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 

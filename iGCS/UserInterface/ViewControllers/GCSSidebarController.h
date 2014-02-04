@@ -11,6 +11,12 @@
 
 @interface GCSSidebarController : UITableViewController <MavLinkPacketHandler>
 
+@property (nonatomic, retain) IBOutlet UILabel *acVoltageLabel;
+@property (nonatomic, retain) IBOutlet UILabel *acCurrentLabel;
+@property (nonatomic, retain) IBOutlet UILabel *acThrottleLabel;
+@property (nonatomic, retain) IBOutlet UILabel *acClimbRateLabel;
+@property (nonatomic, retain) IBOutlet UILabel *acGroundSpeedLabel;
+
 @property (nonatomic, retain) IBOutlet UILabel *gpsFixTypeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *numSatellitesLabel;
 

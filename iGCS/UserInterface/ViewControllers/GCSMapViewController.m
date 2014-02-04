@@ -33,10 +33,6 @@
 @synthesize baseModeLabel;
 @synthesize statusLabel;
 
-@synthesize throttleLabel;
-@synthesize climbRateLabel;
-@synthesize groundSpeedLabel;
-
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
@@ -518,10 +514,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             [compassView  requestRedraw];
             [airspeedView requestRedraw];
             [altitudeView requestRedraw];
-            
-            [throttleLabel    setText:[NSString stringWithFormat:@"%d%%", vfrHudPkt.throttle]];
-            [climbRateLabel   setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.climb]];
-            [groundSpeedLabel setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.groundspeed]];
         }
         break;
             
