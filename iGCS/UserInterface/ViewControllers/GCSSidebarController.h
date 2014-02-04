@@ -14,6 +14,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *gpsFixTypeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *numSatellitesLabel;
 
+@property (nonatomic, retain) IBOutlet UILabel *windDirLabel;
+@property (nonatomic, retain) IBOutlet UILabel *windSpeedLabel;
+@property (nonatomic, retain) IBOutlet UILabel *windSpeedZLabel;
+
 @property (nonatomic, retain) IBOutlet UILabel *sysUptimeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysVoltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysMemFreeLabel;

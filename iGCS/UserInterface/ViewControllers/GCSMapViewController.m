@@ -36,9 +36,7 @@
 @synthesize throttleLabel;
 @synthesize climbRateLabel;
 @synthesize groundSpeedLabel;
-@synthesize windDirLabel;
-@synthesize windSpeedLabel;
-@synthesize windSpeedZLabel;
+
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
@@ -562,10 +560,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
-            [windDirLabel    setText:[NSString stringWithFormat:@"%d", (int)wind.direction]];
-            [windSpeedLabel  setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed]];
-            [windSpeedZLabel setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed_z]];
-            
             windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
         }
         break;

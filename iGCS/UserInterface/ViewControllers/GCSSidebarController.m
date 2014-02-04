@@ -58,6 +58,18 @@
             [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
         }
             break;
+            
+        
+        // Wind section
+        case MAVLINK_MSG_ID_WIND:
+        {
+            mavlink_wind_t wind;
+            mavlink_msg_wind_decode(msg, &wind);
+            [_windDirLabel    setText:[NSString stringWithFormat:@"%d", (int)wind.direction]];
+            [_windSpeedLabel  setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed]];
+            [_windSpeedZLabel setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed_z]];
+        }
+            break;
     
 
         // System section

@@ -71,9 +71,7 @@
 @property (nonatomic, retain) IBOutlet UILabel     *throttleLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *climbRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *groundSpeedLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windDirLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windSpeedLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windSpeedZLabel;
+
 @property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
 
