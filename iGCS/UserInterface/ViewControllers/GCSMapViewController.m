@@ -467,9 +467,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (void) handlePacket:(mavlink_message_t*)msg {
     
-    // FIXME: try to avoid repeated work here 
-    // (i.e. if yaw hasn't changed, or position hasn't discernibly 
-    // changed relative to view, don't update)
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
