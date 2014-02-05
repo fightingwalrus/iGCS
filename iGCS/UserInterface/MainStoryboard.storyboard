@@ -40,7 +40,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="-49" maxX="0.0" maxY="69"/>
                             </mapView>
-                            <view contentMode="scaleToFill" id="aMy-jv-l5b" userLabel="Header">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="aMy-jv-l5b" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
