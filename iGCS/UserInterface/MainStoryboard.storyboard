@@ -696,9 +696,9 @@
                         <outlet property="sysMemFreeLabel" destination="rly-E3-Ti1" id="eq4-If-bIM"/>
                         <outlet property="sysUptimeLabel" destination="y0y-nd-Ka1" id="5Y5-xd-0WX"/>
                         <outlet property="sysVoltageLabel" destination="hDz-2I-H2f" id="Heb-W8-omx"/>
-                        <outlet property="windDirLabel" destination="6xl-85-Z0p" id="byI-NB-btx"/>
-                        <outlet property="windSpeedLabel" destination="Phg-DC-bTo" id="M6A-fi-azb"/>
-                        <outlet property="windSpeedZLabel" destination="o6m-R6-lxE" id="XfU-WG-GHP"/>
+                        <outlet property="windDirLabel" destination="iJC-QT-K8B" id="swv-Xl-X5r"/>
+                        <outlet property="windSpeedLabel" destination="Aax-Fj-LjO" id="RcL-9N-EVy"/>
+                        <outlet property="windSpeedZLabel" destination="tas-t1-BTc" id="Owu-5k-ahV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inH-gA-5ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
