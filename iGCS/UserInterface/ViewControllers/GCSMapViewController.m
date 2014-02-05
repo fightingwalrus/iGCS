@@ -294,7 +294,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);
-    [self disableFollowMeMode];
+    [self deactivateFollowMe];
     switch (idx) {
         case CONTROL_MODE_RC:
             break;
@@ -323,7 +323,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
     NSLog(@" - issueGuidedCommand");
     if (!following) {
-        [self disableFollowMeMode];
+        [self deactivateFollowMe];
     }
     
     [self clearGuidedPositions];
@@ -342,7 +342,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [self updateFollowMePosition:vals];
 }
 
-- (void) disableFollowMeMode {
+- (void) deactivateFollowMe {
     [_followMeControlDelegate followMeDeactivate];
     showProposedFollowPos = false;
 }
@@ -568,7 +568,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
             if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
-                [self disableFollowMeMode];
+                [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }
             lastCustomMode = heartbeat.custom_mode;
