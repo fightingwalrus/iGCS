@@ -53,6 +53,9 @@
     self.gcsMapVC     = (GCSMapViewController*)[gcsRevealVC frontViewController];
     self.gcsSidebarVC = (GCSSidebarController*)[gcsRevealVC rearViewController];
     
+    self.gcsMapVC.followMeControlDelegate    = self.gcsSidebarVC;
+    self.gcsSidebarVC.followMeChangeListener = self.gcsMapVC;
+    
     self.waypointVC = [[self viewControllers] objectAtIndex:1];
     self.commsVC    = [[self viewControllers] objectAtIndex:2];
     self.debugVC    = [[self viewControllers] objectAtIndex:3];

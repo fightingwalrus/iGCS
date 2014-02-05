@@ -46,7 +46,7 @@
     int				gameUniqueID;
 }
 
-@property (retain, readonly) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
+@property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
 
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;

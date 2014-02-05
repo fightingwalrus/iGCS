@@ -30,7 +30,7 @@
 
 @interface GCSSidebarController : UITableViewController <MavLinkPacketHandler, GCSFollowMeCtrlProtocol>
 
-@property (retain, readonly) id <GCSFollowMeCtrlChangeProtocol> followMeChangeListener;
+@property (weak) id <GCSFollowMeCtrlChangeProtocol> followMeChangeListener;
 
 @property (nonatomic, retain) IBOutlet UILabel *mavBaseModeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *mavCustomModeLabel;
