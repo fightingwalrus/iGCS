@@ -208,10 +208,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [ahIndicatorView setRoll: 0 pitch: 0];
     [compassView setHeading: 0];
     
-    [airspeedView setScale:10];
+    [airspeedView setScale:20];
     [airspeedView setValue:0];
     
-    [altitudeView setScale:100];
+    [altitudeView setScale:200];
     [altitudeView setValue:0];
     
     windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
