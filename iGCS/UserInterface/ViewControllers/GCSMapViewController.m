@@ -216,7 +216,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
                                                                  withColor:[UIColor redColor]]];
-    windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
+    windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
 }
