@@ -65,6 +65,7 @@
 @property (nonatomic, retain) IBOutlet VerticalScaleView     *altitudeView;
 
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
+@property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
 
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;

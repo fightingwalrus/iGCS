@@ -13,6 +13,7 @@
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
+#import "MavLinkUtility.h"
 #import "MiscUtilities.h"
 
 #import "CommController.h"
@@ -553,7 +554,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
             [_armedLabel setText: (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED) ? @"Armed" : @"Disarmed"];
-        
+            [_customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode)
             {
