@@ -54,20 +54,22 @@
 #if DO_NSLOG
     NSLog(@"VerticalScale: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 #endif
+    const float HORZ_INSET_PERC = 0.0;
+    const float VERT_INSET_PERC = 0.0;
     
-    const float w = 0.90 * rect.size.width;
-    const float h = 0.98 * rect.size.height;
+    const float w = (1.00 - 2*HORZ_INSET_PERC) * rect.size.width;
+    const float h = (1.00 - 2*VERT_INSET_PERC) * rect.size.height;
     const float oneScaleY = h/scale;
     
     const CGPoint c = CGPointMake(CGRectGetMidX(rect) , CGRectGetMidY(rect));
     
-    const float TICK_BASE        = c.x - w/2 + w/20;
-    const float TICK_MAJOR_WIDTH = w/3;
+    const float TICK_MAJOR_WIDTH = w/4;
     const float TICK_MINOR_WIDTH = w/6;
-    const float TICK_HEIGHT      = 0.005 * h;
+    const float TICK_HEIGHT      = 0.003 * h;
+    const float TICK_BASE        = c.x - w/2 + TICK_HEIGHT/2;
     const float CHEV_SIDE        = 0.018 * h;
-    const float FONT_SIZE_SMALL  = 0.20  * w;
-    const float FONT_SIZE_LARGE  = 2*FONT_SIZE_SMALL;
+    const float FONT_SIZE_SMALL  = 0.25  * w;
+    const float FONT_SIZE_LARGE  = 1.5*FONT_SIZE_SMALL;
     
     // Drawing code
     CGContextClearRect(ctx, rect);
@@ -103,7 +105,7 @@
         // Draw the "numbers"
         if (i % 2 == 0) {
             NSString *label = [NSString stringWithFormat:@"%d", (int)round(tickVal)];
-            CGContextSetTextPosition(ctx, c.x, y + FONT_SIZE_SMALL/3.0);
+            CGContextSetTextPosition(ctx, x + TICK_MINOR_WIDTH/2, y + FONT_SIZE_SMALL/3.0);
             CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
         }
     }
@@ -186,7 +188,7 @@
     // Draw gauge boundary
     CGContextBeginPath(ctx);
     CGContextAddRect(ctx, gaugeBoundary);
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor grayColor] CGColor]);
     CGContextSetLineWidth(ctx, TICK_HEIGHT);
     CGContextStrokePath(ctx);
 }
