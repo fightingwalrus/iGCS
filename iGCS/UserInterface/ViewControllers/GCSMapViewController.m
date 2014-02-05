@@ -359,7 +359,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     // Determine new position
     float bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
     float distance = (5 + 195 * ctrlValues.distance); // 5 - 200 m away
-    followMeHeightOffset = (30 * ctrlValues.altitudeOffset);  // 0 -  30 m relative to home
+    float fmHeightOffset = (30 * ctrlValues.altitudeOffset);  // 0 -  30 m relative to home
     
     static const float R = 6371000;
     
@@ -372,14 +372,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
     float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
     followMeLong = fmod((followMeLong + 3*M_PI), (2*M_PI)) - M_PI;
 
-    followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
+    CLLocationCoordinate2D fmCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
     if (requestedGuidedAnnotation != nil)
         [map removeAnnotation:requestedGuidedAnnotation];
     
     if (showProposedFollowPos) {
-        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
+        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
         [map addAnnotation:requestedGuidedAnnotation];
         [map setNeedsDisplay];
     }
@@ -392,7 +392,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
         lastFollowMeUpdate = [NSDate date];
         
-        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
+        [self issueGuidedCommand:fmCoords withAltitude:fmHeightOffset withFollowing:YES];
     }
 }
 
