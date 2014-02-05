@@ -21,7 +21,9 @@
 #import "KxMovieViewController.h"
 #endif
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate>
+#import "GCSSidebarController.h"
+
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -46,6 +48,8 @@
     int				gameUniqueID;
 }
 
+@property (retain, readonly) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
+
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
 
@@ -66,28 +70,17 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
-
+@property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
-
-@property (nonatomic, retain) IBOutlet UILabel *userLocationAccuracyLabel;
-
-@property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
-
-// Temporary controls to mock out future UI control of "follow" me mode
-@property (nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
-@property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
-- (IBAction) followMeSwitchChanged:(UISwitch*)s;
-- (IBAction) followMeSliderChanged:(UISlider*)slider;
 
 #ifdef VIDEOSTREAMING
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
 #endif
 
-
 - (IBAction) changeControlModeSegment;
+
++ (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos;
 
 @end

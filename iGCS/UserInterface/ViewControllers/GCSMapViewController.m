@@ -32,8 +32,6 @@
 @synthesize voltageLabel;
 @synthesize currentLabel;
 
-@synthesize userLocationAccuracyLabel;
-
 // 3 modes
 //  * auto (initiates/returns to mission)
 //  * misc (manual, stabilize, etc; not selectable)
@@ -45,11 +43,6 @@ enum {
     CONTROL_MODE_AUTO     = 1,
     CONTROL_MODE_GUIDED   = 2
 };
-
-@synthesize followMeSwitch;
-@synthesize followMeBearingSlider;
-@synthesize followMeDistanceSlider;
-@synthesize followMeHeightSlider;
 
 #ifdef VIDEOSTREAMING
 @synthesize kxMovieVC = _kxMovieVC;
@@ -315,21 +308,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
 }
 
-- (IBAction) followMeSliderChanged:(UISlider*)slider {
-    showProposedFollowPos = true;
-    [self updateFollowMePosition];
-}
-
-- (IBAction) followMeSwitchChanged:(UISwitch*)s {
-    showProposedFollowPos = true;
-    [self updateFollowMePosition];
-}
-
-- (void) disableFollowMeMode {
-    [followMeSwitch setOn:NO animated:YES];
-    showProposedFollowPos = false;
-}
-
 - (void) clearGuidedPositions {
     if (currentGuidedAnnotation != nil) {
         [map removeAnnotation:currentGuidedAnnotation];
@@ -359,15 +337,29 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 
-- (void) updateFollowMePosition {
+- (void) followMeControlChange:(FollowMeCtrlValues*)vals {
+    showProposedFollowPos = true;
+    [self updateFollowMePosition:vals];
+}
+
+- (void) disableFollowMeMode {
+    [_followMeControlDelegate followMeDeactivate];
+    showProposedFollowPos = false;
+}
+
++ (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos {
+    return (pos.horizontalAccuracy >= 0 && pos.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY);
+}
+
+- (void) updateFollowMePosition:(FollowMeCtrlValues*)ctrlValues {
     // Determine user coord
     // CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
     CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
-    float bearing  = M_PI + (2 * M_PI * followMeBearingSlider.value);
-    float distance = (5 + 195 * followMeDistanceSlider.value); // 5 - 200 m away
-    followMeHeightOffset = (30 * followMeHeightSlider.value);  // 0 -  30 m relative to home
+    float bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
+    float distance = (5 + 195 * ctrlValues.distance); // 5 - 200 m away
+    followMeHeightOffset = (30 * ctrlValues.altitudeOffset);  // 0 -  30 m relative to home
     
     static const float R = 6371000;
     
@@ -395,10 +387,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #if DO_NSLOG
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
 #endif
-    if (followMeSwitch.isOn &&
+    if (ctrlValues.isActive &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
-        userPosition.horizontalAccuracy >= 0 &&
-        userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
         lastFollowMeUpdate = [NSDate date];
         
         [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
@@ -687,16 +678,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #endif
     if (age > 5.0) return;
     
-    userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
-
-    if (location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
-        userLocationAccuracyLabel.textColor = [UIColor greenColor];
-    } else {
-        userLocationAccuracyLabel.textColor = [UIColor redColor];
-    }
+    [_followMeControlDelegate followMeLocationAccuracy:location.horizontalAccuracy isAcceptable:[GCSMapViewController isAcceptableFollowMePosition:location]];
     
     userPosition = location;
-    [self updateFollowMePosition];
+    [self updateFollowMePosition:[_followMeControlDelegate followMeControlValues]];
 }
 
 @end

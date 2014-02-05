@@ -9,6 +9,22 @@
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
 
+@implementation FollowMeCtrlValues
+
+- (id) initWithBearing:(double)bearing distance:(double)distance altitudeOffset:(double)altitudeOffset isActive:(BOOL)isActive {
+    self = [super init];
+    if (self) {
+        _bearing  = bearing;
+        _distance = distance;
+        _altitudeOffset = altitudeOffset;
+        _isActive = isActive;
+    }
+    return self;
+}
+
+@end
+
+
 @interface GCSSidebarController ()
 
 @end
@@ -130,6 +146,30 @@
         }
             break;
     }
+}
+
+- (IBAction) followMeSliderChanged:(UISlider*)slider {
+    [_followMeChangeListener followMeControlChange:[self followMeControlValues]];
+}
+
+- (IBAction) followMeSwitchChanged:(UISwitch*)s {
+    [_followMeChangeListener followMeControlChange:[self followMeControlValues]];
+}
+
+- (void) followMeDeactivate {
+    [_followMeSwitch setOn:NO animated:YES];
+}
+
+- (FollowMeCtrlValues*) followMeControlValues {
+    return [[FollowMeCtrlValues alloc] initWithBearing:_followMeBearingSlider.value
+                                              distance:_followMeDistanceSlider.value
+                                        altitudeOffset:_followMeHeightSlider.value
+                                              isActive:_followMeSwitch.isOn];
+}
+
+- (void) followMeLocationAccuracy:(CLLocationAccuracy)accuracy isAcceptable:(BOOL)acceptable {
+    _userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", accuracy];
+    _userLocationAccuracyLabel.textColor = acceptable ? [UIColor greenColor] : [UIColor redColor];
 }
 
 @end
