@@ -7,6 +7,7 @@
 //
 
 #import "GCSSidebarController.h"
+#import "MavLinkUtility.h"
 
 @interface GCSSidebarController ()
 
@@ -40,6 +41,17 @@
 
 - (void) handlePacket:(mavlink_message_t*)msg {
     switch (msg->msgid) {
+            
+        // Status section
+        case MAVLINK_MSG_ID_HEARTBEAT:
+        {
+            mavlink_heartbeat_t heartbeat;
+            mavlink_msg_heartbeat_decode(msg, &heartbeat);
+            [_mavBaseModeLabel   setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
+            [_mavCustomModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+            [_mavStatusLabel     setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
+        }
+            break;
             
         // Aircraft section
         case MAVLINK_MSG_ID_VFR_HUD:

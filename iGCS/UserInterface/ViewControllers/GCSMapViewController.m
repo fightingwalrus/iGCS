@@ -13,7 +13,6 @@
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
-#import "MavLinkUtility.h"
 #import "MiscUtilities.h"
 
 #import "CommController.h"
@@ -28,10 +27,6 @@
 @synthesize compassView;
 @synthesize airspeedView;
 @synthesize altitudeView;
-
-@synthesize customModeLabel;
-@synthesize baseModeLabel;
-@synthesize statusLabel;
 
 @synthesize voltageLabel;
 @synthesize currentLabel;
@@ -557,11 +552,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
-            
-            [customModeLabel    setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
-            [baseModeLabel      setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
-            [statusLabel        setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
-            
+            [_armedLabel setText: (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED) ? @"Armed" : @"Disarmed"];
+        
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode)
             {
