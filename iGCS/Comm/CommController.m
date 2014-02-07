@@ -60,18 +60,19 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
                 foundValid = YES;
                 break;
             }
+
+            if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
+                [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
+                foundValid = YES;
+                break;
+            }
+
         }
         
         if(foundValid == NO) {
             NSLog(@"No devices connected, defaulting to Redpark");
             [self createDefaultConnections:GCSRedparkCommInterface];
         }
-        
-
-//        [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
-//        [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
-
-//        [self createDefaultConnections:GCSRedparkCommInterface];
 
         [DebugLogger console:@"Created default connections in CommController."];
     }
