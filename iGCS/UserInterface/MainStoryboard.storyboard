@@ -38,7 +38,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="GAr-p0-3d5">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="712"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="-49" maxX="0.0" maxY="69"/>
                             </mapView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" id="aMy-jv-l5b" userLabel="Header">
