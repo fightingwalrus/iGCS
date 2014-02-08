@@ -73,6 +73,9 @@
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
+        
+        //HACK Testing ping pong connect/disconnect
+        _doubleTab = @YES;
 
         NSLog(@"accessory count: %d", [_accessoryList count]);
         if ([_accessoryList count]) {
@@ -214,23 +217,31 @@
 
 - (void)accessoryConnected:(NSNotification *)notification {
 	NSLog(@"FightingWalrusInterface2: accessoryConnected");
-	if (![self isAccessoryConnected])
-        {
-		EAAccessory *a = [self selectedAccessory];
-		[self setupControllerForAccessory:a withProtocolString:_protocolString];
-		[self closeSession];
-		[self openSession];
-        }
+    NSLog(@"FightingWalrusInterface2: accessoryConnected: notification Name: %@",notification.name);
+    NSLog(@"Notification: %@",notification.userInfo);
+    
+    if([_doubleTab boolValue])
+    {
+        _doubleTab = @NO;
+    }
+    else
+    {
+        _doubleTab = @YES;
+        if (![self isAccessoryConnected])
+            {
+            EAAccessory *a = [self selectedAccessory];
+            [self setupControllerForAccessory:a withProtocolString:_protocolString];
+            [self openSession];
+            }
+    }
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
 	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
+    NSLog(@"FightingWalrusInterface2: accessoryDisconnected: notification Name: %@",notification.name);
 	if (![self isAccessoryConnected])
         {
-		EAAccessory *a = [self selectedAccessory];
-		[self setupControllerForAccessory:a withProtocolString:_protocolString];
 		[self closeSession];
-		[self openSession];
         }
 }
 
