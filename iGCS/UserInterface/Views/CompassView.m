@@ -203,7 +203,7 @@
     // Draw gauge boundary
     CGContextBeginPath(ctx);
     CGContextAddRect(ctx, gaugeBoundary);
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor grayColor] CGColor]);
     CGContextSetLineWidth(ctx, TICK_WIDTH/3);
     CGContextStrokePath(ctx);
 }

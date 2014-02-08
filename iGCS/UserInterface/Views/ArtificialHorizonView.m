@@ -254,6 +254,7 @@
     float TRIANGLE_POINTER_APEX  = r - FRONT_FACE_WIDTH;
     float TRIANGLE_POINTER_SIDE  = r * 0.13;
     float FRONT_FACE_BOTTOM_BASE_HALF_ANGLE   = 60 * DEG2RAD;
+    float GAUGE_BORDER_WIDTH     = r * 0.005;
     
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
     
@@ -364,10 +365,10 @@
     CGContextRestoreGState(ctx);
     
     // Put a line around the gauge to define it
-    CGContextSetLineWidth(ctx, 0.01 * r);
+    CGContextSetLineWidth(ctx, GAUGE_BORDER_WIDTH);
     CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     CGContextBeginPath(ctx);
-    CGContextAddArc(ctx, c.x, c.y, 1.02 * r, 0, 2 * M_PI, 1);
+    CGContextAddArc(ctx, c.x, c.y, 1.02 * r - GAUGE_BORDER_WIDTH, 0, 2 * M_PI, 1);
     CGContextStrokePath(ctx);    
 }
 
