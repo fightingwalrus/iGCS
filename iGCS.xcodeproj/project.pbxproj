@@ -13,12 +13,6 @@
 		18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
 		18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
 		18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
-		18069FCA1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */; };
-		18069FCB1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */; };
-		18069FCC1836F7C70068E7A5 /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAF1836F7C70068E7A5 /* FightingWalrusProtocol.m */; };
-		18069FCD1836F7C70068E7A5 /* FightingWalrusProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FAF1836F7C70068E7A5 /* FightingWalrusProtocol.m */; };
-		18069FCE1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB11836F7C70068E7A5 /* FightingWalrusRadio.m */; };
-		18069FCF1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB11836F7C70068E7A5 /* FightingWalrusRadio.m */; };
 		18069FD01836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
 		18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
 		18069FD21836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */; };
@@ -299,12 +293,6 @@
 		18069FA31836F7C70068E7A5 /* BTLEMavLinkPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkPeripheral.h; sourceTree = "<group>"; };
 		18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEMavLinkPeripheral.m; sourceTree = "<group>"; };
 		18069FA51836F7C70068E7A5 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		18069FAC1836F7C70068E7A5 /* FightingWalrusMFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusMFI.h; sourceTree = "<group>"; };
-		18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusMFI.m; sourceTree = "<group>"; };
-		18069FAE1836F7C70068E7A5 /* FightingWalrusProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusProtocol.h; sourceTree = "<group>"; };
-		18069FAF1836F7C70068E7A5 /* FightingWalrusProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusProtocol.m; sourceTree = "<group>"; };
-		18069FB01836F7C70068E7A5 /* FightingWalrusRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusRadio.h; sourceTree = "<group>"; };
-		18069FB11836F7C70068E7A5 /* FightingWalrusRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusRadio.m; sourceTree = "<group>"; };
 		18069FB31836F7C70068E7A5 /* FightingWalrusInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightingWalrusInterface.h; sourceTree = "<group>"; };
 		18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightingWalrusInterface.m; sourceTree = "<group>"; };
 		18069FB61836F7C70068E7A5 /* iGCSMavLinkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSMavLinkInterface.h; sourceTree = "<group>"; };
@@ -882,7 +870,6 @@
 			isa = PBXGroup;
 			children = (
 				18069F9D1836F7C70068E7A5 /* Bluetooth */,
-				18069FAB1836F7C70068E7A5 /* FightingWalrus */,
 				18069FB21836F7C70068E7A5 /* FightingWalrus2 */,
 				18069FB51836F7C70068E7A5 /* iGCS */,
 				18069FBA1836F7C70068E7A5 /* Redpark */,
@@ -912,19 +899,6 @@
 				18069FA51836F7C70068E7A5 /* TransferService.h */,
 			);
 			path = BTLE;
-			sourceTree = "<group>";
-		};
-		18069FAB1836F7C70068E7A5 /* FightingWalrus */ = {
-			isa = PBXGroup;
-			children = (
-				18069FAC1836F7C70068E7A5 /* FightingWalrusMFI.h */,
-				18069FAD1836F7C70068E7A5 /* FightingWalrusMFI.m */,
-				18069FAE1836F7C70068E7A5 /* FightingWalrusProtocol.h */,
-				18069FAF1836F7C70068E7A5 /* FightingWalrusProtocol.m */,
-				18069FB01836F7C70068E7A5 /* FightingWalrusRadio.h */,
-				18069FB11836F7C70068E7A5 /* FightingWalrusRadio.m */,
-			);
-			path = FightingWalrus;
 			sourceTree = "<group>";
 		};
 		18069FB21836F7C70068E7A5 /* FightingWalrus2 */ = {
@@ -1926,7 +1900,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182FFA99181F0C9100A8C31C /* main.m in Sources */,
-				18069FCD1836F7C70068E7A5 /* FightingWalrusProtocol.m in Sources */,
 				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
@@ -1970,10 +1943,8 @@
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
-				18069FCB1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */,
 				18A42CD418895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
-				18069FCF1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
@@ -1985,7 +1956,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA499F6F14DE33BC00FCC9FB /* main.m in Sources */,
-				18069FCC1836F7C70068E7A5 /* FightingWalrusProtocol.m in Sources */,
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
 				18069FD01836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
@@ -2030,10 +2000,8 @@
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
-				18069FCA1836F7C70068E7A5 /* FightingWalrusMFI.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
-				18069FCE1836F7C70068E7A5 /* FightingWalrusRadio.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 				18069FD61836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,

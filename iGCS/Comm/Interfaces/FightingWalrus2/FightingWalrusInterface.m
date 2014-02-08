@@ -77,7 +77,7 @@
         NSLog(@"accessory count: %d", [_accessoryList count]);
         if ([_accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
-                BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"et Al."];
+                BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Fighting Walrus LLC"];
                 if(comparison){
                     _selectedAccessory = currentAccessory;
                     NSLog(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
@@ -213,7 +213,7 @@
 #pragma mark NSNotifications
 
 - (void)accessoryConnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface: accessoryConnected");
+	NSLog(@"FightingWalrusInterface2: accessoryConnected");
 	if (![self isAccessoryConnected])
         {
 		EAAccessory *a = [self selectedAccessory];
@@ -224,7 +224,7 @@
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
+	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
 	if (![self isAccessoryConnected])
         {
 		EAAccessory *a = [self selectedAccessory];

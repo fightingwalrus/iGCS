@@ -44,14 +44,7 @@ static AppDelegate *shared;
         [DBFilesystem setSharedFilesystem:filesystem];
     }
     
-    
-    // TODO: Move this into FightingWalrus Interface to support non-FW operation
-    // startup the external accessory manager
-    
-	walrus = [[FightingWalrusProtocol alloc] init];
-    
-    NSLog(@"Walrus protocol started.");
-    
+    //TODO: Not sure this should exist
 	alertView = [[UIAlertView alloc] initWithTitle:@"Accessory Not Found"
 										   message:@"Fighting Walrus Radio is not attached."
 										  delegate:self
@@ -119,13 +112,6 @@ static AppDelegate *shared;
     NSLog(@"Became Active");
 	// startup my application update timer
     
-    // TODO: Move this timer into the FightingWalrus radio only as radio poll rate
-    updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100msecs
-												   target:self
-												 selector:@selector(appUpdate:)
-												 userInfo:nil
-												  repeats:YES];
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -166,32 +152,6 @@ static AppDelegate *shared;
 }
 
 static int counter = 0;
-
-// periodic timer to poll the accessory
-// TODO: Move this into FW Interface
-- (void)appUpdate:(NSTimer*)theTimer
-{
-    //[DebugLogger console:@"appUpdate: %i",counter];
-    counter++;
-    
-	if([walrus isConnected])
-	{
-        // Poll accessory
-        // No data currently polled from radio, data is handled as stream events
-	}
-    else
-    {
-        if (REQUIRE_WALRUS)
-        {
-            // Nothing is connected so show the alert
-		
-            if (![alertView isVisible]) {
-                [alertView show];
-            }
-        }
-		
-    }
-}
 
 
 - (BOOL)application:(UIApplication *)application
