@@ -39,7 +39,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" id="GAr-p0-3d5">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="712"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="-49" maxX="0.0" maxY="69"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-13"/>
                             </mapView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" id="aMy-jv-l5b" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
@@ -74,7 +74,7 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
                                         <rect key="frame" x="386" y="18" width="251" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-14"/>
+                                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="-4" maxX="0.0" maxY="-14"/>
                                         <segments>
                                             <segment title="Misc/RC"/>
                                             <segment title="Auto"/>
@@ -158,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="4603" y="-538"/>
         </scene>
-        <!--View Controller-->
+        <!--GCS/Sidebar Container-->
         <scene sceneID="4Zr-VO-x9t">
             <objects>
-                <viewController id="ZED-4z-Ovh" sceneMemberID="viewController">
+                <viewController id="ZED-4z-Ovh" userLabel="GCS/Sidebar Container" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yJi-R3-ub5">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -170,6 +170,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <segue destination="oah-Ko-Fsy" kind="embed" id="uth-tU-1jT"/>
                                 </connections>
@@ -178,6 +179,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
