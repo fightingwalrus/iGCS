@@ -21,7 +21,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="2" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="hFd-Y2-d7B"/>
-                        <segue destination="oah-Ko-Fsy" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="Hbv-IM-s2d"/>
+                        <segue destination="ZED-4z-Ovh" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="A5d-my-F0K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nh7-2X-W37" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,6 +158,36 @@
             </objects>
             <point key="canvasLocation" x="4603" y="-538"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4Zr-VO-x9t">
+            <objects>
+                <viewController id="ZED-4z-Ovh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yJi-R3-ub5">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView contentMode="scaleToFill" id="322-2i-wNC">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="oah-Ko-Fsy" kind="embed" id="uth-tU-1jT"/>
+                                </connections>
+                            </containerView>
+                            <view alpha="0.69999999999999973" contentMode="scaleToFill" id="915-GG-haZ">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JEa-CA-UhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4603" y="491"/>
+        </scene>
         <!--GCS/Siderbar View Controll-->
         <scene sceneID="TtC-HC-YFe">
             <objects>
@@ -167,6 +197,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection headerTitle="Status" id="9Xo-40-UdP">
                                 <cells>
@@ -770,7 +801,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inH-gA-5ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4603" y="455"/>
+            <point key="canvasLocation" x="5859" y="491"/>
         </scene>
         <!--Comms View Controller - Comms-->
         <scene sceneID="13">

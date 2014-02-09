@@ -51,7 +51,7 @@
     SWRevealViewController *gcsRevealVC = [[self viewControllers] objectAtIndex:0];
     [gcsRevealVC view];
     self.gcsMapVC     = (GCSMapViewController*)[gcsRevealVC frontViewController];
-    self.gcsSidebarVC = (GCSSidebarController*)[gcsRevealVC rearViewController];
+    self.gcsSidebarVC = (GCSSidebarController*)[gcsRevealVC rearViewController].childViewControllers.lastObject;
     
     self.gcsMapVC.followMeControlDelegate    = self.gcsSidebarVC;
     self.gcsSidebarVC.followMeChangeListener = self.gcsMapVC;
