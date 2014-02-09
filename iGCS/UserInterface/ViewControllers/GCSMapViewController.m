@@ -544,7 +544,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
-            [_armedLabel setText: (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED) ? @"Armed" : @"Disarmed"];
+            BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
+            [_armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
+            [_armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
             [_customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
