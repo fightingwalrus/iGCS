@@ -14,7 +14,6 @@
 #import "CommConnectionPool.h"
 
 #import "RedparkSerialCable.h"
-#import "FightingWalrusRadio.h"
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"

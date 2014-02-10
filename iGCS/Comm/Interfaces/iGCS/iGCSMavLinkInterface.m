@@ -83,7 +83,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                     if (++self.heartbeatOnlyCount >= 5) {
                         self.mavLinkInitialized = NO;
                     }
-                    
+
                     if (!self.mavLinkInitialized) {
                         
                         self.mavLinkInitialized = YES;
@@ -98,7 +98,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         // Send requests to set the stream rates
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_ALL, 0, 0); // stop all
-                        
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
@@ -115,6 +114,8 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                                                              MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
+                        
+                        
                         
                         [self startReadMissionRequest];
                     }
