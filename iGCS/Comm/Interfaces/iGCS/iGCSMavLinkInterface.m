@@ -83,9 +83,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                     if (++self.heartbeatOnlyCount >= 5) {
                         self.mavLinkInitialized = NO;
                     }
-                    
-                    //FIXME temp never send anything out
-                    //if(0){
+
                     if (!self.mavLinkInitialized) {
                         
                         self.mavLinkInitialized = YES;
