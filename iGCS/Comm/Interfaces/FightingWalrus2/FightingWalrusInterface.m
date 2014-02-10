@@ -73,11 +73,14 @@
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
+        
+        //HACK Testing ping pong connect/disconnect
+        _doubleTab = @YES;
 
         NSLog(@"accessory count: %d", [_accessoryList count]);
         if ([_accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
-                BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"et Al."];
+                BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Fighting Walrus LLC"];
                 if(comparison){
                     _selectedAccessory = currentAccessory;
                     NSLog(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
@@ -213,24 +216,32 @@
 #pragma mark NSNotifications
 
 - (void)accessoryConnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface: accessoryConnected");
-	if (![self isAccessoryConnected])
-        {
-		EAAccessory *a = [self selectedAccessory];
-		[self setupControllerForAccessory:a withProtocolString:_protocolString];
-		[self closeSession];
-		[self openSession];
-        }
+	NSLog(@"FightingWalrusInterface2: accessoryConnected");
+    NSLog(@"FightingWalrusInterface2: accessoryConnected: notification Name: %@",notification.name);
+    NSLog(@"Notification: %@",notification.userInfo);
+    
+    if([_doubleTab boolValue])
+    {
+        _doubleTab = @NO;
+    }
+    else
+    {
+        _doubleTab = @YES;
+        if (![self isAccessoryConnected])
+            {
+            EAAccessory *a = [self selectedAccessory];
+            [self setupControllerForAccessory:a withProtocolString:_protocolString];
+            [self openSession];
+            }
+    }
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
+	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
+    NSLog(@"FightingWalrusInterface2: accessoryDisconnected: notification Name: %@",notification.name);
 	if (![self isAccessoryConnected])
         {
-		EAAccessory *a = [self selectedAccessory];
-		[self setupControllerForAccessory:a withProtocolString:_protocolString];
 		[self closeSession];
-		[self openSession];
         }
 }
 

@@ -16,7 +16,8 @@
 #pragma mark - General purpose "modal request dialog" helpers
 
 - (void) presentRequestStatusDialog:(NSString*)title {
-    // FIXME: replace with custom view, with progress bar, modal until success/failure etc
+
+     //FIXME: This causes an infinite loop when the messages don't get through
     _requestStatusDialog = [[UIAlertView alloc] initWithTitle:title
                                                       message:@"Starting Request..."
                                                      delegate:self

@@ -20,6 +20,7 @@
 @property (nonatomic, retain, readonly) EAAccessory *selectedAccessory;
 @property (nonatomic, copy) NSString *protocolString;
 @property (retain) NSMutableData *writeDataBuffer;
+@property (nonatomic, strong) NSNumber *doubleTab;
 
 +(FightingWalrusInterface*)create;
 
