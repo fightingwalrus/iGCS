@@ -97,7 +97,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     gotoAltitude = 50;
     
-    showProposedFollowPos = false;
+    showProposedFollowPos = NO;
     lastFollowMeUpdate = [NSDate date];
 
 #ifdef VIDEOSTREAMING
@@ -338,13 +338,13 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
-    showProposedFollowPos = true;
+    showProposedFollowPos = YES;
     [self updateFollowMePosition:vals];
 }
 
 - (void) deactivateFollowMe {
     [_followMeControlDelegate followMeDeactivate];
-    showProposedFollowPos = false;
+    showProposedFollowPos = NO;
 }
 
 + (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos {
