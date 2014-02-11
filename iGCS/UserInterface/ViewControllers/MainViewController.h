@@ -12,6 +12,7 @@
 #import <MapKit/MKMapView.h>
 
 @class GCSMapViewController;
+@class GCSSidebarController;
 @class CommsViewController;
 @class WaypointsViewController;
 @class DebugViewController;
@@ -23,6 +24,7 @@
 @property (weak) AppDelegate *appDelegate;
 
 @property (strong) GCSMapViewController *gcsMapVC;
+@property (strong) GCSSidebarController *gcsSidebarVC;
 @property (strong) WaypointsViewController *waypointVC;
 @property (strong) CommsViewController *commsVC;
 @property (strong) DebugViewController *debugVC;

@@ -61,6 +61,19 @@
 
 - (void) drawAHGaugeInnerCircle:(CGContextRef) ctx centre:(CGPoint)c radius:(float) r {
 
+    // Clip context to the inside of the guage
+    CGContextSaveGState(ctx);
+    UIGraphicsBeginImageContextWithOptions((self.frame.size), NO, 0.0);
+    CGContextRef newContext = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(newContext, 0.0, self.frame.size.height);
+    CGContextScaleCTM(newContext, 1.0, -1.0);
+    [[UIColor blackColor] set];
+    CGRect gaugeCircle = CGRectMake(c.x - r, c.y - r, 2*r, 2*r);
+    CGContextFillEllipseInRect(newContext, gaugeCircle);
+    CGImageRef mask = CGBitmapContextCreateImage(UIGraphicsGetCurrentContext());
+    UIGraphicsEndImageContext();
+    CGContextClipToMask(ctx, self.bounds, mask);
+    
     float xMinorDelta = 0.1 * r;
     float yMinorDelta = 1.0/12.0 * r; // => 5 deg of pitch
     
@@ -134,8 +147,11 @@
         }
     }
     
-    // Pop transform
+    // Pop transform and clean up
     CGContextConcatCTM(ctx, CGAffineTransformInvert(transform));
+    
+    CGImageRelease(mask);
+    CGContextRestoreGState(ctx);
 }
 
 // Ugh
@@ -238,9 +254,9 @@
     float TRIANGLE_POINTER_APEX  = r - FRONT_FACE_WIDTH;
     float TRIANGLE_POINTER_SIDE  = r * 0.13;
     float FRONT_FACE_BOTTOM_BASE_HALF_ANGLE   = 60 * DEG2RAD;
+    float GAUGE_BORDER_WIDTH     = r * 0.005;
     
-    
-    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
     
      // Darken the edge of the inner circle to give appearance of curvature into screen
      // http://www.raywenderlich.com/2033/core-graphics-101-lines-rectangles-and-gradients
@@ -349,10 +365,10 @@
     CGContextRestoreGState(ctx);
     
     // Put a line around the gauge to define it
-    CGContextSetLineWidth(ctx, 0.01 * r);
+    CGContextSetLineWidth(ctx, GAUGE_BORDER_WIDTH);
     CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     CGContextBeginPath(ctx);
-    CGContextAddArc(ctx, c.x, c.y, 1.02 * r, 0, 2 * M_PI, 1);
+    CGContextAddArc(ctx, c.x, c.y, 1.02 * r - GAUGE_BORDER_WIDTH, 0, 2 * M_PI, 1);
     CGContextStrokePath(ctx);    
 }
 

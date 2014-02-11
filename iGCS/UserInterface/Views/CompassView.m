@@ -48,9 +48,11 @@
 #if DO_NSLOG
     NSLog(@"Compass: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 #endif
+    const float HORZ_INSET_PERC = 0.0;
+    const float VERT_INSET_PERC = 0.0;
     
-    const float w = 0.95 * rect.size.width;
-    const float h = 0.75 * rect.size.height;
+    const float w = (1.00 - 2*HORZ_INSET_PERC) * rect.size.width;
+    const float h = (1.00 - 2*VERT_INSET_PERC) * rect.size.height;
     const float oneDegX = 1.0/75 * w;
     
     CGPoint c = CGPointMake(CGRectGetMidX(rect) , CGRectGetMidY(rect));
@@ -201,7 +203,7 @@
     // Draw gauge boundary
     CGContextBeginPath(ctx);
     CGContextAddRect(ctx, gaugeBoundary);
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor grayColor] CGColor]);
     CGContextSetLineWidth(ctx, TICK_WIDTH/3);
     CGContextStrokePath(ctx);
 }

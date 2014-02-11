@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "GCSMapViewController.h"
+#import "SWRevealViewController.h"
 
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
@@ -28,27 +29,8 @@
 @synthesize airspeedView;
 @synthesize altitudeView;
 
-@synthesize customModeLabel;
-@synthesize baseModeLabel;
-@synthesize statusLabel;
-
-@synthesize gpsFixTypeLabel;
-@synthesize numSatellitesLabel;
-
-@synthesize sysUptimeLabel;
-@synthesize sysVoltageLabel;
-@synthesize sysMemFreeLabel;
-
-@synthesize throttleLabel;
-@synthesize climbRateLabel;
-@synthesize groundSpeedLabel;
-@synthesize windDirLabel;
-@synthesize windSpeedLabel;
-@synthesize windSpeedZLabel;
 @synthesize voltageLabel;
 @synthesize currentLabel;
-
-@synthesize userLocationAccuracyLabel;
 
 // 3 modes
 //  * auto (initiates/returns to mission)
@@ -61,11 +43,6 @@ enum {
     CONTROL_MODE_AUTO     = 1,
     CONTROL_MODE_GUIDED   = 2
 };
-
-@synthesize followMeSwitch;
-@synthesize followMeBearingSlider;
-@synthesize followMeDistanceSlider;
-@synthesize followMeHeightSlider;
 
 #ifdef VIDEOSTREAMING
 @synthesize kxMovieVC = _kxMovieVC;
@@ -120,7 +97,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     gotoAltitude = 50;
     
-    showProposedFollowPos = false;
+    showProposedFollowPos = NO;
     lastFollowMeUpdate = [NSDate date];
 
 #ifdef VIDEOSTREAMING
@@ -231,17 +208,22 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [ahIndicatorView setRoll: 0 pitch: 0];
     [compassView setHeading: 0];
     
-    [airspeedView setScale:10];
+    [airspeedView setScale:20];
     [airspeedView setValue:0];
     
-    [altitudeView setScale:100];
+    [altitudeView setScale:200];
     [altitudeView setValue:0];
     
     windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
                                                                  withColor:[UIColor redColor]]];
-    windIconView.frame = CGRectMake(10, 10, windIconView.frame.size.width, windIconView.frame.size.height);
+    windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+}
+
+- (void)toggleSidebar:(id)sender {
+    self.revealViewController.rearViewRevealWidth = 210;
+    [self.revealViewController revealToggle:sender];
 }
 
 - (void)viewDidUnload
@@ -312,7 +294,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
     NSLog(@"changeControlModeSegment: %d", idx);
-    [self disableFollowMeMode];
+    [self deactivateFollowMe];
     switch (idx) {
         case CONTROL_MODE_RC:
             break;
@@ -324,21 +306,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
         case CONTROL_MODE_GUIDED:
             break;
     }
-}
-
-- (IBAction) followMeSliderChanged:(UISlider*)slider {
-    showProposedFollowPos = true;
-    [self updateFollowMePosition];
-}
-
-- (IBAction) followMeSwitchChanged:(UISwitch*)s {
-    showProposedFollowPos = true;
-    [self updateFollowMePosition];
-}
-
-- (void) disableFollowMeMode {
-    [followMeSwitch setOn:NO animated:YES];
-    showProposedFollowPos = false;
 }
 
 - (void) clearGuidedPositions {
@@ -356,7 +323,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
     NSLog(@" - issueGuidedCommand");
     if (!following) {
-        [self disableFollowMeMode];
+        [self deactivateFollowMe];
     }
     
     [self clearGuidedPositions];
@@ -370,15 +337,29 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 
-- (void) updateFollowMePosition {
+- (void) followMeControlChange:(FollowMeCtrlValues*)vals {
+    showProposedFollowPos = YES;
+    [self updateFollowMePosition:vals];
+}
+
+- (void) deactivateFollowMe {
+    [_followMeControlDelegate followMeDeactivate];
+    showProposedFollowPos = NO;
+}
+
++ (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos {
+    return (pos.horizontalAccuracy >= 0 && pos.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY);
+}
+
+- (void) updateFollowMePosition:(FollowMeCtrlValues*)ctrlValues {
     // Determine user coord
     // CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
     CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
-    float bearing  = M_PI + (2 * M_PI * followMeBearingSlider.value);
-    float distance = (5 + 195 * followMeDistanceSlider.value); // 5 - 200 m away
-    followMeHeightOffset = (30 * followMeHeightSlider.value);  // 0 -  30 m relative to home
+    float bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
+    float distance = (5 + 195 * ctrlValues.distance); // 5 - 200 m away
+    float fmHeightOffset = (30 * ctrlValues.altitudeOffset);  // 0 -  30 m relative to home
     
     static const float R = 6371000;
     
@@ -391,14 +372,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
     float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
     followMeLong = fmod((followMeLong + 3*M_PI), (2*M_PI)) - M_PI;
 
-    followMeCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
+    CLLocationCoordinate2D fmCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
     if (requestedGuidedAnnotation != nil)
         [map removeAnnotation:requestedGuidedAnnotation];
     
     if (showProposedFollowPos) {
-        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:followMeCoords];
+        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
         [map addAnnotation:requestedGuidedAnnotation];
         [map setNeedsDisplay];
     }
@@ -406,13 +387,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #if DO_NSLOG
     NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
 #endif
-    if (followMeSwitch.isOn &&
+    if (ctrlValues.isActive &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
-        userPosition.horizontalAccuracy >= 0 &&
-        userPosition.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
+        [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
         lastFollowMeUpdate = [NSDate date];
         
-        [self issueGuidedCommand:followMeCoords withAltitude:followMeHeightOffset withFollowing:YES];
+        [self issueGuidedCommand:fmCoords withAltitude:fmHeightOffset withFollowing:YES];
     }
 }
 
@@ -470,9 +450,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (void) handlePacket:(mavlink_message_t*)msg {
     
-    // FIXME: try to avoid repeated work here 
-    // (i.e. if yaw hasn't changed, or position hasn't discernibly 
-    // changed relative to view, don't update)
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
@@ -495,18 +472,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(gpsRawIntPkt.lat/10000000.0, gpsRawIntPkt.lon/10000000.0);
             [uavPos setCoordinate:pos];
             [self addToTrack:pos];
-            
-            [numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsRawIntPkt.satellites_visible]];
-            [gpsFixTypeLabel    setText: (gpsRawIntPkt.fix_type == 3) ? @"3D" :
-                                        ((gpsRawIntPkt.fix_type == 2) ? @"2D" : @"No fix")];
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_GPS_STATUS:
-        {
-            mavlink_gps_status_t gpsStatus;
-            mavlink_msg_gps_status_decode(msg, &gpsStatus);
-            [numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
         }
         break;
             
@@ -521,8 +486,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             
             [ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [ahIndicatorView requestRedraw];
-            
-            [sysUptimeLabel  setText:[NSString stringWithFormat:@"%0.1f s", attitudePkt.time_boot_ms/1000.0f]];
         }
         break;
 
@@ -538,10 +501,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             [compassView  requestRedraw];
             [airspeedView requestRedraw];
             [altitudeView requestRedraw];
-            
-            [throttleLabel    setText:[NSString stringWithFormat:@"%d%%", vfrHudPkt.throttle]];
-            [climbRateLabel   setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.climb]];
-            [groundSpeedLabel setText:[NSString stringWithFormat:@"%0.1f m/s", vfrHudPkt.groundspeed]];
         }
         break;
             
@@ -577,27 +536,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
-            [windDirLabel    setText:[NSString stringWithFormat:@"%d", (int)wind.direction]];
-            [windSpeedLabel  setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed]];
-            [windSpeedZLabel setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed_z]];
-            
             windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_HWSTATUS:
-        {
-            mavlink_hwstatus_t hwStatus;
-            mavlink_msg_hwstatus_decode(msg, &hwStatus);
-            [sysVoltageLabel setText:[NSString stringWithFormat:@"%0.2fV", hwStatus.Vcc/1000.f]];
-        }
-        break;
-            
-        case MAVLINK_MSG_ID_MEMINFO:
-        {
-            mavlink_meminfo_t memFree;
-            mavlink_msg_meminfo_decode(msg, &memFree);
-            [sysMemFreeLabel setText:[NSString stringWithFormat:@"%0.1fkB", memFree.freemem/1024.0f]];
         }
         break;
             
@@ -605,11 +544,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
-            
-            [customModeLabel    setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
-            [baseModeLabel      setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
-            [statusLabel        setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
-            
+            BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
+            [_armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
+            [_armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
+            [_customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode)
             {
@@ -631,7 +570,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
             if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
-                [self disableFollowMeMode];
+                [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }
             lastCustomMode = heartbeat.custom_mode;
@@ -741,16 +680,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #endif
     if (age > 5.0) return;
     
-    userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", location.horizontalAccuracy];
-
-    if (location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= FOLLOW_ME_REQUIRED_ACCURACY) {
-        userLocationAccuracyLabel.textColor = [UIColor greenColor];
-    } else {
-        userLocationAccuracyLabel.textColor = [UIColor redColor];
-    }
+    [_followMeControlDelegate followMeLocationAccuracy:location.horizontalAccuracy isAcceptable:[GCSMapViewController isAcceptableFollowMePosition:location]];
     
     userPosition = location;
-    [self updateFollowMePosition];
+    [self updateFollowMePosition:[_followMeControlDelegate followMeControlValues]];
 }
 
 @end

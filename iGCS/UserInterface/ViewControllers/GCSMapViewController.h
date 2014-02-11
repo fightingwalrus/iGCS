@@ -21,7 +21,9 @@
 #import "KxMovieViewController.h"
 #endif
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate>
+#import "GCSSidebarController.h"
+
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol>
 {
     MKPointAnnotation *uavPos; 
     MKAnnotationView *uavView;
@@ -36,8 +38,6 @@
     CLLocationCoordinate2D gotoCoordinates;
     float gotoAltitude;
     
-    CLLocationCoordinate2D followMeCoords;
-    float followMeHeightOffset; // relative to home
     BOOL showProposedFollowPos;
     NSDate *lastFollowMeUpdate;
     uint32_t lastCustomMode;
@@ -46,12 +46,17 @@
     int				gameUniqueID;
 }
 
+@property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
+
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
 
 @property(nonatomic, strong) NSArray *myFriends;
 @property(nonatomic, strong) NSArray *myIdentifiers;
 @property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
+
+@property (nonatomic, retain) IBOutlet UIButton *sidebarButton;
+- (IBAction)toggleSidebar:(id)sender;
 
 #define WIND_ICON_OFFSET_ANG 135
 
@@ -61,44 +66,19 @@
 @property (nonatomic, retain) IBOutlet VerticalScaleView     *airspeedView;
 @property (nonatomic, retain) IBOutlet VerticalScaleView     *altitudeView;
 
-@property (nonatomic, retain) IBOutlet UILabel     *customModeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *baseModeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *statusLabel;
-
-@property (nonatomic, retain) IBOutlet UILabel     *gpsFixTypeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *numSatellitesLabel;
-
-@property (nonatomic, retain) IBOutlet UILabel     *sysUptimeLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *sysVoltageLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *sysMemFreeLabel;
-
-@property (nonatomic, retain) IBOutlet UILabel     *throttleLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *climbRateLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *groundSpeedLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windDirLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windSpeedLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *windSpeedZLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *voltageLabel;
-@property (nonatomic, retain) IBOutlet UILabel     *currentLabel;
-
-@property (nonatomic, retain) IBOutlet UILabel     *userLocationAccuracyLabel;
-
+@property (nonatomic, retain) IBOutlet UILabel *armedLabel;
+@property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
-
-// Temporary controls to mock out future UI control of "follow" me mode
-@property (nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
-@property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
-- (IBAction) followMeSwitchChanged:(UISwitch*)s;
-- (IBAction) followMeSliderChanged:(UISlider*)slider;
+@property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
+@property (nonatomic, retain) IBOutlet UILabel *currentLabel;
 
 #ifdef VIDEOSTREAMING
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
 @property (nonatomic, retain) NSDictionary *availableStreams;
 #endif
 
-
 - (IBAction) changeControlModeSegment;
+
++ (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos;
 
 @end

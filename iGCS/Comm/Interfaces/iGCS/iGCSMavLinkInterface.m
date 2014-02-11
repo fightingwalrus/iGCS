@@ -12,8 +12,9 @@
 #import "DateTimeUtils.h"
 #import "iGCSMavLinkInterface.h"
 
-#import "CommsViewController.h"
 #import "GCSMapViewController.h"
+#import "GCSSidebarController.h"
+#import "CommsViewController.h"
 #import "WaypointsViewController.h"
 
 #import "mavlink_helpers.h"
@@ -128,16 +129,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                 [retryRequestHandler checkForAckOnCurrentRequest:msg];
                 
                 // Then send the packet on to the child views
-#if 0
-                for (id view in [self viewControllers]) {
-                    [view handlePacket:&msg];
-                }
-#else
                 [self.mainVC.gcsMapVC handlePacket:&msg];
+                [self.mainVC.gcsSidebarVC handlePacket:&msg];
                 [self.mainVC.waypointVC handlePacket:&msg];
                 [self.mainVC.commsVC  handlePacket:&msg];
                 [self.mavlinkLogger handlePacket:&msg];
-#endif
             }
         }
     }
