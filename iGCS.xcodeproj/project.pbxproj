@@ -2730,6 +2730,7 @@
 				PRODUCT_NAME = "iGCS video";
 				PROVISIONING_PROFILE = "CCF0C924-DF12-4AF3-91CF-35C5ADCD1A54";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CCF0C924-DF12-4AF3-91CF-35C5ADCD1A54";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2767,6 +2768,7 @@
 				PRODUCT_NAME = "iGCS video";
 				PROVISIONING_PROFILE = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2926,6 +2928,8 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = "armv7s armv7";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2958,6 +2962,8 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = "armv7s armv7";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
