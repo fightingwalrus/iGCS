@@ -1,16 +1,17 @@
 iGCS
 ====
+
 iGCS is a UAV Ground Control Station for iPad. 
 
-It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://code.google.com/p/ardupilot-mega/).
+It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://dev.ardupilot.com).
 
 Currently, it requires the use of a RedPark Serial cable for connecting to serial device such as an XBee or XTend radio.
 
 For further details, see:
+
 - http://diydrones.com/profiles/blogs/ipad-ground-control-station
 - http://www.youtube.com/watch?v=S1YOwLGsUrs
 
-=======
 Building
 ========
 
@@ -26,6 +27,39 @@ Recent additions to the project include the kxvideo submodule. kxvideo in turn r
 
 *Note: building ffmpeg as outlined above no longer works with Xcode 5. Please use the main iGCS target 
 for now as the kxmovie/ffmpeg dependencies have been temporarily moved to the iGCS-video-streaming target.*
+
+
+Updating the MAVLink library
+============================
+
+The MAVLink header only C lib used in iGCS is generated from a fork of the master branch of the [MAVLink](https://github.com/mavlink/mavlink) project hosted on github.
+
+Fighting Walrus maintains a [fork](https://github.com/fightingwalrus/mavlink) of the MAVLink repository that tracks upstream. Please use the following steps in order to update the MAVLink lib used in iGCS.
+
+1. Ensure the master branch of https://github.com/fightingwalrus/mavlink has all upstream changes from master merged in to master our master branch.
+2. Clone https://github.com/fightingwalrus/mavlink
+3. Navigate to the pymavlink/generator directory
+4. Run the gen_all.sh script like this: `./gen_all.sh`
+5. Navigate to pymavlink/generator/C/include_v1.0 (we support MAVLink 1.0 but not v.9)
+6. Create a branch of the iGCS project 
+7. Copy the follow folders and files into the iGCS folder named `mavlink_include`
+
+Folders and files to copy:
+
+- arupilotmega
+- autoquad
+- common
+- matrixpilot
+- pixhawk
+- sensesoar
+- checksum.h
+- mavlink_conversations.h
+- mavlink_helpers.h
+- mavlink\_protobuf\_manager.hpp
+- mavlink_types.h
+- protocal.h
+
+Commit and push your changes and open a pull request for review and further HIL testing. In the pull request please note the commit from the MAVLink repository that was used to generate the new MAVLink header files.
 
 License
 =======
