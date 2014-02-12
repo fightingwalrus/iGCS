@@ -171,7 +171,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 	if (_selectedAccessory && [_selectedAccessory isConnected]) {
         return YES;
     } else {
-		return NO;
+        return NO;
     }
 }
 
