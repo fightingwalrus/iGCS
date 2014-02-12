@@ -220,8 +220,8 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 #pragma mark NSNotifications
 
 - (void)accessoryConnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface2: accessoryConnected");
-    NSLog(@"FightingWalrusInterface2: accessoryConnected: notification Name: %@",notification.name);
+	NSLog(@"FightingWalrusInterface: accessoryConnected");
+    NSLog(@"FightingWalrusInterface: accessoryConnected: notification Name: %@",notification.name);
     NSLog(@"Notification: %@",notification.userInfo);
     
     if([_doubleTab boolValue]) {
@@ -237,8 +237,8 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
-    NSLog(@"FightingWalrusInterface2: accessoryDisconnected: notification Name: %@",notification.name);
+	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
+    NSLog(@"FightingWalrusInterface: accessoryDisconnected: notification Name: %@",notification.name);
 
     if (![self isAccessoryConnected]){
 		[self closeSession];
