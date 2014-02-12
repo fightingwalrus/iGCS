@@ -168,10 +168,11 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
 - (BOOL)isAccessoryConnected {
 	NSLog(@"FightingWalrusInterface: isAccessoryConnected");
-	if (_selectedAccessory && [_selectedAccessory isConnected])
-		return YES;
-	else
+	if (_selectedAccessory && [_selectedAccessory isConnected]) {
+        return YES;
+    } else {
 		return NO;
+    }
 }
 
 
@@ -223,29 +224,25 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     NSLog(@"FightingWalrusInterface2: accessoryConnected: notification Name: %@",notification.name);
     NSLog(@"Notification: %@",notification.userInfo);
     
-    if([_doubleTab boolValue])
-    {
+    if([_doubleTab boolValue]) {
         _doubleTab = @NO;
-    }
-    else
-    {
+    } else {
         _doubleTab = @YES;
-        if (![self isAccessoryConnected])
-            {
+        if (![self isAccessoryConnected]) {
             EAAccessory *a = [self selectedAccessory];
             [self setupControllerForAccessory:a withProtocolString:_protocolString];
             [self openSession];
-            }
+        }
     }
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
 	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
     NSLog(@"FightingWalrusInterface2: accessoryDisconnected: notification Name: %@",notification.name);
-	if (![self isAccessoryConnected])
-        {
+
+    if (![self isAccessoryConnected]){
 		[self closeSession];
-        }
+    }
 }
 
 #pragma mark -
