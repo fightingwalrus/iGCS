@@ -14,7 +14,10 @@
     EAAccessory *_selectedAccessory;
     EASession *_session;
     NSString *_protocolString;
+    NSString *_enabledAccessoryProtocol;
+    NSArray *_supportedAccessoryProtocols;
     NSMutableData *_writeDataBuffer;
+
 }
 
 @property (nonatomic, retain, readonly) EAAccessory *selectedAccessory;
@@ -22,7 +25,7 @@
 @property (retain) NSMutableData *writeDataBuffer;
 @property (nonatomic, strong) NSNumber *doubleTab;
 
-+(FightingWalrusInterface*)create;
++(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString;
 
 - (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString;
 - (BOOL)openSession;
@@ -37,3 +40,7 @@
 - (void)accessoryDisconnected:(NSNotification *)notification;
 
 @end
+
+extern NSString * const GCSProtocolStringTelemetry;
+extern NSString * const GCSProtocolStringConfig;
+

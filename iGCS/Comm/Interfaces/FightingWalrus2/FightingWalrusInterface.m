@@ -9,9 +9,12 @@
 #import "FightingWalrusInterface.h"
 #import "DebugLogger.h"
 
+NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.igcs";
+NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
+
 @implementation FightingWalrusInterface
-+(FightingWalrusInterface*)create {
-    FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] init];
++(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString {
+    FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] initWithProtocolString:protocolString];
 
     if (fightingWalrusInterface.selectedAccessory) {
         [DebugLogger console:@"FightingWalrusInterface: Starting accessory session.."];
@@ -66,14 +69,13 @@
 
 #pragma mark Public Methods
 
-
-
-- (id)init {
+- (id)initWithProtocolString:(NSString *) protocolString {
     if (self = [super init]) {
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        
+        _supportedAccessoryProtocols = @[GCSProtocolStringTelemetry, GCSProtocolStringConfig];
+        _enabledAccessoryProtocol = protocolString;
         //HACK Testing ping pong connect/disconnect
         _doubleTab = @YES;
 
@@ -87,8 +89,9 @@
                     break;
                 }
             }
+
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-            self.protocolString = [protocolStrings objectAtIndex:0];
+            self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];
         }
     }
 
@@ -108,7 +111,7 @@
         if ([_accessoryList count]) {
             _selectedAccessory = [_accessoryList objectAtIndex:0];
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-            self.protocolString = [protocolStrings objectAtIndex:0];
+            self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];;
         }
     }
     return _selectedAccessory;
@@ -243,6 +246,24 @@
         {
 		[self closeSession];
         }
+}
+
+#pragma mark -
+#pragma mark Helpers
+
+-(NSString *)enabledProtocolFromProtocolStrings:(NSArray *) protocols {
+    BOOL isSupported = [_supportedAccessoryProtocols containsObject:_enabledAccessoryProtocol];
+    if (!isSupported) {
+        return nil;
+    }
+
+    NSInteger idx = [protocols indexOfObject:_enabledAccessoryProtocol];
+
+    if (idx == NSNotFound) {
+        return nil;
+    }
+
+    return [protocols objectAtIndex:idx];
 }
 
 @end
