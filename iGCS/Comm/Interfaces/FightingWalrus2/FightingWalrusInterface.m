@@ -27,46 +27,6 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     }
 }
 
--(void)consumeData:(uint8_t *)bytes length:(int)length {
-    [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
-
-    NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
-    [self writeData:dataToStream];
-
-}
-
-#pragma mark Internal
-
-- (void)writeDataFromBufferToStream {
-    NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
-    while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
-        NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
-        
-        NSLog(@"[%d] bytes in buffer - wrote [%d] bytes", [_writeDataBuffer length], bytesWritten);
-        if (bytesWritten == -1) {
-            NSLog(@"write error");
-            break;
-        } else if (bytesWritten > 0) {
-            [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
-        }
-    }
-}
-
-
-#define EAD_INPUT_BUFFER_SIZE 128
-
-- (void)readDataFromStreamToBuffer {
-    NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
-    uint8_t buf[EAD_INPUT_BUFFER_SIZE];
-    while ([[_session inputStream] hasBytesAvailable]) {
-        NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
-        NSLog(@"read %d bytes from input stream", bytesRead);
-
-        [self produceData:buf length:bytesRead];
-    }
-}
-
-
 #pragma mark Public Methods
 
 - (id)initWithProtocolString:(NSString *) protocolString {
@@ -181,7 +141,6 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory {
 	NSLog(@"FightingWalrusInterface: accessoryDidDisconnect:");
-    // do something ...
 }
 
 
@@ -242,6 +201,45 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
     if (![self isAccessoryConnected]){
 		[self closeSession];
+    }
+}
+
+#pragma mark Internal
+
+-(void)consumeData:(uint8_t *)bytes length:(int)length {
+    [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
+
+    NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
+    [self writeData:dataToStream];
+    
+}
+
+- (void)writeDataFromBufferToStream {
+    NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
+    while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
+        NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
+
+        NSLog(@"[%d] bytes in buffer - wrote [%d] bytes", [_writeDataBuffer length], bytesWritten);
+        if (bytesWritten == -1) {
+            NSLog(@"write error");
+            break;
+        } else if (bytesWritten > 0) {
+            [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
+        }
+    }
+}
+
+
+#define EAD_INPUT_BUFFER_SIZE 128
+
+- (void)readDataFromStreamToBuffer {
+    NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
+    uint8_t buf[EAD_INPUT_BUFFER_SIZE];
+    while ([[_session inputStream] hasBytesAvailable]) {
+        NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
+        NSLog(@"read %d bytes from input stream", bytesRead);
+
+        [self produceData:buf length:bytesRead];
     }
 }
 
