@@ -12,9 +12,9 @@ For further details, see:
 
 Screenshots
 ========
-![alt tag](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/gcsview.png)
-![alt tag](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/gcsview-sidebar.png)
-![alt tag](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/mission-edit.png)
+![Main View](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/gcsview.png "Main View")
+![Main View with sidebar](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/gcsview-sidebar.png "Main View with sidebar")
+![Mission Editor](https://raw.github.com/fightingwalrus/iGCS/freshen-readme/screenshots/mission-edit.png "Mission Editor")
 
 Building
 ========
