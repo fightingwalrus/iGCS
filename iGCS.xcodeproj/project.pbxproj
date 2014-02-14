@@ -975,7 +975,7 @@
 			isa = PBXGroup;
 			children = (
 				18069F9D1836F7C70068E7A5 /* Bluetooth */,
-				18069FB21836F7C70068E7A5 /* FightingWalrus2 */,
+				18069FB21836F7C70068E7A5 /* FightingWalrus */,
 				18069FB51836F7C70068E7A5 /* iGCS */,
 				18069FBA1836F7C70068E7A5 /* Redpark */,
 				18069FBD1836F7C70068E7A5 /* RovingNetworks */,
@@ -1006,12 +1006,13 @@
 			path = BTLE;
 			sourceTree = "<group>";
 		};
-		18069FB21836F7C70068E7A5 /* FightingWalrus2 */ = {
+		18069FB21836F7C70068E7A5 /* FightingWalrus */ = {
 			isa = PBXGroup;
 			children = (
 				18069FB31836F7C70068E7A5 /* FightingWalrusInterface.h */,
 				18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */,
 			);
+			name = FightingWalrus;
 			path = FightingWalrus2;
 			sourceTree = "<group>";
 		};

@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 -(void)setupFightingWalrusConnections {
     if (!_fightingWalrusInterface) {
         [DebugLogger console:@"Starting FWR connection"];
-        _fightingWalrusInterface = [FightingWalrusInterface create];
+        _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
     }
     
     if (_fightingWalrusInterface) {
