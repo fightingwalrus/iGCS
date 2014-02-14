@@ -127,12 +127,8 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 }
 
 - (BOOL)isAccessoryConnected {
-	NSLog(@"FightingWalrusInterface: isAccessoryConnected");
-	if (_selectedAccessory && [_selectedAccessory isConnected]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    NSLog(@"FightingWalrusInterface: isAccessoryConnected");
+    return (_selectedAccessory && [_selectedAccessory isConnected]);
 }
 
 
