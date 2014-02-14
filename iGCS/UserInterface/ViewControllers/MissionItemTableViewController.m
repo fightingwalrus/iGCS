@@ -359,6 +359,7 @@ NSArray* headerSpecs = nil;
 - (void) markSelectedRow:(NSInteger)idx {
     NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self modifyHeadersForSelectedRow:idx];
     [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
 }
 
