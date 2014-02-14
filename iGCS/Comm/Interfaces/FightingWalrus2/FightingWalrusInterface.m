@@ -9,9 +9,12 @@
 #import "FightingWalrusInterface.h"
 #import "DebugLogger.h"
 
+NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.igcs";
+NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
+
 @implementation FightingWalrusInterface
-+(FightingWalrusInterface*)create {
-    FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] init];
++(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString {
+    FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] initWithProtocolString:protocolString];
 
     if (fightingWalrusInterface.selectedAccessory) {
         [DebugLogger console:@"FightingWalrusInterface: Starting accessory session.."];
@@ -24,56 +27,15 @@
     }
 }
 
--(void)consumeData:(uint8_t *)bytes length:(int)length {
-    [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
-
-    NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
-    [self writeData:dataToStream];
-
-}
-
-#pragma mark Internal
-
-- (void)writeDataFromBufferToStream {
-    NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
-    while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
-        NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
-        
-        NSLog(@"[%d] bytes in buffer - wrote [%d] bytes", [_writeDataBuffer length], bytesWritten);
-        if (bytesWritten == -1) {
-            NSLog(@"write error");
-            break;
-        } else if (bytesWritten > 0) {
-            [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
-        }
-    }
-}
-
-
-#define EAD_INPUT_BUFFER_SIZE 128
-
-- (void)readDataFromStreamToBuffer {
-    NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
-    uint8_t buf[EAD_INPUT_BUFFER_SIZE];
-    while ([[_session inputStream] hasBytesAvailable]) {
-        NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
-        NSLog(@"read %d bytes from input stream", bytesRead);
-
-        [self produceData:buf length:bytesRead];
-    }
-}
-
-
 #pragma mark Public Methods
 
-
-
-- (id)init {
+- (id)initWithProtocolString:(NSString *) protocolString {
     if (self = [super init]) {
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        
+        _supportedAccessoryProtocols = @[GCSProtocolStringTelemetry, GCSProtocolStringConfig];
+        _enabledAccessoryProtocol = protocolString;
         //HACK Testing ping pong connect/disconnect
         _doubleTab = @YES;
 
@@ -87,8 +49,9 @@
                     break;
                 }
             }
+
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-            self.protocolString = [protocolStrings objectAtIndex:0];
+            self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];
         }
     }
 
@@ -108,7 +71,7 @@
         if ([_accessoryList count]) {
             _selectedAccessory = [_accessoryList objectAtIndex:0];
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-            self.protocolString = [protocolStrings objectAtIndex:0];
+            self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];;
         }
     }
     return _selectedAccessory;
@@ -164,11 +127,8 @@
 }
 
 - (BOOL)isAccessoryConnected {
-	NSLog(@"FightingWalrusInterface: isAccessoryConnected");
-	if (_selectedAccessory && [_selectedAccessory isConnected])
-		return YES;
-	else
-		return NO;
+    NSLog(@"FightingWalrusInterface: isAccessoryConnected");
+    return (_selectedAccessory && [_selectedAccessory isConnected]);
 }
 
 
@@ -177,7 +137,6 @@
 
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory {
 	NSLog(@"FightingWalrusInterface: accessoryDidDisconnect:");
-    // do something ...
 }
 
 
@@ -216,33 +175,86 @@
 #pragma mark NSNotifications
 
 - (void)accessoryConnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface2: accessoryConnected");
-    NSLog(@"FightingWalrusInterface2: accessoryConnected: notification Name: %@",notification.name);
+	NSLog(@"FightingWalrusInterface: accessoryConnected");
+    NSLog(@"FightingWalrusInterface: accessoryConnected: notification Name: %@",notification.name);
     NSLog(@"Notification: %@",notification.userInfo);
     
-    if([_doubleTab boolValue])
-    {
+    if([_doubleTab boolValue]) {
         _doubleTab = @NO;
-    }
-    else
-    {
+    } else {
         _doubleTab = @YES;
-        if (![self isAccessoryConnected])
-            {
+        if (![self isAccessoryConnected]) {
             EAAccessory *a = [self selectedAccessory];
             [self setupControllerForAccessory:a withProtocolString:_protocolString];
             [self openSession];
-            }
+        }
     }
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
-	NSLog(@"FightingWalrusInterface2: accessoryDisconnected");
-    NSLog(@"FightingWalrusInterface2: accessoryDisconnected: notification Name: %@",notification.name);
-	if (![self isAccessoryConnected])
-        {
+	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
+    NSLog(@"FightingWalrusInterface: accessoryDisconnected: notification Name: %@",notification.name);
+
+    if (![self isAccessoryConnected]){
 		[self closeSession];
+    }
+}
+
+#pragma mark Internal
+
+-(void)consumeData:(uint8_t *)bytes length:(int)length {
+    [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
+
+    NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
+    [self writeData:dataToStream];
+    
+}
+
+- (void)writeDataFromBufferToStream {
+    NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
+    while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
+        NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
+
+        NSLog(@"[%d] bytes in buffer - wrote [%d] bytes", [_writeDataBuffer length], bytesWritten);
+        if (bytesWritten == -1) {
+            NSLog(@"write error");
+            break;
+        } else if (bytesWritten > 0) {
+            [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
         }
+    }
+}
+
+
+#define EAD_INPUT_BUFFER_SIZE 128
+
+- (void)readDataFromStreamToBuffer {
+    NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
+    uint8_t buf[EAD_INPUT_BUFFER_SIZE];
+    while ([[_session inputStream] hasBytesAvailable]) {
+        NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
+        NSLog(@"read %d bytes from input stream", bytesRead);
+
+        [self produceData:buf length:bytesRead];
+    }
+}
+
+#pragma mark -
+#pragma mark Helpers
+
+-(NSString *)enabledProtocolFromProtocolStrings:(NSArray *) protocols {
+    BOOL isSupported = [_supportedAccessoryProtocols containsObject:_enabledAccessoryProtocol];
+    if (!isSupported) {
+        return nil;
+    }
+
+    NSInteger idx = [protocols indexOfObject:_enabledAccessoryProtocol];
+
+    if (idx == NSNotFound) {
+        return nil;
+    }
+
+    return [protocols objectAtIndex:idx];
 }
 
 @end
