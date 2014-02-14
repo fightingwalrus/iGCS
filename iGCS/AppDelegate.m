@@ -145,13 +145,10 @@ static AppDelegate *shared;
 }
 
 
-
 +(AppDelegate*)sharedDelegate
 {
     return shared;
 }
-
-static int counter = 0;
 
 
 - (BOOL)application:(UIApplication *)application
@@ -159,8 +156,6 @@ static int counter = 0;
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    
-
     NSLog(@"openURL: Assuming URL is for Dropbox API.");
 
     DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
