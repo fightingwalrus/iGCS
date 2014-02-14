@@ -175,6 +175,8 @@
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186DC2391992F60700A672A6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186DC2381992F60600A672A6 /* CoreData.framework */; };
+		1844392818ADEAE100FEBD0B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1844392718ADEAE100FEBD0B /* Settings.bundle */; };
+		1844392918ADEAE100FEBD0B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1844392718ADEAE100FEBD0B /* Settings.bundle */; };
 		1875978D189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978E189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
@@ -694,6 +696,7 @@
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
 		186DC2381992F60600A672A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1844392718ADEAE100FEBD0B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18759789189108980012DF6D /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -2137,6 +2140,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0D06F719761986002458F5 /* 3rd-party */,
+				1844392718ADEAE100FEBD0B /* Settings.bundle */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
@@ -2443,6 +2447,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D8918019817CB1001ED845 /* LICENSE in Resources */,
+				182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */,
+				182FFAED181F0C9100A8C31C /* 07-map-marker.png in Resources */,
+				1844392918ADEAE100FEBD0B /* Settings.bundle in Resources */,
+				182FFAEE181F0C9100A8C31C /* 13-target.png in Resources */,
+				182FFAEF181F0C9100A8C31C /* 73-radar.png in Resources */,
+				182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */,
+				182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */,
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				18C86290198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
@@ -2549,6 +2560,13 @@
 				18C862D9198B5B1000F99CD3 /* Icon-57.png in Resources */,
 				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
 				18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
+				CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */,
+				CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */,
+				1844392818ADEAE100FEBD0B /* Settings.bundle in Resources */,
+				CAE20224152EA67A00D659E2 /* 13-target.png in Resources */,
+				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
+				CACDAAB61802718A00B5A62A /* 111-user.png in Resources */,
+				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				18C862B8198AD4A800F99CD3 /* 181-hammer.png in Resources */,
 				18C862AF198AD4A800F99CD3 /* 103-map@2x.png in Resources */,
