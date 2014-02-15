@@ -1,5 +1,5 @@
 //
-//  FirstViewController.m
+//  GCSMapViewController.m
 //  iGCS
 //
 //  Created by Claudio Natoli on 5/02/12.
@@ -397,12 +397,18 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"]) {
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Confirm"]) {
         // Let's go!
         [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
     }
 }
 
++ (NSString*) formatGotoAlertMessage:(CLLocationCoordinate2D)coord withAlt:(float)alt {
+    return [NSString stringWithFormat:@"%@, %@\nAlt: %0.1fm\n(pan up/down to change)",
+            [MiscUtilities coordinateToNiceLatLong: coord.longitude isLat:NO],
+            [MiscUtilities coordinateToNiceLatLong: coord.latitude  isLat:YES],
+            alt];
+}
 
 // Recognizer for long press gestures => GOTO point
 -(void)handleLongPressGesture:(UIGestureRecognizer*)sender {
@@ -413,12 +419,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
     gotoCoordinates = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
     
     // Confirm acceptance of GOTO point
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Set GOTO position"
-                                                      message:[NSString stringWithFormat:@"%0.5f,%0.5f %0.1fm",
-                                                                gotoCoordinates.longitude, gotoCoordinates.latitude, gotoAltitude]
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Fly-to position?"
+                                                      message:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]
                                                      delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:@"Cancel", nil];
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:@"Confirm", @"Cancel", nil];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handlePanGesture:)];
@@ -444,8 +449,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     lastTranslate = translate;
     
     UIAlertView *view = (UIAlertView*)(sender.view);
-    [view setMessage:[NSString stringWithFormat:@"%0.5f,%0.5f %0.1fm",
-                      gotoCoordinates.longitude, gotoCoordinates.latitude, gotoAltitude]];    
+    [view setMessage:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {

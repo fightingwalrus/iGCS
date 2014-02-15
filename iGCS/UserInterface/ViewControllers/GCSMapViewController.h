@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  GCSMapViewController.h
 //  iGCS
 //
 //  Created by Claudio Natoli on 5/02/12.
