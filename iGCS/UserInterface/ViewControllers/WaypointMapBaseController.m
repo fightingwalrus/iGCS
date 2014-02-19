@@ -270,7 +270,7 @@
     // Handle our custom annotations
     //
     if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-        NSString* identifier = @"WAYPOINT";
+        static NSString* const identifier = @"WAYPOINT";
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
