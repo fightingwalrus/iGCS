@@ -97,8 +97,9 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         [self setupBluetoothConnections];
         
     } else if (commInterface ==  GCSRedparkCommInterface) {
+#ifdef REDPARK
         [self setupRedparkConnections];
-        
+#endif
     } else if (commInterface == GCSFightingWalrusRadioCommInterface) {
         [DebugLogger console: @"Creating FWR connection."];
         [self setupFightingWalrusConnections];
@@ -127,6 +128,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     }
 }
 
+#ifdef REDPARK
 -(void)setupRedparkConnections {
     if (!_redParkCable) {
         [DebugLogger console:@"Starting Redpark connection."];
@@ -147,6 +149,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         [DebugLogger console:@"Connected iGCS Application output to Redpark Tx."];
     }
 }
+#endif
 
 -(void)setupFightingWalrusConnections {
     if (!_fightingWalrusInterface) {
@@ -184,8 +187,9 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     BluetoothStream *bts = [BluetoothStream createForTx];
     
     // Create connection from redpark to bts
+#ifdef REDPARK
     [_connectionPool createConnection:_redParkCable destination:bts];
-    
+#endif
     [DebugLogger console:@"Created BluetoothStream for Tx."];
     NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
 }

@@ -19,7 +19,6 @@
 		18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */; };
 		18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */; };
 		18069FD51836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */; };
-		18069FD61836F7C70068E7A5 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */; };
 		18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */; };
 		18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
 		18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
@@ -140,6 +139,112 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B9FAC418B2F7AF00668660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
+		18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
+		18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
+		18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
+		18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
+		18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
+		18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
+		18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
+		18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
+		18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
+		18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
+		18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */; };
+		18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
+		18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
+		18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
+		18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
+		18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */; };
+		18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
+		18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
+		18B9FAD718B2F7AF00668660 /* RxMissionRequestList.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04C180A87C900F5BCDB /* RxMissionRequestList.m */; };
+		18B9FAD818B2F7AF00668660 /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
+		18B9FAD918B2F7AF00668660 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
+		18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
+		18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
+		18B9FADC18B2F7AF00668660 /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
+		18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD034180A674100F5BCDB /* MavLinkRetryingRequestHandler.m */; };
+		18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
+		18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */; };
+		18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
+		18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
+		18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
+		18B9FAE318B2F7AF00668660 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1116DC74DB00BAE96B /* Logger.m */; };
+		18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
+		18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
+		18B9FAE618B2F7AF00668660 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA1616DC7B5200BAE96B /* ExceptionHandler.m */; };
+		18B9FAE718B2F7AF00668660 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
+		18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD037180A67C000F5BCDB /* SetWPRequest.m */; };
+		18B9FAEA18B2F7AF00668660 /* DebugLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C45CB8170A7EA4007C9999 /* DebugLogger.m */; };
+		18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
+		18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7981734C28D006BEF6A /* MissionItemTableViewController.m */; };
+		18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
+		18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC417895E6000B5EC88 /* RequestedPointAnnotation.m */; };
+		18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD046180A83E000F5BCDB /* TxMissionItemCount.m */; };
+		18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFD1CC81789670E00B5EC88 /* CustomPointAnnotation.m */; };
+		18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtility.m */; };
+		18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A0F179BC52000183159 /* MiscUtilities.m */; };
+		18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD018895B3700408D71 /* GKLocalController.m */; };
+		18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
+		18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
+		18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
+		18B9FAF718B2F7AF00668660 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */; };
+		18B9FAF918B2F7AF00668660 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
+		18B9FAFA18B2F7AF00668660 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
+		18B9FAFB18B2F7AF00668660 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
+		18B9FAFC18B2F7AF00668660 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
+		18B9FAFD18B2F7AF00668660 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
+		18B9FAFE18B2F7AF00668660 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
+		18B9FAFF18B2F7AF00668660 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
+		18B9FB0018B2F7AF00668660 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB1170A7820007C9999 /* MobileCoreServices.framework */; };
+		18B9FB0118B2F7AF00668660 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CAF170A7810007C9999 /* CFNetwork.framework */; };
+		18B9FB0218B2F7AF00668660 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253F11703F213006E27B0 /* libsqlite3.0.dylib */; };
+		18B9FB0318B2F7AF00668660 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EF1703F1CD006E27B0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18B9FB0418B2F7AF00668660 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18B9FB0518B2F7AF00668660 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EC1703F1C3006E27B0 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18B9FB0618B2F7AF00668660 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
+		18B9FB0718B2F7AF00668660 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
+		18B9FB0818B2F7AF00668660 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
+		18B9FB0918B2F7AF00668660 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
+		18B9FB0A18B2F7AF00668660 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
+		18B9FB0B18B2F7AF00668660 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */; };
+		18B9FB0C18B2F7AF00668660 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
+		18B9FB0D18B2F7AF00668660 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
+		18B9FB0E18B2F7AF00668660 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
+		18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
+		18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
+		18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
+		18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
+		18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
+		18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
+		18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */; };
+		18B9FB1718B2F7AF00668660 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
+		18B9FB1818B2F7AF00668660 /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1415143E570014F7C8 /* 07-map-marker.png */; };
+		18B9FB1918B2F7AF00668660 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE3815143E570014F7C8 /* 13-target.png */; };
+		18B9FB1A18B2F7AF00668660 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
+		18B9FB1B18B2F7AF00668660 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE2415143E570014F7C8 /* 111-user.png */; };
+		18B9FB1C18B2F7AF00668660 /* 181-hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7115143E570014F7C8 /* 181-hammer.png */; };
+		18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
+		18B9FB1E18B2F7AF00668660 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
+		18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
+		18B9FB2018B2F7AF00668660 /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
+		18B9FB2118B2F7AF00668660 /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
+		18B9FB2218B2F7AF00668660 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C61892D2F80050F680 /* Icon-50.png */; };
+		18B9FB2318B2F7AF00668660 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
+		18B9FB2418B2F7AF00668660 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		18B9FB2518B2F7AF00668660 /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
+		18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
+		18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
+		18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C71892D2F80050F680 /* Icon-58.png */; };
+		18B9FB2918B2F7AF00668660 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
+		18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
+		18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
+		18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
+		18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
+		18B9FB2E18B2F7AF00668660 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
+		18B9FB2F18B2F7AF00668660 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		18C011BD189394A5005B67E5 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
@@ -198,7 +303,6 @@
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
-		CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
 		CA43E09715143E940014F7C8 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
@@ -264,6 +368,13 @@
 			remoteGlobalIDString = 87FD6175163A75440090956E;
 			remoteInfo = kxmovie;
 		};
+		18B9FAC218B2F7AF00668660 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
 		18C011B918939408005B67E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */;
@@ -305,7 +416,7 @@
 		18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
 		18069FBE1836F7C70068E7A5 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
-		182FFAFF181F0C9100A8C31C /* iGCS copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		182FFAFF181F0C9100A8C31C /* iGCS video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS video.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-video-streaming.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-video-streaming.plist"; sourceTree = "<absolute>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
@@ -547,6 +658,8 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B9FB3418B2F7B000668660 /* iGCS-Info-redpark.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iGCS-Info-redpark.plist"; path = "/Users/abrown/working-drone/iGCS/iGCS-Info-redpark.plist"; sourceTree = "<absolute>"; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		18E62664171101D9006A5D43 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = submodules/kxmovie/libs/libkxmovie.a; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
@@ -914,6 +1027,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18B9FAF818B2F7AF00668660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B9FAF918B2F7AF00668660 /* GameKit.framework in Frameworks */,
+				18B9FAFA18B2F7AF00668660 /* libiconv.dylib in Frameworks */,
+				18B9FAFB18B2F7AF00668660 /* Accelerate.framework in Frameworks */,
+				18B9FAFC18B2F7AF00668660 /* AudioToolbox.framework in Frameworks */,
+				18B9FAFD18B2F7AF00668660 /* CoreAudio.framework in Frameworks */,
+				18B9FAFE18B2F7AF00668660 /* MediaPlayer.framework in Frameworks */,
+				18B9FAFF18B2F7AF00668660 /* libxml2.2.dylib in Frameworks */,
+				18B9FB0018B2F7AF00668660 /* MobileCoreServices.framework in Frameworks */,
+				18B9FB0118B2F7AF00668660 /* CFNetwork.framework in Frameworks */,
+				18B9FB0218B2F7AF00668660 /* libsqlite3.0.dylib in Frameworks */,
+				18B9FB0318B2F7AF00668660 /* Social.framework in Frameworks */,
+				18B9FB0418B2F7AF00668660 /* Accounts.framework in Frameworks */,
+				18B9FB0518B2F7AF00668660 /* AdSupport.framework in Frameworks */,
+				18B9FB0618B2F7AF00668660 /* SystemConfiguration.framework in Frameworks */,
+				18B9FB0718B2F7AF00668660 /* CoreBluetooth.framework in Frameworks */,
+				18B9FB0818B2F7AF00668660 /* Security.framework in Frameworks */,
+				18B9FB0918B2F7AF00668660 /* UIKit.framework in Frameworks */,
+				18B9FB0A18B2F7AF00668660 /* Foundation.framework in Frameworks */,
+				18B9FB0B18B2F7AF00668660 /* CoreGraphics.framework in Frameworks */,
+				18B9FB0C18B2F7AF00668660 /* MapKit.framework in Frameworks */,
+				18B9FB0D18B2F7AF00668660 /* ExternalAccessory.framework in Frameworks */,
+				18B9FB0E18B2F7AF00668660 /* CoreLocation.framework in Frameworks */,
+				18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */,
+				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
+				18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */,
+				18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */,
+				18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */,
+				18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */,
+				18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5B14DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -941,7 +1090,6 @@
 				CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */,
 				CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */,
 				CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */,
-				CA43E09515143E580014F7C8 /* libRscMgrUniv.a in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
 				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
@@ -1803,7 +1951,8 @@
 			children = (
 				CA499F5E14DE33BC00FCC9FB /* iGCS.app */,
 				CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */,
-				182FFAFF181F0C9100A8C31C /* iGCS copy.app */,
+				182FFAFF181F0C9100A8C31C /* iGCS video.app */,
+				18B9FB3318B2F7AF00668660 /* iGCS redpark.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1864,6 +2013,7 @@
 		CA499F6914DE33BC00FCC9FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18B9FB3418B2F7B000668660 /* iGCS-Info-redpark.plist */,
 				182FFB00181F0C9200A8C31C /* iGCS-Info-video-streaming.plist */,
 				CA499F6A14DE33BC00FCC9FB /* iGCS-Info.plist */,
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
@@ -1943,7 +2093,25 @@
 			);
 			name = "iGCS-video-streaming";
 			productName = iGCS;
-			productReference = 182FFAFF181F0C9100A8C31C /* iGCS copy.app */;
+			productReference = 182FFAFF181F0C9100A8C31C /* iGCS video.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18B9FAC018B2F7AF00668660 /* iGCS-redpark */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B9FB3018B2F7AF00668660 /* Build configuration list for PBXNativeTarget "iGCS-redpark" */;
+			buildPhases = (
+				18B9FAC318B2F7AF00668660 /* Sources */,
+				18B9FAF818B2F7AF00668660 /* Frameworks */,
+				18B9FB1618B2F7AF00668660 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B9FAC118B2F7AF00668660 /* PBXTargetDependency */,
+			);
+			name = "iGCS-redpark";
+			productName = iGCS;
+			productReference = 18B9FB3318B2F7AF00668660 /* iGCS redpark.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CA499F5D14DE33BC00FCC9FB /* iGCS */ = {
@@ -2019,6 +2187,7 @@
 			projectRoot = "";
 			targets = (
 				CA499F5D14DE33BC00FCC9FB /* iGCS */,
+				18B9FAC018B2F7AF00668660 /* iGCS-redpark */,
 				182FFA97181F0C9100A8C31C /* iGCS-video-streaming */,
 				CA499F8914DE33BC00FCC9FB /* iGCSTests */,
 			);
@@ -2079,6 +2248,38 @@
 				1875979618910AC50012DF6D /* Icon-144.png in Resources */,
 				1842F8CD1892D2F80050F680 /* Icon-40.png in Resources */,
 				182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B9FB1618B2F7AF00668660 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B9FB1718B2F7AF00668660 /* 05-shuffle.png in Resources */,
+				18B9FB1818B2F7AF00668660 /* 07-map-marker.png in Resources */,
+				18B9FB1918B2F7AF00668660 /* 13-target.png in Resources */,
+				18B9FB1A18B2F7AF00668660 /* 73-radar.png in Resources */,
+				18B9FB1B18B2F7AF00668660 /* 111-user.png in Resources */,
+				18B9FB1C18B2F7AF00668660 /* 181-hammer.png in Resources */,
+				18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */,
+				18B9FB1E18B2F7AF00668660 /* 193-location-arrow.png in Resources */,
+				18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */,
+				18B9FB2018B2F7AF00668660 /* mission-mavread.png in Resources */,
+				18B9FB2118B2F7AF00668660 /* mission-mavwrite.png in Resources */,
+				18B9FB2218B2F7AF00668660 /* Icon-50.png in Resources */,
+				18B9FB2318B2F7AF00668660 /* Icon-72.png in Resources */,
+				18B9FB2418B2F7AF00668660 /* Icon-100.png in Resources */,
+				18B9FB2518B2F7AF00668660 /* wrench.png in Resources */,
+				18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */,
+				18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */,
+				18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */,
+				18B9FB2918B2F7AF00668660 /* MainStoryboard.storyboard in Resources */,
+				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
+				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
+				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
+				18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */,
+				18B9FB2E18B2F7AF00668660 /* Icon-40.png in Resources */,
+				18B9FB2F18B2F7AF00668660 /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2200,6 +2401,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18B9FAC318B2F7AF00668660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B9FAC418B2F7AF00668660 /* main.m in Sources */,
+				18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */,
+				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
+				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
+				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
+				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
+				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
+				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
+				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
+				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
+				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
+				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
+				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
+				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
+				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
+				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
+				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
+				18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */,
+				18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */,
+				18B9FAD718B2F7AF00668660 /* RxMissionRequestList.m in Sources */,
+				18B9FAD818B2F7AF00668660 /* DoubleBufferedAsyncView.m in Sources */,
+				18B9FAD918B2F7AF00668660 /* BTLEMavLinkCentral.m in Sources */,
+				18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */,
+				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
+				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
+				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
+				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
+				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
+				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
+				18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */,
+				18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */,
+				18B9FAE318B2F7AF00668660 /* Logger.m in Sources */,
+				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
+				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
+				18B9FAE618B2F7AF00668660 /* ExceptionHandler.m in Sources */,
+				18B9FAE718B2F7AF00668660 /* FileUtils.m in Sources */,
+				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
+				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
+				18B9FAEA18B2F7AF00668660 /* DebugLogger.m in Sources */,
+				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
+				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
+				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
+				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
+				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
+				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
+				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
+				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
+				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
+				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
+				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
+				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
+				18B9FAF718B2F7AF00668660 /* RedparkSerialCable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5A14DE33BC00FCC9FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2255,7 +2515,6 @@
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
-				18069FD61836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2285,6 +2544,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		18B9FAC118B2F7AF00668660 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 18B9FAC218B2F7AF00668660 /* PBXContainerItemProxy */;
+		};
 		18C011BC18939456005B67E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "CorePlot-CocoaTouch";
@@ -2349,7 +2613,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "iGCS copy";
+				PRODUCT_NAME = "iGCS video";
 				PROVISIONING_PROFILE = "CCF0C924-DF12-4AF3-91CF-35C5ADCD1A54";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CCF0C924-DF12-4AF3-91CF-35C5ADCD1A54";
 				WRAPPER_EXTENSION = app;
@@ -2386,9 +2650,75 @@
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "iGCS copy";
+				PRODUCT_NAME = "iGCS video";
 				PROVISIONING_PROFILE = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "169741E7-CE3C-47D0-AEC6-AD4FBB62DC04";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		18B9FB3118B2F7AF00668660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"REDPARK=1",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "iGCS redpark";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALID_ARCHS = armv7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		18B9FB3218B2F7AF00668660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iGCS\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = REDPARK;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "iGCS redpark";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2423,7 +2753,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -2451,7 +2781,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -2475,12 +2805,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2506,12 +2837,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2572,6 +2904,15 @@
 			buildConfigurations = (
 				182FFAFD181F0C9100A8C31C /* Debug */,
 				182FFAFE181F0C9100A8C31C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B9FB3018B2F7AF00668660 /* Build configuration list for PBXNativeTarget "iGCS-redpark" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B9FB3118B2F7AF00668660 /* Debug */,
+				18B9FB3218B2F7AF00668660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
