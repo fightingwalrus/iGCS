@@ -405,8 +405,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 + (NSString*) formatGotoAlertMessage:(CLLocationCoordinate2D)coord withAlt:(float)alt {
     return [NSString stringWithFormat:@"%@, %@\nAlt: %0.1fm\n(pan up/down to change)",
-            [MiscUtilities coordinateToNiceLatLong: coord.longitude isLat:NO],
             [MiscUtilities coordinateToNiceLatLong: coord.latitude  isLat:YES],
+            [MiscUtilities coordinateToNiceLatLong: coord.longitude isLat:NO],
             alt];
 }
 
