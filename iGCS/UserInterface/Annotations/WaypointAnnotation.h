@@ -25,13 +25,11 @@
 
 
 @interface WaypointAnnotation : NSObject <MKAnnotation> {
-    CLLocationCoordinate2D _coordinate;
-    mavlink_mission_item_t _waypoint;
     int _index;
 }
 
-@property (nonatomic, readonly) CLLocationCoordinate2D  coordinate;
-@property (nonatomic, readonly) mavlink_mission_item_t      waypoint;
+@property (nonatomic, assign)   CLLocationCoordinate2D  coordinate;
+@property (nonatomic, readonly) mavlink_mission_item_t  waypoint;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index;
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
