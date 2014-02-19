@@ -13,7 +13,10 @@
 #import "CommConnection.h"
 #import "CommConnectionPool.h"
 
+#ifdef REDPARK
 #import "RedparkSerialCable.h"
+#endif
+
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
@@ -33,9 +36,14 @@
 @property (nonatomic, retain) MainViewController *mainVC;
 @property (nonatomic, retain) iGCSMavLinkInterface *mavLinkInterface;
 @property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
-@property (nonatomic, retain) RedparkSerialCable *redParkCable;
 @property (nonatomic, retain) iGCSRadioConfig *radioConfig;
 @property (nonatomic, retain) FightingWalrusInterface *fightingWalrusInterface;
+
+
+#ifdef REDPARK
+@property (nonatomic, retain) RedparkSerialCable *redParkCable;
+#endif
+
 
 +(CommController *)sharedInstance;
 

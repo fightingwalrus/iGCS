@@ -8,7 +8,10 @@
 
 #import "AppDelegate.h" // For TestFlight control
 
+#ifdef REDPARK
 #import "RscMgr.h"
+#endif
+
 #import <MapKit/MKMapView.h>
 
 @class GCSMapViewController;
