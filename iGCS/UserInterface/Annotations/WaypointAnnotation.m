@@ -11,9 +11,6 @@
 
 @implementation WaypointAnnotation
 
-@synthesize coordinate  = _coordinate;
-@synthesize waypoint    = _waypoint;
-
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index {
     if ((self = [super init])) {
         _coordinate = coordinate;
@@ -21,10 +18,6 @@
         _index      = index;
     }
     return self;
-}
-
-- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-    _coordinate = newCoordinate;
 }
 
 - (NSString*) title {

@@ -129,10 +129,10 @@
     free(navMKMapPoints);
 }
 
-- (void)resetWaypointAnnotation:(WaypointAnnotation*)annotation {
+- (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
     if (annotation) {
-        [map removeAnnotation:annotation];
-        [map addAnnotation:annotation];
+        [WaypointMapBaseController updateWaypointIconFor:[map viewForAnnotation: annotation]
+                                     selectedWaypointSeq:currentWaypointNum];
     }
 }
 
@@ -146,8 +146,8 @@
         currentWaypointNum = newCurrentWaypointSeq;
 
         //  reset the previous and new current waypoints
-        [self resetWaypointAnnotation: [self getWaypointAnnotation:previousWaypointNum]];        
-        [self resetWaypointAnnotation: [self getWaypointAnnotation:currentWaypointNum]];
+        [self updateWaypointIcon: [self getWaypointAnnotation:previousWaypointNum]];
+        [self updateWaypointIcon: [self getWaypointAnnotation:currentWaypointNum]];
     }
 }
 
@@ -171,15 +171,17 @@
    fromOldState:(MKAnnotationViewDragState)oldState
 {
     if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
-        static WaypointAnnotation *draggedAnnot = nil;
         WaypointAnnotation* annot = annotationView.annotation;
-        if (newState == MKAnnotationViewDragStateStarting) {
-            draggedAnnot = annot;
-        }
-        if (newState == MKAnnotationViewDragStateEnding && annot == draggedAnnot) {
+        if (newState == MKAnnotationViewDragStateEnding) {
             CLLocationCoordinate2D coord = annot.coordinate;
             [self waypointWithSeq:annot.waypoint.seq wasMovedToLat:coord.latitude andLong:coord.longitude];
         }
+    }
+    
+    // Force the annotationView (which may have been disconnected from its annotation, such as due
+    // to an add/remove of waypoint annotation during or on completion of dragging) to close out the drag state.
+    if (newState == MKAnnotationViewDragStateEnding || newState == MKAnnotationViewDragStateCanceling) {
+        [annotationView setDragState:MKAnnotationViewDragStateNone animated:YES];
     }
 }
 
@@ -258,10 +260,37 @@
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender {
 }
 
++ (void)updateWaypointIconFor:(MKAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq{
+    static const int ICON_VIEW_TAG = 101;
+
+    WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
+
+    // Create image
+    UIImage *icon = nil;
+    if ([waypointAnnotation isCurrentWaypointP:selectedWaypointSeq]) {
+        NSLog(@"NEW TARGET VIEW");
+        view.centerOffset = CGPointMake(0,0);
+        icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
+                          withColor:WAYPOINT_NAV_NEXT_COLOR];
+    } else {
+        view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
+        icon = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
+                          withColor:[waypointAnnotation getColor]];
+    }
+
+    // Note: We don't just set view.image, as we want a touch target that is larger than the icon itself
+    UIImageView *imgSubView = [[UIImageView alloc] initWithImage:icon];
+    imgSubView.tag = ICON_VIEW_TAG;
+    imgSubView.center = [view convertPoint:view.center fromView:view.superview];
+    
+    // Remove existing icon subview (if any) and add the new icon
+    [[view viewWithTag:ICON_VIEW_TAG] removeFromSuperview];
+    [view addSubview:imgSubView];
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static const int LABEL_TAG = 100;
-    static const int ICON_VIEW_TAG = 101;
     
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -270,7 +299,7 @@
     // Handle our custom annotations
     //
     if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
-        NSString* identifier = @"WAYPOINT";
+        static NSString* const identifier = @"WAYPOINT";
         MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
@@ -281,7 +310,6 @@
             label.tag = LABEL_TAG;
             [view addSubview:label];
         } else {
-            [[view viewWithTag:ICON_VIEW_TAG] removeFromSuperview];
             view.annotation = annotation;
         }
         
@@ -299,21 +327,7 @@
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
-        //  - we don't just set view.image, as we want a touch target that is larger than the icon itself
-        UIImage *icon = nil;
-        if ([waypointAnnotation isCurrentWaypointP:currentWaypointNum]) {
-            view.centerOffset = CGPointMake(0,0);
-            icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
-                              withColor:WAYPOINT_NAV_NEXT_COLOR];
-        } else {
-            view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
-            icon = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
-                              withColor:[waypointAnnotation getColor]];
-        }
-        UIImageView *imgSubView = [[UIImageView alloc] initWithImage:icon];
-        imgSubView.tag = ICON_VIEW_TAG;
-        imgSubView.center = [view convertPoint:view.center fromView:view.superview];
-        [view addSubview:imgSubView];
+        [WaypointMapBaseController updateWaypointIconFor:view selectedWaypointSeq:currentWaypointNum];
 
         // Provide subclasses with a chance to customize the waypoint annotation view
         [self customizeWaypointAnnotationView:view];
