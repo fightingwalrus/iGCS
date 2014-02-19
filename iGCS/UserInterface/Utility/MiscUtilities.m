@@ -90,9 +90,9 @@
     return image;
 }
 
-+ (NSString*) coordinateToNiceLatLong:(float)val isLat:(bool)isLat {
++ (NSString*) prettyPrintCoordAxis:(float)val as:(GCSGeoCoord)eLatLong {
     char letter = (val > 0) ? 'E' : 'W';
-    if (isLat) {
+    if (eLatLong == GCSLatitude) {
         letter = (val > 0) ? 'N' : 'S';
     }
     

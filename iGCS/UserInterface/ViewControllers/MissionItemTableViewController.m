@@ -204,11 +204,11 @@ NSArray* headerSpecs = nil;
 
     // X (Latitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [MiscUtilities coordinateToNiceLatLong: waypoint.x isLat:YES] : @"-";
+    label.text = isNavCommand ? [MiscUtilities prettyPrintCoordAxis:waypoint.x as:GCSLatitude] : @"-";
     
     // Y (Longitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [MiscUtilities coordinateToNiceLatLong: waypoint.y isLat:NO] : @"-";
+    label.text = isNavCommand ? [MiscUtilities prettyPrintCoordAxis:waypoint.y as:GCSLongitude] : @"-";
 
     // Z (Altitude)
     label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
