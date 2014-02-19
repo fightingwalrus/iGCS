@@ -171,15 +171,17 @@
    fromOldState:(MKAnnotationViewDragState)oldState
 {
     if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
-        static WaypointAnnotation *draggedAnnot = nil;
         WaypointAnnotation* annot = annotationView.annotation;
-        if (newState == MKAnnotationViewDragStateStarting) {
-            draggedAnnot = annot;
-        }
-        if (newState == MKAnnotationViewDragStateEnding && annot == draggedAnnot) {
+        if (newState == MKAnnotationViewDragStateEnding) {
             CLLocationCoordinate2D coord = annot.coordinate;
             [self waypointWithSeq:annot.waypoint.seq wasMovedToLat:coord.latitude andLong:coord.longitude];
         }
+    }
+    
+    // Force the annotationView (which may have been disconnected from its annotation, such as due
+    // to an add/remove of waypoint annotation during or on completion of dragging) to close out the drag state.
+    if (newState == MKAnnotationViewDragStateEnding || newState == MKAnnotationViewDragStateCanceling) {
+        [annotationView setDragState:MKAnnotationViewDragStateNone animated:YES];
     }
 }
 
