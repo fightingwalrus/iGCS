@@ -10,12 +10,17 @@
 
 @interface MiscUtilities : NSObject
 
+typedef NS_ENUM(int8_t, GCSGeoCoord) {
+    GCSLatitude,
+    GCSLongitude
+};
+
 + (float) getTextWidth:(NSString*)label withContext:(CGContextRef)ctx;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang;
 + (UIImage *)image:(UIImage*)img withColor:(UIColor*)color;
 + (UIImage *)imageWithColor:(UIColor*)color;
 
-+ (NSString*)coordinateToNiceLatLong:(float)val isLat:(bool)isLat;
++ (NSString*)prettyPrintCoordAxis:(float)val as:(GCSGeoCoord)eLatLong;
 + (NSString *)UUIDUsingDefaultAllocator;
 
 @end
