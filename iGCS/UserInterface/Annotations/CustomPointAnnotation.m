@@ -7,6 +7,7 @@
 //
 
 #import "CustomPointAnnotation.h"
+#import "MiscUtilities.h"
 
 @implementation CustomPointAnnotation
 
@@ -17,7 +18,9 @@
 @synthesize doAnimation    = _doAnimation;
 
 - (NSString*) subtitle {
-    return [NSString stringWithFormat:@"%f,%f", _coordinate.longitude, _coordinate.latitude];
+    return [NSString stringWithFormat:@"%@, %@",
+            [MiscUtilities prettyPrintCoordAxis:_coordinate.latitude  as:GCSLatitude],
+            [MiscUtilities prettyPrintCoordAxis:_coordinate.longitude as:GCSLongitude]];
 }
 
 @end
