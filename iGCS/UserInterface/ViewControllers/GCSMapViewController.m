@@ -357,19 +357,19 @@ static const int AIRPLANE_ICON_SIZE = 48;
     CLLocationCoordinate2D userCoord = userPosition.coordinate;
     
     // Determine new position
-    float bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
-    float distance = (5 + 195 * ctrlValues.distance); // 5 - 200 m away
+    double bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
+    double distance = (5 + 195 * ctrlValues.distance); // 5 - 200 m away
     float fmHeightOffset = (30 * ctrlValues.altitudeOffset);  // 0 -  30 m relative to home
     
-    static const float R = 6371000;
+    static const double R = 6371009.0; // (approx) mean Earth radius in m
     
-    float userLat  = userCoord.latitude*DEG2RAD;
-    float userLong = userCoord.longitude*DEG2RAD;
+    double userLat  = userCoord.latitude *DEG2RAD;
+    double userLong = userCoord.longitude*DEG2RAD;
     
-    // FIXME: fix loss of precision that leads to minor offset errors
-    float angD = distance/R;
-    float followMeLat  = asin(sin(userLat)*cos(angD) + cos(userLat)*sin(angD)*cos(bearing));
-    float followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
+    // Compute follow me coordinates
+    double angD = distance/R;
+    double followMeLat  = asin(sin(userLat)*cos(angD) + cos(userLat)*sin(angD)*cos(bearing));
+    double followMeLong = userLong + atan2(sin(bearing)*sin(angD)*cos(userLat), cos(angD) - sin(userLat)*sin(followMeLat));
     followMeLong = fmod((followMeLong + 3*M_PI), (2*M_PI)) - M_PI;
 
     CLLocationCoordinate2D fmCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
