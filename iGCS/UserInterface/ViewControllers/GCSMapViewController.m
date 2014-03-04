@@ -19,6 +19,8 @@
 #import "CommController.h"
 #import "AppDelegate.h"
 
+#import "CXAlertView.h"
+
 #import "DebugLogger.h"
 
 @implementation GCSMapViewController
@@ -396,13 +398,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
 }
 
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Confirm"]) {
-        // Let's go!
-        [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
-    }
-}
-
 + (NSString*) formatGotoAlertMessage:(CLLocationCoordinate2D)coord withAlt:(float)alt {
     return [NSString stringWithFormat:@"%@, %@\nAlt: %0.1fm\n(pan up/down to change)",
             [MiscUtilities prettyPrintCoordAxis:coord.latitude  as:GCSLatitude],
@@ -419,21 +414,30 @@ static const int AIRPLANE_ICON_SIZE = 48;
     gotoCoordinates = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
     
     // Confirm acceptance of GOTO point
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Fly-to position?"
-                                                      message:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]
-                                                     delegate:self
-                                            cancelButtonTitle:nil
-                                            otherButtonTitles:@"Confirm", @"Cancel", nil];
-    
+    CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:@"Fly-to position?"
+                                                        message:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]
+                                              cancelButtonTitle:nil];
+    [alertView addButtonWithTitle:@"Confirm" // Order buttons as per Apple's HIG ("destructive" action on left)
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
+                              [alertView dismiss];
+                          }];
+    [alertView addButtonWithTitle:@"Cancel"
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [alertView dismiss];
+                          }];
+    alertView.showBlurBackground = YES;
+
+    // Add pan gesture to allow modification of target altitude
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handlePanGesture:)];
     panGesture.minimumNumberOfTouches = 1;
     panGesture.maximumNumberOfTouches = 1;
-    //[message setMultipleTouchEnabled:YES];
-    //[message setUserInteractionEnabled:YES];
-    [message addGestureRecognizer:panGesture];
+    [alertView addGestureRecognizer:panGesture];
 
-    [message show];
+    [alertView show];
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
@@ -448,8 +452,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
     gotoAltitude += (lastTranslate.y-translate.y)/10;
     lastTranslate = translate;
     
-    UIAlertView *view = (UIAlertView*)(sender.view);
-    [view setMessage:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
+    CXAlertView *alertView = (CXAlertView*)(sender.view);
+    [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
