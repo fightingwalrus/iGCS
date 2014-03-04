@@ -30,8 +30,7 @@
 
 @property (nonatomic, retain) IBOutlet CPTGraphHostingView *dataRateGraphView;
 
-@property (nonatomic, retain) DataRateRecorder *dataRateRecorder;
-- (void) bytesReceived:(unsigned int)numBytes;
+@property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
 - (void) setCableConnectionStatus:(bool) connectedP;
 

@@ -51,8 +51,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
-
-    _dataRateRecorder = [[DataRateRecorder alloc] init];
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.dataRateGraphView;
     hostingView.hostedGraph = dataRateGraph;
@@ -237,10 +235,6 @@
 }
 
 // CorePlot protocol implementation
-- (void) bytesReceived:(unsigned int)numBytes {
-    [_dataRateRecorder bytesReceived:numBytes];
-}
-
 -(void) onDataRateUpdate:(NSNotification*)notification {
     // Reset the y-axis range and reload the graph data
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
@@ -256,10 +250,8 @@
 -(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
                 recordIndex:(NSUInteger)index
 {
-    if (fieldEnum == CPTScatterPlotFieldX) {
-        return [NSNumber numberWithDouble:[_dataRateRecorder secondsSince:index]];
-    }
-    return [NSNumber numberWithDouble:[_dataRateRecorder valueAt:index]];
+    return [NSNumber numberWithDouble:
+            (fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]];
 }
 
 @end

@@ -46,6 +46,9 @@
 
 - (void)awakeFromNib   
 {
+    // Create the shared data rate recorder
+    _dataRateRecorder = [[DataRateRecorder alloc] init];
+    
     // Get the views for convenience
     // FIXME: adopt a cleaner pattern for this (see also viewDidLoad)
     SWRevealViewController *gcsRevealVC = [[self viewControllers] objectAtIndex:0];
@@ -59,6 +62,9 @@
     self.waypointVC = [[self viewControllers] objectAtIndex:1];
     self.commsVC    = [[self viewControllers] objectAtIndex:2];
     self.debugVC    = [[self viewControllers] objectAtIndex:3];
+    
+    // Setup the data rate recorder references
+    self.commsVC.dataRateRecorder = _dataRateRecorder;
     
     // Initialize MavLink Interfaces
     

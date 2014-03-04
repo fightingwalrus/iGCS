@@ -64,9 +64,8 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 -(void)consumeData:(uint8_t*)bytes length:(int)length
 {
     @autoreleasepool {
-        
-        // Notify the comms view of receipt of n bytes
-        [self.mainVC.commsVC bytesReceived: length];
+        // Notify receipt of length bytes
+        [self.mainVC.dataRateRecorder bytesReceived:length];
         
         // set up log file the first time we get any data
         if (!_mavlinkLogger) {
