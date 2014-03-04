@@ -9,17 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MavLinkPacketHandler.h"
 #import "CorePlot-CocoaTouch.h"
-
-#define NUM_KPBS_TICKS_PER_SECOND     8
-#define NUM_KBPS_DATA_POINTS        (61 * NUM_KPBS_TICKS_PER_SECOND)
+#import "DataRateRecorder.h"
 
 @interface CommsViewController : UIViewController <MavLinkPacketHandler, CPTPlotDataSource> {
     CPTXYGraph *dataRateGraph;
-    
-    NSTimer *kBperSecondTimer;
-    double kBperSecond[NUM_KBPS_DATA_POINTS];
-    unsigned int kBperSecondCircularIndex;
-    unsigned int numBytesSinceTick;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView  *attitudeTextView;
@@ -37,14 +30,9 @@
 
 @property (nonatomic, retain) IBOutlet CPTGraphHostingView *dataRateGraphView;
 
-
-
+@property (nonatomic, retain) DataRateRecorder *dataRateRecorder;
 - (void) bytesReceived:(unsigned int)numBytes;
 
 - (void) setCableConnectionStatus:(bool) connectedP;
-
-
-- (void)numBytesTimerTick:(NSTimer *)timer;
-
 
 @end

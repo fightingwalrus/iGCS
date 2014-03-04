@@ -299,6 +299,10 @@
 		49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
 		49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C45CB8170A7EA4007C9999 /* DebugLogger.m */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
+		CA056B6318C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
+		CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
+		CA056B6518C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
+		CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
@@ -722,6 +726,8 @@
 		49C45CB7170A7EA4007C9999 /* DebugLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogger.h; sourceTree = "<group>"; };
 		49C45CB8170A7EA4007C9999 /* DebugLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLogger.m; sourceTree = "<group>"; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRateRecorder.h; sourceTree = "<group>"; };
+		CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRateRecorder.m; sourceTree = "<group>"; };
 		CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
@@ -1258,6 +1264,8 @@
 		18A777ED17CE9E710014451B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */,
+				CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */,
 				1830D07017D1651400F77F7E /* DateTimeUtils.h */,
 				1830D07117D1651400F77F7E /* DateTimeUtils.m */,
 				18A777F017CE9E910014451B /* FileUtils.h */,
@@ -2386,6 +2394,7 @@
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				182FFAC2181F0C9100A8C31C /* DebugLogger.m in Sources */,
 				182FFAC3181F0C9100A8C31C /* MissionItemEditViewController.m in Sources */,
+				CA056B6518C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				182FFAC4181F0C9100A8C31C /* MissionItemTableViewController.m in Sources */,
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
@@ -2422,6 +2431,7 @@
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
+				CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */,
 				18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */,
 				18B9FAD718B2F7AF00668660 /* RxMissionRequestList.m in Sources */,
@@ -2501,6 +2511,7 @@
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
+				CA056B6318C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
 				49C45CB9170A7EA4007C9999 /* DebugLogger.m in Sources */,
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
@@ -2533,6 +2544,7 @@
 				496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
 				496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */,
+				CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C716DAFBF600E52E4A /* CommController.m in Sources */,

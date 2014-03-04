@@ -52,13 +52,15 @@
 
     dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
 
+    _dataRateRecorder = [[DataRateRecorder alloc] init];
+    
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.dataRateGraphView;
     hostingView.hostedGraph = dataRateGraph;
 
     // Setup initial plot ranges
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
-                                                    length:CPTDecimalFromFloat((NUM_KBPS_DATA_POINTS-NUM_KPBS_TICKS_PER_SECOND)/NUM_KPBS_TICKS_PER_SECOND)];
+                                                    length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds])];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat(1.0)];
 
@@ -135,14 +137,11 @@
     dataRateGraph.paddingLeft   = 5;
     dataRateGraph.paddingRight  = 5;
     
-    // Initialize the data rate tracking timer and counters
-    kBperSecondTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0f/NUM_KPBS_TICKS_PER_SECOND)
-                                                     target:self
-                                                     selector:@selector(numBytesTimerTick:)
-                                                     userInfo:nil
-                                                     repeats:YES];
-    kBperSecondCircularIndex = 0;
-    numBytesSinceTick = 0;
+    // Listen to data recorder ticks
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onDataRateUpdate:)
+                                                 name:DATA_RECORDER_TICK
+                                               object:_dataRateRecorder];
 }
 
 - (void)viewDidUnload
@@ -235,59 +234,32 @@
         }
             break;
     }
-
 }
 
-// CorePlot protocol implementation and other data rate plot utilities
+// CorePlot protocol implementation
 - (void) bytesReceived:(unsigned int)numBytes {
-    numBytesSinceTick += numBytes;
+    [_dataRateRecorder bytesReceived:numBytes];
 }
 
--(void)numBytesTimerTick:(NSTimer *)timer {
-    // Place the next kB/s value in the circular buffer, and add to previous NUM_KPBS_TICKS_PER_SECOND-1 points
-    double kB = (numBytesSinceTick/1024.0f);
-    for (unsigned int i = 0; i < NUM_KPBS_TICKS_PER_SECOND; i++) {
-        if (kBperSecondCircularIndex >= i) {
-            unsigned int idx = (kBperSecondCircularIndex - i) % NUM_KBPS_DATA_POINTS;
-            if (i == 0) {
-                kBperSecond[idx] = kB;
-            } else {
-                kBperSecond[idx] += kB;
-            }
-        }
-    }
-    numBytesSinceTick = 0;
-    
-    // Find the maximum value
-    double max = 0;
-    for (unsigned int i = 0; i < MIN(NUM_KBPS_DATA_POINTS,kBperSecondCircularIndex); i++) {
-        max = MAX(max,kBperSecond[i]);
-    }
-    if (max == 0) max = 1;
-    kBperSecondCircularIndex++;
-    
+-(void) onDataRateUpdate:(NSTimer *)timer {
     // Reset the y-axis range and reload the graph data
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
-                                                    length:CPTDecimalFromFloat(max*1.1)];
+                                                    length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
     [dataRateGraph reloadData];
 }
 
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return MIN(kBperSecondCircularIndex,NUM_KBPS_DATA_POINTS-NUM_KPBS_TICKS_PER_SECOND);
+-(NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot {
+    return [_dataRateRecorder count];
 }
 
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
-               recordIndex:(NSUInteger)index
+-(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
+                recordIndex:(NSUInteger)index
 {
     if (fieldEnum == CPTScatterPlotFieldX) {
-        return [NSNumber numberWithDouble: (double)index/NUM_KPBS_TICKS_PER_SECOND];
+        return [NSNumber numberWithDouble:[_dataRateRecorder secondsSince:index]];
     }
-
-    // Hunt backwards through the buffer, from the most recent (index 0) fully populated point
-    unsigned int i = (kBperSecondCircularIndex - NUM_KPBS_TICKS_PER_SECOND - index + NUM_KBPS_DATA_POINTS) % NUM_KBPS_DATA_POINTS;
-    return [NSNumber numberWithDouble:kBperSecond[i]];
+    return [NSNumber numberWithDouble:[_dataRateRecorder valueAt:index]];
 }
-
 
 @end
