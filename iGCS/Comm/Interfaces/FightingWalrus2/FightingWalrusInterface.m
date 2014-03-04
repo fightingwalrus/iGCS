@@ -9,7 +9,7 @@
 #import "FightingWalrusInterface.h"
 #import "DebugLogger.h"
 
-NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.igcs";
+NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
 @implementation FightingWalrusInterface
