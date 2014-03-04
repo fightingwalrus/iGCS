@@ -241,7 +241,7 @@
     [_dataRateRecorder bytesReceived:numBytes];
 }
 
--(void) onDataRateUpdate:(NSTimer *)timer {
+-(void) onDataRateUpdate:(NSNotification*)notification {
     // Reset the y-axis range and reload the graph data
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
