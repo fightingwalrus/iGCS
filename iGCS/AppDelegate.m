@@ -32,7 +32,6 @@ static AppDelegate *shared;
 #endif
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
-    
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:HOCKEY_APP_BETA_ID];
     [[BITHockeyManager sharedHockeyManager].authenticator setAuthenticationSecret:HOCKEY_APP_BETA_SECRET];
@@ -101,8 +100,14 @@ static AppDelegate *shared;
      */
     
     NSLog(@"Became Active");
+
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [[CommController sharedInstance] startTelemetryMode];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"enabled_debug_screen_preference: %@",([defaults boolForKey:@"enabled_debug_screen_preference"]) ? @"YES": @"NO");
+    NSLog(@"enabled_follow_me_preference: %@",([defaults boolForKey:@"enabled_follow_me_preference"]) ? @"YES": @"NO");
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
