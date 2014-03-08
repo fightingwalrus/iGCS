@@ -276,7 +276,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [dataRateGraph addPlot:dateRatePlot];
     
     // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
-    dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor blackColor]];
+    dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor clearColor]];
     dataRateGraph.plotAreaFrame.paddingTop    = 0;
     dataRateGraph.plotAreaFrame.paddingBottom = 0;
     dataRateGraph.plotAreaFrame.paddingLeft   = 0;
