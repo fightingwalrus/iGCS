@@ -50,23 +50,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
 
+- (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder
+{
+    _dataRateRecorder = dataRateRecorder;
+    
     dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.dataRateGraphView;
     hostingView.hostedGraph = dataRateGraph;
-
+    
     // Setup initial plot ranges
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds])];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat(1.0)];
-
+    
     // Setup axes options
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.lineColor = [CPTColor whiteColor];
-
+    
     NSNumberFormatter *xAxisFormatter = [[NSNumberFormatter alloc] init];
     xAxisFormatter.minimumIntegerDigits  = 1;
     xAxisFormatter.maximumFractionDigits = 0;

@@ -13,6 +13,7 @@
 #import "CompassView.h"
 #import "VerticalScaleView.h"
 #import "MavLinkPacketHandler.h"
+#import "CorePlot-CocoaTouch.h"
 
 #import "RequestedPointAnnotation.h"
 #import "GuidedPointAnnotation.h"
@@ -25,28 +26,7 @@
 
 @class DataRateRecorder;
 
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol>
-{
-    MKPointAnnotation *uavPos; 
-    MKAnnotationView *uavView;
-    
-    GLKView *videoOverlayView;
-    EAGLContext *_context;
-    NSMutableDictionary *_availableStreams;
-
-    GuidedPointAnnotation *currentGuidedAnnotation;
-    RequestedPointAnnotation *requestedGuidedAnnotation;
-
-    CLLocationCoordinate2D gotoCoordinates;
-    float gotoAltitude;
-    
-    BOOL showProposedFollowPos;
-    NSDate *lastFollowMeUpdate;
-    uint32_t lastCustomMode;
-
-    int				gamePacketNumber;
-    int				gameUniqueID;
-}
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol, CPTPlotDataSource>
 
 @property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
 @property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
@@ -72,6 +52,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+@property (nonatomic, retain) IBOutlet CPTGraphHostingView *dataRateSparklineView;
 @property (nonatomic, retain) IBOutlet UILabel *dataRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
