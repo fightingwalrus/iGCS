@@ -303,6 +303,34 @@
 		CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA056B6518C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
+		CA0574FC18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
+		CA0574FD18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
+		CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
+		CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
+		CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
+		CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
+		CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
+		CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
+		CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
+		CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
+		CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
+		CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
+		CA05750818BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
+		CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
+		CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
+		CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
+		CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
+		CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
+		CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
+		CA05750F18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
+		CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
+		CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
+		CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
+		CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
+		CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
@@ -728,6 +756,21 @@
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRateRecorder.h; sourceTree = "<group>"; };
 		CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRateRecorder.m; sourceTree = "<group>"; };
+		CA0574F218BE07FE001EACFD /* CXAlertBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertBackgroundWindow.h; sourceTree = "<group>"; };
+		CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertBackgroundWindow.m; sourceTree = "<group>"; };
+		CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonContainerView.h; sourceTree = "<group>"; };
+		CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertButtonContainerView.m; sourceTree = "<group>"; };
+		CA0574F618BE07FE001EACFD /* CXAlertButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonItem.h; sourceTree = "<group>"; };
+		CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertButtonItem.m; sourceTree = "<group>"; };
+		CA0574F818BE07FE001EACFD /* CXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertView.h; sourceTree = "<group>"; };
+		CA0574F918BE07FE001EACFD /* CXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertView.m; sourceTree = "<group>"; };
+		CA0574FA18BE07FE001EACFD /* CXAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertViewController.h; sourceTree = "<group>"; };
+		CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertViewController.m; sourceTree = "<group>"; };
+		CA05751118BE080B001EACFD /* LFDisplayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFDisplayBridge.h; sourceTree = "<group>"; };
+		CA05751218BE080B001EACFD /* LFDisplayBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFDisplayBridge.m; sourceTree = "<group>"; };
+		CA05751318BE080B001EACFD /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
+		CA05751418BE080B001EACFD /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
+		CA05751518BE080B001EACFD /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
 		CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
@@ -1664,6 +1707,35 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		CA0574F118BE07FE001EACFD /* CXAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CA0574F218BE07FE001EACFD /* CXAlertBackgroundWindow.h */,
+				CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */,
+				CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */,
+				CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */,
+				CA0574F618BE07FE001EACFD /* CXAlertButtonItem.h */,
+				CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */,
+				CA0574F818BE07FE001EACFD /* CXAlertView.h */,
+				CA0574F918BE07FE001EACFD /* CXAlertView.m */,
+				CA0574FA18BE07FE001EACFD /* CXAlertViewController.h */,
+				CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */,
+			);
+			path = CXAlertView;
+			sourceTree = "<group>";
+		};
+		CA05751018BE080B001EACFD /* LiveFrost */ = {
+			isa = PBXGroup;
+			children = (
+				CA05751118BE080B001EACFD /* LFDisplayBridge.h */,
+				CA05751218BE080B001EACFD /* LFDisplayBridge.m */,
+				CA05751318BE080B001EACFD /* LFGlassView.h */,
+				CA05751418BE080B001EACFD /* LFGlassView.m */,
+				CA05751518BE080B001EACFD /* LiveFrost.h */,
+			);
+			path = LiveFrost;
+			sourceTree = "<group>";
+		};
 		CA0B69A9189B69F50014C1E4 /* SWReveal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1940,6 +2012,8 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				CA0574F118BE07FE001EACFD /* CXAlertView */,
+				CA05751018BE080B001EACFD /* LiveFrost */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
@@ -2362,6 +2436,8 @@
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
 				182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */,
+				CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
+				CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
 				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
@@ -2372,11 +2448,13 @@
 				182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */,
 				182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */,
 				18069FD51836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
+				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
 				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
 				182FFAAA181F0C9100A8C31C /* (null) in Sources */,
@@ -2384,6 +2462,7 @@
 				18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */,
 				182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */,
+				CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				182FFAB3181F0C9100A8C31C /* (null) in Sources */,
 				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
 				182FFAB9181F0C9100A8C31C /* Logger.m in Sources */,
@@ -2403,10 +2482,12 @@
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
 				18A42CD418895B3700408D71 /* GKLocalController.m in Sources */,
+				CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
+				CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2425,10 +2506,14 @@
 				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
 				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
 				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
+				CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
+				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
+				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
+				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
 				CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
@@ -2448,6 +2533,7 @@
 				18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */,
 				18B9FAE318B2F7AF00668660 /* Logger.m in Sources */,
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
+				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
 				18B9FAE618B2F7AF00668660 /* ExceptionHandler.m in Sources */,
 				18B9FAE718B2F7AF00668660 /* FileUtils.m in Sources */,
@@ -2463,10 +2549,12 @@
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
+				CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
 				18B9FAF718B2F7AF00668660 /* RedparkSerialCable.m in Sources */,
+				CA0574FD18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2476,9 +2564,12 @@
 			files = (
 				CA499F6F14DE33BC00FCC9FB /* main.m in Sources */,
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
+				CA05750818BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18069FD01836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
+				CA0574FC18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */,
+				CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
@@ -2494,6 +2585,7 @@
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
+				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
@@ -2505,7 +2597,9 @@
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
+				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
+				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
@@ -2524,6 +2618,7 @@
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
+				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 			);
@@ -2533,7 +2628,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */,
+				CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
+				CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
@@ -2543,10 +2641,14 @@
 				496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */,
 				496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
 				496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
+				CA05750F18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */,
 				CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
+				CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
+				CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */,
+				CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E62C716DAFBF600E52E4A /* CommController.m in Sources */,
 				49C1FA1316DC74DB00BAE96B /* Logger.m in Sources */,
 				49C1FA1816DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
