@@ -253,7 +253,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     // Setup initial plot ranges
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
-                                                    length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds])];
+                                                    length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds]/6.0)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat(1.0)];
     
