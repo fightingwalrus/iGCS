@@ -19,6 +19,7 @@
 - (NSUInteger) count;
 - (double) secondsSince:(NSUInteger)index;
 - (double) valueAt:(NSUInteger)index;
+- (double) latestValue;
 @property (nonatomic, assign) double maxValue;
 
 @end

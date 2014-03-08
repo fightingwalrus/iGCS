@@ -23,6 +23,8 @@
 
 #import "GCSSidebarController.h"
 
+@class DataRateRecorder;
+
 @interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol>
 {
     MKPointAnnotation *uavPos; 
@@ -47,6 +49,7 @@
 }
 
 @property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
+@property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
 @property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
@@ -69,6 +72,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+@property (nonatomic, retain) IBOutlet UILabel *dataRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
 

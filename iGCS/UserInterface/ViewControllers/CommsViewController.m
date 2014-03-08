@@ -10,6 +10,7 @@
 #import "GaugeViewCommon.h"
 
 #import "CommController.h"
+#import "DataRateRecorder.h"
 
 @implementation CommsViewController
 

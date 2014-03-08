@@ -17,6 +17,8 @@
 #import "CommsViewController.h"
 #import "WaypointsViewController.h"
 
+#import "DataRateRecorder.h"
+
 #import "mavlink_helpers.h"
 
 #import "GaugeViewCommon.h"

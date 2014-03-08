@@ -17,7 +17,7 @@
 #import "MiscUtilities.h"
 
 #import "CommController.h"
-#import "AppDelegate.h"
+#import "DataRateRecorder.h"
 
 #import "DebugLogger.h"
 
@@ -219,6 +219,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
     windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+    
+    // Listen to data recorder ticks
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onDataRateUpdate:)
+                                                 name:DATA_RECORDER_TICK
+                                               object:_dataRateRecorder];
 }
 
 - (void)toggleSidebar:(id)sender {
@@ -268,7 +274,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
         [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
     }
 #endif
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -688,6 +693,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     userPosition = location;
     [self updateFollowMePosition:[_followMeControlDelegate followMeControlValues]];
+}
+
+-(void) onDataRateUpdate:(NSNotification*)notification {
+    [_dataRateLabel setText:[NSString stringWithFormat:@"%0.1fkB/s", [_dataRateRecorder latestValue]]];
 }
 
 @end

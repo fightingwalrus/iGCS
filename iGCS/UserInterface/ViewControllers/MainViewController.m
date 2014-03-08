@@ -14,6 +14,7 @@
 #import "GCSMapViewController.h"
 
 #import "CommController.h"
+#import "DataRateRecorder.h"
 
 #import "GaugeViewCommon.h"
 
@@ -44,7 +45,7 @@
 }
 
 
-- (void)awakeFromNib   
+- (void)awakeFromNib
 {
     // Create the shared data rate recorder
     _dataRateRecorder = [[DataRateRecorder alloc] init];
@@ -64,7 +65,8 @@
     self.debugVC    = [[self viewControllers] objectAtIndex:3];
     
     // Setup the data rate recorder references
-    self.commsVC.dataRateRecorder = _dataRateRecorder;
+    self.gcsMapVC.dataRateRecorder = _dataRateRecorder;
+    self.commsVC.dataRateRecorder  = _dataRateRecorder;
     
     // Initialize MavLink Interfaces
     

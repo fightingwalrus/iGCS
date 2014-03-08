@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MavLinkPacketHandler.h"
 #import "CorePlot-CocoaTouch.h"
-#import "DataRateRecorder.h"
+
+@class DataRateRecorder;
 
 @interface CommsViewController : UIViewController <MavLinkPacketHandler, CPTPlotDataSource> {
     CPTXYGraph *dataRateGraph;

@@ -82,8 +82,14 @@
 }
 
 - (double) valueAt:(NSUInteger)index {
+    NSAssert(0 <= index && index < [self count], @"DataRateRecorder:valueAt with out-of-bounds index");
+
     // Hunt backwards through the buffer, from the most recent (index 0) fully populated point
     return avgKBps[(circularIndex - NUM_KPBS_TICKS_PER_SECOND - index + NUM_KBPS_DATA_POINTS) % NUM_KBPS_DATA_POINTS];
+}
+
+- (double) latestValue {
+    return [self valueAt:0];
 }
 
 @end
