@@ -291,7 +291,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     // Listen to data recorder ticks
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onDataRateUpdate:)
-                                                 name:DATA_RECORDER_TICK
+                                                 name:GCSDataRecorderTick
                                                object:_dataRateRecorder];
 }
 

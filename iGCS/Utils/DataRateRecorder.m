@@ -11,12 +11,14 @@
 #define NUM_KPBS_TICKS_PER_SECOND     8
 #define NUM_KBPS_DATA_POINTS        (61 * NUM_KPBS_TICKS_PER_SECOND)
 
+NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.tick";
+
 @implementation DataRateRecorder {
     NSTimer *tickTimer;
     
     double avgKBps[NUM_KBPS_DATA_POINTS];
-    unsigned int circularIndex;
-    unsigned int numBytesSinceTick;
+    NSUInteger circularIndex;
+    NSUInteger numBytesSinceTick;
 }
 
 - (id) init
@@ -60,7 +62,7 @@
     circularIndex++;
     
     // Notify listeners
-    [[NSNotificationCenter defaultCenter] postNotificationName:DATA_RECORDER_TICK object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCSDataRecorderTick object:self];
 }
 
 

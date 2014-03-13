@@ -10,8 +10,6 @@
 
 @interface DataRateRecorder : NSObject
 
-#define DATA_RECORDER_TICK @"DataRecorderTick"
-
 - (void) bytesReceived:(unsigned int)numBytes;
 
 - (NSUInteger) maxDurationInSeconds;
@@ -23,3 +21,5 @@
 @property (nonatomic, assign) double maxValue;
 
 @end
+
+extern NSString * const GCSDataRecorderTick;
