@@ -41,8 +41,8 @@
     NSDate *lastFollowMeUpdate;
     uint32_t lastCustomMode;
     
-    int				gamePacketNumber;
-    int				gameUniqueID;
+    int	gamePacketNumber;
+    int	gameUniqueID;
     
     CPTXYGraph *dataRateGraph;
 }
