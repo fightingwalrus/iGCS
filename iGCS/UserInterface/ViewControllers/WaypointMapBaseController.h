@@ -22,11 +22,9 @@
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
-    MKPolylineView *waypointRouteView;
     int currentWaypointNum;
 
     MKPolyline *trackPolyline;
-    MKPolylineView *trackView;
     MKMapPoint *trackMKMapPoints;
     unsigned int trackMKMapPointsLen;
     unsigned int numTrackPoints;

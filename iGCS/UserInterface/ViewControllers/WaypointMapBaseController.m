@@ -8,6 +8,7 @@
 
 #import "WaypointMapBaseController.h"
 #import "MiscUtilities.h"
+#import "FillStrokePolyLineView.h"
 
 @implementation WaypointMapBaseController
 
@@ -233,13 +234,16 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
 {
     if (overlay == waypointRoutePolyline) {
-        waypointRouteView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        waypointRouteView.fillColor     = WAYPOINT_LINE_COLOR;
-        waypointRouteView.strokeColor   = WAYPOINT_LINE_COLOR;
-        waypointRouteView.lineWidth     = 3;
+        FillStrokePolyLineView *waypointRouteView = [[FillStrokePolyLineView alloc] initWithPolyline:overlay];
+        waypointRouteView.strokeColor = [UIColor blackColor];
+        waypointRouteView.fillColor   = WAYPOINT_LINE_COLOR;
+        waypointRouteView.lineWidth   = 1.5;
+        waypointRouteView.fillWidth   = 2;
+        waypointRouteView.lineCap     = kCGLineCapRound;
+        waypointRouteView.lineJoin    = kCGLineJoinRound;
         return waypointRouteView;
     } else if (overlay == trackPolyline) {
-        trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
+        MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
         trackView.fillColor     = TRACK_LINE_COLOR;
         trackView.strokeColor   = TRACK_LINE_COLOR;
         trackView.lineWidth     = 2;
