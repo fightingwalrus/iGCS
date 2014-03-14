@@ -17,13 +17,35 @@
 #import "MiscUtilities.h"
 
 #import "CommController.h"
-#import "AppDelegate.h"
+#import "DataRateRecorder.h"
 
 #import "CXAlertView.h"
 
 #import "DebugLogger.h"
 
-@implementation GCSMapViewController
+@implementation GCSMapViewController {
+    MKPointAnnotation *uavPos;
+    MKAnnotationView *uavView;
+    
+    GLKView *videoOverlayView;
+    EAGLContext *_context;
+    NSMutableDictionary *_availableStreams;
+    
+    GuidedPointAnnotation *currentGuidedAnnotation;
+    RequestedPointAnnotation *requestedGuidedAnnotation;
+    
+    CLLocationCoordinate2D gotoCoordinates;
+    float gotoAltitude;
+    
+    BOOL showProposedFollowPos;
+    NSDate *lastFollowMeUpdate;
+    uint32_t lastCustomMode;
+    
+    int	gamePacketNumber;
+    int	gameUniqueID;
+    
+    CPTXYGraph *dataRateGraph;
+}
 
 @synthesize windIconView;
 @synthesize ahIndicatorView;
@@ -223,6 +245,56 @@ static const int AIRPLANE_ICON_SIZE = 48;
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
 }
 
+- (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
+    _dataRateRecorder = dataRateRecorder;
+
+    // Setup the sparkline view
+    dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateSparklineView.bounds];
+    self.dataRateSparklineView.hostedGraph = dataRateGraph;
+    
+    // Setup initial plot ranges
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
+                                                    length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds]/6.0)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
+                                                    length:CPTDecimalFromFloat(1.0)];
+    
+    // Hide the axes
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)dataRateGraph.axisSet;
+    axisSet.xAxis.hidden = axisSet.yAxis.hidden = YES;
+    axisSet.xAxis.labelingPolicy = axisSet.yAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
+    
+    // Create the plot object
+    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:dataRateGraph.hostingView.bounds];
+    dateRatePlot.identifier = @"Data Rate Sparkline";
+    dateRatePlot.dataSource = self;
+    
+    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
+    lineStyle.lineWidth = 1.0f;
+    lineStyle.lineColor = [CPTColor colorWithCGColor:[[GCSThemeManager sharedInstance] appTintColor].CGColor];
+    dateRatePlot.dataLineStyle = lineStyle;
+    
+    dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
+    [dataRateGraph addPlot:dateRatePlot];
+    
+    // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
+    dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor clearColor]];
+    dataRateGraph.plotAreaFrame.paddingTop    = 0;
+    dataRateGraph.plotAreaFrame.paddingBottom = 0;
+    dataRateGraph.plotAreaFrame.paddingLeft   = 0;
+    dataRateGraph.plotAreaFrame.paddingRight  = 0;
+    dataRateGraph.paddingTop    = 0;
+    dataRateGraph.paddingBottom = 0;
+    dataRateGraph.paddingLeft   = 0;
+    dataRateGraph.paddingRight  = 0;
+    
+    // Listen to data recorder ticks
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onDataRateUpdate:)
+                                                 name:GCSDataRecorderTick
+                                               object:_dataRateRecorder];
+}
+
 - (void)toggleSidebar:(id)sender {
     self.revealViewController.rearViewRevealWidth = 210;
     [self.revealViewController revealToggle:sender];
@@ -270,7 +342,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
         [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
     }
 #endif
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -692,6 +763,27 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     userPosition = location;
     [self updateFollowMePosition:[_followMeControlDelegate followMeControlValues]];
+}
+
+-(void) onDataRateUpdate:(NSNotification*)notification {
+    // Reset the y-axis range and reload the graph data
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
+                                                    length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
+    [dataRateGraph reloadData];
+    
+    [_dataRateLabel setText:[NSString stringWithFormat:@"%0.1fkB/s", [_dataRateRecorder latestValue]]];
+}
+
+-(NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot {
+    return [_dataRateRecorder count];
+}
+
+-(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
+                recordIndex:(NSUInteger)index
+{
+    return [NSNumber numberWithDouble:
+            (fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]];
 }
 
 @end

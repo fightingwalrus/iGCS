@@ -14,6 +14,7 @@
 #import "GCSMapViewController.h"
 
 #import "CommController.h"
+#import "DataRateRecorder.h"
 
 #import "GaugeViewCommon.h"
 
@@ -44,7 +45,7 @@
 }
 
 
-- (void)awakeFromNib   
+- (void)awakeFromNib
 {
     // Get the views for convenience
     // FIXME: adopt a cleaner pattern for this (see also viewDidLoad)
@@ -80,12 +81,17 @@
 {
     [super viewDidLoad];
     
-    
-    
     // Access view of all controllers to force load
     for (id controller in [self viewControllers]) {
         [controller view];
     }
+    
+    // Create the shared data rate recorder
+    _dataRateRecorder = [[DataRateRecorder alloc] init];
+    
+    // Wire up the data rate recorder references
+    self.gcsMapVC.dataRateRecorder = _dataRateRecorder;
+    self.commsVC.dataRateRecorder  = _dataRateRecorder;
 }
 
 - (void)viewDidUnload

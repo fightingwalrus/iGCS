@@ -20,7 +20,7 @@
 @class WaypointsViewController;
 @class DebugViewController;
 
-@class WaypointsHolder;
+@class DataRateRecorder;
 
 @interface MainViewController : UITabBarController
 
@@ -32,7 +32,6 @@
 @property (strong) CommsViewController *commsVC;
 @property (strong) DebugViewController *debugVC;
 
-
-
+@property (nonatomic, retain) DataRateRecorder *dataRateRecorder;
 
 @end
