@@ -1,7 +1,9 @@
 ![alt tag](https://raw.github.com/fightingwalrus/iGCS/master/iGCS/Icons/Icon-50.png) iGCS
 ====
 
-iGCS is a UAV Ground Control Station for iPad. It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://dev.ardupilot.com).
+iGCS is a UAV Ground Control Station for iPad. 
+
+It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://dev.ardupilot.com), the Pixhawk as used in the 3DR Iris, and the AR.Drone 2.0 (with Flight Recorder).
 
 At present, it requires the use of a RedPark Serial cable for connecting to serial device such as an XBee or XTend radio. Support for the Fighting Walrus Radio is under active development.
 
