@@ -9,6 +9,21 @@
 #import "WaypointAnnotation.h"
 #import "WaypointHelper.h"
 
+@implementation UIColor (GCS)
++(UIColor*) gcsWaypointLineStrokeColor { return [UIColor blackColor]; }
++(UIColor*) gcsWaypointLineFillColor   { return UIColorFromRGB(0x08ff08); } // fluoro green
+
++(UIColor*) gcsTrackLineColor { return [UIColor purpleColor]; }
+
++(UIColor*) gcsWaypointNavColor         { return UIColorFromRGB(0x08ff08); } // fluoro green
++(UIColor*) gcsWaypointNavNextColor     { return [UIColor redColor]; }
++(UIColor*) gcsWaypointLoiterColor      { return [UIColor blueColor]; }
++(UIColor*) gcsWaypointTakeoffLandColor { return [UIColor orangeColor]; }
++(UIColor*) gcsWaypointHomeColor        { return [UIColor whiteColor]; }
++(UIColor*) gcsWaypointOtherColor       { return [UIColor redColor]; }
+@end
+
+
 @implementation WaypointAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index {
@@ -31,22 +46,22 @@
 - (UIColor*) getColor {
     switch (_waypoint.command) {            
         case MAV_CMD_NAV_WAYPOINT:
-            return WAYPOINT_NAV_COLOR;
+            return [UIColor gcsWaypointNavColor];
 
         case MAV_CMD_NAV_LOITER_UNLIM:
         case MAV_CMD_NAV_LOITER_TURNS:
         case MAV_CMD_NAV_LOITER_TIME:
-            return WAYPOINT_LOITER_COLOR;
+            return [UIColor gcsWaypointLoiterColor];
 
         case MAV_CMD_NAV_LAND:
         case MAV_CMD_NAV_TAKEOFF:
-            return WAYPOINT_TAKEOFF_LAND_COLOR;
+            return [UIColor gcsWaypointTakeoffLandColor];
         
         case 0: // Home
-            return WAYPOINT_HOME_COLOR;
+            return [UIColor gcsWaypointHomeColor];
     }
 
-    return WAYPOINT_OTHER_COLOR;
+    return  [UIColor gcsWaypointOtherColor];
 }
 
 - (bool) isCurrentWaypointP:(int)currentWaypointSeq {

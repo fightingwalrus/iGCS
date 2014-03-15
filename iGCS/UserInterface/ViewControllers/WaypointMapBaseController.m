@@ -235,8 +235,8 @@
 {
     if (overlay == waypointRoutePolyline) {
         FillStrokePolyLineView *waypointRouteView = [[FillStrokePolyLineView alloc] initWithPolyline:overlay];
-        waypointRouteView.strokeColor = [UIColor blackColor];
-        waypointRouteView.fillColor   = WAYPOINT_LINE_COLOR;
+        waypointRouteView.strokeColor = [UIColor gcsWaypointLineStrokeColor];
+        waypointRouteView.fillColor   = [UIColor gcsWaypointLineFillColor];
         waypointRouteView.lineWidth   = 1.5;
         waypointRouteView.fillWidth   = 2;
         waypointRouteView.lineCap     = kCGLineCapRound;
@@ -244,8 +244,8 @@
         return waypointRouteView;
     } else if (overlay == trackPolyline) {
         MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        trackView.fillColor     = TRACK_LINE_COLOR;
-        trackView.strokeColor   = TRACK_LINE_COLOR;
+        trackView.fillColor     = [UIColor gcsTrackLineColor];
+        trackView.strokeColor   = [UIColor gcsTrackLineColor];
         trackView.lineWidth     = 2;
         return trackView;
     }
@@ -275,7 +275,7 @@
         NSLog(@"NEW TARGET VIEW");
         view.centerOffset = CGPointMake(0,0);
         icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
-                          withColor:WAYPOINT_NAV_NEXT_COLOR];
+                          withColor:[UIColor gcsWaypointNavNextColor]];
     } else {
         view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
         icon = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
