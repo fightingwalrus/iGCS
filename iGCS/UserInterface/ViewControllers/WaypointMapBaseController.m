@@ -304,7 +304,9 @@
     //
     if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
         static NSString* const identifier = @"WAYPOINT";
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+        // FIXME: Dequeuing disabled due to issue observed on iOS7.1 only - cf IGCS-110
+        //MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+        MKAnnotationView *view = nil;
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             
