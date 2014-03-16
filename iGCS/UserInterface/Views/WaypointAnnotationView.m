@@ -22,7 +22,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor gcsWaypointLineStrokeColor].CGColor);
     CGContextFillEllipseInRect(context, outerR);
     
     CGContextSetFillColorWithColor(context, [(WaypointAnnotation*)[self annotation] getColor].CGColor);
