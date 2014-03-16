@@ -133,7 +133,7 @@
 
 - (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
     if (annotation) {
-        [WaypointMapBaseController updateWaypointIconFor:[map viewForAnnotation: annotation]
+        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[map viewForAnnotation: annotation]
                                      selectedWaypointSeq:currentWaypointNum];
     }
 }
