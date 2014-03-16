@@ -54,4 +54,6 @@
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 
++ (void) animateMKAnnotationView:(MKAnnotationView*)view from:(float)from to:(float)to duration:(float)duration;
+
 @end

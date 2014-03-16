@@ -707,13 +707,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
                                 withColor:[customPoint color]];
         
         if ([customPoint doAnimation]) {
-            CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            scaleAnimation.duration = 2.0;
-            scaleAnimation.repeatCount = HUGE_VAL;
-            scaleAnimation.autoreverses = YES;
-            scaleAnimation.fromValue = [NSNumber numberWithFloat:1.2];
-            scaleAnimation.toValue = [NSNumber numberWithFloat:0.8];
-            [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+            [WaypointMapBaseController animateMKAnnotationView:view from:1.2 to:0.8 duration:2.0];
         }
         return view;
     }

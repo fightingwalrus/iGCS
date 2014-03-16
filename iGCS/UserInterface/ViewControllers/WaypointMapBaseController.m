@@ -265,6 +265,16 @@
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender {
 }
 
++ (void) animateMKAnnotationView:(MKAnnotationView*)view from:(float)from to:(float)to duration:(float)duration {
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.duration = duration;
+    scaleAnimation.repeatCount = HUGE_VAL;
+    scaleAnimation.autoreverses = YES;
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:from];
+    scaleAnimation.toValue   = [NSNumber numberWithFloat:to];
+    [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+}
+
 + (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq{
     static const int ICON_VIEW_TAG = 101;
 
@@ -273,13 +283,7 @@
     UIImage *icon = nil;
     if ([waypointAnnotation isCurrentWaypointP:selectedWaypointSeq]) {
         // Animate the waypoint view
-        CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-        scaleAnimation.duration = 1.0;
-        scaleAnimation.repeatCount = HUGE_VAL;
-        scaleAnimation.autoreverses = YES;
-        scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-        scaleAnimation.toValue   = [NSNumber numberWithFloat:1.1];
-        [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+        [WaypointMapBaseController animateMKAnnotationView:view from:1.0 to:1.1 duration:1.0];
         
         // Create target icon
         icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
