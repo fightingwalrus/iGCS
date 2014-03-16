@@ -331,6 +331,10 @@
 		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
@@ -349,10 +353,6 @@
 		CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F9814DE33BC00FCC9FB /* iGCSTests.m */; };
 		CA70BAC7166865AC003A361A /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE7E15143E570014F7C8 /* 193-location-arrow.png */; };
-		CA77B7A518D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */; };
-		CA77B7A618D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */; };
-		CA77B7A718D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */; };
-		CA77B7A818D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */; };
 		CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
 		CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
@@ -775,6 +775,8 @@
 		CA05751318BE080B001EACFD /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
 		CA05751418BE080B001EACFD /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
 		CA05751518BE080B001EACFD /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
+		CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillStrokePolyLineView.h; sourceTree = "<group>"; };
+		CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillStrokePolyLineView.m; sourceTree = "<group>"; };
 		CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
@@ -1006,8 +1008,6 @@
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
 		CA499F9814DE33BC00FCC9FB /* iGCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGCSTests.m; sourceTree = "<group>"; };
-		CA77B7A318D3094F001C50B7 /* FillStrokePolyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillStrokePolyLineView.h; path = Utility/FillStrokePolyLineView.h; sourceTree = "<group>"; };
-		CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FillStrokePolyLineView.m; path = Utility/FillStrokePolyLineView.m; sourceTree = "<group>"; };
 		CA8CA89216576557003C6D50 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CA92514416F9761A0008E92F /* WaypointMapBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointMapBaseController.h; sourceTree = "<group>"; };
 		CA92514516F9761A0008E92F /* WaypointMapBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointMapBaseController.m; sourceTree = "<group>"; };
@@ -1667,6 +1667,8 @@
 				496E628316DAFB8B00E52E4A /* CompassView.m */,
 				496E628416DAFB8B00E52E4A /* DoubleBufferedAsyncView.h */,
 				496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */,
+				CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */,
+				CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */,
 				496E628616DAFB8B00E52E4A /* GaugeViewCommon.h */,
 				496E628716DAFB8B00E52E4A /* VerticalScaleView.h */,
 				496E628816DAFB8B00E52E4A /* VerticalScaleView.m */,
@@ -2139,8 +2141,6 @@
 		CAF37A0D179BC4C000183159 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				CA77B7A318D3094F001C50B7 /* FillStrokePolyLineView.h */,
-				CA77B7A418D3094F001C50B7 /* FillStrokePolyLineView.m */,
 				CAF37A0E179BC52000183159 /* MiscUtilities.h */,
 				CAF37A0F179BC52000183159 /* MiscUtilities.m */,
 			);
@@ -2462,7 +2462,7 @@
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
-				CA77B7A718D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */,
+				CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
@@ -2535,7 +2535,7 @@
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
 				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
-				CA77B7A618D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */,
+				CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
 				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
@@ -2605,7 +2605,7 @@
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
-				CA77B7A518D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */,
+				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
@@ -2657,7 +2657,7 @@
 				CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
-				CA77B7A818D3094F001C50B7 /* FillStrokePolyLineView.m in Sources */,
+				CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 				CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
