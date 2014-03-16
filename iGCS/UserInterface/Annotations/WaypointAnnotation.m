@@ -17,10 +17,10 @@
 
 +(UIColor*) gcsWaypointNavColor         { return UIColorFromRGB(0x08ff08); } // fluoro green
 +(UIColor*) gcsWaypointNavNextColor     { return [UIColor redColor]; }
-+(UIColor*) gcsWaypointLoiterColor      { return [UIColor blueColor]; }
-+(UIColor*) gcsWaypointTakeoffLandColor { return [UIColor orangeColor]; }
++(UIColor*) gcsWaypointLoiterColor      { return UIColorFromRGB(0x87cefa); } // light sky blue
++(UIColor*) gcsWaypointTakeoffLandColor { return UIColorFromRGB(0xff8c00); } // dark orange
 +(UIColor*) gcsWaypointHomeColor        { return [UIColor whiteColor]; }
-+(UIColor*) gcsWaypointOtherColor       { return [UIColor redColor]; }
++(UIColor*) gcsWaypointOtherColor       { return UIColorFromRGB(0xd02090); } // violet red
 @end
 
 
