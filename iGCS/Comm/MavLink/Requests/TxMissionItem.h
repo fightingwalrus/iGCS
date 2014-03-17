@@ -18,7 +18,7 @@
 
 @property (nonatomic, readonly) iGCSMavLinkInterface* interface;
 @property (nonatomic, readonly) WaypointsHolder *mission;
-@property (nonatomic, readonly) uint16_t *currentIndex;
+@property (nonatomic, readonly) uint16_t currentIndex;
 
 - (id)initWithInterface:(iGCSMavLinkInterface*)interface withMission:(WaypointsHolder*)mission andCurrentIndex:(uint16_t)currentIndex;
 
