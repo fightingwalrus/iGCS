@@ -13,7 +13,7 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
-        _title = @"REQUESTED point";
+        _title = @"Next \"Follow Me\" request";
         _viewIdentifer = @"REQUESTED";
         _color = [UIColor orangeColor];
         _doAnimation = NO;
