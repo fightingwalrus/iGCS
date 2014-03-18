@@ -234,10 +234,12 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
 {
+    GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+    
     if (overlay == waypointRoutePolyline) {
         FillStrokePolyLineView *waypointRouteView = [[FillStrokePolyLineView alloc] initWithPolyline:overlay];
-        waypointRouteView.strokeColor = [UIColor gcsWaypointLineStrokeColor];
-        waypointRouteView.fillColor   = [UIColor gcsWaypointLineFillColor];
+        waypointRouteView.strokeColor = [theme waypointLineStrokeColor];
+        waypointRouteView.fillColor   = [theme waypointLineFillColor];
         waypointRouteView.lineWidth   = 1;
         waypointRouteView.fillWidth   = 2;
         waypointRouteView.lineCap     = kCGLineCapRound;
@@ -245,8 +247,8 @@
         return waypointRouteView;
     } else if (overlay == trackPolyline) {
         MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        trackView.fillColor     = [UIColor gcsTrackLineColor];
-        trackView.strokeColor   = [UIColor gcsTrackLineColor];
+        trackView.fillColor     = [theme trackLineColor];
+        trackView.strokeColor   = [theme trackLineColor];
         trackView.lineWidth     = 2;
         return trackView;
     }
@@ -287,7 +289,7 @@
         
         // Create target icon
         icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
-                          withColor:[UIColor gcsWaypointNavNextColor]];
+                          withColor:[[GCSThemeManager sharedInstance] waypointNavNextColor]];
     } else {
         [view.layer removeAllAnimations];
     }

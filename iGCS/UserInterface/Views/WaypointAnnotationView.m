@@ -23,6 +23,8 @@
 
     WaypointAnnotation* annotation = (WaypointAnnotation*)[self annotation];
     
+    GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+    
     switch (annotation.waypoint.command) {
         case MAV_CMD_NAV_LAND:
         case MAV_CMD_NAV_TAKEOFF:
@@ -45,7 +47,7 @@
             CGContextSetLineJoin(context, kCGLineCapRound);
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
             CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
-            CGContextSetStrokeColorWithColor(context, [UIColor gcsWaypointLineStrokeColor].CGColor);
+            CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextDrawPath(context, kCGPathFillStroke);
         }
             break;
@@ -54,7 +56,7 @@
             // Draw a circle icon
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
             CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
-            CGContextSetStrokeColorWithColor(context, [UIColor gcsWaypointLineStrokeColor].CGColor);
+            CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextFillEllipseInRect(context, outerR);
             CGContextStrokeEllipseInRect(context, outerR);
     }

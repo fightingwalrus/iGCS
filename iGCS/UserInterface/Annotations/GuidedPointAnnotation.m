@@ -16,7 +16,7 @@
         _coordinate = coordinate;
         _title = @"GUIDED point";
         _viewIdentifer = @"GUIDED";
-        _color = [UIColor gcsWaypointNavColor];
+        _color = [[GCSThemeManager sharedInstance] waypointNavColor];
         _doAnimation = YES;
     }
     return self;
