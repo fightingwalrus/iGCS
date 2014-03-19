@@ -8,6 +8,7 @@
 
 #import "WaypointAnnotation.h"
 #import "WaypointHelper.h"
+#import "GCSThemeManager.h"
 
 @implementation WaypointAnnotation
 
@@ -29,24 +30,26 @@
 }
 
 - (UIColor*) getColor {
+    GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+    
     switch (_waypoint.command) {            
         case MAV_CMD_NAV_WAYPOINT:
-            return WAYPOINT_NAV_COLOR;
+            return [theme waypointNavColor];
 
         case MAV_CMD_NAV_LOITER_UNLIM:
         case MAV_CMD_NAV_LOITER_TURNS:
         case MAV_CMD_NAV_LOITER_TIME:
-            return WAYPOINT_LOITER_COLOR;
-
+            return [theme waypointLoiterColor];
+            
         case MAV_CMD_NAV_LAND:
         case MAV_CMD_NAV_TAKEOFF:
-            return WAYPOINT_TAKEOFF_LAND_COLOR;
-        
+            return [theme waypointTakeoffLandColor];
+            
         case 0: // Home
-            return WAYPOINT_HOME_COLOR;
+            return [theme waypointHomeColor];
     }
 
-    return WAYPOINT_OTHER_COLOR;
+    return [theme waypointOtherColor];
 }
 
 - (bool) isCurrentWaypointP:(int)currentWaypointSeq {

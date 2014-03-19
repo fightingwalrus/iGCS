@@ -22,11 +22,9 @@
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *waypointRoutePolyline;
-    MKPolylineView *waypointRouteView;
     int currentWaypointNum;
 
     MKPolyline *trackPolyline;
-    MKPolylineView *trackView;
     MKMapPoint *trackMKMapPoints;
     unsigned int trackMKMapPointsLen;
     unsigned int numTrackPoints;
@@ -55,5 +53,7 @@
 - (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
+
++ (void) animateMKAnnotationView:(MKAnnotationView*)view from:(float)from to:(float)to duration:(float)duration;
 
 @end

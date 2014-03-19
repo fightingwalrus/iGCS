@@ -331,6 +331,14 @@
 		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
+		CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
+		CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
+		CA094F2E18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
+		CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
@@ -771,6 +779,10 @@
 		CA05751318BE080B001EACFD /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
 		CA05751418BE080B001EACFD /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
 		CA05751518BE080B001EACFD /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
+		CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillStrokePolyLineView.h; sourceTree = "<group>"; };
+		CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillStrokePolyLineView.m; sourceTree = "<group>"; };
+		CA094F2A18D534E100AC6AE4 /* WaypointAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotationView.h; sourceTree = "<group>"; };
+		CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointAnnotationView.m; sourceTree = "<group>"; };
 		CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
@@ -1661,9 +1673,13 @@
 				496E628316DAFB8B00E52E4A /* CompassView.m */,
 				496E628416DAFB8B00E52E4A /* DoubleBufferedAsyncView.h */,
 				496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */,
+				CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */,
+				CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */,
 				496E628616DAFB8B00E52E4A /* GaugeViewCommon.h */,
 				496E628716DAFB8B00E52E4A /* VerticalScaleView.h */,
 				496E628816DAFB8B00E52E4A /* VerticalScaleView.m */,
+				CA094F2A18D534E100AC6AE4 /* WaypointAnnotationView.h */,
+				CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2454,6 +2470,7 @@
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
@@ -2482,6 +2499,7 @@
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
 				18A42CD418895B3700408D71 /* GKLocalController.m in Sources */,
+				CA094F2E18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
@@ -2526,6 +2544,7 @@
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
 				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
+				CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
 				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
@@ -2554,6 +2573,7 @@
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
 				18B9FAF718B2F7AF00668660 /* RedparkSerialCable.m in Sources */,
+				CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				CA0574FD18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2595,6 +2615,7 @@
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
+				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
@@ -2602,6 +2623,7 @@
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
+				CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
@@ -2638,6 +2660,7 @@
 				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,
 				496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
+				CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */,
 				496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
 				496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
@@ -2646,6 +2669,7 @@
 				CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
+				CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 				CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "WaypointMapBaseController.h"
 #import "MiscUtilities.h"
+#import "FillStrokePolyLineView.h"
+#import "WaypointAnnotationView.h"
 
 @implementation WaypointMapBaseController
 
@@ -131,7 +133,7 @@
 
 - (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
     if (annotation) {
-        [WaypointMapBaseController updateWaypointIconFor:[map viewForAnnotation: annotation]
+        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[map viewForAnnotation: annotation]
                                      selectedWaypointSeq:currentWaypointNum];
     }
 }
@@ -232,16 +234,21 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
 {
+    GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+    
     if (overlay == waypointRoutePolyline) {
-        waypointRouteView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        waypointRouteView.fillColor     = WAYPOINT_LINE_COLOR;
-        waypointRouteView.strokeColor   = WAYPOINT_LINE_COLOR;
-        waypointRouteView.lineWidth     = 3;
+        FillStrokePolyLineView *waypointRouteView = [[FillStrokePolyLineView alloc] initWithPolyline:overlay];
+        waypointRouteView.strokeColor = [theme waypointLineStrokeColor];
+        waypointRouteView.fillColor   = [theme waypointLineFillColor];
+        waypointRouteView.lineWidth   = 1;
+        waypointRouteView.fillWidth   = 2;
+        waypointRouteView.lineCap     = kCGLineCapRound;
+        waypointRouteView.lineJoin    = kCGLineJoinRound;
         return waypointRouteView;
     } else if (overlay == trackPolyline) {
-        trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        trackView.fillColor     = TRACK_LINE_COLOR;
-        trackView.strokeColor   = TRACK_LINE_COLOR;
+        MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
+        trackView.fillColor     = [theme trackLineColor];
+        trackView.strokeColor   = [theme trackLineColor];
         trackView.lineWidth     = 2;
         return trackView;
     }
@@ -260,22 +267,31 @@
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender {
 }
 
-+ (void)updateWaypointIconFor:(MKAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq{
++ (void) animateMKAnnotationView:(MKAnnotationView*)view from:(float)from to:(float)to duration:(float)duration {
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.duration = duration;
+    scaleAnimation.repeatCount = HUGE_VAL;
+    scaleAnimation.autoreverses = YES;
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:from];
+    scaleAnimation.toValue   = [NSNumber numberWithFloat:to];
+    [view.layer addAnimation:scaleAnimation forKey:@"scale"];
+}
+
++ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq{
     static const int ICON_VIEW_TAG = 101;
 
     WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
-
-    // Create image
+    
     UIImage *icon = nil;
     if ([waypointAnnotation isCurrentWaypointP:selectedWaypointSeq]) {
-        NSLog(@"NEW TARGET VIEW");
-        view.centerOffset = CGPointMake(0,0);
+        // Animate the waypoint view
+        [WaypointMapBaseController animateMKAnnotationView:view from:1.0 to:1.1 duration:1.0];
+        
+        // Create target icon
         icon = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
-                          withColor:WAYPOINT_NAV_NEXT_COLOR];
+                          withColor:[[GCSThemeManager sharedInstance] waypointNavNextColor]];
     } else {
-        view.centerOffset = CGPointMake(0,-12); // adjust for offset pointer in map marker
-        icon = [MiscUtilities image:[UIImage imageNamed:@"07-map-marker.png"]
-                          withColor:[waypointAnnotation getColor]];
+        [view.layer removeAllAnimations];
     }
 
     // Note: We don't just set view.image, as we want a touch target that is larger than the icon itself
@@ -286,6 +302,8 @@
     // Remove existing icon subview (if any) and add the new icon
     [[view viewWithTag:ICON_VIEW_TAG] removeFromSuperview];
     [view addSubview:imgSubView];
+    [view sendSubviewToBack:imgSubView];
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -300,14 +318,23 @@
     //
     if ([annotation isKindOfClass:[WaypointAnnotation class]]) {
         static NSString* const identifier = @"WAYPOINT";
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+        // FIXME: Dequeuing disabled due to issue observed on iOS7.1 only - cf IGCS-110
+        //MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
+        WaypointAnnotationView *view = nil;
         if (view == nil) {
-            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-            
-            UILabel *label = [[UILabel alloc]  initWithFrame:CGRectMake(WAYPOINT_TOUCH_TARGET_SIZE/2, -WAYPOINT_TOUCH_TARGET_SIZE/2, 32, 32)];
+            view = [[WaypointAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
+            [view setBackgroundColor:[UIColor clearColor]];
+
+            UILabel *label = [[UILabel alloc]  initWithFrame:CGRectMake(WAYPOINT_TOUCH_TARGET_SIZE/2, -WAYPOINT_TOUCH_TARGET_SIZE/3, 32, 32)];
             label.backgroundColor = [UIColor clearColor];
             label.textColor = [UIColor whiteColor];
             label.tag = LABEL_TAG;
+            label.layer.shadowColor = [[UIColor blackColor] CGColor];
+            label.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+            label.layer.shadowOpacity = 1.0f;
+            label.layer.shadowRadius  = 1.0f;
+            
             [view addSubview:label];
         } else {
             view.annotation = annotation;
@@ -319,7 +346,6 @@
         view.canShowCallout = !draggableWaypointsP;
         view.draggable = draggableWaypointsP;
         view.selected = draggableWaypointsP;
-        [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
         
         // Set the waypoint label
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
