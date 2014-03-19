@@ -14,7 +14,7 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
-        _title = @"GUIDED point";
+        _title = @"Flying to";
         _viewIdentifer = @"GUIDED";
         _color = [[GCSThemeManager sharedInstance] waypointNavColor];
         _doAnimation = YES;
