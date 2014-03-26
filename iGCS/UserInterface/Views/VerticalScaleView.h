@@ -9,16 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "DoubleBufferedAsyncView.h"
 
-@interface VerticalScaleView : DoubleBufferedAsyncView {
-    int scale;
-    float val;
-    float targetDelta;
-}
+@interface VerticalScaleView : DoubleBufferedAsyncView
+
+@property (nonatomic) NSInteger scale;
+@property (nonatomic) float value;
+@property (nonatomic) float targetDelta;
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
-
-- (void) setScale:(int)_scale;
-- (void) setValue:(float)_val;
-- (void) setTargetDelta:(float)_targetDelta;
 
 @end

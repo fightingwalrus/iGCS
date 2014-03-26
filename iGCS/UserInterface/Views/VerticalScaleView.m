@@ -21,18 +21,6 @@
     return self;
 }
 
-- (void)setScale:(int)_scale {
-    scale = _scale;
-}
-
-- (void)setValue:(float)_val {
-    val = _val;
-}
-
-- (void)setTargetDelta:(float)_targetDelta {
-    targetDelta = _targetDelta;
-}
-
 #if DO_ANIMATION
 - (void) doAnimation {
     static float i = 0;
@@ -59,7 +47,7 @@
     
     const float w = (1.00 - 2*HORZ_INSET_PERC) * rect.size.width;
     const float h = (1.00 - 2*VERT_INSET_PERC) * rect.size.height;
-    const float oneScaleY = h/scale;
+    const float oneScaleY = h/_scale;
     
     const CGPoint c = CGPointMake(CGRectGetMidX(rect) , CGRectGetMidY(rect));
     
@@ -84,12 +72,12 @@
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
 
     // Draw scale centred on current point
-    const float step = scale/10;
-    const float startVal = floor((val-scale)/step)*step; // i.e. start at a point well below the scale boundary
+    const float step = _scale/10;
+    const float startVal = floor((_value - _scale)/step)*step; // i.e. start at a point well below the scale boundary
     float tickVal = startVal;
     for (int i = 0; i < 40; i++, tickVal = startVal + i*step/2) {
         // Find the y position of this tick
-        const float y = c.y - (tickVal - val) * oneScaleY;
+        const float y = c.y - (tickVal - _value) * oneScaleY;
         if (y < -20 || y > h + 20) continue;
 
         // Draw the tick
@@ -121,7 +109,7 @@
     
     CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
     CGContextSelectFont(ctx, "Arial Rounded MT Bold", FONT_SIZE_LARGE, kCGEncodingMacRoman);
-    NSString *label = [NSString stringWithFormat:@"%d", (int)round(val)];
+    NSString *label = [NSString stringWithFormat:@"%d", (int)round(_value)];
 
     float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
@@ -159,7 +147,7 @@
     CGColorSpaceRelease(colorSpace);
 
     // Draw target chevron
-    float chevY = c.y - targetDelta * oneScaleY;
+    float chevY = c.y - _targetDelta * oneScaleY;
     if (chevY > c.y + h/2) chevY = c.y + h/2;
     if (chevY < c.y - h/2) chevY = c.y - h/2;
     CGContextBeginPath(ctx);
