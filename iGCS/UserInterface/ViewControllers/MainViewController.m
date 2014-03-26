@@ -65,6 +65,11 @@
     
     // TODO: Use NSNotifications for view updates instead of passing ref to self
     [[CommController sharedInstance] start:self];
+    
+    // Hide tabBar on iPhone
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self.tabBar setHidden:YES];
+    }
 }
 
 #pragma mark - View lifecycle
