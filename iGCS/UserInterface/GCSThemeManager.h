@@ -28,4 +28,6 @@
 @property (readonly) UIColor *waypointHomeColor;
 @property (readonly) UIColor *waypointOtherColor;
 
+@property (readonly) UIColor *altimeterCeilingBreachColor;
+
 @end

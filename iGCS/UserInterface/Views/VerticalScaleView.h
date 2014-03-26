@@ -15,6 +15,10 @@
 @property (nonatomic) float value;
 @property (nonatomic) float targetDelta;
 
+@property (nonatomic) BOOL ceilingThresholdEnabled;
+@property (nonatomic) float ceilingThreshold;
+@property (nonatomic, retain) UIColor* ceilingThresholdBackground;
+
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 
 @end

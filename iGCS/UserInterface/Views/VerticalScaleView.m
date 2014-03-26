@@ -17,6 +17,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _ceilingThresholdEnabled = YES;
+        _ceilingThreshold = -10;
+        _ceilingThresholdBackground = [UIColor blueColor];
     }
     return self;
 }
@@ -30,7 +33,7 @@
     [self requestRedraw];
 }
 
-- (void)awakeFromNib {    
+- (void)awakeFromNib {
     [NSTimer scheduledTimerWithTimeInterval:(ANIMATION_TIMER) target:self selector:@selector(doAnimation) userInfo:nil repeats:YES];
 }
 #endif
@@ -59,9 +62,12 @@
     const float FONT_SIZE_SMALL  = 0.25  * w;
     const float FONT_SIZE_LARGE  = 1.5*FONT_SIZE_SMALL;
     
+    // Modify background color if the ceiling has been breached
+    UIColor *backgroundColor = (_ceilingThresholdEnabled && _value >= _ceilingThreshold) ? _ceilingThresholdBackground : [UIColor blackColor];
+    
     // Drawing code
     CGContextClearRect(ctx, rect);
-    CGContextSetFillColorWithColor(ctx,   [[UIColor blackColor] CGColor]);
+    CGContextSetFillColorWithColor(ctx,   [backgroundColor CGColor]);
     CGContextFillRect(ctx, rect);
     
     CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
@@ -100,7 +106,7 @@
     
     // Draw centre pointer over the top
     //
-    CGContextSetFillColorWithColor(ctx, [[UIColor blackColor] CGColor]);
+    CGContextSetFillColorWithColor(ctx, [backgroundColor CGColor]);
     CGContextSetRGBStrokeColor(ctx, ORANGE_COLOUR);
 
     CGContextBeginPath(ctx);
@@ -169,7 +175,7 @@
     CGContextEOClip(ctx);
     CGContextMoveToPoint(ctx, 0, 0);
     CGContextAddRect(ctx, CGContextGetClipBoundingBox(ctx));
-    CGContextSetFillColorWithColor(ctx, [[UIColor blackColor] CGColor]);
+    CGContextSetFillColorWithColor(ctx, [backgroundColor CGColor]);
     CGContextFillPath(ctx);
     CGContextRestoreGState(ctx);
     
