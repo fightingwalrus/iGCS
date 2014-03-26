@@ -160,7 +160,6 @@ NSArray* headerSpecs = nil;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
@@ -183,6 +182,9 @@ NSArray* headerSpecs = nil;
     
     mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint: indexPath.row];
     BOOL isNavCommand = [WaypointHelper isNavCommand:waypoint];
+    
+    // Prepare the cell
+    cell.editingAccessoryType = [MavLinkUtility isSupportedMissionItemType:waypoint.command] ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
@@ -394,10 +396,13 @@ NSArray* headerSpecs = nil;
     NSInteger idx = indexPath.row;
     
     if (tableView.isEditing) {
-        [self unmarkSelectedRow];
-        [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-        [self performSegueWithIdentifier:@"editItemVC_segue"
-                                  sender:[NSNumber numberWithInteger:idx]];
+        mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:idx];
+        if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
+            [self unmarkSelectedRow];
+            [[self getWaypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
+            [self performSegueWithIdentifier:@"editItemVC_segue"
+                                      sender:[NSNumber numberWithInteger:idx]];
+        }
     } else {
         [self modifyHeadersForSelectedRow:idx];
         if ([self.lastIndexPath isEqual:indexPath]) {
