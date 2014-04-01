@@ -237,6 +237,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     [altitudeView setScale:200];
     [altitudeView setValue:0];
+    [altitudeView setCeilingThreshold:400 * 0.3048]; // IGCS-44: future user setting
+    [altitudeView setCeilingThresholdBackground:[[GCSThemeManager sharedInstance] altimeterCeilingBreachColor]];
+    [altitudeView setCeilingThresholdEnabled:YES];
     
     windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
                                                                  withColor:[UIColor redColor]]];

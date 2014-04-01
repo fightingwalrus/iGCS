@@ -35,6 +35,8 @@
         _waypointTakeoffLandColor = UIColorFromRGB(0xff8c00); // dark orange
         _waypointHomeColor        = [UIColor whiteColor];
         _waypointOtherColor       = UIColorFromRGB(0xd02090);  // violet red
+        
+        _altimeterCeilingBreachColor = [UIColor redColor];
     }
     return self;
 }
