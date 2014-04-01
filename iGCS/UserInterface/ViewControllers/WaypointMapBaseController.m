@@ -272,8 +272,8 @@
     scaleAnimation.duration = duration;
     scaleAnimation.repeatCount = HUGE_VAL;
     scaleAnimation.autoreverses = YES;
-    scaleAnimation.fromValue = [NSNumber numberWithFloat:from];
-    scaleAnimation.toValue   = [NSNumber numberWithFloat:to];
+    scaleAnimation.fromValue = @(from);
+    scaleAnimation.toValue   = @(to);
     [view.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 

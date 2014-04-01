@@ -18,5 +18,6 @@
 
 + (NSArray*) supportedMissionItemTypes;
 + (NSArray*) missionItemMetadataWith:(uint16_t)command;
++ (BOOL) isSupportedMissionItemType:(uint16_t)command;
 
 @end

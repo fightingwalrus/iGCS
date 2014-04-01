@@ -209,4 +209,8 @@ NSDictionary *_ardupilotModes;
     return _missionItemMetadata[@(command)];
 }
 
++ (BOOL) isSupportedMissionItemType:(uint16_t)command {
+    return ([MavLinkUtility missionItemMetadataWith:command] != nil);
+}
+
 @end

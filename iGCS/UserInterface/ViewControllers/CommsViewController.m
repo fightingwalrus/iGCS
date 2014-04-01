@@ -256,8 +256,7 @@
 -(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
                 recordIndex:(NSUInteger)index
 {
-    return [NSNumber numberWithDouble:
-            (fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]];
+    return @((fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]);
 }
 
 @end
