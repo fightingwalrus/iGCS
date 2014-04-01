@@ -400,8 +400,7 @@ NSArray* headerSpecs = nil;
         if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
             [self unmarkSelectedRow];
             [[self getWaypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
-            [self performSegueWithIdentifier:@"editItemVC_segue"
-                                      sender:[NSNumber numberWithInteger:idx]];
+            [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
         }
     } else {
         [self modifyHeadersForSelectedRow:idx];
