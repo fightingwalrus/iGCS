@@ -230,23 +230,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="322-2i-wNC">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="322-2i-wNC">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <segue destination="oah-Ko-Fsy" kind="embed" id="uth-tU-1jT"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="915-GG-haZ">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="322-2i-wNC" firstAttribute="leading" secondItem="yJi-R3-ub5" secondAttribute="leading" id="DUW-Y9-qgK"/>
+                            <constraint firstAttribute="trailing" secondItem="322-2i-wNC" secondAttribute="trailing" id="Isb-7W-ILk"/>
+                            <constraint firstItem="322-2i-wNC" firstAttribute="top" secondItem="P6J-KX-yfv" secondAttribute="bottom" id="Kgl-3C-dsM"/>
+                            <constraint firstItem="JbC-Do-UUC" firstAttribute="top" secondItem="322-2i-wNC" secondAttribute="bottom" id="Yg8-rR-Cbz"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                 </viewController>
@@ -259,7 +259,7 @@
             <objects>
                 <tableViewController id="oah-Ko-Fsy" userLabel="GCS/Siderbar View Controll" customClass="GCSSidebarController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="20" sectionFooterHeight="22" id="Ah9-Z3-jtQ">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
