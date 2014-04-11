@@ -97,10 +97,13 @@
                                             <action selector="changeControlModeSegment" destination="2" eventType="valueChanged" id="1Cs-BN-1Xe"/>
                                         </connections>
                                     </segmentedControl>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jK7-ed-zhJ" userLabel="Data Rate Sparkline View" customClass="CPTGraphHostingView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jK7-ed-zhJ" userLabel="Data Rate Sparkline View" customClass="CPTGraphHostingView">
                                         <rect key="frame" x="958" y="24" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="6IL-08-Gqh"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="-.-kB/s" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-g8-onv" userLabel="Data Rate Label">
                                         <rect key="frame" x="874" y="24" width="80" height="20"/>
@@ -126,6 +129,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="jK7-ed-zhJ" secondAttribute="trailing" constant="6" id="0cV-tX-wiv"/>
                                     <constraint firstItem="GB7-I2-mGW" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="top" constant="20" id="3EG-ud-IbH"/>
                                     <constraint firstItem="NOu-t9-D3C" firstAttribute="leading" secondItem="aMy-jv-l5b" secondAttribute="leading" constant="40" id="3o7-eH-gaU"/>
                                     <constraint firstItem="NOu-t9-D3C" firstAttribute="centerY" secondItem="GB7-I2-mGW" secondAttribute="centerY" id="9ae-Wt-1SD"/>
@@ -133,6 +137,8 @@
                                     <constraint firstAttribute="height" constant="50" id="drW-0f-bsQ"/>
                                     <constraint firstItem="HBF-yg-xzq" firstAttribute="leading" secondItem="NOu-t9-D3C" secondAttribute="trailing" id="h4L-LT-Oor"/>
                                     <constraint firstItem="NOu-t9-D3C" firstAttribute="width" secondItem="aMy-jv-l5b" secondAttribute="width" multiplier="0.1" id="i1d-k1-qdA"/>
+                                    <constraint firstItem="GB7-I2-mGW" firstAttribute="centerY" secondItem="jK7-ed-zhJ" secondAttribute="centerY" id="kLk-uH-DgW"/>
+                                    <constraint firstItem="jK7-ed-zhJ" firstAttribute="width" secondItem="aMy-jv-l5b" secondAttribute="width" multiplier="0.0585938" id="oKN-Gw-oBw"/>
                                     <constraint firstItem="HBF-yg-xzq" firstAttribute="centerY" secondItem="GB7-I2-mGW" secondAttribute="centerY" id="owe-2b-X3u"/>
                                     <constraint firstAttribute="centerX" secondItem="GB7-I2-mGW" secondAttribute="centerX" id="sfD-TU-TTx"/>
                                 </constraints>
