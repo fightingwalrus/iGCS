@@ -81,9 +81,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
-                                        <rect key="frame" x="386" y="18" width="251" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GB7-I2-mGW" userLabel="Segmented - Control Mode">
+                                        <rect key="frame" x="412" y="20" width="200" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="9TA-F0-Ltz"/>
+                                        </constraints>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="-4" maxX="0.0" maxY="-14"/>
                                         <segments>
                                             <segment title="Misc/RC"/>
@@ -123,7 +126,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="GB7-I2-mGW" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="top" constant="18" id="3EG-ud-IbH"/>
+                                    <constraint firstItem="GB7-I2-mGW" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="top" constant="20" id="3EG-ud-IbH"/>
                                     <constraint firstAttribute="height" constant="50" id="drW-0f-bsQ"/>
                                     <constraint firstAttribute="centerX" secondItem="GB7-I2-mGW" secondAttribute="centerX" id="sfD-TU-TTx"/>
                                 </constraints>
@@ -176,20 +179,20 @@
                             <constraint firstItem="6dV-1w-Z5N" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="7Hk-KT-Nsd"/>
                             <constraint firstItem="aMy-jv-l5b" firstAttribute="width" secondItem="17" secondAttribute="width" id="8tp-bN-tVl"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="top" secondItem="17" secondAttribute="top" id="8x8-cY-hj4"/>
+                            <constraint firstItem="aMy-jv-l5b" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="92D-PM-FlC"/>
                             <constraint firstItem="yLv-Ho-H5N" firstAttribute="width" secondItem="17" secondAttribute="width" multiplier="0.25" id="FqX-dq-gMD"/>
                             <constraint firstItem="Ydo-PK-dGh" firstAttribute="top" secondItem="yLv-Ho-H5N" secondAttribute="bottom" constant="-3" id="Lfo-dN-7Pg"/>
+                            <constraint firstItem="aMy-jv-l5b" firstAttribute="top" secondItem="Igh-og-PSg" secondAttribute="bottom" constant="-20" id="M9a-h2-AFK"/>
                             <constraint firstItem="6dV-1w-Z5N" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="bottom" id="MoB-A0-HaQ"/>
                             <constraint firstAttribute="centerX" secondItem="Ydo-PK-dGh" secondAttribute="centerX" id="NwK-Fy-lfS"/>
                             <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="6dV-1w-Z5N" secondAttribute="bottom" id="OEB-iS-EAv"/>
                             <constraint firstItem="Ydo-PK-dGh" firstAttribute="width" secondItem="yLv-Ho-H5N" secondAttribute="width" id="Oi3-LH-AAE"/>
-                            <constraint firstItem="aMy-jv-l5b" firstAttribute="top" secondItem="17" secondAttribute="top" id="Qz0-jC-Z5t"/>
                             <constraint firstAttribute="centerX" secondItem="yLv-Ho-H5N" secondAttribute="centerX" id="TyL-tX-IP3"/>
                             <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="GAr-p0-3d5" secondAttribute="bottom" id="aVM-c5-2pa"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="esA-4m-eCG"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="width" secondItem="17" secondAttribute="width" id="etn-k4-fqp"/>
                             <constraint firstItem="MXV-5t-BKj" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="bottom" id="hn9-qw-Mz2"/>
                             <constraint firstItem="Ydo-PK-dGh" firstAttribute="height" secondItem="17" secondAttribute="height" multiplier="0.041666" id="k7k-88-gLt"/>
-                            <constraint firstItem="aMy-jv-l5b" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="rGp-TW-Ob9"/>
                             <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="Ydo-PK-dGh" secondAttribute="bottom" id="vBj-HJ-2gm"/>
                             <constraint firstAttribute="trailing" secondItem="MXV-5t-BKj" secondAttribute="trailing" id="wM2-W0-EYQ"/>
                         </constraints>
