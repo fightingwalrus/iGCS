@@ -232,6 +232,7 @@
                         <outlet property="armedLabel" destination="NOu-t9-D3C" id="mk2-Km-zDf"/>
                         <outlet property="compassView" destination="Ydo-PK-dGh" id="4HB-Lh-7Zg"/>
                         <outlet property="controlModeSegment" destination="GB7-I2-mGW" id="RYL-5X-apa"/>
+                        <outlet property="controlModeSegmentSizeConstraint" destination="f1Z-xl-whx" id="cVf-ba-ZlM"/>
                         <outlet property="currentLabel" destination="DAe-Q0-ZRd" id="bYs-Ij-LSW"/>
                         <outlet property="customModeLabel" destination="HBF-yg-xzq" id="mdu-jB-wqd"/>
                         <outlet property="dataRateLabel" destination="ha6-g8-onv" id="hHd-0t-vaT"/>

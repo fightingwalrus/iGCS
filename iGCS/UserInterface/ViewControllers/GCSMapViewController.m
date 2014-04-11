@@ -225,6 +225,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
     // initialize debug console buffer
     [DebugLogger start:self.debugConsoleLabel];
 
+    // Adjust view for iOS6 differences
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+        // This constraint is used to fix the size of the mode segmented control, principally
+        // to allow sufficient header space for other labels on supported iPhone (7.0+). Because
+        // the constrained width is too narrow for iPad 6.X, we'll just remove it.
+        [controlModeSegment removeConstraint:_controlModeSegmentSizeConstraint];
+    }
+    
 	// Do any additional setup after loading the view, typically from a nib.
     [map addAnnotation:uavPos];
     
