@@ -1110,6 +1110,7 @@
                                                         <rect key="frame" x="0.0" y="-5" width="168" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <items>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="mIv-4T-47r" userLabel="Flexible Space"/>
                                                             <barButtonItem enabled="NO" style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
                                                                 <connections>
                                                                     <action selector="addClicked:" destination="ZiK-du-awU" id="7k4-2W-smt"/>
@@ -1121,6 +1122,7 @@
                                                                     <action selector="editDoneClicked:" destination="ZiK-du-awU" id="gVu-iF-zV0"/>
                                                                 </connections>
                                                             </barButtonItem>
+                                                            <barButtonItem width="80" style="plain" systemItem="fixedSpace" id="7Yb-mL-G2c" userLabel="Battery Padding"/>
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
@@ -1148,6 +1150,8 @@
                     <connections>
                         <outlet property="_mapView" destination="qaC-XP-dCX" id="WMk-cu-uD9"/>
                         <outlet property="addButton" destination="4gU-lS-xY5" id="Gd1-w6-ae7"/>
+                        <outlet property="batteryPadding" destination="7Yb-mL-G2c" id="06y-YM-PMW"/>
+                        <outlet property="carrierPadding" destination="hIh-iN-4ek" id="zke-hw-5Ie"/>
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
                         <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>

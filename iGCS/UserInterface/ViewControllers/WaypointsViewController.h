@@ -28,6 +28,9 @@
 - (WaypointsHolder*) getWaypointsHolder;  // for MissionItemEditViewController
 - (void) resetWaypoints;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *carrierPadding;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *batteryPadding;
+
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *rxMissionButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *txMissionButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *loadDemoButton;
