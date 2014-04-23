@@ -47,6 +47,12 @@
 {
     [super viewDidLoad];
 
+    // Adjust view for iOS6 differences
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+        _carrierPadding.width = 0;
+        _batteryPadding.width = 0;
+    }
+    
     // Custom initialization
     waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
     

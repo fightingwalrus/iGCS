@@ -52,6 +52,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
+@property (nonatomic, retain) IBOutlet NSLayoutConstraint *controlModeSegmentSizeConstraint;
+
 @property (nonatomic, retain) IBOutlet CPTGraphHostingView *dataRateSparklineView;
 @property (nonatomic, retain) IBOutlet UILabel *dataRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
