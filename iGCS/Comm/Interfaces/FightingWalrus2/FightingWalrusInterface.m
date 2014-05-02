@@ -121,6 +121,10 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 	NSLog(@"closed the session");
 }
 
+-(void)close {
+    [self closeSession];
+}
+
 - (void)writeData:(NSData *)data {
     [_writeDataBuffer appendData:data];
     [self writeDataFromBufferToStream];

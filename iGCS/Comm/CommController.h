@@ -47,10 +47,12 @@
 
 +(CommController *)sharedInstance;
 
+-(void)startFWRConfigMode;
 -(void)start:(MainViewController*)mvc;
 
 -(void) startBluetoothTx;
 -(void) startBluetoothRx;
 -(void) closeAllInterfaces;
+
 
 @end

@@ -36,10 +36,9 @@
     return rsc;
 }
 
-
-
-
-
+-(void)close {
+    NSLog(@"Redpark close method...")
+}
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
@@ -161,12 +160,6 @@
     {
         [Logger dumpException:e];
     }
-    
-    
-    
-    
-
-    
 }
 
 

@@ -13,7 +13,8 @@
 typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     GCSRovingBluetoothNetworkCommInterface,
     GCSRedparkCommInterface,
-    GCSFightingWalrusRadioCommInterface
+    GCSFightingWalrusRadioTelemetryCommInterface,
+    GCSFightingWalrusRadioConfigCommInterface
 };
 
 @implementation CommController
@@ -37,6 +38,26 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     return self;
 }
 
+-(void)startFWRConfigMode{
+    NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
+    bool foundValid = NO;
+
+    for (EAAccessory *accessory in accessories) {
+        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
+            [self createFWRConfigConnection];
+            foundValid = YES;
+            break;
+        }
+    }
+
+    if(foundValid == NO) {
+        NSLog(@"No devices connected, defaulting to Redpark");
+        [self createDefaultConnections:GCSRedparkCommInterface];
+    }
+
+}
+
+// input: instance of MainViewController - used to trigger view updates during comm operations
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
 -(void)start:(MainViewController*)mvc
@@ -62,7 +83,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
             }
 
             if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
-                [self createDefaultConnections:GCSFightingWalrusRadioCommInterface];
+                [self createDefaultConnections:GCSFightingWalrusRadioConfigCommInterface];
                 foundValid = YES;
                 break;
             }
@@ -83,6 +104,15 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 
 #pragma mark -
 #pragma mark connection managment
+-(void)createFWRConfigConnection {
+    [self closeAllInterfaces];
+
+    // set up destination interface
+    _radioConfig = [[iGCSRadioConfig alloc]init];
+    [_connectionPool addDestination:self.radioConfig];
+    [self setupFightingWalrusConfigConnections];
+}
+
 -(void)createDefaultConnections:(GCSCommInterface) commInterface {
     
     // Reset any active connections in the connection pool first
@@ -100,9 +130,12 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 #ifdef REDPARK
         [self setupRedparkConnections];
 #endif
-    } else if (commInterface == GCSFightingWalrusRadioCommInterface) {
-        [DebugLogger console: @"Creating FWR connection."];
-        [self setupFightingWalrusConnections];
+    } else if (commInterface == GCSFightingWalrusRadioTelemetryCommInterface) {
+        [DebugLogger console: @"Creating FWR Telemetry connection."];
+        [self setupFightingWalrusTelemetryConnections];
+    }else if (commInterface == GCSFightingWalrusRadioConfigCommInterface) {
+        [DebugLogger console: @"Creating FWR Config connection."];
+        [self setupFightingWalrusConfigConnections];
     } else {
         NSLog(@"createDefaultConnections: unsupported interface specified");
     }
@@ -151,11 +184,9 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 }
 #endif
 
--(void)setupFightingWalrusConnections {
-    if (!_fightingWalrusInterface) {
-        [DebugLogger console:@"Starting FWR connection"];
-        _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
-    }
+-(void)setupFightingWalrusTelemetryConnections {
+    [DebugLogger console:@"Starting FWR connection"];
+    _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
     
     if (_fightingWalrusInterface) {
         
@@ -170,6 +201,24 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         // Forward app output to FWR TX
         [_connectionPool createConnection:_mavLinkInterface destination:_fightingWalrusInterface];
         
+    }
+}
+
+-(void)setupFightingWalrusConfigConnections {
+    [DebugLogger console:@"Starting FWR connection"];
+    _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringConfig];
+    if (_fightingWalrusInterface) {
+
+        // configure input connection as FWI
+        [DebugLogger console:@"FWR started"];
+        [_connectionPool addSource:_fightingWalrusInterface];
+
+        // Forward FWR RX to app input
+        [_connectionPool createConnection:_fightingWalrusInterface destination:_radioConfig];
+        [DebugLogger console:@"Connected FWR Rx to iGCS Application input."];
+
+        // Forward app output to FWR TX
+        [_connectionPool createConnection:_radioConfig destination:_fightingWalrusInterface];
     }
 }
 
