@@ -40,7 +40,7 @@
 
 
 //    [[CommController sharedInstance].radioConfig.sikAt setHayesMode:RT];
-    [[CommController sharedInstance].radioConfig radioVersion];
+    [[CommController sharedInstance].radioConfig loadSettings];
 //    [[CommController sharedInstance].radioConfig setNetId:25];
 //    [[CommController sharedInstance].radioConfig save];
 }

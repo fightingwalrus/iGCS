@@ -9,6 +9,12 @@
 #import "CommInterface.h"
 #import "GCSSikAT.h"
 
+typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
+    HayesStart,
+    HayesCommand,
+    HayesEnd,
+};
+
 @interface iGCSRadioConfig : CommInterface
 // subsclasses must assign this property to use produceData
 @property (strong) CommConnectionPool *connectionPool;
@@ -20,7 +26,12 @@
 -(void)produceData:(uint8_t*)bytes length:(int)length;
 -(void)close;
 
+// state
+@property (readwrite) GCSHayesReponseState hayesResponseState;
+
 #pragma public mark - AT/RT commands
+
+-(void)loadSettings;
 
 //read
 -(void)radioVersion;

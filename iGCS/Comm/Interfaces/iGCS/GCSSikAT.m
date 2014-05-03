@@ -19,6 +19,7 @@ static NSString *const tShowEEPROMParams = @"ATI5";
 static NSString *const tShowTDMTimingReport = @"ATI6";
 static NSString *const tShowRSSISignalReport = @"ATI7";
 static NSString *const tShowRadioParamN = @"ATS{#}?"; // replace {#} with number
+
 static NSString *const tSetRadioParamN = @"ATS{#}={##}"; // replace {#} and {##} with number
 static NSString *const tRebotRadio = @"ATZ";
 static NSString *const tWriteCurrentParamsToEEPROM = @"AT&W";
