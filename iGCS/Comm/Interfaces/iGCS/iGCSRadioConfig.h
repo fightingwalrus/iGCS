@@ -29,20 +29,36 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 // state
 @property (readwrite) GCSHayesReponseState hayesResponseState;
 
-#pragma public mark - AT/RT commands
+// all methods use local radio by default
 
+#pragma mark - read radio settings via AT/RT commands
+// read all settings
 -(void)loadSettings;
 
-//read
 -(void)radioVersion;
 -(void)boadType;
+-(void)boadFrequency;
+-(void)boadVersion;
+-(void)eepromParams;
+-(void)tdmTimingReport;
 -(void)RSSIReport;
+-(void)serialSpeed;
+-(void)airSpeed;
+-(void)netId;
+-(void)transmitPower;
+-(void)ecc;
+-(void)mavLink;
+-(void)oppResend;
+-(void)minFrequency;
+-(void)maxFrequency;
+-(void)numberOfChannels;
+-(void)dutyCycle;
+-(void)listenBeforeTalkRssi;
 
-// read/write
+#pragma mark - write radio settings via AT/RT commands
+-(void)setNetId:(NSInteger) aNetId;
 -(void)enableRSSIDebug;
 -(void)disableDebug;
--(void)netId;
--(void)setNetId:(NSInteger) netId;
 -(void)save;
 
 @end
