@@ -9,7 +9,7 @@
 #import "iGCSRadioConfig.h"
 
 @implementation NSMutableArray (Queue)
--(id)pop{
+-(id)gcs_pop{
     id anObject = [self lastObject];
     [self removeLastObject];
     return anObject;
@@ -252,7 +252,7 @@
 -(void) dispatchCommandFromQueue {
     @synchronized(self) {
         if (_hayesResponseState == HayesEnd) {
-            void(^ hayesCommand)() = [_commandQueue pop];
+            void(^ hayesCommand)() = [_commandQueue gcs_pop];
             hayesCommand();
         }
     }
