@@ -49,28 +49,33 @@
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length {
-    NSLog(@"iGCSRadioConfig consumeData");
+//    NSLog(@"iGCSRadioConfig consumeData");
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"raw: %@", aString);
+//    NSLog(@"raw: %@", aString);
 
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
+    [_buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
+
     if (_hayesResponseState == HayesStart) {
         if ([_possibleCommands containsObject:currentString]) {
-            _hayesResponseState = HayesCommand;
+            @synchronized(self) {
+                _hayesResponseState = HayesCommand;
+            }
             _previousHayesResponse = currentString;
         }
     } else if (_hayesResponseState == HayesCommand && _previousHayesResponse) {
         _currentSettings[_previousHayesResponse] = currentString;
-        _hayesResponseState = HayesEnd;
+        @synchronized(self) {
+            _hayesResponseState = HayesEnd;
+        }
         _previousHayesResponse = nil;
     }
 }
 
 -(void)produceData:(uint8_t*)bytes length:(int)length {
-    NSLog(@"iGCSRadioConfig produceData");
-    NSLog(@"%@",_buffer);
+//    NSLog(@"iGCSRadioConfig produceData");
     [super produceData:bytes length:length];
 }
 
@@ -85,17 +90,41 @@
     [_commandQueue removeAllObjects];
 
     __weak id weakSelf = self;
+
     [_commandQueue addObject:^(){[weakSelf radioVersion];}];
     [_commandQueue addObject:^(){[weakSelf boadType];}];
+    [_commandQueue addObject:^(){[weakSelf boadFrequency];}];
+    [_commandQueue addObject:^(){[weakSelf boadVersion];}];
+
+//  TODO: need more logic to parse response from this command.
+//  eepromParams are currently gathered one by one.
+//  [_commandQueue addObject:^(){[weakSelf eepromParams];}];
+    [_commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
+
     [_commandQueue addObject:^(){[weakSelf RSSIReport];}];
+    [_commandQueue addObject:^(){[weakSelf serialSpeed];}];
+    [_commandQueue addObject:^(){[weakSelf airSpeed];}];
+    [_commandQueue addObject:^(){[weakSelf netId];}];
+    [_commandQueue addObject:^(){[weakSelf transmitPower];}];
+    [_commandQueue addObject:^(){[weakSelf ecc];}];
+    [_commandQueue addObject:^(){[weakSelf radioVersion];}];
+    [_commandQueue addObject:^(){[weakSelf mavLink];}];
+    [_commandQueue addObject:^(){[weakSelf oppResend];}];
+    [_commandQueue addObject:^(){[weakSelf minFrequency];}];
+    [_commandQueue addObject:^(){[weakSelf maxFrequency];}];
+    [_commandQueue addObject:^(){[weakSelf numberOfChannels];}];
+    [_commandQueue addObject:^(){[weakSelf dutyCycle];}];
+    [_commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
 
     if (!_queueTimer) {
-        _queueTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f target:self selector:@selector(dispatchCommandFromQueue) userInfo:nil repeats:YES];
+        _queueTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f target:self
+                                                     selector:@selector(dispatchCommandFromQueue)
+                                                     userInfo:nil repeats:YES];
     }
 }
 
 
-// read only
+#pragma mark - read radio settings via AT/RT commands
 -(void)radioVersion {
     [self sendATCommand:_sikAt.showRadioVersionCommand];
 }
@@ -104,17 +133,77 @@
     [self sendATCommand:_sikAt.showBoardTypeCommand];
 }
 
+-(void)boadFrequency {
+    [self sendATCommand:_sikAt.showBoardFrequencyCommand];
+}
+
+-(void)boadVersion {
+    [self sendATCommand:_sikAt.showBoardVersionCommand];
+}
+
+-(void)eepromParams {
+    [self sendATCommand:_sikAt.showEEPROMParamsCommand];
+}
+
+-(void)tdmTimingReport {
+    [self sendATCommand:_sikAt.showTDMTimingReport];
+}
+
 -(void)RSSIReport {
     [self sendATCommand:_sikAt.showRSSISignalReport];
 }
 
-// read/Write
--(void)netId {
-    [self sendATCommand:_sikAt.showNetIDCommand];
+-(void)serialSpeed {
+    [self sendATCommand:[_sikAt showRadioParamCommand:SerialSpeed]];
 }
 
--(void)setNetId:(NSInteger) netId {
-    [self sendATCommand:[_sikAt setNetIdCommandWithNetId:netId]];
+-(void)airSpeed {
+    [self sendATCommand:[_sikAt showRadioParamCommand:AirSpeed]];
+}
+
+-(void)netId {
+    [self sendATCommand:[_sikAt showRadioParamCommand:NetId]];
+}
+
+-(void)transmitPower {
+    [self sendATCommand:[_sikAt showRadioParamCommand:TxPower]];
+}
+
+-(void)ecc {
+    [self sendATCommand:[_sikAt showRadioParamCommand:EnableECC]];
+}
+
+-(void)mavLink {
+    [self sendATCommand:[_sikAt showRadioParamCommand:MavLink]];
+}
+
+-(void)oppResend {
+    [self sendATCommand:[_sikAt showRadioParamCommand:OppResend]];
+}
+
+-(void)minFrequency {
+    [self sendATCommand:[_sikAt showRadioParamCommand:MinFrequency]];
+}
+
+-(void)maxFrequency {
+    [self sendATCommand:[_sikAt showRadioParamCommand:MaxFrequency]];
+}
+
+-(void)numberOfChannels {
+    [self sendATCommand:[_sikAt showRadioParamCommand:NumberOfChannels]];
+}
+
+-(void)dutyCycle {
+    [self sendATCommand:[_sikAt showRadioParamCommand:DutyCycle]];
+}
+
+-(void)listenBeforeTalkRssi {
+    [self sendATCommand:[_sikAt showRadioParamCommand:LbtRssi]];
+}
+
+#pragma mark - write radio settings via AT/RT commands
+-(void)setNetId:(NSInteger) aNetId {
+    [self sendATCommand:[_sikAt setRadioParamCommand:NetId withValue:aNetId]];
 }
 
 -(void)enableRSSIDebug {
@@ -135,9 +224,14 @@
         NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
         return;
     }
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(hayesResponseTimeout) userInfo:nil repeats:NO];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self
+                                            selector:@selector(hayesResponseTimeout)
+                                            userInfo:nil repeats:NO];
 
-    _hayesResponseState = HayesStart;
+    @synchronized(self) {
+        _hayesResponseState = HayesStart;
+    }
+
     [_possibleCommands addObject:atCommand];
     NSString *command = [NSString stringWithFormat:@"\r\n%@\r\n", atCommand];
     const char* buf;
@@ -147,7 +241,7 @@
 }
 
 -(void)hayesResponseTimeout {
-    @synchronized(_previousHayesResponse) {
+    @synchronized(self) {
         [_timer invalidate];
         _timer = nil;
         _previousHayesResponse = nil;
@@ -156,14 +250,23 @@
 }
 
 -(void) dispatchCommandFromQueue {
-    if (_hayesResponseState == HayesEnd) {
-        void(^ hayesCommand)() = [_commandQueue pop];
-        hayesCommand();
+    @synchronized(self) {
+        if (_hayesResponseState == HayesEnd) {
+            void(^ hayesCommand)() = [_commandQueue pop];
+            hayesCommand();
+        }
     }
 
     if (_commandQueue.count < 1) {
         [_queueTimer invalidate];
         _queueTimer = nil;
+        NSLog(@"----buffer----");
+        NSLog(@"%@", _buffer);
+
+        NSLog(@"-----possible commands----");
+        NSLog(@"%@", _possibleCommands);
+
+        NSLog(@"-----current settings-----");
         NSLog(@"%@", _currentSettings);
     }
 }

@@ -74,22 +74,17 @@ typedef NS_ENUM(NSUInteger, GCSSikPowerLevel) {
 @interface GCSSikAT : NSObject
 @property (nonatomic, readwrite) GCSSikHayesMode hayesMode;
 
-#pragma mark - convenience methods
--(NSString *)showNetIDCommand;
--(NSString *)setNetIdCommandWithNetId:(NSInteger) netId;
-
 #pragma mark - public AT/RT commands
 -(NSString *)showRadioVersionCommand;
 -(NSString *)showBoardTypeCommand;
 -(NSString *)showBoardFrequencyCommand;
 -(NSString *)showBoardVersionCommand;
 -(NSString *)showEEPROMParamsCommand;
-
 -(NSString *)showTDMTimingReport;
 -(NSString *)showRSSISignalReport;
 -(NSString *)showRadioParamCommand:(GCSSikSRegister ) aRegister;
--(NSString *)setRadioParamCommand:(GCSSikSRegister ) aRegister withValue:(NSInteger)value;
 
+-(NSString *)setRadioParamCommand:(GCSSikSRegister ) aRegister withValue:(NSInteger)value;
 -(NSString *)rebootRadioCommand;
 -(NSString *)writeCurrentParamsToEEPROMCommand;
 -(NSString *)resetToFactoryDefaultCommand;

@@ -62,17 +62,6 @@ static NSString *const tEnableBootloaderMode = @"AT&UPDATE"; // in this mode rad
 }
 
 
-#pragma mark - convenience methods
--(NSString *)showNetIDCommand {
-    NSString *cmd = [self showRadioParamCommand:NetId];
-    return cmd;
-}
-
--(NSString *)setNetIdCommandWithNetId:(NSInteger) netId {
-    NSString *cmd = [self setRadioParamCommand:NetId withValue:netId];
-    return cmd;
-}
-
 #pragma mark - public AT/RT commands
 
 -(NSString *)showRadioVersionCommand {
