@@ -23,9 +23,9 @@
     NSMutableArray *_possibleCommands;
     NSMutableDictionary *_currentSettings;
     NSString *_previousHayesResponse;
-
     // Queue of selectors of commands to perform
     NSMutableArray *_commandQueue;
+    GCSSikAT *_privateSikAt;
 }
 
  -(void)sendATCommand:(NSString *)atCommand;
@@ -38,6 +38,9 @@
     if (self) {
         // public
         _sikAt = [[GCSSikAT alloc] init];
+        _privateSikAt = [[GCSSikAT alloc] init];
+        _localRadioSettings = [[GCSRadioSettings alloc] init];
+        _remoteRadioSettings = [[GCSRadioSettings alloc] init];
         _buffer = [[NSMutableString alloc] init];
         _possibleCommands = [[NSMutableArray alloc] init];
         _currentSettings = [[NSMutableDictionary alloc] init];
@@ -49,10 +52,9 @@
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length {
-//    NSLog(@"iGCSRadioConfig consumeData");
+    NSLog(@"iGCSRadioConfig consumeData");
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-//    NSLog(@"raw: %@", aString);
 
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
@@ -66,6 +68,7 @@
             _previousHayesResponse = currentString;
         }
     } else if (_hayesResponseState == HayesCommand && _previousHayesResponse) {
+        [self updateModelWithKey:_previousHayesResponse andValue:currentString];
         _currentSettings[_previousHayesResponse] = currentString;
         @synchronized(self) {
             _hayesResponseState = HayesEnd;
@@ -89,8 +92,7 @@
 -(void)loadSettings {
     [_commandQueue removeAllObjects];
 
-    __weak id weakSelf = self;
-
+    __weak iGCSRadioConfig *weakSelf = self;
     [_commandQueue addObject:^(){[weakSelf radioVersion];}];
     [_commandQueue addObject:^(){[weakSelf boadType];}];
     [_commandQueue addObject:^(){[weakSelf boadFrequency];}];
@@ -250,24 +252,143 @@
 }
 
 -(void) dispatchCommandFromQueue {
+
+    if (_commandQueue.count == 0) {
+        NSLog(@"_currentSettings: %@", _currentSettings);
+        NSLog(@"localSettings: %@", _localRadioSettings);
+        NSLog(@"remoteRadioSettings: %@", _remoteRadioSettings);
+        [_queueTimer invalidate];
+        _queueTimer = nil;
+
+        return;
+    }
+
     @synchronized(self) {
         if (_hayesResponseState == HayesEnd) {
             void(^ hayesCommand)() = [_commandQueue gcs_pop];
             hayesCommand();
         }
     }
-
-    if (_commandQueue.count < 1) {
-        [_queueTimer invalidate];
-        _queueTimer = nil;
-        NSLog(@"----buffer----");
-        NSLog(@"%@", _buffer);
-
-        NSLog(@"-----possible commands----");
-        NSLog(@"%@", _possibleCommands);
-
-        NSLog(@"-----current settings-----");
-        NSLog(@"%@", _currentSettings);
-    }
 }
+
+// brute force
+-(void)updateModelWithKey:(NSString *)key andValue:(id) value {
+    _privateSikAt.hayesMode = AT;
+    // local radio settings
+    if ([key isEqualToString:tShowLocalRadioVersion]) {
+        _localRadioSettings.radioVersion = value;
+
+    }else if ([key isEqualToString:tShowLocalBoardType]) {
+        _localRadioSettings.boadType = value;
+
+    }else if ([key isEqualToString:tShowLocalBoardFrequency]) {
+        _localRadioSettings.boadFrequency = value;
+
+    }else if ([key isEqualToString:tShowLocalBoardVersion]) {
+        _localRadioSettings.boadVersion = value;
+
+    }else if ([key isEqualToString:tShowLocalTDMTimingReport]) {
+        _localRadioSettings.tdmTimingReport = value;
+
+    }else if ([key isEqualToString:tShowLocalRSSISignalReport]) {
+        _localRadioSettings.RSSIReport = value;
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:SerialSpeed]]) {
+        _localRadioSettings.serialSpeed = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:AirSpeed]]) {
+        _localRadioSettings.airSpeed = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:NetId]]) {
+        _localRadioSettings.netId = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:TxPower]]) {
+        _localRadioSettings.transmitterPower = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:EnableECC]]) {
+        _localRadioSettings.isECCenabled = [value boolValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MavLink]]) {
+        _localRadioSettings.isMavlinkEnabled = [value boolValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:OppResend]]) {
+        _localRadioSettings.isOppResendEnabled = [value boolValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MinFrequency]]) {
+        _localRadioSettings.minFrequency = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MaxFrequency]]) {
+        _localRadioSettings.maxFrequency = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:NumberOfChannels]]) {
+        _localRadioSettings.numberOfChannels = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:DutyCycle]]) {
+        _localRadioSettings.dutyCycle = [value integerValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:LbtRssi]]) {
+        _localRadioSettings.isListenBeforeTalkRSSIEnabled = value;
+
+    }
+
+    // remote radio settings
+    _privateSikAt.hayesMode = RT;
+    if ([key isEqualToString:tShowRemoteRadioVersion]) {
+        _remoteRadioSettings.radioVersion = value;
+
+    }else if ([key isEqualToString:tShowRemoteBoardType]) {
+        _remoteRadioSettings.boadType = value;
+
+    }else if ([key isEqualToString:tShowRemoteBoardFrequency]) {
+        _remoteRadioSettings.boadFrequency = value;
+
+    }else if ([key isEqualToString:tShowRemoteBoardVersion]) {
+        _remoteRadioSettings.boadVersion = value;
+
+    }else if ([key isEqualToString:tShowRemoteTDMTimingReport]) {
+        _remoteRadioSettings.tdmTimingReport = value;
+
+    }else if ([key isEqualToString:tShowRemoteRSSISignalReport]) {
+        _remoteRadioSettings.RSSIReport = value;
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:SerialSpeed]]) {
+        _remoteRadioSettings.serialSpeed = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:AirSpeed]]) {
+        _remoteRadioSettings.airSpeed = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:NetId]]) {
+        _remoteRadioSettings.netId = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:TxPower]]) {
+        _remoteRadioSettings.transmitterPower = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:EnableECC]]) {
+        _remoteRadioSettings.isECCenabled = [value boolValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MavLink]]) {
+        _remoteRadioSettings.isMavlinkEnabled = [value boolValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:OppResend]]) {
+        _remoteRadioSettings.isOppResendEnabled = [value boolValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MinFrequency]]) {
+        _remoteRadioSettings.minFrequency = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:MaxFrequency]]) {
+        _remoteRadioSettings.maxFrequency = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:NumberOfChannels]]) {
+        _remoteRadioSettings.numberOfChannels = [value integerValue];
+
+    }else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:DutyCycle]]) {
+        _remoteRadioSettings.dutyCycle = [value integerValue];
+
+    } else if ([key isEqualToString:[_privateSikAt showRadioParamCommand:LbtRssi]]) {
+        _remoteRadioSettings.isListenBeforeTalkRSSIEnabled = value;
+        
+    }
+
+}
+
 @end

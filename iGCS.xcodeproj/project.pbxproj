@@ -115,6 +115,9 @@
 		1842F8D31892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
 		1842F8D41892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
 		1842F8D51892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
+		1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
+		1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1854467B18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
 		1854467C18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
 		1854467D18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
@@ -476,6 +479,8 @@
 		1842F8C71892D2F80050F680 /* Icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-58.png"; sourceTree = "<group>"; };
 		1842F8C81892D2F80050F680 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
+		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
+		1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSRadioSettings.m; sourceTree = "<group>"; };
 		1854467918D8EEA6004F4BF8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -1273,6 +1278,15 @@
 				18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */,
 			);
 			path = RovingNetworks;
+			sourceTree = "<group>";
+		};
+		1851D848191ADFD900ED5C87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
+				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		18759787189108980012DF6D /* Icons */ = {
@@ -2137,6 +2151,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0C44D519230F170099B718 /* Firmware */,
+				1851D848191ADFD900ED5C87 /* Models */,
 				18759787189108980012DF6D /* Icons */,
 				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
@@ -2497,6 +2512,7 @@
 			files = (
 				182FFA99181F0C9100A8C31C /* main.m in Sources */,
 				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
+				1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
 				182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */,
@@ -2565,6 +2581,7 @@
 			files = (
 				18B9FAC418B2F7AF00668660 /* main.m in Sources */,
 				18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */,
+				1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
@@ -2662,6 +2679,7 @@
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
+				1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				1854467B18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,

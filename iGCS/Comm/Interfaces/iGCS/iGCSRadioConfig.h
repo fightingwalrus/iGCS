@@ -7,6 +7,8 @@
 //
 
 #import "CommInterface.h"
+#import "GCSRadioSettings.h"
+
 #import "GCSSikAT.h"
 
 typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
@@ -19,6 +21,8 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 // subsclasses must assign this property to use produceData
 @property (strong) CommConnectionPool *connectionPool;
 @property (nonatomic, strong) GCSSikAT *sikAt;
+@property (nonatomic, strong) GCSRadioSettings *localRadioSettings;
+@property (nonatomic, strong) GCSRadioSettings *remoteRadioSettings;
 @property (nonatomic, strong) NSMutableDictionary *responses;
 
 // receiveBytes processes bytes forwarded from another interface

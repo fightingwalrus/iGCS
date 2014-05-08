@@ -8,6 +8,48 @@
 
 #import <Foundation/Foundation.h>
 
+// Implement flavor of AT commands for Sik firmware
+// http://code.google.com/p/ardupilot-mega/wiki/3DRadio
+
+// Local radio constants (AT)
+static NSString *const tShowLocalRadioVersion = @"ATI";
+static NSString *const tShowLocalBoardType = @"ATI2";
+static NSString *const tShowLocalBoardFrequency = @"ATI3";
+static NSString *const tShowLocalBoardVersion = @"ATI4";
+static NSString *const tShowLocalEEPROMParams = @"ATI5";
+static NSString *const tShowLocalTDMTimingReport = @"ATI6";
+static NSString *const tShowLocalRSSISignalReport = @"ATI7";
+static NSString *const tShowLocalRadioParamN = @"ATS{#}?"; // replace {#} with number
+
+static NSString *const tSetLocalRadioParamN = @"ATS{#}={##}"; // replace {#} and {##} with number
+static NSString *const tRebootLocalRadio = @"ATZ";
+static NSString *const tWriteCurrentParamsToLocalRadioEEPROM = @"AT&W";
+static NSString *const tResetLocalRadioToFactoryDefault = @"AT&F";
+static NSString *const tEnableLocalRadioRSSIDebug = @"AT&T=RSSI";
+static NSString *const tEnableLocalRadioTDMDebug = @"AT&T=TDM";
+static NSString *const tDisableLocalRadioDebug = @"AT&T";
+static NSString *const tEnableLocalRadioBootloaderMode = @"AT&UPDATE"; // in this mode radio will accept firmware update
+static NSString *const tExitATMode = @"AT0";  // Cannot be used with remote radio. (No RT0)
+
+// Remote radio commands (RT)
+static NSString *const tShowRemoteRadioVersion = @"RTI";
+static NSString *const tShowRemoteBoardType = @"RTI2";
+static NSString *const tShowRemoteBoardFrequency = @"RTI3";
+static NSString *const tShowRemoteBoardVersion = @"RTI4";
+static NSString *const tShowRemoteEEPROMParams = @"RTI5";
+static NSString *const tShowRemoteTDMTimingReport = @"RTI6";
+static NSString *const tShowRemoteRSSISignalReport = @"RTI7";
+static NSString *const tShowRemoteRadioParamN = @"RTS{#}?"; // replace {#} with number
+
+static NSString *const tSetRemoteRadioParamN = @"RTS{#}={##}"; // replace {#} and {##} with number
+static NSString *const tRebootRemoteRadio = @"RTZ";
+static NSString *const tWriteCurrentParamsToRemoteRadioEEPROM = @"RT&W";
+static NSString *const tResetRemoteRadioToFactoryDefault = @"RT&F";
+static NSString *const tEnableRemoteRadioRSSIDebug = @"RT&T=RSSI";
+static NSString *const tEnableRemoteRadioTDMDebug = @"RT&T=TDM";
+static NSString *const tDisableRemoteRadioDebug = @"RT&T";
+static NSString *const tEnableRemoteRadioBootloaderMode = @"RT&UPDATE"; // in this mode radio will accept firmware update
+
 typedef NS_ENUM(NSUInteger, GCSSikHayesMode) {
     AT,
     RT
