@@ -11,11 +11,11 @@
 @implementation GCSRadioSettings
 -(NSString *)description {
     NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] init];
-    mutableDict[@"radioVersion"] = self.radioVersion ?: @"";
-    mutableDict[@"boadType"] = self.boadType ?: @"";
-    mutableDict[@"boadFrequency"] = self.boadFrequency ?: @"";
-    mutableDict[@"boadVersion"] = self.boadVersion ?: @"";
-    mutableDict[@"tdmTimingReport"] = self.tdmTimingReport ?: @"";
+    mutableDict[@"radioVersion"] = self.radioVersion ?: [NSNull null];
+    mutableDict[@"boadType"] = self.boadType ?: [NSNull null];
+    mutableDict[@"boadFrequency"] = self.boadFrequency ?: [NSNull null];
+    mutableDict[@"boadVersion"] = self.boadVersion ?: [NSNull null];
+    mutableDict[@"tdmTimingReport"] = self.tdmTimingReport ?: [NSNull null];
     mutableDict[@"serialSpeed"] = @(self.serialSpeed);
     mutableDict[@"airSpeed"] = @(self.airSpeed);
     mutableDict[@"netId"] = @(self.netId);
