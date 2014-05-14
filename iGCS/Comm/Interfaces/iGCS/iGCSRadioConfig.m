@@ -18,7 +18,6 @@
 
 @interface iGCSRadioConfig () {
     NSTimer *_responseTimer;
-    NSTimer *_queueTimer;
     NSMutableString *_buffer;
     NSMutableArray *_possibleCommands;
     NSMutableDictionary *_currentSettings;
@@ -73,6 +72,7 @@
         _currentSettings[_previousHayesResponse] = currentString;
         @synchronized(self) {
             _hayesResponseState = HayesEnd;
+            [self dispatchCommandFromQueue];
         }
         _previousHayesResponse = nil;
 
@@ -93,6 +93,11 @@
 
 -(void)loadSettings {
     [_commandQueue removeAllObjects];
+
+    // set a timeout for the batch
+    _responseTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self
+                                                    selector:@selector(hayesResponseTimeout)
+                                                    userInfo:nil repeats:NO];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [_commandQueue addObject:^(){[weakSelf radioVersion];}];
@@ -120,11 +125,11 @@
     [_commandQueue addObject:^(){[weakSelf dutyCycle];}];
     [_commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
 
-    if (!_queueTimer) {
-        _queueTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f target:self
-                                                     selector:@selector(dispatchCommandFromQueue)
-                                                     userInfo:nil repeats:YES];
-    }
+    // Kick things off by sending a command from Queue.
+    // Once we get a response back the next command will
+    // be sent via the consume data method after we have
+    // processed the previous response.
+    [self dispatchCommandFromQueue];
 }
 
 
@@ -228,9 +233,6 @@
         NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
         return;
     }
-    _responseTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self
-                                            selector:@selector(hayesResponseTimeout)
-                                            userInfo:nil repeats:NO];
 
     @synchronized(self) {
         _hayesResponseState = HayesStart;
@@ -254,14 +256,10 @@
 }
 
 -(void) dispatchCommandFromQueue {
-
     if (_commandQueue.count == 0) {
         NSLog(@"_currentSettings: %@", _currentSettings);
         NSLog(@"localSettings: %@", _localRadioSettings);
         NSLog(@"remoteRadioSettings: %@", _remoteRadioSettings);
-        [_queueTimer invalidate];
-        _queueTimer = nil;
-
         return;
     }
 
