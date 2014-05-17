@@ -189,7 +189,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 // verify multiple bytes in flash
 - (BOOL) verifyMulti:(NSData*)data {
     NSUInteger n = data.length;
-    assert(n <= 255);
+    assert(n < 256);
     
     // Request n bytes
     BYTE b = n;
@@ -215,46 +215,42 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
     [self send:FWU_REBOOT];
 }
 
+typedef void (^FWUChunkFn)(NSUInteger, NSData*);
 
-// TODO: refactor programFW and verifyFW into common code which takes a block (which takes an NSData arg)
-- (void) programFW:(SiKFirmware*)fw {
+- (void) operateOverFW:(SiKFirmware*)fw inChunksOf:(NSUInteger)chunkSize withFn:(FWUChunkFn)fn {
     for (AddressDataPair *adp in [fw sortedAddressDataPairs]) {
         assert(adp.address < 65536);
         
         // Set the address
         [self setAddress:(uint16_t)adp.address];
         
-        // Send the data for each address, in chunks of size PROG_MULTI_MAX
+        // For each address, call the fn with chunks of size chunkSize
         NSUInteger n = adp.data.length;
-        for (NSUInteger i = 0; i < n; i += PROG_MULTI_MAX) {
-            NSUInteger len = MIN(n - i, PROG_MULTI_MAX);
+        for (NSUInteger i = 0; i < n; i += chunkSize) {
+            NSUInteger len = MIN(n - i, chunkSize);
             NSData *chunk = [adp.data subdataWithRange:NSMakeRange(i, len)];
             
-            [self programMulti:chunk];
+            fn(adp.address, chunk);
         }
     }
 }
 
+- (void) programFW:(SiKFirmware*)fw {
+    FWUChunkFn fn = ^void(NSUInteger address, NSData *chunk) {
+        [self programMulti:chunk];
+    };
+    [self operateOverFW:fw inChunksOf:PROG_MULTI_MAX withFn:fn];
+}
+
 - (void) verifyFW:(SiKFirmware*)fw {
-    for (AddressDataPair *adp in [fw sortedAddressDataPairs]) {
-        assert(adp.address < 65536);
-        
-        // Set the address
-        [self setAddress:(uint16_t)adp.address];
-        
-        // Verify the data for each address, in chunks of size PROG_MULTI_MAX
-        NSUInteger n = adp.data.length;
-        for (NSUInteger i = 0; i < n; i += PROG_MULTI_MAX) {
-            NSUInteger len = MIN(n - i, PROG_MULTI_MAX);
-            NSData *chunk = [adp.data subdataWithRange:NSMakeRange(i, len)];
-            
-            if (![self verifyMulti:chunk]) {
-                @throw([NSException exceptionWithName:NSGenericException
-                                               reason:[NSString stringWithFormat:@"Verification failed in group at 0x%x", adp.address]
-                                             userInfo:nil]);
-            }
+    FWUChunkFn fn = ^void(NSUInteger address, NSData *chunk) {
+        if (![self verifyMulti:chunk]) {
+            @throw([NSException exceptionWithName:NSGenericException
+                                           reason:[NSString stringWithFormat:@"Verification failed in group at 0x%x", address]
+                                         userInfo:nil]);
         }
-    }
+    };
+    [self operateOverFW:fw inChunksOf:READ_MULTI_MAX withFn:fn];
 }
 
 - (BOOL) autoSync {
