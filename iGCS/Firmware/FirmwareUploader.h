@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class Firmware; // temp forward declaration
+#import "SiKFirmware.h"
 
 @interface FirmwareUploader : NSObject
 
-+ (BOOL) uploadFirmware:(Firmware*)fw  port:(NSInteger)port baud:(NSInteger)baud resetToDefault:(BOOL)resetToDefaults;
++ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(NSInteger)port baud:(NSInteger)baud resetToDefault:(BOOL)resetToDefaults;
 
 @end

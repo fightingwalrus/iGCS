@@ -331,6 +331,8 @@
 		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
+		CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
+		CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
@@ -780,6 +782,8 @@
 		CA05751318BE080B001EACFD /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
 		CA05751418BE080B001EACFD /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
 		CA05751518BE080B001EACFD /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
+		CA07822F192716A0007FCFD5 /* SiKFirmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiKFirmware.h; path = Firmware/SiKFirmware.h; sourceTree = "<group>"; };
+		CA078230192716A0007FCFD5 /* SiKFirmware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmware.m; path = Firmware/SiKFirmware.m; sourceTree = "<group>"; };
 		CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillStrokePolyLineView.h; sourceTree = "<group>"; };
 		CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillStrokePolyLineView.m; sourceTree = "<group>"; };
 		CA094F2A18D534E100AC6AE4 /* WaypointAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotationView.h; sourceTree = "<group>"; };
@@ -1166,6 +1170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */,
 				CABD958318025115003557A3 /* OpenGLES.framework in Frameworks */,
 				CABD9582180250D3003557A3 /* MapKit.framework in Frameworks */,
 				CABD9581180250A4003557A3 /* ExternalAccessory.framework in Frameworks */,
@@ -1769,6 +1774,8 @@
 			children = (
 				CA0C44DA19230F570099B718 /* FirmwareUploader.h */,
 				CA0C44DB19230F570099B718 /* FirmwareUploader.m */,
+				CA07822F192716A0007FCFD5 /* SiKFirmware.h */,
+				CA078230192716A0007FCFD5 /* SiKFirmware.m */,
 			);
 			name = Firmware;
 			sourceTree = "<group>";
@@ -2627,6 +2634,7 @@
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
+				CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,

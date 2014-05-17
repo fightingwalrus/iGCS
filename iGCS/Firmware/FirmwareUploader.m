@@ -217,46 +217,40 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 
 
 // TODO: refactor programFW and verifyFW into common code which takes a block (which takes an NSData arg)
-- (void) programFW:(Firmware*)fw {
-    NSDictionary *code = [fw addressDataPairs];
-    for (NSNumber *addressKey in [[code allKeys] sortedArrayUsingSelector: @selector(compare:)]) {
-        assert([addressKey unsignedIntegerValue] < 65536);
+- (void) programFW:(SiKFirmware*)fw {
+    for (AddressDataPair *adp in [fw sortedAddressDataPairs]) {
+        assert(adp.address < 65536);
         
         // Set the address
-        uint16_t address = [addressKey unsignedIntegerValue];
-        [self setAddress:address];
+        [self setAddress:(uint16_t)adp.address];
         
         // Send the data for each address, in chunks of size PROG_MULTI_MAX
-        NSData *data = [code objectForKey:addressKey];
-        NSUInteger n = data.length;
+        NSUInteger n = adp.data.length;
         for (NSUInteger i = 0; i < n; i += PROG_MULTI_MAX) {
             NSUInteger len = MIN(n - i, PROG_MULTI_MAX);
-            NSData *chunk = [data subdataWithRange:NSMakeRange(i, len)];
+            NSData *chunk = [adp.data subdataWithRange:NSMakeRange(i, len)];
             
             [self programMulti:chunk];
         }
     }
 }
 
-- (void) verifyFW:(Firmware*)fw {
-    NSDictionary *code = [fw addressDataPairs];
-    for (NSNumber *addressKey in [[code allKeys] sortedArrayUsingSelector: @selector(compare:)]) {
-        assert([addressKey unsignedIntegerValue] < 65536);
+- (void) verifyFW:(SiKFirmware*)fw {
+    for (AddressDataPair *adp in [fw sortedAddressDataPairs]) {
+        assert(adp.address < 65536);
         
         // Set the address
-        uint16_t address = [addressKey unsignedIntegerValue];
-        [self setAddress:address];
+        [self setAddress:(uint16_t)adp.address];
         
         // Verify the data for each address, in chunks of size PROG_MULTI_MAX
-        NSData *data = [code objectForKey:addressKey];
-        NSUInteger n = data.length;
+        NSUInteger n = adp.data.length;
         for (NSUInteger i = 0; i < n; i += PROG_MULTI_MAX) {
             NSUInteger len = MIN(n - i, PROG_MULTI_MAX);
-            NSData *chunk = [data subdataWithRange:NSMakeRange(i, len)];
+            NSData *chunk = [adp.data subdataWithRange:NSMakeRange(i, len)];
             
             if (![self verifyMulti:chunk]) {
                 @throw([NSException exceptionWithName:NSGenericException
-                                               reason:[NSString stringWithFormat:@"Verification failed in group at 0x%x", address]
+                                               reason:[NSString stringWithFormat:@"Verification failed in group at 0x%x", adp.address]
                                              userInfo:nil]);
             }
         }
@@ -291,7 +285,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
     return [[BootLoader alloc] initWithIdentifier:ident andFrequency:freq];
 }
 
-- (void) upload:(Firmware*)fw withResetToDefaults:(BOOL)resetToDefaults {
+- (void) upload:(SiKFirmware*)fw withResetToDefaults:(BOOL)resetToDefaults {
     [self eraseWithReset:resetToDefaults];
     [self programFW:fw];
     [self verifyFW:fw];
@@ -299,7 +293,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 }
 
 
-+ (BOOL) uploadFirmware:(Firmware*)fw  port:(NSInteger)port baud:(NSInteger)baud resetToDefault:(BOOL)resetToDefaults {
++ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(NSInteger)port baud:(NSInteger)baud resetToDefault:(BOOL)resetToDefaults {
     // Construct the uploader
     FirmwareUploader *uploader = [[FirmwareUploader alloc] initWithPort:port andBaud:baud];
     if (![uploader check]) {
