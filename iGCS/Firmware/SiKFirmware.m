@@ -37,8 +37,8 @@
 @end
 
 
-@implementation SiKFirmware
 
+@implementation SiKFirmware
 
 - (id) initWithDict:(NSDictionary*)dict {
     self = [super init];
@@ -48,9 +48,48 @@
     return self;
 }
 
+// ref: http://stackoverflow.com/questions/2501033/nsstring-hex-to-bytes
++ (NSData*)hexStrToNSData:(NSString*)s {
+    const char *chars = [s UTF8String];
+    int i = 0, len = s.length;
+    
+    assert(len % 2 == 0);
+    
+    NSMutableData *data = [NSMutableData dataWithCapacity:len / 2];
+    char byteChars[3] = {'\0','\0','\0'};
+    unsigned long wholeByte;
+    
+    while (i < len) {
+        byteChars[0] = chars[i++];
+        byteChars[1] = chars[i++];
+        wholeByte = strtoul(byteChars, NULL, 16);
+        [data appendBytes:&wholeByte length:1];
+    }
+    
+    return data;
+}
+
 + (AddressDataPair*) parseLine:(NSString*)s {
-    // FIXME: implement me
-    return [[AddressDataPair alloc] initWithAddress:0 andData:nil];
+    // ignore lines not beginning with :
+    if ([s characterAtIndex:0] != ':') {
+        return nil;
+    }
+    
+    // parse the header off the line
+    NSString *hexStr = [s substringWithRange: NSMakeRange(1, s.length - 3)]; // Remove first char, and last 2
+    NSData *data = [SiKFirmware hexStrToNSData:hexStr];
+    NSUInteger n = data.length;
+    assert(n >= 3);
+    unsigned char* bytes = ((unsigned char*)data.bytes);
+    unsigned char command = bytes[2];
+    
+    // only type 0 records are interesting
+    if (command != 0) {
+        return nil;
+    }
+    NSUInteger address = (((NSUInteger)bytes[0]) << 8) + bytes[1];
+    return [[AddressDataPair alloc] initWithAddress:address
+                                            andData:[data subdataWithRange:NSMakeRange(3, n - 3)]];
 }
 
 // insert the pair into the dictionary, merging as we go
