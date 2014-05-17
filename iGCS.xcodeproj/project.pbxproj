@@ -341,6 +341,7 @@
 		CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
+		CA0C44DC19230F570099B718 /* FirmwareUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0C44DB19230F570099B718 /* FirmwareUploader.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -787,6 +788,8 @@
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
 		CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSidebarController.m; sourceTree = "<group>"; };
+		CA0C44DA19230F570099B718 /* FirmwareUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirmwareUploader.h; path = Firmware/FirmwareUploader.h; sourceTree = "<group>"; };
+		CA0C44DB19230F570099B718 /* FirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirmwareUploader.m; path = Firmware/FirmwareUploader.m; sourceTree = "<group>"; };
 		CA10E12F188FCD42002DF0E4 /* GCSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSThemeManager.h; sourceTree = "<group>"; };
 		CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSThemeManager.m; sourceTree = "<group>"; };
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
@@ -1761,6 +1764,15 @@
 			path = SWReveal;
 			sourceTree = "<group>";
 		};
+		CA0C44D519230F170099B718 /* Firmware */ = {
+			isa = PBXGroup;
+			children = (
+				CA0C44DA19230F570099B718 /* FirmwareUploader.h */,
+				CA0C44DB19230F570099B718 /* FirmwareUploader.m */,
+			);
+			name = Firmware;
+			sourceTree = "<group>";
+		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
 			isa = PBXGroup;
 			children = (
@@ -2094,6 +2106,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				CA0C44D519230F170099B718 /* Firmware */,
 				18759787189108980012DF6D /* Icons */,
 				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
@@ -2623,6 +2636,7 @@
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
+				CA0C44DC19230F570099B718 /* FirmwareUploader.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
 				CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
