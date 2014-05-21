@@ -10,9 +10,6 @@
 
 #import "FirmwareUploader.h"
 
-typedef unsigned char BYTE;
-
-
 @interface BootLoader : NSObject
 @property (nonatomic) BYTE identifier;
 @property (nonatomic) BYTE frequency;
@@ -53,48 +50,28 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 #define READ_MULTI_MAX 255
 
 
+@interface FirmwareUploader () // Hide port property in class extension
+@property (nonatomic, readonly) id<FirmwareUploaderPort> port;
+@end
 
-@implementation FirmwareUploader {
-    NSInteger port;
-    NSInteger baud;
-}
+@implementation FirmwareUploader
 
-
-- (id) initWithPort: (NSInteger)_port andBaud:(uint8_t)_baud {
+- (id) initWithPort: (id<FirmwareUploaderPort>)port {
     self = [super init];
     if (self) {
-        port = _port;
-        baud = _baud;
+        _port = port;
     }
     return self;
 }
 
-
-- (BOOL) send:(BYTE)c {
-    // TODO: implement me. Send a byte down the "port"
-    return YES;
-}
-
-
-- (BYTE) recv {
-    // TODO: implement me. Receive a single byte from the "port". Fail with error if no byte is available.
-    return 0;
-}
-
-
-- (void) flushPortInput {
-    // TOOD: implement me. Flush the "port"
-}
-
-
 - (BOOL) getSync {
-    FWUCommandResponse e = [self recv];
+    FWUCommandResponse e = [self.port recv];
     if (e != FWU_INSYNC)
         @throw([NSException exceptionWithName:NSPortReceiveException
                                        reason:[NSString stringWithFormat:@"unexpected 0x%x instead of INSYNC", e]
                                      userInfo:nil]);
     
-    e = [self recv];
+    e = [self.port recv];
     if (e != FWU_OK)
         @throw([NSException exceptionWithName:NSPortReceiveException
                                        reason:[NSString stringWithFormat:@"unexpected 0x%x instead of OK", e]
@@ -106,15 +83,15 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 
 - (BOOL) sendCommand:(FWUCommandResponse)c withData:(NSData*)data andGetSync:(BOOL)sync {
     // Send the command
-    [self send:c];
+    [self.port send:c];
     
     // Send any data
     for (NSUInteger i = 0; data && i < [data length]; i++) {
-        [self send:((BYTE*)data.bytes)[i]];
+        [self.port send:((BYTE*)data.bytes)[i]];
     }
     
     // Send the EOC and optionally re-sync
-    [self send:FWU_EOC];
+    [self.port send:FWU_EOC];
     return (sync ? [self getSync] : YES);
 }
 
@@ -128,9 +105,9 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
     // send a stream of ignored bytes longer than the longest possible conversation
     // that we might still have in progress
     for (NSUInteger i = 0; i < (PROG_MULTI_MAX + 2); i++) {
-        [self send:FWU_NOP];
+        [self.port send:FWU_NOP];
     }
-    [self flushPortInput];
+    [self.port flushInput];
     
     return [self sendCommand:FWU_GET_SYNC withGetSync:YES];
 }
@@ -177,9 +154,9 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 
 // verify a byte in flash
 - (BOOL) verify:(BYTE)b {
-    [self send:FWU_READ_FLASH];
-    [self send:FWU_EOC];
-    if ([self recv] != b) {
+    [self.port send:FWU_READ_FLASH];
+    [self.port send:FWU_EOC];
+    if ([self.port recv] != b) {
         return NO;
     }
     [self getSync];
@@ -199,7 +176,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 
     // Read and check n bytes
     for (NSUInteger i = 0; i < n; i++) {
-        if ([self recv] != ((BYTE*)data.bytes)[i]) {
+        if ([self.port recv] != ((BYTE*)data.bytes)[i]) {
             return NO;
         }
     }
@@ -212,7 +189,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 // send the reboot command
 // Note: from the reference implementation, it appears that EOC and getSync are not required for a reboot
 - (void) reboot {
-    [self send:FWU_REBOOT];
+    [self.port send:FWU_REBOOT];
 }
 
 typedef void (^FWUChunkFn)(NSUInteger, NSData*);
@@ -276,8 +253,8 @@ typedef void (^FWUChunkFn)(NSUInteger, NSData*);
 
 - (BootLoader*) identify {
     [self sendCommand:FWU_GET_DEVICE withGetSync:NO];
-    uint8_t ident = [self recv];
-    uint8_t freq = [self recv];
+    uint8_t ident = [self.port recv];
+    uint8_t freq = [self.port recv];
     return [[BootLoader alloc] initWithIdentifier:ident andFrequency:freq];
 }
 
@@ -289,12 +266,12 @@ typedef void (^FWUChunkFn)(NSUInteger, NSData*);
 }
 
 
-+ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(NSInteger)port baud:(NSInteger)baud resetToDefault:(BOOL)resetToDefaults {
++ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(id<FirmwareUploaderPort>)port resetToDefault:(BOOL)resetToDefaults {
     // Construct the uploader
-    FirmwareUploader *uploader = [[FirmwareUploader alloc] initWithPort:port andBaud:baud];
+    FirmwareUploader *uploader = [[FirmwareUploader alloc] initWithPort:port];
     if (![uploader check]) {
         // TODO: output some status, or specific condition?
-        return YES;
+        return NO;
     }
     
     // TODO: output logging of identified boot loader
