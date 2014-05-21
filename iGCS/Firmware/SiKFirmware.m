@@ -2,6 +2,8 @@
 //  SiKFirmware.m
 //  iGCS
 //
+//  Objective-C re-mplementation of the SiK Firmware uploader.py https://github.com/tridge/SiK/blob/master/Firmware/tools/uploader.py
+//
 //  Created by Claudio Natoli on 17/05/2014.
 //
 //
@@ -71,7 +73,7 @@
 
 + (AddressDataPair*) parseLine:(NSString*)s {
     // ignore lines not beginning with :
-    if ([s characterAtIndex:0] != ':') {
+    if ([s length] == 0 || [s characterAtIndex:0] != ':') {
         return nil;
     }
     
@@ -79,17 +81,17 @@
     NSString *hexStr = [s substringWithRange: NSMakeRange(1, s.length - 3)]; // Remove first char, and last 2
     NSData *data = [SiKFirmware hexStrToNSData:hexStr];
     NSUInteger n = data.length;
-    assert(n >= 3);
+    assert(n >= 4);
     unsigned char* bytes = ((unsigned char*)data.bytes);
-    unsigned char command = bytes[2];
+    unsigned char command = bytes[3];
     
     // only type 0 records are interesting
     if (command != 0) {
         return nil;
     }
-    NSUInteger address = (((NSUInteger)bytes[0]) << 8) + bytes[1];
+    NSUInteger address = (((NSUInteger)bytes[1]) << 8) + bytes[2];
     return [[AddressDataPair alloc] initWithAddress:address
-                                            andData:[data subdataWithRange:NSMakeRange(3, n - 3)]];
+                                            andData:[data subdataWithRange:NSMakeRange(4, n - 4)]];
 }
 
 // insert the pair into the dictionary, merging as we go
