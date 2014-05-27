@@ -8,6 +8,8 @@
 
 #import "iGCSRadioConfig.h"
 
+NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
+
 @implementation NSMutableArray (Queue)
 -(id)gcs_pop{
     id anObject = [self lastObject];
@@ -45,6 +47,9 @@
         _currentSettings = [[NSMutableDictionary alloc] init];
         _hayesResponseState = HayesEnd;
         _commandQueue = [[NSMutableArray alloc] init];
+
+        // observe
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandQueueHasEmptied) name:GCSRadioConfigCommandQueueHasEmptied object:nil];
     }
     return self;
 }
@@ -56,7 +61,7 @@
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSLog(@"%@", currentString);
+    NSLog(@"current string: %@", currentString);
 
     [_buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
 
@@ -80,7 +85,7 @@
 }
 
 -(void)produceData:(uint8_t*)bytes length:(int)length {
-//    NSLog(@"iGCSRadioConfig produceData");
+    NSLog(@"iGCSRadioConfig produceData");
     [super produceData:bytes length:length];
 }
 
@@ -91,47 +96,70 @@
 
 #pragma public mark - send commands
 
--(void)loadSettings {
+-(void)prepareQueueForNewCommands {
     [_commandQueue removeAllObjects];
-
     // set a timeout for the batch
+    if (_responseTimer) {
+        [_responseTimer invalidate];
+        _responseTimer = nil;
+    }
     _responseTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self
                                                     selector:@selector(hayesResponseTimeout)
                                                     userInfo:nil repeats:NO];
+}
+
+-(void)loadSettings {
+    [self prepareQueueForNewCommands];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [_commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [_commandQueue addObject:^(){[weakSelf boadType];}];
-    [_commandQueue addObject:^(){[weakSelf boadFrequency];}];
-    [_commandQueue addObject:^(){[weakSelf boadVersion];}];
+
+//    [_commandQueue addObject:^(){[weakSelf boadType];}];
+//    [_commandQueue addObject:^(){[weakSelf boadFrequency];}];
+//    [_commandQueue addObject:^(){[weakSelf boadVersion];}];
 
 //  TODO: need more logic to parse response from this command.
 //  eepromParams are currently gathered one by one.
 //  [_commandQueue addObject:^(){[weakSelf eepromParams];}];
-    [_commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
-
-    [_commandQueue addObject:^(){[weakSelf RSSIReport];}];
+//    [_commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
+//
+//    [_commandQueue addObject:^(){[weakSelf RSSIReport];}];
     [_commandQueue addObject:^(){[weakSelf serialSpeed];}];
     [_commandQueue addObject:^(){[weakSelf airSpeed];}];
     [_commandQueue addObject:^(){[weakSelf netId];}];
     [_commandQueue addObject:^(){[weakSelf transmitPower];}];
-    [_commandQueue addObject:^(){[weakSelf ecc];}];
+//    [_commandQueue addObject:^(){[weakSelf ecc];}];
     [_commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [_commandQueue addObject:^(){[weakSelf mavLink];}];
-    [_commandQueue addObject:^(){[weakSelf oppResend];}];
+//    [_commandQueue addObject:^(){[weakSelf mavLink];}];
+//    [_commandQueue addObject:^(){[weakSelf oppResend];}];
     [_commandQueue addObject:^(){[weakSelf minFrequency];}];
     [_commandQueue addObject:^(){[weakSelf maxFrequency];}];
-    [_commandQueue addObject:^(){[weakSelf numberOfChannels];}];
-    [_commandQueue addObject:^(){[weakSelf dutyCycle];}];
-    [_commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
+//    [_commandQueue addObject:^(){[weakSelf numberOfChannels];}];
+//    [_commandQueue addObject:^(){[weakSelf dutyCycle];}];
+//    [_commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
 
     // Kick things off by sending a command from Queue.
     // Once we get a response back the next command will
     // be sent via the consume data method after we have
     // processed the previous response.
+//    [_commandQueue addObject:^(){[weakSelf save];}];
+//    [_commandQueue addObject:^(){[weakSelf setNetId:400];}];
+//    [_commandQueue addObject:^(){[weakSelf rebootRadio];}];
     [self dispatchCommandFromQueue];
 }
 
+-(void)saveAndReset{
+    [self prepareQueueForNewCommands];
+
+    __weak iGCSRadioConfig *weakSelf;
+    [_commandQueue addObject:^(){[weakSelf save];}];
+    [_commandQueue addObject:^(){[weakSelf rebootRadio];}];
+
+    [self dispatchCommandFromQueue];
+}
+-(void)commandQueueHasEmptied {
+    NSLog(@"commandQueueHasEmptied");
+}
 
 #pragma mark - read radio settings via AT/RT commands
 -(void)radioVersion {
@@ -223,6 +251,10 @@
     [self sendATCommand:[_sikAt disableDebugCommand]];
 }
 
+-(void)rebootRadio {
+    [self sendATCommand:[_sikAt rebootRadioCommand]];
+}
+
 -(void)save {
     [self sendATCommand:[_sikAt writeCurrentParamsToEEPROMCommand]];
 }
@@ -260,6 +292,9 @@
         NSLog(@"_currentSettings: %@", _currentSettings);
         NSLog(@"localSettings: %@", _localRadioSettings);
         NSLog(@"remoteRadioSettings: %@", _remoteRadioSettings);
+//        if (_sikAt.hayesMode == AT) {
+//            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandQueueHasEmptied object:nil];
+//        }
         return;
     }
 
@@ -392,3 +427,5 @@
 }
 
 @end
+
+

@@ -21,11 +21,9 @@ static void * SVKvoContext = &SVKvoContext;
 
 @implementation SettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-
     }
     return self;
 }
@@ -33,27 +31,53 @@ static void * SVKvoContext = &SVKvoContext;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLocalSettings) name:GCSRadioConfigInterfaceOpen object:nil];
+
+    _localRadioFirmwareVersion.text = @"";
+    _remoteRadioFirmwareVersion.text = @"";
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - IBAction's
+
+-(void)readLocalSettings {
+//    [[CommController sharedInstance].radioConfig.sikAt setHayesMode:AT];
+    [[CommController sharedInstance].radioConfig loadSettings];
+    //    [[CommController sharedInstance].radioConfig setNetId:25];
+    //    [[CommController sharedInstance].radioConfig save];
+}
+
+-(IBAction)sendATCommand:(id)sender {
+    NSLog(@"config RadioMode");
+    [[CommController sharedInstance] startFWRConfigMode];
+    [self configureKvo];
+}
+
+- (IBAction)saveSettings:(id)sender {
+    NSLog(@"Save Settings");
+    [[CommController sharedInstance].radioConfig saveAndReset];
+}
+
+#pragma mark - Set up KVO
 -(void) configureKvo {
+    
     if (!_localRadioSettingsModel) {
         _localRadioSettingsModel = [CommController sharedInstance].radioConfig.localRadioSettings;
     }
+
+    [_localRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 
     if (!_remoteRadioSettingsModel) {
         _remoteRadioSettingsModel = [CommController sharedInstance].radioConfig.remoteRadioSettings;
     }
 
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"serialSpeed" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"airSpeed" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"transmitterPower" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"isMavlinkEnabled" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-
+    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -92,31 +116,31 @@ static void * SVKvoContext = &SVKvoContext;
             // noop
 
         }else if ([keyPath isEqual:@"serialSpeed"]) {
-            self.localRadioBaudRate.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+//            self.localRadioBaudRate.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"airSpeed"]) {
-            self.localRadioAirBaudRate.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+//            self.localRadioAirBaudRate.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"netId"]) {
             self.localRadioNetId.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         } else if ([keyPath isEqual:@"transmitterPower"]) {
-            self.localRadioTransmitPower.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+//            self.localRadioTransmitPower.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"isECCenabled"]) {
             // noop
 
         } else if ([keyPath isEqual:@"isMavlinkEnabled"]) {
-            self.localRadioIsMavlinkEnabled.text = ([change objectForKey:NSKeyValueChangeNewKey]) ? @"YES" : @"NO";
+//            self.localRadioIsMavlinkEnabled.text = ([change objectForKey:NSKeyValueChangeNewKey]) ? @"YES" : @"NO";
 
         }else if ([keyPath isEqual:@"isOppResendEnabled"]) {
             // noop
 
         } else if ([keyPath isEqual:@"minFrequency"]) {
-            self.localRadioMinFrequency.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+//            self.localRadioMinFrequency.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"maxFrequency"]) {
-            self.localRadioMaxFrequency.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+//            self.localRadioMaxFrequency.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"numberOfChannels"]) {
             // noop
@@ -132,26 +156,11 @@ static void * SVKvoContext = &SVKvoContext;
     // remote radio settings
     if (object == _remoteRadioSettingsModel) {
         if ([keyPath isEqual:@"radioVersion"]) {
-            // update remote radio version
+            self.remoteRadioFirmwareVersion.text = [change objectForKey:NSKeyValueChangeNewKey];
         }
     }
 }
 
-- (IBAction)configRadioMode:(id)sender {
-    NSLog(@"configRadioMode");
-    [[CommController sharedInstance] startFWRConfigMode];
-
-}
-
--(IBAction)sendATCommand:(id)sender {
-    NSLog(@"Send AT Command");
-    [self configureKvo];
-
-//    [[CommController sharedInstance].radioConfig.sikAt setHayesMode:RT];
-    [[CommController sharedInstance].radioConfig loadSettings];
-//    [[CommController sharedInstance].radioConfig setNetId:25];
-//    [[CommController sharedInstance].radioConfig save];
-}
 
 - (void)didReceiveMemoryWarning
 {

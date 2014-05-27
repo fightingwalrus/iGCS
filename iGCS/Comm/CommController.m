@@ -38,25 +38,6 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     return self;
 }
 
--(void)startFWRConfigMode{
-    NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-    bool foundValid = NO;
-
-    for (EAAccessory *accessory in accessories) {
-        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
-            [self createFWRConfigConnection];
-            foundValid = YES;
-            break;
-        }
-    }
-
-    if(foundValid == NO) {
-        NSLog(@"No devices connected, defaulting to Redpark");
-        [self createDefaultConnections:GCSRedparkCommInterface];
-    }
-
-}
-
 // input: instance of MainViewController - used to trigger view updates during comm operations
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
@@ -84,6 +65,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 
             if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
                 [self createDefaultConnections:GCSFightingWalrusRadioConfigCommInterface];
+//                [self createDefaultConnections:GCSFightingWalrusRadioTelemetryCommInterface];
                 foundValid = YES;
                 break;
             }
@@ -102,6 +84,26 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     }
 }
 
+-(void)startFWRConfigMode{
+    NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
+    bool foundValid = NO;
+
+    for (EAAccessory *accessory in accessories) {
+        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
+            [self createFWRConfigConnection];
+            foundValid = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigInterfaceOpen object:nil];
+            break;
+        }
+    }
+
+    if(foundValid == NO) {
+        NSLog(@"No devices connected, defaulting to Redpark");
+        [self createDefaultConnections:GCSRedparkCommInterface];
+    }
+    
+}
+
 #pragma mark -
 #pragma mark connection managment
 -(void)createFWRConfigConnection {
@@ -117,7 +119,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     
     // Reset any active connections in the connection pool first
     [self closeAllInterfaces];
-    
+
     _mavLinkInterface = [iGCSMavLinkInterface createWithViewController:self.mainVC];
     [_connectionPool addDestination:self.mavLinkInterface];
     [DebugLogger console:@"Configured iGCS Application as MavLink consumer."];

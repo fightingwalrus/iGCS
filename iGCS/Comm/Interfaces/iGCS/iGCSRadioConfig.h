@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 #pragma mark - read radio settings via AT/RT commands
 // read all settings
 -(void)loadSettings;
+-(void)saveAndReset;
 
 -(void)radioVersion;
 -(void)boadType;
@@ -63,6 +64,10 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 -(void)setNetId:(NSInteger) aNetId;
 -(void)enableRSSIDebug;
 -(void)disableDebug;
+-(void)rebootRadio;
 -(void)save;
 
 @end
+
+// const for NSNotification messages
+extern NSString * const GCSRadioConfigCommandQueueHasEmptied;

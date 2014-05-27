@@ -9,17 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *localRadioFirmwareVersion;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioBaudRate;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioAirBaudRate;
+@property (strong, nonatomic) IBOutlet UILabel *localRadioFirmwareVersion;
+@property (strong, nonatomic) IBOutlet UILabel *remoteRadioFirmwareVersion;
+
+
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioBaudRate;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioAirBaudRate;
 @property (strong, nonatomic) IBOutlet UITextField *localRadioNetId;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioTransmitPower;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioIsMavlinkEnabled;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioMinFrequency;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioMaxFrequency;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioNumberOfChannels;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioDutyCycle;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioLbtRssiEnabled;
-@property (strong, nonatomic) IBOutlet UITextField *localRadioHardwareFlow;
+
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioTransmitPower;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioIsMavlinkEnabled;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioMinFrequency;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioMaxFrequency;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioNumberOfChannels;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioDutyCycle;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioLbtRssiEnabled;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioHardwareFlow;
 
 @end
