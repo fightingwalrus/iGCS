@@ -19,15 +19,6 @@
 
 @implementation WaypointsViewController
 
-@synthesize rxMissionButton;
-@synthesize txMissionButton;
-@synthesize loadDemoButton;
-
-@synthesize addButton;
-@synthesize editDoneButton;
-
-@synthesize containerForTableView;
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -101,7 +92,7 @@
     if (!showing) y = -y;
     
     // Compute new frames
-    CGRect tableRect = containerForTableView.frame;
+    CGRect tableRect = _containerForTableView.frame;
     CGRect mapRect   = map.frame;
     tableRect.origin.y -= y;
     mapRect.origin.y   -= y;
@@ -117,7 +108,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    containerForTableView.frame = tableRect;
+    _containerForTableView.frame = tableRect;
     map.frame = mapRect;
     [UIView commitAnimations];
 }
@@ -254,18 +245,18 @@
     
     // Update the table and edit/add/upload buttons
     BOOL isEditing = [self.missionTableViewController toggleEditing];
-    editDoneButton.title = isEditing ? @"Done" : @"Edit";
-    editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+    _editDoneButton.title = isEditing ? @"Done" : @"Edit";
+    _editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
-    addButton.enabled       = isEditing;
-    rxMissionButton.enabled = !isEditing;
-    txMissionButton.enabled = !isEditing;
-    loadDemoButton.enabled  = !isEditing;
+    _addButton.enabled       = isEditing;
+    _rxMissionButton.enabled = !isEditing;
+    _txMissionButton.enabled = !isEditing;
+    _loadDemoButton.enabled  = !isEditing;
 
     int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
-    CGRect tableRect = containerForTableView.frame;
+    CGRect tableRect = _containerForTableView.frame;
     CGRect mapRect   = map.frame;
 
     tableRect.origin.y += delta;
@@ -276,7 +267,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.75];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    containerForTableView.frame = tableRect;
+    _containerForTableView.frame = tableRect;
     map.frame = mapRect;
     [UIView commitAnimations];
     
