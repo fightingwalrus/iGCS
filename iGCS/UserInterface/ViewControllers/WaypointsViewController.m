@@ -58,7 +58,13 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
+#ifndef DEBUG
+    // Disable the Load Demo UIBarButtonItem in non-DEBUG builds
+    loadDemoButton.title = nil;
+    loadDemoButton.enabled = NO;
+#endif
+
     // Register for keyboard show/hide notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowing:)
