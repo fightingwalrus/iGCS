@@ -51,9 +51,9 @@
     // self.clearsSelectionOnViewWillAppear = NO;
 
 #ifndef DEBUG
-    // Disable the Load Demo UIBarButtonItem in non-DEBUG builds
-    loadDemoButton.title = nil;
-    loadDemoButton.enabled = NO;
+    // Hide the Load Demo UIBarButtonItem in non-DEBUG builds
+    _loadDemoButton.title = nil;   // UIBarButtonItem does not have a hidden property; this has the effect of hiding textual button items
+    _loadDemoButton.enabled = NO;
 #endif
 
     // Register for keyboard show/hide notifications
