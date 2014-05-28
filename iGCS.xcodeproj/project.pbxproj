@@ -343,6 +343,7 @@
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
+		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
 		CA43E09715143E940014F7C8 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DEBB15143E570014F7C8 /* 73-radar.png */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
@@ -791,6 +792,7 @@
 		CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSThemeManager.m; sourceTree = "<group>"; };
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
 		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
+		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* 00-Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-Read me first - license.txt"; sourceTree = "<group>"; };
 		CA43DE0A15143E570014F7C8 /* glyphish-icons.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "glyphish-icons.pdf"; sourceTree = "<group>"; };
 		CA43DE0B15143E570014F7C8 /* glyphish-icons.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphish-icons.psd"; sourceTree = "<group>"; };
@@ -2103,6 +2105,7 @@
 				496E625C16DAFAD700E52E4A /* Images */,
 				CA499F7114DE33BC00FCC9FB /* AppDelegate.h */,
 				CA499F7214DE33BC00FCC9FB /* AppDelegate.m */,
+				CA42C2EE19359D0F0059F319 /* Images.xcassets */,
 				CA499F6914DE33BC00FCC9FB /* Supporting Files */,
 			);
 			path = iGCS;
@@ -2389,6 +2392,7 @@
 				CA43E09615143E940014F7C8 /* 05-shuffle.png in Resources */,
 				CAE08DE51515BAE1007E50DD /* 07-map-marker.png in Resources */,
 				CAE20224152EA67A00D659E2 /* 13-target.png in Resources */,
+				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
 				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
 				CACDAAB61802718A00B5A62A /* 111-user.png in Resources */,
 				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
@@ -2949,6 +2953,7 @@
 		CA499F9D14DE33BC00FCC9FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2980,6 +2985,7 @@
 		CA499F9E14DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
