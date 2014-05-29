@@ -17,6 +17,11 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
     HayesEnd,
 };
 
+NS_OPTIONS(NSInteger, GCSRadioLinkState) {
+    LocalRadioResponding  = 1 << 0,
+    RemoteRadioResponding = 1 << 1
+};
+
 @interface iGCSRadioConfig : CommInterface
 // subsclasses must assign this property to use produceData
 @property (strong) CommConnectionPool *connectionPool;
@@ -25,6 +30,10 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 @property (nonatomic, strong) GCSRadioSettings *remoteRadioSettings;
 @property (nonatomic, strong) NSMutableDictionary *responses;
 
+// timeout for single AT and RT command roundtrip
+@property (nonatomic, readwrite) float ATCommandTimeout;
+@property (nonatomic, readwrite) float RTCommandTimeout;
+
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length;
 -(void)produceData:(uint8_t*)bytes length:(int)length;
@@ -32,6 +41,7 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 
 // state
 @property (readwrite) GCSHayesReponseState hayesResponseState;
+@property (readwrite) enum GCSRadioLinkState radioLinkState;
 
 // all methods use local radio by default
 
@@ -71,3 +81,4 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 
 // const for NSNotification messages
 extern NSString * const GCSRadioConfigCommandQueueHasEmptied;
+extern NSString * const GCSRadioConfigCommandBatchResponseTimeOut;

@@ -8,6 +8,11 @@
 
 #import "GCSSikAT.h"
 
+NSString * const GCSSikHayesModeDescription[] = {
+    [AT] = @"AT",
+    [RT] = @"RT"
+};
+
 // notes from docs...
 // The first column is the S register to set if you want to change that parameter.
 // So for example, to set the transmit power to 10dBm, use 'ATS4=10'.
@@ -16,13 +21,11 @@
 // then reboot using 'ATZ'. The exception is the transmit power, which changes immediately
 // (although it will revert to the old setting on reboot unless you use AT&W).
 //
-
 @interface GCSSikAT () {
     NSArray *_matchRegisters;
 }
 
 @end
-
 
 @implementation GCSSikAT
 

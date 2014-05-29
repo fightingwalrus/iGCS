@@ -9,6 +9,7 @@
 #import "iGCSRadioConfig.h"
 
 NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
+NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
 
 @implementation NSMutableArray (Queue)
 -(id)gcs_pop{
@@ -19,7 +20,7 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
 @end
 
 @interface iGCSRadioConfig () {
-    NSTimer *_responseTimer;
+    NSTimer *_batchResponseTimer;
     NSMutableString *_buffer;
     NSMutableArray *_possibleCommands;
     NSMutableDictionary *_currentSettings;
@@ -47,6 +48,8 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
         _currentSettings = [[NSMutableDictionary alloc] init];
         _hayesResponseState = HayesEnd;
         _commandQueue = [[NSMutableArray alloc] init];
+        _ATCommandTimeout = 0.25f;
+        _RTCommandTimeout = 0.5f;
 
         // observe
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandQueueHasEmptied) name:GCSRadioConfigCommandQueueHasEmptied object:nil];
@@ -96,24 +99,34 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
 
 #pragma public mark - send commands
 
--(void)prepareQueueForNewCommands {
+-(void)prepareQueueForNewCommands{
     [_commandQueue removeAllObjects];
+}
+
+-(void)resetBatchResponseTimer {
     // set a timeout for the batch
-    if (_responseTimer) {
-        [_responseTimer invalidate];
-        _responseTimer = nil;
+    if (_batchResponseTimer) {
+        [_batchResponseTimer invalidate];
+        _batchResponseTimer = nil;
     }
-    _responseTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self
-                                                    selector:@selector(hayesResponseTimeout)
+
+    float commandTimeout = (self.sikAt.hayesMode == AT) ? self.ATCommandTimeout : self.RTCommandTimeout;
+    float batchTimeoutInterval = commandTimeout * _commandQueue.count;
+
+    NSLog(@"Set batch timeout of %f seconds for %ld %@ commands ",
+          batchTimeoutInterval,
+          (unsigned long)_commandQueue.count,
+          GCSSikHayesModeDescription[AT]);
+
+    _batchResponseTimer = [NSTimer scheduledTimerWithTimeInterval:batchTimeoutInterval target:self
+                                                    selector:@selector(hayesBatchResponseTimeout)
                                                     userInfo:nil repeats:NO];
 }
 
--(void)loadSettings {
+-(void)loadSettings{
     [self prepareQueueForNewCommands];
 
     __weak iGCSRadioConfig *weakSelf = self;
-    [_commandQueue addObject:^(){[weakSelf radioVersion];}];
-
 //    [_commandQueue addObject:^(){[weakSelf boadType];}];
 //    [_commandQueue addObject:^(){[weakSelf boadFrequency];}];
 //    [_commandQueue addObject:^(){[weakSelf boadVersion];}];
@@ -145,6 +158,11 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
 //    [_commandQueue addObject:^(){[weakSelf save];}];
 //    [_commandQueue addObject:^(){[weakSelf setNetId:400];}];
 //    [_commandQueue addObject:^(){[weakSelf rebootRadio];}];
+
+    [_commandQueue addObject:^(){[weakSelf RSSIReport];}];
+    [_commandQueue addObject:^(){[weakSelf radioVersion];}];
+
+    [self resetBatchResponseTimer];
     [self dispatchCommandFromQueue];
 }
 
@@ -155,10 +173,19 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
     [_commandQueue addObject:^(){[weakSelf save];}];
     [_commandQueue addObject:^(){[weakSelf rebootRadio];}];
 
+    [self resetBatchResponseTimer];
     [self dispatchCommandFromQueue];
 }
+
 -(void)commandQueueHasEmptied {
     NSLog(@"commandQueueHasEmptied");
+    if (_sikAt.hayesMode == RT) {
+        _sikAt.hayesMode = AT;
+        return;
+    }
+
+    _sikAt.hayesMode = RT;
+    [self loadSettings];
 }
 
 #pragma mark - read radio settings via AT/RT commands
@@ -278,23 +305,30 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
     [self produceData:buf length:len];
 }
 
--(void)hayesResponseTimeout {
+-(void)hayesBatchResponseTimeout {
     @synchronized(self) {
-        [_responseTimer invalidate];
-        _responseTimer = nil;
+        NSLog(@"Timeout for command: %@", _possibleCommands.lastObject);
+        [_batchResponseTimer invalidate];
+        _batchResponseTimer = nil;
         _previousHayesResponse = nil;
         _hayesResponseState = HayesEnd;
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandBatchResponseTimeOut object:_possibleCommands.lastObject];
     }
 }
 
 -(void) dispatchCommandFromQueue {
     if (_commandQueue.count == 0) {
+        [_batchResponseTimer invalidate];
+        _batchResponseTimer = nil;
+        _previousHayesResponse = nil;
+        _hayesResponseState = HayesEnd;
+
         NSLog(@"_currentSettings: %@", _currentSettings);
         NSLog(@"localSettings: %@", _localRadioSettings);
         NSLog(@"remoteRadioSettings: %@", _remoteRadioSettings);
-//        if (_sikAt.hayesMode == AT) {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandQueueHasEmptied object:nil];
-//        }
+        if (_sikAt.hayesMode == AT) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandQueueHasEmptied object:nil];
+        }
         return;
     }
 

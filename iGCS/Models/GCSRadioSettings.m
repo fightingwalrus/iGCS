@@ -16,6 +16,7 @@
     mutableDict[@"boadFrequency"] = self.boadFrequency ?: [NSNull null];
     mutableDict[@"boadVersion"] = self.boadVersion ?: [NSNull null];
     mutableDict[@"tdmTimingReport"] = self.tdmTimingReport ?: [NSNull null];
+    mutableDict[@"RSSIReport"] = self.RSSIReport ?: [NSNull null];
     mutableDict[@"serialSpeed"] = @(self.serialSpeed);
     mutableDict[@"airSpeed"] = @(self.airSpeed);
     mutableDict[@"netId"] = @(self.netId);

@@ -11,6 +11,7 @@
 @interface SettingsViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *localRadioFirmwareVersion;
 @property (strong, nonatomic) IBOutlet UILabel *remoteRadioFirmwareVersion;
+@property (strong, nonatomic) IBOutlet UILabel *connectionStatus;
 
 
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioBaudRate;

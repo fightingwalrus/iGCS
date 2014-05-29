@@ -33,8 +33,11 @@ static void * SVKvoContext = &SVKvoContext;
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLocalSettings) name:GCSRadioConfigInterfaceOpen object:nil];
 
-    _localRadioFirmwareVersion.text = @"";
-    _remoteRadioFirmwareVersion.text = @"";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
+
+    _localRadioFirmwareVersion.text = nil;
+    _remoteRadioFirmwareVersion.text = nil;
+    _connectionStatus.text = nil;
     // Do any additional setup after loading the view.
 }
 
@@ -51,6 +54,7 @@ static void * SVKvoContext = &SVKvoContext;
     NSLog(@"config RadioMode");
     [[CommController sharedInstance] startFWRConfigMode];
     [self configureKvo];
+    [self updateUIWithRadioSettingsFromModel];
 }
 
 - (IBAction)saveSettings:(id)sender {
@@ -157,17 +161,47 @@ static void * SVKvoContext = &SVKvoContext;
     if (object == _remoteRadioSettingsModel) {
         if ([keyPath isEqual:@"radioVersion"]) {
             self.remoteRadioFirmwareVersion.text = [change objectForKey:NSKeyValueChangeNewKey];
+            self.connectionStatus.text = @"YES";
         }
     }
 }
 
+
+-(void)updateUIWithRadioSettingsFromModel {
+    if (_localRadioSettingsModel) {
+
+        if (_localRadioSettingsModel.netId) {
+            self.localRadioNetId.text = [@(_localRadioSettingsModel.netId) stringValue];
+        }
+
+        self.localRadioFirmwareVersion.text = _localRadioSettingsModel.radioVersion;
+    }
+
+    if (_remoteRadioSettingsModel) {
+        self.remoteRadioFirmwareVersion.text = _remoteRadioSettingsModel.radioVersion;
+    }
+}
+
+-(void)hayesCommandTimedOutWithNotification:(NSNotification *)noti {
+    NSString *command;
+    if (![noti.object isKindOfClass:[NSString class]]) {
+        return;
+    }
+
+    command = noti.object;
+    if ([command rangeOfString:@"RT"].location != NSNotFound) {
+        NSLog(@"THIS COMMAND TIMED OUT! NO LINK!: %@", command);
+        self.connectionStatus.text = @"NO";
+    } else {
+        NSLog(@"Timeout talking to local radio");
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 /*
 #pragma mark - Navigation

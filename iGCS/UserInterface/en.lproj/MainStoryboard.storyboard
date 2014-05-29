@@ -89,6 +89,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ConnectionStatus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tWd-59-zXY">
+                                        <rect key="frame" x="70" y="11" width="138" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -99,6 +106,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="19-gear.png" id="Q2C-d3-j3c"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
+                        <outlet property="connectionStatus" destination="tWd-59-zXY" id="Oha-wT-Q5s"/>
                         <outlet property="localRadioFirmwareVersion" destination="nHN-ED-p1A" id="wrL-JN-uis"/>
                         <outlet property="localRadioNetId" destination="79G-3e-pVv" id="ppn-wu-xTj"/>
                         <outlet property="remoteRadioFirmwareVersion" destination="fv3-Jk-lZ6" id="Ye9-E0-fB8"/>
