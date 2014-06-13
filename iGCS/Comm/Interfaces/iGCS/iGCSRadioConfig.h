@@ -24,11 +24,11 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 
 @interface iGCSRadioConfig : CommInterface
 // subsclasses must assign this property to use produceData
-@property (strong) CommConnectionPool *connectionPool;
 @property (nonatomic, strong) GCSSikAT *sikAt;
-@property (nonatomic, strong) GCSRadioSettings *localRadioSettings;
-@property (nonatomic, strong) GCSRadioSettings *remoteRadioSettings;
-@property (nonatomic, strong) NSMutableDictionary *responses;
+@property (strong) CommConnectionPool *connectionPool;
+@property (strong) GCSRadioSettings *localRadioSettings;
+@property (strong) GCSRadioSettings *remoteRadioSettings;
+@property (strong) NSMutableDictionary *responses;
 
 // timeout for single AT and RT command roundtrip
 @property (nonatomic, readwrite) float ATCommandTimeout;
