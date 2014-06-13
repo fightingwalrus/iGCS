@@ -29,7 +29,7 @@ static NSString *const tEnableLocalRadioRSSIDebug = @"AT&T=RSSI";
 static NSString *const tEnableLocalRadioTDMDebug = @"AT&T=TDM";
 static NSString *const tDisableLocalRadioDebug = @"AT&T";
 static NSString *const tEnableLocalRadioBootloaderMode = @"AT&UPDATE"; // in this mode radio will accept firmware update
-static NSString *const tExitATMode = @"AT0";  // Cannot be used with remote radio. (No RT0)
+static NSString *const tExitATMode = @"ATO";  // Cannot be used with remote radio. (No RTO)
 
 // Remote radio commands (RT)
 static NSString *const tShowRemoteRadioVersion = @"RTI";

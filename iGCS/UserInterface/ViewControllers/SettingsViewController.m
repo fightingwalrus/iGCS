@@ -17,6 +17,7 @@ static void * SVKvoContext = &SVKvoContext;
     GCSRadioSettings *_localRadioSettingsModel;
     GCSRadioSettings *_remoteRadioSettingsModel;
 }
+
 @end
 
 @implementation SettingsViewController
@@ -24,6 +25,7 @@ static void * SVKvoContext = &SVKvoContext;
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        
     }
     return self;
 }
@@ -31,7 +33,7 @@ static void * SVKvoContext = &SVKvoContext;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLocalSettings) name:GCSRadioConfigInterfaceOpen object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRadioConfigInferfaceOpened) name:GCSRadioConfigInterfaceOpen object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
 
@@ -43,6 +45,17 @@ static void * SVKvoContext = &SVKvoContext;
 
 #pragma mark - IBAction's
 
+-(void)handleRadioConfigInferfaceOpened {
+    NSLog(@"radioConfigInferfaceOpened");
+    [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:2.0];
+}
+
+-(void)enterConfigMode {
+    NSLog(@"enterConfigMode");
+    [[CommController sharedInstance].radioConfig enterConfigMode];
+    [self readLocalSettings];
+}
+
 -(void)readLocalSettings {
 //    [[CommController sharedInstance].radioConfig.sikAt setHayesMode:AT];
     [[CommController sharedInstance].radioConfig loadSettings];
@@ -51,7 +64,7 @@ static void * SVKvoContext = &SVKvoContext;
 }
 
 -(IBAction)sendATCommand:(id)sender {
-    NSLog(@"config RadioMode");
+    NSLog(@"start RadioMode");
     [[CommController sharedInstance] startFWRConfigMode];
     [self configureKvo];
     [self updateUIWithRadioSettingsFromModel];

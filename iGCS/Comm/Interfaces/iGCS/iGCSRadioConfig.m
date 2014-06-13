@@ -59,12 +59,11 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
 
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length {
-    NSLog(@"iGCSRadioConfig consumeData");
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSLog(@"current string: %@", currentString);
+    NSLog(@"iGCSRadioConfig consumeData: %@", currentString);
 
     [_buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
 
@@ -121,6 +120,26 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     _batchResponseTimer = [NSTimer scheduledTimerWithTimeInterval:batchTimeoutInterval target:self
                                                     selector:@selector(hayesBatchResponseTimeout)
                                                     userInfo:nil repeats:NO];
+}
+
+-(void)exitConfigMode {
+    [self prepareQueueForNewCommands];
+
+    __weak iGCSRadioConfig *weakSelf = self;
+    [_commandQueue addObject:^(){[weakSelf exit];}];
+
+    [self resetBatchResponseTimer];
+    [self dispatchCommandFromQueue];
+}
+
+-(void)enterConfigMode {
+    [self prepareQueueForNewCommands];
+
+    __weak iGCSRadioConfig *weakSelf = self;
+    [_commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
+
+    [self resetBatchResponseTimer];
+    [self dispatchCommandFromQueue];
 }
 
 -(void)loadSettings{
@@ -184,8 +203,8 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
         return;
     }
 
-    _sikAt.hayesMode = RT;
-    [self loadSettings];
+//    _sikAt.hayesMode = RT;
+//    [self loadSettings];
 }
 
 #pragma mark - read radio settings via AT/RT commands
@@ -286,7 +305,34 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     [self sendATCommand:[_sikAt writeCurrentParamsToEEPROMCommand]];
 }
 
+-(void)exit {
+    [self sendATCommand:[_sikAt exitATModeCommand]];
+}
+
+
 #pragma mark - private
+
+-(void)sendConfigModeCommand {
+    if (_hayesResponseState != HayesEnd) {
+        NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
+        return;
+    }
+
+    @synchronized(self) {
+        _hayesResponseState = HayesStart;
+    }
+
+    [_possibleCommands addObject:@"+++"];
+    [_possibleCommands addObject:@"OK"];
+
+    const char* buf;
+
+    // no trailing CRLF for +++ as with AT commands
+    buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
+    uint32_t len = (uint32_t)strlen(buf);
+    [self produceData:buf length:len];
+}
+
 -(void)sendATCommand:(NSString *)atCommand {
     if (_hayesResponseState != HayesEnd) {
         NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);

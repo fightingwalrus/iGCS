@@ -64,12 +64,10 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
             }
 
             if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
-                [self createDefaultConnections:GCSFightingWalrusRadioConfigCommInterface];
-//                [self createDefaultConnections:GCSFightingWalrusRadioTelemetryCommInterface];
+                [self createDefaultConnections:GCSFightingWalrusRadioTelemetryCommInterface];
                 foundValid = YES;
                 break;
             }
-
         }
         
         if(foundValid == NO) {
@@ -85,6 +83,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 }
 
 -(void)startFWRConfigMode{
+    NSLog(@"startFWRConfigMode");
     NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
     bool foundValid = NO;
 

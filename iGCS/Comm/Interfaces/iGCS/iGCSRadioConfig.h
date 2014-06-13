@@ -46,7 +46,10 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 // all methods use local radio by default
 
 #pragma mark - read radio settings via AT/RT commands
-// read all settings
+-(void)sendConfigModeCommand;
+-(void)enterConfigMode;
+-(void)exitConfigMode;
+
 -(void)loadSettings;
 -(void)saveAndReset;
 

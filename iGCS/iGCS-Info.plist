@@ -53,10 +53,6 @@
 	<array>
 		<string>com.fightingwalrus.telemetry</string>
 		<string>com.fightingwalrus.config</string>
-		<string>com.RovingNetworks.btdemo</string>
-		<string>com.redpark.serdb9</string>
-		<string>com.redpark.serEval</string>
-		<string>com.redpark.hobdb9</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
