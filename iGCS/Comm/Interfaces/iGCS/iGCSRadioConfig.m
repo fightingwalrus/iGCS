@@ -10,6 +10,7 @@
 
 NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
+NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radioconfig.entered.configmode";
 
 @implementation NSMutableArray (Queue)
 -(id)gcs_pop{
@@ -51,7 +52,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
         _possibleCommands = [[NSMutableArray alloc] init];
         _currentSettings = [[NSMutableDictionary alloc] init];
         _commandQueue = [[NSMutableArray alloc] init];
-        _ATCommandTimeout = 0.25f;
+        _ATCommandTimeout = 0.5f;
         _RTCommandTimeout = 0.5f;
 
         // observe
@@ -60,6 +61,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     return self;
 }
 
+#pragma mark - CommInterfaceProtocol
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length {
     NSData *data = [NSData dataWithBytes:bytes length:length];
@@ -69,13 +71,23 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     NSLog(@"iGCSRadioConfig consumeData: %@", currentString);
 
     [self.buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
+    if (self.hayesResponseState == HayesEnterConfigMode) {
+        if ([self.possibleCommands containsObject:currentString]) {
+            @synchronized(self) {
+                self.hayesResponseState = HayesEnd;
+            }
 
-    if (_hayesResponseState == HayesStart) {
+            if ([currentString isEqualToString:@"OK"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigEnteredConfigMode object:nil];
+            }
+        }
+    } else if (self.hayesResponseState == HayesStart) {
         if ([self.possibleCommands containsObject:currentString]) {
             @synchronized(self) {
                 self.hayesResponseState = HayesCommand;
             }
             self.previousHayesResponse = currentString;
+            [self dispatchCommandFromQueue];
         }
     } else if (self.hayesResponseState == HayesCommand && self.previousHayesResponse) {
         [self updateModelWithKey:self.previousHayesResponse andValue:currentString];
@@ -98,40 +110,14 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     NSLog(@"iGCSRadioClose: close is a noop");
 }
 
-
-#pragma public mark - send commands
-
--(void)prepareQueueForNewCommands{
-    [self.commandQueue removeAllObjects];
-}
-
--(void)resetBatchResponseTimer {
-    // set a timeout for the batch
-    if (self.batchResponseTimer) {
-        [self.batchResponseTimer invalidate];
-        self.batchResponseTimer = nil;
-    }
-
-    float commandTimeout = (self.sikAt.hayesMode == AT) ? self.ATCommandTimeout : self.RTCommandTimeout;
-    float batchTimeoutInterval = commandTimeout * self.commandQueue.count;
-
-    NSLog(@"Set batch timeout of %f seconds for %ld %@ commands ",
-          batchTimeoutInterval,
-          (unsigned long)self.commandQueue.count,
-          GCSSikHayesModeDescription[AT]);
-
-    self.batchResponseTimer = [NSTimer scheduledTimerWithTimeInterval:batchTimeoutInterval target:self
-                                                    selector:@selector(hayesBatchResponseTimeout)
-                                                    userInfo:nil repeats:NO];
-}
-
+#pragma public mark - Dispatch command batches
 -(void)exitConfigMode {
     [self prepareQueueForNewCommands];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf exit];}];
 
-    [self resetBatchResponseTimer];
+    [self resetBatchTimeoutUsingCommandTimeout:2.0f];
     [self dispatchCommandFromQueue];
 }
 
@@ -141,7 +127,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
 
-    [self resetBatchResponseTimer];
+    [self resetBatchTimeoutUsingCommandTimeout:1.5f];
     [self dispatchCommandFromQueue];
 }
 
@@ -199,6 +185,35 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     [self dispatchCommandFromQueue];
 }
 
+#pragma mark - Queue, state and timer helpers
+-(void)prepareQueueForNewCommands{
+    [self.commandQueue removeAllObjects];
+}
+
+-(void)resetBatchResponseTimer {
+    float commandTimeout = (self.sikAt.hayesMode == AT) ? self.ATCommandTimeout : self.RTCommandTimeout;
+    [self resetBatchTimeoutUsingCommandTimeout:commandTimeout];
+}
+
+-(void)resetBatchTimeoutUsingCommandTimeout:(float) commandTimeout {
+    // set a timeout for the batch
+    if (self.batchResponseTimer) {
+        [self.batchResponseTimer invalidate];
+        self.batchResponseTimer = nil;
+    }
+
+    float batchTimeoutInterval = commandTimeout * self.commandQueue.count;
+
+    NSLog(@"Set batch timeout of %f seconds for %ld %@ commands ",
+          batchTimeoutInterval,
+          (unsigned long)self.commandQueue.count,
+          GCSSikHayesModeDescription[AT]);
+
+    self.batchResponseTimer = [NSTimer scheduledTimerWithTimeInterval:batchTimeoutInterval target:self
+                                                             selector:@selector(hayesBatchResponseTimeout)
+                                                             userInfo:nil repeats:NO];
+}
+
 -(void)commandQueueHasEmptied {
     NSLog(@"commandQueueHasEmptied");
     if (_sikAt.hayesMode == RT) {
@@ -210,7 +225,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
 //    [self loadSettings];
 }
 
-#pragma mark - read radio settings via AT/RT commands
+#pragma mark - Read radio settings via AT/RT commands
 -(void)radioVersion {
     [self sendATCommand:_sikAt.showRadioVersionCommand];
 }
@@ -287,7 +302,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     [self sendATCommand:[_sikAt showRadioParamCommand:LbtRssi]];
 }
 
-#pragma mark - write radio settings via AT/RT commands
+#pragma mark - Write radio settings via AT/RT commands
 -(void)setNetId:(NSInteger) aNetId {
     [self sendATCommand:[_sikAt setRadioParamCommand:NetId withValue:aNetId]];
 }
@@ -313,7 +328,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
 }
 
 
-#pragma mark - private
+#pragma mark - Private
 
 -(void)sendConfigModeCommand {
     if (_hayesResponseState != HayesEnd) {
@@ -322,7 +337,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     }
 
     @synchronized(self) {
-        _hayesResponseState = HayesStart;
+        self.hayesResponseState = HayesEnterConfigMode;
     }
 
     [self.possibleCommands addObject:@"+++"];
@@ -343,7 +358,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
     }
 
     @synchronized(self) {
-        _hayesResponseState = HayesStart;
+        self.hayesResponseState = HayesStart;
     }
 
     [self.possibleCommands addObject:atCommand];
@@ -357,7 +372,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
 -(void)hayesBatchResponseTimeout {
     @synchronized(self) {
         NSLog(@"Timeout for command: %@", self.possibleCommands.lastObject);
-        [_batchResponseTimer invalidate];
+        [self.batchResponseTimer invalidate];
         self.batchResponseTimer = nil;
         self.previousHayesResponse = nil;
         self.hayesResponseState = HayesEnd;
@@ -367,7 +382,7 @@ NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalru
 
 -(void) dispatchCommandFromQueue {
     if (self.commandQueue.count == 0) {
-        [_batchResponseTimer invalidate];
+        [self.batchResponseTimer invalidate];
         self.batchResponseTimer = nil;
         self.previousHayesResponse = nil;
         self.hayesResponseState = HayesEnd;

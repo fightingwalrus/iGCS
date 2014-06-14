@@ -37,6 +37,8 @@ static void * SVKvoContext = &SVKvoContext;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLocalSettings) name:GCSRadioConfigEnteredConfigMode object:nil];
+
     _localRadioFirmwareVersion.text = nil;
     _remoteRadioFirmwareVersion.text = nil;
     _connectionStatus.text = nil;
@@ -47,13 +49,12 @@ static void * SVKvoContext = &SVKvoContext;
 
 -(void)handleRadioConfigInferfaceOpened {
     NSLog(@"radioConfigInferfaceOpened");
-    [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:3.0];
 }
 
 -(void)enterConfigMode {
     NSLog(@"enterConfigMode");
     [[CommController sharedInstance].radioConfig enterConfigMode];
-    [self readLocalSettings];
 }
 
 -(void)readLocalSettings {

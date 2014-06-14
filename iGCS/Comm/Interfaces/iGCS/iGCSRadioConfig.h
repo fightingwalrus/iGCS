@@ -12,6 +12,7 @@
 #import "GCSSikAT.h"
 
 typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
+    HayesEnterConfigMode,
     HayesStart,
     HayesCommand,
     HayesEnd,
@@ -85,3 +86,4 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 // const for NSNotification messages
 extern NSString * const GCSRadioConfigCommandQueueHasEmptied;
 extern NSString * const GCSRadioConfigCommandBatchResponseTimeOut;
+extern NSString * const GCSRadioConfigEnteredConfigMode;
