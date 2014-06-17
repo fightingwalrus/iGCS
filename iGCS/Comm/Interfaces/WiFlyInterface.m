@@ -1,8 +1,8 @@
 //
-//  RedparkSerialCable.m
+//  WiFlyInterface.h
 //  iGCS
 //
-//  Created by Andrew Aarestad on 2/22/13.
+//  Created by James Adams on 6/17/14.
 //
 //
 
