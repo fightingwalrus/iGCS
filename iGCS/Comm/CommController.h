@@ -23,6 +23,7 @@
 #import "iGCSRadioConfig.h"
 #import "RNBluetoothInterface.h"
 #import "FightingWalrusInterface.h"
+#import "WiFlyInterface.h"
 
 #import "CommInterface.h"
 
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
 @property (nonatomic, retain) iGCSRadioConfig *radioConfig;
 @property (nonatomic, retain) FightingWalrusInterface *fightingWalrusInterface;
+@property (nonatomic, retain) WiFlyInterface *wiflyInterface;
 
 
 #ifdef REDPARK
