@@ -383,17 +383,17 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 }
 
 -(void)sendATCommand:(NSString *)atCommand {
-//    if (_hayesResponseState != HayesEnd) {
-//        NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
-//        return;
-//    }
+    if (_hayesResponseState != HayesEnd) {
+        NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
+        return;
+    }
 
     @synchronized(self) {
         self.hayesResponseState = HayesStart;
     }
 
     [self.possibleCommands addObject:atCommand];
-    NSString *command = [NSString stringWithFormat:@"\r\n%@\r\n", atCommand];
+    NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
     const char* buf;
     buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
