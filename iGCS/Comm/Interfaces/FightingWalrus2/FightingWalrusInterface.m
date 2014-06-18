@@ -12,8 +12,6 @@
 NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
-NSString * const GCSRadioConfigInterfaceOpen = @"com.fightingwalrus.config.open";
-
 @implementation FightingWalrusInterface
 +(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString {
     FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] initWithProtocolString:protocolString];

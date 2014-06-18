@@ -30,6 +30,8 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 @property (strong) GCSRadioSettings *localRadioSettings;
 @property (strong) GCSRadioSettings *remoteRadioSettings;
 @property (strong) NSMutableDictionary *responses;
+@property (readwrite) BOOL isRadioBooted;
+@property (readwrite) BOOL isRadioInConfigMode;
 
 // timeout for single AT and RT command roundtrip
 @property (nonatomic, readwrite) float ATCommandTimeout;
@@ -51,8 +53,9 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 -(void)enterConfigMode;
 -(void)exitConfigMode;
 
+-(void)loadRadioVersion;
 -(void)loadSettings;
--(void)saveAndReset;
+-(void)saveAndResetWithNetID:(NSInteger) netId;
 
 -(void)radioVersion;
 -(void)boadType;
@@ -87,3 +90,5 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 extern NSString * const GCSRadioConfigCommandQueueHasEmptied;
 extern NSString * const GCSRadioConfigCommandBatchResponseTimeOut;
 extern NSString * const GCSRadioConfigEnteredConfigMode;
+extern NSString * const GCSRadioConfigRadioHasBooted;
+

@@ -9,8 +9,6 @@
 #import "CommInterface.h"
 #import <ExternalAccessory/ExternalAccessory.h>
 
-extern NSString * const GCSRadioConfigInterfaceOpen;
-
 @interface FightingWalrusInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate> {
     NSMutableArray *_accessoryList;
     EAAccessory *_selectedAccessory;

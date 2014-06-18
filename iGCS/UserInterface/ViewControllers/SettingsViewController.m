@@ -18,6 +18,7 @@ static void * SVKvoContext = &SVKvoContext;
     GCSRadioSettings *_remoteRadioSettingsModel;
 }
 
+
 @end
 
 @implementation SettingsViewController
@@ -33,23 +34,36 @@ static void * SVKvoContext = &SVKvoContext;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRadioConfigInferfaceOpened) name:GCSRadioConfigInterfaceOpen object:nil];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readRadioSettings) name:GCSRadioConfigEnteredConfigMode object:nil];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted) name:GCSRadioConfigRadioHasBooted object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
+    self.localRadioFirmwareVersion.text = nil;
+    self.remoteRadioFirmwareVersion.text = nil;
+    self.connectionStatus.text = nil;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLocalSettings) name:GCSRadioConfigEnteredConfigMode object:nil];
-
-    _localRadioFirmwareVersion.text = nil;
-    _remoteRadioFirmwareVersion.text = nil;
-    _connectionStatus.text = nil;
-    // Do any additional setup after loading the view.
+    self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 }
 
 #pragma mark - IBAction's
 
--(void)handleRadioConfigInferfaceOpened {
-    NSLog(@"radioConfigInferfaceOpened");
-    [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:3.0];
+-(void)radioHasBooted {
+
+    // If the radio has rebooted and we are not in config mode then enter config
+    // read/write local settings. Once we enter configmode an NSNotification
+    // will trigger the readRadioSettings selector
+    if (![CommController sharedInstance].radioConfig.isRadioInConfigMode) {
+        [self enterConfigMode];
+        return;
+    }
+
+    // we are already in config mode so just load the current settings
+    // this code path will be executed after radio settings have been
+    // saved and the radio has been rebooted
+    [self readRadioSettings];
 }
 
 -(void)enterConfigMode {
@@ -57,23 +71,35 @@ static void * SVKvoContext = &SVKvoContext;
     [[CommController sharedInstance].radioConfig enterConfigMode];
 }
 
--(void)readLocalSettings {
-//    [[CommController sharedInstance].radioConfig.sikAt setHayesMode:AT];
+-(void)readRadioSettings {
+    NSLog(@"readLocalSettings");
     [[CommController sharedInstance].radioConfig loadSettings];
-    //    [[CommController sharedInstance].radioConfig setNetId:25];
-    //    [[CommController sharedInstance].radioConfig save];
+}
+
+- (IBAction)saveSettings:(id)sender {
+    NSLog(@"Save Settings");
+    [[CommController sharedInstance].radioConfig loadRadioVersion];
+//    NSInteger netId = [self.localRadioNetId.text integerValue];
+//    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId];
 }
 
 -(IBAction)sendATCommand:(id)sender {
     NSLog(@"start RadioMode");
+    [self readRadioSettings];
+//    [[CommController sharedInstance] startFWRConfigMode];
+//    [self configureKvo];
+//    [self updateUIWithRadioSettingsFromModel];
+}
+
+- (IBAction)enableConfigMode:(id)sender {
     [[CommController sharedInstance] startFWRConfigMode];
     [self configureKvo];
     [self updateUIWithRadioSettingsFromModel];
 }
 
-- (IBAction)saveSettings:(id)sender {
-    NSLog(@"Save Settings");
-    [[CommController sharedInstance].radioConfig saveAndReset];
+
+- (IBAction)enableHayesMode:(id)sender {
+    [[CommController sharedInstance].radioConfig enterConfigMode];
 }
 
 #pragma mark - Set up KVO

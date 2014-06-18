@@ -13,12 +13,15 @@
 
 // Local radio constants (AT)
 static NSString *const tShowLocalRadioVersion = @"ATI";
+static NSString *const tShowLocalRadioVersionNumber = @"ATI1"; // returns just the version number
 static NSString *const tShowLocalBoardType = @"ATI2";
 static NSString *const tShowLocalBoardFrequency = @"ATI3";
 static NSString *const tShowLocalBoardVersion = @"ATI4";
 static NSString *const tShowLocalEEPROMParams = @"ATI5";
 static NSString *const tShowLocalTDMTimingReport = @"ATI6";
 static NSString *const tShowLocalRSSISignalReport = @"ATI7";
+static NSString *const tShowLocalFWSikVersionNumber = @"ATI9";
+
 static NSString *const tShowLocalRadioParamN = @"ATS{#}?"; // replace {#} with number
 
 static NSString *const tSetLocalRadioParamN = @"ATS{#}={##}"; // replace {#} and {##} with number
@@ -131,7 +134,8 @@ extern NSString * const GCSSikHayesModeDescription[];
 -(NSString *)showRSSISignalReport;
 -(NSString *)showRadioParamCommand:(GCSSikSRegister)aRegister;
 
--(NSString *)setRadioParamCommand:(GCSSikSRegister)aRegister withValue:(NSInteger)value;
+-(NSString *)setRadioParamCommand:(GCSSikSRegister)aRegister
+                        withValue:(NSInteger)value;
 -(NSString *)rebootRadioCommand;
 -(NSString *)writeCurrentParamsToEEPROMCommand;
 -(NSString *)resetToFactoryDefaultCommand;

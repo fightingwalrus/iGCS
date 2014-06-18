@@ -91,7 +91,6 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
             [self createFWRConfigConnection];
             foundValid = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigInterfaceOpen object:nil];
             break;
         }
     }
