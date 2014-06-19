@@ -13,7 +13,8 @@
 typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     GCSRovingBluetoothNetworkCommInterface,
     GCSRedparkCommInterface,
-    GCSFightingWalrusRadioCommInterface
+    GCSFightingWalrusRadioCommInterface,
+    GCSWiFlyCommInterface
 };
 
 @implementation CommController
@@ -71,7 +72,7 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         
         if(foundValid == NO) {
             NSLog(@"No devices connected, defaulting to Redpark");
-            [self createDefaultConnections:GCSRedparkCommInterface];
+            [self createDefaultConnections:GCSWiFlyCommInterface];
         }
 
         [DebugLogger console:@"Created default connections in CommController."];
@@ -103,6 +104,10 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     } else if (commInterface == GCSFightingWalrusRadioCommInterface) {
         [DebugLogger console: @"Creating FWR connection."];
         [self setupFightingWalrusConnections];
+    } else if(commInterface == GCSWiFlyCommInterface)
+    {
+        [DebugLogger console: @"Creating WiFly connection."];
+        [self setupWiFlyConnections];
     } else {
         NSLog(@"createDefaultConnections: unsupported interface specified");
     }
@@ -169,6 +174,30 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
         
         // Forward app output to FWR TX
         [_connectionPool createConnection:_mavLinkInterface destination:_fightingWalrusInterface];
+        
+    }
+}
+
+-(void)setupWiFlyConnections
+{
+    if (!_wiflyInterface)
+    {
+        [DebugLogger console:@"Starting WiFly connection"];
+        _wiflyInterface = [WiFlyInterface createWithViews:_mainVC];
+    }
+    
+    if (_wiflyInterface)
+    {
+        // configure input connection as WiFly
+        [DebugLogger console:@"WiFly started"];
+        [_connectionPool addSource:_wiflyInterface];
+        
+        // Forward WiFly RX to app input
+        [_connectionPool createConnection:_wiflyInterface destination:_mavLinkInterface];
+        [DebugLogger console:@"Connected WiFly Rx to iGCS Application input."];
+        
+        // Forward app output to WiFly TX
+        [_connectionPool createConnection:_mavLinkInterface destination:_wiflyInterface];
         
     }
 }

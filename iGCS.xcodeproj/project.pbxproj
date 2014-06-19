@@ -248,6 +248,8 @@
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
+		1A117C4119510778005949F5 /* WiFlyInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A117C3C19510778005949F5 /* WiFlyInterface.m */; };
+		1A117C4219510778005949F5 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A117C3E19510778005949F5 /* GCDAsyncSocket.m */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -705,6 +707,10 @@
 		18F8040017E24BB300CB8052 /* CommConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnection.m; sourceTree = "<group>"; };
 		18F8040117E24BB300CB8052 /* CommConnectionPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommConnectionPool.h; sourceTree = "<group>"; };
 		18F8040217E24BB300CB8052 /* CommConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnectionPool.m; sourceTree = "<group>"; };
+		1A117C3B19510778005949F5 /* WiFlyInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiFlyInterface.h; sourceTree = "<group>"; };
+		1A117C3C19510778005949F5 /* WiFlyInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiFlyInterface.m; sourceTree = "<group>"; };
+		1A117C3D19510778005949F5 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1A117C3E19510778005949F5 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
 		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -1180,6 +1186,7 @@
 		18069F9C1836F7C70068E7A5 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				1A117C3A1951075F005949F5 /* WiFly */,
 				18069F9D1836F7C70068E7A5 /* Bluetooth */,
 				18069FB21836F7C70068E7A5 /* FightingWalrus */,
 				18069FB51836F7C70068E7A5 /* iGCS */,
@@ -1581,6 +1588,17 @@
 				18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1A117C3A1951075F005949F5 /* WiFly */ = {
+			isa = PBXGroup;
+			children = (
+				1A117C3B19510778005949F5 /* WiFlyInterface.h */,
+				1A117C3C19510778005949F5 /* WiFlyInterface.m */,
+				1A117C3D19510778005949F5 /* GCDAsyncSocket.h */,
+				1A117C3E19510778005949F5 /* GCDAsyncSocket.m */,
+			);
+			name = WiFly;
 			sourceTree = "<group>";
 		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
@@ -2254,7 +2272,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					CA499F5D14DE33BC00FCC9FB = {
-						DevelopmentTeam = V693RD5AXN;
+						DevelopmentTeam = R37N8LHEK7;
 					};
 				};
 			};
@@ -2612,10 +2630,12 @@
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
+				1A117C4219510778005949F5 /* GCDAsyncSocket.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
+				1A117C4119510778005949F5 /* WiFlyInterface.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
@@ -2962,14 +2982,14 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3002,7 +3022,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
