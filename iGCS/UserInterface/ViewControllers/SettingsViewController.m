@@ -78,15 +78,13 @@ static void * SVKvoContext = &SVKvoContext;
 
 - (IBAction)saveSettings:(id)sender {
     NSLog(@"Save Settings");
-    [[CommController sharedInstance].radioConfig loadRadioVersion];
-//    NSInteger netId = [self.localRadioNetId.text integerValue];
-//    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId];
+    NSInteger netId = [self.localRadioNetId.text integerValue];
+    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId];
 }
 
 -(IBAction)sendATCommand:(id)sender {
     NSLog(@"start RadioMode");
     [self readRadioSettings];
-//    [[CommController sharedInstance] startFWRConfigMode];
 //    [self configureKvo];
 //    [self updateUIWithRadioSettingsFromModel];
 }

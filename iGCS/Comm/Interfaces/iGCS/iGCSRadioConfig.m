@@ -14,12 +14,20 @@ NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radiocon
 NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig.radiobooted";
 
 
+NSString * const GCSHayesResponseStateDescription[] = {
+    [HayesEnterConfigMode] = @"HayesEnterConfigMode",
+    [HayesStart] = @"HayesStart",
+    [HayesCommand] = @"HayesStart",
+    [HayesEnd] = @"HayesEnd"
+};
+
 @implementation NSMutableArray (Queue)
 -(id)gcs_pop{
     id anObject = [self lastObject];
     [self removeLastObject];
     return anObject;
 }
+
 @end
 
 @interface iGCSRadioConfig ()
@@ -54,7 +62,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
         _possibleCommands = [[NSMutableArray alloc] init];
         _currentSettings = [[NSMutableDictionary alloc] init];
         _commandQueue = [[NSMutableArray alloc] init];
-        _ATCommandTimeout = 0.5f;
+        _ATCommandTimeout = 1.5f;
         _RTCommandTimeout = 0.5f;
 
         // observe
@@ -66,6 +74,9 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 #pragma mark - CommInterfaceProtocol
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(uint8_t*)bytes length:(int)length {
+    NSLog(@"begin consumeData:");
+    [self logCurrentHayesIOState];
+
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
@@ -73,6 +84,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
     NSLog(@"iGCSRadioConfig consumeData: %@", currentString);
 
     [self.buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
+
     if ([currentString rangeOfString:@"BOOTED"].location != NSNotFound) {
         NSLog(@">>> %@", currentString);
         self.isRadioBooted = YES;
@@ -80,29 +92,37 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
         @synchronized(self) {
             self.hayesResponseState = HayesEnd;
         }
+
         [self invalidateBatchTimer];
+        [self logCurrentHayesIOState];
+        NSLog(@"end consumeData:");
         return;
     }
 
     if (self.hayesResponseState == HayesEnterConfigMode) {
-        if ([self.possibleCommands containsObject:currentString]) {
-            @synchronized(self) {
-                self.hayesResponseState = HayesEnd;
-            }
-            if ([currentString isEqualToString:@"OK"]) {
+        if ([self fuzyContainedString:currentString inArray:self.possibleCommands]) {
+
+            if ([currentString rangeOfString:@"OK"].location != NSNotFound) {
                 self.isRadioInConfigMode = YES;
                 [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigEnteredConfigMode object:nil];
                 [self invalidateBatchTimer];
             }
         }
+
+        @synchronized(self) {
+            self.hayesResponseState = HayesEnd;
+        }
+
     } else if (self.hayesResponseState == HayesStart) {
         if ([self.possibleCommands containsObject:currentString]) {
-            @synchronized(self) {
-                self.hayesResponseState = HayesCommand;
-            }
             self.previousHayesResponse = currentString;
             [self dispatchCommandFromQueue];
         }
+
+        @synchronized(self) {
+            self.hayesResponseState = HayesCommand;
+        }
+
     } else if (self.hayesResponseState == HayesCommand && self.previousHayesResponse) {
         [self updateModelWithKey:self.previousHayesResponse andValue:currentString];
         self.currentSettings[self.previousHayesResponse] = currentString;
@@ -113,6 +133,8 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
         }
         self.previousHayesResponse = nil;
     }
+    [self logCurrentHayesIOState];
+    NSLog(@"end consumeData:");
 }
 
 -(void)produceData:(uint8_t*)bytes length:(int)length {
@@ -122,6 +144,20 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 
 -(void) close {
     NSLog(@"iGCSRadioClose: close is a noop");
+}
+
+-(BOOL)fuzyContainedString:(NSString *) string inArray:(NSArray *)array {
+
+    BOOL containstString = NO;
+    // probably the last thing added
+    for (NSString *aString in [array reverseObjectEnumerator]) {
+        if ([string rangeOfString:aString].location != NSNotFound) {
+            containstString = YES;
+            break;
+        }
+    }
+
+    return containstString;
 }
 
 #pragma public mark - Command batches
@@ -137,7 +173,12 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 
 -(void)enterConfigMode {
     if (!self.isRadioBooted) {
-        NSLog(@"Can't enterConfigMode: RADIO IS NOT BOOTED");
+        NSLog(@"enterConfigMode >> Can't enter config mode. RADIO IS NOT BOOTED.");
+        return;
+    }
+
+    if (self.isRadioInConfigMode) {
+        NSLog(@"enterConfigMode >> Radio is already in config Mode.");
         return;
     }
 
@@ -163,37 +204,29 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
     [self prepareQueueForNewCommands];
 
     __weak iGCSRadioConfig *weakSelf = self;
-//    [self.commandQueue addObject:^(){[weakSelf boadType];}];
-//    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
-//    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
+    [self.commandQueue addObject:^(){[weakSelf boadType];}];
+    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
+    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
 
 //  TODO: need more logic to parse response from this command.
 //  eepromParams are currently gathered one by one.
 //  [self.commandQueue addObject:^(){[weakSelf eepromParams];}];
 //  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
-//
-//  [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
+
+    [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
     [self.commandQueue addObject:^(){[weakSelf serialSpeed];}];
     [self.commandQueue addObject:^(){[weakSelf airSpeed];}];
     [self.commandQueue addObject:^(){[weakSelf netId];}];
     [self.commandQueue addObject:^(){[weakSelf transmitPower];}];
-//    [self.commandQueue addObject:^(){[weakSelf ecc];}];
+    [self.commandQueue addObject:^(){[weakSelf ecc];}];
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-//    [self.commandQueue addObject:^(){[weakSelf mavLink];}];
-//    [self.commandQueue addObject:^(){[weakSelf oppResend];}];
+    [self.commandQueue addObject:^(){[weakSelf mavLink];}];
+    [self.commandQueue addObject:^(){[weakSelf oppResend];}];
     [self.commandQueue addObject:^(){[weakSelf minFrequency];}];
     [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
-//    [self.commandQueue addObject:^(){[weakSelf numberOfChannels];}];
-//    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
-//    [self.commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
-
-    // Kick things off by sending a command from Queue.
-    // Once we get a response back the next command will
-    // be sent via the consume data method after we have
-    // processed the previous response.
-//    [self.commandQueue addObject:^(){[weakSelf save];}];
-//    [self.commandQueue addObject:^(){[weakSelf setNetId:400];}];
-//    [self.commandQueue addObject:^(){[weakSelf rebootRadio];}];
+    [self.commandQueue addObject:^(){[weakSelf numberOfChannels];}];
+    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
+    [self.commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
 
     [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
@@ -218,6 +251,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 #pragma mark - Queue, state and timer helpers
 -(void)prepareQueueForNewCommands{
     [self.commandQueue removeAllObjects];
+    [self.possibleCommands removeAllObjects];
 }
 
 -(void)resetBatchResponseTimer {
@@ -255,9 +289,20 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 //    [self loadSettings];
 }
 
+-(void)logCurrentHayesIOState {
+    NSLog(@"---------------------");
+    NSLog(@"");
+    NSLog(@"commandQueue count: %i", self.commandQueue.count);
+    NSLog(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
+    NSLog(@"possibleCommands: %@", self.possibleCommands);
+    NSLog(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
+    NSLog(@"isRadioInConfigMode: %@", (self.isRadioInConfigMode) ? @"YES": @"NO");
+    NSLog(@"");
+    NSLog(@"---------------------");
+}
+
 #pragma mark - Read radio settings via AT/RT commands
 -(void)radioVersion {
-    self.hayesResponseState = HayesStart;
     [self sendATCommand:_sikAt.showRadioVersionCommand];
 }
 
@@ -364,6 +409,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 -(void)sendConfigModeCommand {
     if (_hayesResponseState != HayesEnd) {
         NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
+        [self logCurrentHayesIOState];
         return;
     }
 
@@ -385,6 +431,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
 -(void)sendATCommand:(NSString *)atCommand {
     if (_hayesResponseState != HayesEnd) {
         NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
+        [self logCurrentHayesIOState];
         return;
     }
 
@@ -426,7 +473,7 @@ NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig
     }
 
     @synchronized(self) {
-        if (_hayesResponseState == HayesEnd) {
+        if (self.hayesResponseState == HayesEnd) {
             void(^ hayesCommand)() = [self.commandQueue gcs_pop];
             hayesCommand();
         }
