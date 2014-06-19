@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *localRadioFirmwareVersion;
 @property (strong, nonatomic) IBOutlet UILabel *remoteRadioFirmwareVersion;
 @property (strong, nonatomic) IBOutlet UILabel *connectionStatus;

@@ -41,6 +41,9 @@ static void * SVKvoContext = &SVKvoContext;
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted) name:GCSRadioConfigRadioHasBooted object:nil];
 
+    // alert user to failed retry attempts
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailed) name:GCSRadioConfigCommandRetryFailed object:nil];
+
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
@@ -239,6 +242,16 @@ static void * SVKvoContext = &SVKvoContext;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)commandRetryFailed {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Timeout talking to the radio. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    return;
 }
 
 /*

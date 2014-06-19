@@ -91,4 +91,5 @@ extern NSString * const GCSRadioConfigCommandQueueHasEmptied;
 extern NSString * const GCSRadioConfigCommandBatchResponseTimeOut;
 extern NSString * const GCSRadioConfigEnteredConfigMode;
 extern NSString * const GCSRadioConfigRadioHasBooted;
+extern NSString * const GCSRadioConfigCommandRetryFailed;
 

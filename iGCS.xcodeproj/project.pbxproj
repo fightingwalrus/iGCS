@@ -2305,7 +2305,7 @@
 			name = iGCSTests;
 			productName = iGCSTests;
 			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 

@@ -12,7 +12,7 @@ NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.rad
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
 NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radioconfig.entered.configmode";
 NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig.radiobooted";
-
+NSString * const GCSRadioConfigCommandRetryFailed = @"com.fightingwalrus.radioconfig.commandretry.failed";
 
 NSString * const GCSHayesResponseStateDescription[] = {
     [HayesEnterConfigMode] = @"HayesEnterConfigMode",
@@ -30,14 +30,19 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 @end
 
+typedef void (^hayesCommandBlock)();
+
 @interface iGCSRadioConfig ()
 
 @property (nonatomic, strong) GCSSikAT *privateSikAt;
+@property (strong) NSTimer *commandResponseTimer;
 @property (strong) NSTimer *batchResponseTimer;
-@property (strong) NSMutableString *buffer;
-@property (strong) NSMutableArray *possibleCommands;
+@property (strong) NSMutableArray *sentCommands;
 @property (strong) NSMutableDictionary *currentSettings;
 @property (strong) NSString *previousHayesResponse;
+@property (readonly) NSInteger retryCount;
+@property (readwrite) NSInteger commandRetryCountdown;
+@property (nonatomic, copy) hayesCommandBlock hayesDispatchCommand;
 
 // Queue of selectors of commands to perform
 @property (strong) NSMutableArray *commandQueue;
@@ -58,12 +63,12 @@ NSString * const GCSHayesResponseStateDescription[] = {
         
         // private
         _privateSikAt = [[GCSSikAT alloc] init];
-        _buffer = [[NSMutableString alloc] init];
-        _possibleCommands = [[NSMutableArray alloc] init];
+        _sentCommands = [[NSMutableArray alloc] init];
         _currentSettings = [[NSMutableDictionary alloc] init];
         _commandQueue = [[NSMutableArray alloc] init];
-        _ATCommandTimeout = 1.5f;
-        _RTCommandTimeout = 0.5f;
+        _ATCommandTimeout = 1.5f; // total time give for send, echo and response cycle to complete once
+        _RTCommandTimeout = 2.5f;
+        _retryCount = 2;
 
         // observe
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandQueueHasEmptied) name:GCSRadioConfigCommandQueueHasEmptied object:nil];
@@ -83,29 +88,26 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSLog(@"iGCSRadioConfig consumeData: %@", currentString);
 
-    [self.buffer appendString:[NSString stringWithFormat:@"%@|", currentString]];
-
     if ([currentString rangeOfString:@"BOOTED"].location != NSNotFound) {
-        NSLog(@">>> %@", currentString);
         self.isRadioBooted = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
         @synchronized(self) {
             self.hayesResponseState = HayesEnd;
         }
 
-        [self invalidateBatchTimer];
+        [self invalidateAllBatchTimers];
         [self logCurrentHayesIOState];
         NSLog(@"end consumeData:");
         return;
     }
 
     if (self.hayesResponseState == HayesEnterConfigMode) {
-        if ([self fuzyContainedString:currentString inArray:self.possibleCommands]) {
+        if ([self fuzyContainedString:currentString inArray:self.sentCommands]) {
 
             if ([currentString rangeOfString:@"OK"].location != NSNotFound) {
                 self.isRadioInConfigMode = YES;
                 [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigEnteredConfigMode object:nil];
-                [self invalidateBatchTimer];
+                [self invalidateAllBatchTimers];
             }
         }
 
@@ -114,7 +116,8 @@ NSString * const GCSHayesResponseStateDescription[] = {
         }
 
     } else if (self.hayesResponseState == HayesStart) {
-        if ([self.possibleCommands containsObject:currentString]) {
+        // handle echoed command
+        if ([self.sentCommands containsObject:currentString]) {
             self.previousHayesResponse = currentString;
             [self dispatchCommandFromQueue];
         }
@@ -124,6 +127,8 @@ NSString * const GCSHayesResponseStateDescription[] = {
         }
 
     } else if (self.hayesResponseState == HayesCommand && self.previousHayesResponse) {
+        // handle response from command previously sent
+        [self.commandResponseTimer invalidate]; // prevent retry from fireing since we got a response
         [self updateModelWithKey:self.previousHayesResponse andValue:currentString];
         self.currentSettings[self.previousHayesResponse] = currentString;
 
@@ -251,7 +256,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 #pragma mark - Queue, state and timer helpers
 -(void)prepareQueueForNewCommands{
     [self.commandQueue removeAllObjects];
-    [self.possibleCommands removeAllObjects];
+    [self.sentCommands removeAllObjects];
 }
 
 -(void)resetBatchResponseTimer {
@@ -294,7 +299,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSLog(@"");
     NSLog(@"commandQueue count: %i", self.commandQueue.count);
     NSLog(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
-    NSLog(@"possibleCommands: %@", self.possibleCommands);
+    NSLog(@"possibleCommands: %@", self.sentCommands);
     NSLog(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
     NSLog(@"isRadioInConfigMode: %@", (self.isRadioInConfigMode) ? @"YES": @"NO");
     NSLog(@"");
@@ -417,8 +422,8 @@ NSString * const GCSHayesResponseStateDescription[] = {
         self.hayesResponseState = HayesEnterConfigMode;
     }
 
-    [self.possibleCommands addObject:@"+++"];
-    [self.possibleCommands addObject:@"OK"];
+    [self.sentCommands addObject:@"+++"];
+    [self.sentCommands addObject:@"OK"];
 
     const char* buf;
 
@@ -439,7 +444,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         self.hayesResponseState = HayesStart;
     }
 
-    [self.possibleCommands addObject:atCommand];
+    [self.sentCommands addObject:atCommand];
     NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
     const char* buf;
     buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
@@ -449,18 +454,18 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 -(void)hayesBatchResponseTimeout {
     @synchronized(self) {
-        NSLog(@"Timeout for command: %@", self.possibleCommands.lastObject);
+        NSLog(@"Timeout for command: %@", self.sentCommands.lastObject);
         [self.batchResponseTimer invalidate];
         self.batchResponseTimer = nil;
         self.previousHayesResponse = nil;
         self.hayesResponseState = HayesEnd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandBatchResponseTimeOut object:self.possibleCommands.lastObject];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandBatchResponseTimeOut object:self.sentCommands.lastObject];
     }
 }
 
 -(void) dispatchCommandFromQueue {
     if (self.commandQueue.count == 0) {
-        [self invalidateBatchTimer];
+        [self invalidateAllBatchTimers];
         self.hayesResponseState = HayesEnd;
 
         NSLog(@"self.currentSettings: %@", self.currentSettings);
@@ -474,16 +479,37 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
     @synchronized(self) {
         if (self.hayesResponseState == HayesEnd) {
-            void(^ hayesCommand)() = [self.commandQueue gcs_pop];
-            hayesCommand();
+            self.commandRetryCountdown = self.retryCount;
+            self.hayesDispatchCommand = [self.commandQueue gcs_pop];
+            self.hayesDispatchCommand();
+            self.commandRetryCountdown --;
+
+            // retry after ATCommandTimeoutInterval
+            self.commandResponseTimer = [NSTimer scheduledTimerWithTimeInterval:self.ATCommandTimeout
+                                                                         target:self
+                                                                       selector:@selector(dispatchHayesBlock)
+                                                                       userInfo:nil
+                                                                        repeats:YES];
         }
     }
 }
 
--(void)invalidateBatchTimer {
+-(void)dispatchHayesBlock {
+    NSLog(@"Retry last command attempt: %i", self.commandRetryCountdown);
+    self.hayesResponseState = HayesEnd;
+    self.hayesDispatchCommand();
+    if ( --self.commandRetryCountdown == 0) {
+        [self.commandResponseTimer invalidate];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandRetryFailed object:nil];
+    }
+}
+
+-(void)invalidateAllBatchTimers {
     [self.batchResponseTimer invalidate];
     self.batchResponseTimer = nil;
     self.previousHayesResponse = nil;
+
+    [self.commandResponseTimer invalidate];
 }
 
 // brute force
