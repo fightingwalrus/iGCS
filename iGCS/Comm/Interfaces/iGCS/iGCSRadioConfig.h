@@ -78,12 +78,11 @@ NS_OPTIONS(NSInteger, GCSRadioLinkState) {
 -(void)listenBeforeTalkRssi;
 
 #pragma mark - write radio settings via AT/RT commands
--(void)setNetId:(NSInteger) aNetId;
+-(void)setNetId:(NSInteger) aNetId withHayesMode:(GCSSikHayesMode) hayesMode;
 -(void)enableRSSIDebug;
 -(void)disableDebug;
--(void)rebootRadio;
--(void)save;
-
+-(void)rebootRadioWithHayesMode:(GCSSikHayesMode) hayesMode;
+-(void)saveWithHayesMode:(GCSSikHayesMode) hayesMode;
 @end
 
 // const for NSNotification messages

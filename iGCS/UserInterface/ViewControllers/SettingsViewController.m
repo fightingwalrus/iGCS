@@ -88,8 +88,6 @@ static void * SVKvoContext = &SVKvoContext;
 -(IBAction)sendATCommand:(id)sender {
     NSLog(@"start RadioMode");
     [self readRadioSettings];
-//    [self configureKvo];
-//    [self updateUIWithRadioSettingsFromModel];
 }
 
 - (IBAction)enableConfigMode:(id)sender {

@@ -28,6 +28,12 @@ NSString * const GCSHayesResponseStateDescription[] = {
     return anObject;
 }
 
+-(id)gcs_popFirst {
+    id anObject = [self objectAtIndex:0];
+    [self removeObjectAtIndex:0];
+    return anObject;
+}
+
 @end
 
 typedef void (^HayesWaitingForDataBlock)();
@@ -71,7 +77,7 @@ typedef void (^HayesWaitingForDataBlock)();
         _currentSettings = [[NSMutableDictionary alloc] init];
         _commandQueue = [[NSMutableArray alloc] init];
         _ATCommandTimeout = 3.0f; // total time give for send, echo and response cycle to complete once
-        _RTCommandTimeout = 2.5f;
+        _RTCommandTimeout = 3.0f;
         _retryCount = 3;
 
         _completeResponseBuffer = [[NSMutableArray alloc] init];
@@ -269,9 +275,9 @@ typedef void (^HayesWaitingForDataBlock)();
     [self prepareQueueForNewCommands];
 
     __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf rebootRadio];}];
-    [self.commandQueue addObject:^(){[weakSelf save];}];
     [self.commandQueue addObject:^(){[weakSelf setNetId:netId];}];
+    [self.commandQueue addObject:^(){[weakSelf save];}];
+    [self.commandQueue addObject:^(){[weakSelf rebootRadio];}];
 
     [self resetBatchTimeoutUsingCommandTimeout:3.0];
     [self dispatchCommandFromQueue];
@@ -314,8 +320,8 @@ typedef void (^HayesWaitingForDataBlock)();
         return;
     }
 
-//    _sikAt.hayesMode = RT;
-//    [self loadSettings];
+    _sikAt.hayesMode = RT;
+    [self loadSettings];
 }
 
 -(void)logCurrentHayesIOState {
@@ -504,7 +510,7 @@ typedef void (^HayesWaitingForDataBlock)();
     @synchronized(self) {
         if (self.hayesResponseState == HayesReadyForCommand) {
             self.commandRetryCountdown = self.retryCount;
-            self.hayesDispatchCommand = [self.commandQueue gcs_pop];
+            self.hayesDispatchCommand = [self.commandQueue gcs_popFirst];
             self.hayesDispatchCommand();
             self.commandRetryCountdown --;
 
