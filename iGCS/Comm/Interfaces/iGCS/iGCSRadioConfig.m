@@ -28,7 +28,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     return anObject;
 }
 
--(id)gcs_popFirst {
+-(id)gcs_shift {
     id anObject = [self objectAtIndex:0];
     [self removeObjectAtIndex:0];
     return anObject;
@@ -510,7 +510,7 @@ typedef void (^HayesWaitingForDataBlock)();
     @synchronized(self) {
         if (self.hayesResponseState == HayesReadyForCommand) {
             self.commandRetryCountdown = self.retryCount;
-            self.hayesDispatchCommand = [self.commandQueue gcs_popFirst];
+            self.hayesDispatchCommand = [self.commandQueue gcs_shift];
             self.hayesDispatchCommand();
             self.commandRetryCountdown --;
 
