@@ -13,9 +13,9 @@
 
 typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
     HayesEnterConfigMode,
-    HayesStart,
-    HayesCommand,
-    HayesEnd,
+    HayesWaitingForEcho,
+    HayesWaitingForData,
+    HayesReadyForCommand
 };
 
 NS_OPTIONS(NSInteger, GCSRadioLinkState) {
