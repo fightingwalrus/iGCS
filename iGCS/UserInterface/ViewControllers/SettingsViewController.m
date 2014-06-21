@@ -18,7 +18,6 @@ static void * SVKvoContext = &SVKvoContext;
     GCSRadioSettings *_remoteRadioSettingsModel;
 }
 
-
 @end
 
 @implementation SettingsViewController
@@ -40,6 +39,11 @@ static void * SVKvoContext = &SVKvoContext;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readRadioSettings) name:GCSRadioConfigEnteredConfigMode object:nil];
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted) name:GCSRadioConfigRadioHasBooted object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(radioRebootCommandSentWithNotification:)
+                                                 name:GCSRadioConfigSentRebootCommand
+                                               object:nil];
 
     // alert user to failed retry attempts
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailed) name:GCSRadioConfigCommandRetryFailed object:nil];
@@ -74,15 +78,15 @@ static void * SVKvoContext = &SVKvoContext;
     [[CommController sharedInstance].radioConfig enterConfigMode];
 }
 
--(void)readRadioSettings {
-    NSLog(@"readLocalSettings");
-    [[CommController sharedInstance].radioConfig loadSettings];
-}
-
 - (IBAction)saveSettings:(id)sender {
     NSLog(@"Save Settings");
-    NSInteger netId = [self.localRadioNetId.text integerValue];
-    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId];
+
+    // attempt to update the remote radio first
+    if ([CommController sharedInstance].radioConfig.isRemoteRadioResponding) {
+        [self saveSettingsToRemoteRadio];
+    } else  {
+        [self saveSettingsToLocalRadio];
+    }
 }
 
 -(IBAction)sendATCommand:(id)sender {
@@ -99,6 +103,23 @@ static void * SVKvoContext = &SVKvoContext;
 
 - (IBAction)enableHayesMode:(id)sender {
     [[CommController sharedInstance].radioConfig enterConfigMode];
+}
+
+#pragma mark - radio commands
+
+-(void)readRadioSettings {
+    NSLog(@"readLocalSettings");
+    [[CommController sharedInstance].radioConfig loadSettings];
+}
+
+-(void)saveSettingsToRemoteRadio {
+    NSInteger netId = [self.localRadioNetId.text integerValue];
+    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId withHayesMode:RT];
+}
+
+-(void)saveSettingsToLocalRadio {
+    NSInteger netId = [self.localRadioNetId.text integerValue];
+    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId withHayesMode:AT];
 }
 
 #pragma mark - Set up KVO
@@ -236,6 +257,17 @@ static void * SVKvoContext = &SVKvoContext;
     }
 }
 
+-(void)radioRebootCommandSentWithNotification:(NSNotification *)noti {
+    NSString *command = (NSString *)noti.object;
+    if ([command isEqualToString:@"RTZ"]) {
+        // we told the remote radio to reboot. Wait a second and then
+        // update the update the local radios settings.
+        [self performSelector:@selector(saveSettingsToLocalRadio) withObject:nil afterDelay:1.0f];
+    } else if ([command isEqualToString:@"ATZ"]){
+        [self performSelector:@selector(readRadioSettings) withObject:nil afterDelay:3.5];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -251,16 +283,5 @@ static void * SVKvoContext = &SVKvoContext;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     return;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

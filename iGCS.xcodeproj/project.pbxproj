@@ -150,6 +150,12 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F2911955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
 		18B9FAC418B2F7AF00668660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
@@ -718,6 +724,13 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
+		18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+CommandBatches.m"; sourceTree = "<group>"; };
+		18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Private.h; sourceTree = "<group>"; };
+		18B7F297195554CF00D2406A /* iGCSRadioConfig+Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+Commands.h"; sourceTree = "<group>"; };
+		18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+Commands.m"; sourceTree = "<group>"; };
+		18B7F29C195555F300D2406A /* RadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioConfig.h; sourceTree = "<group>"; };
+		18B7F29D19555AF700D2406A /* iGCSRadioConfig_Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Commands.h; sourceTree = "<group>"; };
 		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
@@ -1254,8 +1267,15 @@
 			children = (
 				18069FB61836F7C70068E7A5 /* iGCSMavLinkInterface.h */,
 				18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */,
+				18B7F29C195555F300D2406A /* RadioConfig.h */,
 				18069FB81836F7C70068E7A5 /* iGCSRadioConfig.h */,
 				18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */,
+				18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */,
+				18B7F29D19555AF700D2406A /* iGCSRadioConfig_Commands.h */,
+				18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */,
+				18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */,
+				18B7F297195554CF00D2406A /* iGCSRadioConfig+Commands.h */,
+				18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */,
 				186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */,
 				186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */,
 			);
@@ -2516,6 +2536,7 @@
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
 				182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */,
+				18B7F2911955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
@@ -2530,6 +2551,7 @@
 				18069FD51836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
+				18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
@@ -2589,6 +2611,7 @@
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
 				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
+				18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
 				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
 				CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */,
@@ -2599,6 +2622,7 @@
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
+				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
@@ -2673,12 +2697,14 @@
 				18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
+				18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
+				18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				1854467B18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,

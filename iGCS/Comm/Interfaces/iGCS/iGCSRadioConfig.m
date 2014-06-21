@@ -7,12 +7,14 @@
 //
 
 #import "iGCSRadioConfig.h"
+#import "iGCSRadioConfig_Private.h"
 
 NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
 NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radioconfig.entered.configmode";
 NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig.radiobooted";
 NSString * const GCSRadioConfigCommandRetryFailed = @"com.fightingwalrus.radioconfig.commandretry.failed";
+NSString * const GCSRadioConfigSentRebootCommand = @"com.fightingwalrus.radioconfig.sent.rebootcommand";
 
 NSString * const GCSHayesResponseStateDescription[] = {
     [HayesEnterConfigMode] = @"HayesEnterConfigMode",
@@ -36,28 +38,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 @end
 
-typedef void (^HayesWaitingForDataBlock)();
-
-@interface iGCSRadioConfig ()
-
-@property (nonatomic, strong) GCSSikAT *privateSikAt;
-@property (strong) NSTimer *commandResponseTimer;
-@property (strong) NSTimer *batchResponseTimer;
-@property (strong) NSMutableArray *sentCommands;
-@property (strong) NSArray *responseBuffer;
-@property (strong) NSMutableDictionary *currentSettings;
-@property (strong) NSString *previousHayesResponse;
-@property (readonly) NSInteger retryCount;
-@property (readwrite) NSInteger commandRetryCountdown;
-@property (nonatomic, copy) HayesWaitingForDataBlock hayesDispatchCommand;
-
-@property (strong) NSMutableArray *completeResponseBuffer;
-
-// Queue of selectors of commands to perform
-@property (strong) NSMutableArray *commandQueue;
-
--(void)sendATCommand:(NSString *)atCommand;
-@end
 
 @implementation iGCSRadioConfig
 
@@ -78,7 +58,7 @@ typedef void (^HayesWaitingForDataBlock)();
         _commandQueue = [[NSMutableArray alloc] init];
         _ATCommandTimeout = 3.0f; // total time give for send, echo and response cycle to complete once
         _RTCommandTimeout = 3.0f;
-        _retryCount = 3;
+        _retryCount = 2;
 
         _completeResponseBuffer = [[NSMutableArray alloc] init];
 
@@ -133,7 +113,7 @@ typedef void (^HayesWaitingForDataBlock)();
     }
 
     if (self.hayesResponseState == HayesEnterConfigMode) {
-        if ([self fuzyContainedString:hayesResponse inArray:self.sentCommands]) {
+        if ([self fuzyContainesString:hayesResponse inArray:self.sentCommands]) {
 
             if ([hayesResponse rangeOfString:@"OK"].location != NSNotFound) {
                 self.isRadioInConfigMode = YES;
@@ -150,6 +130,16 @@ typedef void (^HayesWaitingForDataBlock)();
         // handle echoed command
         if ([self.sentCommands containsObject:hayesResponse]) {
             self.previousHayesResponse = hayesResponse;
+
+            // update link status
+            if ([hayesResponse rangeOfString:@"RT"].location != NSNotFound) {
+                self.isRemoteRadioResponding = YES;
+            }
+
+            if ([hayesResponse rangeOfString:@"AT"].location != NSNotFound) {
+                self.isLocalRadioResponding = YES;
+            }
+
         } else {
             NSLog(@"Command expected ecgho of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
         }
@@ -163,6 +153,10 @@ typedef void (^HayesWaitingForDataBlock)();
         [self.commandResponseTimer invalidate]; // prevent retry from fireing since we got a response
         [self updateModelWithKey:self.previousHayesResponse andValue:hayesResponse];
         self.currentSettings[self.previousHayesResponse] = hayesResponse;
+
+        if ([self.previousHayesResponse rangeOfString:@"&W"].location != NSNotFound) {
+            NSLog(@"Got %@ for %@", hayesResponse, self.previousHayesResponse);
+        }
 
         @synchronized(self) {
             _hayesResponseState = HayesReadyForCommand;
@@ -183,7 +177,7 @@ typedef void (^HayesWaitingForDataBlock)();
     NSLog(@"iGCSRadioClose: close is a noop");
 }
 
--(BOOL)fuzyContainedString:(NSString *) string inArray:(NSArray *)array {
+-(BOOL)fuzyContainesString:(NSString *) string inArray:(NSArray *)array {
 
     BOOL containstString = NO;
     // probably the last thing added
@@ -195,92 +189,6 @@ typedef void (^HayesWaitingForDataBlock)();
     }
 
     return containstString;
-}
-
-#pragma public mark - Command batches
--(void)exitConfigMode {
-    [self prepareQueueForNewCommands];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf exit];}];
-
-    [self resetBatchTimeoutUsingCommandTimeout:2.0f];
-    [self dispatchCommandFromQueue];
-}
-
--(void)enterConfigMode {
-    if (!self.isRadioBooted) {
-        NSLog(@"enterConfigMode >> Can't enter config mode. RADIO IS NOT BOOTED.");
-        return;
-    }
-
-    if (self.isRadioInConfigMode) {
-        NSLog(@"enterConfigMode >> Radio is already in config Mode.");
-        return;
-    }
-
-    [self prepareQueueForNewCommands];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
-
-    [self resetBatchTimeoutUsingCommandTimeout:1.5f];
-    [self dispatchCommandFromQueue];
-}
-
--(void)loadRadioVersion {
-    [self prepareQueueForNewCommands];
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-
-    [self resetBatchResponseTimer];
-    [self dispatchCommandFromQueue];
-}
-
--(void)loadSettings{
-    [self prepareQueueForNewCommands];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf boadType];}];
-    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
-
-//  TODO: need more logic to parse response from this command.
-//  eepromParams are currently gathered one by one.
-//  [self.commandQueue addObject:^(){[weakSelf eepromParams];}];
-//  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
-
-    [self.commandQueue addObject:^(){[weakSelf serialSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf airSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf netId];}];
-    [self.commandQueue addObject:^(){[weakSelf transmitPower];}];
-    [self.commandQueue addObject:^(){[weakSelf ecc];}];
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf mavLink];}];
-    [self.commandQueue addObject:^(){[weakSelf oppResend];}];
-    [self.commandQueue addObject:^(){[weakSelf minFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf numberOfChannels];}];
-    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
-    [self.commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
-
-    [self resetBatchResponseTimer];
-    [self dispatchCommandFromQueue];
-}
-
-
--(void)saveAndResetWithNetID:(NSInteger) netId{
-    [self prepareQueueForNewCommands];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf setNetId:netId];}];
-    [self.commandQueue addObject:^(){[weakSelf save];}];
-    [self.commandQueue addObject:^(){[weakSelf rebootRadio];}];
-
-    [self resetBatchTimeoutUsingCommandTimeout:3.0];
-    [self dispatchCommandFromQueue];
 }
 
 #pragma mark - Queue, state and timer helpers
@@ -301,7 +209,7 @@ typedef void (^HayesWaitingForDataBlock)();
         self.batchResponseTimer = nil;
     }
 
-    float batchTimeoutInterval = (commandTimeout * self.commandQueue.count) + 100;
+    float batchTimeoutInterval = (commandTimeout * self.commandQueue.count) + 5;
 
     NSLog(@"Set batch timeout of %f seconds for %ld %@ commands ",
           batchTimeoutInterval,
@@ -320,14 +228,14 @@ typedef void (^HayesWaitingForDataBlock)();
         return;
     }
 
-    _sikAt.hayesMode = RT;
-    [self loadSettings];
+//    _sikAt.hayesMode = RT;
+//    [self loadSettings];
 }
 
 -(void)logCurrentHayesIOState {
     NSLog(@"---------------------");
     NSLog(@"");
-    NSLog(@"commandQueue count: %i", self.commandQueue.count);
+    NSLog(@"commandQueue count: %lu", (unsigned long)self.commandQueue.count);
     NSLog(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
     NSLog(@"possibleCommands: %@", self.sentCommands);
     NSLog(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
@@ -335,109 +243,6 @@ typedef void (^HayesWaitingForDataBlock)();
     NSLog(@"");
     NSLog(@"---------------------");
 }
-
-#pragma mark - Read radio settings via AT/RT commands
--(void)radioVersion {
-    [self sendATCommand:_sikAt.showRadioVersionCommand];
-}
-
--(void)boadType {
-    [self sendATCommand:_sikAt.showBoardTypeCommand];
-}
-
--(void)boadFrequency {
-    [self sendATCommand:_sikAt.showBoardFrequencyCommand];
-}
-
--(void)boadVersion {
-    [self sendATCommand:_sikAt.showBoardVersionCommand];
-}
-
--(void)eepromParams {
-    [self sendATCommand:_sikAt.showEEPROMParamsCommand];
-}
-
--(void)tdmTimingReport {
-    [self sendATCommand:_sikAt.showTDMTimingReport];
-}
-
--(void)RSSIReport {
-    [self sendATCommand:_sikAt.showRSSISignalReport];
-}
-
--(void)serialSpeed {
-    [self sendATCommand:[_sikAt showRadioParamCommand:SerialSpeed]];
-}
-
--(void)airSpeed {
-    [self sendATCommand:[_sikAt showRadioParamCommand:AirSpeed]];
-}
-
--(void)netId {
-    [self sendATCommand:[_sikAt showRadioParamCommand:NetId]];
-}
-
--(void)transmitPower {
-    [self sendATCommand:[_sikAt showRadioParamCommand:TxPower]];
-}
-
--(void)ecc {
-    [self sendATCommand:[_sikAt showRadioParamCommand:EnableECC]];
-}
-
--(void)mavLink {
-    [self sendATCommand:[_sikAt showRadioParamCommand:MavLink]];
-}
-
--(void)oppResend {
-    [self sendATCommand:[_sikAt showRadioParamCommand:OppResend]];
-}
-
--(void)minFrequency {
-    [self sendATCommand:[_sikAt showRadioParamCommand:MinFrequency]];
-}
-
--(void)maxFrequency {
-    [self sendATCommand:[_sikAt showRadioParamCommand:MaxFrequency]];
-}
-
--(void)numberOfChannels {
-    [self sendATCommand:[_sikAt showRadioParamCommand:NumberOfChannels]];
-}
-
--(void)dutyCycle {
-    [self sendATCommand:[_sikAt showRadioParamCommand:DutyCycle]];
-}
-
--(void)listenBeforeTalkRssi {
-    [self sendATCommand:[_sikAt showRadioParamCommand:LbtRssi]];
-}
-
-#pragma mark - Write radio settings via AT/RT commands
--(void)setNetId:(NSInteger) aNetId {
-    [self sendATCommand:[_sikAt setRadioParamCommand:NetId withValue:aNetId]];
-}
-
--(void)enableRSSIDebug {
-    [self sendATCommand:[_sikAt enableRSSIDebugCommand]];
-}
-
--(void)disableDebug {
-    [self sendATCommand:[_sikAt disableDebugCommand]];
-}
-
--(void)rebootRadio {
-    [self sendATCommand:[_sikAt rebootRadioCommand]];
-}
-
--(void)save {
-    [self sendATCommand:[_sikAt writeCurrentParamsToEEPROMCommand]];
-}
-
--(void)exit {
-    [self sendATCommand:[_sikAt exitATModeCommand]];
-}
-
 
 #pragma mark - Private
 
@@ -457,7 +262,7 @@ typedef void (^HayesWaitingForDataBlock)();
 
     const char* buf;
 
-    // no trailing CRLF for +++ as with AT commands
+    // no trailing CR for +++ as with AT commands
     buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [self produceData:buf length:len];
@@ -525,10 +330,16 @@ typedef void (^HayesWaitingForDataBlock)();
 }
 
 -(void)dispatchHayesBlock {
-    NSLog(@"Retry last command attempt: %i", self.commandRetryCountdown);
+    NSLog(@"Retry last command attempt: %li", (long)self.commandRetryCountdown);
     self.hayesResponseState = HayesReadyForCommand;
     self.hayesDispatchCommand();
+
     if ( -- self.commandRetryCountdown == 0) {
+        // update link status
+        if (_sikAt.hayesMode == RT) {
+            self.isRemoteRadioResponding = NO;
+        }
+
         [self invalidateAllBatchTimers];
         [self.commandQueue removeAllObjects];
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandRetryFailed object:nil];

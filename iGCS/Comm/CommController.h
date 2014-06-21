@@ -20,7 +20,7 @@
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
-#import "iGCSRadioConfig.h"
+#import "RadioConfig.h"
 #import "RNBluetoothInterface.h"
 #import "FightingWalrusInterface.h"
 
