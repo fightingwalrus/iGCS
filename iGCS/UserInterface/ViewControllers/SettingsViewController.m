@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "CommController.h"
 #import "GCSRadioSettings.h"
+#import "PureLayout.h"
 
 // use for this views kvo context
 static void * SVKvoContext = &SVKvoContext;

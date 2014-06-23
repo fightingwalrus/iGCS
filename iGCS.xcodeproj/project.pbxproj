@@ -156,6 +156,15 @@
 		18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
 		18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
 		18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2C71958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
+		18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
+		18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
 		18B9FAC418B2F7AF00668660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
@@ -731,6 +740,15 @@
 		18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+Commands.m"; sourceTree = "<group>"; };
 		18B7F29C195555F300D2406A /* RadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioConfig.h; sourceTree = "<group>"; };
 		18B7F29D19555AF700D2406A /* iGCSRadioConfig_Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Commands.h; sourceTree = "<group>"; };
+		18B7F2B91958953B00D2406A /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2BE1958953B00D2406A /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2C01958953B00D2406A /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		18B7F2C11958953B00D2406A /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		18B7F2C31958953B00D2406A /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
@@ -1633,6 +1651,22 @@
 			path = sensesoar;
 			sourceTree = "<group>";
 		};
+		18B7F2B81958953B00D2406A /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				18B7F2B91958953B00D2406A /* ALView+PureLayout.h */,
+				18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */,
+				18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */,
+				18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */,
+				18B7F2BE1958953B00D2406A /* NSLayoutConstraint+PureLayout.h */,
+				18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */,
+				18B7F2C01958953B00D2406A /* PureLayout+Internal.h */,
+				18B7F2C11958953B00D2406A /* PureLayout.h */,
+				18B7F2C31958953B00D2406A /* PureLayoutDefines.h */,
+			);
+			path = PureLayout;
+			sourceTree = "<group>";
+		};
 		18C011B418939407005B67E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2105,6 +2139,7 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				18B7F2B81958953B00D2406A /* PureLayout */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
 				CA05751018BE080B001EACFD /* LiveFrost */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
@@ -2334,7 +2369,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
 				LastUpgradeCheck = 0420;
 				TargetAttributes = {
 					CA499F5D14DE33BC00FCC9FB = {
@@ -2548,15 +2582,18 @@
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
 				182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */,
 				182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */,
+				18B7F2C71958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				18069FD51836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
 				18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
+				18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
+				18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
@@ -2608,6 +2645,7 @@
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
+				18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
 				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
@@ -2619,7 +2657,9 @@
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
 				1854467C18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
+				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
+				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
@@ -2699,6 +2739,7 @@
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
 				18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
+				18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
@@ -2716,7 +2757,9 @@
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
+				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
+				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
@@ -3088,10 +3131,8 @@
 		CA499F9E14DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
