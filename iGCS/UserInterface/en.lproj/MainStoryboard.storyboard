@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="SxU-fC-52Y" userLabel="Radio Config">
-                                <rect key="frame" x="31" y="43" width="429" height="250"/>
+                            <view contentMode="center" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SxU-fC-52Y" userLabel="Radio Config">
+                                <rect key="frame" x="31" y="43" width="468" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radio Config" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6C-ei-P5D">
@@ -43,6 +43,9 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79G-3e-pVv" userLabel="localRadioNetId">
                                         <rect key="frame" x="170" y="85" width="212" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="212" id="9bs-bv-ERx"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -131,12 +134,12 @@
                                     <constraint firstItem="r6c-yO-b3t" firstAttribute="baseline" secondItem="tWd-59-zXY" secondAttribute="baseline" id="4C2-4e-8zP"/>
                                     <constraint firstItem="vFh-Hr-LFL" firstAttribute="baseline" secondItem="nHN-ED-p1A" secondAttribute="baseline" id="4o5-OQ-Ma1"/>
                                     <constraint firstItem="JwU-aj-Nmp" firstAttribute="trailing" secondItem="fv3-Jk-lZ6" secondAttribute="trailing" id="5KO-Aj-QfW"/>
-                                    <constraint firstAttribute="trailing" secondItem="79G-3e-pVv" secondAttribute="trailing" constant="47" id="5t6-cE-YTM"/>
+                                    <constraint firstAttribute="trailing" secondItem="79G-3e-pVv" secondAttribute="trailing" constant="86" id="5t6-cE-YTM"/>
                                     <constraint firstItem="tWd-59-zXY" firstAttribute="baseline" secondItem="b6C-ei-P5D" secondAttribute="baseline" id="9Da-W5-fOh"/>
                                     <constraint firstItem="81a-rl-3Z4" firstAttribute="trailing" secondItem="vFh-Hr-LFL" secondAttribute="trailing" id="Cms-6h-BWN"/>
-                                    <constraint firstAttribute="trailing" secondItem="fv3-Jk-lZ6" secondAttribute="trailing" constant="27" id="Elv-Xm-dIg"/>
+                                    <constraint firstAttribute="trailing" secondItem="fv3-Jk-lZ6" secondAttribute="trailing" constant="66" id="Elv-Xm-dIg"/>
                                     <constraint firstItem="vFh-Hr-LFL" firstAttribute="top" secondItem="81a-rl-3Z4" secondAttribute="bottom" constant="12" id="JJ4-Ti-CCc"/>
-                                    <constraint firstAttribute="trailing" secondItem="b6C-ei-P5D" secondAttribute="trailing" constant="20" symbolic="YES" id="JQi-pJ-wpe"/>
+                                    <constraint firstAttribute="trailing" secondItem="b6C-ei-P5D" secondAttribute="trailing" constant="59" id="JQi-pJ-wpe"/>
                                     <constraint firstItem="o6T-c8-Gop" firstAttribute="leading" secondItem="omP-DD-4SG" secondAttribute="trailing" constant="8" symbolic="YES" id="LBc-Vr-vR0"/>
                                     <constraint firstItem="fv3-Jk-lZ6" firstAttribute="leading" secondItem="nHN-ED-p1A" secondAttribute="leading" id="Q06-fO-8Zn"/>
                                     <constraint firstItem="79G-3e-pVv" firstAttribute="leading" secondItem="nHN-ED-p1A" secondAttribute="leading" id="Q2q-G1-xqh"/>
