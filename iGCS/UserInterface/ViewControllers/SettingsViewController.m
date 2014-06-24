@@ -96,6 +96,9 @@ static void * SVKvoContext = &SVKvoContext;
 }
 
 - (IBAction)enableConfigMode:(id)sender {
+    if ([CommController sharedInstance].mavLinkInterface) {
+        [[CommController sharedInstance].mavLinkInterface stopRecevingMessages];
+    }
     [[CommController sharedInstance] startFWRConfigMode];
     [self configureKvo];
     [self updateUIWithRadioSettingsFromModel];

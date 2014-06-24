@@ -181,6 +181,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_MISSION_ACCEPTED);
 }
 
+-(void)stopRecevingMessages {
+    mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                         MAV_DATA_STREAM_ALL, 0, 0); // stop all
+}
+
 - (void) loadNewMission:(WaypointsHolder*)mission {
     // Let the GCSMapView and WaypointsView know we've got new waypoints
     //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
@@ -205,7 +210,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                                   item.param1, item.param2, item.param3, item.param4,
                                   item.x, item.y, item.z);
 }
-
 
 #pragma mark - Set current waypoint
 
