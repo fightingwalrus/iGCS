@@ -27,10 +27,11 @@ typedef void (^HayesWaitingForDataBlock)();
 
 // Queue of selectors of commands to perform
 @property (strong) NSMutableArray *commandQueue;
+@property (strong) NSString *commandQueueName;
 
 // helpers and dispatchers
 -(void)sendATCommand:(NSString *)atCommand;
--(void)prepareQueueForNewCommands;
+-(void)prepareQueueForNewCommandsWithName:(NSString *) name;
 -(void)resetBatchTimeoutUsingCommandTimeout:(float) commandTimeout;
 -(void)dispatchCommandFromQueue;
 -(void)resetBatchResponseTimer;

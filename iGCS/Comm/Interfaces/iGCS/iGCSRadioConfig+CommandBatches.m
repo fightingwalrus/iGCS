@@ -13,7 +13,7 @@
 @implementation iGCSRadioConfig (CommandBatches)
 
 -(void)exitConfigMode {
-    [self prepareQueueForNewCommands];
+    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf exit];}];
@@ -35,7 +35,7 @@
         return;
     }
 
-    [self prepareQueueForNewCommands];
+    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
@@ -45,7 +45,7 @@
 }
 
 -(void)loadRadioVersion {
-    [self prepareQueueForNewCommands];
+    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
 
@@ -54,7 +54,7 @@
 }
 
 -(void)loadSettings {
-    [self prepareQueueForNewCommands];
+    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf boadType];}];
@@ -88,7 +88,7 @@
 
 
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
-    [self prepareQueueForNewCommands];
+    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
 
     __weak iGCSRadioConfig *weakSelf = self;
 

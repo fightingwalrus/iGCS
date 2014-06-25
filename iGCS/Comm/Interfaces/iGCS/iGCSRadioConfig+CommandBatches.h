@@ -13,5 +13,6 @@
 -(void)enterConfigMode;
 -(void)loadRadioVersion;
 -(void)loadSettings;
--(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode;
+-(void)saveAndResetWithNetID:(NSInteger) netId
+               withHayesMode:(GCSSikHayesMode) hayesMode;
 @end

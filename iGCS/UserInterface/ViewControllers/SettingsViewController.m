@@ -12,12 +12,13 @@
 #import "PureLayout.h"
 
 // use for this views kvo context
-static void * SVKvoContext = &SVKvoContext;
+static void *SVKvoContext = &SVKvoContext;
 
-@interface SettingsViewController () {
-    GCSRadioSettings *_localRadioSettingsModel;
-    GCSRadioSettings *_remoteRadioSettingsModel;
-}
+@interface SettingsViewController ()
+
+// models
+@property (nonatomic, strong) GCSRadioSettings *localRadioSettingsModel;
+@property (nonatomic, strong) GCSRadioSettings *remoteRadioSettingsModel;
 
 @end
 
@@ -26,7 +27,7 @@ static void * SVKvoContext = &SVKvoContext;
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        
+
     }
     return self;
 }
@@ -34,6 +35,7 @@ static void * SVKvoContext = &SVKvoContext;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
 //
@@ -49,10 +51,15 @@ static void * SVKvoContext = &SVKvoContext;
     // alert user to failed retry attempts
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailed) name:GCSRadioConfigCommandRetryFailed object:nil];
 
+
+    // configure subview
+    [self configuteViews];
+}
+
+-(void)configuteViews {
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
-
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 }
 
@@ -96,12 +103,8 @@ static void * SVKvoContext = &SVKvoContext;
 }
 
 - (IBAction)enableConfigMode:(id)sender {
-    if ([CommController sharedInstance].mavLinkInterface) {
-        [[CommController sharedInstance].mavLinkInterface stopRecevingMessages];
-    }
-    [[CommController sharedInstance] startFWRConfigMode];
-    [self configureKvo];
-    [self updateUIWithRadioSettingsFromModel];
+    [[CommController sharedInstance] closeAllInterfaces];
+    [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
 }
 
 
@@ -126,26 +129,36 @@ static void * SVKvoContext = &SVKvoContext;
     [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId withHayesMode:AT];
 }
 
+-(void)setupConfigAccessoryConnection {
+    if ([CommController sharedInstance].mavLinkInterface) {
+        [[CommController sharedInstance].mavLinkInterface stopRecevingMessages];
+    }
+    [[CommController sharedInstance] startFWRConfigMode];
+    [self configureKvo];
+    [self updateUIWithRadioSettingsFromModel];
+
+}
+
 #pragma mark - Set up KVO
 -(void) configureKvo {
     
-    if (!_localRadioSettingsModel) {
-        _localRadioSettingsModel = [CommController sharedInstance].radioConfig.localRadioSettings;
+    if (!self.localRadioSettingsModel) {
+        self.localRadioSettingsModel = [CommController sharedInstance].radioConfig.localRadioSettings;
     }
 
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.localRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 
-    if (!_remoteRadioSettingsModel) {
-        _remoteRadioSettingsModel = [CommController sharedInstance].radioConfig.remoteRadioSettings;
+    if (!self.remoteRadioSettingsModel) {
+        self.remoteRadioSettingsModel = [CommController sharedInstance].radioConfig.remoteRadioSettings;
     }
 
-    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [_remoteRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

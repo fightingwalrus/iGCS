@@ -8,6 +8,7 @@
 
 #import "iGCSRadioConfig.h"
 #import "iGCSRadioConfig_Private.h"
+#import "iGCSRadioConfig+CommandBatches.h"
 
 NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
@@ -192,9 +193,10 @@ NSString * const GCSHayesResponseStateDescription[] = {
 }
 
 #pragma mark - Queue, state and timer helpers
--(void)prepareQueueForNewCommands{
+-(void)prepareQueueForNewCommandsWithName:(NSString *) name{
     [self.commandQueue removeAllObjects];
     [self.sentCommands removeAllObjects];
+    self.commandQueueName = name;
 }
 
 -(void)resetBatchResponseTimer {
@@ -222,14 +224,16 @@ NSString * const GCSHayesResponseStateDescription[] = {
 }
 
 -(void)commandQueueHasEmptied {
-    NSLog(@"commandQueueHasEmptied");
-    if (_sikAt.hayesMode == RT) {
-        _sikAt.hayesMode = AT;
+    NSLog(@"commandQueue %@ has emptied", self.commandQueueName);
+    if (self.sikAt.hayesMode == RT) {
+        self.sikAt.hayesMode = AT;
         return;
     }
 
-//    _sikAt.hayesMode = RT;
-//    [self loadSettings];
+    if ([self.commandQueueName isEqualToString:NSStringFromSelector(@selector(loadSettings))]) {
+        self.sikAt.hayesMode = RT;
+        [self loadSettings];
+    }
 }
 
 -(void)logCurrentHayesIOState {
