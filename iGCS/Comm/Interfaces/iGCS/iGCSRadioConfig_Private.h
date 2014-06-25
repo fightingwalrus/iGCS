@@ -14,7 +14,6 @@ typedef void (^HayesWaitingForDataBlock)();
 @property (nonatomic, strong) GCSSikAT *sikAt;
 @property (nonatomic, strong) GCSSikAT *privateSikAt;
 @property (strong) NSTimer *commandResponseTimer;
-@property (strong) NSTimer *batchResponseTimer;
 @property (strong) NSMutableArray *sentCommands;
 @property (strong) NSArray *responseBuffer;
 @property (strong) NSMutableDictionary *currentSettings;
@@ -32,9 +31,7 @@ typedef void (^HayesWaitingForDataBlock)();
 // helpers and dispatchers
 -(void)sendATCommand:(NSString *)atCommand;
 -(void)prepareQueueForNewCommandsWithName:(NSString *) name;
--(void)resetBatchTimeoutUsingCommandTimeout:(float) commandTimeout;
 -(void)dispatchCommandFromQueue;
--(void)resetBatchResponseTimer;
 -(void)sendConfigModeCommand;
 @end
 

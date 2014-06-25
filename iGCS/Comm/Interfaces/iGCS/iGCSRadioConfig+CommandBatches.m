@@ -18,7 +18,6 @@
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf exit];}];
 
-    [self resetBatchTimeoutUsingCommandTimeout:2.0f];
     [self dispatchCommandFromQueue];
 }
 
@@ -40,7 +39,6 @@
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
 
-    [self resetBatchTimeoutUsingCommandTimeout:1.5f];
     [self dispatchCommandFromQueue];
 }
 
@@ -49,7 +47,6 @@
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
 
-    [self resetBatchResponseTimer];
     [self dispatchCommandFromQueue];
 }
 
@@ -82,7 +79,6 @@
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
     [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
 
-    [self resetBatchResponseTimer];
     [self dispatchCommandFromQueue];
 }
 
@@ -102,7 +98,6 @@
         [self.commandQueue addObject:^(){[weakSelf rebootRadioWithHayesMode:RT];}];
     }
 
-    [self resetBatchTimeoutUsingCommandTimeout:3.0];
     [self dispatchCommandFromQueue];
 }
 

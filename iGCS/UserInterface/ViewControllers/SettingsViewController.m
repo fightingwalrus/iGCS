@@ -107,7 +107,6 @@ static void *SVKvoContext = &SVKvoContext;
     [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
 }
 
-
 - (IBAction)enableHayesMode:(id)sender {
     [[CommController sharedInstance].radioConfig enterConfigMode];
 }
