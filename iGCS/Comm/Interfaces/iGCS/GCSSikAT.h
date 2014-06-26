@@ -53,6 +53,8 @@ static NSString *const tEnableRemoteRadioTDMDebug = @"RT&T=TDM";
 static NSString *const tDisableRemoteRadioDebug = @"RT&T";
 static NSString *const tEnableRemoteRadioBootloaderMode = @"RT&UPDATE"; // in this mode radio will accept firmware update
 
+extern NSString *const GCSSikHayesModeKeyName;
+
 typedef NS_ENUM(NSUInteger, GCSSikHayesMode) {
     AT,
     RT

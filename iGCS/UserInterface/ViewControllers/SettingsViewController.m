@@ -49,7 +49,7 @@ static void *SVKvoContext = &SVKvoContext;
                                                object:nil];
 
     // alert user to failed retry attempts
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailed) name:GCSRadioConfigCommandRetryFailed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailedWithNotification:) name:GCSRadioConfigCommandRetryFailed object:nil];
 
 
     // configure subview
@@ -115,7 +115,7 @@ static void *SVKvoContext = &SVKvoContext;
 
 -(void)readRadioSettings {
     NSLog(@"readLocalSettings");
-    [[CommController sharedInstance].radioConfig loadSettings];
+    [[CommController sharedInstance].radioConfig loadBasicSettings];
 }
 
 -(void)saveSettingsToRemoteRadio {
@@ -290,7 +290,17 @@ static void *SVKvoContext = &SVKvoContext;
     // Dispose of any resources that can be recreated.
 }
 
--(void)commandRetryFailed {
+-(void)commandRetryFailedWithNotification:(NSNotification *) noti{
+    GCSSikHayesMode hayesMode = [noti.userInfo[GCSSikHayesModeKeyName] unsignedIntegerValue];
+    NSString *sender = noti.userInfo[GCSRadioConfigBatchName];
+
+    // No UIAlert, just set the connection status test if we get no response from the remote radio
+    if (hayesMode == RT && ([sender isEqualToString:GCSRadioConfigBatchNameLoadBasicSettings] ||
+        [sender isEqualToString:GCSRadioConfigBatchNameLoadAllSettings]) ) {
+        self.connectionStatus.text = @"NO";
+        return;
+    }
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Timeout talking to the radio. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }

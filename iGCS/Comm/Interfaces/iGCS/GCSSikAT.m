@@ -8,7 +8,9 @@
 
 #import "GCSSikAT.h"
 
-NSString * const GCSSikHayesModeDescription[] = {
+NSString *const GCSSikHayesModeKeyName = @"GCSSkikHayesModeKey";
+
+NSString *const GCSSikHayesModeDescription[] = {
     [AT] = @"AT",
     [RT] = @"RT"
 };

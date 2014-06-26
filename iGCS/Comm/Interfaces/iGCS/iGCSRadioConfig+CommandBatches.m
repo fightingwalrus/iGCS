@@ -10,10 +10,22 @@
 #import "iGCSRadioConfig_Private.h"
 #import "iGCSRadioConfig_Commands.h"
 
+// constants for user as NSNotification messages
+
+NSString * const GCSRadioConfigBatchNameExitConfigMode = @"com.fightingwalrus.radioconfig.batchname.exitconfigmode";
+NSString * const GCSRadioConfigBatchNameEnterConfigMode = @"com.fightingwalrus.radioconfig.batchname.enterconfigmode";
+NSString * const GCSRadioConfigBatchNameLoadRadioVersion = @"com.fightingwalrus.radioconfig.batchname.loadradioversion";
+NSString * const GCSRadioConfigBatchNameLoadBasicSettings = @"com.fightingwalrus.radioconfig.batchname.loadbasicsettings";
+NSString * const GCSRadioConfigBatchNameLoadAllSettings = @"com.fightingwalrus.radioconfig.batchname.loadallsettings";
+NSString * const GCSRadioConfigBatchNameSaveAndResetWithNetID = @"com.fightingwalrus.radioconfig.batchname.saveandresetwithnetid";
+
+// for use in userInfo dictionary key
+NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
+
 @implementation iGCSRadioConfig (CommandBatches)
 
 -(void)exitConfigMode {
-    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameExitConfigMode];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf exit];}];
@@ -34,7 +46,7 @@
         return;
     }
 
-    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameEnterConfigMode];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
@@ -43,15 +55,30 @@
 }
 
 -(void)loadRadioVersion {
-    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadRadioVersion];
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
 
     [self dispatchCommandFromQueue];
 }
 
--(void)loadSettings {
-    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
+-(void)loadBasicSettings {
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadBasicSettings];
+
+    __weak iGCSRadioConfig *weakSelf = self;
+    [self.commandQueue addObject:^(){[weakSelf boadType];}];
+    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
+    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
+    [self.commandQueue addObject:^(){[weakSelf serialSpeed];}];
+    [self.commandQueue addObject:^(){[weakSelf airSpeed];}];
+    [self.commandQueue addObject:^(){[weakSelf netId];}];
+    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
+    [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
+    [self dispatchCommandFromQueue];
+}
+
+-(void)loadAllSettings {
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadAllSettings];
 
     __weak iGCSRadioConfig *weakSelf = self;
     [self.commandQueue addObject:^(){[weakSelf boadType];}];
@@ -84,7 +111,7 @@
 
 
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
-    [self prepareQueueForNewCommandsWithName:NSStringFromSelector(_cmd)];
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
 
     __weak iGCSRadioConfig *weakSelf = self;
 

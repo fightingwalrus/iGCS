@@ -206,9 +206,9 @@ NSString * const GCSHayesResponseStateDescription[] = {
         return;
     }
 
-    if ([self.commandQueueName isEqualToString:NSStringFromSelector(@selector(loadSettings))]) {
+    if ([self.commandQueueName isEqualToString:GCSRadioConfigBatchNameLoadBasicSettings]) {
         self.sikAt.hayesMode = RT;
-        [self loadSettings];
+        [self loadBasicSettings];
     }
 }
 
@@ -316,9 +316,18 @@ NSString * const GCSHayesResponseStateDescription[] = {
         [self.commandQueue removeAllObjects];
         self.hayesResponseState = HayesReadyForCommand;
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandRetryFailed object:nil];
+        NSDictionary *userInfo = @{GCSSikHayesModeKeyName: @(self.sikAt.hayesMode),
+                                   GCSRadioConfigBatchName: self.commandQueueName};
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigCommandRetryFailed
+                                                            object:nil
+                                                          userInfo:userInfo];
 
         NSLog(@"self.completeResponseBuffer: %@", self.completeResponseBuffer);
+
+        // clear out response buffer so we see only buffer from a single batch
+        // for each printout for debugging
+        [self.completeResponseBuffer removeAllObjects];
     }
 }
 
