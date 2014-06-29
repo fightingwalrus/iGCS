@@ -11,6 +11,7 @@
 
 @interface VerticalScaleView : DoubleBufferedAsyncView
 
+@property (nonatomic) NSString *title;
 @property (nonatomic) NSInteger scale;
 @property (nonatomic) float value;
 @property (nonatomic) float targetDelta;

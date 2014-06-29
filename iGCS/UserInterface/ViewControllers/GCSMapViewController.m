@@ -240,9 +240,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [ahIndicatorView setRoll: 0 pitch: 0];
     [compassView setHeading: 0];
     
+    [airspeedView setTitle:@"m/s"];
     [airspeedView setScale:20];
     [airspeedView setValue:0];
     
+    [altitudeView setTitle:@"m"];
     [altitudeView setScale:200];
     [altitudeView setValue:0];
     [altitudeView setCeilingThreshold:400 * 0.3048]; // IGCS-44: future user setting
