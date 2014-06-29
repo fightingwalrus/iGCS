@@ -280,7 +280,7 @@ static void *SVKvoContext = &SVKvoContext;
         // update the update the local radios settings.
         [self performSelector:@selector(saveSettingsToLocalRadio) withObject:nil afterDelay:1.0f];
     } else if ([command isEqualToString:@"ATZ"]){
-        [self performSelector:@selector(readRadioSettings) withObject:nil afterDelay:3.5];
+        [self performSelector:@selector(readRadioSettings) withObject:nil afterDelay:5.0];
     }
 }
 
@@ -296,12 +296,25 @@ static void *SVKvoContext = &SVKvoContext;
 
     // No UIAlert, just set the connection status test if we get no response from the remote radio
     if (hayesMode == RT && ([sender isEqualToString:GCSRadioConfigBatchNameLoadBasicSettings] ||
-        [sender isEqualToString:GCSRadioConfigBatchNameLoadAllSettings]) ) {
+        [sender isEqualToString:GCSRadioConfigBatchNameLoadAllSettings] ||
+        [sender isEqualToString:GCSRadioConfigBatchNameSaveAndResetWithNetID])) {
         self.connectionStatus.text = @"NO";
         return;
     }
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Timeout talking to the radio. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    if (hayesMode == AT && ([sender isEqualToString:GCSRadioConfigBatchNameSaveAndResetWithNetID])) {
+        return;
+    }
+
+    NSString *alertMessage;
+
+    #ifdef DEBUG
+        alertMessage = [NSString stringWithFormat:@"Timeout talking to the radio with command batch [ %@ ] in mode: [%@]", sender, GCSSikHayesModeDescription[hayesMode]];
+    #else
+        alertMessage = @"Timeout talking to the radio. Please try again.";
+    #endif
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 

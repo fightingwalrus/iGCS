@@ -302,17 +302,20 @@ NSString * const GCSHayesResponseStateDescription[] = {
 }
 
 -(void)dispatchHayesBlock {
-    NSLog(@"Retry last command attempt: %li", (long)self.commandRetryCountdown);
-    self.hayesResponseState = HayesReadyForCommand;
-    self.hayesDispatchCommand();
 
-    if ( -- self.commandRetryCountdown == 0) {
+    if (!self.commandResponseTimer.isValid) {
+        NSLog(@"Command response timer invalidated. Stop trying.");
+        return;
+    }
+
+    if (self.commandRetryCountdown == 0) {
+        
+        [self invalidateCommandTimer];
         // update link status
         if (_sikAt.hayesMode == RT) {
             self.isRemoteRadioResponding = NO;
         }
 
-        [self invalidateCommandTimer];
         [self.commandQueue removeAllObjects];
         self.hayesResponseState = HayesReadyForCommand;
 
@@ -328,7 +331,13 @@ NSString * const GCSHayesResponseStateDescription[] = {
         // clear out response buffer so we see only buffer from a single batch
         // for each printout for debugging
         [self.completeResponseBuffer removeAllObjects];
+        return;
     }
+
+    self.commandRetryCountdown --;
+    NSLog(@"Retry last command attempt: %li", (long)self.commandRetryCountdown);
+    self.hayesResponseState = HayesReadyForCommand;
+    self.hayesDispatchCommand();
 }
 
 -(void)invalidateCommandTimer {

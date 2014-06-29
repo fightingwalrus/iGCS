@@ -74,6 +74,8 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     [self.commandQueue addObject:^(){[weakSelf netId];}];
     [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
     [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
+    [self.commandQueue addObject:^(){[weakSelf transmitPower];}];
+    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
     [self dispatchCommandFromQueue];
 }
 
@@ -108,7 +110,6 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
 
     [self dispatchCommandFromQueue];
 }
-
 
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
