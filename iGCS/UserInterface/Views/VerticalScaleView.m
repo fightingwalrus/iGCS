@@ -152,6 +152,12 @@
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 
+    // Draw the title
+    float titleWidth = [MiscUtilities getTextWidth:_title withContext:ctx];
+    CGContextSetTextDrawingMode(ctx, kCGTextFill);
+    CGContextSetTextPosition(ctx, c.x - titleWidth/2, c.y - h/2 + FONT_SIZE_LARGE);
+    CGContextShowText(ctx, [_title cStringUsingEncoding:NSASCIIStringEncoding], [_title length]);
+    
     // Draw target chevron
     float chevY = c.y - _targetDelta * oneScaleY;
     if (chevY > c.y + h/2) chevY = c.y + h/2;
