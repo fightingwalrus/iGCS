@@ -120,6 +120,14 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         
                         
                         [self startReadMissionRequest];
+
+                        if (!self.heartbeatTimer) {
+                            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f
+                                                                                    target:self
+                                                                                  selector:@selector(sendHeatbeatToAutopilot)
+                                                                                 userInfo:nil repeats:YES];
+                        }
+
                     }
                 } else {
                     // If we get any other message than heartbeat, we are getting the messages we requested
@@ -223,6 +231,10 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     
     [self.mainVC.gcsMapVC resetWaypoints: demo];
     [self.mainVC.waypointVC resetWaypoints: demo];
+}
+
+-(void) sendHeatbeatToAutopilot {
+    mavlink_msg_heartbeat_send(MAVLINK_COMM_0, MAV_TYPE_GCS, MAV_AUTOPILOT_INVALID, 0, 0, 0);
 }
 
 @end
