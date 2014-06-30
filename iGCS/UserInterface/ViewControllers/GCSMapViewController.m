@@ -666,12 +666,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
             lastCustomMode = heartbeat.custom_mode;
         }
         break;
-
-        case MAVLINK_MSG_ID_RADIO_STATUS:
-        {
-            mavlink_radio_status_t radioStatus;
-            mavlink_msg_radio_status_decode(msg, &radioStatus);
-        }
     }
 }
 

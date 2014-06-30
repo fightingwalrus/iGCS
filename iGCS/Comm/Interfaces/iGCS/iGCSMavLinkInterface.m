@@ -122,7 +122,7 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                         [self startReadMissionRequest];
 
                         if (!self.heartbeatTimer) {
-                            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f
+                            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                                     target:self
                                                                                   selector:@selector(sendHeatbeatToAutopilot)
                                                                                  userInfo:nil repeats:YES];
