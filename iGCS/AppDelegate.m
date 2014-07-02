@@ -110,8 +110,7 @@ static AppDelegate *shared;
      */
     
     NSLog(@"Became Active");
-	// startup my application update timer
-    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
