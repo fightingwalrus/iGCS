@@ -19,6 +19,7 @@ NSString * const GCSRadioConfigBatchNameLoadBasicSettings = @"com.fightingwalrus
 NSString * const GCSRadioConfigBatchNameLoadAllSettings = @"com.fightingwalrus.radioconfig.batchname.loadallsettings";
 NSString * const GCSRadioConfigBatchNameSaveAndResetWithNetID = @"com.fightingwalrus.radioconfig.batchname.saveandresetwithnetid";
 
+
 // for use in userInfo dictionary key
 NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
 
@@ -26,11 +27,10 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
 
 -(void)exitConfigMode {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameExitConfigMode];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf exit];}];
-
-    [self dispatchCommandFromQueue];
+    
+    dispatch_async(self.atCommandQueue, ^{
+        [self exit];
+    });
 }
 
 #pragma public mark - Command batches
@@ -46,69 +46,60 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         return;
     }
 
-    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameEnterConfigMode];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf sendConfigModeCommand];}];
-
-    [self dispatchCommandFromQueue];
+    dispatch_async(self.atCommandQueue, ^{
+        [self sendConfigModeCommand];
+    });
 }
 
 -(void)loadRadioVersion {
-    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadRadioVersion];
     __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
 
-    [self dispatchCommandFromQueue];
+    dispatch_async(self.atCommandQueue, ^{
+        [weakSelf radioVersion];
+    });
+
 }
 
 -(void)loadBasicSettings {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadBasicSettings];
-
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf boadType];}];
-    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf serialSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf airSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf netId];}];
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf transmitPower];}];
-    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
-    [self dispatchCommandFromQueue];
+    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_async(self.atCommandQueue, ^{[self boadType];});
+    dispatch_async(self.atCommandQueue, ^{[self boadFrequency];;});
+    dispatch_async(self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_async(self.atCommandQueue, ^{[self serialSpeed];});
+    dispatch_async(self.atCommandQueue, ^{[self airSpeed];});
+    dispatch_async(self.atCommandQueue, ^{[self netId];});
+    dispatch_async(self.atCommandQueue, ^{[self maxFrequency];});
+    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
+    dispatch_async(self.atCommandQueue, ^{[self dutyCycle];});
 }
 
 -(void)loadAllSettings {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadAllSettings];
 
-    __weak iGCSRadioConfig *weakSelf = self;
-    [self.commandQueue addObject:^(){[weakSelf boadType];}];
-    [self.commandQueue addObject:^(){[weakSelf boadFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf boadVersion];}];
+    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_async(self.atCommandQueue, ^{[self boadType];});
+    dispatch_async(self.atCommandQueue, ^{[self boadFrequency];});
+    dispatch_async(self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_async(self.atCommandQueue, ^{[self serialSpeed];});
+    dispatch_async(self.atCommandQueue, ^{[self airSpeed];});
+    dispatch_async(self.atCommandQueue, ^{[self netId];});
+    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
+    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_async(self.atCommandQueue, ^{[self mavLink];});
+    dispatch_async(self.atCommandQueue, ^{[self oppResend];});
+    dispatch_async(self.atCommandQueue, ^{[self numberOfChannels];});
+    dispatch_async(self.atCommandQueue, ^{[self minFrequency];});
+    dispatch_async(self.atCommandQueue, ^{[self maxFrequency];});
+    dispatch_async(self.atCommandQueue, ^{[self dutyCycle];});
+    dispatch_async(self.atCommandQueue, ^{[self listenBeforeTalkRssi];});
+    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
 
     //  TODO: need more logic to parse response from this command.
     //  eepromParams are currently gathered one by one.
     //  [self.commandQueue addObject:^(){[weakSelf eepromParams];}];
     //  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
 
-    [self.commandQueue addObject:^(){[weakSelf serialSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf airSpeed];}];
-    [self.commandQueue addObject:^(){[weakSelf netId];}];
-    [self.commandQueue addObject:^(){[weakSelf transmitPower];}];
-    [self.commandQueue addObject:^(){[weakSelf ecc];}];
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf mavLink];}];
-    [self.commandQueue addObject:^(){[weakSelf oppResend];}];
-    [self.commandQueue addObject:^(){[weakSelf minFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf maxFrequency];}];
-    [self.commandQueue addObject:^(){[weakSelf numberOfChannels];}];
-    [self.commandQueue addObject:^(){[weakSelf dutyCycle];}];
-    [self.commandQueue addObject:^(){[weakSelf listenBeforeTalkRssi];}];
-    [self.commandQueue addObject:^(){[weakSelf radioVersion];}];
-    [self.commandQueue addObject:^(){[weakSelf RSSIReport];}];
-
-    [self dispatchCommandFromQueue];
 }
 
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
@@ -117,16 +108,31 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     __weak iGCSRadioConfig *weakSelf = self;
 
     if (hayesMode == AT) {
-        [self.commandQueue addObject:^(){[weakSelf setNetId:netId withHayesMode:AT];}];
-        [self.commandQueue addObject:^(){[weakSelf saveWithHayesMode:AT];}];
-        [self.commandQueue addObject:^(){[weakSelf rebootRadioWithHayesMode:AT];}];
-    } else {
-        [self.commandQueue addObject:^(){[weakSelf setNetId:netId withHayesMode:RT];}];
-        [self.commandQueue addObject:^(){[weakSelf saveWithHayesMode:RT];}];
-        [self.commandQueue addObject:^(){[weakSelf rebootRadioWithHayesMode:RT];}];
-    }
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf setNetId:netId withHayesMode:AT];
+        });
 
-    [self dispatchCommandFromQueue];
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf saveWithHayesMode:AT];
+        });
+
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf rebootRadioWithHayesMode:AT];
+        });
+
+    } else {
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf setNetId:netId withHayesMode:RT];
+        });
+
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf saveWithHayesMode:RT];
+        });
+
+        dispatch_async(self.atCommandQueue, ^{
+            [weakSelf rebootRadioWithHayesMode:RT];
+        });
+    }
 }
 
 @end

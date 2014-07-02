@@ -8,7 +8,7 @@
 
 #import "iGCSRadioConfig.h"
 
-typedef void (^HayesWaitingForDataBlock)();
+typedef void (^HayesDispatchBlock)(NSObject *);
 
 @interface iGCSRadioConfig ()
 @property (nonatomic, strong) GCSSikAT *sikAt;
@@ -20,8 +20,9 @@ typedef void (^HayesWaitingForDataBlock)();
 @property (strong) NSString *previousHayesResponse;
 @property (readonly) NSInteger retryCount;
 @property (readwrite) NSInteger commandRetryCountdown;
-@property (nonatomic, copy) HayesWaitingForDataBlock hayesDispatchCommand;
-
+@property (nonatomic, copy) HayesDispatchBlock hayesDispatchCommand;
+@property (nonatomic, readwrite) dispatch_queue_t atCommandQueue;
+@property (nonatomic, readwrite) dispatch_semaphore_t atCommandSemaphore;
 @property (strong) NSMutableArray *completeResponseBuffer;
 
 // Queue of selectors of commands to perform
@@ -31,7 +32,6 @@ typedef void (^HayesWaitingForDataBlock)();
 // helpers and dispatchers
 -(void)sendATCommand:(NSString *)atCommand;
 -(void)prepareQueueForNewCommandsWithName:(NSString *) name;
--(void)dispatchCommandFromQueue;
 -(void)sendConfigModeCommand;
 @end
 
