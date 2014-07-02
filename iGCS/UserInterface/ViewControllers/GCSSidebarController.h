@@ -61,5 +61,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *sysUptimeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysVoltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysMemFreeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *sysRemoteRSSI;
+@property (nonatomic, strong) IBOutlet UILabel *sysLocalRSSI;
+
 
 @end

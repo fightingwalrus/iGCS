@@ -24,6 +24,7 @@
 @property BOOL mavLinkInitialized;
 
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;
+@property (nonatomic, retain) NSTimer* heartbeatTimer;
 
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
@@ -44,5 +45,6 @@
 - (void) issueSetAUTOModeCommand;
 
 - (void) loadDemoMission;
+-(void) sendHeatbeatToAutopilot;
 
 @end

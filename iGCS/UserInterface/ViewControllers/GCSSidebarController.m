@@ -145,6 +145,15 @@
             [_sysMemFreeLabel setText:[NSString stringWithFormat:@"%0.1fkB", memFree.freemem/1024.0f]];
         }
             break;
+
+        case MAVLINK_MSG_ID_RADIO_STATUS:
+        {
+            mavlink_radio_status_t radioStatus;
+            mavlink_msg_radio_status_decode(msg, &radioStatus);
+            [_sysRemoteRSSI setText:[NSString stringWithFormat:@"%u", radioStatus.remrssi]];
+            [_sysLocalRSSI setText:[NSString stringWithFormat:@"%u", radioStatus.rssi]];
+        }
+            break;
     }
 }
 
