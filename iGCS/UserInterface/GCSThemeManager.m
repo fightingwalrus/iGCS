@@ -27,7 +27,7 @@
         _waypointLineStrokeColor = [UIColor blackColor];
         _waypointLineFillColor   = UIColorFromRGB(0x08ff08); // fluoro green
         
-        _trackLineColor = [UIColor purpleColor];
+        _trackLineColor          = UIColorFromRGB(0xff5b00); // fluoro orange
         
         _waypointNavColor         = UIColorFromRGB(0x08ff08); // fluoro green
         _waypointNavNextColor     = [UIColor redColor];
