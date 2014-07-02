@@ -151,9 +151,16 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already)
-    // using for another purpose
-    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    // Traverse up the view hierarchy until the parent UITableViewCell is reached
+    //
+    // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already
+    // using for another purpose; namely, using viewWithTag to find/configure the cell from the storyboard prototype)
+    UIView *cell = textField;
+    while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
+        cell = [cell superview];
+    }
+    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)cell];
+    assert(indexPath != NULL);
     //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     mavlink_mission_item_t item = [self getCurrentMissionItem];
