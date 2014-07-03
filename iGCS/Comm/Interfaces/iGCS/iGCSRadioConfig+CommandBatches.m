@@ -10,7 +10,7 @@
 #import "iGCSRadioConfig_Private.h"
 #import "iGCSRadioConfig_Commands.h"
 
-// constants for user as NSNotification messages
+// constants for use as NSNotification messages
 
 NSString * const GCSRadioConfigBatchNameExitConfigMode = @"com.fightingwalrus.radioconfig.batchname.exitconfigmode";
 NSString * const GCSRadioConfigBatchNameEnterConfigMode = @"com.fightingwalrus.radioconfig.batchname.enterconfigmode";
