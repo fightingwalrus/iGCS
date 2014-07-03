@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, GCSSikSRegister) {
     EnableECC           = 5,    // enable error correcting code
     MavLink             = 6,    // enable mavlink
     OppResend           = 7,    // ??
-    MinFrequency        = 8,    // in kHx
+    MinFrequency        = 8,    // in kHz
     MaxFrequency        = 9,    // in kHz
     NumberOfChannels    = 10,   // total number of channels for freqency hopping
     DutyCycle           = 11,   // percent time for transmit

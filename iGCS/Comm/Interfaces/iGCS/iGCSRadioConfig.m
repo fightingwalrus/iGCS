@@ -113,6 +113,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
         [self invalidateCommandTimer];
         [self logCurrentHayesIOState];
+//        [self enterConfigMode];
         NSLog(@"end handleHayesResponse:");
         return;
     }
@@ -234,45 +235,51 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 -(void)sendConfigModeCommand {
     dispatch_semaphore_wait(self.atCommandSemaphore, DISPATCH_TIME_FOREVER);
-    if (self.hayesResponseState != HayesReadyForCommand) {
-        NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
-        [self logCurrentHayesIOState];
-        return;
-    }
 
-    @synchronized(self) {
-        self.hayesResponseState = HayesEnterConfigMode;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.hayesResponseState != HayesReadyForCommand) {
+            NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
+            [self logCurrentHayesIOState];
+            return;
+        }
 
-    [self.sentCommands addObject:@"+++"];
-    [self.sentCommands addObject:@"OK"];
+        @synchronized(self) {
+            self.hayesResponseState = HayesEnterConfigMode;
+        }
 
-    const char* buf;
+        [self.sentCommands addObject:@"+++"];
+        [self.sentCommands addObject:@"OK"];
 
-    // no trailing CR for +++ as with AT commands
-    buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
-    uint32_t len = (uint32_t)strlen(buf);
-    [self produceData:buf length:len];
+        const char* buf;
+
+        // no trailing CR for +++ as with AT commands
+        buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
+        uint32_t len = (uint32_t)strlen(buf);
+        [self produceData:buf length:len];
+    });
 }
 
 -(void)sendATCommand:(NSString *)atCommand {
     dispatch_semaphore_wait(self.atCommandSemaphore, DISPATCH_TIME_FOREVER);
-    if (_hayesResponseState != HayesReadyForCommand) {
-        NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
-        [self logCurrentHayesIOState];
-        return;
-    }
 
-    @synchronized(self) {
-        self.hayesResponseState = HayesWaitingForEcho;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_hayesResponseState != HayesReadyForCommand) {
+            NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
+            [self logCurrentHayesIOState];
+            return;
+        }
 
-    [self.sentCommands addObject:atCommand];
-    NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
-    const char* buf;
-    buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
-    uint32_t len = (uint32_t)strlen(buf);
-    [self produceData:buf length:len];
+        @synchronized(self) {
+            self.hayesResponseState = HayesWaitingForEcho;
+        }
+
+        [self.sentCommands addObject:atCommand];
+        NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
+        const char* buf;
+        buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
+        uint32_t len = (uint32_t)strlen(buf);
+        [self produceData:buf length:len];
+     });
 }
 
 -(void)invalidateCommandTimer {

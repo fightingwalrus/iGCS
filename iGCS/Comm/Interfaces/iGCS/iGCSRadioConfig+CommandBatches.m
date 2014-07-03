@@ -27,15 +27,21 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
 
 -(void)exitConfigMode {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameExitConfigMode];
-    
-    dispatch_async(self.atCommandQueue, ^{
+
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, self.atCommandQueue, ^{
         [self exit];
+    });
+
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.exitConfigMode complete");
     });
 }
 
 #pragma public mark - Command batches
 
 -(void)enterConfigMode {
+    
     if (!self.isRadioBooted) {
         NSLog(@"enterConfigMode >> Can't enter config mode. RADIO IS NOT BOOTED.");
         return;
@@ -46,93 +52,102 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         return;
     }
 
-    dispatch_async(self.atCommandQueue, ^{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, self.atCommandQueue, ^{
         [self sendConfigModeCommand];
+    });
+
+
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.enterConfigMode complete");
     });
 }
 
 -(void)loadRadioVersion {
-    __weak iGCSRadioConfig *weakSelf = self;
+    dispatch_group_t group = dispatch_group_create();
 
-    dispatch_async(self.atCommandQueue, ^{
-        [weakSelf radioVersion];
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        [self radioVersion];
     });
 
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.loadRadioVersion complete");
+    });
 }
 
 -(void)loadBasicSettings {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadBasicSettings];
-    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_async(self.atCommandQueue, ^{[self boadType];});
-    dispatch_async(self.atCommandQueue, ^{[self boadFrequency];;});
-    dispatch_async(self.atCommandQueue, ^{[self boadVersion];});
-    dispatch_async(self.atCommandQueue, ^{[self serialSpeed];});
-    dispatch_async(self.atCommandQueue, ^{[self airSpeed];});
-    dispatch_async(self.atCommandQueue, ^{[self netId];});
-    dispatch_async(self.atCommandQueue, ^{[self maxFrequency];});
-    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
-    dispatch_async(self.atCommandQueue, ^{[self dutyCycle];});
+
+    dispatch_group_t group = dispatch_group_create();
+
+    dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadType];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadFrequency];;});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self serialSpeed];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self airSpeed];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self netId];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self maxFrequency];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self transmitPower];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self dutyCycle];});
+
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.loadBasicSettings complete");
+    });
 }
 
 -(void)loadAllSettings {
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameLoadAllSettings];
 
-    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_async(self.atCommandQueue, ^{[self boadType];});
-    dispatch_async(self.atCommandQueue, ^{[self boadFrequency];});
-    dispatch_async(self.atCommandQueue, ^{[self boadVersion];});
-    dispatch_async(self.atCommandQueue, ^{[self serialSpeed];});
-    dispatch_async(self.atCommandQueue, ^{[self airSpeed];});
-    dispatch_async(self.atCommandQueue, ^{[self netId];});
-    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
-    dispatch_async(self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_async(self.atCommandQueue, ^{[self mavLink];});
-    dispatch_async(self.atCommandQueue, ^{[self oppResend];});
-    dispatch_async(self.atCommandQueue, ^{[self numberOfChannels];});
-    dispatch_async(self.atCommandQueue, ^{[self minFrequency];});
-    dispatch_async(self.atCommandQueue, ^{[self maxFrequency];});
-    dispatch_async(self.atCommandQueue, ^{[self dutyCycle];});
-    dispatch_async(self.atCommandQueue, ^{[self listenBeforeTalkRssi];});
-    dispatch_async(self.atCommandQueue, ^{[self transmitPower];});
+    dispatch_group_t group = dispatch_group_create();
+
+    dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadType];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadFrequency];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self serialSpeed];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self airSpeed];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self netId];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self transmitPower];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self mavLink];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self oppResend];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self numberOfChannels];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self minFrequency];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self maxFrequency];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self dutyCycle];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self listenBeforeTalkRssi];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self transmitPower];});
 
     //  TODO: need more logic to parse response from this command.
     //  eepromParams are currently gathered one by one.
     //  [self.commandQueue addObject:^(){[weakSelf eepromParams];}];
     //  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
-
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.loadAllSettings complete");
+    });
 }
 
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
 
-    __weak iGCSRadioConfig *weakSelf = self;
+    dispatch_group_t group = dispatch_group_create();
 
-    if (hayesMode == AT) {
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf setNetId:netId withHayesMode:AT];
-        });
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        [self setNetId:netId withHayesMode:hayesMode];
+    });
 
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf saveWithHayesMode:AT];
-        });
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        [self saveWithHayesMode:hayesMode];
+    });
 
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf rebootRadioWithHayesMode:AT];
-        });
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        [self rebootRadioWithHayesMode:hayesMode];
+    });
 
-    } else {
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf setNetId:netId withHayesMode:RT];
-        });
-
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf saveWithHayesMode:RT];
-        });
-
-        dispatch_async(self.atCommandQueue, ^{
-            [weakSelf rebootRadioWithHayesMode:RT];
-        });
-    }
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        NSLog(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
+    });
 }
 
 @end
