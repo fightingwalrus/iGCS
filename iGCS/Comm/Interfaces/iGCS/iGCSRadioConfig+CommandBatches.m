@@ -19,7 +19,6 @@ NSString * const GCSRadioConfigBatchNameLoadBasicSettings = @"com.fightingwalrus
 NSString * const GCSRadioConfigBatchNameLoadAllSettings = @"com.fightingwalrus.radioconfig.batchname.loadallsettings";
 NSString * const GCSRadioConfigBatchNameSaveAndResetWithNetID = @"com.fightingwalrus.radioconfig.batchname.saveandresetwithnetid";
 
-
 // for use in userInfo dictionary key
 NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
 
@@ -34,7 +33,12 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     });
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
-        NSLog(@">>>> iGCSRadioConfig.exitConfigMode complete");
+        dispatch_async(dispatch_get_main_queue(),^{
+            NSLog(@">>>> iGCSRadioConfig.exitConfigMode complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameExitConfigMode
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
@@ -57,9 +61,13 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         [self sendConfigModeCommand];
     });
 
-
     dispatch_group_notify(group, self.atCommandQueue, ^{
+        dispatch_async(dispatch_get_main_queue(),^{
         NSLog(@">>>> iGCSRadioConfig.enterConfigMode complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameEnterConfigMode
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
@@ -71,7 +79,12 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     });
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
-        NSLog(@">>>> iGCSRadioConfig.loadRadioVersion complete");
+        dispatch_async(dispatch_get_main_queue(),^{
+            NSLog(@">>>> iGCSRadioConfig.loadRadioVersion complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadRadioVersion
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
@@ -92,7 +105,12 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     dispatch_group_async(group, self.atCommandQueue, ^{[self dutyCycle];});
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
+        dispatch_async(dispatch_get_main_queue(),^{
         NSLog(@">>>> iGCSRadioConfig.loadBasicSettings complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadBasicSettings
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
@@ -124,7 +142,12 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     //  [self.commandQueue addObject:^(){[weakSelf eepromParams];}];
     //  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
     dispatch_group_notify(group, self.atCommandQueue, ^{
+        dispatch_async(dispatch_get_main_queue(),^{
         NSLog(@">>>> iGCSRadioConfig.loadAllSettings complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadAllSettings
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
@@ -146,7 +169,12 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
     });
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
-        NSLog(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
+        dispatch_async(dispatch_get_main_queue(),^{
+            NSLog(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameSaveAndResetWithNetID
+                                                                object:nil
+                                                              userInfo:nil];
+        });
     });
 }
 
