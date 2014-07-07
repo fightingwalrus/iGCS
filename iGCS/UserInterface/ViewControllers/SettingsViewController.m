@@ -36,20 +36,13 @@ static void *SVKvoContext = &SVKvoContext;
 {
     [super viewDidLoad];
 
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hayesCommandTimedOutWithNotification:) name:GCSRadioConfigCommandBatchResponseTimeOut object:nil];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readRadioSettings) name:GCSRadioConfigEnteredConfigMode object:nil];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted) name:GCSRadioConfigRadioHasBooted object:nil];
+    // radio has booted
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted)
+                                                 name:GCSRadioConfigRadioHasBooted object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(radioRebootCommandSentWithNotification:)
-                                                 name:GCSRadioConfigSentRebootCommand
-                                               object:nil];
-
-    // alert user to failed retry attempts
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandRetryFailedWithNotification:) name:GCSRadioConfigCommandRetryFailed object:nil];
+    // radio has entered config mode
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readRadioSettings)
+                                                 name:GCSRadioConfigEnteredConfigMode object:nil];
 
 
     // configure subview
@@ -65,25 +58,17 @@ static void *SVKvoContext = &SVKvoContext;
 
 #pragma mark - IBAction's
 
--(void)radioHasBooted {
+- (IBAction)editCancel:(id)sender {
 
-    // If the radio has rebooted and we are not in config mode then enter config
-    // read/write local settings. Once we enter configmode an NSNotification
-    // will trigger the readRadioSettings selector
-    if (![CommController sharedInstance].radioConfig.isRadioInConfigMode) {
-        [self enterConfigMode];
-        return;
+    NSString *buttonTitle = self.editCancelButton.titleLabel.text;
+
+    if ([buttonTitle isEqualToString:@"Edit"]) {
+        [[CommController sharedInstance] closeAllInterfaces];
+        [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
+        [self.editCancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    } else {
+        NSLog(@"editCancleTitle: %@", buttonTitle);
     }
-
-    // we are already in config mode so just load the current settings
-    // this code path will be executed after radio settings have been
-    // saved and the radio has been rebooted
-    [self readRadioSettings];
-}
-
--(void)enterConfigMode {
-    NSLog(@"enterConfigMode");
-    [[CommController sharedInstance].radioConfig enterConfigMode];
 }
 
 - (IBAction)saveSettings:(id)sender {
@@ -97,21 +82,30 @@ static void *SVKvoContext = &SVKvoContext;
     }
 }
 
--(IBAction)sendATCommand:(id)sender {
-    NSLog(@"start RadioMode");
+#pragma mark - NSNotifcation handlers
+
+-(void)radioHasBooted {
+
+    // If the radio has rebooted and we are not in config mode then enter config
+    // read/write local settings. Once we enter configmode an NSNotification
+    // will trigger the readRadioSettings selector
+    if (![CommController sharedInstance].radioConfig.isRadioInConfigMode) {
+        [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:1.0f];
+        return;
+    }
+
+    // we are already in config mode so just load the current settings
+    // this code path will be executed after radio settings have been
+    // saved and the radio has been rebooted
     [self readRadioSettings];
 }
 
-- (IBAction)enableConfigMode:(id)sender {
-    [[CommController sharedInstance] closeAllInterfaces];
-    [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
-}
+#pragma mark - radio commands
 
-- (IBAction)enableHayesMode:(id)sender {
+-(void)enterConfigMode {
+    NSLog(@"enterConfigMode");
     [[CommController sharedInstance].radioConfig enterConfigMode];
 }
-
-#pragma mark - radio commands
 
 -(void)readRadioSettings {
     NSLog(@"readLocalSettings");

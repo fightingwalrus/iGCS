@@ -26,5 +26,6 @@
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioDutyCycle;
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioLbtRssiEnabled;
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioHardwareFlow;
+@property (weak, nonatomic) IBOutlet UIButton *editCancelButton;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -49,24 +49,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwU-aj-Nmp">
-                                        <rect key="frame" x="368" y="177" width="34" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwU-aj-Nmp">
+                                        <rect key="frame" x="421" y="209" width="34" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Save">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="saveSettings:" destination="0h4-z7-FQ7" eventType="touchUpInside" id="Jnn-1E-nxy"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSC-62-goU">
-                                        <rect key="frame" x="217" y="177" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Read Settings">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendATCommand:" destination="0h4-z7-FQ7" eventType="touchUpInside" id="5T8-hC-hlo"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paired:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6c-yO-b3t">
@@ -101,31 +91,14 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hj-TI-qjI">
-                                        <rect key="frame" x="20" y="177" width="89" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-cl-1R6" userLabel="Button - EditCancel">
+                                        <rect key="frame" x="20" y="209" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Config Mode">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omP-DD-4SG">
-                                        <rect key="frame" x="20" y="177" width="89" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Config Mode">
+                                        <state key="normal" title="Edit">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="enableConfigMode:" destination="0h4-z7-FQ7" eventType="touchUpInside" id="HtV-TY-Dzp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6T-c8-Gop">
-                                        <rect key="frame" x="117" y="177" width="87" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Hayes Mode">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enableHayesMode:" destination="0h4-z7-FQ7" eventType="touchUpInside" id="svu-xx-nuK"/>
+                                            <action selector="editCancel:" destination="0h4-z7-FQ7" eventType="touchUpInside" id="SEN-c2-2oe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -140,25 +113,16 @@
                                     <constraint firstAttribute="trailing" secondItem="fv3-Jk-lZ6" secondAttribute="trailing" constant="66" id="Elv-Xm-dIg"/>
                                     <constraint firstItem="vFh-Hr-LFL" firstAttribute="top" secondItem="81a-rl-3Z4" secondAttribute="bottom" constant="12" id="JJ4-Ti-CCc"/>
                                     <constraint firstAttribute="trailing" secondItem="b6C-ei-P5D" secondAttribute="trailing" constant="59" id="JQi-pJ-wpe"/>
-                                    <constraint firstItem="o6T-c8-Gop" firstAttribute="leading" secondItem="omP-DD-4SG" secondAttribute="trailing" constant="8" symbolic="YES" id="LBc-Vr-vR0"/>
                                     <constraint firstItem="fv3-Jk-lZ6" firstAttribute="leading" secondItem="nHN-ED-p1A" secondAttribute="leading" id="Q06-fO-8Zn"/>
                                     <constraint firstItem="79G-3e-pVv" firstAttribute="leading" secondItem="nHN-ED-p1A" secondAttribute="leading" id="Q2q-G1-xqh"/>
-                                    <constraint firstItem="omP-DD-4SG" firstAttribute="top" secondItem="X3k-QX-7r4" secondAttribute="bottom" constant="2" id="QEW-5z-vZx"/>
-                                    <constraint firstItem="X3k-QX-7r4" firstAttribute="leading" secondItem="omP-DD-4SG" secondAttribute="leading" id="Qg2-cM-1vL"/>
                                     <constraint firstItem="tWd-59-zXY" firstAttribute="leading" secondItem="r6c-yO-b3t" secondAttribute="trailing" constant="4" id="RuB-gE-edw"/>
                                     <constraint firstItem="r6c-yO-b3t" firstAttribute="leading" secondItem="SxU-fC-52Y" secondAttribute="leading" constant="12" id="c6p-JZ-n9d"/>
                                     <constraint firstItem="79G-3e-pVv" firstAttribute="top" secondItem="tWd-59-zXY" secondAttribute="bottom" constant="53" id="dhl-4N-lnB"/>
-                                    <constraint firstItem="o6T-c8-Gop" firstAttribute="leading" secondItem="0hj-TI-qjI" secondAttribute="trailing" constant="8" symbolic="YES" id="emq-nX-qCQ"/>
-                                    <constraint firstItem="o6T-c8-Gop" firstAttribute="baseline" secondItem="WSC-62-goU" secondAttribute="baseline" id="eo8-Cg-t7G"/>
-                                    <constraint firstItem="0hj-TI-qjI" firstAttribute="baseline" secondItem="omP-DD-4SG" secondAttribute="baseline" id="g8w-Oc-cvV"/>
                                     <constraint firstItem="fv3-Jk-lZ6" firstAttribute="baseline" secondItem="X3k-QX-7r4" secondAttribute="baseline" id="k9j-wh-r5G"/>
-                                    <constraint firstItem="WSC-62-goU" firstAttribute="leading" secondItem="o6T-c8-Gop" secondAttribute="trailing" constant="13" id="l0V-ot-9dp"/>
                                     <constraint firstItem="79G-3e-pVv" firstAttribute="leading" secondItem="81a-rl-3Z4" secondAttribute="trailing" constant="24" id="pQJ-Be-F5I"/>
                                     <constraint firstItem="vFh-Hr-LFL" firstAttribute="trailing" secondItem="X3k-QX-7r4" secondAttribute="trailing" id="tFW-vX-57f"/>
                                     <constraint firstItem="r6c-yO-b3t" firstAttribute="top" secondItem="SxU-fC-52Y" secondAttribute="top" constant="11" id="tKr-Jn-TmK"/>
                                     <constraint firstItem="nHN-ED-p1A" firstAttribute="top" secondItem="79G-3e-pVv" secondAttribute="bottom" constant="7" id="vtm-Jl-bSe"/>
-                                    <constraint firstItem="0hj-TI-qjI" firstAttribute="baseline" secondItem="o6T-c8-Gop" secondAttribute="baseline" id="wZR-ql-pF7"/>
-                                    <constraint firstItem="WSC-62-goU" firstAttribute="baseline" secondItem="JwU-aj-Nmp" secondAttribute="baseline" id="yt0-Vn-TAc"/>
                                     <constraint firstItem="X3k-QX-7r4" firstAttribute="leading" secondItem="SxU-fC-52Y" secondAttribute="leading" constant="20" symbolic="YES" id="zND-yV-RP4"/>
                                     <constraint firstItem="X3k-QX-7r4" firstAttribute="top" secondItem="vFh-Hr-LFL" secondAttribute="bottom" constant="11" id="zQZ-dp-Vfn"/>
                                 </constraints>
@@ -176,6 +140,7 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="connectionStatus" destination="tWd-59-zXY" id="Oha-wT-Q5s"/>
+                        <outlet property="editCancelButton" destination="vbo-cl-1R6" id="8Lz-R7-m0g"/>
                         <outlet property="localRadioFirmwareVersion" destination="nHN-ED-p1A" id="wrL-JN-uis"/>
                         <outlet property="localRadioNetId" destination="79G-3e-pVv" id="ppn-wu-xTj"/>
                         <outlet property="remoteRadioFirmwareVersion" destination="fv3-Jk-lZ6" id="Ye9-E0-fB8"/>

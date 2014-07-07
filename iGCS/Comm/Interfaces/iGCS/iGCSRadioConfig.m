@@ -104,8 +104,10 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSLog(@"iGCSRadioConfig handleHayesResponse: %@", hayesResponse);
 
     if ([hayesResponse rangeOfString:@"BOOTED"].location != NSNotFound) {
+
         self.isRadioBooted = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
+
         @synchronized(self) {
             self.hayesResponseState = HayesReadyForCommand;
             dispatch_semaphore_signal(self.atCommandSemaphore);
@@ -113,7 +115,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
         [self invalidateCommandTimer];
         [self logCurrentHayesIOState];
-//        [self enterConfigMode];
         NSLog(@"end handleHayesResponse:");
         return;
     }
@@ -132,6 +133,9 @@ NSString * const GCSHayesResponseStateDescription[] = {
             self.hayesResponseState = HayesReadyForCommand;
             dispatch_semaphore_signal(self.atCommandSemaphore);
         }
+
+        [self invalidateCommandTimer];
+        [self logCurrentHayesIOState];
 
     } else if (self.hayesResponseState == HayesWaitingForEcho) {
         // handle echoed command
