@@ -19,7 +19,7 @@
                withHayesMode:(GCSSikHayesMode) hayesMode;
 @end
 
-// const for NSNotification messages
+// consts for NSNotification messages
 extern NSString * const GCSRadioConfigBatchNameExitConfigMode;
 extern NSString * const GCSRadioConfigBatchNameEnterConfigMode;
 extern NSString * const GCSRadioConfigBatchNameLoadRadioVersion;
@@ -27,5 +27,9 @@ extern NSString * const GCSRadioConfigBatchNameLoadBasicSettings;
 extern NSString * const GCSRadioConfigBatchNameLoadAllSettings;
 extern NSString * const GCSRadioConfigBatchNameSaveAndResetWithNetID;
 
-// batch name
-extern NSString *const GCSRadioConfigBatchName;
+// consts for use as userInfo dict keys when sending NSNotifications
+extern NSString * const GCSRadioConfigBatchName;
+extern NSString * const GCSRadioConfigHayesResponseStateKey;
+extern NSString * const GCSRadioConfigIsRadioBootedKey;
+extern NSString * const GCSRadioConfigIsRadioInConfigModeKey;
+extern NSString * const GCSRadioConfigIsRemoteRadioRespondingKey;

@@ -10,8 +10,7 @@
 #import "iGCSRadioConfig_Private.h"
 #import "iGCSRadioConfig_Commands.h"
 
-// constants for use as NSNotification messages
-
+// consts for NSNotification message names
 NSString * const GCSRadioConfigBatchNameExitConfigMode = @"com.fightingwalrus.radioconfig.batchname.exitconfigmode";
 NSString * const GCSRadioConfigBatchNameEnterConfigMode = @"com.fightingwalrus.radioconfig.batchname.enterconfigmode";
 NSString * const GCSRadioConfigBatchNameLoadRadioVersion = @"com.fightingwalrus.radioconfig.batchname.loadradioversion";
@@ -19,8 +18,13 @@ NSString * const GCSRadioConfigBatchNameLoadBasicSettings = @"com.fightingwalrus
 NSString * const GCSRadioConfigBatchNameLoadAllSettings = @"com.fightingwalrus.radioconfig.batchname.loadallsettings";
 NSString * const GCSRadioConfigBatchNameSaveAndResetWithNetID = @"com.fightingwalrus.radioconfig.batchname.saveandresetwithnetid";
 
-// for use in userInfo dictionary key
-NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
+// consts for use as userInfo dict keys when sending NSNotifications
+NSString * const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
+NSString * const GCSRadioConfigHayesResponseStateKey = @"GCSRadioConfigHayesResponseStateKey";
+NSString * const GCSRadioConfigIsRadioBootedKey = @"GCSRadioConfigIsRadioBootedKey";
+NSString * const GCSRadioConfigIsRadioInConfigModeKey = @"GCSRadioConfigIsRadioInConfigModeKey";
+NSString * const GCSRadioConfigIsRemoteRadioRespondingKey = @"GCSRadioConfigIsRemoteRadioRespondingKey";
+
 
 @implementation iGCSRadioConfig (CommandBatches)
 
@@ -37,7 +41,7 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
             NSLog(@">>>> iGCSRadioConfig.exitConfigMode complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameExitConfigMode
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
 }
@@ -66,7 +70,7 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         NSLog(@">>>> iGCSRadioConfig.enterConfigMode complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameEnterConfigMode
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
 }
@@ -83,7 +87,7 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
             NSLog(@">>>> iGCSRadioConfig.loadRadioVersion complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadRadioVersion
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
 }
@@ -109,7 +113,7 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         NSLog(@">>>> iGCSRadioConfig.loadBasicSettings complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadBasicSettings
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
 }
@@ -146,7 +150,7 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
         NSLog(@">>>> iGCSRadioConfig.loadAllSettings complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadAllSettings
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
 }
@@ -173,9 +177,17 @@ NSString *const GCSRadioConfigBatchName = @"GCSRadioConfigBatchName";
             NSLog(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameSaveAndResetWithNetID
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:[self userInfoFromCurrentState]];
         });
     });
+}
+
+# pragma mark - helpers
+-(NSDictionary *)userInfoFromCurrentState {
+    return @{GCSRadioConfigHayesResponseStateKey: @(self.hayesResponseState),
+             GCSRadioConfigIsRadioBootedKey: @(self.isRadioBooted),
+             GCSRadioConfigIsRadioInConfigModeKey: @(self.isRadioInConfigMode),
+             GCSRadioConfigIsRemoteRadioRespondingKey: @(self.isRemoteRadioResponding)};
 }
 
 @end
