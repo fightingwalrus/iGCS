@@ -24,7 +24,7 @@ NSString * const GCSRadioConfigHayesResponseStateKey = @"GCSRadioConfigHayesResp
 NSString * const GCSRadioConfigIsRadioBootedKey = @"GCSRadioConfigIsRadioBootedKey";
 NSString * const GCSRadioConfigIsRadioInConfigModeKey = @"GCSRadioConfigIsRadioInConfigModeKey";
 NSString * const GCSRadioConfigIsRemoteRadioRespondingKey = @"GCSRadioConfigIsRemoteRadioRespondingKey";
-
+NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHasTimedOutKey";
 
 @implementation iGCSRadioConfig (CommandBatches)
 
@@ -187,7 +187,8 @@ NSString * const GCSRadioConfigIsRemoteRadioRespondingKey = @"GCSRadioConfigIsRe
     return @{GCSRadioConfigHayesResponseStateKey: @(self.hayesResponseState),
              GCSRadioConfigIsRadioBootedKey: @(self.isRadioBooted),
              GCSRadioConfigIsRadioInConfigModeKey: @(self.isRadioInConfigMode),
-             GCSRadioConfigIsRemoteRadioRespondingKey: @(self.isRemoteRadioResponding)};
+             GCSRadioConfigIsRemoteRadioRespondingKey: @(self.isRemoteRadioResponding),
+             GCSRadioConfigCommandHasTimedOutKey: @(self.commandHasTimedOut)};
 }
 
 @end

@@ -33,3 +33,4 @@ extern NSString * const GCSRadioConfigHayesResponseStateKey;
 extern NSString * const GCSRadioConfigIsRadioBootedKey;
 extern NSString * const GCSRadioConfigIsRadioInConfigModeKey;
 extern NSString * const GCSRadioConfigIsRemoteRadioRespondingKey;
+extern NSString * const GCSRadioConfigCommandHasTimedOutKey;

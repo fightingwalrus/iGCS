@@ -26,7 +26,6 @@ typedef void (^HayesDispatchBlock)(NSObject *);
 @property (strong) NSMutableArray *completeResponseBuffer;
 
 // Queue of selectors of commands to perform
-@property (strong) NSMutableArray *commandQueue;
 @property (strong) NSString *commandQueueName;
 
 // helpers and dispatchers

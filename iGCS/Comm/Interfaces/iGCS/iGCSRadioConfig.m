@@ -55,8 +55,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         _sentCommands = [[NSMutableArray alloc] init];
         _responseBuffer = [[NSArray alloc] init];
         _currentSettings = [[NSMutableDictionary alloc] init];
-        _commandQueue = [[NSMutableArray alloc] init];
-        _ATCommandTimeout = 3.0f; // total time give for send, echo and response cycle to complete once
+        _ATCommandTimeout = 3.0; // total time give for send, echo and response cycle to complete once
         _RTCommandTimeout = 5.0f;
         _retryCount = 2;
 
@@ -201,7 +200,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 #pragma mark - Queue, state and timer helpers
 -(void)prepareQueueForNewCommandsWithName:(NSString *) name{
-    [self.commandQueue removeAllObjects];
+    self.commandHasTimedOut = NO;
     [self.sentCommands removeAllObjects];
     self.commandQueueName = name;
 }
@@ -209,7 +208,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
 -(void)logCurrentHayesIOState {
     NSLog(@"---------------------");
     NSLog(@"");
-    NSLog(@"commandQueue count: %lu", (unsigned long)self.commandQueue.count);
     NSLog(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
     NSLog(@"possibleCommands: %@", self.sentCommands);
     NSLog(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
@@ -222,53 +220,85 @@ NSString * const GCSHayesResponseStateDescription[] = {
 #pragma mark - Private
 
 -(void)sendConfigModeCommand {
-    dispatch_semaphore_wait(self.atCommandSemaphore, DISPATCH_TIME_FOREVER);
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.hayesResponseState != HayesReadyForCommand) {
-            NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
-            [self logCurrentHayesIOState];
-            return;
-        }
+    // if a previous command has timed out we just return
+    if (self.commandHasTimedOut) {
+        return;
+    }
 
-        @synchronized(self) {
-            self.hayesResponseState = HayesEnterConfigMode;
-        }
+    dispatch_time_t timeout = dispatch_time(0, self.ATCommandTimeout * NSEC_PER_SEC);
+    long ret = dispatch_semaphore_wait(self.atCommandSemaphore, timeout);
 
-        [self.sentCommands addObject:@"+++"];
-        [self.sentCommands addObject:@"OK"];
+    if (ret == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.hayesResponseState != HayesReadyForCommand) {
+                NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
+                [self logCurrentHayesIOState];
+                return;
+            }
 
-        const char* buf;
+            @synchronized(self) {
+                self.hayesResponseState = HayesEnterConfigMode;
+            }
 
-        // no trailing CR for +++ as with AT commands
-        buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
-        uint32_t len = (uint32_t)strlen(buf);
-        [self produceData:buf length:len];
-    });
+            [self.sentCommands addObject:@"+++"];
+            [self.sentCommands addObject:@"OK"];
+
+            const char* buf;
+
+            // no trailing CR for +++ as with AT commands
+            buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
+            uint32_t len = (uint32_t)strlen(buf);
+            [self produceData:buf length:len];
+        });
+
+    } else {
+        // by setting commandHasTimedOut to YES all other
+        // blocks in the serial queue will return before doing
+        // any work
+        self.commandHasTimedOut = YES;
+    }
 }
 
 -(void)sendATCommand:(NSString *)atCommand {
-    dispatch_semaphore_wait(self.atCommandSemaphore, DISPATCH_TIME_FOREVER);
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (_hayesResponseState != HayesReadyForCommand) {
-            NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
-            [self logCurrentHayesIOState];
-            return;
-        }
+    // if a previous command has timed out we just return
+    if (self.commandHasTimedOut) {
+        return;
+    }
 
-        @synchronized(self) {
-            self.hayesResponseState = HayesWaitingForEcho;
-        }
+    dispatch_time_t timeout = dispatch_time(0, self.ATCommandTimeout * NSEC_PER_SEC);
+    long ret = dispatch_semaphore_wait(self.atCommandSemaphore, timeout);
 
-        [self.sentCommands addObject:atCommand];
-        NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
-        const char* buf;
-        buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
-        uint32_t len = (uint32_t)strlen(buf);
-        [self produceData:buf length:len];
-     });
+    // if semiphore was signaled then do work otherwise just fall through
+    if(ret == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_hayesResponseState != HayesReadyForCommand) {
+                NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
+                [self logCurrentHayesIOState];
+                return;
+            }
+
+            @synchronized(self) {
+                self.hayesResponseState = HayesWaitingForEcho;
+            }
+
+            [self.sentCommands addObject:atCommand];
+            NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
+            const char* buf;
+            buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
+            uint32_t len = (uint32_t)strlen(buf);
+            [self produceData:buf length:len];
+        });
+
+    } else {
+        // by setting commandHasTimedOut to YES all other
+        // blocks in the queue will return before doing
+        // any work
+        self.commandHasTimedOut = YES;
+    }
 }
+
 
 -(void)invalidateCommandTimer {
     self.previousHayesResponse = nil;
