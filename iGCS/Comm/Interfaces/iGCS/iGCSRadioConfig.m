@@ -170,7 +170,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         }
 
         @synchronized(self) {
-            _hayesResponseState = HayesReadyForCommand;
+            self.hayesResponseState = HayesReadyForCommand;
             dispatch_semaphore_signal(self.atCommandSemaphore);
         }
         self.previousHayesResponse = nil;
