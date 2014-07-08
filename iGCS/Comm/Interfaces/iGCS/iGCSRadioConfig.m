@@ -10,7 +10,6 @@
 #import "iGCSRadioConfig_Private.h"
 #import "iGCSRadioConfig+CommandBatches.h"
 
-NSString * const GCSRadioConfigCommandQueueHasEmptied = @"com.fightingwalrus.radioconfig.queue.emptied";
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
 NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radioconfig.entered.configmode";
 NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig.radiobooted";
@@ -66,8 +65,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
         _atCommandQueue = dispatch_queue_create("com.fightingwalrus.hayes.queue", DISPATCH_QUEUE_SERIAL);
         _atCommandSemaphore = dispatch_semaphore_create(1);
 
-        // observe
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandQueueHasEmptied) name:GCSRadioConfigCommandQueueHasEmptied object:nil];
     }
     return self;
 }
@@ -207,19 +204,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
     [self.commandQueue removeAllObjects];
     [self.sentCommands removeAllObjects];
     self.commandQueueName = name;
-}
-
--(void)commandQueueHasEmptied {
-    NSLog(@"commandQueue %@ has emptied", self.commandQueueName);
-    if (self.sikAt.hayesMode == RT) {
-        self.sikAt.hayesMode = AT;
-        return;
-    }
-
-    if ([self.commandQueueName isEqualToString:GCSRadioConfigBatchNameLoadBasicSettings]) {
-        self.sikAt.hayesMode = RT;
-        [self loadBasicSettings];
-    }
 }
 
 -(void)logCurrentHayesIOState {
