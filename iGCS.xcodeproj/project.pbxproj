@@ -85,7 +85,6 @@
 		182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
-		182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -242,7 +241,6 @@
 		18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
-		18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */; };
@@ -309,7 +307,6 @@
 		496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
 		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
 		496E62C716DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
-		49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -796,7 +793,6 @@
 		496E62A116DAFBF600E52E4A /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
-		49AC435D1708B8EF008225A3 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = iGCS/Dropbox.framework; sourceTree = "<group>"; };
 		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
@@ -1136,7 +1132,6 @@
 				182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */,
 				182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */,
 				182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */,
-				182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */,
 				182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */,
 				182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */,
 			);
@@ -1171,7 +1166,6 @@
 				18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */,
 				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */,
-				18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */,
 				18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */,
 				18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */,
 				18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */,
@@ -1206,7 +1200,6 @@
 				CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */,
 				CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
-				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
 				18C011BD189394A5005B67E5 /* libCorePlot-CocoaTouch.a in Frameworks */,
@@ -2181,7 +2174,6 @@
 				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
 				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
 				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,
-				49AC435D1708B8EF008225A3 /* Dropbox.framework */,
 				495253F11703F213006E27B0 /* libsqlite3.0.dylib */,
 				495253EF1703F1CD006E27B0 /* Social.framework */,
 				495253EB1703F1C3006E27B0 /* Accounts.framework */,

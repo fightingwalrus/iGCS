@@ -10,8 +10,6 @@
 
 #import "CommController.h"
 
-#include <Dropbox/Dropbox.h>
-
 
 #import "DebugLogger.h"
 
@@ -34,15 +32,6 @@ static AppDelegate *shared;
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 #endif
-    
-    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"upqcuw4fwo1hotd" secret:@"bqbhx0yn1my6emt"];
-    [DBAccountManager setSharedManager:accountMgr];
-    DBAccount *account = accountMgr.linkedAccount;
-    
-    if (account) {
-        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-        [DBFilesystem setSharedFilesystem:filesystem];
-    }
     
     //TODO: Not sure this should exist
 	alertView = [[UIAlertView alloc] initWithTitle:@"Accessory Not Found"
@@ -156,15 +145,6 @@ static AppDelegate *shared;
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    NSLog(@"openURL: Assuming URL is for Dropbox API.");
-
-    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
-    if (account) {
-        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-        [DBFilesystem setSharedFilesystem:filesystem];
-        NSLog(@"App linked successfully!");
-        return YES;
-    }
     
     return NO;
 }

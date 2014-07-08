@@ -90,7 +90,9 @@ static void *SVKvoContext = &SVKvoContext;
     // read/write local settings. Once we enter configmode an NSNotification
     // will trigger the readRadioSettings selector
     if (![CommController sharedInstance].radioConfig.isRadioInConfigMode) {
-        [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:1.0f];
+        // wire must be quiet for at least 1 second before we can enter config mode per
+        // SiK firmware.
+        [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:1.1f];
         return;
     }
 
