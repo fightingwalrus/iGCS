@@ -9,6 +9,8 @@
 #import "SettingsViewController.h"
 #import "CommController.h"
 #import "GCSRadioSettings.h"
+#import "GCSThemeManager.h"
+
 #import "PureLayout.h"
 
 // use for this views kvo context
@@ -16,21 +18,43 @@ static void *SVKvoContext = &SVKvoContext;
 
 @interface SettingsViewController ()
 
+// UI elements
+@property (strong, nonatomic) UILabel *localRadioFirmwareVersionLabel;
+@property (strong, nonatomic) UILabel *localRadioFirmwareVersion;
+
+@property (strong, nonatomic) UILabel *remoteRadioFirmwareVersionLabel;
+@property (strong, nonatomic) UILabel *remoteRadioFirmwareVersion;
+
+@property (strong, nonatomic) UILabel *connectionStatusLabel;
+@property (strong, nonatomic) UILabel *connectionStatus;
+
+
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioBaudRate;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioAirBaudRate;
+
+@property (strong, nonatomic) UILabel *localRadioNetIdLabel;
+@property (strong, nonatomic) UITextField *localRadioNetId;
+
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioTransmitPower;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioIsMavlinkEnabled;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioMinFrequency;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioMaxFrequency;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioNumberOfChannels;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioDutyCycle;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioLbtRssiEnabled;
+//@property (strong, nonatomic) IBOutlet UITextField *localRadioHardwareFlow;
+
+@property (strong, nonatomic) UIButton *editCancelButton;
+@property (strong, nonatomic) UIButton *saveButton;
+
 // models
 @property (nonatomic, strong) GCSRadioSettings *localRadioSettingsModel;
 @property (nonatomic, strong) GCSRadioSettings *remoteRadioSettingsModel;
 
+
 @end
 
 @implementation SettingsViewController
-
--(id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -54,11 +78,104 @@ static void *SVKvoContext = &SVKvoContext;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
+    self.view.backgroundColor = [GCSThemeManager sharedInstance].appSheetBackgroundColor;
+
+    // NetID UI
+    self.localRadioNetIdLabel = [UILabel newAutoLayoutView];
+    [self.view addSubview:self.localRadioNetIdLabel];
+    [self.localRadioNetIdLabel setText:@"Net ID:"];
+    self.localRadioNetIdLabel.textAlignment = NSTextAlignmentRight;
+
+    self.localRadioNetId = [UITextField newAutoLayoutView];
+    self.localRadioNetId.borderStyle = UITextBorderStyleRoundedRect;
+    [self.localRadioNetId autoSetDimension:ALDimensionWidth toSize:150.0f];
+    [self.view  addSubview:self.localRadioNetId];
+    self.localRadioNetId.textAlignment = NSTextAlignmentLeft;
+
+    // Local radio version
+    self.localRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
+    [self.view  addSubview:self.localRadioFirmwareVersionLabel];
+    [self.localRadioFirmwareVersionLabel setText:@"Local Radio Firmware:"];
+    self.localRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
+
+    self.localRadioFirmwareVersion = [UILabel newAutoLayoutView];
+    [self.view  addSubview:self.localRadioFirmwareVersion];
+    [self.localRadioFirmwareVersion setText:@"-"];
+    self.localRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
+
+    // remote radio version
+    self.remoteRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
+    self.remoteRadioFirmwareVersionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view  addSubview:self.remoteRadioFirmwareVersionLabel];
+    [self.remoteRadioFirmwareVersionLabel setText:@"Remote Radio Firmware:"];
+    self.remoteRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
+
+    self.remoteRadioFirmwareVersion = [UILabel newAutoLayoutView];
+    [self.view  addSubview:self.remoteRadioFirmwareVersion];
+    [self.remoteRadioFirmwareVersion setText:@"-"];
+    self.remoteRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
+
+    // editCancel button
+    self.editCancelButton = [UIButton newAutoLayoutView];
+    [self.view addSubview:self.editCancelButton];
+    [self.editCancelButton autoSetDimension:ALDimensionWidth toSize:150.0f];
+    [self.editCancelButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [self.editCancelButton addTarget:self action:@selector(editCancel:) forControlEvents:UIControlEventTouchUpInside];
+    self.editCancelButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+    [self.editCancelButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
+    [self.editCancelButton autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.view];
+
+    // saveButton
+    self.saveButton = [UIButton newAutoLayoutView];
+    [self.view addSubview:self.saveButton];
+    [self.saveButton autoSetDimension:ALDimensionWidth toSize:150.0f];
+    [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+    [self.saveButton addTarget:self action:@selector(saveSettings:) forControlEvents:UIControlEventTouchUpInside];
+    self.saveButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+
+    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:50.0f];
+    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
+
+    NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
+
+    UIView *previousLabel = nil;
+    for (UIView *view in labelViews) {
+        if (previousLabel) {
+            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousLabel withOffset:30.0f];
+            UILayoutPriority priority = (view == self.remoteRadioFirmwareVersionLabel) ? UILayoutPriorityDefaultHigh + 1 : UILayoutPriorityRequired;
+            [UIView autoSetPriority:priority forConstraints:^{
+                [view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:previousLabel];
+                [view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:previousLabel];
+            }];
+        }
+        previousLabel = view;
+    }
+
+    [self.remoteRadioFirmwareVersionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
+
+    [labelViews autoAlignViewsToEdge:ALEdgeRight];
+    [labelViews autoMatchViewsDimension:ALDimensionWidth];
+
+    [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
+    [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
+
+    [self.localRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioFirmwareVersionLabel withOffset:10];
+    [self.localRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioFirmwareVersionLabel withOffset:0.0f];
+
+    [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.remoteRadioFirmwareVersionLabel withOffset:10];
+    [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.remoteRadioFirmwareVersionLabel withOffset:0.0f];
+
+    [self.saveButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
+    [self.saveButton autoPinEdge:ALEdgeRight  toEdge:ALEdgeRight ofView:self.view];
+
 }
 
-#pragma mark - IBAction's
+#pragma mark - Button handlers
 
-- (IBAction)editCancel:(id)sender {
+- (void)editCancel:(id)sender {
 
     NSString *buttonTitle = self.editCancelButton.titleLabel.text;
 
@@ -71,7 +188,7 @@ static void *SVKvoContext = &SVKvoContext;
     }
 }
 
-- (IBAction)saveSettings:(id)sender {
+- (void)saveSettings:(id)sender {
     NSLog(@"Save Settings");
 
     // attempt to update the remote radio first

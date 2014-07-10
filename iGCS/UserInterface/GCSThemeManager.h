@@ -14,6 +14,7 @@
 
 + (instancetype) sharedInstance;
 
+@property (readonly) UIColor *appSheetBackgroundColor;
 @property (readonly) UIColor *appTintColor;
 
 @property (readonly) UIColor *waypointLineStrokeColor;
