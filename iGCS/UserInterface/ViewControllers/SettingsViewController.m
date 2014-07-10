@@ -33,12 +33,13 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UILabel *connectionStatusLabel;
 @property (strong, nonatomic) UILabel *connectionStatus;
 
+@property (strong, nonatomic) UILabel *localRadioNetIdLabel;
+@property (strong, nonatomic) UITextField *localRadioNetId;
 
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioBaudRate;
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioAirBaudRate;
 
-@property (strong, nonatomic) UILabel *localRadioNetIdLabel;
-@property (strong, nonatomic) UITextField *localRadioNetId;
+
 
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioTransmitPower;
 //@property (strong, nonatomic) IBOutlet UITextField *localRadioIsMavlinkEnabled;
@@ -70,7 +71,7 @@ static void *SVKvoContext = &SVKvoContext;
                                                  name:GCSRadioConfigRadioHasBooted object:nil];
 
     // radio has entered config mode
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readRadioSettings)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
                                                  name:GCSRadioConfigEnteredConfigMode object:nil];
 
 
@@ -82,18 +83,18 @@ static void *SVKvoContext = &SVKvoContext;
 -(void)configureNavigationBar {
     [self setTitle:@"Configure Radio"];
 
-     self.editBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                                                                       target:self action:@selector(edit:)];
+    self.editBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                   target:self action:@selector(edit:)];
 
-     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                             target:self action:@selector(cancelChanges:)];
+    self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                         target:self action:@selector(cancelChanges:)];
 
     self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                                                                           target:self action:@selector(saveSettings:)];
+                                                                       target:self action:@selector(saveSettings:)];
 
 
-    self.navigationItem.leftBarButtonItem = self.editBarButtonItem;
-    self.navigationItem.rightBarButtonItem = self.cancelBarButtonItem;
+    self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editBarButtonItem;
 }
 
 -(void)configuteViews {
@@ -213,6 +214,13 @@ static void *SVKvoContext = &SVKvoContext;
     // we are already in config mode so just load the current settings
     // this code path will be executed after radio settings have been
     // saved and the radio has been rebooted
+    [self readRadioSettings];
+}
+
+-(void)radioHasEnteredConfigMode {
+    // change left nav button from edit to save
+    self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
+    // read current settings
     [self readRadioSettings];
 }
 
