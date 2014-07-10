@@ -184,11 +184,13 @@
 }
 
 #pragma mark - Settings
-
 - (IBAction)configureRadio:(id)sender {
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
-    settingsViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:settingsViewController animated:YES completion:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+
+    navController.navigationBar.barStyle = UIBarStyleDefault;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 

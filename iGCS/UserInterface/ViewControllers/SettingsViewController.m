@@ -18,6 +18,11 @@ static void *SVKvoContext = &SVKvoContext;
 
 @interface SettingsViewController ()
 
+// Navigation bar items
+@property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
+
 // UI elements
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersionLabel;
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersion;
@@ -70,15 +75,33 @@ static void *SVKvoContext = &SVKvoContext;
 
 
     // configure subview
+    [self configureNavigationBar];
     [self configuteViews];
 }
 
+-(void)configureNavigationBar {
+    [self setTitle:@"Configure Radio"];
+
+     self.editBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                       target:self action:@selector(edit:)];
+
+     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                             target:self action:@selector(cancelChanges:)];
+
+    self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                                           target:self action:@selector(saveSettings:)];
+
+
+    self.navigationItem.leftBarButtonItem = self.editBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.cancelBarButtonItem;
+}
+
 -(void)configuteViews {
+
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-
     self.view.backgroundColor = [GCSThemeManager sharedInstance].appSheetBackgroundColor;
 
     // NetID UI
@@ -116,27 +139,7 @@ static void *SVKvoContext = &SVKvoContext;
     [self.remoteRadioFirmwareVersion setText:@"-"];
     self.remoteRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
 
-    // editCancel button
-    self.editCancelButton = [UIButton newAutoLayoutView];
-    [self.view addSubview:self.editCancelButton];
-    [self.editCancelButton autoSetDimension:ALDimensionWidth toSize:150.0f];
-    [self.editCancelButton setTitle:@"Edit" forState:UIControlStateNormal];
-    [self.editCancelButton addTarget:self action:@selector(editCancel:) forControlEvents:UIControlEventTouchUpInside];
-    self.editCancelButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-
-    [self.editCancelButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
-    [self.editCancelButton autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.view];
-
-    // saveButton
-    self.saveButton = [UIButton newAutoLayoutView];
-    [self.view addSubview:self.saveButton];
-    [self.saveButton autoSetDimension:ALDimensionWidth toSize:150.0f];
-    [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [self.saveButton addTarget:self action:@selector(saveSettings:) forControlEvents:UIControlEventTouchUpInside];
-    self.saveButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-
-
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:50.0f];
+    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
     [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
 
     NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
@@ -168,28 +171,22 @@ static void *SVKvoContext = &SVKvoContext;
     [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.remoteRadioFirmwareVersionLabel withOffset:10];
     [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.remoteRadioFirmwareVersionLabel withOffset:0.0f];
 
-    [self.saveButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view];
-    [self.saveButton autoPinEdge:ALEdgeRight  toEdge:ALEdgeRight ofView:self.view];
-
 }
 
 #pragma mark - Button handlers
 
-- (void)editCancel:(id)sender {
+- (void)edit:(id)sender {
+    NSLog(@"Edit Radio config");
+    [[CommController sharedInstance] closeAllInterfaces];
+    [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
+}
 
-    NSString *buttonTitle = self.editCancelButton.titleLabel.text;
-
-    if ([buttonTitle isEqualToString:@"Edit"]) {
-        [[CommController sharedInstance] closeAllInterfaces];
-        [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
-        [self.editCancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-    } else {
-        NSLog(@"editCancleTitle: %@", buttonTitle);
-    }
+- (void)cancelChanges:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)saveSettings:(id)sender {
-    NSLog(@"Save Settings");
+    NSLog(@"Save Radio config Settings");
 
     // attempt to update the remote radio first
     if ([CommController sharedInstance].radioConfig.isRemoteRadioResponding) {
