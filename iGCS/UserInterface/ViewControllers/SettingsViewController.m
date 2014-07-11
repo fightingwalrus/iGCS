@@ -62,22 +62,33 @@ static void *SVKvoContext = &SVKvoContext;
 
 @implementation SettingsViewController
 
+-(id)init {
+    self = [super init];
+
+    if (self) {
+        // radio has booted
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted)
+                                                     name:GCSRadioConfigRadioHasBooted object:nil];
+
+        // radio has booted after save
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBootedAfterSave)
+                                                     name:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+
+        // radio has entered config mode
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
+                                                     name:GCSRadioConfigEnteredConfigMode object:nil];
+    }
+    return self;
+
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // radio has booted
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted)
-                                                 name:GCSRadioConfigRadioHasBooted object:nil];
-
-    // radio has booted after save
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBootedAfterSave)
-                                                 name:GCSRadioConfigRadioDidSaveAndBoot object:nil];
-
-    // radio has entered config mode
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
-                                                 name:GCSRadioConfigEnteredConfigMode object:nil];
-
 
     // configure subview
     [self configureNavigationBar];
