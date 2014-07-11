@@ -81,7 +81,7 @@ static void *SVKvoContext = &SVKvoContext;
 
     // configure subview
     [self configureNavigationBar];
-    [self configuteViews];
+    [self configureViewLayout];
 }
 
 -(void)configureNavigationBar {
@@ -101,7 +101,7 @@ static void *SVKvoContext = &SVKvoContext;
     self.navigationItem.rightBarButtonItem = self.editBarButtonItem;
 }
 
--(void)configuteViews {
+-(void)configureViewLayout {
 
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
