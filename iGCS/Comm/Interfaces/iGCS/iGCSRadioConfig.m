@@ -13,6 +13,7 @@
 NSString * const GCSRadioConfigCommandBatchResponseTimeOut = @"com.fightingwalrus.radioconfig.commandbatch.timeout";
 NSString * const GCSRadioConfigEnteredConfigMode = @"com.fightingwalrus.radioconfig.entered.configmode";
 NSString * const GCSRadioConfigRadioHasBooted = @"com.fightingwalrus.radioconfig.radiobooted";
+NSString * const GCSRadioConfigRadioDidSaveAndBoot = @"com.fightingwalrus.radioconfig.didsaveandboot";
 NSString * const GCSRadioConfigCommandRetryFailed = @"com.fightingwalrus.radioconfig.commandretry.failed";
 NSString * const GCSRadioConfigSentRebootCommand = @"com.fightingwalrus.radioconfig.sent.rebootcommand";
 
@@ -102,7 +103,17 @@ NSString * const GCSHayesResponseStateDescription[] = {
     if ([hayesResponse rangeOfString:@"BOOTED"].location != NSNotFound) {
 
         self.isRadioBooted = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
+
+        // determine the reason for the reboot
+        if (self.sentCommands.count > 1 &&
+            [[self.sentCommands gcs_pop] isEqualToString:@"ATZ"] &&
+            [[self.sentCommands gcs_pop] rangeOfString:@"&W"].location != NSNotFound) {
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
+        }
+
 
         @synchronized(self) {
             self.hayesResponseState = HayesReadyForCommand;

@@ -70,6 +70,10 @@ static void *SVKvoContext = &SVKvoContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted)
                                                  name:GCSRadioConfigRadioHasBooted object:nil];
 
+    // radio has booted after save
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBootedAfterSave)
+                                                 name:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+
     // radio has entered config mode
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
                                                  name:GCSRadioConfigEnteredConfigMode object:nil];
@@ -205,7 +209,7 @@ static void *SVKvoContext = &SVKvoContext;
     // read/write local settings. Once we enter configmode an NSNotification
     // will trigger the readRadioSettings selector
     if (![CommController sharedInstance].radioConfig.isRadioInConfigMode) {
-        // wire must be quiet for at least 1 second before we can enter config mode per
+        // outbound wire must be quiet for at least 1 second before we can enter config mode per
         // SiK firmware.
         [self performSelector:@selector(enterConfigMode) withObject:nil afterDelay:1.1f];
         return;
@@ -215,6 +219,11 @@ static void *SVKvoContext = &SVKvoContext;
     // this code path will be executed after radio settings have been
     // saved and the radio has been rebooted
     [self readRadioSettings];
+}
+
+-(void)radioHasBootedAfterSave {
+    // dissmiss radio config sheet
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)radioHasEnteredConfigMode {
