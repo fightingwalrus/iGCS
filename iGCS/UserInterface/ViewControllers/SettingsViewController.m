@@ -106,7 +106,6 @@ static void *SVKvoContext = &SVKvoContext;
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
-    self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     self.view.backgroundColor = [GCSThemeManager sharedInstance].appSheetBackgroundColor;
 
     // NetID UI
@@ -120,6 +119,7 @@ static void *SVKvoContext = &SVKvoContext;
     [self.localRadioNetId autoSetDimension:ALDimensionWidth toSize:150.0f];
     [self.view  addSubview:self.localRadioNetId];
     self.localRadioNetId.textAlignment = NSTextAlignmentLeft;
+    self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
     // Local radio version
     self.localRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
