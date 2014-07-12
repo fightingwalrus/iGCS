@@ -12,7 +12,7 @@
 #import "GCSSikAT.h"
 
 typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
-    HayesEnterConfigMode,
+    HayesEnteredConfigMode,
     HayesWaitingForEcho,
     HayesWaitingForData,
     HayesReadyForCommand

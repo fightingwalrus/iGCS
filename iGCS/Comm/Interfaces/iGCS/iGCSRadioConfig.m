@@ -18,7 +18,7 @@ NSString * const GCSRadioConfigCommandRetryFailed = @"com.fightingwalrus.radioco
 NSString * const GCSRadioConfigSentRebootCommand = @"com.fightingwalrus.radioconfig.sent.rebootcommand";
 
 NSString * const GCSHayesResponseStateDescription[] = {
-    [HayesEnterConfigMode] = @"HayesEnterConfigMode",
+    [HayesEnteredConfigMode] = @"HayesEnteredConfigMode",
     [HayesWaitingForEcho] = @"HayesWaitingForEcho",
     [HayesWaitingForData] = @"HayesWaitingForData",
     [HayesReadyForCommand] = @"HayesReadyForCommand"
@@ -97,100 +97,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSLog(@"end handleHayesResponse:");
 }
 
--(void)handleHayesResponse:(NSString *)hayesResponse {
-    NSLog(@"iGCSRadioConfig handleHayesResponse: %@", hayesResponse);
-
-    if ([hayesResponse rangeOfString:@"BOOTED"].location != NSNotFound) {
-
-        self.isRadioBooted = YES;
-
-        // determine the reason for the reboot
-        if (self.sentCommands.count > 1 &&
-            [[self.sentCommands gcs_pop] isEqualToString:tRebootLocalRadio] &&
-            [[self.sentCommands gcs_pop] rangeOfString:@"&W"].location != NSNotFound) {
-
-            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
-        } else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
-        }
-
-
-        @synchronized(self) {
-            self.hayesResponseState = HayesReadyForCommand;
-            dispatch_semaphore_signal(self.atCommandSemaphore);
-        }
-
-        [self invalidateCommandTimer];
-        [self logCurrentHayesIOState];
-        NSLog(@"end handleHayesResponse:");
-        return;
-    }
-
-    if (self.hayesResponseState == HayesEnterConfigMode) {
-        if ([self fuzzyContainesString:hayesResponse inArray:self.sentCommands]) {
-
-            if ([hayesResponse rangeOfString:@"OK"].location != NSNotFound) {
-                self.isRadioInConfigMode = YES;
-                [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigEnteredConfigMode object:nil];
-                [self invalidateCommandTimer];
-            }
-        }
-
-        @synchronized(self) {
-            self.hayesResponseState = HayesReadyForCommand;
-            dispatch_semaphore_signal(self.atCommandSemaphore);
-        }
-
-        [self invalidateCommandTimer];
-        [self logCurrentHayesIOState];
-
-    } else if (self.hayesResponseState == HayesWaitingForEcho) {
-        // handle echoed command
-        if ([self.sentCommands containsObject:hayesResponse]) {
-            self.previousHayesResponse = hayesResponse;
-
-            // manage radio status properties
-            if ([hayesResponse rangeOfString:@"AT"].location != NSNotFound) {
-                self.isLocalRadioResponding = YES;
-            }
-
-            if ([hayesResponse rangeOfString:tExitATMode].location != NSNotFound) {
-                self.isRadioInConfigMode = NO;
-            }
-
-        } else {
-            NSLog(@"Command expected ecgho of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
-        }
-
-        @synchronized(self) {
-            self.hayesResponseState = HayesWaitingForData;
-        }
-
-    } else if (self.hayesResponseState == HayesWaitingForData && self.previousHayesResponse) {
-        // handle response from command previously sent
-        [self.commandResponseTimer invalidate]; // prevent retry from fireing since we got a response
-        [self updateModelWithKey:self.previousHayesResponse andValue:hayesResponse];
-        self.currentSettings[self.previousHayesResponse] = hayesResponse;
-
-        if ([self.previousHayesResponse rangeOfString:@"&W"].location != NSNotFound) {
-            NSLog(@"Got %@ for %@", hayesResponse, self.previousHayesResponse);
-        }
-
-        // update link status
-        if ([self.previousHayesResponse rangeOfString:@"RT"].location != NSNotFound) {
-            self.isRemoteRadioResponding = YES;
-        }
-
-        @synchronized(self) {
-            self.hayesResponseState = HayesReadyForCommand;
-            dispatch_semaphore_signal(self.atCommandSemaphore);
-        }
-        self.previousHayesResponse = nil;
-    }
-    [self logCurrentHayesIOState];
-    NSLog(@"end handleHayesResponse:");
-}
-
 -(void)produceData:(uint8_t*)bytes length:(int)length {
     NSLog(@"iGCSRadioConfig produceData");
     [super produceData:bytes length:length];
@@ -198,6 +104,116 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 -(void) close {
     NSLog(@"iGCSRadioClose: close is a noop");
+}
+
+#pragma mark - state handler and related methods
+-(void)handleHayesResponse:(NSString *)hayesResponse {
+    NSLog(@"iGCSRadioConfig handleHayesResponse: %@", hayesResponse);
+
+    if ([hayesResponse rangeOfString:@"BOOTED"].location != NSNotFound) {
+        [self radioHasBooted];
+        NSLog(@"end handleHayesResponse:");
+
+    } else if (self.hayesResponseState == HayesEnteredConfigMode) {
+        [self hayesEnteredConfigModeWithResponse:hayesResponse];
+
+    } else if (self.hayesResponseState == HayesWaitingForEcho) {
+        // handle echoed command
+        [self hayesWaitingForEchoWithResponse:hayesResponse];
+
+    } else if (self.hayesResponseState == HayesWaitingForData && self.previousHayesResponse) {
+        // handle response from command previously sent
+        [self hayesWaitingForDataWithResponse:hayesResponse];
+    }
+
+    [self logCurrentHayesIOState];
+    NSLog(@"end handleHayesResponse:");
+}
+
+-(void)radioHasBooted {
+    self.isRadioBooted = YES;
+
+    // determine the reason for the reboot
+    if (self.sentCommands.count > 1 &&
+        [[self.sentCommands gcs_pop] isEqualToString:tRebootLocalRadio] &&
+        [[self.sentCommands gcs_pop] rangeOfString:@"&W"].location != NSNotFound) {
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioHasBooted object:nil];
+    }
+
+
+    @synchronized(self) {
+        self.hayesResponseState = HayesReadyForCommand;
+        dispatch_semaphore_signal(self.atCommandSemaphore);
+    }
+
+    [self invalidateCommandTimer];
+    [self logCurrentHayesIOState];
+}
+
+-(void)hayesEnteredConfigModeWithResponse:(NSString *)hayesResponse {
+
+    if ([self fuzzyContainesString:hayesResponse inArray:self.sentCommands]) {
+
+        if ([hayesResponse rangeOfString:@"OK"].location != NSNotFound) {
+            self.isRadioInConfigMode = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigEnteredConfigMode object:nil];
+            [self invalidateCommandTimer];
+        }
+    }
+
+    @synchronized(self) {
+        self.hayesResponseState = HayesReadyForCommand;
+        dispatch_semaphore_signal(self.atCommandSemaphore);
+    }
+
+    [self invalidateCommandTimer];
+    [self logCurrentHayesIOState];
+}
+
+-(void)hayesWaitingForEchoWithResponse:(NSString *) hayesResponse {
+    if ([self.sentCommands containsObject:hayesResponse]) {
+        self.previousHayesResponse = hayesResponse;
+
+        // manage radio status properties
+        if ([hayesResponse rangeOfString:@"AT"].location != NSNotFound) {
+            self.isLocalRadioResponding = YES;
+        }
+
+        if ([hayesResponse rangeOfString:tExitATMode].location != NSNotFound) {
+            self.isRadioInConfigMode = NO;
+        }
+
+    } else {
+        NSLog(@"Command expected ecgho of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
+    }
+
+    @synchronized(self) {
+        self.hayesResponseState = HayesWaitingForData;
+    }
+}
+
+-(void)hayesWaitingForDataWithResponse:(NSString *) hayesResponse {
+    [self.commandResponseTimer invalidate]; // prevent retry from fireing since we got a response
+    [self updateModelWithKey:self.previousHayesResponse andValue:hayesResponse];
+    self.currentSettings[self.previousHayesResponse] = hayesResponse;
+
+    if ([self.previousHayesResponse rangeOfString:@"&W"].location != NSNotFound) {
+        NSLog(@"Got %@ for %@", hayesResponse, self.previousHayesResponse);
+    }
+
+    // update link status
+    if ([self.previousHayesResponse rangeOfString:@"RT"].location != NSNotFound) {
+        self.isRemoteRadioResponding = YES;
+    }
+
+    @synchronized(self) {
+        self.hayesResponseState = HayesReadyForCommand;
+        dispatch_semaphore_signal(self.atCommandSemaphore);
+    }
+    self.previousHayesResponse = nil;
 }
 
 -(BOOL)fuzzyContainesString:(NSString *) string inArray:(NSArray *)array {
@@ -233,7 +249,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSLog(@"---------------------");
 }
 
-#pragma mark - Private
+#pragma mark - Private methods for sending data
 
 -(void)sendConfigModeCommand {
 
@@ -254,7 +270,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
             }
 
             @synchronized(self) {
-                self.hayesResponseState = HayesEnterConfigMode;
+                self.hayesResponseState = HayesEnteredConfigMode;
             }
 
             [self.sentCommands addObject:@"+++"];
