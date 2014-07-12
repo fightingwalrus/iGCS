@@ -49,139 +49,66 @@ NSString *const GCSSikHayesModeDescription[] = {
 #pragma mark - public AT/RT commands
 
 -(NSString *)showRadioVersionCommand {
-    if (_hayesMode == AT) {
-        return tShowLocalRadioVersion;
-    }
-
-    return tShowRemoteRadioVersion;
+    return (self.hayesMode == AT) ? tShowLocalRadioVersion: tShowRemoteRadioVersion;
 }
 
 -(NSString *)showBoardTypeCommand {
-    if (_hayesMode == AT) {
-        return tShowLocalBoardType;
-    }
-
-    return tShowRemoteBoardType;
+    return (self.hayesMode == AT) ? tShowLocalBoardType: tShowRemoteBoardType;
 }
 
 -(NSString *)showBoardFrequencyCommand {
-    if (_hayesMode == AT) {
-        return tShowLocalBoardFrequency;
-    }
-
-    return tShowRemoteBoardFrequency;
+    return (self.hayesMode == AT) ? tShowLocalBoardFrequency: tShowRemoteBoardFrequency;
 }
 
 -(NSString *)showBoardVersionCommand {
-    if (_hayesMode == AT) {
-        return tShowLocalBoardVersion;
-    }
-
-    return tShowRemoteBoardVersion;
+    return (self.hayesMode == AT) ? tShowLocalBoardVersion: tShowRemoteBoardVersion;
 }
 
 -(NSString *)showEEPROMParamsCommand {
-    if (_hayesMode == AT) {
-        return tShowLocalEEPROMParams;
-    }
-
-    return tShowRemoteEEPROMParams;
+    return (self.hayesMode == AT) ? tShowLocalEEPROMParams: tShowRemoteEEPROMParams;
 }
 
-
 -(NSString *)showTDMTimingReport {
-    if (_hayesMode == AT) {
-        return tShowLocalTDMTimingReport;
-    }
-
-    return tShowRemoteTDMTimingReport;
+    return (self.hayesMode == AT) ? tShowLocalTDMTimingReport: tShowRemoteTDMTimingReport;
 }
 
 -(NSString *)showRSSISignalReport {
-    if (_hayesMode == AT) {
-        return tShowLocalRSSISignalReport;
-    }
-
-    return tShowRemoteRSSISignalReport;
+    return (self.hayesMode == AT) ? tShowLocalRSSISignalReport: tShowRemoteRSSISignalReport;
 }
 
 -(NSString *)showRadioParamCommand:(GCSSikSRegister ) aRegister {
-    NSString *cmd;
-    if (_hayesMode == AT) {
-        cmd = tShowLocalRadioParamN;
-    } else {
-        cmd = tShowRemoteRadioParamN;
-    }
-
-    cmd = [cmd stringByReplacingOccurrencesOfString:@"{#}"
-                                                 withString:[@(aRegister) stringValue]];
-    return cmd;
+    NSString *cmd = (self.hayesMode == AT) ? tShowLocalRadioParamN: tShowRemoteRadioParamN;
+    return [NSString stringWithFormat:cmd, aRegister];
 }
 
 -(NSString *)setRadioParamCommand:(GCSSikSRegister ) aRegister
                withValue:(NSInteger) value{
-
-    NSString *cmd;
-    if (_hayesMode == AT) {
-        cmd = tSetLocalRadioParamN;
-    } else {
-        cmd = tSetRemoteRadioParamN;
-    }
-
-    cmd = [cmd stringByReplacingOccurrencesOfString:@"{#}"
-                                         withString:[@(aRegister) stringValue]];
-
-    cmd = [cmd stringByReplacingOccurrencesOfString:@"{##}" withString:[@(value) stringValue]];
-
-    return cmd;
+    NSString *cmd = (self.hayesMode == AT) ? tSetLocalRadioParamN: tSetRemoteRadioParamN;
+    return [NSString stringWithFormat:cmd, aRegister, value];
 }
 
 -(NSString *)rebootRadioCommand {
-    if (_hayesMode == AT) {
-        return tRebootLocalRadio;
-    }
-
-    return tRebootRemoteRadio;
+    return (self.hayesMode == AT) ? tRebootLocalRadio: tRebootRemoteRadio;
 }
 
 -(NSString *)writeCurrentParamsToEEPROMCommand {
-    if (_hayesMode == AT) {
-        return tWriteCurrentParamsToLocalRadioEEPROM;
-    }
-
-    return tWriteCurrentParamsToRemoteRadioEEPROM;
+    return (self.hayesMode == AT) ? tWriteCurrentParamsToLocalRadioEEPROM: tWriteCurrentParamsToRemoteRadioEEPROM;
 }
 
 -(NSString *)resetToFactoryDefaultCommand {
-    if (_hayesMode == AT) {
-        return tResetLocalRadioToFactoryDefault;
-    }
-
-    return tResetRemoteRadioToFactoryDefault;
+    return (self.hayesMode == AT) ? tResetLocalRadioToFactoryDefault: tResetRemoteRadioToFactoryDefault;
 }
 
 -(NSString *)enableRSSIDebugCommand {
-    if (_hayesMode == AT) {
-        return tEnableLocalRadioRSSIDebug;
-    }
-
-    return tEnableRemoteRadioRSSIDebug;
+    return (self.hayesMode == AT) ? tEnableLocalRadioRSSIDebug: tEnableRemoteRadioRSSIDebug;
 }
 
 -(NSString *)enableTDMDebugCommand {
-    if (_hayesMode == AT) {
-        return tEnableLocalRadioTDMDebug;
-    }
-
-    return tEnableLocalRadioTDMDebug;
+    return (self.hayesMode == AT) ? tEnableLocalRadioTDMDebug: tEnableLocalRadioTDMDebug;
 }
 
 -(NSString *)disableDebugCommand {
-    if (_hayesMode == AT) {
-        return tDisableLocalRadioDebug;
-    }
-
-    return tDisableRemoteRadioDebug;
+    return (self.hayesMode == AT) ? tDisableLocalRadioDebug: tDisableRemoteRadioDebug;
 }
 
 // cannot use in RT mode...
@@ -191,11 +118,7 @@ NSString *const GCSSikHayesModeDescription[] = {
 
 // allows you to upload new firmware.
 -(NSString *)enableBootloaderModeCommand {
-    if (_hayesMode == AT) {
-        return tEnableLocalRadioBootloaderMode;
-    }
-
-    return tEnableRemoteRadioBootloaderMode;
+    return (self.hayesMode == AT) ? tEnableLocalRadioBootloaderMode: tEnableRemoteRadioBootloaderMode;
 }
 
 @end

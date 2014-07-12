@@ -22,9 +22,9 @@ static NSString *const tShowLocalTDMTimingReport = @"ATI6";
 static NSString *const tShowLocalRSSISignalReport = @"ATI7";
 static NSString *const tShowLocalFWSikVersionNumber = @"ATI9";
 
-static NSString *const tShowLocalRadioParamN = @"ATS{#}?"; // replace {#} with number
+static NSString *const tShowLocalRadioParamN = @"ATS%d?"; // use with NSStringWithFormat
 
-static NSString *const tSetLocalRadioParamN = @"ATS{#}={##}"; // replace {#} and {##} with number
+static NSString *const tSetLocalRadioParamN = @"ATS%d=%d"; // use with NSStringWithFormat
 static NSString *const tRebootLocalRadio = @"ATZ";
 static NSString *const tWriteCurrentParamsToLocalRadioEEPROM = @"AT&W";
 static NSString *const tResetLocalRadioToFactoryDefault = @"AT&F";
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, GCSSikATSerialSpeed) {
     GCSSikATSerialSpeed9    = 9,    // 9600
     GCSSikATSerialSpeed19   = 19,   // 19200
     GCSSikATSerialSpeed38   = 38,   // 38400
-    GCSSikATSerialSpeed57   = 57,   // 57600 - default speed
+    GCSSikATSerialSpeed57   = 57,   // 57600 - default speed and max for FWR
     GCSSikATSerialSpeed115  = 115,  // 115200
     GCSSikATSerialSpeed230  = 230   // 230400
 };
