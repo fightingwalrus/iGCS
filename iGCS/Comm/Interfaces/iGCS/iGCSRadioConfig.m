@@ -260,12 +260,10 @@ NSString * const GCSHayesResponseStateDescription[] = {
             [self.sentCommands addObject:@"+++"];
             [self.sentCommands addObject:@"OK"];
 
-            const char* buf;
-
             // no trailing CR for +++ as with AT commands
-            buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
+            const char* buf = [@"+++" cStringUsingEncoding:NSASCIIStringEncoding];
             uint32_t len = (uint32_t)strlen(buf);
-            [self produceData:buf length:len];
+            [self produceData:(uint8_t*)buf length:len];
         });
 
     } else {
@@ -301,10 +299,9 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
             [self.sentCommands addObject:atCommand];
             NSString *command = [NSString stringWithFormat:@"%@\r", atCommand];
-            const char* buf;
-            buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
+            const char* buf = [command cStringUsingEncoding:NSASCIIStringEncoding];
             uint32_t len = (uint32_t)strlen(buf);
-            [self produceData:buf length:len];
+            [self produceData:(uint8_t*)buf length:len];
         });
 
     } else {
@@ -377,7 +374,6 @@ NSString * const GCSHayesResponseStateDescription[] = {
         [_localRadioSettings setDutyCycle:[value integerValue]];
 
     } else if ([key isEqualToString:[self.privateSikAt showRadioParamCommand:LbtRssi]]) {
-        _localRadioSettings.isListenBeforeTalkRSSIEnabled = value;
         [_localRadioSettings setIsListenBeforeTalkRSSIEnabled:[value boolValue]];
     }
 
