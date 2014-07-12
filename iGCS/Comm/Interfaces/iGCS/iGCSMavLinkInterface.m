@@ -89,13 +89,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
             [self setupLogger];
         }
 
-//        if (length > 0) {
-//            NSMutableData *someData = [[NSMutableData alloc] init];
-//            [someData appendBytes:bytes length:length];
-//            NSString *string = [[NSString alloc] initWithData:someData encoding:NSASCIIStringEncoding];
-//            NSLog(@"consumeData: %@", string);
-//        }
-
         // Pass each byte to the MAVLINK parser
         for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
