@@ -8,7 +8,7 @@
 
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
-#import "SettingsViewController.h"
+#import "RadioSettingsViewController.h"
 
 @implementation FollowMeCtrlValues
 
@@ -185,8 +185,8 @@
 
 #pragma mark - Settings
 - (IBAction)configureRadio:(id)sender {
-    SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:radioSettingsViewController];
 
     navController.navigationBar.barStyle = UIBarStyleDefault;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;

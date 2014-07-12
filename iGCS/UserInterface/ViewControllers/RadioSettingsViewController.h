@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController <UIAlertViewDelegate>
+@interface RadioSettingsViewController : UIViewController <UIAlertViewDelegate>
 
 @end

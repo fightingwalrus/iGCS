@@ -117,9 +117,9 @@
 		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
-		1854467B18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
-		1854467C18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
-		1854467D18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */; };
+		1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
+		1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
+		1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
 		1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854468018D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
@@ -493,8 +493,8 @@
 		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
 		1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSRadioSettings.m; sourceTree = "<group>"; };
-		1854467918D8EEA6004F4BF8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
+		1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSettingsViewController.m; sourceTree = "<group>"; };
 		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
@@ -1742,8 +1742,8 @@
 				CA92514516F9761A0008E92F /* WaypointMapBaseController.m */,
 				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
-				1854467918D8EEA6004F4BF8 /* SettingsViewController.h */,
-				1854467A18D8EEA6004F4BF8 /* SettingsViewController.m */,
+				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
+				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2603,7 +2603,7 @@
 				182FFABB181F0C9100A8C31C /* ExceptionHandler.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
-				1854467D18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
+				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				182FFAC2181F0C9100A8C31C /* DebugLogger.m in Sources */,
 				182FFAC3181F0C9100A8C31C /* MissionItemEditViewController.m in Sources */,
@@ -2648,7 +2648,7 @@
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
-				1854467C18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
+				1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2739,7 +2739,7 @@
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
 				18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
-				1854467B18D8EEA6004F4BF8 /* SettingsViewController.m in Sources */,
+				1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,

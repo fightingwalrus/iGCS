@@ -6,7 +6,7 @@
 //
 //
 
-#import "SettingsViewController.h"
+#import "RadioSettingsViewController.h"
 #import "CommController.h"
 #import "GCSRadioSettings.h"
 #import "GCSThemeManager.h"
@@ -16,7 +16,7 @@
 // use for this views kvo context
 static void *SVKvoContext = &SVKvoContext;
 
-@interface SettingsViewController ()
+@interface RadioSettingsViewController ()
 
 // Navigation bar items
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
@@ -60,7 +60,7 @@ static void *SVKvoContext = &SVKvoContext;
 
 @end
 
-@implementation SettingsViewController
+@implementation RadioSettingsViewController
 
 -(id)init {
     self = [super init];
