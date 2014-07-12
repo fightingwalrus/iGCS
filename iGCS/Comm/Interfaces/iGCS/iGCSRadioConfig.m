@@ -127,7 +127,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     }
 
     if (self.hayesResponseState == HayesEnterConfigMode) {
-        if ([self fuzyContainesString:hayesResponse inArray:self.sentCommands]) {
+        if ([self fuzzyContainesString:hayesResponse inArray:self.sentCommands]) {
 
             if ([hayesResponse rangeOfString:@"OK"].location != NSNotFound) {
                 self.isRadioInConfigMode = YES;
@@ -200,7 +200,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     NSLog(@"iGCSRadioClose: close is a noop");
 }
 
--(BOOL)fuzyContainesString:(NSString *) string inArray:(NSArray *)array {
+-(BOOL)fuzzyContainesString:(NSString *) string inArray:(NSArray *)array {
 
     BOOL containstString = NO;
     // probably the last thing added
@@ -329,13 +329,13 @@ NSString * const GCSHayesResponseStateDescription[] = {
         [_localRadioSettings setRadioVersion:value];
 
     }else if ([key isEqualToString:tShowLocalBoardType]) {
-        [_localRadioSettings setBoadType:value];
+        [_localRadioSettings setBoardType:value];
 
     }else if ([key isEqualToString:tShowLocalBoardFrequency]) {
-        [_localRadioSettings setBoadFrequency:value];
+        [_localRadioSettings setBoardFrequency:value];
 
     }else if ([key isEqualToString:tShowLocalBoardVersion]) {
-        [_localRadioSettings setBoadVersion:value];
+        [_localRadioSettings setBoardVersion:value];
 
     }else if ([key isEqualToString:tShowLocalTDMTimingReport]) {
         [_localRadioSettings setTdmTimingReport:value];
@@ -387,13 +387,13 @@ NSString * const GCSHayesResponseStateDescription[] = {
         _remoteRadioSettings.radioVersion = value;
 
     }else if ([key isEqualToString:tShowRemoteBoardType]) {
-        _remoteRadioSettings.boadType = value;
+        _remoteRadioSettings.boardType = value;
 
     }else if ([key isEqualToString:tShowRemoteBoardFrequency]) {
-        _remoteRadioSettings.boadFrequency = value;
+        _remoteRadioSettings.boardFrequency = value;
 
     }else if ([key isEqualToString:tShowRemoteBoardVersion]) {
-        _remoteRadioSettings.boadVersion = value;
+        _remoteRadioSettings.boardVersion = value;
 
     }else if ([key isEqualToString:tShowRemoteTDMTimingReport]) {
         _remoteRadioSettings.tdmTimingReport = value;

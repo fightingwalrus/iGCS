@@ -98,9 +98,9 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
     dispatch_group_t group = dispatch_group_create();
 
     dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadType];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadFrequency];;});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardType];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardFrequency];;});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardVersion];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self serialSpeed];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self airSpeed];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self netId];});
@@ -124,9 +124,9 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
     dispatch_group_t group = dispatch_group_create();
 
     dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadType];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadFrequency];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boadVersion];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardType];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardFrequency];});
+    dispatch_group_async(group, self.atCommandQueue, ^{[self boardVersion];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self serialSpeed];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self airSpeed];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self netId];});

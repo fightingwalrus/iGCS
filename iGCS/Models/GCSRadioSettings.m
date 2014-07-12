@@ -12,9 +12,9 @@
 -(NSString *)description {
     NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] init];
     mutableDict[@"radioVersion"] = self.radioVersion ?: [NSNull null];
-    mutableDict[@"boadType"] = self.boadType ?: [NSNull null];
-    mutableDict[@"boadFrequency"] = self.boadFrequency ?: [NSNull null];
-    mutableDict[@"boadVersion"] = self.boadVersion ?: [NSNull null];
+    mutableDict[@"boardType"] = self.boardType ?: [NSNull null];
+    mutableDict[@"boardFrequency"] = self.boardFrequency ?: [NSNull null];
+    mutableDict[@"boardVersion"] = self.boardVersion ?: [NSNull null];
     mutableDict[@"tdmTimingReport"] = self.tdmTimingReport ?: [NSNull null];
     mutableDict[@"RSSIReport"] = self.RSSIReport ?: [NSNull null];
     mutableDict[@"serialSpeed"] = @(self.serialSpeed);

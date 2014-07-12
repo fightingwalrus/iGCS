@@ -28,9 +28,9 @@
 @interface GCSRadioSettings : NSObject
 
 @property(nonatomic, strong) NSString *radioVersion;
-@property(nonatomic, strong) NSString *boadType;
-@property(nonatomic, strong) NSString *boadFrequency;
-@property(nonatomic, strong) NSString *boadVersion;
+@property(nonatomic, strong) NSString *boardType;
+@property(nonatomic, strong) NSString *boardFrequency;
+@property(nonatomic, strong) NSString *boardVersion;
 @property(nonatomic, strong) NSString *tdmTimingReport;
 @property(nonatomic, strong) NSString *RSSIReport;
 @property(nonatomic, readwrite) NSInteger serialSpeed;

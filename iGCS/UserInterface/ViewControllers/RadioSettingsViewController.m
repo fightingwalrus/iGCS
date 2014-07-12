@@ -329,10 +329,10 @@ static void *SVKvoContext = &SVKvoContext;
         }else if ([keyPath isEqual:@"boardType"]) {
             // noop
 
-        }else if ([keyPath isEqual:@"boadFrequency"]) {
+        }else if ([keyPath isEqual:@"boardFrequency"]) {
             // noop
 
-        }else if ([keyPath isEqual:@"boadVersion"]) {
+        }else if ([keyPath isEqual:@"boardVersion"]) {
             // noop
 
         }else if ([keyPath isEqual:@"tdmTimingReport"]) {

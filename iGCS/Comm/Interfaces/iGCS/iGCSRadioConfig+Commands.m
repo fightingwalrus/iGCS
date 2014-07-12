@@ -15,15 +15,15 @@
     [self sendATCommand:self.sikAt.showRadioVersionCommand];
 }
 
--(void)boadType {
+-(void)boardType {
     [self sendATCommand:self.sikAt.showBoardTypeCommand];
 }
 
--(void)boadFrequency {
+-(void)boardFrequency {
     [self sendATCommand:self.sikAt.showBoardFrequencyCommand];
 }
 
--(void)boadVersion {
+-(void)boardVersion {
     [self sendATCommand:self.sikAt.showBoardVersionCommand];
 }
 

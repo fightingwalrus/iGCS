@@ -19,9 +19,9 @@
 
 #pragma mark - read radio settings via AT/RT commands
 -(void)radioVersion;
--(void)boadType;
--(void)boadFrequency;
--(void)boadVersion;
+-(void)boardType;
+-(void)boardFrequency;
+-(void)boardVersion;
 -(void)eepromParams;
 -(void)tdmTimingReport;
 -(void)RSSIReport;
