@@ -10,7 +10,7 @@
 #define iGCS_GaugeViewCommon_h
 
 // Default data rates
-#define RATE_CHAN2        1  // SYS_STATUS, GPS_STATUS, WAYPOINT_CURRENT, GPS_RAW
+#define RATE_CHAN2        5  // SYS_STATUS, GPS_STATUS, WAYPOINT_CURRENT, GPS_RAW
 #define RATE_GPS_POS_INT  5
 #define RATE_ATTITUDE    10
 #define RATE_VFR_HUD      5
