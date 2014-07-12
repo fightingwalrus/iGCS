@@ -435,7 +435,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         _remoteRadioSettings.dutyCycle = [value integerValue];
 
     } else if ([key isEqualToString:[self.privateSikAt showRadioParamCommand:LbtRssi]]) {
-        _remoteRadioSettings.isListenBeforeTalkRSSIEnabled = value;
+        _remoteRadioSettings.isListenBeforeTalkRSSIEnabled = [value boolValue];
         
     }
 
