@@ -189,7 +189,7 @@ static void *SVKvoContext = &SVKvoContext;
 
 }
 
-#pragma mark - Button handlers
+#pragma mark - UINavigationBar Button handlers
 
 - (void)edit:(id)sender {
     NSLog(@"Edit Radio config");
@@ -198,6 +198,7 @@ static void *SVKvoContext = &SVKvoContext;
 }
 
 - (void)cancelChanges:(id)sender {
+    [self exitConfigMode];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -249,6 +250,11 @@ static void *SVKvoContext = &SVKvoContext;
 -(void)enterConfigMode {
     NSLog(@"enterConfigMode");
     [[CommController sharedInstance].radioConfig enterConfigMode];
+}
+
+-(void)exitConfigMode {
+    NSLog(@"exitConfigMode");
+    [[CommController sharedInstance].radioConfig exitConfigMode];
 }
 
 -(void)readRadioSettings {

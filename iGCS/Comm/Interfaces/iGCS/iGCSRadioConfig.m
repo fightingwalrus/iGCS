@@ -106,7 +106,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
         // determine the reason for the reboot
         if (self.sentCommands.count > 1 &&
-            [[self.sentCommands gcs_pop] isEqualToString:@"ATZ"] &&
+            [[self.sentCommands gcs_pop] isEqualToString:tRebootLocalRadio] &&
             [[self.sentCommands gcs_pop] rangeOfString:@"&W"].location != NSNotFound) {
 
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
@@ -149,8 +149,13 @@ NSString * const GCSHayesResponseStateDescription[] = {
         if ([self.sentCommands containsObject:hayesResponse]) {
             self.previousHayesResponse = hayesResponse;
 
+            // manage radio status properties
             if ([hayesResponse rangeOfString:@"AT"].location != NSNotFound) {
                 self.isLocalRadioResponding = YES;
+            }
+
+            if ([hayesResponse rangeOfString:tExitATMode].location != NSNotFound) {
+                self.isRadioInConfigMode = NO;
             }
 
         } else {
