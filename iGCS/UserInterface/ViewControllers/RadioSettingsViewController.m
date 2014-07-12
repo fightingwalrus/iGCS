@@ -254,7 +254,9 @@ static void *SVKvoContext = &SVKvoContext;
 
 -(void)exitConfigMode {
     NSLog(@"exitConfigMode");
-    [[CommController sharedInstance].radioConfig exitConfigMode];
+    if ([CommController sharedInstance].radioConfig.isRadioInConfigMode) {
+        [[CommController sharedInstance].radioConfig exitConfigMode];
+    }
 }
 
 -(void)readRadioSettings {
