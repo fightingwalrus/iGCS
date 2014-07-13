@@ -33,7 +33,7 @@
 - (void) issueRawMissionRequest:(uint16_t)sequence;
 - (void) issueRawMissionAck;
 - (void) loadNewMission:(WaypointsHolder*)mission;
-
+- (void) stopRecevingMessages;
 - (void) startWriteMissionRequest:(WaypointsHolder*)waypoints;
 - (void) issueRawMissionCount:(uint16_t)numItems;
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item;

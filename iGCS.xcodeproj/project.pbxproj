@@ -85,7 +85,6 @@
 		182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
-		182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = CA43DE1215143E570014F7C8 /* 05-shuffle.png */; };
@@ -100,7 +99,6 @@
 		182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
 		182FFAF7181F0C9100A8C31C /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
-		182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
@@ -116,6 +114,19 @@
 		1842F8D31892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
 		1842F8D41892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
 		1842F8D51892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
+		1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
+		1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
+		1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
+		1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
+		1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
+		1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1854468018D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
+		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
+		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		1875978D189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978E189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
@@ -138,6 +149,21 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F2911955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
+		18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
+		18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2C71958953B00D2406A /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */; };
+		18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */; };
+		18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
+		18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
+		18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */; };
 		18B9FAC418B2F7AF00668660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB41836F7C70068E7A5 /* FightingWalrusInterface.m */; };
@@ -215,7 +241,6 @@
 		18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
 		18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */; };
 		18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2CFD9161C000C00267615 /* libz.dylib */; };
-		18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */; };
@@ -237,7 +262,6 @@
 		18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
 		18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
 		18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C71892D2F80050F680 /* Icon-58.png */; };
-		18B9FB2918B2F7AF00668660 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
 		18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
 		18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
@@ -265,8 +289,6 @@
 		496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
 		496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
 		496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
-		496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
-		496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */; };
 		496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
 		496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
 		496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
@@ -285,7 +307,6 @@
 		496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
 		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
 		496E62C716DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
-		49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC435D1708B8EF008225A3 /* Dropbox.framework */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -470,6 +491,13 @@
 		1842F8C71892D2F80050F680 /* Icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-58.png"; sourceTree = "<group>"; };
 		1842F8C81892D2F80050F680 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
+		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
+		1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSRadioSettings.m; sourceTree = "<group>"; };
+		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
+		1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSettingsViewController.m; sourceTree = "<group>"; };
+		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
+		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
 		18759789189108980012DF6D /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -702,6 +730,22 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
+		18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+CommandBatches.m"; sourceTree = "<group>"; };
+		18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Private.h; sourceTree = "<group>"; };
+		18B7F297195554CF00D2406A /* iGCSRadioConfig+Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+Commands.h"; sourceTree = "<group>"; };
+		18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+Commands.m"; sourceTree = "<group>"; };
+		18B7F29C195555F300D2406A /* RadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioConfig.h; sourceTree = "<group>"; };
+		18B7F29D19555AF700D2406A /* iGCSRadioConfig_Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Commands.h; sourceTree = "<group>"; };
+		18B7F2B91958953B00D2406A /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2BE1958953B00D2406A /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		18B7F2C01958953B00D2406A /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		18B7F2C11958953B00D2406A /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		18B7F2C31958953B00D2406A /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
@@ -728,7 +772,6 @@
 		496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidedPointAnnotation.m; sourceTree = "<group>"; };
 		496E627316DAFB8B00E52E4A /* WaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotation.h; sourceTree = "<group>"; };
 		496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointAnnotation.m; sourceTree = "<group>"; };
-		496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		496E627716DAFB8B00E52E4A /* CommsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommsViewController.h; sourceTree = "<group>"; };
 		496E627816DAFB8B00E52E4A /* CommsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsViewController.m; sourceTree = "<group>"; };
 		496E627916DAFB8B00E52E4A /* GCSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSMapViewController.h; sourceTree = "<group>"; };
@@ -750,7 +793,6 @@
 		496E62A116DAFBF600E52E4A /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
-		49AC435D1708B8EF008225A3 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = iGCS/Dropbox.framework; sourceTree = "<group>"; };
 		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
@@ -1090,7 +1132,6 @@
 				182FFAE3181F0C9100A8C31C /* QuartzCore.framework in Frameworks */,
 				182FFAE4181F0C9100A8C31C /* libRscMgrUniv.a in Frameworks */,
 				182FFAE5181F0C9100A8C31C /* libz.dylib in Frameworks */,
-				182FFAE7181F0C9100A8C31C /* Dropbox.framework in Frameworks */,
 				182FFAE8181F0C9100A8C31C /* GLKit.framework in Frameworks */,
 				182FFAE9181F0C9100A8C31C /* OpenGLES.framework in Frameworks */,
 			);
@@ -1125,7 +1166,6 @@
 				18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */,
 				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */,
-				18B9FB1218B2F7AF00668660 /* Dropbox.framework in Frameworks */,
 				18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */,
 				18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */,
 				18B9FB1518B2F7AF00668660 /* libCorePlot-CocoaTouch.a in Frameworks */,
@@ -1160,7 +1200,6 @@
 				CAF8ADAA14E20A0100DB3D84 /* CoreLocation.framework in Frameworks */,
 				CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */,
 				CAA2CFDA161C000C00267615 /* libz.dylib in Frameworks */,
-				49AC435E1708B8EF008225A3 /* Dropbox.framework in Frameworks */,
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
 				18C011BD189394A5005B67E5 /* libCorePlot-CocoaTouch.a in Frameworks */,
@@ -1239,8 +1278,17 @@
 			children = (
 				18069FB61836F7C70068E7A5 /* iGCSMavLinkInterface.h */,
 				18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */,
+				18B7F29C195555F300D2406A /* RadioConfig.h */,
 				18069FB81836F7C70068E7A5 /* iGCSRadioConfig.h */,
 				18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */,
+				18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */,
+				18B7F29D19555AF700D2406A /* iGCSRadioConfig_Commands.h */,
+				18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */,
+				18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */,
+				18B7F297195554CF00D2406A /* iGCSRadioConfig+Commands.h */,
+				18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */,
+				186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */,
+				186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */,
 			);
 			path = iGCS;
 			sourceTree = "<group>";
@@ -1261,6 +1309,15 @@
 				18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */,
 			);
 			path = RovingNetworks;
+			sourceTree = "<group>";
+		};
+		1851D848191ADFD900ED5C87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
+				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		18759787189108980012DF6D /* Icons */ = {
@@ -1587,6 +1644,22 @@
 			path = sensesoar;
 			sourceTree = "<group>";
 		};
+		18B7F2B81958953B00D2406A /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				18B7F2B91958953B00D2406A /* ALView+PureLayout.h */,
+				18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */,
+				18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */,
+				18B7F2BD1958953B00D2406A /* NSArray+PureLayout.m */,
+				18B7F2BE1958953B00D2406A /* NSLayoutConstraint+PureLayout.h */,
+				18B7F2BF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m */,
+				18B7F2C01958953B00D2406A /* PureLayout+Internal.h */,
+				18B7F2C11958953B00D2406A /* PureLayout.h */,
+				18B7F2C31958953B00D2406A /* PureLayoutDefines.h */,
+			);
+			path = PureLayout;
+			sourceTree = "<group>";
+		};
 		18C011B418939407005B67E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1621,7 +1694,7 @@
 			isa = PBXGroup;
 			children = (
 				496E627016DAFB8B00E52E4A /* Annotations */,
-				496E627516DAFB8B00E52E4A /* MainStoryboard.storyboard */,
+				1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */,
 				CAF37A0D179BC4C000183159 /* Utility */,
 				496E627616DAFB8B00E52E4A /* ViewControllers */,
 				496E627F16DAFB8B00E52E4A /* Views */,
@@ -1669,6 +1742,8 @@
 				CA92514516F9761A0008E92F /* WaypointMapBaseController.m */,
 				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
+				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
+				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2057,6 +2132,7 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				18B7F2B81958953B00D2406A /* PureLayout */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
 				CA05751018BE080B001EACFD /* LiveFrost */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
@@ -2098,7 +2174,6 @@
 				49C45CB1170A7820007C9999 /* MobileCoreServices.framework */,
 				49C45CAF170A7810007C9999 /* CFNetwork.framework */,
 				49C45CB3170A7832007C9999 /* libxml2.2.dylib */,
-				49AC435D1708B8EF008225A3 /* Dropbox.framework */,
 				495253F11703F213006E27B0 /* libsqlite3.0.dylib */,
 				495253EF1703F1CD006E27B0 /* Social.framework */,
 				495253EB1703F1C3006E27B0 /* Accounts.framework */,
@@ -2123,6 +2198,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0C44D519230F170099B718 /* Firmware */,
+				1851D848191ADFD900ED5C87 /* Models */,
 				18759787189108980012DF6D /* Icons */,
 				18A777ED17CE9E710014451B /* Utils */,
 				1888DE921710C85400ADA039 /* sdpFiles */,
@@ -2276,7 +2352,7 @@
 			name = iGCSTests;
 			productName = iGCSTests;
 			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -2285,7 +2361,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0420;
 				TargetAttributes = {
 					CA499F5D14DE33BC00FCC9FB = {
 						DevelopmentTeam = V693RD5AXN;
@@ -2369,7 +2445,7 @@
 				1842F8CB1892D2F80050F680 /* Icon-29.png in Resources */,
 				182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */,
 				1842F8D11892D2F80050F680 /* Icon-58.png in Resources */,
-				182FFAF9181F0C9100A8C31C /* MainStoryboard.storyboard in Resources */,
+				1854468018D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18759790189108980012DF6D /* Icon-76.png in Resources */,
 				182FFAFA181F0C9100A8C31C /* multicast_h264_aac_48000.sdp in Resources */,
 				1842F8D31892D2F80050F680 /* Icon-80.png in Resources */,
@@ -2401,7 +2477,7 @@
 				18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */,
 				18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */,
 				18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */,
-				18B9FB2918B2F7AF00668660 /* MainStoryboard.storyboard in Resources */,
+				1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
 				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
 				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
@@ -2434,7 +2510,7 @@
 				1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */,
 				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
 				1842F8D01892D2F80050F680 /* Icon-58.png in Resources */,
-				496E628D16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				1875978F189108980012DF6D /* Icon-76.png in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
 				1842F8D21892D2F80050F680 /* Icon-80.png in Resources */,
@@ -2450,7 +2526,7 @@
 			files = (
 				CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
 				496E626116DAFAD700E52E4A /* airplane.png in Resources */,
-				496E628E16DAFB8B00E52E4A /* MainStoryboard.storyboard in Resources */,
+				1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				49C1FA0F16DC654100BAE96B /* wrench.png in Resources */,
 				CA0AED74192C3DD80017BB9E /* test1.hex in Resources */,
 				CA0AED7C192C4D050017BB9E /* test3.hex in Resources */,
@@ -2482,9 +2558,11 @@
 			files = (
 				182FFA99181F0C9100A8C31C /* main.m in Sources */,
 				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
+				1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */,
 				182FFA9C181F0C9100A8C31C /* WaypointsHolder.m in Sources */,
+				18B7F2911955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
@@ -2496,14 +2574,18 @@
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
 				182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */,
 				182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */,
+				18B7F2C71958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				18069FD51836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
+				18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
+				18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
+				18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
@@ -2512,6 +2594,7 @@
 				18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */,
 				182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */,
+				186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				182FFAB3181F0C9100A8C31C /* (null) in Sources */,
 				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
@@ -2520,6 +2603,7 @@
 				182FFABB181F0C9100A8C31C /* ExceptionHandler.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
+				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				182FFAC2181F0C9100A8C31C /* DebugLogger.m in Sources */,
 				182FFAC3181F0C9100A8C31C /* MissionItemEditViewController.m in Sources */,
@@ -2548,22 +2632,29 @@
 			files = (
 				18B9FAC418B2F7AF00668660 /* main.m in Sources */,
 				18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */,
+				1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
+				18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
 				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
+				18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
 				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
 				CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
+				1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
+				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
+				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
+				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
@@ -2593,6 +2684,7 @@
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEA18B2F7AF00668660 /* DebugLogger.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
+				186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
@@ -2637,11 +2729,17 @@
 				18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,
+				18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
+				18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
+				18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
+				1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
+				1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
@@ -2651,7 +2749,9 @@
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
+				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
+				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
@@ -2735,6 +2835,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1854468218D8F05B004F4BF8 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
 		CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3015,9 +3123,10 @@
 		CA499F9E14DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

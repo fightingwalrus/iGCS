@@ -20,10 +20,6 @@
 
 @property (strong) RscMgr *rscMgr;
 @property BOOL cableConnected;
-
-
-
 @property (strong) MainViewController *mainVC;
-
 
 @end

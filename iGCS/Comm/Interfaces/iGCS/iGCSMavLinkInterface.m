@@ -29,6 +29,7 @@
 #import "SetWPRequest.h"
 #import "RxMissionRequestList.h"
 #import "TxMissionItemCount.h"
+#import "RadioConfig.h"
 
 @implementation iGCSMavLinkInterface
 
@@ -46,8 +47,22 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
     interface.mainVC = mainVC;
     appMLI = interface;
     retryRequestHandler = [[MavLinkRetryingRequestHandler alloc] init];
-    
+
     return interface;
+}
+
+-(id)init {
+    self = [super init];
+    if (self) {
+        // radio has entered config mode
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRadioEnteredConfigMode)
+                                                     name:GCSRadioConfigEnteredConfigMode object:nil];
+    }
+    return self;
+}
+
+-(void)close {
+    NSLog(@"iGCSMavLinkInterface: close is a noop");
 }
 
 -(void)setupLogger{
@@ -170,6 +185,11 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
     mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_MISSION_ACCEPTED);
 }
 
+-(void)stopRecevingMessages {
+    mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                         MAV_DATA_STREAM_ALL, 0, 0); // stop all
+}
+
 - (void) loadNewMission:(WaypointsHolder*)mission {
     // Let the GCSMapView and WaypointsView know we've got new waypoints
     //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
@@ -194,7 +214,6 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
                                   item.param1, item.param2, item.param3, item.param4,
                                   item.x, item.y, item.z);
 }
-
 
 #pragma mark - Set current waypoint
 
@@ -235,6 +254,12 @@ static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t le
 
 -(void) sendHeatbeatToAutopilot {
     mavlink_msg_heartbeat_send(MAVLINK_COMM_0, MAV_TYPE_GCS, MAV_AUTOPILOT_INVALID, 0, 0, 0);
+}
+
+#pragma mark - NSNotifcation handlers
+-(void) handleRadioEnteredConfigMode {
+    [self.heartbeatTimer invalidate];
+    self.heartbeatTimer = nil;
 }
 
 @end

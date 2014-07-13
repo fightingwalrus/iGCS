@@ -20,7 +20,7 @@
 #import "BluetoothStream.h"
 
 #import "iGCSMavLinkInterface.h"
-#import "iGCSRadioConfig.h"
+#import "RadioConfig.h"
 #import "RNBluetoothInterface.h"
 #import "FightingWalrusInterface.h"
 
@@ -47,10 +47,12 @@
 
 +(CommController *)sharedInstance;
 
+-(void)startFWRConfigMode;
 -(void)start:(MainViewController*)mvc;
 
 -(void) startBluetoothTx;
 -(void) startBluetoothRx;
 -(void) closeAllInterfaces;
+
 
 @end

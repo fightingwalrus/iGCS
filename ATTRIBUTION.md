@@ -18,5 +18,5 @@ CXAlertView
 LiveFrost
  - https://github.com/radi/LiveFrost (MIT license)
 
- 
-
+PureLayout v1.0 (MIT license)
+ - https://github.com/smileyborg/PureLayout.git

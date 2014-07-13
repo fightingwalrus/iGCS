@@ -19,7 +19,6 @@
 @class CommsViewController;
 @class WaypointsViewController;
 @class DebugViewController;
-
 @class DataRateRecorder;
 
 @interface MainViewController : UITabBarController

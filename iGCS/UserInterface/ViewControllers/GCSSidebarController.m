@@ -8,6 +8,7 @@
 
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
+#import "RadioSettingsViewController.h"
 
 @implementation FollowMeCtrlValues
 
@@ -157,6 +158,7 @@
     }
 }
 
+#pragma mark - Follow me section
 - (IBAction) followMeSliderChanged:(UISlider*)slider {
     [_followMeChangeListener followMeControlChange:[self followMeControlValues]];
 }
@@ -180,5 +182,16 @@
     _userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", accuracy];
     _userLocationAccuracyLabel.textColor = acceptable ? [UIColor greenColor] : [UIColor redColor];
 }
+
+#pragma mark - Settings
+- (IBAction)configureRadio:(id)sender {
+    RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:radioSettingsViewController];
+
+    navController.navigationBar.barStyle = UIBarStyleDefault;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
 
 @end

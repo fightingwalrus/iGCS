@@ -22,6 +22,8 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
+        _appSheetBackgroundColor = UIColorFromRGB(0xE5E5E5); // grey90
+
         _appTintColor = [UIColor colorWithRed:0.80 green:0.52 blue:0.25 alpha:1.0];  // Peru Brown
         
         _waypointLineStrokeColor = [UIColor blackColor];

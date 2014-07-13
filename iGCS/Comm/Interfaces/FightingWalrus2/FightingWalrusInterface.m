@@ -39,7 +39,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
         //HACK Testing ping pong connect/disconnect
         _doubleTab = @YES;
 
-        NSLog(@"accessory count: %d", [_accessoryList count]);
+        NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
         if ([_accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
                 BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Fighting Walrus LLC"];
@@ -52,6 +52,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
             self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];
+            NSLog(@"protocolString: %@", self.protocolString);
         }
     }
 
@@ -67,7 +68,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 {
     if (_selectedAccessory == nil) {
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        NSLog(@"accessory count: %d", [_accessoryList count]);
+        NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
         if ([_accessoryList count]) {
             _selectedAccessory = [_accessoryList objectAtIndex:0];
             NSArray *protocolStrings = [_selectedAccessory protocolStrings];
@@ -119,6 +120,10 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     
     _session = nil;
 	NSLog(@"closed the session");
+}
+
+-(void)close {
+    [self closeSession];
 }
 
 - (void)writeData:(NSData *)data {
@@ -215,7 +220,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
 
-        NSLog(@"[%d] bytes in buffer - wrote [%d] bytes", [_writeDataBuffer length], bytesWritten);
+        NSLog(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
         if (bytesWritten == -1) {
             NSLog(@"write error");
             break;
@@ -233,7 +238,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     uint8_t buf[EAD_INPUT_BUFFER_SIZE];
     while ([[_session inputStream] hasBytesAvailable]) {
         NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
-        NSLog(@"read %d bytes from input stream", bytesRead);
+        NSLog(@"read %ld bytes from input stream", (long)bytesRead);
 
         [self produceData:buf length:bytesRead];
     }
