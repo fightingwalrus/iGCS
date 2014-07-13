@@ -8,23 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//static NSString *const tShowRadioVersion = @"ATI";
-//static NSString *const tShowBoardType = @"ATI2";
-//static NSString *const tShowBoardFrequency = @"ATI3";
-//static NSString *const tShowBoardVersion = @"ATI4";
-//static NSString *const tShowEEPROMParams = @"ATI5";
-//static NSString *const tShowTDMTimingReport = @"ATI6";
-//static NSString *const tShowRSSISignalReport = @"ATI7";
-//static NSString *const tShowRadioParamN = @"ATS{#}?"; // replace {#} with number
-//
-//static NSString *const tSetRadioParamN = @"ATS{#}={##}"; // replace {#} and {##} with number
-//static NSString *const tRebotRadio = @"ATZ";
-//static NSString *const tWriteCurrentParamsToEEPROM = @"AT&W";
-//static NSString *const tResetToFactoryDefault = @"AT&F";
-//static NSString *const tEnableRSSIDebug = @"AT&T=RSSI";
-//static NSString *const tEnableTDMDebug = @"AT&T=TDM";
-//static NSString *const tDisableDebug = @"AT&T";
-
 @interface GCSRadioSettings : NSObject
 
 @property(nonatomic, strong) NSString *radioVersion;

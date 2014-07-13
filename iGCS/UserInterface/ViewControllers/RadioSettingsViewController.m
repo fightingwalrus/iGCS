@@ -390,17 +390,17 @@ static void *SVKvoContext = &SVKvoContext;
 
 
 -(void)updateUIWithRadioSettingsFromModel {
-    if (_localRadioSettingsModel) {
+    if (self.localRadioSettingsModel) {
 
-        if (_localRadioSettingsModel.netId) {
-            self.localRadioNetId.text = [@(_localRadioSettingsModel.netId) stringValue];
+        if (self.localRadioSettingsModel.netId) {
+            self.localRadioNetId.text = [@(self.localRadioSettingsModel.netId) stringValue];
         }
 
-        self.localRadioFirmwareVersion.text = _localRadioSettingsModel.radioVersion;
+        self.localRadioFirmwareVersion.text = self.localRadioSettingsModel.radioVersion;
     }
 
     if (_remoteRadioSettingsModel) {
-        self.remoteRadioFirmwareVersion.text = _remoteRadioSettingsModel.radioVersion;
+        self.remoteRadioFirmwareVersion.text = self.remoteRadioSettingsModel.radioVersion;
     }
 }
 
