@@ -809,7 +809,7 @@
                             <tableViewSection headerTitle="System" id="lxR-vY-46k">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mXT-0Y-Ma6">
-                                        <rect key="frame" x="0.0" y="710" width="1024" height="30"/>
+                                        <rect key="frame" x="0.0" y="760" width="1024" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mXT-0Y-Ma6" id="yQ0-EN-ah6">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="29"/>
@@ -835,7 +835,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="izw-d3-KPz">
-                                        <rect key="frame" x="0.0" y="740" width="1024" height="30"/>
+                                        <rect key="frame" x="0.0" y="790" width="1024" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="izw-d3-KPz" id="Amg-nd-pcu">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="29"/>
@@ -861,7 +861,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RF3-iv-8PL">
-                                        <rect key="frame" x="0.0" y="770" width="1024" height="30"/>
+                                        <rect key="frame" x="0.0" y="820" width="1024" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RF3-iv-8PL" id="kCw-og-z9A">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="29"/>
