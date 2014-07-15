@@ -73,6 +73,8 @@ enum {
 @synthesize availableStreams = _availableStreams;
 #endif
 
+static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
+
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
@@ -535,6 +537,43 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
 }
 
+
+- (void)showHeartbeatLossTheme {
+    if (_heartbeatLossView != nil) return;
+    
+    CGRect frame = self.view.frame;
+    _heartbeatLossView = [[LFGlassView alloc] initWithFrame:frame];
+    _heartbeatLossView.clipsToBounds = YES;
+    _heartbeatLossView.layer.cornerRadius = 0.0;
+    _heartbeatLossView.blurRadius = 1.0;
+    _heartbeatLossView.scaleFactor = 1.0;
+    _heartbeatLossView.liveBlurring = YES;
+    [self.view addSubview:_heartbeatLossView];
+    
+    UILabel *l = [[UILabel alloc] initWithFrame:frame];
+    l.center = _heartbeatLossView.center;
+    l.text = @"Heartbeat lost";
+    l.textAlignment = NSTextAlignmentCenter;
+    l.textColor = [UIColor whiteColor];
+    l.font = [UIFont fontWithName:@"Helvetica" size: 64];
+    l.backgroundColor = [UIColor clearColor];
+    [_heartbeatLossView addSubview:l];
+}
+
+- (void)dismissHeartbeatLossTheme {
+    if (_heartbeatLossView != nil) {
+        [_heartbeatLossView removeFromSuperview];
+        _heartbeatLossView = nil;
+    }
+}
+
+- (void) rescheduleHeartbeatLossCheck {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showHeartbeatLossTheme) object:nil];
+    [self dismissHeartbeatLossTheme];
+    [self performSelector:@selector(showHeartbeatLossTheme) withObject:nil afterDelay:HEARTBEAT_LOSS_WAIT_TIME];
+}
+
+
 - (void) handlePacket:(mavlink_message_t*)msg {
     
     switch (msg->msgid) {
@@ -631,6 +670,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
+            
+            // We got a heartbeat, so...
+            [self rescheduleHeartbeatLossCheck];
+            
+            // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
             [_armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
             [_armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];

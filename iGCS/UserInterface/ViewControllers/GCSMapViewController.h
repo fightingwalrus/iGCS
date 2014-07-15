@@ -8,6 +8,7 @@
 
 #import "WaypointMapBaseController.h"
 #import <GLKit/GLKit.h>
+#import "LFGlassView.h"
 
 #import "ArtificialHorizonView.h"
 #import "CompassView.h"
@@ -53,6 +54,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *dataRateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
+
+@property (nonatomic, strong) LFGlassView *heartbeatLossView;
 
 #ifdef VIDEOSTREAMING
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
