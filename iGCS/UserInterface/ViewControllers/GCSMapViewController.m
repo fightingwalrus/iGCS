@@ -552,7 +552,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     UILabel *l = [[UILabel alloc] initWithFrame:frame];
     l.center = _heartbeatLossView.center;
-    l.text = @"Heartbeat lost";
+    l.text = @"Telemetry lost";
     l.textAlignment = NSTextAlignmentCenter;
     l.textColor = [UIColor whiteColor];
     l.font = [UIFont fontWithName:@"Helvetica" size: 64];
