@@ -31,11 +31,6 @@
 @property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
 @property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
-@property(nonatomic, retain) NSDate		 *lastHeartbeatDate;
-@property(nonatomic, retain) UIAlertView *connectionAlert;
-
-@property(nonatomic, strong) NSArray *myFriends;
-@property(nonatomic, strong) NSArray *myIdentifiers;
 @property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
 
 @property (nonatomic, retain) IBOutlet UIButton *sidebarButton;

@@ -78,13 +78,8 @@ static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
 static const int AIRPLANE_ICON_SIZE = 48;
 
-#define kMaxPacketSize 1024
 #define kGCSBryansTestStream @"kGCSBryansTestStream"
 #define kGCSZ3Stream @"kGCSZ3Stream"
-#define kGCSVideoScaleFactor 0.4
-
-// GameKit Session ID for app
-#define kTankSessionID @"groundStation"
 
 
 - (void)didReceiveMemoryWarning
