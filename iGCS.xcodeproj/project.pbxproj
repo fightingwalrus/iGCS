@@ -1865,6 +1865,14 @@
 			name = Firmware;
 			sourceTree = "<group>";
 		};
+		CA0D06F719761986002458F5 /* 3rd-party */ = {
+			isa = PBXGroup;
+			children = (
+				CA05751018BE080B001EACFD /* LiveFrost */,
+			);
+			path = "3rd-party";
+			sourceTree = "<group>";
+		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
 			isa = PBXGroup;
 			children = (
@@ -2132,9 +2140,9 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
+				CA0D06F719761986002458F5 /* 3rd-party */,
 				18B7F2B81958953B00D2406A /* PureLayout */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
-				CA05751018BE080B001EACFD /* LiveFrost */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
