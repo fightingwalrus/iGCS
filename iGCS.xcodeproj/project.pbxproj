@@ -1147,6 +1147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FAF918B2F7AF00668660 /* GameKit.framework in Frameworks */,
 				18B9FAFA18B2F7AF00668660 /* libiconv.dylib in Frameworks */,
 				18B9FAFB18B2F7AF00668660 /* Accelerate.framework in Frameworks */,
@@ -1170,7 +1171,6 @@
 				18B9FB0D18B2F7AF00668660 /* ExternalAccessory.framework in Frameworks */,
 				18B9FB0E18B2F7AF00668660 /* CoreLocation.framework in Frameworks */,
 				18B9FB0F18B2F7AF00668660 /* QuartzCore.framework in Frameworks */,
-				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FB1118B2F7AF00668660 /* libz.dylib in Frameworks */,
 				18B9FB1318B2F7AF00668660 /* GLKit.framework in Frameworks */,
 				18B9FB1418B2F7AF00668660 /* OpenGLES.framework in Frameworks */,
@@ -1873,6 +1873,20 @@
 			name = Firmware;
 			sourceTree = "<group>";
 		};
+		CA0D06F719761986002458F5 /* 3rd-party */ = {
+			isa = PBXGroup;
+			children = (
+				CA43DE0815143E570014F7C8 /* glyphish-icons */,
+				CA20FD24164E4754005187A8 /* mavlink-include */,
+				CA0574F118BE07FE001EACFD /* CXAlertView */,
+				CA05751018BE080B001EACFD /* LiveFrost */,
+				18B7F2B81958953B00D2406A /* PureLayout */,
+				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
+				CA0B69A9189B69F50014C1E4 /* SWReveal */,
+			);
+			path = "3rd-party";
+			sourceTree = "<group>";
+		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
 			isa = PBXGroup;
 			children = (
@@ -2140,16 +2154,10 @@
 		CA499F5314DE33BC00FCC9FB = {
 			isa = PBXGroup;
 			children = (
-				18B7F2B81958953B00D2406A /* PureLayout */,
-				CA0574F118BE07FE001EACFD /* CXAlertView */,
-				CA05751018BE080B001EACFD /* LiveFrost */,
+				CA0D06F719761986002458F5 /* 3rd-party */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
-				CA20FD24164E4754005187A8 /* mavlink-include */,
-				CA43DE0815143E570014F7C8 /* glyphish-icons */,
-				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
-				CA0B69A9189B69F50014C1E4 /* SWReveal */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
 				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
 				CA499F6114DE33BC00FCC9FB /* Frameworks */,
@@ -2973,7 +2981,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+					"\"$(PROJECT_DIR)/3rd-party/Redpark Serial SDK/lib\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -3005,7 +3013,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
+					"\"$(PROJECT_DIR)/3rd-party/Redpark Serial SDK/lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
@@ -3116,10 +3124,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -3150,10 +3155,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Redpark Serial SDK/lib\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -3175,15 +3177,11 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/iGCS\\\"",
-					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login/FacebookSDK.framework/Versions/A",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -3199,15 +3197,11 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/iGCS\\\"",
-					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/claudio/Desktop/Dropbox/UAV\\ +\\ RC/ArduPilotMega/iGCS.github/iGCS/Login/FacebookSDK.framework/Versions/A",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
