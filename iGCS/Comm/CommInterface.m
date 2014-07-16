@@ -11,7 +11,7 @@
 #import "Logger.h"
 
 @implementation CommInterface
--(void)consumeData:(uint8_t*)bytes length:(int)length {
+-(void)consumeData:(const uint8_t*)bytes length:(int)length {
     // gets called when matching source interface in a MavLinkConnection has new data
 
     // must always be overridden for destination interfaces
@@ -20,17 +20,15 @@
 }
 
 // call this method for source interfaces when new data is available
--(void)produceData:(uint8_t*)bytes length:(int)length {
+-(void)produceData:(const uint8_t*)bytes length:(int)length {
 
     // ConnectionPool must be assigned
-    if (!self.connectionPool)
-        {
+    if (!self.connectionPool) {
         [Logger error:@"Error: Tried to call produceData, but no connectionPool was set."];
-        }
+    }
     assert(self.connectionPool);
 
     [self.connectionPool interface:self producedBytes:bytes length:length];
-
 }
 
 

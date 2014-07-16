@@ -71,14 +71,14 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
     _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
 }
 
-static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
+static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint16_t len)
 {
     NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
     [appMLI produceData:buffer length:len];
 }
 
 // MavLink destination override
--(void)consumeData:(uint8_t*)bytes length:(int)length
+-(void)consumeData:(const uint8_t*)bytes length:(int)length
 {
     @autoreleasepool {
         // Notify receipt of length bytes

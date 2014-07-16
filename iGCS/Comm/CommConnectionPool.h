@@ -18,7 +18,7 @@
 
 -(void)addDestination:(CommInterface*)interface;
 -(void)addSource:(CommInterface*)interface;
--(void)interface:(CommInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length;
+-(void)interface:(CommInterface*)interface producedBytes:(const uint8_t*)bytes length:(int)length;
 
 -(void)createConnection:(CommInterface*)source destination:(CommInterface*)destination;
 -(void)closeAllInterfaces;

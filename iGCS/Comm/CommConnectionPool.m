@@ -84,7 +84,7 @@
 
 }
 
--(void)interface:(CommInterface*)interface producedBytes:(uint8_t*)bytes length:(int)length {
+-(void)interface:(CommInterface*)interface producedBytes:(const uint8_t*)bytes length:(int)length {
     @try {
         for (CommConnection *connection in self.connections) {
             if ([connection.source isEqual:interface]) {

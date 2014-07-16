@@ -207,7 +207,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 
 #pragma mark Internal
 
--(void)consumeData:(uint8_t *)bytes length:(int)length {
+-(void)consumeData:(const uint8_t *)bytes length:(int)length {
     [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
 
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];

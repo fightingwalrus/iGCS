@@ -28,7 +28,7 @@
     }
 }
 
--(void)consumeData:(uint8_t *)bytes length:(int)length
+-(void)consumeData:(const uint8_t *)bytes length:(int)length
 {
     [DebugLogger console:@"RovingNetworks: consumeData (stubbed)."];
     
