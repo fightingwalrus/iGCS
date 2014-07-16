@@ -64,7 +64,7 @@
     // Initialize MavLink Interfaces
     
     // TODO: Use NSNotifications for view updates instead of passing ref to self
-    [[CommController sharedInstance] start:self];
+    [[CommController sharedInstance] startTelemetryMode:self];
     
     // Hide tabBar on iPhone
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {

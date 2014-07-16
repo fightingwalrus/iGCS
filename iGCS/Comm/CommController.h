@@ -48,7 +48,7 @@
 +(CommController *)sharedInstance;
 
 -(void)startFWRConfigMode;
--(void)start:(MainViewController*)mvc;
+-(void)startTelemetryMode:(MainViewController*)mvc;
 
 -(void) startBluetoothTx;
 -(void) startBluetoothRx;
