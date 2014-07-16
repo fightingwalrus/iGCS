@@ -253,6 +253,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
     windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+    
+    self.telemetryLossView = [[GCSTelemetryLossOverlayView alloc] initWithParentView:self.view];
 }
 
 - (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
@@ -537,42 +539,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
 }
 
-
-- (void)showHeartbeatLossTheme {
-    if (_heartbeatLossView != nil) return;
-    
-    CGRect frame = self.view.frame;
-    _heartbeatLossView = [[LFGlassView alloc] initWithFrame:frame];
-    _heartbeatLossView.clipsToBounds = YES;
-    _heartbeatLossView.layer.cornerRadius = 0.0;
-    _heartbeatLossView.blurRadius = 1.0;
-    _heartbeatLossView.scaleFactor = 1.0;
-    _heartbeatLossView.liveBlurring = YES;
-    [self.view addSubview:_heartbeatLossView];
-    
-    UILabel *l = [[UILabel alloc] initWithFrame:frame];
-    l.center = _heartbeatLossView.center;
-    l.text = @"Telemetry lost";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.textColor = [UIColor whiteColor];
-    l.font = [UIFont fontWithName:@"Helvetica" size: 64];
-    l.backgroundColor = [UIColor clearColor];
-    [_heartbeatLossView addSubview:l];
-}
-
-- (void)dismissHeartbeatLossTheme {
-    if (_heartbeatLossView != nil) {
-        [_heartbeatLossView removeFromSuperview];
-        _heartbeatLossView = nil;
-    }
-}
-
 - (void) rescheduleHeartbeatLossCheck {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showHeartbeatLossTheme) object:nil];
-    [self dismissHeartbeatLossTheme];
-    [self performSelector:@selector(showHeartbeatLossTheme) withObject:nil afterDelay:HEARTBEAT_LOSS_WAIT_TIME];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.telemetryLossView selector:@selector(show) object:nil];
+    [self.telemetryLossView hide];
+    [self.telemetryLossView performSelector:@selector(show) withObject:nil afterDelay:HEARTBEAT_LOSS_WAIT_TIME];
 }
-
 
 - (void) handlePacket:(mavlink_message_t*)msg {
     

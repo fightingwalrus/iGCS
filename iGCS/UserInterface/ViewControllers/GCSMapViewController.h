@@ -8,10 +8,10 @@
 
 #import "WaypointMapBaseController.h"
 #import <GLKit/GLKit.h>
-#import "LFGlassView.h"
 
 #import "ArtificialHorizonView.h"
 #import "CompassView.h"
+#import "GCSTelemetryLossOverlayView.h"
 #import "VerticalScaleView.h"
 #import "MavLinkPacketHandler.h"
 #import "CorePlot-CocoaTouch.h"
@@ -55,7 +55,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
 
-@property (nonatomic, strong) LFGlassView *heartbeatLossView;
+@property (nonatomic, retain) GCSTelemetryLossOverlayView *telemetryLossView;
 
 #ifdef VIDEOSTREAMING
 @property (nonatomic, retain) KxMovieViewController *kxMovieVC;
