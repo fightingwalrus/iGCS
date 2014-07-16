@@ -1868,6 +1868,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
 				CA05751018BE080B001EACFD /* LiveFrost */,
 				18B7F2B81958953B00D2406A /* PureLayout */,
@@ -2148,7 +2149,6 @@
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
-				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
 				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
