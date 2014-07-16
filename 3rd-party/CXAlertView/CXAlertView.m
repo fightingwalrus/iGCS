@@ -775,7 +775,7 @@ static CXAlertView *__cx_alert_current_view;
     button.defaultRightLineVisible = _showButtonLine;
     [button setTitle:title forState:UIControlStateNormal];
 
-	button.titleLabel.textAlignment=UITextAlignmentCenter;
+	button.titleLabel.textAlignment=NSTextAlignmentCenter;
 	[button.titleLabel setNumberOfLines:0];
 	button.titleLabel.lineBreakMode=BT_LBM;
 	[button setTitleEdgeInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];

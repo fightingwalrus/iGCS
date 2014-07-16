@@ -64,7 +64,7 @@
 
 
 
--(void)sendMavlinkData:(uint8_t*)bytes length:(int)length
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length
 {
     NSLog(@"GKSessionController: Sending MavLink bytes: %i",length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
@@ -232,7 +232,7 @@
 	}
 }
 
-- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length reliable:(BOOL)howtosend
+- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend
 {
     //[Logger console:[NSString stringWithFormat:@"GKSession: sending %i bytes.",length]];
 	// the packet we'll send is resued

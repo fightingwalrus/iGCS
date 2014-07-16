@@ -50,7 +50,7 @@
 
 
 // MavLinkInterface destination override (used for Tx)
--(void)consumeData:(uint8_t*)bytes length:(int)length
+-(void)consumeData:(const uint8_t*)bytes length:(int)length
 {
     if (self.gkLocalController)
     {

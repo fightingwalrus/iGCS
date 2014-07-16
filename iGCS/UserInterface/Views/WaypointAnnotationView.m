@@ -44,7 +44,7 @@
             CGContextAddLineToPoint(context, CGRectGetMidX(outerR)+w/2, y2);
             CGContextClosePath(context);
             
-            CGContextSetLineJoin(context, kCGLineCapRound);
+            CGContextSetLineJoin(context, kCGLineJoinRound);
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
             CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
             CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);

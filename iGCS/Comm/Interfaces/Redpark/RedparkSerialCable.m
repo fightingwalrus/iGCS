@@ -67,24 +67,6 @@
 }
 
 
-//RscMgr *rscMgr;
-//static void send_uart_bytes(mavlink_channel_t chan, uint8_t *buffer, uint16_t len)
-//-(void) send_uart_bytes:(uint8_t*)bytes channel:(mavlink_channel_t)channel length:(uint16_t)len
-//{
-
-    
-     
-//}
-
-
-
-
-
-
-
-
-
-
 // RscMgrDelegate methods
 
 // Redpark Serial Cable has been connected and/or application moved to foreground.
@@ -145,13 +127,10 @@
 // bytes are available to be read (user calls read:)
 - (void) readBytesAvailable:(UInt32)length
 {
-    
     @try {
         // Read the available bytes out of the serial cable manager
         uint8_t buf[length];
         int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
-        
-        
         
         //[Logger console:@"Redpark: readBytesAvailable"];
         [self produceData:buf length:n];

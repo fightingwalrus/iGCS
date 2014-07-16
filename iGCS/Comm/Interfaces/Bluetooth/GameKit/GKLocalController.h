@@ -40,7 +40,7 @@ typedef enum {
 
 
 -(id)init:(BluetoothStream*)bts;
--(void)sendMavlinkData:(uint8_t*)bytes length:(int)length;
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length;
 
 
 @end
