@@ -73,18 +73,15 @@ enum {
 @synthesize availableStreams = _availableStreams;
 #endif
 
+static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
+
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
 static const int AIRPLANE_ICON_SIZE = 48;
 
-#define kMaxPacketSize 1024
 #define kGCSBryansTestStream @"kGCSBryansTestStream"
 #define kGCSZ3Stream @"kGCSZ3Stream"
-#define kGCSVideoScaleFactor 0.4
-
-// GameKit Session ID for app
-#define kTankSessionID @"groundStation"
 
 
 - (void)didReceiveMemoryWarning
@@ -256,6 +253,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
     windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
     [map addSubview: windIconView];
     windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+    
+    self.telemetryLossView = [[GCSTelemetryLossOverlayView alloc] initWithParentView:self.view];
 }
 
 - (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
@@ -540,6 +539,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
 }
 
+- (void) rescheduleHeartbeatLossCheck {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.telemetryLossView selector:@selector(show) object:nil];
+    [self.telemetryLossView hide];
+    [self.telemetryLossView performSelector:@selector(show) withObject:nil afterDelay:HEARTBEAT_LOSS_WAIT_TIME];
+}
+
 - (void) handlePacket:(mavlink_message_t*)msg {
     
     switch (msg->msgid) {
@@ -636,6 +641,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
         {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
+            
+            // We got a heartbeat, so...
+            [self rescheduleHeartbeatLossCheck];
+            
+            // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
             [_armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
             [_armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
