@@ -1869,6 +1869,7 @@
 			isa = PBXGroup;
 			children = (
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
+				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
 				CA05751018BE080B001EACFD /* LiveFrost */,
 				18B7F2B81958953B00D2406A /* PureLayout */,
@@ -2149,7 +2150,6 @@
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */,
 				189E231F1710CFB200548C88 /* submodules */,
-				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
 				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
 				CA499F6114DE33BC00FCC9FB /* Frameworks */,
