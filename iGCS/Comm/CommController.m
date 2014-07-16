@@ -38,13 +38,17 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
     return self;
 }
 
+-(void)startTelemetryMode:(MainViewController *)mvc {
+    self.mainVC = mvc;
+    [self startTelemetryMode];
+}
+
 // input: instance of MainViewController - used to trigger view updates during comm operations
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
--(void)startTelemetryMode:(MainViewController*)mvc {
+-(void)startTelemetryMode {
     @try {
-        self.mainVC = mvc;
-
+        NSAssert(self.mainVC != nil, @"CommController.startTelemetryMode: mainVC cannot be nil");
         // Reset any active connections in the connection pool first
         [self closeAllInterfaces];
 
