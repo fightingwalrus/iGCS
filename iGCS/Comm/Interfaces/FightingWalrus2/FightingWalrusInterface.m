@@ -11,6 +11,7 @@
 
 NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
+NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
 @implementation FightingWalrusInterface
 +(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString {
@@ -205,7 +206,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     }
 }
 
-#pragma mark Internal
+#pragma mark - CommInterfaceProtocol
 
 -(void)consumeData:(const uint8_t *)bytes length:(int)length {
     [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
@@ -215,6 +216,7 @@ NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
     
 }
 
+#pragma mark - Internal
 - (void)writeDataFromBufferToStream {
     NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
     while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {

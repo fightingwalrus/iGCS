@@ -96,6 +96,23 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
     }
 }
 
+-(void)startFWRFirmwareUpdateMode {
+    NSLog(@"startFWRConfigMode");
+    [self closeAllInterfaces];
+
+    GCSAccessory accessory = [self connectedAccessory];
+    if (accessory == GCSAccessoryFightingWalrusRadio) {
+
+        self.fwrFirmwareInterface = [[GCSFWRFirmwareInterface alloc] init];
+        self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringUpdate];
+        [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.fwrFirmwareInterface];
+
+    } else {
+        NSLog(@"No supported accessory connected");
+    }
+}
+
+
 #pragma mark -
 #pragma mark connection managment
 

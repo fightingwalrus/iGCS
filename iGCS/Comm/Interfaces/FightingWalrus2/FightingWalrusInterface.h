@@ -17,7 +17,6 @@
     NSString *_enabledAccessoryProtocol;
     NSArray *_supportedAccessoryProtocols;
     NSMutableData *_writeDataBuffer;
-
 }
 
 @property (nonatomic, retain, readonly) EAAccessory *selectedAccessory;
@@ -43,4 +42,5 @@
 
 extern NSString * const GCSProtocolStringTelemetry;
 extern NSString * const GCSProtocolStringConfig;
+extern NSString * const GCSProtocolStringUpdate;
 

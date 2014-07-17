@@ -20,6 +20,7 @@
 // local interfaces
 #import "iGCSMavLinkInterface.h"
 #import "RadioConfig.h"
+#import "GCSFWRFirmwareInterface.h"
 
 #import "RNBluetoothInterface.h"
 #import "FightingWalrusInterface.h"
@@ -36,6 +37,7 @@
 // local interfaces
 @property (nonatomic, retain) iGCSMavLinkInterface *mavLinkInterface;
 @property (nonatomic, retain) iGCSRadioConfig *radioConfig;
+@property (nonatomic, strong) GCSFWRFirmwareInterface *fwrFirmwareInterface;
 
 // remote interfaces
 @property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
@@ -47,8 +49,10 @@
 +(CommController *)sharedInstance;
 
 -(void)startFWRConfigMode;
+-(void)startFWRFirmwareUpdateMode;
 
-// call to start/restart telemetry mode - requires self.mainVC
+// called to start or restart telemetry mode
+// self.mainVC cannot be nil
 -(void)startTelemetryMode;
 
 
