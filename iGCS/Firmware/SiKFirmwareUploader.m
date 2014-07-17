@@ -8,7 +8,7 @@
 //
 //
 
-#import "FirmwareUploader.h"
+#import "SiKFirmwareUploader.h"
 
 @interface BootLoader : NSObject
 @property (nonatomic) BYTE identifier;
@@ -50,13 +50,13 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 #define READ_MULTI_MAX 255
 
 
-@interface FirmwareUploader () // Hide port property in class extension
-@property (nonatomic, readonly) id<FirmwareUploaderPort> port;
+@interface SiKFirmwareUploader () // Hide port property in class extension
+@property (nonatomic, readonly) id<SikFirmwareUploaderPort> port;
 @end
 
-@implementation FirmwareUploader
+@implementation SiKFirmwareUploader
 
-- (id) initWithPort: (id<FirmwareUploaderPort>)port {
+- (id) initWithPort: (id<SikFirmwareUploaderPort>)port {
     self = [super init];
     if (self) {
         _port = port;
@@ -266,9 +266,9 @@ typedef void (^FWUChunkFn)(NSUInteger, NSData*);
 }
 
 
-+ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(id<FirmwareUploaderPort>)port resetToDefault:(BOOL)resetToDefaults {
++ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(id<SikFirmwareUploaderPort>)port resetToDefault:(BOOL)resetToDefaults {
     // Construct the uploader
-    FirmwareUploader *uploader = [[FirmwareUploader alloc] initWithPort:port];
+    SiKFirmwareUploader *uploader = [[SiKFirmwareUploader alloc] initWithPort:port];
     if (![uploader check]) {
         // TODO: output some status, or specific condition?
         return NO;

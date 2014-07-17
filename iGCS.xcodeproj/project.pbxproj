@@ -365,7 +365,7 @@
 		CA0AED7C192C4D050017BB9E /* test3.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA0AED7B192C4D050017BB9E /* test3.hex */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
-		CA0C44DC19230F570099B718 /* FirmwareUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0C44DB19230F570099B718 /* FirmwareUploader.m */; };
+		CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */; };
 		CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
@@ -839,8 +839,8 @@
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
 		CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSidebarController.m; sourceTree = "<group>"; };
-		CA0C44DA19230F570099B718 /* FirmwareUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirmwareUploader.h; path = Firmware/FirmwareUploader.h; sourceTree = "<group>"; };
-		CA0C44DB19230F570099B718 /* FirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirmwareUploader.m; path = Firmware/FirmwareUploader.m; sourceTree = "<group>"; };
+		CA0C44DA19230F570099B718 /* SiKFirmwareUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiKFirmwareUploader.h; path = Firmware/SiKFirmwareUploader.h; sourceTree = "<group>"; };
+		CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmwareUploader.m; path = Firmware/SiKFirmwareUploader.m; sourceTree = "<group>"; };
 		CA0D06E41975F4C6002458F5 /* GCSTelemetryLossOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSTelemetryLossOverlayView.h; sourceTree = "<group>"; };
 		CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSTelemetryLossOverlayView.m; sourceTree = "<group>"; };
 		CA10E12F188FCD42002DF0E4 /* GCSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSThemeManager.h; sourceTree = "<group>"; };
@@ -1865,8 +1865,8 @@
 		CA0C44D519230F170099B718 /* Firmware */ = {
 			isa = PBXGroup;
 			children = (
-				CA0C44DA19230F570099B718 /* FirmwareUploader.h */,
-				CA0C44DB19230F570099B718 /* FirmwareUploader.m */,
+				CA0C44DA19230F570099B718 /* SiKFirmwareUploader.h */,
+				CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */,
 				CA07822F192716A0007FCFD5 /* SiKFirmware.h */,
 				CA078230192716A0007FCFD5 /* SiKFirmware.m */,
 			);
@@ -2775,7 +2775,7 @@
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
-				CA0C44DC19230F570099B718 /* FirmwareUploader.m in Sources */,
+				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
 				CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				49C1FA1716DC7B5200BAE96B /* ExceptionHandler.m in Sources */,
