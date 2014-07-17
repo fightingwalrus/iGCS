@@ -12,4 +12,5 @@
 +(NSURL *)documentsDir;
 +(NSURL *)URLToFileInDocumentsDirWithFileName:(NSString *) fileName;
 +(NSFileHandle *) fileHandleForWritingAtPath:(NSString *) filePath create:(BOOL)shouldCreate;
++(NSData *)dataFromFileInMainBundleWithName:(NSString *) fileName;
 @end

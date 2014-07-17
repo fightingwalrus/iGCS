@@ -114,6 +114,9 @@
 		1842F8D31892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
 		1842F8D41892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
 		1842F8D51892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
+		1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
+		1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
+		1845DA4A19778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
 		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
@@ -495,6 +498,9 @@
 		1842F8C71892D2F80050F680 /* Icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-58.png"; sourceTree = "<group>"; };
 		1842F8C81892D2F80050F680 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
+		1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
+		1845DA4619778ED9008945F8 /* GCSFWRFirmwareInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFWRFirmwareInterface.h; sourceTree = "<group>"; };
+		1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFWRFirmwareInterface.m; sourceTree = "<group>"; };
 		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
 		1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSRadioSettings.m; sourceTree = "<group>"; };
 		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
@@ -1295,6 +1301,8 @@
 				18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */,
 				186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */,
 				186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */,
+				1845DA4619778ED9008945F8 /* GCSFWRFirmwareInterface.h */,
+				1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */,
 			);
 			path = iGCS;
 			sourceTree = "<group>";
@@ -2179,6 +2187,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */,
 				CAA2CFD9161C000C00267615 /* libz.dylib */,
 				189E235D1710DBBC00548C88 /* libiconv.dylib */,
 				1888DE6D170F7D3400ADA039 /* Accelerate.framework */,
@@ -2585,6 +2594,7 @@
 				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
 				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
+				1845DA4A19778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
 				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
@@ -2702,6 +2712,7 @@
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEA18B2F7AF00668660 /* DebugLogger.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
+				1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
@@ -2790,6 +2801,7 @@
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
+				1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
@@ -3124,7 +3136,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -3155,7 +3170,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "iGCS/iGCS-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";

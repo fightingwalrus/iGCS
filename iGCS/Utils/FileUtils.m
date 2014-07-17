@@ -40,4 +40,14 @@
     return fileHandle;
 }
 
++(NSData *)dataFromFileInMainBundleWithName:(NSString *) fileName {
+    NSString *resourceName = [fileName stringByDeletingPathExtension];
+    NSString *resourceType = [fileName pathExtension];
+
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *filePath = [mainBundle pathForResource:resourceName ofType:resourceType];
+    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+
+    return [NSData dataWithContentsOfFile:[fileURL path]];
+}
 @end
