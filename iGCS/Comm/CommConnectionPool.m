@@ -65,14 +65,13 @@
 -(void)createConnection:(CommInterface*)source destination:(CommInterface*)destination {
     // TODO: Check to see if source and destination are already in source/destination lists,
     // if not, add them
-    
+
     // TODO: Make sure a connection with these interfaces doesn't already exist
     
     @try {
         CommConnection *conn = [CommConnection createForSource:source destination:destination];
-    
         [self.connections addObject:conn];
-        
+
         // TODO: refactor this to use a delegate interface to allow many-to-many routing
         source.connectionPool = self;
         destination.connectionPool = self;

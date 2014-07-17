@@ -235,6 +235,7 @@ static void *SVKvoContext = &SVKvoContext;
 
 -(void)radioHasBootedAfterSave {
     // dissmiss radio config sheet
+    [[CommController sharedInstance] startTelemetryMode];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

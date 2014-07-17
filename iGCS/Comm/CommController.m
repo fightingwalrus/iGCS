@@ -10,16 +10,16 @@
 #import "DebugViewController.h"
 #import "DebugLogger.h"
 
-typedef NS_ENUM(NSUInteger, GCSCommInterface) {
-    GCSRovingBluetoothNetworkCommInterface,
-    GCSRedparkCommInterface,
-    GCSFightingWalrusRadioTelemetryCommInterface,
-    GCSFightingWalrusRadioConfigCommInterface
+typedef NS_ENUM(NSUInteger, GCSAccessory) {
+    GCSAccessoryRovingBluetooth,
+    GCSAccessoryRedpark,
+    GCSAccessoryFightingWalrusRadio,
+    GCSAccessoryNotSupported
 };
 
 @implementation CommController
 
-+(CommController *)sharedInstance{
++(CommController *)sharedInstance {
     static CommController *sharedObject = nil;
     static dispatch_once_t predicate;
     
@@ -41,38 +41,36 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
 // input: instance of MainViewController - used to trigger view updates during comm operations
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations
--(void)start:(MainViewController*)mvc
-{
+-(void)startTelemetryMode {
     @try {
-        self.mainVC = mvc;
-        NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        bool foundValid = NO;
-        for (EAAccessory *accessory in accessories) {
-            NSLog(@"%@",accessory.manufacturer);
-            [DebugLogger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
-            
-            if([accessory.manufacturer isEqualToString:@"Roving Networks"]) {
-                [self createDefaultConnections:GCSRovingBluetoothNetworkCommInterface];
-                foundValid = YES;
-                break;
-            }
-            
-            if ([accessory.manufacturer isEqualToString:@"Redpark"]) {
-                [self createDefaultConnections:GCSRedparkCommInterface];
-                foundValid = YES;
-                break;
-            }
+        NSAssert(self.mainVC != nil, @"CommController.startTelemetryMode: mainVC cannot be nil");
+        // Reset any active connections in the connection pool first
+        [self closeAllInterfaces];
 
-            if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
-                [self createDefaultConnections:GCSFightingWalrusRadioTelemetryCommInterface];
-                foundValid = YES;
-                break;
-            }
-        }
-        
-        if(foundValid == NO) {
-            NSLog(@"No devices connected, defaulting to Redpark");
-            [self createDefaultConnections:GCSRedparkCommInterface];
+        self.mavLinkInterface = [iGCSMavLinkInterface createWithViewController:self.mainVC];
+
+        GCSAccessory accessory = [self connectedAccessory];
+        if (accessory == GCSAccessoryFightingWalrusRadio) {
+            
+            self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
+            [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface
+                                       andLocalInterface:self.mavLinkInterface];
+
+        } else if (accessory == GCSAccessoryRedpark) {
+
+            #ifdef REDPARK
+            self.redParkCable = [RedparkSerialCable createWithViews:_mainVC];
+            [self setupNewConnectionsWithRemoteInterface:self.redParkCable
+                                       andLocalInterface:self.mavLinkInterface];
+            #endif
+
+        } else if (accessory == GCSAccessoryRovingBluetooth) {
+            self.rnBluetooth = [RNBluetoothInterface create];
+            [self setupNewConnectionsWithRemoteInterface:self.rnBluetooth
+                                       andLocalInterface:self.mavLinkInterface];
+
+        } else {
+            NSLog(@"No supported accessory connected");
         }
 
         [DebugLogger console:@"Created default connections in CommController."];
@@ -82,177 +80,101 @@ typedef NS_ENUM(NSUInteger, GCSCommInterface) {
     }
 }
 
--(void)startFWRConfigMode{
+-(void)startFWRConfigMode {
     NSLog(@"startFWRConfigMode");
-    NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-    bool foundValid = NO;
+    [self closeAllInterfaces];
 
-    for (EAAccessory *accessory in accessories) {
-        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
-            [self createFWRConfigConnection];
-            foundValid = YES;
-            break;
-        }
-    }
+    GCSAccessory accessory = [self connectedAccessory];
+    if (accessory == GCSAccessoryFightingWalrusRadio) {
 
-    if(foundValid == NO) {
-        NSLog(@"No devices connected, defaulting to Redpark");
-        [self createDefaultConnections:GCSRedparkCommInterface];
+        self.radioConfig = [[iGCSRadioConfig alloc] init];
+        self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringConfig];
+        [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.radioConfig];
+
+    } else {
+        NSLog(@"No supported accessory connected");
     }
-    
 }
 
 #pragma mark -
 #pragma mark connection managment
--(void)createFWRConfigConnection {
-    [self closeAllInterfaces];
 
-    // set up destination interface
-    _radioConfig = [[iGCSRadioConfig alloc]init];
-    [_connectionPool addDestination:self.radioConfig];
-    [self setupFightingWalrusConfigConnections];
+-(BOOL)setupNewConnectionsWithRemoteInterface:(CommInterface *)remoteInterface
+                            andLocalInterface:(CommInterface *)localInterface {
+
+    if (!remoteInterface && !localInterface) {
+        return NO;
+    }
+
+    // add source and destination
+    [self.connectionPool addSource:remoteInterface];
+    [self.connectionPool addDestination:localInterface];
+
+    // configure inbound connection (drone->gcs)
+    [self.connectionPool createConnection:remoteInterface destination:localInterface];
+
+    // configure outbound connection (gcs->drone)
+    [self.connectionPool createConnection:localInterface destination:remoteInterface];
+
+    return YES;
 }
 
--(void)createDefaultConnections:(GCSCommInterface) commInterface {
-    
-    // Reset any active connections in the connection pool first
-    [self closeAllInterfaces];
-
-    _mavLinkInterface = [iGCSMavLinkInterface createWithViewController:self.mainVC];
-    [_connectionPool addDestination:self.mavLinkInterface];
-    [DebugLogger console:@"Configured iGCS Application as MavLink consumer."];
-    
-    if (commInterface == GCSRovingBluetoothNetworkCommInterface) {
-        [DebugLogger console: @"Creating RovingNetworks connection."];
-        [self setupBluetoothConnections];
-        
-    } else if (commInterface ==  GCSRedparkCommInterface) {
-#ifdef REDPARK
-        [self setupRedparkConnections];
-#endif
-    } else if (commInterface == GCSFightingWalrusRadioTelemetryCommInterface) {
-        [DebugLogger console: @"Creating FWR Telemetry connection."];
-        [self setupFightingWalrusTelemetryConnections];
-    }else if (commInterface == GCSFightingWalrusRadioConfigCommInterface) {
-        [DebugLogger console: @"Creating FWR Config connection."];
-        [self setupFightingWalrusConfigConnections];
-    } else {
-        NSLog(@"createDefaultConnections: unsupported interface specified");
-    }
-}
-
--(void) setupBluetoothConnections {
-    if (!_rnBluetooth) {
-        _rnBluetooth = [RNBluetoothInterface create];
-    }
-    
-    if (_rnBluetooth) {
-        [_connectionPool addSource:_rnBluetooth];
-        
-        [_connectionPool createConnection:_rnBluetooth destination:_mavLinkInterface];
-        
-        [DebugLogger console:@"Connected RN Bluetooth Rx to iGCS Application input."];
-        
-        [_connectionPool createConnection:_mavLinkInterface destination:_rnBluetooth];
-        
-        [DebugLogger console:@"Connected iGCS Application output to RN Bluetooth Tx."];
-    } else {
-        [DebugLogger console:@"Could not establish bluetooth inteface"];
-    }
-}
-
-#ifdef REDPARK
--(void)setupRedparkConnections {
-    if (!_redParkCable) {
-        [DebugLogger console:@"Starting Redpark connection."];
-        _redParkCable = [RedparkSerialCable createWithViews:_mainVC];
-    }
-    
-    if (_redParkCable) {
-        // configure input connection as redpark cable
-        [DebugLogger console:@"Redpark started."];
-        [_connectionPool addSource:_redParkCable];
-        
-        // Forward redpark RX to app input
-        [_connectionPool createConnection:_redParkCable destination:_mavLinkInterface];
-        [DebugLogger console:@"Connected Redpark Rx to iGCS Application input."];
-        
-        // Forward app output to redpark TX
-        [_connectionPool createConnection:_mavLinkInterface destination:_redParkCable];
-        [DebugLogger console:@"Connected iGCS Application output to Redpark Tx."];
-    }
-}
-#endif
-
--(void)setupFightingWalrusTelemetryConnections {
-    [DebugLogger console:@"Starting FWR connection"];
-    _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
-    
-    if (_fightingWalrusInterface) {
-        
-        // configure input connection as FWI
-        [DebugLogger console:@"FWR started"];
-        [_connectionPool addSource:_fightingWalrusInterface];
-        
-        // Forward FWR RX to app input
-        [_connectionPool createConnection:_fightingWalrusInterface destination:_mavLinkInterface];
-        [DebugLogger console:@"Connected FWR Rx to iGCS Application input."];
-        
-        // Forward app output to FWR TX
-        [_connectionPool createConnection:_mavLinkInterface destination:_fightingWalrusInterface];
-        
-    }
-}
-
--(void)setupFightingWalrusConfigConnections {
-    [DebugLogger console:@"Starting FWR connection"];
-    _fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringConfig];
-    if (_fightingWalrusInterface) {
-
-        // configure input connection as FWI
-        [DebugLogger console:@"FWR started"];
-        [_connectionPool addSource:_fightingWalrusInterface];
-
-        // Forward FWR RX to app input
-        [_connectionPool createConnection:_fightingWalrusInterface destination:_radioConfig];
-        [DebugLogger console:@"Connected FWR Rx to iGCS Application input."];
-
-        // Forward app output to FWR TX
-        [_connectionPool createConnection:_radioConfig destination:_fightingWalrusInterface];
-    }
-}
-
--(void) closeAllInterfaces
-{
-    [_connectionPool closeAllInterfaces];
+-(void) closeAllInterfaces {
+    [self.connectionPool closeAllInterfaces];
 }
 
 #pragma mark -
 #pragma mark Bluetooth
 
--(void) startBluetoothTx
-{
+-(void) startBluetoothTx {
     // Start Bluetooth driver
     BluetoothStream *bts = [BluetoothStream createForTx];
     
     // Create connection from redpark to bts
 #ifdef REDPARK
-    [_connectionPool createConnection:_redParkCable destination:bts];
+    [self.connectionPool createConnection:self.redParkCable destination:bts];
 #endif
     [DebugLogger console:@"Created BluetoothStream for Tx."];
     NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
 }
 
--(void) startBluetoothRx
-{
+-(void) startBluetoothRx {
     // Start Bluetooth driver
     BluetoothStream *bts = [BluetoothStream createForRx];
     
     // Create connection from redpark to bts
-    [_connectionPool createConnection:bts destination:_mavLinkInterface];
+    [self.connectionPool createConnection:bts destination:self.mavLinkInterface];
     
     [DebugLogger console:@"Created BluetoothStream for Rx."];
     NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
+}
+
+#pragma mark - helpers
+-(GCSAccessory)connectedAccessory {
+    NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager]
+                                                                         connectedAccessories]];
+
+    GCSAccessory gcsAccessory = GCSAccessoryNotSupported;
+    for (EAAccessory *accessory in accessories) {
+        NSLog(@"%@",accessory.manufacturer);
+        [DebugLogger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
+
+        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
+            gcsAccessory = GCSAccessoryFightingWalrusRadio;
+            break;
+        }
+
+        if ([accessory.manufacturer isEqualToString:@"Redpark"]) {
+            gcsAccessory = GCSAccessoryRedpark;
+            break;
+        }
+
+        if([accessory.manufacturer isEqualToString:@"Roving Networks"]) {
+            gcsAccessory = GCSAccessoryRovingBluetooth;
+            break;
+        }
+    }
+    return gcsAccessory;
 }
 
 @end
