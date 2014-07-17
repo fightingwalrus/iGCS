@@ -38,11 +38,6 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
     return self;
 }
 
--(void)startTelemetryMode:(MainViewController *)mvc {
-    self.mainVC = mvc;
-    [self startTelemetryMode];
-}
-
 // input: instance of MainViewController - used to trigger view updates during comm operations
 // called at startup for app to initialize interfaces
 // input: instance of MainViewController - used to trigger view updates during comm operations

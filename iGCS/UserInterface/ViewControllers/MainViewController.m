@@ -62,10 +62,9 @@
     self.debugVC    = [[self viewControllers] objectAtIndex:3];
     
     // Initialize MavLink Interfaces
-    
-    // TODO: Use NSNotifications for view updates instead of passing ref to self
-    [[CommController sharedInstance] startTelemetryMode:self];
-    
+
+    [CommController sharedInstance].mainVC = self;
+
     // Hide tabBar on iPhone
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.tabBar setHidden:YES];

@@ -100,6 +100,7 @@ static AppDelegate *shared;
     
     NSLog(@"Became Active");
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [[CommController sharedInstance] startTelemetryMode];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

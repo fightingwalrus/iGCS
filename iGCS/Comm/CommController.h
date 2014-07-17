@@ -47,8 +47,6 @@
 +(CommController *)sharedInstance;
 
 -(void)startFWRConfigMode;
-// must be called at least once
--(void)startTelemetryMode:(MainViewController*)mvc;
 
 // call to start/restart telemetry mode - requires self.mainVC
 -(void)startTelemetryMode;
