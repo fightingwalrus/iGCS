@@ -11,3 +11,6 @@
 @interface GCSFWRFirmwareInterface : CommInterface
 -(void)updateFwrFirmware;
 @end
+
+extern NSString * const GCSFirmewareIntefaceFirmwareUpdateSuccess;
+extern NSString * const GCSFirmewareIntefaceFirmwareUpdateFail;

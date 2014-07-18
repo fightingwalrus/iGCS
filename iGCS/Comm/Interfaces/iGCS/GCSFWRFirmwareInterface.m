@@ -10,15 +10,27 @@
 #import "FileUtils.h"
 #import <zlib.h>
 
+NSString * const GCSFirmewareIntefaceFirmwareUpdateSuccess = @"com.fightingwalrus.fwrfirmware.updatesuccess";
+NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.fwrfirmware.updatefail";
+
 @implementation GCSFWRFirmwareInterface
 
 -(void)consumeData:(const uint8_t*)bytes length:(int)length {
+
     NSData *data = [NSData dataWithBytes:bytes length:length];
-    NSString *string = [[NSString alloc] initWithData:data
+    NSString *response = [[NSString alloc] initWithData:data
                                                  encoding:NSASCIIStringEncoding];
 
-    NSLog(@"GCSFWRFirmwareInterface.consumeData: %@", string);
+    NSLog(@"GCSFWRFirmwareInterface.consumeData: %@", response);
 
+    if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
+        NSLog(@"FWR Firmware updaded successfully");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateSuccess object:nil];
+
+    }else if ([response rangeOfString:@"FAIL"].location !=NSNotFound) {
+        NSLog(@"FWR Firmware failed to update");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+    }
 }
 
 -(void)updateFwrFirmware {
