@@ -9,5 +9,5 @@
 #import "CommInterface.h"
 
 @interface GCSFWRFirmwareInterface : CommInterface
-
+-(void)updateFwrFirmware;
 @end

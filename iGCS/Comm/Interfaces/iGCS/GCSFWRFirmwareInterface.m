@@ -22,13 +22,12 @@
 }
 
 -(void)updateFwrFirmware {
-
+    NSLog(@"updateFwrFirmware");
     NSData *firmware = [FileUtils dataFromFileInMainBundleWithName:@"walrus.bin"];
     NSUInteger firmwareLength = [firmware length];
 
     //Magic token
-    const unsigned char *magicToken = 0xAA/0xBB/0xCC/0xDD;
-
+    const unsigned char magicToken[4] = {0xAA,0xBB,0xCC,0xDD};
 
     // init crc
     __block uLong crc = crc32(0L, Z_NULL, 0);
@@ -37,13 +36,22 @@
         crc = crc32(crc, bytes, (uInt)byteRange.length);
     }];
 
-    [self produceData:magicToken length:4];
-    [self produceData:(uint8_t*)firmwareLength length:sizeof(firmwareLength)];
-    [self produceData:(uint8_t*)crc length:4];
+    // turn our crc long to char
+    unsigned char digest[4];
+    digest[0] = (crc >> 24) & 0xFF;
+    digest[1] = (crc >> 16) & 0xFF;
+    digest[2] = (crc >> 8) & 0xFF;
+    digest[3] = crc & 0xFF;
 
-    void *buf = NULL;
-    [firmware getBytes:buf length:firmware.length];
-    [self produceData:buf length:firmware.length];
+    NSLog(@"crc: %lu", crc);
+    [self produceData:magicToken length:4];
+    
+    [self produceData:(uint8_t*)(UInt32)&firmwareLength length:sizeof((UInt32)firmwareLength)];
+    [self produceData:(uint8_t*)digest length:4];
+
+    unsigned char buf[firmwareLength];
+    [firmware getBytes:buf length:firmwareLength];
+    [self produceData:buf length:firmwareLength];
 }
 
 @end

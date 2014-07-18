@@ -57,7 +57,6 @@ static void *SVKvoContext = &SVKvoContext;
 @property (nonatomic, strong) GCSRadioSettings *localRadioSettingsModel;
 @property (nonatomic, strong) GCSRadioSettings *remoteRadioSettingsModel;
 
-
 @end
 
 @implementation RadioSettingsViewController
@@ -145,7 +144,6 @@ static void *SVKvoContext = &SVKvoContext;
 
     // remote radio version
     self.remoteRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
-    self.remoteRadioFirmwareVersionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view  addSubview:self.remoteRadioFirmwareVersionLabel];
     [self.remoteRadioFirmwareVersionLabel setText:@"Remote Radio Firmware:"];
     self.remoteRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
@@ -157,6 +155,16 @@ static void *SVKvoContext = &SVKvoContext;
 
     [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
     [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
+
+    UIButton *updateFWRFirmware = [UIButton newAutoLayoutView];
+    [updateFWRFirmware setTitle:@"Update Firmware" forState:UIControlStateNormal];
+    [updateFWRFirmware addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
+    [updateFWRFirmware setBackgroundColor:[GCSThemeManager sharedInstance].appTintColor];
+
+    [self.view addSubview:updateFWRFirmware];
+
+    [updateFWRFirmware autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
+    [updateFWRFirmware autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
 
     NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
 
@@ -211,6 +219,17 @@ static void *SVKvoContext = &SVKvoContext;
     } else  {
         [self saveSettingsToLocalRadio];
     }
+}
+
+-(void)updateFirmware {
+    NSLog(@"Update FWR Firmware");
+    [[CommController sharedInstance] startFWRFirmwareUpdateMode];
+
+    [self performSelector:@selector(sendFirmwareToFWR) withObject:self afterDelay:1.0f];
+}
+
+-(void)sendFirmwareToFWR {
+    [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
 }
 
 #pragma mark - NSNotifcation handlers

@@ -35,7 +35,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        _supportedAccessoryProtocols = @[GCSProtocolStringTelemetry, GCSProtocolStringConfig];
+        _supportedAccessoryProtocols = @[GCSProtocolStringTelemetry, GCSProtocolStringConfig, GCSProtocolStringUpdate];
         _enabledAccessoryProtocol = protocolString;
         //HACK Testing ping pong connect/disconnect
         _doubleTab = @YES;

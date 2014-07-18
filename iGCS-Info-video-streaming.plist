@@ -70,6 +70,7 @@
 		<string>com.redpark.serdb9</string>
 		<string>com.redpark.serEval</string>
 		<string>com.redpark.hobdb9</string>
+		<string>com.fightingwalrus.update</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
