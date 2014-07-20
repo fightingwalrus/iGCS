@@ -9,19 +9,11 @@
 #import "CommInterface.h"
 #import <ExternalAccessory/ExternalAccessory.h>
 
-@interface FightingWalrusInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate> {
-    NSMutableArray *_accessoryList;
-    EAAccessory *_selectedAccessory;
-    EASession *_session;
-    NSString *_protocolString;
-    NSString *_enabledAccessoryProtocol;
-    NSArray *_supportedAccessoryProtocols;
-    NSMutableData *_writeDataBuffer;
-}
+@interface FightingWalrusInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate>
 
-@property (nonatomic, retain, readonly) EAAccessory *selectedAccessory;
+@property (nonatomic, strong, readwrite) EAAccessory *selectedAccessory;
 @property (nonatomic, copy) NSString *protocolString;
-@property (retain) NSMutableData *writeDataBuffer;
+@property (strong) NSMutableData *writeDataBuffer;
 @property (nonatomic, strong) NSNumber *doubleTab;
 
 +(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString;
@@ -32,9 +24,8 @@
 - (void)writeData:(NSData *)data;
 - (BOOL)isAccessoryConnected;
 
-// from EAAccessoryDelegate
+// from EAAccessoryDelegate and  notifications
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory;
-// from EAAccessory notifications
 - (void)accessoryConnected:(NSNotification *)notification;
 - (void)accessoryDisconnected:(NSNotification *)notification;
 

@@ -117,6 +117,12 @@
 		1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
 		1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
 		1845DA4A19778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
+		1845DA781979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */; };
+		1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */; };
+		1845DA7A1979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */; };
+		1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */; };
+		1845DA86197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */; };
+		1845DA87197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */; };
 		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
 		1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
@@ -501,6 +507,10 @@
 		1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		1845DA4619778ED9008945F8 /* GCSFWRFirmwareInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFWRFirmwareInterface.h; sourceTree = "<group>"; };
 		1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFWRFirmwareInterface.m; sourceTree = "<group>"; };
+		1845DA761979E5CD008945F8 /* GCSFirmwareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUtils.h; sourceTree = "<group>"; };
+		1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUtils.m; sourceTree = "<group>"; };
+		1845DA83197B8834008945F8 /* GCSActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSActivityIndicatorView.h; sourceTree = "<group>"; };
+		1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSActivityIndicatorView.m; sourceTree = "<group>"; };
 		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
 		1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSRadioSettings.m; sourceTree = "<group>"; };
 		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
@@ -1780,6 +1790,8 @@
 				496E628816DAFB8B00E52E4A /* VerticalScaleView.m */,
 				CA094F2A18D534E100AC6AE4 /* WaypointAnnotationView.h */,
 				CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */,
+				1845DA83197B8834008945F8 /* GCSActivityIndicatorView.h */,
+				1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1877,6 +1889,8 @@
 				CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */,
 				CA07822F192716A0007FCFD5 /* SiKFirmware.h */,
 				CA078230192716A0007FCFD5 /* SiKFirmware.m */,
+				1845DA761979E5CD008945F8 /* GCSFirmwareUtils.h */,
+				1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */,
 			);
 			name = Firmware;
 			sourceTree = "<group>";
@@ -2591,6 +2605,7 @@
 				CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
+				1845DA7A1979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
 				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
 				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
@@ -2648,6 +2663,7 @@
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */,
+				1845DA87197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
 				CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 			);
@@ -2712,9 +2728,11 @@
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEA18B2F7AF00668660 /* DebugLogger.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
+				1845DA86197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
+				1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
@@ -2763,6 +2781,7 @@
 				18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
+				1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
@@ -2774,6 +2793,7 @@
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
+				1845DA781979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
 				CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,

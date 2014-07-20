@@ -7,13 +7,22 @@
 //
 
 #import "FightingWalrusInterface.h"
+#import "GCSFirmwareUtils.h"
 #import "DebugLogger.h"
 
 NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
 NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
+@interface FightingWalrusInterface ()
+@property (nonatomic, strong) NSMutableArray *accessoryList;
+@property (nonatomic, strong) EASession *session;
+@property (nonatomic, strong) NSString *enabledAccessoryProtocol;
+@property (nonatomic, strong) NSArray *supportedAccessoryProtocols;
+@end
+
 @implementation FightingWalrusInterface
+
 +(FightingWalrusInterface*)createWithProtocolString:(NSString *) protocolString {
     FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] initWithProtocolString:protocolString];
 
@@ -21,6 +30,11 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         [DebugLogger console:@"FightingWalrusInterface: Starting accessory session.."];
         [fightingWalrusInterface openSession];
         [DebugLogger console:@"FightingWalrusInterface: Ready."];
+
+        // check if we need to update fwr firmware
+        if ([GCSFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:fightingWalrusInterface.selectedAccessory.firmwareRevision]) {
+            [GCSFirmwareUtils notifyFwrFirmwareUpateNeeded];
+        }
         return fightingWalrusInterface;
     } else {
         [DebugLogger console:@"FightingWalrusInterface: No accessory found."];
@@ -41,85 +55,85 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         _doubleTab = @YES;
 
         NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
-        if ([_accessoryList count]) {
+        if ([self.accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
                 BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Fighting Walrus LLC"];
                 if(comparison){
-                    _selectedAccessory = currentAccessory;
+                    self.selectedAccessory = currentAccessory;
                     NSLog(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
                     break;
                 }
             }
 
-            NSArray *protocolStrings = [_selectedAccessory protocolStrings];
+            NSArray *protocolStrings = [self.selectedAccessory protocolStrings];
             self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];
             NSLog(@"protocolString: %@", self.protocolString);
         }
     }
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:) name:EAAccessoryDidConnectNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:) name:EAAccessoryDidDisconnectNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:)
+                                                 name:EAAccessoryDidConnectNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:)
+                                                 name:EAAccessoryDidDisconnectNotification object:nil];
 
     [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
 
     return self;
 }
 
-- (EAAccessory *)selectedAccessory
-{
+- (EAAccessory *)selectedAccessory {
     if (_selectedAccessory == nil) {
-        _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-        NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
-        if ([_accessoryList count]) {
-            _selectedAccessory = [_accessoryList objectAtIndex:0];
-            NSArray *protocolStrings = [_selectedAccessory protocolStrings];
+        self.accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
+        NSLog(@"accessory count: %lu", (unsigned long)[self.accessoryList count]);
+        if ([self.accessoryList count]) {
+            _selectedAccessory = [self.accessoryList objectAtIndex:0];
+            NSArray *protocolStrings = [self.selectedAccessory protocolStrings];
             self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];;
         }
     }
     return _selectedAccessory;
 }
 
-- (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString
-{
+- (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString {
 	NSLog(@"FightingWalrusInterface: setupControllerForAccessory:");
-    _selectedAccessory = accessory;
-    _protocolString = [protocolString copy];
+    self.selectedAccessory = accessory;
+    self.protocolString = [protocolString copy];
 }
 
-- (BOOL)openSession
-{
-	if (_session == nil) {
+- (BOOL)openSession {
+	if (self.session == nil) {
         NSLog(@"FightingWalrusInterface: openSession");
-        [_selectedAccessory setDelegate:self];
-        _session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];
+        [self.selectedAccessory setDelegate:self];
+        self.session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];
 
-        if (_session) {
-            [[_session inputStream] setDelegate:self];
-            [[_session inputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [[_session inputStream] open];
+        if (self.session) {
+            [[self.session inputStream] setDelegate:self];
+            [[self.session inputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [[self.session inputStream] open];
             
-            [[_session outputStream] setDelegate:self];
-            [[_session outputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [[_session outputStream] open];
+            [[self.session outputStream] setDelegate:self];
+            [[self.session outputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [[self.session outputStream] open];
             NSLog(@"opened the session");
         } else{
             NSLog(@"creating session failed");
         }
     }
 
-    return (_session != nil);
+    return (self.session != nil);
 }
 
 - (void)closeSession {
 	NSLog(@"FightingWalrusInterface: closeSession");
-    [[_session inputStream] close];
-    [[_session inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [[_session inputStream] setDelegate:nil];
-    [[_session outputStream] close];
-    [[_session outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [[_session outputStream] setDelegate:nil];
+    [[self.session inputStream] close];
+    [[self.session inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [[self.session inputStream] setDelegate:nil];
+    [[self.session outputStream] close];
+    [[self.session outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [[self.session outputStream] setDelegate:nil];
     
-    _session = nil;
+    self.session = nil;
 	NSLog(@"closed the session");
 }
 
@@ -128,13 +142,13 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 - (void)writeData:(NSData *)data {
-    [_writeDataBuffer appendData:data];
+    [self.writeDataBuffer appendData:data];
     [self writeDataFromBufferToStream];
 }
 
 - (BOOL)isAccessoryConnected {
     NSLog(@"FightingWalrusInterface: isAccessoryConnected");
-    return (_selectedAccessory && [_selectedAccessory isConnected]);
+    return (self.selectedAccessory && [self.selectedAccessory isConnected]);
 }
 
 
@@ -219,7 +233,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 #pragma mark - Internal
 - (void)writeDataFromBufferToStream {
     NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
-    while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
+    while (([[self.session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
 
         NSLog(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
@@ -227,7 +241,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
             NSLog(@"write error");
             break;
         } else if (bytesWritten > 0) {
-            [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
+            [self.writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
         }
     }
 }
@@ -238,11 +252,11 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 - (void)readDataFromStreamToBuffer {
     NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
     uint8_t buf[EAD_INPUT_BUFFER_SIZE];
-    while ([[_session inputStream] hasBytesAvailable]) {
-        NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
+    while ([[self.session inputStream] hasBytesAvailable]) {
+        NSInteger bytesRead = [[self.session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
         NSLog(@"read %ld bytes from input stream", (long)bytesRead);
 
-        [self produceData:buf length:bytesRead];
+        [self produceData:buf length:(int)bytesRead];
     }
 }
 

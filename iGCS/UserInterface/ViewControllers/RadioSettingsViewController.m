@@ -156,15 +156,18 @@ static void *SVKvoContext = &SVKvoContext;
     [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
     [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
 
-    UIButton *updateFWRFirmware = [UIButton newAutoLayoutView];
-    [updateFWRFirmware setTitle:@"Update Firmware" forState:UIControlStateNormal];
-    [updateFWRFirmware addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
-    [updateFWRFirmware setBackgroundColor:[GCSThemeManager sharedInstance].appTintColor];
+    // normally the app will propt if a connection is opened to a FWR that needs updated
+    // we want an easy way to test the firmware updater.
+#if DEBUG
+    UIButton *fwrFirmwareUpdateButton = [UIButton newAutoLayoutView];
+    [fwrFirmwareUpdateButton setTitle:@"Update Firmware" forState:UIControlStateNormal];
+    [fwrFirmwareUpdateButton addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
+    [fwrFirmwareUpdateButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.view addSubview:fwrFirmwareUpdateButton];
 
-    [self.view addSubview:updateFWRFirmware];
-
-    [updateFWRFirmware autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
-    [updateFWRFirmware autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
+    [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
+    [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
+#endif
 
     NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
 
@@ -225,7 +228,7 @@ static void *SVKvoContext = &SVKvoContext;
     NSLog(@"Update FWR Firmware");
     [[CommController sharedInstance] startFWRFirmwareUpdateMode];
 
-    [self performSelector:@selector(sendFirmwareToFWR) withObject:self afterDelay:1.0f];
+    [self performSelector:@selector(sendFirmwareToFWR) withObject:self afterDelay:0.2f];
 }
 
 -(void)sendFirmwareToFWR {
