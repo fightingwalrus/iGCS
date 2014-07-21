@@ -20,7 +20,6 @@
 @class WaypointsViewController;
 @class DebugViewController;
 @class DataRateRecorder;
-@class GCSFirmwareUtils;
 
 @interface MainViewController : UITabBarController <UIAlertViewDelegate>
 

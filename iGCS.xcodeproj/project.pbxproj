@@ -158,6 +158,9 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
+		18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
+		18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
 		18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
 		18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
 		18B7F2911955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
@@ -750,6 +753,8 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
+		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
 		18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+CommandBatches.m"; sourceTree = "<group>"; };
 		18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Private.h; sourceTree = "<group>"; };
@@ -1891,6 +1896,8 @@
 				CA078230192716A0007FCFD5 /* SiKFirmware.m */,
 				1845DA761979E5CD008945F8 /* GCSFirmwareUtils.h */,
 				1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */,
+				18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */,
+				18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */,
 			);
 			name = Firmware;
 			sourceTree = "<group>";
@@ -2652,6 +2659,7 @@
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
 				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
 				1845DA4A19778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
+				18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
 				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
@@ -2778,6 +2786,7 @@
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
+				18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
@@ -2847,6 +2856,7 @@
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				49C1FA1216DC74DB00BAE96B /* Logger.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
