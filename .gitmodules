@@ -4,6 +4,3 @@
 [submodule "submodules/core-plot"]
 	path = submodules/core-plot
 	url = git://github.com/fightingwalrus/core-plot.git
-[submodule "submodules/firmwarebins"]
-	path = submodules/firmwarebins
-	url = git@bitbucket.org:fightingwalrus/fwrfirmwarebins.git

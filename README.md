@@ -25,7 +25,7 @@ Recent additions to the project include the kxvideo submodule. kxvideo in turn r
 
 1. clone the project
 2. cd iGCS
-3. git submodule update --init --recursive
+3. ./scripts/updatedepends.sh
 4. cd submodules/kxmovie
 5. rake build_ffmpeg
 (The first time you will be warned to install the gas preprocessor, follow the instructions provided)

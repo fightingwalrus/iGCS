@@ -2589,7 +2589,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/scripts/copybins.sh";
+			shellScript = "${SRCROOT}/scripts/copydepends.sh";
 		};
 		18CEA3F3197D941E005FFA8B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2602,7 +2602,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/scripts/copybins.sh";
+			shellScript = "${SRCROOT}/scripts/copydepends.sh";
 		};
 		18CEA3F4197D9425005FFA8B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2615,7 +2615,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/scripts/copybins.sh";
+			shellScript = "${SRCROOT}/scripts/copydepends.sh";
 		};
 		CA499F8814DE33BC00FCC9FB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
