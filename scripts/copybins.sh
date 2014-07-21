@@ -3,5 +3,8 @@
 # are files that don't exist so it won't hinder development by
 # those without access to the firmwarebins submodule.
 
-cp -R ${SRCROOT}/submodules/firmwarebins/ \
-${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/
+FIRMWARE_BINS_DIR=${SRCROOT}/submodules/firmwarebins/
+if [ -d "$FIRMWARE_BINS_DIR" ]; then
+  cp -R $FIRMWARE_BINS_DIR \
+  ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/
+fi
