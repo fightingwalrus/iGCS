@@ -2328,6 +2328,7 @@
 				182FFA98181F0C9100A8C31C /* Sources */,
 				182FFACC181F0C9100A8C31C /* Frameworks */,
 				182FFAEB181F0C9100A8C31C /* Resources */,
+				18CEA3F4197D9425005FFA8B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2345,6 +2346,7 @@
 				18B9FAC318B2F7AF00668660 /* Sources */,
 				18B9FAF818B2F7AF00668660 /* Frameworks */,
 				18B9FB1618B2F7AF00668660 /* Resources */,
+				18CEA3F3197D941E005FFA8B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2363,6 +2365,7 @@
 				CA499F5A14DE33BC00FCC9FB /* Sources */,
 				CA499F5B14DE33BC00FCC9FB /* Frameworks */,
 				CA499F5C14DE33BC00FCC9FB /* Resources */,
+				1845DA8C197D8961008945F8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2575,6 +2578,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1845DA8C197D8961008945F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/scripts/copybins.sh";
+		};
+		18CEA3F3197D941E005FFA8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/scripts/copybins.sh";
+		};
+		18CEA3F4197D9425005FFA8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/scripts/copybins.sh";
+		};
 		CA499F8814DE33BC00FCC9FB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
