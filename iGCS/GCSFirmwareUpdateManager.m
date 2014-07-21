@@ -71,7 +71,7 @@
     [self.targetView bringSubviewToFront:self.activityIndicatorView];
     [self.activityIndicatorView startAnimating];
 
-    [self performSelector:@selector(stopAndRemoveActivityIndicator) withObject:self afterDelay:5.0f];
+    [self performSelector:@selector(stopAndRemoveActivityIndicator) withObject:self afterDelay:15.0f];
 }
 
 -(void)stopAndRemoveActivityIndicator {
