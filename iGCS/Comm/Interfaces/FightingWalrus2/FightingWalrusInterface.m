@@ -7,6 +7,7 @@
 //
 
 #import "FightingWalrusInterface.h"
+#import "GCSFWRFirmwareInterface.h"
 #import "GCSFirmwareUtils.h"
 #import "DebugLogger.h"
 
@@ -31,10 +32,11 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         [fightingWalrusInterface openSession];
         [DebugLogger console:@"FightingWalrusInterface: Ready."];
 
-        // check if we need to update fwr firmware
-        if ([GCSFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:fightingWalrusInterface.selectedAccessory.firmwareRevision]) {
-            [GCSFirmwareUtils notifyFwrFirmwareUpateNeeded];
-        }
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [fightingWalrusInterface notifyIfFirmwareUpdateNeeded];
+        });
+
         return fightingWalrusInterface;
     } else {
         [DebugLogger console:@"FightingWalrusInterface: No accessory found."];
@@ -80,6 +82,10 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
 
     return self;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (EAAccessory *)selectedAccessory {
@@ -276,6 +282,14 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     }
 
     return [protocols objectAtIndex:idx];
+}
+
+-(void)notifyIfFirmwareUpdateNeeded {
+    // check if we need to update fwr firmware
+
+    if ([GCSFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:self.selectedAccessory.firmwareRevision]) {
+        [GCSFirmwareUtils notifyFwrFirmwareUpateNeeded];
+    }
 }
 
 @end

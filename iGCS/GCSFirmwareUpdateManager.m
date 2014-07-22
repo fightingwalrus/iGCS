@@ -10,6 +10,7 @@
 #import "GCSFWRFirmwareInterface.h"
 #import "GCSFirmwareUtils.h"
 #import "GCSActivityIndicatorView.h"
+#import "CommController.h"
 
 @interface GCSFirmwareUpdateManager ()
 @property (nonatomic, strong) UIAlertView *updateFirmwareAlert;
@@ -96,8 +97,10 @@
         [self showActivityIndicator];
 
         // 2. start firmware upload
-        //    [[CommController sharedInstance] startFWRFirmwareUpdateMode];
-        //    [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
+            [[CommController sharedInstance] startFWRFirmwareUpdateMode];
+            [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
+    } else {
+        [self stopAndRemoveActivityIndicator];
     }
 }
 
