@@ -284,9 +284,6 @@
 		18D89163198104EC001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916919810517001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
-		18D8917219817CB1001ED845 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916B19817CB1001ED845 /* CHANGELOG */; };
-		18D8917319817CB1001ED845 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916B19817CB1001ED845 /* CHANGELOG */; };
-		18D8917419817CB1001ED845 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916B19817CB1001ED845 /* CHANGELOG */; };
 		18D8917519817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
 		18D8917619817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
 		18D8917719817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
@@ -2564,7 +2561,6 @@
 				1875979618910AC50012DF6D /* Icon-144.png in Resources */,
 				1842F8CD1892D2F80050F680 /* Icon-40.png in Resources */,
 				182FFAFB181F0C9100A8C31C /* kxmovie.bundle in Resources */,
-				18D8917419817CB1001ED845 /* CHANGELOG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2600,7 +2596,6 @@
 				18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */,
 				18B9FB2E18B2F7AF00668660 /* Icon-40.png in Resources */,
 				18B9FB2F18B2F7AF00668660 /* kxmovie.bundle in Resources */,
-				18D8917319817CB1001ED845 /* CHANGELOG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2623,7 +2618,6 @@
 				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
 				1842F8CE1892D2F80050F680 /* Icon-50.png in Resources */,
 				1875979318910AC50012DF6D /* Icon-72.png in Resources */,
-				18D8917219817CB1001ED845 /* CHANGELOG in Resources */,
 				18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
