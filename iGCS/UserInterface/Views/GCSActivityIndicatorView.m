@@ -13,11 +13,7 @@
 
 - (id)init
 {
-    self = [super initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    if (self) {
-        [self configureView];
-    }
-    return self;
+    return [self initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 }
 
 -(id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
