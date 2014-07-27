@@ -15,6 +15,9 @@ profile
 DerivedData
 .idea/
 *.hmap
+*.ipa
+*.xcarchive
+dependencies/
 
 # Project specific
 TODO.txt
