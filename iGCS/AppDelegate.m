@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 
-// API keys for HOCKEY etc are passed in via scrips/build.sh from
-// a private xcconfig file using GCC_PREPROCESSOR_DEFINITIONS
+// API keys for hockeyapp.net etc are passed in via scrips/build.sh
+// from a private xcconfig file using GCC_PREPROCESSOR_DEFINITIONS
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
 #import <HockeySDK/HockeySDK.h>
 #endif
