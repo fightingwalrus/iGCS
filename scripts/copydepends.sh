@@ -6,6 +6,6 @@
 
 DEPS_DIR=${SRCROOT}/dependencies/
 if [ -d "$DEPS_DIR" ]; then
-  cp -R $DEPS_DIR \
-  ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/
+  cp -R "$DEPS_DIR" \
+  "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/"
 fi
