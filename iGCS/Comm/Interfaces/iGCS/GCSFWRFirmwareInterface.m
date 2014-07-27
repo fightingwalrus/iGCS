@@ -43,9 +43,7 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
 -(void)updateFwrFirmware {
     NSLog(@"updateFwrFirmware");
     NSData *firmware = [FileUtils dataFromFileInMainBundleWithName:@"walrus.bin"];
-    NSUInteger firmwareLength = [firmware length];
 
-    //Magic token
     const unsigned char magicToken[4] = {0xAA,0xBB,0xCC,0xDD};
 
     // init crc
@@ -63,8 +61,10 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
     digest[3] = crc & 0xFF;
 
     NSLog(@"crc: %lu", crc);
+
+    NSUInteger firmwareLength = [firmware length];
+
     [self produceData:magicToken length:4];
-    
     [self produceData:(uint8_t*)(UInt32)&firmwareLength length:sizeof((UInt32)firmwareLength)];
     [self produceData:(uint8_t*)digest length:4];
 
