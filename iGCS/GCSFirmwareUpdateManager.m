@@ -46,7 +46,7 @@
 
 -(void)alertUserToUpateFirmware {
     self.updateFirmwareAlert = [[UIAlertView alloc] initWithTitle:@"Update Firmware"
-                                                          message:@"The Fighting Walrus Radio firmware needs updated."
+                                                          message:@"The Fighting Walrus Radio firmware needs upgraded."
                                                          delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
