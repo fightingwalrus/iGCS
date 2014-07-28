@@ -36,10 +36,9 @@ AD_HOC_PROVISION_FILE="$PROJECT_ROOT/dependencies/iGCS__Ad_hoc.mobileprovision"
 cd $PROJECT_ROOT
 
 echo "Building and archiving"
-# pipe output from xcodebuild to dev null, should still see std error.
 xcodebuild -project iGCS.xcodeproj -sdk iphoneos7.1 clean \
 -scheme iGCS archive -xcconfig "$PROJECT_ROOT/dependencies/privateConfig.xcconfig" -archivePath "$ARCHIVE_PATH"
-echo "Done archiving"
+echo "Done building and archiving"
 
 echo "Signing app $ARCHIVE_PATH.xcarchive"
 codesign -s "$SIGNING_IDENTITY" "$ARCHIVE_PATH.xcarchive"
