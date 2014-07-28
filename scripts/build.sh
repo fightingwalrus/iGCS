@@ -42,6 +42,9 @@ fi
 
 cd $PROJECT_ROOT
 
+echo "Bump all build version numbers"
+agvtool bump -all
+
 echo "Building and archiving"
 xcodebuild -project iGCS.xcodeproj -sdk iphoneos7.1 clean \
 -scheme iGCS archive -xcconfig "$PROJECT_ROOT/dependencies/privateConfig.xcconfig" -archivePath "$ARCHIVE_PATH"
@@ -65,11 +68,12 @@ zip "$DSYM_FILE_ZIP" "$DSYM_FILE"
 
 #upload ipa and zipped dSYM file to hockeyapp.net
 if [ -e "$IPA_FILE" ]; then
+CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
 curl \
   -F "status=2" \
   -F "notify=0" \
   -F "mandatory=0" \
-  -F "notes=Uploaded by build script." \
+  -F "notes=Uploaded by build script - (git hash: $CURRENT_GIT_HASH)" \
   -F "notes_type=0" \
   -F "ipa=@$IPA_FILE" \
   -F "dsym=@$DSYM_FILE_ZIP" \
