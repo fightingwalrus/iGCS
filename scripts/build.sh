@@ -33,6 +33,13 @@ ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
 SIGNING_IDENTITY="89632EFC233C40AF85B9FB45634F8601266031AF"
 AD_HOC_PROVISION_FILE="$PROJECT_ROOT/dependencies/iGCS__Ad_hoc.mobileprovision"
 
+API_KEYS_FILE="$PROJECT_ROOT/dependencies/apikeys.txt"
+
+if [ -e "$API_KEYS_FILE" ]; then
+source $API_KEYS_FILE
+echo "HOCKEY API TOKEN: $HOCKEYAPP_IGCS_BETA_API_TOKEN"
+fi
+
 cd $PROJECT_ROOT
 
 echo "Building and archiving"
@@ -48,8 +55,30 @@ if [ -d "$ARCHIVE_PATH.xcarchive" ]; then
 echo "Creating ipa file"
 if [ -e "$AD_HOC_PROVISION_FILE" ]; then
 IPA_FILE="$ARCHIVE_PATH.ipa"
+DSYM_FILE="$ARCHIVE_PATH.xcarchive/dSYMs/iGCS.app.dSYM"
+DSYM_FILE_ZIP="$DSYM_FILE.zip"
+
 xcrun -sdk iphoneos7.1 PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
 -o "$IPA_FILE" --embed "$AD_HOC_PROVISION_FILE"
+
+zip "$DSYM_FILE_ZIP" "$DSYM_FILE"
+
+#upload ipa and zipped dSYM file to hockeyapp.net
+if [ -e "$IPA_FILE" ]; then
+curl \
+  -F "status=2" \
+  -F "notify=0" \
+  -F "mandatory=0" \
+  -F "notes=Uploaded by build script." \
+  -F "notes_type=0" \
+  -F "ipa=@$IPA_FILE" \
+  -F "dsym=@$DSYM_FILE_ZIP" \
+  -H "X-HockeyAppToken: $HOCKEYAPP_IGCS_BETA_API_TOKEN" \
+  https://rink.hockeyapp.net/api/2/apps/upload
+else
+  echo "No ipa file. Can't upload to hockeyapp.net"
+fi
+
 else
 echo "Missing provisioning profile: $AD_HOC_PROVISION_FILE"
 fi
