@@ -10,6 +10,8 @@
 #import "DebugViewController.h"
 #import "DebugLogger.h"
 
+NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
+
 typedef NS_ENUM(NSUInteger, GCSAccessory) {
     GCSAccessoryRovingBluetooth,
     GCSAccessoryRedpark,
@@ -93,6 +95,7 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
 
     } else {
         NSLog(@"No supported accessory connected");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
     }
 }
 
@@ -109,6 +112,7 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
 
     } else {
         NSLog(@"No supported accessory connected");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
     }
 }
 

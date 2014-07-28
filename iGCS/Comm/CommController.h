@@ -60,5 +60,6 @@
 -(void) startBluetoothRx;
 -(void) closeAllInterfaces;
 
-
 @end
+
+extern NSString * const GCSCommControllerFightingWalrusRadioNotConnected;

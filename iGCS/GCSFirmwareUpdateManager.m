@@ -15,6 +15,7 @@
 @interface GCSFirmwareUpdateManager ()
 @property (nonatomic, strong) UIAlertView *updateFirmwareAlert;
 @property (nonatomic, strong) UIAlertView *firmwareUpdateCompleteAlert;
+@property (nonatomic, strong) UIAlertView *fwrNotConnectedAlert;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, weak) UIView *targetView;
 @end
@@ -35,6 +36,9 @@
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateFailed)
                                                      name:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFwrNotConnected)
+                                                     name:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
 
     }
     return self;
@@ -61,6 +65,15 @@
                                                         cancelButtonTitle:@"OK"
                                                         otherButtonTitles:nil];
     [self.firmwareUpdateCompleteAlert show];
+}
+
+-(void)alertViewFwrNotConnected {
+    self.fwrNotConnectedAlert = [[UIAlertView alloc] initWithTitle:@"Accessory not connected"
+                                                          message:@"The Fighting Walrus Radio is not connected."
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+    [self.fwrNotConnectedAlert show];
 }
 
 -(void)showActivityIndicator {
@@ -99,6 +112,7 @@
         // 2. start firmware upload
             [[CommController sharedInstance] startFWRFirmwareUpdateMode];
             [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
+
     } else {
         [self stopAndRemoveActivityIndicator];
     }
