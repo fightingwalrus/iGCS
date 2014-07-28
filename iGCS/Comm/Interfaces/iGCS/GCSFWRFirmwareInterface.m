@@ -22,7 +22,8 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
     NSString *response = [[NSString alloc] initWithData:data
                                                  encoding:NSASCIIStringEncoding];
 
-    NSLog(@"GCSFWRFirmwareInterface.consumeData: %@", response);
+    NSAssert([response isEqualToString:@"SUCCESS"] || [response isEqualToString:@"FAIL"],
+             @"Response from firmware update attempt must be either SUCCESS or FAIL");
 
     if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
         NSLog(@"FWR Firmware updaded successfully");
