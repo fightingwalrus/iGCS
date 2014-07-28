@@ -23,8 +23,6 @@
 # THE SOFTWARE.
 
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
-ARCHIVE_NAME=igcs-app
-ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
 
 # "iPhone Distribution: Fighting Walrus, LLC (V69******N)"
 # use SHA-1 for codesign -s instead of name to avoid 
@@ -44,6 +42,9 @@ cd $PROJECT_ROOT
 
 echo "Bump all build version numbers"
 agvtool bump -all
+
+ARCHIVE_NAME="igcs-app-build-$(agvtool vers -terse)"
+ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
 
 echo "Building and archiving"
 xcodebuild -project iGCS.xcodeproj -sdk iphoneos7.1 clean \
