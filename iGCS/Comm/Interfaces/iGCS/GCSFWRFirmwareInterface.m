@@ -44,6 +44,11 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
     NSLog(@"updateFwrFirmware");
     NSData *firmware = [FileUtils dataFromFileInMainBundleWithName:@"walrus.bin"];
 
+    if (!firmware) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+        return;
+    }
+
     const unsigned char magicToken[4] = {0xAA,0xBB,0xCC,0xDD};
 
     // init crc

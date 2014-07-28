@@ -46,8 +46,12 @@
 
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSString *filePath = [mainBundle pathForResource:resourceName ofType:resourceType];
-    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
 
+    if (!fileName) {
+        return nil;
+    }
+
+    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
     return [NSData dataWithContentsOfFile:[fileURL path]];
 }
 @end
