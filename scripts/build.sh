@@ -38,7 +38,7 @@ source $API_KEYS_FILE
 echo "HOCKEY API TOKEN: $HOCKEYAPP_IGCS_BETA_API_TOKEN"
 fi
 
-cd $PROJECT_ROOT
+cd "$PROJECT_ROOT"
 
 echo "Bump all build version numbers"
 agvtool bump -all
@@ -59,25 +59,30 @@ if [ -d "$ARCHIVE_PATH.xcarchive" ]; then
 echo "Creating ipa file"
 if [ -e "$AD_HOC_PROVISION_FILE" ]; then
 IPA_FILE="$ARCHIVE_PATH.ipa"
-DSYM_FILE="$ARCHIVE_PATH.xcarchive/dSYMs/iGCS.app.dSYM"
-DSYM_FILE_ZIP="$DSYM_FILE.zip"
+
+DSYM_DIR="$ARCHIVE_PATH.xcarchive/dSYMs/"
+DYSM_FILE_NAME="iGCS.app.dSYM"
+DSYM_FILE_PATH="$DSYM_DIR/$DYSM_FILE_NAME"
 
 xcrun -sdk iphoneos7.1 PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
 -o "$IPA_FILE" --embed "$AD_HOC_PROVISION_FILE"
 
-zip "$DSYM_FILE_ZIP" "$DSYM_FILE"
+cd "$DSYM_DIR"
+zip -r "$DYSM_FILE_NAME.zip" "$DYSM_FILE_NAME"
 
 #upload ipa and zipped dSYM file to hockeyapp.net
 if [ -e "$IPA_FILE" ]; then
 CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
+CURRENT_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
 curl \
   -F "status=2" \
   -F "notify=0" \
   -F "mandatory=0" \
-  -F "notes=Uploaded by build script - (git hash: $CURRENT_GIT_HASH)" \
+  -F "notes=Uploaded by build script - (branch: $CURRENT_GIT_BRANCH git hash: $CURRENT_GIT_HASH)" \
   -F "notes_type=0" \
   -F "ipa=@$IPA_FILE" \
-  -F "dsym=@$DSYM_FILE_ZIP" \
+  -F "dsym=@$DYSM_FILE_NAME.zip" \
   -H "X-HockeyAppToken: $HOCKEYAPP_IGCS_BETA_API_TOKEN" \
   https://rink.hockeyapp.net/api/2/apps/upload
 else
