@@ -47,7 +47,7 @@
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSString *filePath = [mainBundle pathForResource:resourceName ofType:resourceType];
 
-    if (!fileName) {
+    if (!filePath) {
         return nil;
     }
 
