@@ -227,8 +227,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     // where a new radio is connected that also needs a firmware
     // update. Should get this notification on next launch if
     // dissconect happened while in background.
-    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:GCSFimrwareVersionInBundleKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [GCSFirmwareUtils resetFirmwareVersionInUserDefaults];
 
     if (![self isAccessoryConnected]){
 		[self closeSession];

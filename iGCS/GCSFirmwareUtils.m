@@ -31,4 +31,9 @@ NSString * const GCSFirmwareVersionInBundle = @"0.0.5";
     [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmwareUtilsFwrFirmwareNeedsUpdated object:nil];
 }
 
++(void)resetFirmwareVersionInUserDefaults {
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:GCSFimrwareVersionInBundleKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end
