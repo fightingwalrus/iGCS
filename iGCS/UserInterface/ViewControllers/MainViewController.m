@@ -17,17 +17,13 @@
 #import "DataRateRecorder.h"
 
 #import "GaugeViewCommon.h"
+#import "GCSFirmwareUpdateManager.h"
 
+@interface MainViewController ()
+@property (nonatomic, strong) GCSFirmwareUpdateManager *firmwareManager;
+@end
 
 @implementation MainViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {    
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,7 +39,6 @@
     }
 #endif
 }
-
 
 - (void)awakeFromNib
 {
@@ -69,6 +64,8 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.tabBar setHidden:YES];
     }
+
+    self.firmwareManager = [[GCSFirmwareUpdateManager alloc] initWithTargetView:self.view];
 }
 
 #pragma mark - View lifecycle
@@ -110,15 +107,5 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
-
-
-
-
-
-
-
-
-
-
 
 @end

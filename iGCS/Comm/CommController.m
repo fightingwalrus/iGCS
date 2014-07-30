@@ -10,6 +10,8 @@
 #import "DebugViewController.h"
 #import "DebugLogger.h"
 
+NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
+
 typedef NS_ENUM(NSUInteger, GCSAccessory) {
     GCSAccessoryRovingBluetooth,
     GCSAccessoryRedpark,
@@ -93,8 +95,27 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
 
     } else {
         NSLog(@"No supported accessory connected");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
     }
 }
+
+-(void)startFWRFirmwareUpdateMode {
+    NSLog(@"startFWRConfigMode");
+    [self closeAllInterfaces];
+
+    GCSAccessory accessory = [self connectedAccessory];
+    if (accessory == GCSAccessoryFightingWalrusRadio) {
+
+        self.fwrFirmwareInterface = [[GCSFWRFirmwareInterface alloc] init];
+        self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringUpdate];
+        [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.fwrFirmwareInterface];
+
+    } else {
+        NSLog(@"No supported accessory connected");
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
+    }
+}
+
 
 #pragma mark -
 #pragma mark connection managment

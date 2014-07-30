@@ -55,6 +55,7 @@
 	<array>
 		<string>com.fightingwalrus.telemetry</string>
 		<string>com.fightingwalrus.config</string>
+		<string>com.fightingwalrus.update</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

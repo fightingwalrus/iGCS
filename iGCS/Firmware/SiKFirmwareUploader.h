@@ -11,13 +11,13 @@
 
 typedef unsigned char BYTE;
 
-@protocol FirmwareUploaderPort <NSObject>
+@protocol SikFirmwareUploaderPort <NSObject>
 - (BOOL) send:(BYTE)c;  // Send a single byte down the port
 - (BYTE) recv;          // Receive a single byte from the port. Per reference implementation, should throw exception on "timeout"
 - (void) flushInput;    // Flush the port
 @end
 
 
-@interface FirmwareUploader : NSObject
-+ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(id<FirmwareUploaderPort>)port resetToDefault:(BOOL)resetToDefaults;
+@interface SiKFirmwareUploader : NSObject
++ (BOOL) uploadFirmware:(SiKFirmware*)fw  port:(id<SikFirmwareUploaderPort>)port resetToDefault:(BOOL)resetToDefaults;
 @end

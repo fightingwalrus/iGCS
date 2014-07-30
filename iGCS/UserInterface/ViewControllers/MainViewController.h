@@ -21,7 +21,7 @@
 @class DebugViewController;
 @class DataRateRecorder;
 
-@interface MainViewController : UITabBarController
+@interface MainViewController : UITabBarController <UIAlertViewDelegate>
 
 @property (weak) AppDelegate *appDelegate;
 
@@ -31,6 +31,5 @@
 @property (strong) CommsViewController *commsVC;
 @property (strong) DebugViewController *debugVC;
 
-@property (nonatomic, retain) DataRateRecorder *dataRateRecorder;
-
+@property (nonatomic, strong) DataRateRecorder *dataRateRecorder;
 @end

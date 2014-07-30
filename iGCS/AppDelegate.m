@@ -31,6 +31,7 @@ static AppDelegate *shared;
      @"videoDisplayLocation": @"corner"}];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
 #endif
     
     //TODO: Not sure this should exist
