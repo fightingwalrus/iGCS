@@ -199,7 +199,6 @@
 		18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
 		18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
-		18B9FAE718B2F7AF00668660 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
 		18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
 		18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD037180A67C000F5BCDB /* SetWPRequest.m */; };
 		18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEE7951734B32E006BEF6A /* MissionItemEditViewController.m */; };
@@ -342,9 +341,7 @@
 		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8D198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
-		18E58A8E198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
 		18E58A8F198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
-		18E58A90198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
 		18E58A91198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
 		18E58A92198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
 		18E58A93198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
@@ -2142,7 +2139,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					182FFA97181F0C9100A8C31C = {
 						DevelopmentTeam = V693RD5AXN;
@@ -2509,7 +2506,6 @@
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
-				18E58A90198993EB0025A516 /* FileUtils.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
@@ -2580,7 +2576,6 @@
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
-				18B9FAE718B2F7AF00668660 /* FileUtils.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
@@ -2674,7 +2669,6 @@
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,
 				CA056B6318C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
-				18E58A8E198993EB0025A516 /* FileUtils.m in Sources */,
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
@@ -3044,7 +3038,6 @@
 		CA499F9E14DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
