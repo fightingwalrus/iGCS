@@ -221,13 +221,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
     NSLog(@"FightingWalrusInterface: accessoryDisconnected: notification Name: %@",notification.name);
 
-    // When accessory disconnects reset the last firmware update
-    // version written so that we don't bypass the firmware
-    // version check on next reconnect. This should handle cases
-    // where a new radio is connected that also needs a firmware
-    // update. Should get this notification on next launch if
-    // dissconect happened while in background.
-    [GCSFirmwareUtils resetFirmwareVersionInUserDefaults];
+    [GCSFirmwareUtils setAwaitingPostUpgradeDisconnect:NO];
 
     if (![self isAccessoryConnected]){
 		[self closeSession];

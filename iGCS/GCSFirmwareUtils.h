@@ -11,10 +11,9 @@
 @interface GCSFirmwareUtils : NSObject
 +(BOOL)isFirmwareUpdateNeededWithFirmwareRevision:(NSString *) firmwareRevision;
 +(void)notifyFwrFirmwareUpateNeeded;
-+(void)resetFirmwareVersionInUserDefaults;
++(void)setAwaitingPostUpgradeDisconnect:(BOOL)value;
 @end
 
 extern NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated;
 extern NSString * const GCSCurrentFirmwareFileName;
 extern NSString * const GCSFirmwareVersionInBundle;
-extern NSString * const GCSFirmwareVersionInBundleKey;
