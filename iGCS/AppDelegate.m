@@ -28,7 +28,7 @@ static AppDelegate *shared;
 #ifdef VIDEOSTREAMING
     // set up defaults
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1,
-     @"videoDisplayLocation": @"corner", GCSFimrwareVersionInBundleKey, @"0"}];
+     @"videoDisplayLocation": @"corner", GCSFirmwareVersionInBundleKey, @"0"}];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     

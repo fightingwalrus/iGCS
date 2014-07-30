@@ -17,4 +17,4 @@
 extern NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated;
 extern NSString * const GCSCurrentFirmwareFileName;
 extern NSString * const GCSFirmwareVersionInBundle;
-extern NSString * const GCSFimrwareVersionInBundleKey;
+extern NSString * const GCSFirmwareVersionInBundleKey;

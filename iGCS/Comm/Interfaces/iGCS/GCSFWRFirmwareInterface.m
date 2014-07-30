@@ -27,7 +27,7 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
 
     if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
         NSLog(@"FWR Firmware updaded successfully");
-        [[NSUserDefaults standardUserDefaults] setObject:GCSFirmwareVersionInBundle forKey:GCSFimrwareVersionInBundleKey];
+        [[NSUserDefaults standardUserDefaults] setObject:GCSFirmwareVersionInBundle forKey:GCSFirmwareVersionInBundleKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateSuccess object:nil];
 
