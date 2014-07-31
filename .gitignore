@@ -20,6 +20,7 @@ DerivedData
 dependencies/
 
 # Project specific
+build/
 TODO.txt
 iGCS.xcodeproj/project.xcworkspace
 iGCS.xcodeproj/xcuserdata
