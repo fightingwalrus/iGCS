@@ -9,7 +9,11 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
-	<array/>
+	<array>
+		<string>Icon-29</string>
+		<string>Icon-58</string>
+		<string>Icon-80</string>
+	</array>
 	<key>CFBundleIconFiles~ipad</key>
 	<array>
 		<string>Icon</string>
