@@ -16,9 +16,6 @@
 
 #import "CommController.h"
 
-
-#import "DebugLogger.h"
-
 @implementation AppDelegate
 
 static AppDelegate *shared;

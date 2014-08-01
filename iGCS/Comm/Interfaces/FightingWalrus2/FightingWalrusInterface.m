@@ -9,7 +9,6 @@
 #import "FightingWalrusInterface.h"
 #import "GCSFWRFirmwareInterface.h"
 #import "GCSFirmwareUtils.h"
-#import "DebugLogger.h"
 
 NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
@@ -28,9 +27,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     FightingWalrusInterface *fightingWalrusInterface = [[FightingWalrusInterface alloc] initWithProtocolString:protocolString];
 
     if (fightingWalrusInterface.selectedAccessory) {
-        [DebugLogger console:@"FightingWalrusInterface: Starting accessory session.."];
         [fightingWalrusInterface openSession];
-        [DebugLogger console:@"FightingWalrusInterface: Ready."];
 
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -39,7 +36,6 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
         return fightingWalrusInterface;
     } else {
-        [DebugLogger console:@"FightingWalrusInterface: No accessory found."];
         return nil;
     }
 }
@@ -231,11 +227,8 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 #pragma mark - CommInterfaceProtocol
 
 -(void)consumeData:(const uint8_t *)bytes length:(int)length {
-    [DebugLogger console:@"FightingWalrusInterface: consumeData (stubbed)."];
-
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
-    
 }
 
 #pragma mark - Internal
