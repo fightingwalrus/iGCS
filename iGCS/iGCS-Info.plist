@@ -10,6 +10,9 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
+		<string>Icon-120</string>
+		<string>Icon-57</string>
+		<string>Icon-114</string>
 		<string>Icon-29</string>
 		<string>Icon-58</string>
 		<string>Icon-80</string>
