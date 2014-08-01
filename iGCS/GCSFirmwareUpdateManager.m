@@ -59,9 +59,7 @@
 
 -(void)alertViewFirmwareUpdateComplete {
     self.firmwareUpdateCompleteAlert = [[UIAlertView alloc] initWithTitle:@"Firmware Updated"
-                                                                  message:@"Fighting Walrus Radio's firmware has been updated. "
-                                                                           "Please disconnect and reconnect the Fighting Walrus "
-                                                                           "Radio to complete the upgrade."
+                                                                  message:@"Please disconnect and reconnect Fighting Walrus Radio to complete firmware upgrade."
                                                                  delegate:self
                                                         cancelButtonTitle:@"OK"
                                                         otherButtonTitles:nil];
