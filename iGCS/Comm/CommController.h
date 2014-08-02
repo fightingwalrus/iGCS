@@ -29,6 +29,14 @@
 #import "RedparkSerialCable.h"
 #endif
 
+
+typedef NS_ENUM(NSUInteger, GCSAccessory) {
+    GCSAccessoryRovingBluetooth,
+    GCSAccessoryRedpark,
+    GCSAccessoryFightingWalrusRadio,
+    GCSAccessoryNotSupported
+};
+
 @interface CommController : NSObject
 
 @property (nonatomic, retain) MainViewController *mainVC;
@@ -59,6 +67,7 @@
 -(void) startBluetoothTx;
 -(void) startBluetoothRx;
 -(void) closeAllInterfaces;
+-(GCSAccessory)connectedAccessory;
 
 @end
 
