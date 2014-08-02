@@ -79,7 +79,7 @@ fi
 
 #commit version bump
 APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-beta.$(agvtool vers -terse)"
-git commit -am "Bump version to $(agvtool vers -terse)"
+git commit -am "Auto build: Bump version to v$APP_FULL_VERSION_NAME"
 
 git tag -am "Auto version bump and tag during build" "v$APP_FULL_VERSION_NAME" 
 
