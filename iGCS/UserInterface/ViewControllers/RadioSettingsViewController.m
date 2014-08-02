@@ -10,6 +10,7 @@
 #import "CommController.h"
 #import "GCSRadioSettings.h"
 #import "GCSThemeManager.h"
+#import "GCSActivityIndicatorView.h"
 
 #import "PureLayout.h"
 
@@ -22,6 +23,8 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
+
+@property (strong, nonatomic) GCSActivityIndicatorView *activityIndicatorView;
 
 // UI elements
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersionLabel;
@@ -76,6 +79,8 @@ static void *SVKvoContext = &SVKvoContext;
         // radio has entered config mode
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
+
+        _activityIndicatorView = [[GCSActivityIndicatorView alloc] init];
     }
     return self;
 
@@ -85,13 +90,24 @@ static void *SVKvoContext = &SVKvoContext;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+-(void) viewWillAppear:(BOOL)animated {
     // configure subview
+    [super viewWillAppear:YES];
+
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self configureNavigationBar];
     [self configureViewLayout];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+
+    // configure and start spinner
+    [self.activityIndicatorView centerOnView:self.view];
+    [self.activityIndicatorView startAnimating];
 }
 
 -(void)configureNavigationBar {
@@ -105,7 +121,6 @@ static void *SVKvoContext = &SVKvoContext;
 
     self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                        target:self action:@selector(saveSettings:)];
-
 
     self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
     self.navigationItem.rightBarButtonItem = self.editBarButtonItem;

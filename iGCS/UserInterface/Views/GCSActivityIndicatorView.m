@@ -33,4 +33,11 @@
     self.layer.cornerRadius = 15.0f;
 }
 
+-(void)centerOnView:(UIView *)view {
+    CGSize thisViewSize = view.bounds.size;
+    self.center = CGPointMake(thisViewSize.width / 2.0, thisViewSize.height / 2.0);
+    [view addSubview:self];
+    [view bringSubviewToFront:self];
+}
+
 @end
