@@ -32,16 +32,53 @@ SIGNING_IDENTITY="89632EFC233C40AF85B9FB45634F8601266031AF"
 AD_HOC_PROVISION_FILE="$PROJECT_ROOT/dependencies/iGCS__Ad_hoc.mobileprovision"
 
 API_KEYS_FILE="$PROJECT_ROOT/dependencies/apikeys.txt"
+UPDATE_DEPENDS_SCRIPT="$PROJECT_ROOT/scripts/updatedepends.sh"
+
+# make sure private build dependencies are up to date
+source $UPDATE_DEPENDS_SCRIPT
 
 if [ -e "$API_KEYS_FILE" ]; then
 source $API_KEYS_FILE
 echo "HOCKEY API TOKEN: $HOCKEYAPP_IGCS_BETA_API_TOKEN"
+echo "HOCKEY APP ID: $HOCKEYAPP_IGCS_BETA_APP_ID"
 fi
 
 cd "$PROJECT_ROOT"
 
-echo "Bump all build version numbers"
-agvtool bump -all
+# https://gist.github.com/cjus/1047794
+# jsonValue() credit Tayyab Khan (itstayyab)
+function jsonValue() {
+  KEY=$1
+  awk -F"[,:}]" '{for(i=1;i<=NF;i++) {if($i~/'$KEY'\042/){print $(i+1)}}}' | tr -d '"' | sed -n 1p
+}
+
+# bump version taking into account latest version up on hockeyapp.net
+CURRENT_APP_VERSION=$(agvtool vers -terse)
+if [ $HOCKEYAPP_IGCS_BETA_API_TOKEN ]; then
+HOCKEY_IGCS_BETA_APP_LATEST_VERSION="$(curl -H "X-HockeyAppToken: $HOCKEYAPP_IGCS_BETA_API_TOKEN" \
+"https://rink.hockeyapp.net/api/2/apps/$HOCKEYAPP_IGCS_BETA_APP_ID/app_versions?page=1" | \
+jsonValue version)"
+
+echo $HOCKEY_IGCS_BETA_APP_LATEST_VERSION
+
+if [ $HOCKEY_IGCS_BETA_APP_LATEST_VERSION -ge $CURRENT_APP_VERSION ]; then
+  echo "Hockey version is greater than local version number"
+  # agvtool new-version -all 
+  NEW_APP_VERSION=$(($HOCKEY_IGCS_BETA_APP_LATEST_VERSION + 1))
+  echo "new version: $NEW_APP_VERSION"
+  agvtool new-version -all $NEW_APP_VERSION
+else
+  echo "Hockeyapp not greater than local version number. Bumping local target version number."
+  agvtool bump -all
+fi
+
+else
+  echo "No access to hockeyapp.net, bumping local target version numbers."
+  agvtool bump -all
+fi
+
+CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
+CURRENT_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 ARCHIVE_NAME="igcs-app-build-$(agvtool vers -terse)"
 ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
@@ -72,8 +109,6 @@ zip -r "$DYSM_FILE_NAME.zip" "$DYSM_FILE_NAME"
 
 #upload ipa and zipped dSYM file to hockeyapp.net
 if [ -e "$IPA_FILE" ]; then
-CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
-CURRENT_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 curl \
   -F "status=2" \
@@ -96,3 +131,4 @@ fi
 else
 echo "$ARCHIVE_NAME.xcarchive does not exist."
 fi
+
