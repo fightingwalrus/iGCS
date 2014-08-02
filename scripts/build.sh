@@ -62,18 +62,17 @@ jsonValue version)"
 echo $HOCKEY_IGCS_BETA_APP_LATEST_VERSION
 
 if [ $HOCKEY_IGCS_BETA_APP_LATEST_VERSION -ge $CURRENT_APP_VERSION ]; then
-  echo "Hockey version is greater than local version number"
-  # agvtool new-version -all 
+  echo "Version number on hockeyapp.net is greater than local version number"
   NEW_APP_VERSION=$(($HOCKEY_IGCS_BETA_APP_LATEST_VERSION + 1))
   echo "new version: $NEW_APP_VERSION"
   agvtool new-version -all $NEW_APP_VERSION
 else
-  echo "Hockeyapp not greater than local version number. Bumping local target version number."
+  echo "Version number on hockeyapp.net not greater than local version number. Bumping local target version numbers."
   agvtool bump -all
 fi
 
 else
-  echo "No access to hockeyapp.net, bumping local target version numbers."
+  echo "No access to hockeyapp.net. Bumping local target version numbers."
   agvtool bump -all
 fi
 
