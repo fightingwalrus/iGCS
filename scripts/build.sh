@@ -77,8 +77,17 @@ else
   agvtool bump -all
 fi
 
+#commit version bump
+APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-$(agvtool vers -terse)"
+git commit -am "Bump version to $(agvtool vers -terse)"
+
+git tag -am "Auto version bump and tag during build" "v$APP_FULL_VERSION_NAME" 
+
 CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
 CURRENT_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+#push version bump and tag
+git push origin $CURRENT_GIT_BRANCH --tag
 
 ARCHIVE_NAME="igcs-app-build-$(agvtool vers -terse)"
 ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
