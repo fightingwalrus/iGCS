@@ -12,13 +12,6 @@
 
 NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
 
-typedef NS_ENUM(NSUInteger, GCSAccessory) {
-    GCSAccessoryRovingBluetooth,
-    GCSAccessoryRedpark,
-    GCSAccessoryFightingWalrusRadio,
-    GCSAccessoryNotSupported
-};
-
 @implementation CommController
 
 +(CommController *)sharedInstance {

@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UIAlertView *updateFirmwareAlert;
 @property (nonatomic, strong) UIAlertView *firmwareUpdateCompleteAlert;
 @property (nonatomic, strong) UIAlertView *fwrNotConnectedAlert;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) GCSActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, weak) UIView *targetView;
 @end
 
@@ -77,13 +77,8 @@
 
 -(void)showActivityIndicator {
     self.activityIndicatorView = [[GCSActivityIndicatorView alloc] init];
-
-    CGSize thisViewSize = self.targetView.bounds.size;
-    self.activityIndicatorView.center = CGPointMake(thisViewSize.width / 2.0, thisViewSize.height / 2.0);
-    [self.targetView addSubview:self.activityIndicatorView];
-    [self.targetView bringSubviewToFront:self.activityIndicatorView];
+    [self.activityIndicatorView centerOnView:self.targetView];
     [self.activityIndicatorView startAnimating];
-
     [self performSelector:@selector(stopAndRemoveActivityIndicator) withObject:self afterDelay:15.0f];
 }
 
@@ -91,7 +86,6 @@
     [self.activityIndicatorView stopAnimating];
     [self.activityIndicatorView removeFromSuperview];
 }
-
 
 -(void)alertViewFirmwareUpdateFailed {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Firmware Updated Failed"

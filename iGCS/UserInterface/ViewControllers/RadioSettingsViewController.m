@@ -10,6 +10,7 @@
 #import "CommController.h"
 #import "GCSRadioSettings.h"
 #import "GCSThemeManager.h"
+#import "GCSActivityIndicatorView.h"
 
 #import "PureLayout.h"
 
@@ -22,6 +23,8 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
+
+@property (strong, nonatomic) GCSActivityIndicatorView *activityIndicatorView;
 
 // UI elements
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersionLabel;
@@ -76,6 +79,8 @@ static void *SVKvoContext = &SVKvoContext;
         // radio has entered config mode
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasEnteredConfigMode)
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
+
+        _activityIndicatorView = [[GCSActivityIndicatorView alloc] init];
     }
     return self;
 
@@ -85,30 +90,42 @@ static void *SVKvoContext = &SVKvoContext;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+-(void) viewWillAppear:(BOOL)animated {
     // configure subview
+    [super viewWillAppear:YES];
+
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self configureNavigationBar];
     [self configureViewLayout];
+
+    // enter config mode
+    [[CommController sharedInstance] closeAllInterfaces];
+    [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+
+    // configure and start spinner
+    [self.activityIndicatorView centerOnView:self.view];
+    [self.activityIndicatorView startAnimating];
 }
 
 -(void)configureNavigationBar {
     [self setTitle:@"Configure Radio"];
 
-    self.editBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                                                                   target:self action:@selector(edit:)];
-
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                          target:self action:@selector(cancelChanges:)];
-
+    // save button disabled on load
     self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                        target:self action:@selector(saveSettings:)];
-
+    self.saveBarButtonItem.enabled = NO;
 
     self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
-    self.navigationItem.rightBarButtonItem = self.editBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
 }
 
 -(void)configureViewLayout {
@@ -202,12 +219,6 @@ static void *SVKvoContext = &SVKvoContext;
 
 #pragma mark - UINavigationBar Button handlers
 
-- (void)edit:(id)sender {
-    NSLog(@"Edit Radio config");
-    [[CommController sharedInstance] closeAllInterfaces];
-    [self performSelector:@selector(setupConfigAccessoryConnection) withObject:nil afterDelay:3.0f];
-}
-
 - (void)cancelChanges:(id)sender {
     [self exitConfigMode];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -262,8 +273,6 @@ static void *SVKvoContext = &SVKvoContext;
 }
 
 -(void)radioHasEnteredConfigMode {
-    // change left nav button from edit to save
-    self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
     // read current settings
     [self readRadioSettings];
 }
@@ -285,6 +294,11 @@ static void *SVKvoContext = &SVKvoContext;
 -(void)readRadioSettings {
     NSLog(@"readLocalSettings");
     [[CommController sharedInstance].radioConfig loadBasicSettings];
+
+    // enable save button and remove spinner
+    self.saveBarButtonItem.enabled = YES;
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
 }
 
 -(void)saveSettingsToRemoteRadio {

@@ -9,6 +9,7 @@
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
 #import "RadioSettingsViewController.h"
+#import "CommController.h"
 
 @implementation FollowMeCtrlValues
 
@@ -185,13 +186,24 @@
 
 #pragma mark - Settings
 - (IBAction)configureRadio:(id)sender {
-    RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:radioSettingsViewController];
+    if ([CommController sharedInstance].connectedAccessory == GCSAccessoryFightingWalrusRadio) {
+        RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:radioSettingsViewController];
 
-    navController.navigationBar.barStyle = UIBarStyleDefault;
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:navController animated:YES completion:nil];
+        navController.navigationBar.barStyle = UIBarStyleDefault;
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navController animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Radio not connected"
+                                                        message:@"Fighting Walrus Radio is not connected." delegate:self
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    return;
+}
 
 @end

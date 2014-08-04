@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GCSActivityIndicatorView : UIActivityIndicatorView
-
+-(void)centerOnView:(UIView *)view;
 @end

@@ -28,7 +28,7 @@
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals;
 @end
 
-@interface GCSSidebarController : UITableViewController <MavLinkPacketHandler, GCSFollowMeCtrlProtocol>
+@interface GCSSidebarController : UITableViewController <MavLinkPacketHandler, GCSFollowMeCtrlProtocol, UIAlertViewDelegate>
 
 @property (weak) id <GCSFollowMeCtrlChangeProtocol> followMeChangeListener;
 
