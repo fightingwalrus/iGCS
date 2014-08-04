@@ -54,11 +54,20 @@
     
     self.waypointVC = [[self viewControllers] objectAtIndex:1];
     self.commsVC    = [[self viewControllers] objectAtIndex:2];
+
+#ifdef DEBUG
     self.debugVC    = [[self viewControllers] objectAtIndex:3];
-    
+#endif
+
     // Initialize MavLink Interfaces
 
     [CommController sharedInstance].mainVC = self;
+
+// Don't show debug view controller in tab bar if we are not on a debug build
+#ifndef DEBUG
+    NSArray *tabBarControllers = @[gcsRevealVC, self.waypointVC, self.commsVC];
+    [self setViewControllers:tabBarControllers animated:NO];
+#endif
 
     // Hide tabBar on iPhone
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {

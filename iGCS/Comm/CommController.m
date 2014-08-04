@@ -8,7 +8,7 @@
 
 #import "CommController.h"
 #import "DebugViewController.h"
-#import "DebugLogger.h"
+#import "Logger.h"
 
 NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
 
@@ -67,11 +67,9 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
         } else {
             NSLog(@"No supported accessory connected");
         }
-
-        [DebugLogger console:@"Created default connections in CommController."];
     }
     @catch (NSException *exception) {
-        [DebugLogger dumpException:exception];
+        [Logger dumpException:exception];
     }
 }
 
@@ -148,7 +146,6 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 #ifdef REDPARK
     [self.connectionPool createConnection:self.redParkCable destination:bts];
 #endif
-    [DebugLogger console:@"Created BluetoothStream for Tx."];
     NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
 }
 
@@ -158,8 +155,6 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     
     // Create connection from redpark to bts
     [self.connectionPool createConnection:bts destination:self.mavLinkInterface];
-    
-    [DebugLogger console:@"Created BluetoothStream for Rx."];
     NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
 }
 
@@ -167,11 +162,10 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 -(GCSAccessory)connectedAccessory {
     NSMutableArray *accessories = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager]
                                                                          connectedAccessories]];
-
     GCSAccessory gcsAccessory = GCSAccessoryNotSupported;
     for (EAAccessory *accessory in accessories) {
         NSLog(@"%@",accessory.manufacturer);
-        [DebugLogger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
+        [Logger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
 
         if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
             gcsAccessory = GCSAccessoryFightingWalrusRadio;

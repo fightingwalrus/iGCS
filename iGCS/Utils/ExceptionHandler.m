@@ -16,22 +16,20 @@ static DebugViewController *debugVC;
 
 +(void) start:(DebugViewController*)dVC
 {
+#ifdef DEBUG
     debugVC = dVC;
     NSSetUncaughtExceptionHandler(&catchUnhandledException);
+#endif
 }
 
 
 
 void catchUnhandledException(NSException* e)
 {
+#ifdef DEBUG
     NSLog(@"Exception raised: ");
     NSLog(@"%@",[e description]);
-    
-    
-    
-    //[ConstrucsExceptionHandler uploadExceptionReport:e.name desc:e.description type:@"Exception" callstack:[e callStackSymbols]];
-    
-    
+#endif
 }
 
 

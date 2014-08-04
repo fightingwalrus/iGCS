@@ -21,8 +21,6 @@
 
 #import "CXAlertView.h"
 
-#import "DebugLogger.h"
-
 @implementation GCSMapViewController {
     MKPointAnnotation *uavPos;
     MKAnnotationView *uavView;
@@ -218,9 +216,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // initialize debug console buffer
-    [DebugLogger start:self.debugConsoleLabel];
 
     // Adjust view for iOS6 differences
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
