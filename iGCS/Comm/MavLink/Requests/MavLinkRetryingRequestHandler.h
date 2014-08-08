@@ -14,7 +14,7 @@
 // FIXME: from reading the APM Mission Planner sources, it appears some fine tuning might be
 // required on both the timeouts and the number of retries
 #define MAVLINK_TX_MISSION_ITEM_RETRANSMISSION_TIMEOUT       0.700 // seconds
-#define MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT 0.150 // seconds
+#define MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT 0.50 // seconds //was 0.150 DFL
 
 #define MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT          2.0 // seconds
 
