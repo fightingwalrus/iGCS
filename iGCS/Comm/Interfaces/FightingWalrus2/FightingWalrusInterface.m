@@ -49,8 +49,6 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
         _supportedAccessoryProtocols = @[GCSProtocolStringTelemetry, GCSProtocolStringConfig, GCSProtocolStringUpdate];
         _enabledAccessoryProtocol = protocolString;
-        //HACK Testing ping pong connect/disconnect
-        _doubleTab = @YES;
 
         DDLogInfo(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
         if ([self.accessoryList count]) {
@@ -69,19 +67,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         }
     }
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:)
-                                                 name:EAAccessoryDidConnectNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:)
-                                                 name:EAAccessoryDidDisconnectNotification object:nil];
-
-    [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
-
     return self;
-}
-
--(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (EAAccessory *)selectedAccessory {
@@ -158,6 +144,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory {
 	DDLogInfo(@"FightingWalrusInterface: accessoryDidDisconnect:");
+    [self closeSession];
 }
 
 
@@ -198,29 +185,34 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 - (void)accessoryConnected:(NSNotification *)notification {
     DDLogInfo(@"FightingWalrusInterface: accessoryConnected: notification Name: %@",notification.name);
     DDLogInfo(@"Notification: %@",notification.userInfo);
-    
-    if([_doubleTab boolValue]) {
-        _doubleTab = @NO;
-    } else {
-        _doubleTab = @YES;
-        if (![self isAccessoryConnected]) {
+    if (![self isAccessoryConnected]) {
             EAAccessory *a = [self selectedAccessory];
             [self setupControllerForAccessory:a withProtocolString:_protocolString];
             [self openSession];
-        }
     }
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
     DDLogInfo(@"FightingWalrusInterface: accessoryDisconnected: notification Name: %@",notification.name);
+}
 
+#pragma mark - dissconnect session
+-(void)configureAndOpenAccessory {
+    if (![self isAccessoryConnected]) {
+        EAAccessory *a = [self selectedAccessory];
+        [self setupControllerForAccessory:a withProtocolString:self.protocolString];
+        [self openSession];
+    }
+}
+
+-(void)disconnectSession {
     [GCSFirmwareUtils setAwaitingPostUpgradeDisconnect:NO];
-
     if (![self isAccessoryConnected]){
 		[self closeSession];
     }
 }
 
+#pragma mark -
 #pragma mark - CommInterfaceProtocol
 
 -(void)consumeData:(const uint8_t *)bytes length:(int)length {

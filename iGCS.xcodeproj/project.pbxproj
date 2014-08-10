@@ -126,6 +126,7 @@
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
+		186DC2391992F60700A672A6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186DC2381992F60600A672A6 /* CoreData.framework */; };
 		1875978D189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978E189108980012DF6D /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18759789189108980012DF6D /* Icon-152.png */; };
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
@@ -597,6 +598,7 @@
 		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
+		186DC2381992F60600A672A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18759789189108980012DF6D /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -1119,6 +1121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186DC2391992F60700A672A6 /* CoreData.framework in Frameworks */,
 				18D89163198104EC001ED845 /* CoreText.framework in Frameworks */,
 				18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */,
 				189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */,
@@ -1987,6 +1990,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				186DC2381992F60600A672A6 /* CoreData.framework */,
 				1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */,
 				18D89162198104EC001ED845 /* CoreText.framework */,
 				CAA2CFD9161C000C00267615 /* libz.dylib */,
@@ -3067,6 +3071,7 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/iGCS\"",
 					"$(PROJECT_DIR)/3rd-party/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
@@ -3101,6 +3106,7 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/iGCS\"",
 					"$(PROJECT_DIR)/3rd-party/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";

@@ -11,6 +11,13 @@
 
 NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
 
+@interface CommController()
+@property (nonatomic, strong) UIAlertView *alertView;
+@property (nonatomic, readwrite) BOOL doubleTap;
+@property (readwrite) NSUInteger accesoryConnectID;
+@property (readwrite) NSUInteger accesoryDisconnectID;
+@end
+
 @implementation CommController
 
 +(CommController *)sharedInstance {
@@ -28,8 +35,44 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     self = [super init];
     if (self) {
         _connectionPool = [[CommConnectionPool alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryConnected:)
+                                                     name:EAAccessoryDidConnectNotification object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessoryDisconnected:)
+                                                     name:EAAccessoryDidDisconnectNotification object:nil];
+
+        [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
+
     }
     return self;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark -
+#pragma mark NSNotifications
+
+- (void)accessoryConnected:(NSNotification *)notification {
+	NSLog(@"FightingWalrusInterface: accessoryConnected");
+    NSLog(@"FightingWalrusInterface: accessoryConnected: notification Name: %@",notification.name);
+    NSLog(@"Notification: %@",notification.userInfo);
+
+    // handle duplication messages we always get on connect
+    EAAccessory *connectedAccessor = notification.userInfo[EAAccessoryKey];
+    if(self.accesoryConnectID != connectedAccessor.connectionID) {
+        self.accesoryConnectID = connectedAccessor.connectionID;
+        [self startTelemetryMode];
+        [self showAccessoryConnectedAlertWithUserInfo:notification.userInfo[EAAccessoryKey]];
+    }
+}
+
+- (void)accessoryDisconnected:(NSNotification *)notification {
+	NSLog(@"FightingWalrusInterface: accessoryDisconnected");
+    NSLog(@"FightingWalrusInterface: accessoryDisconnected: notification Name: %@",notification.name);
+    // handle duplication messages we always get on dissconnect
 }
 
 // input: instance of MainViewController - used to trigger view updates during comm operations
@@ -181,6 +224,33 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
         }
     }
     return gcsAccessory;
+}
+
+#pragma mark - alert messages
+
+
+- (void)showAccessoryConnectedAlertWithUserInfo:(NSDictionary *)userInfo {
+#ifdef DEBUG
+	NSLog(@"accessoryConnected");
+    NSString *message = [NSString stringWithFormat:@"Accessor connected with userInfo: %@", userInfo];
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Accessory Connected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [self.alertView show];
+#endif
+}
+
+- (void)showAccessoryDisconnectedAlertWithUserInfo:(NSDictionary *)userInfo {
+#ifdef DEBUG
+	NSLog(@"accessoryDisconnected");
+    NSString *message = [NSString stringWithFormat:@"Accessor Disconnected: %@", userInfo];
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Accessory Disconnected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [self.alertView show];
+#endif
+}
+
+#pragma UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    return;
 }
 
 @end
