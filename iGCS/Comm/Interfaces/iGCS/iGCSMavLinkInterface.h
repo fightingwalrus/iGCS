@@ -29,9 +29,9 @@
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
 - (void) startReadMissionRequest;
+- (void) completedReadMissionRequest:(WaypointsHolder*)mission;
 - (void) issueRawMissionRequestList;
 - (void) issueRawMissionRequest:(uint16_t)sequence;
-- (void) issueRawMissionAck;
 - (void) loadNewMission:(WaypointsHolder*)mission;
 - (void) stopRecevingMessages;
 - (void) startWriteMissionRequest:(WaypointsHolder*)waypoints;

@@ -171,6 +171,11 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
 
+- (void) completedReadMissionRequest:(WaypointsHolder*)mission {
+    [self issueRawMissionAck];     // acknowledge completion of mission reception
+    [self loadNewMission:mission]; // load the mission
+}
+
 - (void) issueRawMissionRequestList {
     // Start Read MAV waypoint protocol transaction
     mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
