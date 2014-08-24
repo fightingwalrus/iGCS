@@ -29,6 +29,7 @@
 #import "SetWPRequest.h"
 #import "RxMissionRequestList.h"
 #import "TxMissionItemCount.h"
+#import "TxMissionClearAll.h"
 #import "RadioConfig.h"
 
 @implementation iGCSMavLinkInterface
@@ -201,7 +202,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 #pragma mark - Mission Transactions: sending
 
 - (void) startWriteMissionRequest:(WaypointsHolder*)waypoints {
-    [retryRequestHandler startRetryingRequest:[[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints]];
+    id<MavLinkRetryableRequest> req = (waypoints.numWaypoints == 0) ?
+        [[TxMissionClearAll alloc] initWithInterface:self] :
+        [[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints];
+    [retryRequestHandler startRetryingRequest:req];
 }
 
 - (void) issueRawMissionCount:(uint16_t)numItems {
@@ -213,6 +217,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                                   item.seq, item.frame, item.command, item.current, item.autocontinue,
                                   item.param1, item.param2, item.param3, item.param4,
                                   item.x, item.y, item.z);
+}
+
+- (void) issueRawMissionClearAll {
+    mavlink_msg_mission_clear_all_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
 }
 
 #pragma mark - Set current waypoint

@@ -37,6 +37,7 @@
 - (void) startWriteMissionRequest:(WaypointsHolder*)waypoints;
 - (void) issueRawMissionCount:(uint16_t)numItems;
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item;
+- (void) issueRawMissionClearAll;
 
 - (void) startSetWaypointRequest:(uint16_t)sequence;
 - (void) issueRawSetWaypointCommand:(uint16_t)sequence;
