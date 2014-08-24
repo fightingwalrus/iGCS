@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MavLinkRetryingRequestHandler.h"
-#import "iGCSMavLinkInterface.h"
+#import "TxMissionCommon.h"
 
 @interface TxMissionClearAll : NSObject <MavLinkRetryableRequest>
 

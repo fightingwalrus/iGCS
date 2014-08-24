@@ -206,11 +206,17 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - Mission Transactions: sending
 
-- (void) startWriteMissionRequest:(WaypointsHolder*)waypoints {
-    id<MavLinkRetryableRequest> req = (waypoints.numWaypoints == 0) ?
+- (void) startWriteMissionRequest:(WaypointsHolder*)mission {
+    id<MavLinkRetryableRequest> req = (mission.numWaypoints == 0) ?
         [[TxMissionClearAll alloc] initWithInterface:self] :
-        [[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints];
+        [[TxMissionItemCount alloc] initWithInterface:self andMission:mission];
     [retryRequestHandler startRetryingRequest:req];
+}
+
+- (void) completedWriteMissionRequestSuccessfully:(BOOL)success withMission:(WaypointsHolder*)mission {
+    if (success) {
+        [self loadNewMission:mission];
+    }
 }
 
 - (void) issueRawMissionCount:(uint16_t)numItems {

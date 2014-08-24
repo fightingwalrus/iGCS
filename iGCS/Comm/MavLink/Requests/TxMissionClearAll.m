@@ -28,13 +28,10 @@
     switch (packet.msgid) {
         case MAVLINK_MSG_ID_MISSION_ACK:
             mavlink_msg_mission_ack_decode(&packet, &ack);
-            if (ack.type != MAV_MISSION_INVALID_SEQUENCE) {
-                bool success = (ack.type == MAV_MISSION_ACCEPTED);
-                if (success) {
-                    [_interface loadNewMission:[[WaypointsHolder alloc] initWithExpectedCount:0]];
-                }
-                [handler completedWithSuccess:success];
-            }
+            [TxMissionCommon handleAck:ack
+                           onInterface:_interface
+                           withHandler:handler
+                            andMission:[[WaypointsHolder alloc] initWithExpectedCount:0]];
             break;
     }
 }

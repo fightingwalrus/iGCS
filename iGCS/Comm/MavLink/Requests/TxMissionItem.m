@@ -36,18 +36,8 @@
             break;
 
         case MAVLINK_MSG_ID_MISSION_ACK:
-            // Vehicle responded with
-            //  * out of sequence: ignore, and await the next request
-            //  * mission accepted: we're done
-            //  * anything else: something broke
             mavlink_msg_mission_ack_decode(&packet, &ack);
-            if (ack.type != MAV_MISSION_INVALID_SEQUENCE) {
-                bool success = (ack.type == MAV_MISSION_ACCEPTED);
-                if (success) {
-                    [_interface loadNewMission:_mission];
-                }
-                [handler completedWithSuccess:success];
-            }
+            [TxMissionCommon handleAck:ack onInterface:_interface withHandler:handler andMission:_mission];
             break;
     }
 }
