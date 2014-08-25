@@ -23,10 +23,11 @@
 -(void)produceData:(const uint8_t*)bytes length:(int)length {
 
     // ConnectionPool must be assigned
+    NSAssert(self.connectionPool, @"connectionPool can not be nil.");
     if (!self.connectionPool) {
         [Logger error:@"Error: Tried to call produceData, but no connectionPool was set."];
+        return;
     }
-    assert(self.connectionPool);
 
     [self.connectionPool interface:self producedBytes:bytes length:length];
 }
