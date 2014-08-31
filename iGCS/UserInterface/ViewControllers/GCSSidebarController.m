@@ -27,16 +27,13 @@
 @end
 
 
-@interface GCSSidebarController ()
-
-@end
-
 @implementation GCSSidebarController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+
     }
     return self;
 }
