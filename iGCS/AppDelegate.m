@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DDTTYLogger.h"
 
 // API keys for hockeyapp.net etc are passed in via scrips/build.sh
 // from a private xcconfig file using GCC_PREPROCESSOR_DEFINITIONS
@@ -24,6 +25,7 @@ static AppDelegate *shared;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:HOCKEY_APP_BETA_ID];
