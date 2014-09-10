@@ -415,9 +415,7 @@ NSArray* headerSpecs = nil;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSString * segueName = segue.identifier;
-    NSLog(@"prepareForSeque %@", segueName);
-    
+    NSString * segueName = segue.identifier;    
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;
         unsigned int row = [rowNum unsignedIntValue];
