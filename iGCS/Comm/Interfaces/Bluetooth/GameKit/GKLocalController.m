@@ -42,8 +42,6 @@
 @implementation GKLocalController
 
 
-
-
 -(id)init:(BluetoothStream*)bts
 {
     self = [super init];
@@ -62,22 +60,11 @@
 }
 
 
-
-
 -(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length
 {
-    NSLog(@"GKSessionController: Sending MavLink bytes: %i",length);
+    DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %i",length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
-    
 }
-
-
-
-
-
-
-
-
 
 
 #pragma mark -
@@ -175,7 +162,7 @@
 		return;
 	}
     
-    //NSLog(@"GKSession receiveData: %i bytes",[data length]);
+    DDLogVerbose(@"GKSession receiveData: %i bytes",[data length]);
 	
 	lastPacketTime = packetTime;
 	switch( packetID ) {
@@ -215,7 +202,7 @@
             
         case NETWORK_MAVLINK:
         {
-            //NSLog(@"GKSession: Received MavLink: %i bytes",[data length]);
+            DDLogVerbose(@"GKSession: Received MavLink: %i bytes",[data length]);
             
             int headerSize = 2 * sizeof(int);
             uint8_t *mavlinkData = (uint8_t*)&incomingPacket[headerSize];
