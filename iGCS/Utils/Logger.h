@@ -16,13 +16,9 @@
 
 +(void)setDebugVC:(DebugViewController*)dVC;
 
-
-+(void)console:(NSString*)message;
 +(void)error:(NSString*)message;
 
-+(NSArray*)getPendingConsoleMessages;
 +(NSArray*)getPendingErrorMessages;
-+(void)clearPendingConsoleMessages;
 +(void)clearPendingErrorMessages;
 
 +(void)dumpException:(NSException*)exception;

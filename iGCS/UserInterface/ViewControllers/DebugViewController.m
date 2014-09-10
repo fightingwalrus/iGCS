@@ -57,14 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [Logger setDebugVC:self];
-    
-    if ([[Logger getPendingConsoleMessages] count] > 0)
-    {
-        for (NSString *message in [Logger getPendingConsoleMessages])
-        {
-            [self consoleMessage:message];
-        }
-    }
+
     if ([[Logger getPendingErrorMessages] count] > 0)
     {
         for (NSString *message in [Logger getPendingErrorMessages])
@@ -73,9 +66,7 @@
         }
     }
     
-    [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
-        
 }
 
 - (void)didReceiveMemoryWarning
