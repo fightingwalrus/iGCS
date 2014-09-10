@@ -6,25 +6,17 @@
 //
 //
 
-#import "GKLocalController.h"
-
 #import <GameKit/GameKit.h>
-
+#import "GKLocalController.h"
 #import "BluetoothStream.h"
-
-#import "Logger.h"
-
 
 #define kMaxPacketSize 1024
 #define kGCSSessionID @"groundStation"
-
-
 
 @interface GKLocalController () <GKSessionDelegate,GKPeerPickerControllerDelegate> {
     int				gamePacketNumber;
     int				gameUniqueID;
 }
-
 
 @property (strong) BluetoothStream *parentStream;
 
@@ -221,8 +213,6 @@
 
 - (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend
 {
-    //[Logger console:[NSString stringWithFormat:@"GKSession: sending %i bytes.",length]];
-	// the packet we'll send is resued
 	static unsigned char networkPacket[kMaxPacketSize];
 	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	

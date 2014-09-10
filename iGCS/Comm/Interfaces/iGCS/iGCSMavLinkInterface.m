@@ -23,8 +23,6 @@
 
 #import "GaugeViewCommon.h"
 
-#import "Logger.h"
-
 #import "MavLinkRetryingRequestHandler.h"
 #import "SetWPRequest.h"
 #import "RxMissionRequestList.h"
@@ -94,7 +92,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
                 if (msg.msgid == MAVLINK_MSG_ID_HEARTBEAT) {
-                    [Logger console:@"MavLink Heartbeat."];
+                    DDLogDebug(@"MavLink Heartbeat.");
                     
                     // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
                     if (++self.heartbeatOnlyCount >= 5) {
@@ -110,7 +108,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         mavlink_system.sysid  = msg.sysid;
                         mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
                         
-                        [Logger console:@"Sending request for MavLink messages."];
+                        DDLogInfo(@"Sending request for MavLink messages.");
                         
                         // Send requests to set the stream rates
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
