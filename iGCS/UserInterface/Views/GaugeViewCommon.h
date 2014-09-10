@@ -43,7 +43,6 @@
 #define SHADOW_COLOUR 0.3, 0.3, 0.3, 0.3
 
 // Enable debug animation
-#define DO_NSLOG        0
 #define DO_ANIMATION    0
 #define ANIMATION_TIMER 0.1
 

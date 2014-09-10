@@ -42,9 +42,8 @@
 // FIXME: Refactor out common code with CompassView 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 {
-#if DO_NSLOG
-    NSLog(@"VerticalScale: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-#endif
+    DDLogVerbose(@"VerticalScale: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
     const float HORZ_INSET_PERC = 0.0;
     const float VERT_INSET_PERC = 0.0;
     
