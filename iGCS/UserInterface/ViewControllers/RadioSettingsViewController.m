@@ -225,7 +225,7 @@ static void *SVKvoContext = &SVKvoContext;
 }
 
 - (void)saveSettings:(id)sender {
-    NSLog(@"Save Radio config Settings");
+    DDLogDebug(@"Save Radio config Settings");
 
     // attempt to update the remote radio first
     if ([CommController sharedInstance].radioConfig.isRemoteRadioResponding) {
@@ -236,7 +236,7 @@ static void *SVKvoContext = &SVKvoContext;
 }
 
 -(void)updateFirmware {
-    NSLog(@"Update FWR Firmware");
+    DDLogDebug(@"Update FWR Firmware");
     [[CommController sharedInstance] startFWRFirmwareUpdateMode];
 
     [self performSelector:@selector(sendFirmwareToFWR) withObject:self afterDelay:0.2f];
@@ -280,19 +280,19 @@ static void *SVKvoContext = &SVKvoContext;
 #pragma mark - radio commands
 
 -(void)enterConfigMode {
-    NSLog(@"enterConfigMode");
+    DDLogDebug(@"enterConfigMode");
     [[CommController sharedInstance].radioConfig enterConfigMode];
 }
 
 -(void)exitConfigMode {
-    NSLog(@"exitConfigMode");
+    DDLogDebug(@"exitConfigMode");
     if ([CommController sharedInstance].radioConfig.isRadioInConfigMode) {
         [[CommController sharedInstance].radioConfig exitConfigMode];
     }
 }
 
 -(void)readRadioSettings {
-    NSLog(@"readLocalSettings");
+    DDLogDebug(@"readLocalSettings");
     [[CommController sharedInstance].radioConfig loadBasicSettings];
 
     // enable save button and remove spinner
@@ -449,10 +449,10 @@ static void *SVKvoContext = &SVKvoContext;
 
     command = noti.object;
     if ([command rangeOfString:@"RT"].location != NSNotFound) {
-        NSLog(@"THIS COMMAND TIMED OUT! NO LINK!: %@", command);
+        DDLogWarn(@"THIS COMMAND TIMED OUT! NO LINK!: %@", command);
         self.connectionStatus.text = @"NO";
     } else {
-        NSLog(@"Timeout talking to local radio");
+        DDLogWarn(@"Timeout talking to local radio");
     }
 }
 

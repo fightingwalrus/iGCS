@@ -72,17 +72,17 @@ NSString * const GCSHayesResponseStateDescription[] = {
 #pragma mark - CommInterfaceProtocol
 // receiveBytes processes bytes forwarded from another interface
 -(void)consumeData:(const uint8_t*)bytes length:(int)length {
-    NSLog(@"begin consumeData:");
+    DDLogVerbose(@"begin consumeData:");
     [self logCurrentHayesIOState];
 
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"raw consumeData: %@", aString);
+    DDLogVerbose(@"raw consumeData: %@", aString);
     NSString *currentString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     // reponses are not framed so split them on CR
     NSArray *responsesArray = [currentString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSLog(@"responsesArray: %@", responsesArray);
+    DDLogVerbose(@"responsesArray: %@", responsesArray);
 
     self.responseBuffer = responsesArray;
     [self.completeResponseBuffer addObjectsFromArray:responsesArray];
@@ -94,25 +94,25 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
         [self handleHayesResponse:hayesResponse];
     }
-    NSLog(@"end handleHayesResponse:");
+    DDLogVerbose(@"end handleHayesResponse:");
 }
 
 -(void)produceData:(const uint8_t*)bytes length:(int)length {
-    NSLog(@"iGCSRadioConfig produceData");
+    DDLogVerbose(@"iGCSRadioConfig produceData");
     [super produceData:bytes length:length];
 }
 
 -(void) close {
-    NSLog(@"iGCSRadioClose: close is a noop");
+    DDLogInfo(@"iGCSRadioClose: close is a noop");
 }
 
 #pragma mark - state handler and related methods
 -(void)handleHayesResponse:(NSString *)hayesResponse {
-    NSLog(@"iGCSRadioConfig handleHayesResponse: %@", hayesResponse);
+    DDLogDebug(@"iGCSRadioConfig handleHayesResponse: %@", hayesResponse);
 
     if ([hayesResponse rangeOfString:@"BOOTED"].location != NSNotFound) {
         [self radioHasBooted];
-        NSLog(@"end handleHayesResponse:");
+        DDLogDebug(@"end handleHayesResponse:");
 
     } else if (self.hayesResponseState == HayesEnteredConfigMode) {
         [self hayesEnteredConfigModeWithResponse:hayesResponse];
@@ -127,7 +127,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     }
 
     [self logCurrentHayesIOState];
-    NSLog(@"end handleHayesResponse:");
+    DDLogDebug(@"end handleHayesResponse:");
 }
 
 -(void)radioHasBooted {
@@ -187,7 +187,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         }
 
     } else {
-        NSLog(@"Command expected ecgho of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
+        DDLogWarn(@"Command expected echo of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
     }
 
     @synchronized(self) {
@@ -201,7 +201,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     self.currentSettings[self.previousHayesResponse] = hayesResponse;
 
     if ([self.previousHayesResponse rangeOfString:@"&W"].location != NSNotFound) {
-        NSLog(@"Got %@ for %@", hayesResponse, self.previousHayesResponse);
+        DDLogVerbose(@"Got %@ for %@", hayesResponse, self.previousHayesResponse);
     }
 
     // update link status
@@ -238,15 +238,15 @@ NSString * const GCSHayesResponseStateDescription[] = {
 }
 
 -(void)logCurrentHayesIOState {
-    NSLog(@"---------------------");
-    NSLog(@"");
-    NSLog(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
-    NSLog(@"possibleCommands: %@", self.sentCommands);
-    NSLog(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
-    NSLog(@"isRadioInConfigMode: %@", (self.isRadioInConfigMode) ? @"YES": @"NO");
-    NSLog(@"isRemoteRadioResponding: %@: ", (self.isRemoteRadioResponding) ? @"YES": @"NO");
-    NSLog(@"");
-    NSLog(@"---------------------");
+    DDLogDebug(@"---------------------");
+    DDLogDebug(@"");
+    DDLogDebug(@"HayesResponseState: %@", GCSHayesResponseStateDescription[self.hayesResponseState]);
+    DDLogDebug(@"possibleCommands: %@", self.sentCommands);
+    DDLogDebug(@"isRadioBooted: %@", (self.isRadioBooted) ? @"YES": @"NO");
+    DDLogDebug(@"isRadioInConfigMode: %@", (self.isRadioInConfigMode) ? @"YES": @"NO");
+    DDLogDebug(@"isRemoteRadioResponding: %@: ", (self.isRemoteRadioResponding) ? @"YES": @"NO");
+    DDLogDebug(@"");
+    DDLogDebug(@"---------------------");
 }
 
 #pragma mark - Private methods for sending data
@@ -264,7 +264,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     if (ret == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.hayesResponseState != HayesReadyForCommand) {
-                NSLog(@"Waiting for previous response. Can't send command: %@", @"+++");
+                DDLogWarn(@"Waiting for previous response. Can't send command: %@", @"+++");
                 [self logCurrentHayesIOState];
                 return;
             }
@@ -304,7 +304,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     if(ret == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (_hayesResponseState != HayesReadyForCommand) {
-                NSLog(@"Waiting for previous response. Can't send command: %@", atCommand);
+                DDLogWarn(@"Waiting for previous response. Can't send command: %@", atCommand);
                 [self logCurrentHayesIOState];
                 return;
             }
