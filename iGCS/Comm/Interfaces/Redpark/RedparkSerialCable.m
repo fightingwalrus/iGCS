@@ -8,12 +8,7 @@
 
 #import "RedparkSerialCable.h"
 #import "MavLinkTools.h"
-
-#import "Logger.h"
-
-#import "CommsViewController.h"
-
-#import "DebugViewController.h"
+//#import "CommsViewController.h"
 
 @implementation RedparkSerialCable
 
@@ -25,13 +20,12 @@
     rsc.mainVC = mvc;
     
     // Start the Redpark Serial Cable Manager
-    [Logger console:@"Redpark: Creating RscMgr."];
+    DDLogInfo(@"Redpark: Creating RscMgr.");
     rsc.rscMgr = [[RscMgr alloc] init];
     [rsc.rscMgr setDelegate:rsc];
     
     
-    [Logger console:@"Redpark: RscMgr ready."];
-    
+    DDLogInfo(@"Redpark: RscMgr ready.");
     
     return rsc;
 }
@@ -58,13 +52,7 @@
 - (void) cableConnected:(NSString *)protocol
 {
     @try {
-        [Logger console:@"Redpark: cableConnected"];
-        /*
-         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"cableConnected"
-         message:@"connecting..." delegate:nil
-         cancelButtonTitle:@"OK" otherButtonTitles:nil];
-         [alert show];
-         */
+        DDLogInfo(@"Redpark: cableConnected");
         
         // Configure the serial connection
         [self.rscMgr setBaud:57600];
@@ -91,7 +79,7 @@
 - (void) cableDisconnected
 {
     @try {
-        [Logger console:@"Redpark: cableDisconnected"];
+        DDLogInfo(@"Redpark: cableDisconnected");
         self.cableConnected = NO;
         [self.mainVC.commsVC setCableConnectionStatus:self.cableConnected];
     }
@@ -104,8 +92,7 @@
 // user can call getModemStatus or getPortStatus to get current state
 - (void) portStatusChanged
 {
-    
-    [Logger console:@"Redpark: portStatusChanged"];
+    DDLogDebug(@"Redpark: portStatusChanged");
 }
 
 // bytes are available to be read (user calls read:)
@@ -115,8 +102,6 @@
         // Read the available bytes out of the serial cable manager
         uint8_t buf[length];
         int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
-        
-        //[Logger console:@"Redpark: readBytesAvailable"];
         [self produceData:buf length:n];
     }
     @catch (NSException *e)
