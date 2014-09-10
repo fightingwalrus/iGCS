@@ -64,7 +64,7 @@
     }
     
     // We're in CBPeripheralManagerStatePoweredOn state...
-    NSLog(@"self.peripheralManager powered on.");
+    DDLogDebug(@"self.peripheralManager powered on.");
     
     // ... so build our service.
     
@@ -90,7 +90,7 @@
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
-    NSLog(@"Central subscribed to characteristic");
+    DDLogDebug(@"Central subscribed to characteristic");
     
     // Get the data
     self.dataToSend = [@"Test Data." dataUsingEncoding:NSUTF8StringEncoding];
@@ -107,7 +107,7 @@
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 {
-    NSLog(@"Central unsubscribed from characteristic");
+    DDLogDebug(@"Central unsubscribed from characteristic");
 }
 
 
@@ -129,7 +129,7 @@
             // It did, so mark it as sent
             sendingEOM = NO;
             
-            NSLog(@"Sent: EOM");
+            DDLogVerbose(@"Sent: EOM");
         }
         
         // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
@@ -172,7 +172,7 @@
         }
         
         NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-        NSLog(@"Sent: %@", stringFromData);
+        DDLogVerbose(@"Sent: %@", stringFromData);
         
         // It did send, so update our index
         self.sendDataIndex += amountToSend;
@@ -192,7 +192,7 @@
                 // It sent, we're all done
                 sendingEOM = NO;
                 
-                NSLog(@"Sent: EOM");
+                DDLogVerbose(@"Sent: EOM");
             }
             
             return;

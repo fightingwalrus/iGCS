@@ -34,13 +34,13 @@
 
 - (void)writeDataFromBufferToStream
 {
-	NSLog(@"RNBluetoothInterface::writeDataFromBufferToStream");
+	DDLogVerbose(@"RNBluetoothInterface::writeDataFromBufferToStream");
     while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
 		
-		NSLog(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
+		DDLogVerbose(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
         if (bytesWritten == -1) {
-            NSLog(@"write error");
+            DDLogError(@"write error");
             break;
         } else if (bytesWritten > 0) {
             [_writeDataBuffer replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
@@ -52,11 +52,11 @@
 #define EAD_INPUT_BUFFER_SIZE 128
 
 - (void)readDataFromStreamToBuffer {
-	//NSLog(@"RNBluetoothInterface::readDataFromStreamToBuffer");
+	DDLogVerbose(@"RNBluetoothInterface::readDataFromStreamToBuffer");
 	uint8_t buf[EAD_INPUT_BUFFER_SIZE];
 	while ([[_session inputStream] hasBytesAvailable]) {
 		NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
-		NSLog(@"read %ld bytes from input stream", (long)bytesRead);
+		DDLogVerbose(@"read %ld bytes from input stream", (long)bytesRead);
         [self produceData:buf length:bytesRead];
 	}
 }
@@ -71,14 +71,14 @@
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
 		_accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-		NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
+		DDLogInfo(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
 		if ([_accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
                 BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Roving Networks"];
                 if(comparison)
                 {
                     _selectedAccessory = currentAccessory;
-                    NSLog(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
+                    DDLogDebug(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
                     break;
                 }
             }
@@ -98,7 +98,6 @@
 {
 	if (_selectedAccessory == nil) {
 		_accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-		NSLog(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
 		if ([_accessoryList count])
 		{
 			_selectedAccessory = [_accessoryList objectAtIndex:0];
@@ -110,14 +109,14 @@
 }
 
 - (void)setupControllerForAccessory:(EAAccessory *)accessory withProtocolString:(NSString *)protocolString {
-	NSLog(@"RNBluetoothInterface::setupControllerForAccessory:");
+	DDLogInfo(@"RNBluetoothInterface::setupControllerForAccessory:");
     _selectedAccessory = accessory;
     _protocolString = [protocolString copy];
 }
 
 - (BOOL)openSession {
 	if (_session == nil) {
-		NSLog(@"RNBluetoothInterface::openSession");
+		DDLogInfo(@"RNBluetoothInterface::openSession");
 		[_selectedAccessory setDelegate:self];
 		_session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];
         
@@ -129,10 +128,10 @@
 			[[_session outputStream] setDelegate:self];
 			[[_session outputStream] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 			[[_session outputStream] open];
-			NSLog(@"opened the session");
+			DDLogInfo(@"opened the session");
 		}
 		else {
-			NSLog(@"creating session failed");
+			DDLogError(@"creating session failed");
 		}
 	}
     
@@ -140,7 +139,7 @@
 }
 
 - (void)closeSession {
-	NSLog(@"RNBluetoothInterface::closeSession");
+	DDLogInfo(@"RNBluetoothInterface::closeSession");
     [[_session inputStream] close];
     [[_session inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [[_session inputStream] setDelegate:nil];
@@ -149,21 +148,18 @@
     [[_session outputStream] setDelegate:nil];
     
     _session = nil;
-	NSLog(@"closed the session");
+	DDLogInfo(@"closed the session");
 }
 
 - (void)writeData:(NSData *)data {
-	//NSLog(@"RNBluetoothInterface::writeData:");
+	DDLogVerbose(@"RNBluetoothInterface::writeData:");
     [_writeDataBuffer appendData:data];
     [self writeDataFromBufferToStream];
 }
 
 - (BOOL)isAccessoryConnected {
-	NSLog(@"RNBluetoothInterface::isAccessoryConnected");
-	if (_selectedAccessory && [_selectedAccessory isConnected])
-		return YES;
-	else
-		return NO;
+	DDLogDebug(@"RNBluetoothInterface::isAccessoryConnected");
+	return (_selectedAccessory && [_selectedAccessory isConnected]);
 }
 
 
@@ -171,7 +167,7 @@
 #pragma mark EAAccessoryDelegate
 
 - (void)accessoryDidDisconnect:(EAAccessory *)accessory {
-	NSLog(@"RNBluetoothInterface::accessoryDidDisconnect:");
+	DDLogInfo(@"RNBluetoothInterface::accessoryDidDisconnect:");
     // do something ...
 }
 
@@ -180,27 +176,27 @@
 #pragma mark NSStreamDelegateEventExtensions
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
-	NSLog(@"RNBluetoothInterface::handleEvent:");
+	DDLogVerbose(@"RNBluetoothInterface::handleEvent:");
     switch (eventCode) {
         case NSStreamEventNone:
-            NSLog(@"stream %@ event none", aStream);
+            DDLogVerbose(@"stream %@ event none", aStream);
             break;
         case NSStreamEventOpenCompleted:
-            NSLog(@"stream %@ event open completed", aStream);
+            DDLogVerbose(@"stream %@ event open completed", aStream);
             break;
         case NSStreamEventHasBytesAvailable:
-            //NSLog(@"stream %@ event bytes available", aStream);
+            DDLogVerbose(@"stream %@ event bytes available", aStream);
             [self readDataFromStreamToBuffer];
             break;
         case NSStreamEventHasSpaceAvailable:
-            //NSLog(@"stream %@ event space available", aStream);
+            DDLogVerbose(@"stream %@ event space available", aStream);
             [self writeDataFromBufferToStream];
             break;
         case NSStreamEventErrorOccurred:
-            NSLog(@"stream %@ event error", aStream);
+            DDLogError(@"stream %@ event error", aStream);
             break;
         case NSStreamEventEndEncountered:
-            NSLog(@"stream %@ event end encountered", aStream);
+            DDLogVerbose(@"stream %@ event end encountered", aStream);
             break;
         default:
             break;
@@ -212,7 +208,7 @@
 #pragma mark NSNotifications
 
 - (void)accessoryConnected:(NSNotification *)notification {
-	NSLog(@"RNBluetoothInterface::accessoryConnected");
+	DDLogInfo(@"RNBluetoothInterface::accessoryConnected");
 	if (![self isAccessoryConnected])
 	{
 		EAAccessory *a = [self selectedAccessory];
@@ -223,7 +219,7 @@
 }
 
 - (void)accessoryDisconnected:(NSNotification *)notification {
-	NSLog(@"RNBluetoothInterface::accessoryDisconnected");
+	DDLogInfo(@"RNBluetoothInterface::accessoryDisconnected");
 	if (![self isAccessoryConnected]) {
 		EAAccessory *a = [self selectedAccessory];
 		[self setupControllerForAccessory:a withProtocolString:_protocolString];

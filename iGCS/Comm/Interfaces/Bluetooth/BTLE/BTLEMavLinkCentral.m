@@ -39,7 +39,7 @@
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
-    NSLog(@"Scanning started");
+    DDLogInfo(@"Scanning started");
 }
 
 
@@ -89,7 +89,7 @@
         return;
     }
     
-    NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+    DDLogInfo(@"Discovered %@ at %@", peripheral.name, RSSI);
     
     // Ok, it's in range - have we already seen it?
     if (self.discoveredPeripheral != peripheral) {
@@ -98,7 +98,7 @@
         self.discoveredPeripheral = peripheral;
         
         // And connect
-        NSLog(@"Connecting to peripheral %@", peripheral);
+        DDLogInfo(@"Connecting to peripheral %@", peripheral);
         [self.centralManager connectPeripheral:peripheral options:nil];
     }
 }
@@ -108,7 +108,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
+    DDLogError(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
     [self cleanup];
 }
 
@@ -117,11 +117,11 @@
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    NSLog(@"Peripheral Connected");
+    DDLogInfo(@"Peripheral Connected");
     
     // Stop scanning
     [self.centralManager stopScan];
-    NSLog(@"Scanning stopped");
+    DDLogInfo(@"Scanning stopped");
     
     // Clear the data that we may already have
     [self.data setLength:0];
@@ -139,7 +139,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
     if (error) {
-        NSLog(@"Error discovering services: %@", [error localizedDescription]);
+        DDLogError(@"Error discovering services: %@", [error localizedDescription]);
         [self cleanup];
         return;
     }
@@ -160,7 +160,7 @@
 {
     // Deal with errors (if any)
     if (error) {
-        NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
+        DDLogError(@"Error discovering characteristics: %@", [error localizedDescription]);
         [self cleanup];
         return;
     }
@@ -185,7 +185,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
+        DDLogError(@"Error discovering characteristics: %@", [error localizedDescription]);
         return;
     }
     
@@ -197,7 +197,7 @@
         // We have, so show the data,
         NSString *message = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
         
-        NSLog(@"BTLEMavLinkCentral received message: %@",message);
+        DDLogVerbose(@"BTLEMavLinkCentral received message: %@",message);
         
         // Cancel our subscription to the characteristic
         //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
@@ -210,7 +210,7 @@
     [self.data appendData:characteristic.value];
     
     // Log it
-    NSLog(@"Received: %@", stringFromData);
+    DDLogVerbose(@"Received: %@", stringFromData);
 }
 
 
@@ -219,7 +219,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"Error changing notification state: %@", error.localizedDescription);
+        DDLogError(@"Error changing notification state: %@", error.localizedDescription);
     }
     
     // Exit if it's not the transfer characteristic
@@ -229,13 +229,13 @@
     
     // Notification has started
     if (characteristic.isNotifying) {
-        NSLog(@"Notification began on %@", characteristic);
+        DDLogDebug(@"Notification began on %@", characteristic);
     }
     
     // Notification has stopped
     else {
         // so disconnect from the peripheral
-        NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
+        DDLogDebug(@"Notification stopped on %@.  Disconnecting", characteristic);
         [self.centralManager cancelPeripheralConnection:peripheral];
     }
 }
@@ -246,7 +246,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"Peripheral Disconnected");
+    DDLogInfo(@"Peripheral Disconnected");
     self.discoveredPeripheral = nil;
     
     // We're disconnected, so start scanning again
