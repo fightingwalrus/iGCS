@@ -104,12 +104,6 @@ static NSString* msgToNSString(mavlink_message_t *msg, bool prettyPrint)
     return s;
 }
 
-static void print_message(mavlink_message_t *msg)
-{
-    NSLog(@"%@",msgToNSString(msg, false));
-}
-
-
 /*
 ref: ArduPlane defines.h 
  */
