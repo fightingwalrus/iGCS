@@ -62,7 +62,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
 }
 
 -(void)close {
-    NSLog(@"iGCSMavLinkInterface: close is a noop");
+    DDLogDebug(@"iGCSMavLinkInterface: close is a noop");
 }
 
 -(void)setupLogger{
@@ -73,7 +73,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
 
 static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint16_t len)
 {
-    NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
+    DDLogCVerbose(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
     [appMLI produceData:buffer length:len];
 }
 
@@ -192,7 +192,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 - (void) loadNewMission:(WaypointsHolder*)mission {
     // Let the GCSMapView and WaypointsView know we've got new waypoints
-    //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
+    DDLogDebug(@"Loading mission:\n%@", [mission toOutputFormat]);
     [self.mainVC.gcsMapVC   resetWaypoints:mission];
     [self.mainVC.waypointVC resetWaypoints:mission];
 }
@@ -246,7 +246,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 - (void) loadDemoMission {
     WaypointsHolder* demo = [WaypointsHolder createDemoMission];
-    //NSLog(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
+    DDLogDebug(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
     
     [self.mainVC.gcsMapVC resetWaypoints: demo];
     [self.mainVC.waypointVC resetWaypoints: demo];
