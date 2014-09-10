@@ -37,33 +37,17 @@
 }
 
 -(void)close {
-    NSLog(@"Redpark close method...");
+    DDLogInfo(@"Redpark close method...");
 }
 
 -(void)consumeData:(uint8_t *)bytes length:(int)length
 {
-    //[Logger console:@"consumeData"];
-    
-    
-    
-    //[Logger console:[NSString stringWithFormat:@"send_uart_bytes: sending %i chars", length]];
-    
-    //[Logger console: @"rscMgr:"];
-    //[Logger console: [self.rscMgr description]];
-    
     int n = [self.rscMgr write:bytes Length:length];
-    
-    
-    if (n == length)
-    {
-        //NSLog(@"send_uart_bytes: output %d chars", n);
+    if (n == length) {
+        DDLogDebug(@"send_uart_bytes: output %d chars", n);
+    } else {
+        DDLogError(@"send_uart_bytes: FAILED (only %d sent)", n);
     }
-    else
-    {
-        //NSLog(@"send_uart_bytes: FAILED (only %d sent)", n);
-    }
-    
-    
 }
 
 
