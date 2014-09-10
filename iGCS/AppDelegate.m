@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+
+#import "DDFileLogger.h"
 #import "DDTTYLogger.h"
 
 // API keys for hockeyapp.net etc are passed in via scrips/build.sh
@@ -25,8 +27,14 @@ static AppDelegate *shared;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    DDFileLogger* fileLogger = [[DDFileLogger alloc] init];
+    fileLogger.rollingFrequency = 60 * 60 * 1; // 1 hour
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 5;
+    [DDLog addLogger:fileLogger];
+
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
+    
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:HOCKEY_APP_BETA_ID];
     [[BITHockeyManager sharedHockeyManager].authenticator setAuthenticationSecret:HOCKEY_APP_BETA_SECRET];
