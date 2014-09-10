@@ -20,3 +20,7 @@ LiveFrost
 
 PureLayout v1.0 (MIT license)
  - https://github.com/smileyborg/PureLayout.git
+
+CocoaLumberjack v1.9.2 (BSD license)
+ - https://github.com/CocoaLumberjack/CocoaLumberjack/tree/1.9.2
+ 
