@@ -65,7 +65,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
                                        andLocalInterface:self.mavLinkInterface];
 
         } else {
-            NSLog(@"No supported accessory connected");
+            DDLogInfo(@"No supported accessory connected");
         }
     }
     @catch (NSException *exception) {
@@ -74,7 +74,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 }
 
 -(void)startFWRConfigMode {
-    NSLog(@"startFWRConfigMode");
+    DDLogDebug(@"startFWRConfigMode");
     [self closeAllInterfaces];
 
     GCSAccessory accessory = [self connectedAccessory];
@@ -85,13 +85,13 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
         [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.radioConfig];
 
     } else {
-        NSLog(@"No supported accessory connected");
+        DDLogDebug(@"No supported accessory connected");
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
     }
 }
 
 -(void)startFWRFirmwareUpdateMode {
-    NSLog(@"startFWRConfigMode");
+    DDLogDebug(@"startFWRConfigMode");
     [self closeAllInterfaces];
 
     GCSAccessory accessory = [self connectedAccessory];
@@ -102,7 +102,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
         [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.fwrFirmwareInterface];
 
     } else {
-        NSLog(@"No supported accessory connected");
+        DDLogDebug(@"No supported accessory connected");
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
     }
 }
@@ -146,7 +146,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 #ifdef REDPARK
     [self.connectionPool createConnection:self.redParkCable destination:bts];
 #endif
-    NSLog(@"Created BluetoothStream for Tx: %@",[bts description]);
+    DDLogInfo(@"Created BluetoothStream for Tx: %@",[bts description]);
 }
 
 -(void) startBluetoothRx {
@@ -155,7 +155,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     
     // Create connection from redpark to bts
     [self.connectionPool createConnection:bts destination:self.mavLinkInterface];
-    NSLog(@"Created BluetoothStream for Rx: %@",[bts description]);
+    DDLogInfo(@"Created BluetoothStream for Rx: %@",[bts description]);
 }
 
 #pragma mark - helpers
@@ -164,7 +164,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
                                                                          connectedAccessories]];
     GCSAccessory gcsAccessory = GCSAccessoryNotSupported;
     for (EAAccessory *accessory in accessories) {
-        NSLog(@"%@",accessory.manufacturer);
+        DDLogDebug(@"%@",accessory.manufacturer);
         [Logger console:[NSString stringWithFormat:@"%@",accessory.manufacturer]];
 
         if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {

@@ -94,7 +94,7 @@
         }
     }
     @catch (NSException *e) {
-        NSLog(@"Exception in forwarding data: %@",[e description]);
+        DDLogError(@"Exception in forwarding data: %@",[e description]);
     }
 }
 
