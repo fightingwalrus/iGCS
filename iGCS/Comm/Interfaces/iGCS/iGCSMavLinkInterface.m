@@ -29,6 +29,7 @@
 #import "SetWPRequest.h"
 #import "RxMissionRequestList.h"
 #import "TxMissionItemCount.h"
+#import "TxMissionClearAll.h"
 #import "RadioConfig.h"
 
 @implementation iGCSMavLinkInterface
@@ -170,6 +171,11 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
 
+- (void) completedReadMissionRequest:(WaypointsHolder*)mission {
+    [self issueRawMissionAck];     // acknowledge completion of mission reception
+    [self loadNewMission:mission]; // load the mission
+}
+
 - (void) issueRawMissionRequestList {
     // Start Read MAV waypoint protocol transaction
     mavlink_msg_mission_request_list_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
@@ -200,8 +206,17 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - Mission Transactions: sending
 
-- (void) startWriteMissionRequest:(WaypointsHolder*)waypoints {
-    [retryRequestHandler startRetryingRequest:[[TxMissionItemCount alloc] initWithInterface:self andMission:waypoints]];
+- (void) startWriteMissionRequest:(WaypointsHolder*)mission {
+    id<MavLinkRetryableRequest> req = (mission.numWaypoints == 0) ?
+        [[TxMissionClearAll alloc] initWithInterface:self] :
+        [[TxMissionItemCount alloc] initWithInterface:self andMission:mission];
+    [retryRequestHandler startRetryingRequest:req];
+}
+
+- (void) completedWriteMissionRequestSuccessfully:(BOOL)success withMission:(WaypointsHolder*)mission {
+    if (success) {
+        [self loadNewMission:mission];
+    }
 }
 
 - (void) issueRawMissionCount:(uint16_t)numItems {
@@ -213,6 +228,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                                   item.seq, item.frame, item.command, item.current, item.autocontinue,
                                   item.param1, item.param2, item.param3, item.param4,
                                   item.x, item.y, item.z);
+}
+
+- (void) issueRawMissionClearAll {
+    mavlink_msg_mission_clear_all_send(MAVLINK_COMM_0, msg.sysid, msg.compid);
 }
 
 #pragma mark - Set current waypoint

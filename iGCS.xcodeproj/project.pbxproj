@@ -441,6 +441,14 @@
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E91975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
+		CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
+		CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
+		CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
+		CA10783A19A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
+		CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
+		CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
+		CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
+		CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
@@ -943,6 +951,10 @@
 		CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmwareUploader.m; path = Firmware/SiKFirmwareUploader.m; sourceTree = "<group>"; };
 		CA0D06E41975F4C6002458F5 /* GCSTelemetryLossOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSTelemetryLossOverlayView.h; sourceTree = "<group>"; };
 		CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSTelemetryLossOverlayView.m; sourceTree = "<group>"; };
+		CA10783519A98B58007B42E5 /* TxMissionClearAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionClearAll.h; path = Requests/TxMissionClearAll.h; sourceTree = "<group>"; };
+		CA10783619A98B58007B42E5 /* TxMissionClearAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionClearAll.m; path = Requests/TxMissionClearAll.m; sourceTree = "<group>"; };
+		CA10784719A99C57007B42E5 /* TxMissionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionCommon.h; path = Requests/TxMissionCommon.h; sourceTree = "<group>"; };
+		CA10784819A99C57007B42E5 /* TxMissionCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionCommon.m; path = Requests/TxMissionCommon.m; sourceTree = "<group>"; };
 		CA10E12F188FCD42002DF0E4 /* GCSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSThemeManager.h; sourceTree = "<group>"; };
 		CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSThemeManager.m; sourceTree = "<group>"; };
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
@@ -2039,6 +2051,10 @@
 				CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */,
 				CAFBD036180A67C000F5BCDB /* SetWPRequest.h */,
 				CAFBD037180A67C000F5BCDB /* SetWPRequest.m */,
+				CA10783519A98B58007B42E5 /* TxMissionClearAll.h */,
+				CA10783619A98B58007B42E5 /* TxMissionClearAll.m */,
+				CA10784719A99C57007B42E5 /* TxMissionCommon.h */,
+				CA10784819A99C57007B42E5 /* TxMissionCommon.m */,
 				CAFBD043180A83E000F5BCDB /* TxMissionItem.h */,
 				CAFBD044180A83E000F5BCDB /* TxMissionItem.m */,
 				CAFBD045180A83E000F5BCDB /* TxMissionItemCount.h */,
@@ -2204,13 +2220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182FFAEC181F0C9100A8C31C /* 05-shuffle.png in Resources */,
-				182FFAED181F0C9100A8C31C /* 07-map-marker.png in Resources */,
-				182FFAEE181F0C9100A8C31C /* 13-target.png in Resources */,
-				182FFAEF181F0C9100A8C31C /* 73-radar.png in Resources */,
 				18D8918019817CB1001ED845 /* LICENSE in Resources */,
-				182FFAF0181F0C9100A8C31C /* 111-user.png in Resources */,
-				182FFAF1181F0C9100A8C31C /* 181-hammer.png in Resources */,
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				18C86290198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
@@ -2259,13 +2269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B9FB1718B2F7AF00668660 /* 05-shuffle.png in Resources */,
-				18B9FB1818B2F7AF00668660 /* 07-map-marker.png in Resources */,
-				18B9FB1918B2F7AF00668660 /* 13-target.png in Resources */,
-				18B9FB1A18B2F7AF00668660 /* 73-radar.png in Resources */,
 				18D8917F19817CB1001ED845 /* LICENSE in Resources */,
-				18B9FB1B18B2F7AF00668660 /* 111-user.png in Resources */,
-				18B9FB1C18B2F7AF00668660 /* 181-hammer.png in Resources */,
 				18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */,
 				18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */,
 				18C8628F198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
@@ -2316,10 +2320,7 @@
 			files = (
 				18C862D9198B5B1000F99CD3 /* Icon-57.png in Resources */,
 				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
-				CA43E09715143E940014F7C8 /* 73-radar.png in Resources */,
-				CACDAAB61802718A00B5A62A /* 111-user.png in Resources */,
 				18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
-				CACDAAB71802719900B5A62A /* 181-hammer.png in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				18C862B8198AD4A800F99CD3 /* 181-hammer.png in Resources */,
 				18C862AF198AD4A800F99CD3 /* 103-map@2x.png in Resources */,
@@ -2334,7 +2335,6 @@
 				18C862CD198B5AFA00F99CD3 /* Icon-114.png in Resources */,
 				1875979318910AC50012DF6D /* Icon-72.png in Resources */,
 				18C8628E198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
-				18D8917219817CB1001ED845 /* CHANGELOG in Resources */,
 				18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
 				18C8629A198AD4A800F99CD3 /* 20-gear-2.png in Resources */,
@@ -2440,6 +2440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182FFA99181F0C9100A8C31C /* main.m in Sources */,
+				CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
 				1851D851191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18069FD11836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
@@ -2459,6 +2460,7 @@
 				18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
 				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
+				CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				182FFAA3181F0C9100A8C31C /* DateTimeUtils.m in Sources */,
 				182FFAA4181F0C9100A8C31C /* ArtificialHorizonView.m in Sources */,
 				18B7F2C71958953B00D2406A /* ALView+PureLayout.m in Sources */,
@@ -2556,6 +2558,7 @@
 				18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */,
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
+				CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
 				CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
@@ -2585,6 +2588,7 @@
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
 				CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
+				CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
@@ -2643,6 +2647,7 @@
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
+				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				18E58A91198993EB0025A516 /* Logger.m in Sources */,
@@ -2650,6 +2655,7 @@
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
+				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
@@ -2684,9 +2690,11 @@
 				CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
 				CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */,
+				CA10783A19A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
+				CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				CA0D06E91975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
 				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,

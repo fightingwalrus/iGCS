@@ -166,7 +166,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 #pragma mark NSStreamDelegateEventExtensions
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
-	NSLog(@"FightingWalrusInterface :handleEvent:");
+	//NSLog(@"FightingWalrusInterface :handleEvent:");
     switch (eventCode) {
         case NSStreamEventNone:
             NSLog(@"stream %@ event none", aStream);
@@ -233,11 +233,11 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
 #pragma mark - Internal
 - (void)writeDataFromBufferToStream {
-    NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
+    //NSLog(@"FightingWalrusInterface: writeDataFromBufferToStream");
     while (([[self.session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
 
-        NSLog(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
+        //NSLog(@"[%lu] bytes in buffer - wrote [%ld] bytes", (unsigned long)[_writeDataBuffer length], (long)bytesWritten);
         if (bytesWritten == -1) {
             NSLog(@"write error");
             break;
@@ -251,11 +251,11 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 #define EAD_INPUT_BUFFER_SIZE 128
 
 - (void)readDataFromStreamToBuffer {
-    NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
+    //NSLog(@"FightingWalrusInterface: readDataFromStreamToBuffer");
     uint8_t buf[EAD_INPUT_BUFFER_SIZE];
     while ([[self.session inputStream] hasBytesAvailable]) {
         NSInteger bytesRead = [[self.session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
-        NSLog(@"read %ld bytes from input stream", (long)bytesRead);
+        //NSLog(@"read %ld bytes from input stream", (long)bytesRead);
 
         [self produceData:buf length:(int)bytesRead];
     }

@@ -29,14 +29,16 @@
 +(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC;
 
 - (void) startReadMissionRequest;
+- (void) completedReadMissionRequest:(WaypointsHolder*)mission;
 - (void) issueRawMissionRequestList;
 - (void) issueRawMissionRequest:(uint16_t)sequence;
-- (void) issueRawMissionAck;
-- (void) loadNewMission:(WaypointsHolder*)mission;
 - (void) stopRecevingMessages;
-- (void) startWriteMissionRequest:(WaypointsHolder*)waypoints;
+
+- (void) startWriteMissionRequest:(WaypointsHolder*)mission;
+- (void) completedWriteMissionRequestSuccessfully:(BOOL)success withMission:(WaypointsHolder*)mission;
 - (void) issueRawMissionCount:(uint16_t)numItems;
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item;
+- (void) issueRawMissionClearAll;
 
 - (void) startSetWaypointRequest:(uint16_t)sequence;
 - (void) issueRawSetWaypointCommand:(uint16_t)sequence;

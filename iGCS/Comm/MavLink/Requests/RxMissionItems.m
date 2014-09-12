@@ -34,8 +34,7 @@
 
             // Are we done?
             if ([_mission allWaypointsReceivedP]) {
-                [_interface issueRawMissionAck];      // acknowledge completion of mission reception
-                [_interface loadNewMission:_mission]; // load the mission
+                [_interface completedReadMissionRequest:_mission];
                 [handler completedWithSuccess:YES];   // FIXME: was originally the first line of this branch but caused crashes; investigate why.
             } else {
                 // Let's get the next waypoint
