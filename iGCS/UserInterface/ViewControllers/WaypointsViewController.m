@@ -267,11 +267,11 @@
 
 
 - (IBAction)mavTxMissionClicked:(id)sender {
-    [[[CommController sharedInstance] mavLinkInterface  ]startWriteMissionRequest: waypoints];
+    [[[CommController sharedInstance] mavLinkInterface] startWriteMissionRequest: waypoints];
 }
 
 - (IBAction)mavRxMissionClicked:(id)sender {
-    [[[CommController sharedInstance] mavLinkInterface ]startReadMissionRequest];
+    [[[CommController sharedInstance] mavLinkInterface] startReadMissionRequest];
 }
 
 // @protocol MissionItemEditingDelegate

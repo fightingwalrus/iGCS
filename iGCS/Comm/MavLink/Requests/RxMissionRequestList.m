@@ -28,9 +28,16 @@
         mavlink_mission_count_t count;
         mavlink_msg_mission_count_decode(&packet, &count);
         
-        // Start requesting mission items
         WaypointsHolder* rxMission = [[WaypointsHolder alloc] initWithExpectedCount:count.count];
-        [handler continueWithRequest:[[RxMissionItems alloc] initWithInterface:_interface andMission:rxMission]];
+
+        if (count.count == 0) {
+            // No items to request, so...
+            [_interface completedReadMissionRequest:rxMission];
+            [handler completedWithSuccess:YES];
+        } else {
+            // Start requesting mission items
+            [handler continueWithRequest:[[RxMissionItems alloc] initWithInterface:_interface andMission:rxMission]];
+        }
     }
 }
 

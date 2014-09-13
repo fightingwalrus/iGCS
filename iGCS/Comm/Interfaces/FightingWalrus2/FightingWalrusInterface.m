@@ -253,7 +253,6 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     while ([[self.session inputStream] hasBytesAvailable]) {
         NSInteger bytesRead = [[self.session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
         DDLogVerbose(@"read %ld bytes from input stream", (long)bytesRead);
-
         [self produceData:buf length:(int)bytesRead];
     }
 }
