@@ -27,11 +27,12 @@ static AppDelegate *shared;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if DEBUG
     DDFileLogger* fileLogger = [[DDFileLogger alloc] init];
     fileLogger.rollingFrequency = 60 * 60 * 1; // 1 hour
     fileLogger.logFileManager.maximumNumberOfLogFiles = 5;
     [DDLog addLogger:fileLogger];
-
+#endif
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     
