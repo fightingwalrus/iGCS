@@ -36,10 +36,10 @@ static BOOL loggerEnabled = NO;
         NSString *messageString = [self createLogString:message];
 
         if (debugVC) {
-            NSLog(@"Error: %@",message);
+            DDLogError(@"%@",message);
             [debugVC errorMessage:messageString];
         } else {
-            NSLog(@"Pending Error: %@",message);
+            DDLogError(@"%@",message);
             [self addPendingErrorMessage:messageString];
         }
     }
