@@ -23,8 +23,6 @@
 
 #import "GaugeViewCommon.h"
 
-#import "Logger.h"
-
 #import "MavLinkRetryingRequestHandler.h"
 #import "SetWPRequest.h"
 #import "RxMissionRequestList.h"
@@ -63,7 +61,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
 }
 
 -(void)close {
-    NSLog(@"iGCSMavLinkInterface: close is a noop");
+    DDLogDebug(@"iGCSMavLinkInterface: close is a noop");
 }
 
 -(void)setupLogger{
@@ -74,7 +72,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
 
 static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint16_t len)
 {
-    NSLog(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
+    DDLogCVerbose(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
     [appMLI produceData:buffer length:len];
 }
 
@@ -95,7 +93,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
                 if (msg.msgid == MAVLINK_MSG_ID_HEARTBEAT) {
-                    [Logger console:@"MavLink Heartbeat."];
+                    DDLogDebug(@"MavLink Heartbeat.");
                     
                     // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
                     if (++self.heartbeatOnlyCount >= 5) {
@@ -111,7 +109,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         mavlink_system.sysid  = msg.sysid;
                         mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
                         
-                        [Logger console:@"Sending request for MavLink messages."];
+                        DDLogInfo(@"Sending request for MavLink messages.");
                         
                         // Send requests to set the stream rates
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
@@ -198,7 +196,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 - (void) loadNewMission:(WaypointsHolder*)mission {
     // Let the GCSMapView and WaypointsView know we've got new waypoints
-    //NSLog(@"Loading mission:\n%@", [waypoints toOutputFormat]);
+    DDLogDebug(@"Loading mission:\n%@", [mission toOutputFormat]);
     [self.mainVC.gcsMapVC   resetWaypoints:mission];
     [self.mainVC.waypointVC resetWaypoints:mission];
 }
@@ -265,7 +263,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 - (void) loadDemoMission {
     WaypointsHolder* demo = [WaypointsHolder createDemoMission];
-    //NSLog(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
+    DDLogDebug(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
     
     [self.mainVC.gcsMapVC resetWaypoints: demo];
     [self.mainVC.waypointVC resetWaypoints: demo];

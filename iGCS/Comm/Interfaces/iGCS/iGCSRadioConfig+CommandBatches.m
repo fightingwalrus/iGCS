@@ -38,7 +38,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-            NSLog(@">>>> iGCSRadioConfig.exitConfigMode complete");
+            DDLogInfo(@">>>> iGCSRadioConfig.exitConfigMode complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameExitConfigMode
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];
@@ -51,12 +51,12 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 -(void)enterConfigMode {
     
     if (!self.isRadioBooted) {
-        NSLog(@"enterConfigMode >> Can't enter config mode. RADIO IS NOT BOOTED.");
+        DDLogWarn(@"enterConfigMode >> Can't enter config mode. RADIO IS NOT BOOTED.");
         return;
     }
 
     if (self.isRadioInConfigMode) {
-        NSLog(@"enterConfigMode >> Radio is already in config Mode.");
+        DDLogWarn(@"enterConfigMode >> Radio is already in config Mode.");
         return;
     }
 
@@ -67,7 +67,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-        NSLog(@">>>> iGCSRadioConfig.enterConfigMode complete");
+        DDLogInfo(@">>>> iGCSRadioConfig.enterConfigMode complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameEnterConfigMode
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];
@@ -84,7 +84,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-            NSLog(@">>>> iGCSRadioConfig.loadRadioVersion complete");
+            DDLogInfo(@">>>> iGCSRadioConfig.loadRadioVersion complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadRadioVersion
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];
@@ -110,7 +110,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-        NSLog(@">>>> iGCSRadioConfig.loadBasicSettings complete");
+        DDLogInfo(@">>>> iGCSRadioConfig.loadBasicSettings complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadBasicSettings
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];
@@ -147,7 +147,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
     //  [self.commandQueue addObject:^(){[weakSelf tdmTimingReport];}];
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-        NSLog(@">>>> iGCSRadioConfig.loadAllSettings complete");
+        DDLogInfo(@">>>> iGCSRadioConfig.loadAllSettings complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameLoadAllSettings
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];
@@ -174,7 +174,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
-            NSLog(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
+            DDLogInfo(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
             [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameSaveAndResetWithNetID
                                                                 object:nil
                                                               userInfo:[self userInfoFromCurrentState]];

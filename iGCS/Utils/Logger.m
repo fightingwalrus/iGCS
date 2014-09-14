@@ -31,29 +31,15 @@ static BOOL loggerEnabled = NO;
     }
 }
 
-+(void)console:(NSString*)message {
-    if (loggerEnabled) {
-        NSString *messageString = [self createLogString:message];
-
-        if (debugVC) {
-            NSLog(@"Console: %@",message);
-            [debugVC consoleMessage:messageString];
-        } else {
-            NSLog(@"Pending Console: %@",message);
-            [self addPendingConsoleMessage:messageString];
-        }
-    }
- }
-
 +(void)error:(NSString*)message {
     if (loggerEnabled) {
         NSString *messageString = [self createLogString:message];
 
         if (debugVC) {
-            NSLog(@"Error: %@",message);
+            DDLogError(@"%@",message);
             [debugVC errorMessage:messageString];
         } else {
-            NSLog(@"Pending Error: %@",message);
+            DDLogError(@"%@",message);
             [self addPendingErrorMessage:messageString];
         }
     }
@@ -72,34 +58,12 @@ static BOOL loggerEnabled = NO;
 
 
 // helpers for debug view console and errors
-+(void)addPendingConsoleMessage:(NSString*)message {
-    if (loggerEnabled) {
-        if (!pendingConsoleMessages){
-            pendingConsoleMessages = [NSMutableArray array];
-        }
-
-        [pendingConsoleMessages addObject:message];
-    }
-}
-
 +(void)addPendingErrorMessage:(NSString*)message {
     if (loggerEnabled) {
         if (!pendingErrorMessages) {
             pendingErrorMessages = [NSMutableArray array];
         }
         [pendingErrorMessages addObject:message];
-    }
-}
-
-+(NSArray*)getPendingConsoleMessages {
-    if (!loggerEnabled) {
-        return nil;
-    }
-
-    if (pendingConsoleMessages) {
-        return [NSArray arrayWithArray:pendingConsoleMessages];
-    } else {
-        return [NSArray array];
     }
 }
 
@@ -112,12 +76,6 @@ static BOOL loggerEnabled = NO;
         return [NSArray arrayWithArray:pendingErrorMessages];
     } else {
         return [NSArray array];
-    }
-}
-
-+(void)clearPendingConsoleMessages {
-    if (loggerEnabled) {
-        [pendingConsoleMessages removeAllObjects];
     }
 }
 

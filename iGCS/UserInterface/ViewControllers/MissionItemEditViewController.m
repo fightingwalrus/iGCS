@@ -85,7 +85,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    //NSLog(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
+    DDLogDebug(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
     
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
@@ -161,7 +161,7 @@
     }
     NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)cell];
     assert(indexPath != NULL);
-    //NSLog(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
+    DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];

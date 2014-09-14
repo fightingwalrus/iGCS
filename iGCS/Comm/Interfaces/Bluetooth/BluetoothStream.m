@@ -12,7 +12,7 @@
 
 +(BluetoothStream*) createForTx
 {
-    NSLog(@"Creating BluetoothStream for Peripheral mode (Tx).");
+    DDLogInfo(@"Creating BluetoothStream for Peripheral mode (Tx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
     
@@ -29,7 +29,7 @@
 
 +(BluetoothStream*) createForRx
 {
-    NSLog(@"Creating BluetoothStream for Central mode (Rx).");
+    DDLogInfo(@"Creating BluetoothStream for Central mode (Rx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
     

@@ -30,10 +30,10 @@
                         createFileAtPath:filePath contents:nil attributes:nil];
         
         if (success) {
-            NSLog(@"FileUtils:createFileHandleForWritingAtFilePath: %@", filePath);
+            DDLogInfo(@"FileUtils:createFileHandleForWritingAtFilePath: %@", filePath);
             fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
         } else {
-            NSLog(@"FileUtils:createFileHandleForWritingAtFilePath: failed to create %@", filePath);
+            DDLogError(@"FileUtils:createFileHandleForWritingAtFilePath: failed to create %@", filePath);
         }
     }
 

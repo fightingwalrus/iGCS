@@ -450,6 +450,22 @@
 		CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
+		CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
+		CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
+		CA154E7B19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
+		CA154E7C19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
+		CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
+		CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
+		CA154E7F19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
+		CA154E8019BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
+		CA154E8119BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
+		CA154E8219BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
+		CA154E8319BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
+		CA154E8419BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
+		CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
+		CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
+		CA154E8719BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
+		CA154E8819BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
@@ -957,6 +973,14 @@
 		CA10784819A99C57007B42E5 /* TxMissionCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionCommon.m; path = Requests/TxMissionCommon.m; sourceTree = "<group>"; };
 		CA10E12F188FCD42002DF0E4 /* GCSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSThemeManager.h; sourceTree = "<group>"; };
 		CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSThemeManager.m; sourceTree = "<group>"; };
+		CA154E7119BFE52000ECE919 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		CA154E7219BFE52000ECE919 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		CA154E7319BFE52000ECE919 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		CA154E7419BFE52000ECE919 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		CA154E7519BFE52000ECE919 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		CA154E7619BFE52000ECE919 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		CA154E7719BFE52000ECE919 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		CA154E7819BFE52000ECE919 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
 		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -1836,6 +1860,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				CA154E7019BFE52000ECE919 /* CocoaLumberjack */,
 				18D8916A19817CB1001ED845 /* HockeySDK-iOS */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
@@ -1846,6 +1871,21 @@
 				CA0B69A9189B69F50014C1E4 /* SWReveal */,
 			);
 			path = "3rd-party";
+			sourceTree = "<group>";
+		};
+		CA154E7019BFE52000ECE919 /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				CA154E7119BFE52000ECE919 /* DDASLLogger.h */,
+				CA154E7219BFE52000ECE919 /* DDASLLogger.m */,
+				CA154E7319BFE52000ECE919 /* DDFileLogger.h */,
+				CA154E7419BFE52000ECE919 /* DDFileLogger.m */,
+				CA154E7519BFE52000ECE919 /* DDLog.h */,
+				CA154E7619BFE52000ECE919 /* DDLog.m */,
+				CA154E7719BFE52000ECE919 /* DDTTYLogger.h */,
+				CA154E7819BFE52000ECE919 /* DDTTYLogger.m */,
+			);
+			path = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
@@ -2473,11 +2513,14 @@
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
+				CA154E7B19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
+				CA154E8719BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
+				CA154E7F19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				182FFAAA181F0C9100A8C31C /* (null) in Sources */,
 				182FFAAB181F0C9100A8C31C /* (null) in Sources */,
 				18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
@@ -2501,6 +2544,7 @@
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
+				CA154E8319BFE52000ECE919 /* DDLog.m in Sources */,
 				182FFAC9181F0C9100A8C31C /* MavLinkUtility.m in Sources */,
 				182FFACA181F0C9100A8C31C /* MiscUtilities.m in Sources */,
 				18A42CD418895B3700408D71 /* GKLocalController.m in Sources */,
@@ -2548,6 +2592,7 @@
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
+				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
 				CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */,
@@ -2564,10 +2609,12 @@
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
 				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
+				CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */,
 				18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */,
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
+				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
@@ -2580,6 +2627,7 @@
 				1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
+				CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
 				18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
@@ -2606,12 +2654,14 @@
 				CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */,
 				CA05750818BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18069FD01836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
+				CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				CA0574FC18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */,
 				CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
+				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
@@ -2646,6 +2696,7 @@
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
 				CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
+				CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2674,6 +2725,7 @@
 				1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
+				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
@@ -2686,18 +2738,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA154E8419BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */,
 				CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
 				CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				CA10783A19A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
+				CA154E8819BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
+				CA154E8019BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				CA0D06E91975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
 				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,
+				CA154E7C19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
 				CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */,

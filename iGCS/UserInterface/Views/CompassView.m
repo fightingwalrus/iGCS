@@ -45,9 +45,8 @@
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 {
-#if DO_NSLOG
-    NSLog(@"Compass: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-#endif
+    DDLogVerbose(@"Compass: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
     const float HORZ_INSET_PERC = 0.0;
     const float VERT_INSET_PERC = 0.0;
     

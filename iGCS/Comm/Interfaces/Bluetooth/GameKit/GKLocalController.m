@@ -6,25 +6,17 @@
 //
 //
 
-#import "GKLocalController.h"
-
 #import <GameKit/GameKit.h>
-
+#import "GKLocalController.h"
 #import "BluetoothStream.h"
-
-#import "Logger.h"
-
 
 #define kMaxPacketSize 1024
 #define kGCSSessionID @"groundStation"
-
-
 
 @interface GKLocalController () <GKSessionDelegate,GKPeerPickerControllerDelegate> {
     int				gamePacketNumber;
     int				gameUniqueID;
 }
-
 
 @property (strong) BluetoothStream *parentStream;
 
@@ -40,8 +32,6 @@
 @end
 
 @implementation GKLocalController
-
-
 
 
 -(id)init:(BluetoothStream*)bts
@@ -62,22 +52,11 @@
 }
 
 
-
-
 -(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length
 {
-    NSLog(@"GKSessionController: Sending MavLink bytes: %i",length);
+    DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %i",length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
-    
 }
-
-
-
-
-
-
-
-
 
 
 #pragma mark -
@@ -175,7 +154,7 @@
 		return;
 	}
     
-    //NSLog(@"GKSession receiveData: %i bytes",[data length]);
+    DDLogVerbose(@"GKSession receiveData: %i bytes",[data length]);
 	
 	lastPacketTime = packetTime;
 	switch( packetID ) {
@@ -215,7 +194,7 @@
             
         case NETWORK_MAVLINK:
         {
-            //NSLog(@"GKSession: Received MavLink: %i bytes",[data length]);
+            DDLogVerbose(@"GKSession: Received MavLink: %i bytes",[data length]);
             
             int headerSize = 2 * sizeof(int);
             uint8_t *mavlinkData = (uint8_t*)&incomingPacket[headerSize];
@@ -234,8 +213,6 @@
 
 - (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend
 {
-    //[Logger console:[NSString stringWithFormat:@"GKSession: sending %i bytes.",length]];
-	// the packet we'll send is resued
 	static unsigned char networkPacket[kMaxPacketSize];
 	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	

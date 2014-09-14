@@ -39,9 +39,7 @@
 #endif
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect {
-#if DO_NSLOG
-    NSLog(@"AH: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-#endif
+    DDLogVerbose(@"AH: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     
     float r = 0.95 * fmin(rect.size.width,rect.size.height)/2.0;
     CGPoint c = CGPointMake(CGRectGetMidX(rect) , CGRectGetMidY(rect));

@@ -31,13 +31,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-#if DO_NSLOG
-    if ([self isViewLoaded]) {
-        NSLog(@"\tMainViewController::didReceiveMemoryWarning: view is still loaded");
-    } else {
-        NSLog(@"\tMainViewController::didReceiveMemoryWarning: view is NOT loaded");
-    }
-#endif
 }
 
 - (void)awakeFromNib

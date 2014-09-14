@@ -86,15 +86,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
-    
-    // Release any cached data, images, etc that aren't in use.
-#if DO_NSLOG
-    if ([self isViewLoaded]) {
-        NSLog(@"\t\tGCSMapViewController::didReceiveMemoryWarning: view is still loaded");
-    } else {
-        NSLog(@"\t\tGCSMapViewController::didReceiveMemoryWarning: view is NOT loaded");
-    }
-#endif
 }
 
 - (void)awakeFromNib {
@@ -169,7 +160,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     NSValue *videoResolution = self.availableStreams[streamName][@"size"];
     CGSize videoDisplaySize = [self CGSizeFromSize:[videoResolution CGSizeValue] withScaleFactor:scaleFactor];
     CGRect f = [self videoFrameWithSize:videoDisplaySize andUAVPoint:uavView.frame.origin];
-    NSLog(@"videoFrame: x:%f y:%f w:%f h:%f", f.origin.x, f.origin.y, f.size.width, f.size.height);
+    DDLogVerbose(@"videoFrame: x:%f y:%f w:%f h:%f", f.origin.x, f.origin.y, f.size.width, f.size.height);
     self.kxMovieVC.view.frame  =  f;
 }
 #endif
@@ -205,7 +196,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 -(void)airplanTapped:(UITapGestureRecognizer *)gesture {
-    NSLog(@"airplane tapped");
 #ifdef VIDEOSTREAMING
     [self connectToVideoStream];
 #endif
@@ -373,7 +363,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (IBAction) changeControlModeSegment {
     NSInteger idx = controlModeSegment.selectedSegmentIndex;
-    NSLog(@"changeControlModeSegment: %d", idx);
+    DDLogDebug(@"changeControlModeSegment: %d", idx);
     [self deactivateFollowMe];
     switch (idx) {
         case CONTROL_MODE_RC:
@@ -401,7 +391,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
-    NSLog(@" - issueGuidedCommand");
+    DDLogDebug(@" - issueGuidedCommand");
     if (!following) {
         [self deactivateFollowMe];
     }
@@ -464,9 +454,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         [map setNeedsDisplay];
     }
 
-#if DO_NSLOG
-    NSLog(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
-#endif
+    DDLogDebug(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
     if (ctrlValues.isActive &&
         (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
         [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
@@ -753,7 +741,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
         goingUp = YES;
     }
     
-    //NSLog(@"glkView");
     glClearColor(redVal, 0.0, 1.0, 0.1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
@@ -766,9 +753,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = locationManager.location;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
-#if DO_NSLOG
-    NSLog(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
-#endif
+    DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
     if (age > 5.0) return;
     
     [_followMeControlDelegate followMeLocationAccuracy:location.horizontalAccuracy isAcceptable:[GCSMapViewController isAcceptableFollowMePosition:location]];

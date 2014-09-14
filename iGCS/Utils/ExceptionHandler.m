@@ -22,16 +22,10 @@ static DebugViewController *debugVC;
 #endif
 }
 
-
-
 void catchUnhandledException(NSException* e)
 {
-#ifdef DEBUG
-    NSLog(@"Exception raised: ");
-    NSLog(@"%@",[e description]);
-#endif
+    DDLogCError(@"Exception raised: ");
+    DDLogCError(@"%@",[e description]);
 }
-
-
 
 @end

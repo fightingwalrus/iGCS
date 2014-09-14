@@ -57,14 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [Logger setDebugVC:self];
-    
-    if ([[Logger getPendingConsoleMessages] count] > 0)
-    {
-        for (NSString *message in [Logger getPendingConsoleMessages])
-        {
-            [self consoleMessage:message];
-        }
-    }
+
     if ([[Logger getPendingErrorMessages] count] > 0)
     {
         for (NSString *message in [Logger getPendingErrorMessages])
@@ -73,9 +66,7 @@
         }
     }
     
-    [Logger clearPendingConsoleMessages];
     [Logger clearPendingErrorMessages];
-        
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,10 +90,10 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([segmentedControl selectedSegmentIndex] == 1) {
-        NSLog(@"Video Source: Z3");
+        DDLogDebug(@"Video Source: Z3");
         [userDefaults setObject:@"Z3" forKey:@"videoSource"];
     } else {
-        NSLog(@"Video Source: Test Stream");
+        DDLogDebug(@"Video Source: Test Stream");
         [userDefaults setObject:@"testStream" forKey:@"videoSource"];
     }
     [userDefaults synchronize];
@@ -114,10 +105,10 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([segmentedControl selectedSegmentIndex] == 1) {
-        NSLog(@"Video Location: Full Screen");
+        DDLogDebug(@"Video Location: Full Screen");
         [userDefaults setObject:@"fullScreen" forKey:@"videoDisplayLocation"];
     } else {
-        NSLog(@"Video Source: Test Stream");
+        DDLogDebug(@"Video Source: Test Stream");
         [userDefaults setObject:@"corner" forKey:@"videoDisplayLocation"];
     }
     [userDefaults synchronize];
@@ -125,22 +116,6 @@
 
 -(void)consoleMessage:(NSString*)messageText
 {
-    /*
-    NSString *currentText = self.consoleTextView.text;
-    
-    NSString *updatedText;
-    
-    if (currentText)
-    {
-        updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-    }
-    else
-    {
-        updatedText = messageText;
-    }
-    
-    self.consoleTextView.text = updatedText;
-     */
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
     NSUInteger maxLength = 1000;
     if(consoleMessagesStringLength > maxLength)
@@ -152,13 +127,7 @@
         self.consoleTextView.text = [cutString substringWithRange:firstReturn];
     }
     self.consoleTextView.text = [[self.consoleTextView.text stringByAppendingString:messageText] stringByAppendingString:@"\n"];
-    //[self.consoleTextView.textStorage.mutableString appendString:string];
-    
-    
-    
-    
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
-    
 }
 
 -(void)errorMessage:(NSString*)messageText

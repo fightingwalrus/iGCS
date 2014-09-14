@@ -26,22 +26,22 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
              @"Response from firmware update attempt must be either SUCCESS or FAIL");
 
     if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
-        NSLog(@"FWR Firmware updaded successfully");
+        DDLogInfo(@"FWR Firmware updaded successfully");
         [GCSFirmwareUtils setAwaitingPostUpgradeDisconnect:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateSuccess object:nil];
 
     }else if ([response rangeOfString:@"FAIL"].location !=NSNotFound) {
-        NSLog(@"FWR Firmware failed to update");
+        DDLogWarn(@"FWR Firmware failed to update");
         [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
     }
 }
 
 -(void) close {
-    NSLog(@"GCSFWRFirmwareInterface.close is a noop");
+    DDLogDebug(@"GCSFWRFirmwareInterface.close is a noop");
 }
 
 -(void)updateFwrFirmware {
-    NSLog(@"updateFwrFirmware");
+    DDLogDebug(@"updateFwrFirmware");
     NSData *firmware = [FileUtils dataFromFileInMainBundleWithName:@"walrus.bin"];
 
     if (!firmware) {
@@ -65,7 +65,7 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
     digest[2] = (crc >> 8) & 0xFF;
     digest[3] = crc & 0xFF;
 
-    NSLog(@"crc: %lu", crc);
+    DDLogVerbose(@"crc: %lu", crc);
 
     NSUInteger firmwareLength = [firmware length];
 
