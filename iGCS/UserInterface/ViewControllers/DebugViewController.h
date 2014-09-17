@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface DebugViewController : UIViewController
 
 
@@ -25,9 +26,11 @@
 - (IBAction)bluetoothTxClicked:(id)sender;
 - (IBAction)videoSourceValueChanged:(id)sender;
 - (IBAction)videoDisplayLocationValueChanged:(id)sender;
+- (IBAction)ftpClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;
+
 
 
 @end

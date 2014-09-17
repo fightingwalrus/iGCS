@@ -14,6 +14,7 @@
 
 #import "ExceptionHandler.h"
 
+
 @interface DebugViewController ()
 
 @end
@@ -113,6 +114,15 @@
     }
     [userDefaults synchronize];
 }
+
+- (IBAction)ftpClicked:(id)sender {
+    
+    
+}
+
+
+
+
 
 -(void)consoleMessage:(NSString*)messageText
 {

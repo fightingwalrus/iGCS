@@ -7,6 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01DF85EC19C9FC00003894CE /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85D919C9FC00003894CE /* BRRequest+_UserData.m */; };
+		01DF85ED19C9FC00003894CE /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85D919C9FC00003894CE /* BRRequest+_UserData.m */; };
+		01DF85EE19C9FC00003894CE /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85D919C9FC00003894CE /* BRRequest+_UserData.m */; };
+		01DF85EF19C9FC00003894CE /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DB19C9FC00003894CE /* BRRequest.m */; };
+		01DF85F019C9FC00003894CE /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DB19C9FC00003894CE /* BRRequest.m */; };
+		01DF85F119C9FC00003894CE /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DB19C9FC00003894CE /* BRRequest.m */; };
+		01DF85F219C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DD19C9FC00003894CE /* BRRequestCreateDirectory.m */; };
+		01DF85F319C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DD19C9FC00003894CE /* BRRequestCreateDirectory.m */; };
+		01DF85F419C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DD19C9FC00003894CE /* BRRequestCreateDirectory.m */; };
+		01DF85F519C9FC00003894CE /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DF19C9FC00003894CE /* BRRequestDelete.m */; };
+		01DF85F619C9FC00003894CE /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DF19C9FC00003894CE /* BRRequestDelete.m */; };
+		01DF85F719C9FC00003894CE /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85DF19C9FC00003894CE /* BRRequestDelete.m */; };
+		01DF85F819C9FC00003894CE /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E119C9FC00003894CE /* BRRequestDownload.m */; };
+		01DF85F919C9FC00003894CE /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E119C9FC00003894CE /* BRRequestDownload.m */; };
+		01DF85FA19C9FC00003894CE /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E119C9FC00003894CE /* BRRequestDownload.m */; };
+		01DF85FB19C9FC00003894CE /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E319C9FC00003894CE /* BRRequestError.m */; };
+		01DF85FC19C9FC00003894CE /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E319C9FC00003894CE /* BRRequestError.m */; };
+		01DF85FD19C9FC00003894CE /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E319C9FC00003894CE /* BRRequestError.m */; };
+		01DF85FE19C9FC00003894CE /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E519C9FC00003894CE /* BRRequestListDirectory.m */; };
+		01DF85FF19C9FC00003894CE /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E519C9FC00003894CE /* BRRequestListDirectory.m */; };
+		01DF860019C9FC00003894CE /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E519C9FC00003894CE /* BRRequestListDirectory.m */; };
+		01DF860119C9FC00003894CE /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E719C9FC00003894CE /* BRRequestQueue.m */; };
+		01DF860219C9FC00003894CE /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E719C9FC00003894CE /* BRRequestQueue.m */; };
+		01DF860319C9FC00003894CE /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E719C9FC00003894CE /* BRRequestQueue.m */; };
+		01DF860419C9FC00003894CE /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E919C9FC00003894CE /* BRRequestUpload.m */; };
+		01DF860519C9FC00003894CE /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E919C9FC00003894CE /* BRRequestUpload.m */; };
+		01DF860619C9FC00003894CE /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85E919C9FC00003894CE /* BRRequestUpload.m */; };
+		01DF860719C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
+		01DF860819C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
+		01DF860919C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
@@ -550,6 +580,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01DF85D719C9FC00003894CE /* BRGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGlobal.h; sourceTree = "<group>"; };
+		01DF85D819C9FC00003894CE /* BRRequest+_UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRRequest+_UserData.h"; sourceTree = "<group>"; };
+		01DF85D919C9FC00003894CE /* BRRequest+_UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRRequest+_UserData.m"; sourceTree = "<group>"; };
+		01DF85DA19C9FC00003894CE /* BRRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequest.h; sourceTree = "<group>"; };
+		01DF85DB19C9FC00003894CE /* BRRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequest.m; sourceTree = "<group>"; };
+		01DF85DC19C9FC00003894CE /* BRRequestCreateDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestCreateDirectory.h; sourceTree = "<group>"; };
+		01DF85DD19C9FC00003894CE /* BRRequestCreateDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestCreateDirectory.m; sourceTree = "<group>"; };
+		01DF85DE19C9FC00003894CE /* BRRequestDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestDelete.h; sourceTree = "<group>"; };
+		01DF85DF19C9FC00003894CE /* BRRequestDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDelete.m; sourceTree = "<group>"; };
+		01DF85E019C9FC00003894CE /* BRRequestDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestDownload.h; sourceTree = "<group>"; };
+		01DF85E119C9FC00003894CE /* BRRequestDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDownload.m; sourceTree = "<group>"; };
+		01DF85E219C9FC00003894CE /* BRRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestError.h; sourceTree = "<group>"; };
+		01DF85E319C9FC00003894CE /* BRRequestError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestError.m; sourceTree = "<group>"; };
+		01DF85E419C9FC00003894CE /* BRRequestListDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestListDirectory.h; sourceTree = "<group>"; };
+		01DF85E519C9FC00003894CE /* BRRequestListDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestListDirectory.m; sourceTree = "<group>"; };
+		01DF85E619C9FC00003894CE /* BRRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestQueue.h; sourceTree = "<group>"; };
+		01DF85E719C9FC00003894CE /* BRRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestQueue.m; sourceTree = "<group>"; };
+		01DF85E819C9FC00003894CE /* BRRequestUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestUpload.h; sourceTree = "<group>"; };
+		01DF85E919C9FC00003894CE /* BRRequestUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestUpload.m; sourceTree = "<group>"; };
+		01DF85EA19C9FC00003894CE /* BRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStreamInfo.h; sourceTree = "<group>"; };
+		01DF85EB19C9FC00003894CE /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
 		18069FA11836F7C70068E7A5 /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
@@ -1169,6 +1220,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01DF85D619C9FC00003894CE /* BlackRaccoon */ = {
+			isa = PBXGroup;
+			children = (
+				01DF85D719C9FC00003894CE /* BRGlobal.h */,
+				01DF85D819C9FC00003894CE /* BRRequest+_UserData.h */,
+				01DF85D919C9FC00003894CE /* BRRequest+_UserData.m */,
+				01DF85DA19C9FC00003894CE /* BRRequest.h */,
+				01DF85DB19C9FC00003894CE /* BRRequest.m */,
+				01DF85DC19C9FC00003894CE /* BRRequestCreateDirectory.h */,
+				01DF85DD19C9FC00003894CE /* BRRequestCreateDirectory.m */,
+				01DF85DE19C9FC00003894CE /* BRRequestDelete.h */,
+				01DF85DF19C9FC00003894CE /* BRRequestDelete.m */,
+				01DF85E019C9FC00003894CE /* BRRequestDownload.h */,
+				01DF85E119C9FC00003894CE /* BRRequestDownload.m */,
+				01DF85E219C9FC00003894CE /* BRRequestError.h */,
+				01DF85E319C9FC00003894CE /* BRRequestError.m */,
+				01DF85E419C9FC00003894CE /* BRRequestListDirectory.h */,
+				01DF85E519C9FC00003894CE /* BRRequestListDirectory.m */,
+				01DF85E619C9FC00003894CE /* BRRequestQueue.h */,
+				01DF85E719C9FC00003894CE /* BRRequestQueue.m */,
+				01DF85E819C9FC00003894CE /* BRRequestUpload.h */,
+				01DF85E919C9FC00003894CE /* BRRequestUpload.m */,
+				01DF85EA19C9FC00003894CE /* BRStreamInfo.h */,
+				01DF85EB19C9FC00003894CE /* BRStreamInfo.m */,
+			);
+			path = BlackRaccoon;
+			sourceTree = "<group>";
+		};
 		18069F9C1836F7C70068E7A5 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -1859,6 +1938,7 @@
 			isa = PBXGroup;
 			children = (
 				CA154E7019BFE52000ECE919 /* CocoaLumberjack */,
+				01DF85D619C9FC00003894CE /* BlackRaccoon */,
 				18D8916A19817CB1001ED845 /* HockeySDK-iOS */,
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
@@ -2484,6 +2564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DF85FA19C9FC00003894CE /* BRRequestDownload.m in Sources */,
 				182FFA99181F0C9100A8C31C /* main.m in Sources */,
 				CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */,
@@ -2513,9 +2594,12 @@
 				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
 				18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
+				01DF860919C9FC00003894CE /* BRStreamInfo.m in Sources */,
 				18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				182FFAA6181F0C9100A8C31C /* RxMissionRequestList.m in Sources */,
+				01DF860619C9FC00003894CE /* BRRequestUpload.m in Sources */,
 				182FFAA7181F0C9100A8C31C /* DoubleBufferedAsyncView.m in Sources */,
+				01DF85EE19C9FC00003894CE /* BRRequest+_UserData.m in Sources */,
 				182FFAA8181F0C9100A8C31C /* VerticalScaleView.m in Sources */,
 				18069FC31836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				CA154E7B19BFE52000ECE919 /* DDASLLogger.m in Sources */,
@@ -2527,16 +2611,20 @@
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
 				CA154E7F19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				182FFAAA181F0C9100A8C31C /* (null) in Sources */,
+				01DF85F119C9FC00003894CE /* BRRequest.m in Sources */,
 				182FFAAB181F0C9100A8C31C /* (null) in Sources */,
 				18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
+				01DF85F719C9FC00003894CE /* BRRequestDelete.m in Sources */,
 				182FFAAC181F0C9100A8C31C /* MavLinkRetryingRequestHandler.m in Sources */,
 				182FFAAE181F0C9100A8C31C /* RxMissionItems.m in Sources */,
 				186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				18E58A93198993EB0025A516 /* Logger.m in Sources */,
 				CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				01DF860019C9FC00003894CE /* BRRequestListDirectory.m in Sources */,
 				182FFAB3181F0C9100A8C31C /* (null) in Sources */,
 				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
+				01DF85FD19C9FC00003894CE /* BRRequestError.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
 				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
@@ -2557,8 +2645,10 @@
 				CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				18069FC51836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */,
+				01DF85F419C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */,
 				182FFACB181F0C9100A8C31C /* MavLinkLogger.m in Sources */,
 				1845DA87197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
+				01DF860319C9FC00003894CE /* BRRequestQueue.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
 				CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
 				189B2DCA19DB3E0E00AAC466 /* SoundUtils.m in Sources */,
@@ -2574,6 +2664,7 @@
 				1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
+				01DF85F019C9FC00003894CE /* BRRequest.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
 				18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */,
@@ -2581,6 +2672,7 @@
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
 				18B9FACC18B2F7AF00668660 /* WaypointAnnotation.m in Sources */,
+				01DF860819C9FC00003894CE /* BRStreamInfo.m in Sources */,
 				18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
 				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
@@ -2596,6 +2688,8 @@
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18E58A8F198993EB0025A516 /* FileUtils.m in Sources */,
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
+				01DF85F619C9FC00003894CE /* BRRequestDelete.m in Sources */,
+				01DF85FC19C9FC00003894CE /* BRRequestError.m in Sources */,
 				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
@@ -2605,24 +2699,29 @@
 				18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */,
 				18B9FAD718B2F7AF00668660 /* RxMissionRequestList.m in Sources */,
 				18B9FAD818B2F7AF00668660 /* DoubleBufferedAsyncView.m in Sources */,
+				01DF85F919C9FC00003894CE /* BRRequestDownload.m in Sources */,
 				18B9FAD918B2F7AF00668660 /* BTLEMavLinkCentral.m in Sources */,
 				18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */,
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
 				CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
+				01DF860519C9FC00003894CE /* BRRequestUpload.m in Sources */,
 				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
 				CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
+				01DF85FF19C9FC00003894CE /* BRRequestListDirectory.m in Sources */,
 				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
 				CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */,
+				01DF860219C9FC00003894CE /* BRRequestQueue.m in Sources */,
 				18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */,
 				18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */,
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
+				01DF85F319C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
@@ -2634,6 +2733,7 @@
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
 				CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */,
+				01DF85ED19C9FC00003894CE /* BRRequest+_UserData.m in Sources */,
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
 				18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
@@ -2677,6 +2777,7 @@
 				18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */,
 				496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */,
 				496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
+				01DF85F819C9FC00003894CE /* BRRequestDownload.m in Sources */,
 				1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */,
 				18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
@@ -2686,6 +2787,9 @@
 				18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
+				01DF860419C9FC00003894CE /* BRRequestUpload.m in Sources */,
+				01DF85F519C9FC00003894CE /* BRRequestDelete.m in Sources */,
+				01DF860719C9FC00003894CE /* BRStreamInfo.m in Sources */,
 				1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
@@ -2696,6 +2800,7 @@
 				1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
+				01DF85FB19C9FC00003894CE /* BRRequestError.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
@@ -2708,6 +2813,7 @@
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
+				01DF860119C9FC00003894CE /* BRRequestQueue.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
 				18E58A91198993EB0025A516 /* Logger.m in Sources */,
 				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
@@ -2726,7 +2832,9 @@
 				CAFBD038180A67C000F5BCDB /* SetWPRequest.m in Sources */,
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
+				01DF85F219C9FC00003894CE /* BRRequestCreateDirectory.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
+				01DF85EC19C9FC00003894CE /* BRRequest+_UserData.m in Sources */,
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
@@ -2737,6 +2845,8 @@
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
+				01DF85FE19C9FC00003894CE /* BRRequestListDirectory.m in Sources */,
+				01DF85EF19C9FC00003894CE /* BRRequest.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 			);
