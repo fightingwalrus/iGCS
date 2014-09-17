@@ -359,31 +359,18 @@
 		496E626016DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626116DAFAD700E52E4A /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 496E625D16DAFAD700E52E4A /* airplane.png */; };
 		496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
-		496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
 		496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
-		496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
 		496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
-		496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627216DAFB8B00E52E4A /* GuidedPointAnnotation.m */; };
 		496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
-		496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627416DAFB8B00E52E4A /* WaypointAnnotation.m */; };
 		496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
-		496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627816DAFB8B00E52E4A /* CommsViewController.m */; };
 		496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
-		496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */; };
 		496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
-		496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627C16DAFB8B00E52E4A /* MainViewController.m */; };
 		496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
-		496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */; };
 		496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
-		496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628116DAFB8B00E52E4A /* ArtificialHorizonView.m */; };
 		496E629916DAFB8B00E52E4A /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
-		496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628316DAFB8B00E52E4A /* CompassView.m */; };
 		496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
-		496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
 		496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
-		496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
 		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
-		496E62C716DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
@@ -394,45 +381,35 @@
 		CA056B6318C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA056B6518C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
-		CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA0574FC18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
 		CA0574FD18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
 		CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
-		CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */; };
 		CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
 		CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
 		CA05750218BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
-		CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
 		CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
 		CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
 		CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
-		CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F718BE07FE001EACFD /* CXAlertButtonItem.m */; };
 		CA05750818BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
 		CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
 		CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
-		CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F918BE07FE001EACFD /* CXAlertView.m */; };
 		CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
-		CA05750F18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
 		CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
 		CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
-		CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
 		CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
-		CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
 		CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2818D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
-		CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA094F2E18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
-		CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA0AED74192C3DD80017BB9E /* test1.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA0AED70192C3DD80017BB9E /* test1.hex */; };
 		CA0AED7C192C4D050017BB9E /* test3.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA0AED7B192C4D050017BB9E /* test3.hex */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
@@ -441,32 +418,25 @@
 		CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
-		CA0D06E91975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
-		CA10783A19A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
-		CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
 		CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
 		CA154E7B19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
-		CA154E7C19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
 		CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
 		CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
 		CA154E7F19BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
-		CA154E8019BFE52000ECE919 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7419BFE52000ECE919 /* DDFileLogger.m */; };
 		CA154E8119BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
 		CA154E8219BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
 		CA154E8319BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
-		CA154E8419BFE52000ECE919 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7619BFE52000ECE919 /* DDLog.m */; };
 		CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA154E8719BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
-		CA154E8819BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
@@ -475,11 +445,9 @@
 		CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F6F14DE33BC00FCC9FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
-		CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F8B14DE33BC00FCC9FB /* SenTestingKit.framework */; };
 		CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
 		CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */; };
-		CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F9814DE33BC00FCC9FB /* iGCSTests.m */; };
 		CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
 		CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
@@ -547,6 +515,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
 			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		18C4C31719C960B8000CDBE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
+			remoteInfo = iGCS;
+		};
+		18C4C31D19C960C4000CDBE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
+			remoteInfo = iGCS;
+		};
+		18C4C31F19C96107000CDBE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
+			remoteInfo = iGCS;
 		};
 		CA499F8F14DE33BC00FCC9FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -851,6 +840,7 @@
 		18B7F2C31958953B00D2406A /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
+		18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iGCS.entitlements; sourceTree = "<group>"; };
 		18C86276198AD4A800F99CD3 /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
 		18C86277198AD4A800F99CD3 /* 05-shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle@2x.png"; sourceTree = "<group>"; };
 		18C86278198AD4A800F99CD3 /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
@@ -1001,7 +991,6 @@
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA499F8B14DE33BC00FCC9FB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
@@ -1167,7 +1156,6 @@
 				CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */,
 				CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */,
 				CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */,
-				CA499F8C14DE33BC00FCC9FB /* SenTestingKit.framework in Frameworks */,
 				CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
 				CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
 			);
@@ -2019,7 +2007,6 @@
 				CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */,
 				CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */,
 				CAF7508E14DE3C2D008B8480 /* MapKit.framework */,
-				CA499F8B14DE33BC00FCC9FB /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2027,6 +2014,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,
 				18759787189108980012DF6D /* Icons */,
@@ -2179,11 +2167,14 @@
 			);
 			dependencies = (
 				CA499F9014DE33BC00FCC9FB /* PBXTargetDependency */,
+				18C4C31819C960B8000CDBE8 /* PBXTargetDependency */,
+				18C4C31E19C960C4000CDBE8 /* PBXTargetDependency */,
+				18C4C32019C96107000CDBE8 /* PBXTargetDependency */,
 			);
 			name = iGCSTests;
 			productName = iGCSTests;
 			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -2191,7 +2182,7 @@
 		CA499F5514DE33BC00FCC9FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					182FFA97181F0C9100A8C31C = {
@@ -2202,6 +2193,9 @@
 					};
 					CA499F5D14DE33BC00FCC9FB = {
 						DevelopmentTeam = V693RD5AXN;
+					};
+					CA499F8914DE33BC00FCC9FB = {
+						TestTargetID = CA499F5D14DE33BC00FCC9FB;
 					};
 				};
 			};
@@ -2742,37 +2736,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA154E8419BFE52000ECE919 /* DDLog.m in Sources */,
-				CA05751D18BE080B001EACFD /* LFGlassView.m in Sources */,
-				CA05750718BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
-				CA499F9914DE33BC00FCC9FB /* iGCSTests.m in Sources */,
-				CA05750B18BE07FE001EACFD /* CXAlertView.m in Sources */,
-				CA10783A19A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
-				496E626C16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
-				CA154E8819BFE52000ECE919 /* DDTTYLogger.m in Sources */,
-				496E626E16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
-				496E628A16DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
-				CA154E8019BFE52000ECE919 /* DDFileLogger.m in Sources */,
-				CA10784C19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
-				CA0D06E91975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
-				496E628C16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
-				496E629016DAFB8B00E52E4A /* CommsViewController.m in Sources */,
-				CA154E7C19BFE52000ECE919 /* DDASLLogger.m in Sources */,
-				496E629216DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
-				CA094F2F18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
-				496E629416DAFB8B00E52E4A /* MainViewController.m in Sources */,
-				496E629616DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
-				496E629816DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
-				CA05750F18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
-				496E629A16DAFB8B00E52E4A /* CompassView.m in Sources */,
-				CA056B6618C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
-				496E629C16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
-				496E629E16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
-				CA094F2918D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
-				CA0574FF18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
-				CA05751918BE080B001EACFD /* LFDisplayBridge.m in Sources */,
-				CA05750318BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
-				496E62C716DAFBF600E52E4A /* CommController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2788,6 +2751,21 @@
 			isa = PBXTargetDependency;
 			name = "CorePlot-CocoaTouch";
 			targetProxy = 18C011BB18939456005B67E5 /* PBXContainerItemProxy */;
+		};
+		18C4C31819C960B8000CDBE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
+			targetProxy = 18C4C31719C960B8000CDBE8 /* PBXContainerItemProxy */;
+		};
+		18C4C31E19C960C4000CDBE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
+			targetProxy = 18C4C31D19C960C4000CDBE8 /* PBXContainerItemProxy */;
+		};
+		18C4C32019C96107000CDBE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
+			targetProxy = 18C4C31F19C96107000CDBE8 /* PBXContainerItemProxy */;
 		};
 		CA499F9014DE33BC00FCC9FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3064,6 +3042,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = iGCS/iGCS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3098,8 +3077,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = iGCS/iGCS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3132,40 +3112,38 @@
 		CA499FA014DE33BC00FCC9FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/iGCS\\\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
 			};
 			name = Debug;
 		};
 		CA499FA114DE33BC00FCC9FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/iGCS\\\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
 				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
 			};
 			name = Release;
 		};
