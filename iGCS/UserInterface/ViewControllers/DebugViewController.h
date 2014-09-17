@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BRRequest.h"
 
 
-@interface DebugViewController : UIViewController
+
+@interface DebugViewController : UIViewController <BRRequestDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
