@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BRRequest.h"
 
-
-
-@interface DebugViewController : UIViewController <BRRequestDelegate>
+@interface DebugViewController : UIViewController
 
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
@@ -28,11 +25,9 @@
 - (IBAction)bluetoothTxClicked:(id)sender;
 - (IBAction)videoSourceValueChanged:(id)sender;
 - (IBAction)videoDisplayLocationValueChanged:(id)sender;
-- (IBAction)ftpClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;
-
 
 
 @end

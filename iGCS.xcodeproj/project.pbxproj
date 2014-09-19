@@ -1047,6 +1047,7 @@
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = iGCSTests.octest; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
@@ -2055,7 +2056,7 @@
 			isa = PBXGroup;
 			children = (
 				CA499F5E14DE33BC00FCC9FB /* iGCS.app */,
-				CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */,
+				CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */,
 				182FFAFF181F0C9100A8C31C /* iGCS video.app */,
 				18B9FB3318B2F7AF00668660 /* iGCS redpark.app */,
 			);
@@ -2260,7 +2261,7 @@
 			);
 			name = iGCSTests;
 			productName = iGCSTests;
-			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */;
+			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
