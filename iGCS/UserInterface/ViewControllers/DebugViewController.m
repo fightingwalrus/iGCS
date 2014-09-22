@@ -7,11 +7,8 @@
 //
 
 #import "DebugViewController.h"
-
 #import "CommController.h"
-
 #import "Logger.h"
-
 #import "ExceptionHandler.h"
 
 @interface DebugViewController ()
@@ -112,6 +109,58 @@
         [userDefaults setObject:@"corner" forKey:@"videoDisplayLocation"];
     }
     [userDefaults synchronize];
+}
+
+- (IBAction)ftpClicked:(id)sender {
+    //----- get the file to upload as an NSData object
+    _uploadData = [FileUtils dataFromFileInMainBundleWithName: @"ser2udp.gz"];
+    
+    _uploadFile = [[BRRequestUpload alloc] initWithDelegate: self];
+    
+    //----- for anonymous login just leave the username and password nil
+    _uploadFile.path = @"ser2udp.gz";
+    _uploadFile.hostname = @"192.168.1.1";
+    _uploadFile.username = nil;
+    _uploadFile.password = nil;
+    
+    //we start the request
+    [_uploadFile start];
+}
+
+
+- (IBAction)telClicked:(id)sender {
+    
+    NSLog(@"%s",__FUNCTION__);
+    gcdsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *err = nil;
+    if (![gcdsocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
+        NSLog(@"I goofed: %@", err);
+    }
+    [gcdsocket readDataWithTimeout:5 tag:1];
+    
+    
+    
+    NSLog(@"Unzipping program");
+    NSString *requestStr = @"gunzip -f data/video/ser2udp.gz\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
+    
+    NSLog(@"changing permissions");
+    requestStr = @"chmod 755 data/video/ser2udp\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
+    
+    NSLog(@"running program");
+    requestStr = @"data/video/ser2udp\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
+
+    
+}
+
+
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
+    NSLog(@"Telnet Connected!");
 }
 
 -(void)consoleMessage:(NSString*)messageText
