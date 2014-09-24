@@ -45,4 +45,7 @@
 - (void) loadDemoMission;
 -(void) sendHeatbeatToAutopilot;
 
+- (void) sendMavtest;
+- (void) sendArdroneLand;
+
 @end

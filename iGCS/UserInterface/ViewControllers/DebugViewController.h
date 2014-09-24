@@ -9,6 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface DebugViewController : UIViewController
+#import <sys/socket.h>
+#import "GCDAsyncSocket.h"
+#import "GCDAsyncUdpSocket.h"
+#import "FileUtils.h"
+
+//#import "iGCSMavLinkInterface.h"
+
+
+
+@interface DebugViewController : UIViewController <BRRequestDelegate>
+{
+    GCDAsyncSocket *gcdsocket;
+}
 
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
@@ -25,6 +38,11 @@
 - (IBAction)bluetoothTxClicked:(id)sender;
 - (IBAction)videoSourceValueChanged:(id)sender;
 - (IBAction)videoDisplayLocationValueChanged:(id)sender;
+
+- (IBAction)ftpClicked:(id)sender;
+- (IBAction)telClicked:(id)sender;
+- (IBAction)mavClicked:(id)sender;
+- (IBAction)lndClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;

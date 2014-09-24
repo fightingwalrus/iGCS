@@ -11,6 +11,21 @@
 #import "Logger.h"
 #import "ExceptionHandler.h"
 
+#import "BRRequestCreateDirectory.h"
+#import "BRRequestDelete.h"
+#import "BRRequestUpload.h"
+#import "BRRequestError.h"
+#import "BRStreamInfo.h"
+#import "BRRequestListDirectory.h"
+#import "BRRequestQueue.h"
+
+#import <sys/socket.h>
+#import "GCDAsyncSocket.h"
+#import "GCDAsyncUdpSocket.h"
+#import "FileUtils.h"
+#import "iGCSMavLinkInterface.h"
+
+
 @interface DebugViewController ()
 
 @end
@@ -161,6 +176,20 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     NSLog(@"Telnet Connected!");
+}
+
+
+- (IBAction)mavClicked:(id)sender {
+    NSLog(@"Mav Button Clicked");
+       [[CommController sharedInstance].mavLinkInterface sendMavtest];
+    
+    
+}
+
+- (IBAction)lndClicked:(id)sender {
+    NSLog(@"LND Button Clicked");
+    [[CommController sharedInstance].mavLinkInterface sendArdroneLand];
+    
 }
 
 -(void)consoleMessage:(NSString*)messageText
