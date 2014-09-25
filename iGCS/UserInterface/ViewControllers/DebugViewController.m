@@ -200,7 +200,7 @@
     
 }
 
-- (IBAction)rtlSpec:(id)sender {
+- (IBAction)specClicked:(id)sender {
     NSLog(@"RTL Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdronePairSpektrumDSMX];
     
