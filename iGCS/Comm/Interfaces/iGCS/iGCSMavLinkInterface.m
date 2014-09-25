@@ -283,6 +283,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_RETURN_TO_LAUNCH, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
+- (void) sendArdronePairSpektrumDSMX{
+    mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_START_RX_PAIR, 0, 1, 0, 0, 0, 0, 0, 0);
+}
+
 
 - (void) loadDemoMission {
     WaypointsHolder* demo = [WaypointsHolder createDemoMission];

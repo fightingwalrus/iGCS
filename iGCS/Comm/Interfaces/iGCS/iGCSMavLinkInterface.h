@@ -48,5 +48,6 @@
 - (void) sendMavtest;
 - (void) sendArdroneLand;
 - (void) sendArdroneRtl;
+- (void) sendArdronePairSpektrumDSMX;
 
 @end

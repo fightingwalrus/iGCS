@@ -200,6 +200,12 @@
     
 }
 
+- (IBAction)rtlSpec:(id)sender {
+    NSLog(@"RTL Button Clicked");
+    [[CommController sharedInstance].mavLinkInterface sendArdronePairSpektrumDSMX];
+    
+}
+
 
 >>>>>>> added function for Return to Launch
 -(void)consoleMessage:(NSString*)messageText

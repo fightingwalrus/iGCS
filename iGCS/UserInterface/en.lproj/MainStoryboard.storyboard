@@ -1424,6 +1424,15 @@
                                     <action selector="rtlClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="exi-5z-Nqj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lR-9q-PxO">
+                                <rect key="frame" x="362" y="69" width="30" height="30"/>
+                                <state key="normal" title="SPK">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="specClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="SbB-2v-Xie"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

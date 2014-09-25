@@ -48,6 +48,7 @@
 - (IBAction)mavClicked:(id)sender;
 - (IBAction)lndClicked:(id)sender;
 - (IBAction)rtlClicked:(id)sender;
+- (IBAction)specClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;
