@@ -37,6 +37,48 @@
 		01DF860719C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
 		01DF860819C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
 		01DF860919C9FC00003894CE /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DF85EB19C9FC00003894CE /* BRStreamInfo.m */; };
+		01A13D2A19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
+		01A13D2B19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
+		01A13D2C19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
+		01F898E619CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
+		01F898E719CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
+		01F898E819CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
+		01F898E919CA8EC900F3C884 /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D519CA8EC900F3C884 /* BRRequest.m */; };
+		01F898EA19CA8EC900F3C884 /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D519CA8EC900F3C884 /* BRRequest.m */; };
+		01F898EB19CA8EC900F3C884 /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D519CA8EC900F3C884 /* BRRequest.m */; };
+		01F898EC19CA8EC900F3C884 /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D719CA8EC900F3C884 /* BRRequestCreateDirectory.m */; };
+		01F898ED19CA8EC900F3C884 /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D719CA8EC900F3C884 /* BRRequestCreateDirectory.m */; };
+		01F898EE19CA8EC900F3C884 /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D719CA8EC900F3C884 /* BRRequestCreateDirectory.m */; };
+		01F898EF19CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
+		01F898F019CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
+		01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
+		01F898F219CA8EC900F3C884 /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DB19CA8EC900F3C884 /* BRRequestDownload.m */; };
+		01F898F319CA8EC900F3C884 /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DB19CA8EC900F3C884 /* BRRequestDownload.m */; };
+		01F898F419CA8EC900F3C884 /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DB19CA8EC900F3C884 /* BRRequestDownload.m */; };
+		01F898F519CA8EC900F3C884 /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DD19CA8EC900F3C884 /* BRRequestError.m */; };
+		01F898F619CA8EC900F3C884 /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DD19CA8EC900F3C884 /* BRRequestError.m */; };
+		01F898F719CA8EC900F3C884 /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DD19CA8EC900F3C884 /* BRRequestError.m */; };
+		01F898F819CA8EC900F3C884 /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DF19CA8EC900F3C884 /* BRRequestListDirectory.m */; };
+		01F898F919CA8EC900F3C884 /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DF19CA8EC900F3C884 /* BRRequestListDirectory.m */; };
+		01F898FA19CA8EC900F3C884 /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898DF19CA8EC900F3C884 /* BRRequestListDirectory.m */; };
+		01F898FB19CA8EC900F3C884 /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E119CA8EC900F3C884 /* BRRequestQueue.m */; };
+		01F898FC19CA8EC900F3C884 /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E119CA8EC900F3C884 /* BRRequestQueue.m */; };
+		01F898FD19CA8EC900F3C884 /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E119CA8EC900F3C884 /* BRRequestQueue.m */; };
+		01F898FE19CA8EC900F3C884 /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E319CA8EC900F3C884 /* BRRequestUpload.m */; };
+		01F898FF19CA8EC900F3C884 /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E319CA8EC900F3C884 /* BRRequestUpload.m */; };
+		01F8990019CA8EC900F3C884 /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E319CA8EC900F3C884 /* BRRequestUpload.m */; };
+		01F8990119CA8EC900F3C884 /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E519CA8EC900F3C884 /* BRStreamInfo.m */; };
+		01F8990219CA8EC900F3C884 /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E519CA8EC900F3C884 /* BRStreamInfo.m */; };
+		01F8990319CA8EC900F3C884 /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898E519CA8EC900F3C884 /* BRStreamInfo.m */; };
+		01F8994819CA8EE500F3C884 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8990919CA8EE500F3C884 /* Documentation.html */; };
+		01F8994919CA8EE500F3C884 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8990919CA8EE500F3C884 /* Documentation.html */; };
+		01F8994A19CA8EE500F3C884 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8990919CA8EE500F3C884 /* Documentation.html */; };
+		01F8994B19CA8EE500F3C884 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990B19CA8EE500F3C884 /* GCDAsyncSocket.m */; };
+		01F8994C19CA8EE500F3C884 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990B19CA8EE500F3C884 /* GCDAsyncSocket.m */; };
+		01F8994D19CA8EE500F3C884 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990B19CA8EE500F3C884 /* GCDAsyncSocket.m */; };
+		01F8994E19CA8EE500F3C884 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990D19CA8EE500F3C884 /* GCDAsyncUdpSocket.m */; };
+		01F8994F19CA8EE500F3C884 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990D19CA8EE500F3C884 /* GCDAsyncUdpSocket.m */; };
+		01F8995019CA8EE500F3C884 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8990D19CA8EE500F3C884 /* GCDAsyncUdpSocket.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
@@ -601,6 +643,34 @@
 		01DF85E919C9FC00003894CE /* BRRequestUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestUpload.m; sourceTree = "<group>"; };
 		01DF85EA19C9FC00003894CE /* BRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStreamInfo.h; sourceTree = "<group>"; };
 		01DF85EB19C9FC00003894CE /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
+		01A13D2919D4720300405104 /* arDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arDroneUtils.m; sourceTree = "<group>"; };
+		01A13D3119D4723A00405104 /* arDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arDroneUtils.h; sourceTree = "<group>"; };
+		01F898D119CA8EC900F3C884 /* BRGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGlobal.h; sourceTree = "<group>"; };
+		01F898D219CA8EC900F3C884 /* BRRequest+_UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRRequest+_UserData.h"; sourceTree = "<group>"; };
+		01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRRequest+_UserData.m"; sourceTree = "<group>"; };
+		01F898D419CA8EC900F3C884 /* BRRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequest.h; sourceTree = "<group>"; };
+		01F898D519CA8EC900F3C884 /* BRRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequest.m; sourceTree = "<group>"; };
+		01F898D619CA8EC900F3C884 /* BRRequestCreateDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestCreateDirectory.h; sourceTree = "<group>"; };
+		01F898D719CA8EC900F3C884 /* BRRequestCreateDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestCreateDirectory.m; sourceTree = "<group>"; };
+		01F898D819CA8EC900F3C884 /* BRRequestDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestDelete.h; sourceTree = "<group>"; };
+		01F898D919CA8EC900F3C884 /* BRRequestDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDelete.m; sourceTree = "<group>"; };
+		01F898DA19CA8EC900F3C884 /* BRRequestDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestDownload.h; sourceTree = "<group>"; };
+		01F898DB19CA8EC900F3C884 /* BRRequestDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDownload.m; sourceTree = "<group>"; };
+		01F898DC19CA8EC900F3C884 /* BRRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestError.h; sourceTree = "<group>"; };
+		01F898DD19CA8EC900F3C884 /* BRRequestError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestError.m; sourceTree = "<group>"; };
+		01F898DE19CA8EC900F3C884 /* BRRequestListDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestListDirectory.h; sourceTree = "<group>"; };
+		01F898DF19CA8EC900F3C884 /* BRRequestListDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestListDirectory.m; sourceTree = "<group>"; };
+		01F898E019CA8EC900F3C884 /* BRRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestQueue.h; sourceTree = "<group>"; };
+		01F898E119CA8EC900F3C884 /* BRRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestQueue.m; sourceTree = "<group>"; };
+		01F898E219CA8EC900F3C884 /* BRRequestUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRRequestUpload.h; sourceTree = "<group>"; };
+		01F898E319CA8EC900F3C884 /* BRRequestUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestUpload.m; sourceTree = "<group>"; };
+		01F898E419CA8EC900F3C884 /* BRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStreamInfo.h; sourceTree = "<group>"; };
+		01F898E519CA8EC900F3C884 /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
+		01F8990919CA8EE500F3C884 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
+		01F8990A19CA8EE500F3C884 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		01F8990B19CA8EE500F3C884 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		01F8990C19CA8EE500F3C884 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		01F8990D19CA8EE500F3C884 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
 		18069FA11836F7C70068E7A5 /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
@@ -1419,6 +1489,8 @@
 				18E58A8A198993EB0025A516 /* Logger.m */,
 				CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */,
 				CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */,
+				01A13D2919D4720300405104 /* arDroneUtils.m */,
+				01A13D3119D4723A00405104 /* arDroneUtils.h */,
 				1830D07017D1651400F77F7E /* DateTimeUtils.h */,
 				1830D07117D1651400F77F7E /* DateTimeUtils.m */,
 				18A777F017CE9E910014451B /* FileUtils.h */,
@@ -2585,6 +2657,8 @@
 				18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18E58A8D198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
+				01A13D2C19D4720300405104 /* arDroneUtils.m in Sources */,
+				01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */,
 				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
 				CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
@@ -2745,6 +2819,7 @@
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
 				CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
+				01A13D2B19D4720300405104 /* arDroneUtils.m in Sources */,
 				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
@@ -2813,6 +2888,8 @@
 				CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
+				01A13D2A19D4720300405104 /* arDroneUtils.m in Sources */,
+				01F898E919CA8EC900F3C884 /* BRRequest.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				01DF860119C9FC00003894CE /* BRRequestQueue.m in Sources */,
 				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,

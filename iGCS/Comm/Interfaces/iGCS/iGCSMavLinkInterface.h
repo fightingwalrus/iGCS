@@ -47,5 +47,6 @@
 
 - (void) sendMavtest;
 - (void) sendArdroneLand;
+- (void) sendArdroneRtl;
 
 @end

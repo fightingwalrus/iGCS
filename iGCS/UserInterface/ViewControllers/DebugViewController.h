@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 
 @interface DebugViewController : UIViewController
 #import <sys/socket.h>
+=======
+
+#import "BRRequest.h"
+
+>>>>>>> added function for Return to Launch
 #import "GCDAsyncSocket.h"
 #import "GCDAsyncUdpSocket.h"
-#import "FileUtils.h"
 
-//#import "iGCSMavLinkInterface.h"
 
 
 
@@ -43,6 +47,7 @@
 - (IBAction)telClicked:(id)sender;
 - (IBAction)mavClicked:(id)sender;
 - (IBAction)lndClicked:(id)sender;
+- (IBAction)rtlClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;

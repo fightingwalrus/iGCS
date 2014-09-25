@@ -192,6 +192,16 @@
     
 }
 
+<<<<<<< HEAD
+=======
+- (IBAction)rtlClicked:(id)sender {
+    NSLog(@"RTL Button Clicked");
+    [[CommController sharedInstance].mavLinkInterface sendArdroneRtl];
+    
+}
+
+
+>>>>>>> added function for Return to Launch
 -(void)consoleMessage:(NSString*)messageText
 {
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];

@@ -271,20 +271,16 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     }
 }
 
-- (void) sendMavtest{
-    NSLog(@"test for now");
-   // mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_OVERRIDE_GOTO, 0, MAV_GOTO_DO_CONTINUE, 0, 0, 0, 0, 0, 0);
-    
+- (void) sendMavtest {
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, 10);
-    
 }
 
-- (void) sendArdroneLand{
-    NSLog(@"test for now");
-    // mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_OVERRIDE_GOTO, 0, MAV_GOTO_DO_CONTINUE, 0, 0, 0, 0, 0, 0);
-    
+- (void) sendArdroneLand {
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_LAND, 0, 0, 0, 0, 0, 0, 0, 0);
-    
+}
+
+- (void) sendArdroneRtl {
+    mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_RETURN_TO_LAUNCH, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
 
