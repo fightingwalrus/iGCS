@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
     GCSAccessoryNotSupported
 };
 
-@interface CommController : NSObject
+@interface CommController : NSObject <UIAlertViewDelegate>
 
 @property (nonatomic, retain) MainViewController *mainVC;
 @property (nonatomic, retain) CommConnectionPool *connectionPool;
