@@ -128,37 +128,15 @@
 }
 
 - (IBAction)ftpClicked:(id)sender {
-<<<<<<< HEAD
-    //----- get the file to upload as an NSData object
-    _uploadData = [FileUtils dataFromFileInMainBundleWithName: @"ser2udp.gz"];
-    
-    _uploadFile = [[BRRequestUpload alloc] initWithDelegate: self];
-    
-    //----- for anonymous login just leave the username and password nil
-    _uploadFile.path = @"ser2udp.gz";
-    _uploadFile.hostname = @"192.168.1.1";
-    _uploadFile.username = nil;
-    _uploadFile.password = nil;
-    
-    //we start the request
-    [_uploadFile start];
-=======
-    
     _arDrone2 = [[ArDroneUtils alloc] init];
     [_arDrone2 uploadSer2udp];
-    
->>>>>>> added ardrone specific utilities
 }
 
 
 - (IBAction)telClicked:(id)sender {
-    
     _arDrone2 = [[ArDroneUtils alloc] init];
     [_arDrone2 telArdrone];
-
 }
-
-
 
 - (IBAction)mavClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
@@ -171,8 +149,6 @@
     [_arDrone2 lndArdrone];
 }
 
-<<<<<<< HEAD
-=======
 - (IBAction)rtlClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
     [_arDrone2 rtlArdrone];
@@ -184,8 +160,6 @@
     
 }
 
-
->>>>>>> added function for Return to Launch
 -(void)consoleMessage:(NSString*)messageText
 {
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
@@ -202,18 +176,14 @@
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
 }
 
--(void)errorMessage:(NSString*)messageText
-{
+-(void)errorMessage:(NSString*)messageText {
     NSString *currentText = self.errorsTextView.text;
     
     NSString *updatedText;
     
-    if (currentText)
-    {
+    if (currentText) {
         updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-    }
-    else
-    {
+    } else {
         updatedText = messageText;
     }
     
@@ -221,16 +191,12 @@
 
 }
 
-
-
 - (void)viewDidUnload {
     [self setConsoleTextView:nil];
     [self setErrorsTextView:nil];
     [super viewDidUnload];
 }
 
-<<<<<<< HEAD
-=======
 - (void)requestCompleted:(BRRequest *)request {
     NSLog(@"FTP Request Completed");
     
@@ -280,7 +246,6 @@
 
  */
 
->>>>>>> added ardrone specific utilities
 
 @end
 

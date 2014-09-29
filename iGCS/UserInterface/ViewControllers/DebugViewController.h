@@ -7,27 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-<<<<<<< HEAD
-
-@interface DebugViewController : UIViewController
 #import <sys/socket.h>
-=======
-
 #import "BRRequest.h"
-
->>>>>>> added function for Return to Launch
 #import "GCDAsyncSocket.h"
 #import "GCDAsyncUdpSocket.h"
 #import "ArDroneUtils.h"
 
-
-
-
-@interface DebugViewController : UIViewController <BRRequestDelegate>
-{
+@interface DebugViewController : UIViewController <BRRequestDelegate> {
     GCDAsyncSocket *gcdsocket;
 }
-
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
 @property (strong, nonatomic) IBOutlet UITextView *errorsTextView;
