@@ -24,6 +24,7 @@
 #import "GCDAsyncUdpSocket.h"
 #import "FileUtils.h"
 #import "iGCSMavLinkInterface.h"
+#import "ArDroneUtils.h"
 
 
 @interface DebugViewController ()
@@ -127,6 +128,7 @@
 }
 
 - (IBAction)ftpClicked:(id)sender {
+<<<<<<< HEAD
     //----- get the file to upload as an NSData object
     _uploadData = [FileUtils dataFromFileInMainBundleWithName: @"ser2udp.gz"];
     
@@ -140,69 +142,45 @@
     
     //we start the request
     [_uploadFile start];
+=======
+    
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 uploadSer2udp];
+    
+>>>>>>> added ardrone specific utilities
 }
 
 
 - (IBAction)telClicked:(id)sender {
     
-    NSLog(@"%s",__FUNCTION__);
-    gcdsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    NSError *err = nil;
-    if (![gcdsocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
-        NSLog(@"I goofed: %@", err);
-    }
-    [gcdsocket readDataWithTimeout:5 tag:1];
-    
-    
-    
-    NSLog(@"Unzipping program");
-    NSString *requestStr = @"gunzip -f data/video/ser2udp.gz\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
-    
-    NSLog(@"changing permissions");
-    requestStr = @"chmod 755 data/video/ser2udp\r";
-    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
-    
-    NSLog(@"running program");
-    requestStr = @"data/video/ser2udp\r";
-    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 telArdrone];
 
-    
 }
 
-
-- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-    NSLog(@"Telnet Connected!");
-}
 
 
 - (IBAction)mavClicked:(id)sender {
-    NSLog(@"Mav Button Clicked");
-       [[CommController sharedInstance].mavLinkInterface sendMavtest];
-    
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 mavArdrone];
     
 }
 
 - (IBAction)lndClicked:(id)sender {
-    NSLog(@"LND Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdroneLand];
-    
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 lndArdrone];
 }
 
 <<<<<<< HEAD
 =======
 - (IBAction)rtlClicked:(id)sender {
-    NSLog(@"RTL Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdroneRtl];
-    
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 rtlArdrone];
 }
 
 - (IBAction)specClicked:(id)sender {
-    NSLog(@"RTL Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdronePairSpektrumDSMX];
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 specArdrone];
     
 }
 
@@ -251,6 +229,58 @@
     [super viewDidUnload];
 }
 
+<<<<<<< HEAD
+=======
+- (void)requestCompleted:(BRRequest *)request {
+    NSLog(@"FTP Request Completed");
+    
+}
+
+
+/*
+/// requestFailed
+/// \param request The request object
+- (void)requestFailed:(BRRequest *)request{
+    
+    if (request == _uploadFile)
+    {
+        NSLog(@"%@", request.error.message);
+        _uploadFile = nil;
+    }
+    
+}
+
+- (NSData *) requestDataToSend: (BRRequestUpload *) request
+{
+    //----- returns data object or nil when complete
+    //----- basically, first time we return the pointer to the NSData.
+    //----- and BR will upload the data.
+    //----- Second time we return nil which means no more data to send
+    NSData *temp = _uploadData;   // this is a shallow copy of the pointer
+    
+    _uploadData = nil;            // next time around, return nil...
+    
+    return temp;
+}
+
+/// shouldOverwriteFileWithRequest
+/// \param request The request object;
+- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request {
+    NSLog(@"Overwrite function called");
+    
+    //----- set this as appropriate if you want the file to be overwritten
+    if (request == _uploadFile)
+    {
+        //----- if uploading a file, we set it to YES (if set to NO, nothing happens)
+        return YES;
+    }
+    return NO;
+    
+}
+
+ */
+
+>>>>>>> added ardrone specific utilities
 
 @end
 

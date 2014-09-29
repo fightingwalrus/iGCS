@@ -40,6 +40,9 @@
 		01A13D2A19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
 		01A13D2B19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
 		01A13D2C19D4720300405104 /* arDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* arDroneUtils.m */; };
+		01A13D2A19D4720300405104 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* ArDroneUtils.m */; };
+		01A13D2B19D4720300405104 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* ArDroneUtils.m */; };
+		01A13D2C19D4720300405104 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A13D2919D4720300405104 /* ArDroneUtils.m */; };
 		01F898E619CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
 		01F898E719CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
 		01F898E819CA8EC900F3C884 /* BRRequest+_UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */; };
@@ -645,6 +648,8 @@
 		01DF85EB19C9FC00003894CE /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
 		01A13D2919D4720300405104 /* arDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arDroneUtils.m; sourceTree = "<group>"; };
 		01A13D3119D4723A00405104 /* arDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arDroneUtils.h; sourceTree = "<group>"; };
+		01A13D2919D4720300405104 /* ArDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneUtils.m; sourceTree = "<group>"; };
+		01A13D3119D4723A00405104 /* ArDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneUtils.h; sourceTree = "<group>"; };
 		01F898D119CA8EC900F3C884 /* BRGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGlobal.h; sourceTree = "<group>"; };
 		01F898D219CA8EC900F3C884 /* BRRequest+_UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRRequest+_UserData.h"; sourceTree = "<group>"; };
 		01F898D319CA8EC900F3C884 /* BRRequest+_UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRRequest+_UserData.m"; sourceTree = "<group>"; };
@@ -1489,8 +1494,8 @@
 				18E58A8A198993EB0025A516 /* Logger.m */,
 				CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */,
 				CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */,
-				01A13D2919D4720300405104 /* arDroneUtils.m */,
-				01A13D3119D4723A00405104 /* arDroneUtils.h */,
+				01A13D2919D4720300405104 /* ArDroneUtils.m */,
+				01A13D3119D4723A00405104 /* ArDroneUtils.h */,
 				1830D07017D1651400F77F7E /* DateTimeUtils.h */,
 				1830D07117D1651400F77F7E /* DateTimeUtils.m */,
 				18A777F017CE9E910014451B /* FileUtils.h */,
@@ -2657,7 +2662,7 @@
 				18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				18E58A8D198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				18069FD31836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
-				01A13D2C19D4720300405104 /* arDroneUtils.m in Sources */,
+				01A13D2C19D4720300405104 /* ArDroneUtils.m in Sources */,
 				01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */,
 				182FFAA1181F0C9100A8C31C /* MainViewController.m in Sources */,
 				182FFAA2181F0C9100A8C31C /* WaypointsViewController.m in Sources */,
@@ -2820,6 +2825,7 @@
 				CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				01A13D2B19D4720300405104 /* arDroneUtils.m in Sources */,
+				01A13D2B19D4720300405104 /* ArDroneUtils.m in Sources */,
 				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
@@ -2889,6 +2895,7 @@
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				01A13D2A19D4720300405104 /* arDroneUtils.m in Sources */,
+				01A13D2A19D4720300405104 /* ArDroneUtils.m in Sources */,
 				01F898E919CA8EC900F3C884 /* BRRequest.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				01DF860119C9FC00003894CE /* BRRequestQueue.m in Sources */,

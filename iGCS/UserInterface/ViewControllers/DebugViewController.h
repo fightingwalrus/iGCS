@@ -18,6 +18,7 @@
 >>>>>>> added function for Return to Launch
 #import "GCDAsyncSocket.h"
 #import "GCDAsyncUdpSocket.h"
+#import "ArDroneUtils.h"
 
 
 
@@ -35,6 +36,8 @@
 
 @property (strong) NSMutableArray *pendingConsoleMessages;
 @property (strong) NSMutableArray *pendingErrorMessages;
+
+@property (strong, nonatomic) ArDroneUtils * arDrone2;
 
 
 
