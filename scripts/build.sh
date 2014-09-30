@@ -92,7 +92,7 @@ ARCHIVE_NAME="igcs-app-build-$(agvtool vers -terse)"
 ARCHIVE_PATH="$PROJECT_ROOT/build/$ARCHIVE_NAME"
 
 echo "Building and archiving"
-xcodebuild -project iGCS.xcodeproj -sdk iphoneos7.1 clean \
+xcodebuild -project iGCS.xcodeproj -sdk iphoneos8.0 clean \
 -scheme iGCS archive -xcconfig "$PROJECT_ROOT/dependencies/privateConfig.xcconfig" -archivePath "$ARCHIVE_PATH"
 echo "Done building and archiving"
 
