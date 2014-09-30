@@ -8,6 +8,7 @@
 
 #import "CommController.h"
 #import "Logger.h"
+#import "SoundUtils.h"
 
 NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
 
@@ -65,6 +66,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     if(self.accesoryConnectID != connectedAccessor.connectionID) {
         self.accesoryConnectID = connectedAccessor.connectionID;
         [self performSelector:@selector(startTelemetryMode) withObject:nil afterDelay:1.5];
+        [SoundUtils vibrateOrBeepBeep];
     }
 }
 
