@@ -990,7 +990,7 @@
 		CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGCS-Prefix.pch"; sourceTree = "<group>"; };
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = iGCSTests.octest; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
@@ -2966,7 +2966,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3012,7 +3012,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
