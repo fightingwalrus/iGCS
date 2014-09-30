@@ -109,7 +109,7 @@ DSYM_DIR="$ARCHIVE_PATH.xcarchive/dSYMs/"
 DYSM_FILE_NAME="iGCS.app.dSYM"
 DSYM_FILE_PATH="$DSYM_DIR/$DYSM_FILE_NAME"
 
-xcrun -sdk iphoneos7.1 PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
+xcrun -sdk iphoneos8.0 PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
 -o "$IPA_FILE" --embed "$AD_HOC_PROVISION_FILE"
 
 cd "$DSYM_DIR"
