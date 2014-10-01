@@ -120,7 +120,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
 
-                        if (!GCSLowDataRateModeEnabled) {
+                        if (GCSStandardDataRateModeEnabled) {
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
@@ -142,7 +142,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         }
 
                         // don't send heartbeat to drone in low datarate mode
-                        if (!GCSLowDataRateModeEnabled && !self.heartbeatTimer) {
+                        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
                             self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                                     target:self
                                                                                   selector:@selector(sendHeatbeatToAutopilot)
