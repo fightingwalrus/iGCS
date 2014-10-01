@@ -13,6 +13,11 @@
     #import <Foundation/Foundation.h>
 #endif
 
+// MAVLink if this is set to YES then we only request
+// a very limited of telemetry items and we don't
+// request missions from the drone or send a
+// heartbeat from iGCS
+static const BOOL GCSStandardDataRateModeEnabled = YES;
 
 /*
  Lumberjack logging. 
@@ -26,3 +31,4 @@ static const int ddLogLevel = LOG_LEVEL_DEBUG;
 #else
 static const int ddLogLevel = LOG_LEVEL_WARN;
 #endif
+

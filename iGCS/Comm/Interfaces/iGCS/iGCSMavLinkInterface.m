@@ -112,30 +112,37 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         DDLogInfo(@"Sending request for MavLink messages.");
                         
                         // Send requests to set the stream rates
+
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_ALL, 0, 0); // stop all
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
+
+                        // only message requested for low datarate mode
                         mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                              MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
-                        
-                        
-                        
+
+                        if (GCSStandardDataRateModeEnabled) {
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
+
+                        // only start mission request if we are in normal data rate mode
                         [self startReadMissionRequest];
 
-                        if (!self.heartbeatTimer) {
+                        }
+
+                        // only send heartbeat in normal data rate mode
+                        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
                             self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                                     target:self
                                                                                   selector:@selector(sendHeatbeatToAutopilot)
