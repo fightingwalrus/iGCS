@@ -12,10 +12,6 @@
 #import "MavLinkLogger.h"
 #import "WaypointsHolder.h"
 
-
-#define iGCS_MAVLINK_RETRANSMISSION_TIMEOUT 0.5 // seconds
-#define iGCS_MAVLINK_MAX_RETRIES 5
-
 @interface iGCSMavLinkInterface : CommInterface
 
 
