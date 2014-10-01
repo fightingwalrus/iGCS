@@ -176,7 +176,7 @@
 - (mavlink_mission_item_t) createDefaultWaypointFromCoords:(CLLocationCoordinate2D)pos {
     mavlink_mission_item_t waypoint;
     
-    waypoint.autocontinue = 0;
+    waypoint.autocontinue = 1;
     waypoint.command = MAV_CMD_NAV_WAYPOINT;
     waypoint.current = 0;
     waypoint.frame   = MAV_FRAME_GLOBAL_RELATIVE_ALT;
