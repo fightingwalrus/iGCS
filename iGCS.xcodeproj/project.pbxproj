@@ -140,6 +140,9 @@
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
 		1888DE6E170F7D3400ADA039 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
+		189B2DC819DB3E0E00AAC466 /* SoundUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B2DC719DB3E0E00AAC466 /* SoundUtils.m */; };
+		189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B2DC719DB3E0E00AAC466 /* SoundUtils.m */; };
+		189B2DCA19DB3E0E00AAC466 /* SoundUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B2DC719DB3E0E00AAC466 /* SoundUtils.m */; };
 		189E23251710D00000548C88 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 189E23241710D00000548C88 /* kxmovie.bundle */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
 		18A42CD318895B3700408D71 /* GKLocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD018895B3700408D71 /* GKLocalController.m */; };
@@ -598,6 +601,8 @@
 		1888DE6D170F7D3400ADA039 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1888DE7B170F954B00ADA039 /* kxmovie.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = kxmovie.xcodeproj; path = submodules/kxmovie/kxmovie.xcodeproj; sourceTree = "<group>"; };
 		1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multicast_h264_aac_48000.sdp; sourceTree = "<group>"; };
+		189B2DC619DB3E0E00AAC466 /* SoundUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundUtils.h; sourceTree = "<group>"; };
+		189B2DC719DB3E0E00AAC466 /* SoundUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundUtils.m; sourceTree = "<group>"; };
 		189E23231710CFF600548C88 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = submodules/kxmovie/kxmovie/KxMovieViewController.h; sourceTree = "<group>"; };
 		189E23241710D00000548C88 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = submodules/kxmovie/kxmovie/kxmovie.bundle; sourceTree = "<group>"; };
 		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -1338,6 +1343,8 @@
 				1830D07117D1651400F77F7E /* DateTimeUtils.m */,
 				18A777F017CE9E910014451B /* FileUtils.h */,
 				18A777F117CE9E910014451B /* FileUtils.m */,
+				189B2DC619DB3E0E00AAC466 /* SoundUtils.h */,
+				189B2DC719DB3E0E00AAC466 /* SoundUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2554,6 +2561,7 @@
 				1845DA87197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
 				CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
+				189B2DCA19DB3E0E00AAC466 /* SoundUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2632,6 +2640,7 @@
 				18E58A92198993EB0025A516 /* Logger.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
+				189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */,
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
 				CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
@@ -2683,6 +2692,7 @@
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
 				18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
+				189B2DC819DB3E0E00AAC466 /* SoundUtils.m in Sources */,
 				1854467B18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
