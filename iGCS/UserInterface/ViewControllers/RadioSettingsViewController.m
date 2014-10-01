@@ -220,7 +220,7 @@ static void *SVKvoContext = &SVKvoContext;
 #pragma mark - UINavigationBar Button handlers
 
 - (void)cancelChanges:(id)sender {
-    [self exitConfigMode];
+    [[CommController sharedInstance] startTelemetryMode];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
