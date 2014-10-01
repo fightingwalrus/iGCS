@@ -136,12 +136,12 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                             mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                                                  MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
 
-                        // only start mission request if we are *NOT* in low datarate mode
+                        // only start mission request if we are in normal data rate mode
                         [self startReadMissionRequest];
 
                         }
 
-                        // don't send heartbeat to drone in low datarate mode
+                        // only send heartbeat in normal data rate mode
                         if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
                             self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                                     target:self
