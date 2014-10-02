@@ -60,6 +60,10 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
     return self;
 }
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void)close {
     DDLogDebug(@"iGCSMavLinkInterface: close is a noop");
 }
