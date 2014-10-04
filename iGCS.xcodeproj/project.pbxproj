@@ -195,6 +195,9 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
+		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
+		18B6EA0619DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
 		18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
 		18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
@@ -897,6 +900,7 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B6EA0319DF648C0084B666 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
 		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
@@ -2163,6 +2167,7 @@
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
 				CA499F6E14DE33BC00FCC9FB /* main.m */,
 				CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */,
+				18B6EA0319DF648C0084B666 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2408,6 +2413,7 @@
 				1842F8CB1892D2F80050F680 /* Icon-29.png in Resources */,
 				182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */,
 				18C862BD198AD4A800F99CD3 /* 181-hammer@2x.png in Resources */,
+				18B6EA0619DF648C0084B666 /* Settings.bundle in Resources */,
 				18C8628A198AD4A800F99CD3 /* 05-shuffle.png in Resources */,
 				1842F8D11892D2F80050F680 /* Icon-58.png in Resources */,
 				01CEC56A19D9F8BD00320A34 /* Documentation.html in Resources */,
@@ -2458,6 +2464,7 @@
 				18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */,
 				18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */,
 				18C862BC198AD4A800F99CD3 /* 181-hammer@2x.png in Resources */,
+				18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */,
 				18C86289198AD4A800F99CD3 /* 05-shuffle.png in Resources */,
 				18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */,
 				01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */,
@@ -2502,6 +2509,7 @@
 				18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
 				18C8629A198AD4A800F99CD3 /* 20-gear-2.png in Resources */,
+				18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
 				18C862B5198AD4A800F99CD3 /* 176-ipad@2x.png in Resources */,
 				18C862B2198AD4A800F99CD3 /* 176-ipad.png in Resources */,
