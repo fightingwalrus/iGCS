@@ -385,9 +385,6 @@
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917D19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
-		18D8917E19817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
-		18D8917F19817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
-		18D8918019817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
 		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8D198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
@@ -901,6 +898,11 @@
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		18B6EA0319DF648C0084B666 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		18B6EA0B19DF83430084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA0F19DF84050084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1319DF84EC0084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1719DF857A0084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1819DF85F60084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
 		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
@@ -1057,7 +1059,7 @@
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
 		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CA43DE0915143E570014F7C8 /* _Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_Read me first - license.txt"; sourceTree = "<group>"; };
+		CA43DE0915143E570014F7C8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA43DFC515143E570014F7C8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
 		CA43DFC615143E570014F7C8 /* RscMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RscMgr.h; sourceTree = "<group>"; };
 		CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRscMgrUniv.a; sourceTree = "<group>"; };
@@ -1720,6 +1722,7 @@
 		18B7F2B81958953B00D2406A /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA0F19DF84050084B666 /* LICENSE */,
 				18B7F2B91958953B00D2406A /* ALView+PureLayout.h */,
 				18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */,
 				18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */,
@@ -1915,6 +1918,7 @@
 		CA0574F118BE07FE001EACFD /* CXAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1719DF857A0084B666 /* LICENSE */,
 				CA0574F218BE07FE001EACFD /* CXAlertBackgroundWindow.h */,
 				CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */,
 				CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */,
@@ -1932,6 +1936,7 @@
 		CA05751018BE080B001EACFD /* LiveFrost */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1819DF85F60084B666 /* LICENSE */,
 				CA05751118BE080B001EACFD /* LFDisplayBridge.h */,
 				CA05751218BE080B001EACFD /* LFDisplayBridge.m */,
 				CA05751318BE080B001EACFD /* LFGlassView.h */,
@@ -1953,6 +1958,7 @@
 		CA0B69A9189B69F50014C1E4 /* SWReveal */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA0B19DF83430084B666 /* LICENSE */,
 				CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */,
 				CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */,
 			);
@@ -1995,6 +2001,7 @@
 		CA154E7019BFE52000ECE919 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1319DF84EC0084B666 /* LICENSE */,
 				CA154E7119BFE52000ECE919 /* DDASLLogger.h */,
 				CA154E7219BFE52000ECE919 /* DDASLLogger.m */,
 				CA154E7319BFE52000ECE919 /* DDFileLogger.h */,
@@ -2029,7 +2036,7 @@
 		CA43DE0815143E570014F7C8 /* glyphish-icons */ = {
 			isa = PBXGroup;
 			children = (
-				CA43DE0915143E570014F7C8 /* _Read me first - license.txt */,
+				CA43DE0915143E570014F7C8 /* LICENSE */,
 				18C86276198AD4A800F99CD3 /* 05-shuffle.png */,
 				18C86277198AD4A800F99CD3 /* 05-shuffle@2x.png */,
 				18C86278198AD4A800F99CD3 /* 07-map-marker.png */,
@@ -2387,7 +2394,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D8918019817CB1001ED845 /* LICENSE in Resources */,
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				18C86290198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
@@ -2438,7 +2444,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D8917F19817CB1001ED845 /* LICENSE in Resources */,
 				18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */,
 				18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */,
 				18C8628F198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
@@ -2522,7 +2527,6 @@
 				1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18C862A0198AD4A800F99CD3 /* 38-airplane.png in Resources */,
 				1875978F189108980012DF6D /* Icon-76.png in Resources */,
-				18D8917E19817CB1001ED845 /* LICENSE in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
 				1842F8D21892D2F80050F680 /* Icon-80.png in Resources */,
 				01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */,
