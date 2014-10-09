@@ -21,6 +21,8 @@
 
 #import "CXAlertView.h"
 
+#import "AboutViewController.h"
+
 @implementation GCSMapViewController {
     MKPointAnnotation *uavPos;
     MKAnnotationView *uavView;
@@ -105,6 +107,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     showProposedFollowPos = NO;
     lastFollowMeUpdate = [NSDate date];
+
+    self.aboutInfoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [self.aboutInfoButton addTarget:self action:@selector(showAboutViewController) forControlEvents:UIControlEventTouchDragInside];
+    [self.view addSubview:self.aboutInfoButton];
+
+    [self.aboutInfoButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:8];
+    [self.aboutInfoButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:50];
+
 
 #ifdef VIDEOSTREAMING
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
@@ -757,6 +767,15 @@ static const int AIRPLANE_ICON_SIZE = 48;
 -(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
                 recordIndex:(NSUInteger)index {
     return @((fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]);
+}
+
+#pragma mark - 
+-(void) showAboutViewController {
+    AboutViewController *aboutViewController = [[AboutViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
+    navController.navigationBar.barStyle = UIBarStyleDefault;
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self.parentViewController presentViewController:navController animated:YES completion:nil];
 }
 
 @end

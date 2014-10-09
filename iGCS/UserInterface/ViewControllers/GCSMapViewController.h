@@ -25,6 +25,8 @@
 
 #import "GCSSidebarController.h"
 
+#import  "PureLayout.h"
+
 @class DataRateRecorder;
 
 @interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GLKViewDelegate, GCSFollowMeCtrlChangeProtocol, CPTPlotDataSource>
@@ -33,6 +35,8 @@
 @property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
 @property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
+
+@property (nonatomic, strong) UIButton *aboutInfoButton;
 
 @property (nonatomic, retain) IBOutlet UIButton *sidebarButton;
 - (IBAction)toggleSidebar:(id)sender;

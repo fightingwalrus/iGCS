@@ -65,6 +65,9 @@
 		18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */; };
 		18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
 		18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
+		182800E619E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
+		182800E719E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
+		182800E819E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
 		182FFA99181F0C9100A8C31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
@@ -639,6 +642,8 @@
 		18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
 		18069FBE1836F7C70068E7A5 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
+		182800E419E30EE900C6263D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		182800E519E30EE900C6263D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		182FFAFF181F0C9100A8C31C /* iGCS video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS video.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
@@ -1848,6 +1853,8 @@
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
 				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
+				182800E419E30EE900C6263D /* AboutViewController.h */,
+				182800E519E30EE900C6263D /* AboutViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2688,6 +2695,7 @@
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
+				182800E819E30EE900C6263D /* AboutViewController.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				01CEC5D819D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
 				CA154E8319BFE52000ECE919 /* DDLog.m in Sources */,
@@ -2793,6 +2801,7 @@
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
 				18E58A92198993EB0025A516 /* Logger.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
+				182800E719E30EE900C6263D /* AboutViewController.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
 				189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */,
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
@@ -2859,6 +2868,7 @@
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				01CEC5EB19D9FA3800320A34 /* BRStreamInfo.m in Sources */,
 				CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
+				182800E619E30EE900C6263D /* AboutViewController.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
