@@ -156,9 +156,29 @@
 
 - (IBAction)specClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 specArdrone];
+    [_arDrone2 AtCommandedTakeOff];
     
 }
+
+- (IBAction)emerClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 ToggleArDroneEmergency];
+    
+}
+
+- (IBAction)calClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 CalibrateMagnetometerArDrone];
+    
+}
+
+- (IBAction)flipClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 FlipLeftArDrone];
+    
+}
+
+
 
 -(void)consoleMessage:(NSString*)messageText
 {

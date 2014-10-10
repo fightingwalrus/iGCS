@@ -14,10 +14,14 @@
 
 
 
+
+
+
 //@interface arDroneUtils : NSObject
 @interface ArDroneUtils : NSObject <BRRequestDelegate>
 {
     GCDAsyncSocket *gcdsocket;
+    GCDAsyncUdpSocket *gcdUdpSocket;
 }
 
 
@@ -28,5 +32,11 @@
 - (void)rtlArdrone;
 - (void)specArdrone;
 - (void)uploadSer2udp;
+- (void)ConnectArDroneUDP;
+- (void)AtCommandedTakeOff;
+- (void)ToggleArDroneEmergency;
+- (void)CalibrateHorizontalPlaneArDrone;
+- (void)CalibrateMagnetometerArDrone;
+- (void) FlipLeftArDrone;
 
 @end

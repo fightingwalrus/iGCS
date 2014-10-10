@@ -22,6 +22,9 @@
 #import "iGCSMavLinkInterface.h"
 #import "CommController.h"
 
+#define TAG_FILESTATUS 42
+#define TAG_WELCOME 43
+#define TAG_KILL 44
 
 
 @interface ArDroneUtils ()
@@ -70,24 +73,7 @@
     if (![gcdsocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
         NSLog(@"I goofed: %@", err);
     }
-    [gcdsocket readDataWithTimeout:5 tag:1];
-    
-    
-    
-    NSLog(@"Unzipping program");
-    NSString *requestStr = @"gunzip -f data/video/ser2udp.gz\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
-    
-    NSLog(@"changing permissions");
-    requestStr = @"chmod 755 data/video/ser2udp\r";
-    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
-    
-    NSLog(@"running program");
-    requestStr = @"data/video/ser2udp\r";
-    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:1.0 tag:0];
+    //[gcdsocket readDataWithTimeout:5 tag:1];
     
     
 }
@@ -95,6 +81,163 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     NSLog(@"Telnet Connected!");
+    [gcdsocket readDataWithTimeout:-1 tag:TAG_WELCOME];
+    
+    
+    NSLog(@"Kill any previously running ser2udp rogram");
+    NSString *requestStr = @"killall ser2udp\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:-1 tag:5];
+    //[gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:5];//CRLFData
+    [gcdsocket readDataWithTimeout:-1 tag:TAG_KILL];
+    
+    
+    NSLog(@"Trying to check file");
+    requestStr = @"ls -ltr /data/video/ser2udp\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:-1 tag:TAG_FILESTATUS];
+    // [gcdsocket readDataWithTimeout:5 tag:TAG_FILESTATUS];
+    [gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:TAG_FILESTATUS];//CRLFData
+    
+    
+    
+    NSLog(@"Unzipping program");
+    requestStr = @"gunzip -f /data/video/ser2udp.gz\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:-1 tag:1];
+    [gcdsocket readDataWithTimeout:-1 tag:1];
+    
+    NSLog(@"changing permissions");
+    requestStr = @"chmod 755 /data/video/ser2udp\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:-1 tag:2];
+    [gcdsocket readDataWithTimeout:-1 tag:2];
+    
+    NSLog(@"running program");
+    requestStr = @"/data/video/ser2udp\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdsocket writeData:requestData withTimeout:-1 tag:3];
+    [gcdsocket readDataWithTimeout:-1 tag:3];
+
+
+}
+
+
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+    
+    
+    
+    if (tag == TAG_FILESTATUS)
+    {
+        NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     //   NSLog(@"HERE Response = %@", response);
+     
+    }
+    
+  //  [gcdsocket readDataWithTimeout:-1 tag:TAG_FILESTATUS];
+    
+    
+
+}
+
+
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    switch (tag){
+        case TAG_FILESTATUS:
+            [gcdsocket readDataWithTimeout:-1 tag:TAG_FILESTATUS];
+           // [gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:TAG_FILESTATUS];//CRLFData
+            break;
+            
+        default:
+            break;
+            
+    }
+
+    /*
+    if (tag == 1)
+        NSLog(@"First request sent");
+    else if (tag == 2)
+        NSLog(@"Second request sent");
+    else if (tag == 3)
+        NSLog(@"Third request sent");
+    else if (tag == 4)
+        NSLog(@"Fourth request sent");
+     */
+
+}
+
+
+
+- (void)ConnectArDroneUDP{
+    
+    NSLog(@"%s",__FUNCTION__);
+    gcdUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *err = nil;
+    if (![gcdUdpSocket connectToHost:@"192.168.1.1" onPort:5556 error:&err]) {
+        NSLog(@"I goofed: %@", err);
+    }
+    //[gcdsocket readDataWithTimeout:5 tag:1];
+    
+    NSLog(@"running program");
+    
+}
+
+
+
+
+- (void)AtCommandedTakeOff{
+    [self ConnectArDroneUDP];
+    [self CalibrateHorizontalPlaneArDrone]; //In for Test now...
+    
+    NSLog(@"Sending AT Command to launch");
+    NSString *requestStr = @"AT*REF=2,290718208\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+- (void)ToggleArDroneEmergency{
+    [self ConnectArDroneUDP];
+    NSLog(@"Sending AT Command to clear emergency");
+    NSString *requestStr = @"AT*REF=1,290717952\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+- (void)CalibrateHorizontalPlaneArDrone{
+    [self ConnectArDroneUDP];
+    
+    NSLog(@"Sending AT Command to calibrate the horiziontal plane");
+    NSString *requestStr = @"AT*FTRIM=1\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void)CalibrateMagnetometerArDrone{
+    [self ConnectArDroneUDP];
+    
+    NSLog(@"Sending AT Command to calibrate the magnetometer");
+    NSString *requestStr = @"AT*CALIB=1,0\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) FlipLeftArDrone{
+    [self ConnectArDroneUDP];
+    NSLog(@"Sending AT Command to flip left");
+    
+    NSString *requestStr = @"AT*COMWDG=1\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+    requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"18,15\"\r";
+    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+
+
 }
 
 
@@ -124,6 +267,7 @@
 }
 
 
+
 //Request Completed
 - (void)requestCompleted:(BRRequest *)request {
     NSLog(@"FTP Request Completed");
@@ -135,6 +279,7 @@
 /// \param request The request object
 - (void)requestFailed:(BRRequest *)request{
     
+    NSLog(@"FTP FAILED");
     if (request == _uploadFile)
     {
         NSLog(@"%@", request.error.message);
