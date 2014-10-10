@@ -146,12 +146,12 @@
 
 - (IBAction)lndClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 lndArdrone];
+    [_arDrone2 ATLand];
 }
 
 - (IBAction)rtlClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 rtlArdrone];
+    [_arDrone2 MavlinkReturnToLaunch];
 }
 
 - (IBAction)specClicked:(id)sender {
@@ -162,19 +162,19 @@
 
 - (IBAction)emerClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 ToggleArDroneEmergency];
+    [_arDrone2 ToggleEmergency];
     
 }
 
 - (IBAction)calClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 CalibrateMagnetometerArDrone];
+    [_arDrone2 CalibrateMagnetometer];
     
 }
 
 - (IBAction)flipClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 FlipLeftArDrone];
+    [_arDrone2 FlipBehind];
     
 }
 

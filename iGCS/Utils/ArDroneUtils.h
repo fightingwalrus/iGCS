@@ -26,17 +26,23 @@
 
 
 
-- (void)telArdrone;
-- (void)mavArdrone;
-- (void)lndArdrone;
-- (void)rtlArdrone;
-- (void)specArdrone;
-- (void)uploadSer2udp;
-- (void)ConnectArDroneUDP;
-- (void)AtCommandedTakeOff;
-- (void)ToggleArDroneEmergency;
-- (void)CalibrateHorizontalPlaneArDrone;
-- (void)CalibrateMagnetometerArDrone;
-- (void) FlipLeftArDrone;
+- (void) telArdrone;
+- (void) mavArdrone;
+- (void) MavlinkLand;
+- (void) MavlinkReturnToLaunch;
+- (void) specArdrone;
+- (void) uploadSer2udp;
+- (void) ConnectArDroneUDP;
+- (void) AtCommandedTakeOff;
+- (void) ToggleEmergency;
+- (void) CalibrateHorizontalPlane;
+- (void) CalibrateMagnetometer;
+- (void) ATLand;
+- (void) DoublePhiTheataMixed;
+- (void) FlipAhead;
+- (void) FlipBehind;
+- (void) FlipLeft;
+- (void) FlipRight;
+- (void) ResetWatchDogTimer;
 
 @end

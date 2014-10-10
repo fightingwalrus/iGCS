@@ -189,17 +189,19 @@
 
 - (void)AtCommandedTakeOff{
     [self ConnectArDroneUDP];
-    [self CalibrateHorizontalPlaneArDrone]; //In for Test now...
+    [self ResetWatchDogTimer];
+    [self CalibrateHorizontalPlane];
     
     NSLog(@"Sending AT Command to launch");
-    NSString *requestStr = @"AT*REF=2,290718208\r";
+    NSString *requestStr = @"AT*REF=1,290718208\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
 }
 
-- (void)ToggleArDroneEmergency{
+- (void)ToggleEmergency{
     [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
     NSLog(@"Sending AT Command to clear emergency");
     NSString *requestStr = @"AT*REF=1,290717952\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -207,8 +209,20 @@
     
 }
 
-- (void)CalibrateHorizontalPlaneArDrone{
+- (void)ATLand{
     [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    
+    NSLog(@"Sending AT Command to land the ArDrone");
+    NSString *requestStr = @"AT*REF=1,290717696\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void)CalibrateHorizontalPlane{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
     
     NSLog(@"Sending AT Command to calibrate the horiziontal plane");
     NSString *requestStr = @"AT*FTRIM=1\r";
@@ -216,8 +230,9 @@
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void)CalibrateMagnetometerArDrone{
+- (void)CalibrateMagnetometer{
     [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
     
     NSLog(@"Sending AT Command to calibrate the magnetometer");
     NSString *requestStr = @"AT*CALIB=1,0\r";
@@ -225,19 +240,60 @@
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void) FlipLeftArDrone{
+- (void) DoublePhiTheataMixed{
     [self ConnectArDroneUDP];
-    NSLog(@"Sending AT Command to flip left");
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"15,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
+}
+
+
+- (void) FlipAhead{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"16,15\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+- (void) FlipBehind{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"17,15\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+- (void) FlipLeft{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"18,15\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+
+}
+
+- (void) FlipRight{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSLog(@"Sending AT Command to flip right");
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"19,15\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+
+
+- (void)ResetWatchDogTimer{
     NSString *requestStr = @"AT*COMWDG=1\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
-    requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"18,15\"\r";
-    requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-
-
 }
 
 
@@ -248,13 +304,13 @@
     
 }
 
-- (void)lndArdrone {
+- (void)MavlinkLand {
     NSLog(@"LND Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdroneLand];
     
 }
 
-- (void)rtlArdrone {
+- (void)MavlinkReturnToLaunch {
     NSLog(@"RTL Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdroneRtl];
     
