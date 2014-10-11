@@ -13,9 +13,9 @@
 
 // API keys for hockeyapp.net etc are passed in via scrips/build.sh
 // from a private xcconfig file using GCC_PREPROCESSOR_DEFINITIONS
-#if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
-#import <HockeySDK/HockeySDK.h>
-#endif
+//#if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
+//#import <HockeySDK/HockeySDK.h>
+//#endif
 
 #import "CommController.h"
 
@@ -36,13 +36,13 @@ static AppDelegate *shared;
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     
-#if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:HOCKEY_APP_BETA_ID];
-    [[BITHockeyManager sharedHockeyManager].authenticator setAuthenticationSecret:HOCKEY_APP_BETA_SECRET];
-    [[BITHockeyManager sharedHockeyManager].authenticator setIdentificationType:BITAuthenticatorIdentificationTypeHockeyAppEmail];
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-#endif
+//#if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
+//    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:HOCKEY_APP_BETA_ID];
+//    [[BITHockeyManager sharedHockeyManager].authenticator setAuthenticationSecret:HOCKEY_APP_BETA_SECRET];
+//    [[BITHockeyManager sharedHockeyManager].authenticator setIdentificationType:BITAuthenticatorIdentificationTypeHockeyAppEmail];
+//    [[BITHockeyManager sharedHockeyManager] startManager];
+//    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+//#endif
 
 #ifdef VIDEOSTREAMING
     // set up defaults

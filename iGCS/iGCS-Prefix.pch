@@ -17,7 +17,7 @@
 // a very limited of telemetry items and we don't
 // request missions from the drone or send a
 // heartbeat from iGCS
-static const BOOL GCSStandardDataRateModeEnabled = YES;
+static const BOOL GCSStandardDataRateModeEnabled = NO;
 
 /*
  Lumberjack logging. 
