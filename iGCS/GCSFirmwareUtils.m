@@ -10,7 +10,7 @@
 
 NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated = @"com.fightingwalrus.firmwareutils.fwrfirmware.needsupdate";
 NSString * const GCSFwrFirmwareFileName = @"walrus.bin";
-NSString * const GCSFirmwareVersionInBundle = @"1.0";
+NSString * const GCSFirmwareVersionInBundle = @"1.0.0";
 
 static BOOL _awaitingPostUpgradeDisconnect;
 
