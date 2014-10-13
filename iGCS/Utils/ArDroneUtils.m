@@ -212,7 +212,6 @@
 - (void)ATLand{
     [self ConnectArDroneUDP];
     [self ResetWatchDogTimer];
-    
     NSLog(@"Sending AT Command to land the ArDrone");
     NSString *requestStr = @"AT*REF=1,290717696\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -239,6 +238,138 @@
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
+
+
+- (void) phiM30{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"0,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) phi30{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"1,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) thetaM30{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"2,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) theta30{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"3,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) theta20degYaw200{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"4,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) theta20degYawM200{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"5,1000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) turnAround{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"6,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) turnAroundGoDown{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"7,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) yawShake{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"8,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) yawDance{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"9,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) phiDance{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"10,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) thetaDance{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"11,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) VzDance{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"12,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void) Wave{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"13,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+
+- (void) PhiTheataMixed{
+    [self ConnectArDroneUDP];
+    [self ResetWatchDogTimer];
+    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"14,5000\"\r";
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
+}
+
+
 
 - (void) DoublePhiTheataMixed{
     [self ConnectArDroneUDP];
@@ -286,8 +417,6 @@
     [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
 }
-
-
 
 - (void)ResetWatchDogTimer{
     NSString *requestStr = @"AT*COMWDG=1\r";
