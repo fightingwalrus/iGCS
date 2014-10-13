@@ -129,52 +129,52 @@
 
 - (IBAction)ftpClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 uploadSer2udp];
+    [_arDrone2 uploadProgramToDrone];
 }
 
 
 - (IBAction)telClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 telArdrone];
+    [_arDrone2 makeTelnetConnectionToDrone];
 }
 
 - (IBAction)mavClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 mavArdrone];
+    [_arDrone2 mavlinkCommandedTakeoff];
     
 }
 
 - (IBAction)lndClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 ATLand];
+    [_arDrone2 atCommandedLand];
 }
 
 - (IBAction)rtlClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 MavlinkReturnToLaunch];
+    [_arDrone2 mavlinkReturnToLaunch];
 }
 
 - (IBAction)specClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 AtCommandedTakeOff];
+    [_arDrone2 atCommandedTakeOff];
     
 }
 
 - (IBAction)emerClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 ToggleEmergency];
+    [_arDrone2 toggleEmergency];
     
 }
 
 - (IBAction)calClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 CalibrateMagnetometer];
+    [_arDrone2 calibrateMagnetometer];
     
 }
 
 - (IBAction)flipClicked:(id)sender {
     _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 FlipBehind];
+    [_arDrone2 flipBehind];
     
 }
 
@@ -216,56 +216,6 @@
     [self setErrorsTextView:nil];
     [super viewDidUnload];
 }
-
-- (void)requestCompleted:(BRRequest *)request {
-    NSLog(@"FTP Request Completed");
-    
-}
-
-
-/*
-/// requestFailed
-/// \param request The request object
-- (void)requestFailed:(BRRequest *)request{
-    
-    if (request == _uploadFile)
-    {
-        NSLog(@"%@", request.error.message);
-        _uploadFile = nil;
-    }
-    
-}
-
-- (NSData *) requestDataToSend: (BRRequestUpload *) request
-{
-    //----- returns data object or nil when complete
-    //----- basically, first time we return the pointer to the NSData.
-    //----- and BR will upload the data.
-    //----- Second time we return nil which means no more data to send
-    NSData *temp = _uploadData;   // this is a shallow copy of the pointer
-    
-    _uploadData = nil;            // next time around, return nil...
-    
-    return temp;
-}
-
-/// shouldOverwriteFileWithRequest
-/// \param request The request object;
-- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request {
-    NSLog(@"Overwrite function called");
-    
-    //----- set this as appropriate if you want the file to be overwritten
-    if (request == _uploadFile)
-    {
-        //----- if uploading a file, we set it to YES (if set to NO, nothing happens)
-        return YES;
-    }
-    return NO;
-    
-}
-
- */
-
 
 @end
 

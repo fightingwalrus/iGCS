@@ -45,7 +45,7 @@
 - (void) loadDemoMission;
 -(void) sendHeatbeatToAutopilot;
 
-- (void) sendMavtest;
+- (void) sendMavlinkTakeOffCommand;
 - (void) sendArdroneLand;
 - (void) sendArdroneRtl;
 - (void) sendArdronePairSpektrumDSMX;

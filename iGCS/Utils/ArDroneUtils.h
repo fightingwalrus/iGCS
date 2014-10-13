@@ -9,35 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "BRRequest.h"
 
-#import "GCDAsyncSocket.h"
-#import "GCDAsyncUdpSocket.h"
-
-
-
-
-
-
-//@interface arDroneUtils : NSObject
 @interface ArDroneUtils : NSObject <BRRequestDelegate>
-{
-    GCDAsyncSocket *gcdsocket;
-    GCDAsyncUdpSocket *gcdUdpSocket;
-}
 
-
-
-- (void) telArdrone;
-- (void) mavArdrone;
-- (void) MavlinkLand;
-- (void) MavlinkReturnToLaunch;
-- (void) specArdrone;
-- (void) uploadSer2udp;
+- (void) makeTelnetConnectionToDrone;
+- (void) mavlinkCommandedTakeoff;
+- (void) mavlinkLand;
+- (void) mavlinkReturnToLaunch;
+- (void) StartSpektrumPairing;
+- (void) uploadProgramToDrone;
 - (void) ConnectArDroneUDP;
-- (void) AtCommandedTakeOff;
-- (void) ToggleEmergency;
-- (void) CalibrateHorizontalPlane;
-- (void) CalibrateMagnetometer;
-- (void) ATLand;
+- (void) atCommandedTakeOff;
+- (void) toggleEmergency;
+- (void) calibrateHorizontalPlane;
+- (void) calibrateMagnetometer;
+- (void) atCommandedLand;
 - (void) phiM30;
 - (void) phi30;
 - (void) thetaM30;
@@ -50,14 +35,42 @@
 - (void) yawDance;
 - (void) phiDance;
 - (void) thetaDance;
-- (void) VzDance;
+- (void) vzDance;
 - (void) wave;
-- (void) PhiTheataMixed;
-- (void) DoublePhiTheataMixed;
-- (void) FlipAhead;
-- (void) FlipBehind;
-- (void) FlipLeft;
-- (void) FlipRight;
-- (void) ResetWatchDogTimer;
+- (void) phiThetaMixed;
+- (void) doublePhiThetaMixed;
+- (void) flipAhead;
+- (void) flipBehind;
+- (void) flipLeft;
+- (void) flipRight;
+- (void) resetWatchDogTimer;
 
 @end
+
+
+extern NSString * const ArDroneAtUtilsAtCommandedTakeOff;
+extern NSString * const ArDroneAtUtilsToggleEmergency;
+extern NSString * const ArDroneAtUtilsCalibrateHorizontalPlane;
+extern NSString * const ArDroneAtUtilsCalibrateMagnetometer;
+extern NSString * const ArDroneAtUtilsAtCommandedLand;
+extern NSString * const ArDroneAtUtilsPhiM30;
+extern NSString * const ArDroneAtUtilsPhi30;
+extern NSString * const ArDroneAtUtilsThetaM30;
+extern NSString * const ArDroneAtUtilsTheta30;
+extern NSString * const ArDroneAtUtilsTheta20degYaw200;
+extern NSString * const ArDroneAtUtilsTheta20degYawM200;
+extern NSString * const ArDroneAtUtilsTurnAround;
+extern NSString * const ArDroneAtUtilsTurnAroundGoDown;
+extern NSString * const ArDroneAtUtilsYawShake;
+extern NSString * const ArDroneAtUtilsYawDance;
+extern NSString * const ArDroneAtUtilsPhiDance;
+extern NSString * const ArDroneAtUtilsThetaDance;
+extern NSString * const ArDroneAtUtilsVzDance;
+extern NSString * const ArDroneAtUtilsWave;
+extern NSString * const ArDroneAtUtilsPhiThetaMixed;
+extern NSString * const ArDroneAtUtilsDoublePhiThetaMixed;
+extern NSString * const ArDroneAtUtilsFlipAhead;
+extern NSString * const ArDroneAtUtilsFlipBehind;
+extern NSString * const ArDroneAtUtilsFlipLeft;
+extern NSString * const ArDroneAtUtilsFlipRight;
+extern NSString * const ArDroneAtUtilsResetWatchDogTimer;

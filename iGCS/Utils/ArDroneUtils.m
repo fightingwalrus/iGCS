@@ -22,9 +22,32 @@
 #import "iGCSMavLinkInterface.h"
 #import "CommController.h"
 
-#define TAG_FILESTATUS 42
-#define TAG_WELCOME 43
-#define TAG_KILL 44
+NSString * const ArDroneAtUtilsAtCommandedTakeOff = @"AT*REF=1,290718208\r";
+NSString * const ArDroneAtUtilsToggleEmergency = @"AT*REF=1,290717952\r";
+NSString * const ArDroneAtUtilsCalibrateHorizontalPlane = @"AT*FTRIM=1\r";
+NSString * const ArDroneAtUtilsCalibrateMagnetometer = @"AT*CALIB=1,0\r";
+NSString * const ArDroneAtUtilsResetWatchDogTimer = @"AT*COMWDG=1\r";
+NSString * const ArDroneAtUtilsAtCommandedLand = @"AT*REF=1,290717696\r";
+NSString * const ArDroneAtUtilsPhiM30 = @"AT*CONFIG=1,\"control:flight_anim\",\"0,1000\"\r";
+NSString * const ArDroneAtUtilsPhi30 = @"AT*CONFIG=1,\"control:flight_anim\",\"1,1000\"\r";
+NSString * const ArDroneAtUtilsThetaM30= @"AT*CONFIG=1,\"control:flight_anim\",\"2,1000\"\r";
+NSString * const ArDroneAtUtilsTheta30= @"AT*CONFIG=1,\"control:flight_anim\",\"3,1000\"\r";
+NSString * const ArDroneAtUtilsTheta20degYaw200= @"AT*CONFIG=1,\"control:flight_anim\",\"4,1000\"\r";
+NSString * const ArDroneAtUtilsTheta20degYawM200= @"AT*CONFIG=1,\"control:flight_anim\",\"5,1000\"\r";
+NSString * const ArDroneAtUtilsTurnAround = @"AT*CONFIG=1,\"control:flight_anim\",\"6,5000\"\r";
+NSString * const ArDroneAtUtilsTurnAroundGoDown = @"AT*CONFIG=1,\"control:flight_anim\",\"7,5000\"\r";
+NSString * const ArDroneAtUtilsYawShake = @"AT*CONFIG=1,\"control:flight_anim\",\"8,5000\"\r";
+NSString * const ArDroneAtUtilsYawDance = @"AT*CONFIG=1,\"control:flight_anim\",\"9,5000\"\r";
+NSString * const ArDroneAtUtilsPhiDance = @"AT*CONFIG=1,\"control:flight_anim\",\"10,5000\"\r";
+NSString * const ArDroneAtUtilsThetaDance = @"AT*CONFIG=1,\"control:flight_anim\",\"11,5000\"\r";
+NSString * const ArDroneAtUtilsVzDance = @"AT*CONFIG=1,\"control:flight_anim\",\"12,5000\"\r";
+NSString * const ArDroneAtUtilsWave = @"AT*CONFIG=1,\"control:flight_anim\",\"13,5000\"\r";
+NSString * const ArDroneAtUtilsPhiThetaMixed = @"AT*CONFIG=1,\"control:flight_anim\",\"14,5000\"\r";
+NSString * const ArDroneAtUtilsDoublePhiThetaMixed = @"AT*CONFIG=1,\"control:flight_anim\",\"15,5000\"\r";
+NSString * const ArDroneAtUtilsFlipAhead = @"AT*CONFIG=1,\"control:flight_anim\",\"16,15\"\r";
+NSString * const ArDroneAtUtilsFlipBehind = @"AT*CONFIG=1,\"control:flight_anim\",\"17,15\"\r";
+NSString * const ArDroneAtUtilsFlipLeft = @"AT*CONFIG=1,\"control:flight_anim\",\"18,15\"\r";
+NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\",\"19,15\"\r";
 
 
 @interface ArDroneUtils ()
@@ -32,20 +55,19 @@
 @property (nonatomic, strong)BRRequestCreateDirectory *createDir;
 @property (nonatomic, strong) BRRequestDelete * deleteDir;
 @property (nonatomic, strong) BRRequestListDirectory *listDir;
-
 @property (nonatomic, strong) BRRequestDownload *downloadFile;
 @property (nonatomic, strong) BRRequestUpload *uploadFile;
 @property (nonatomic, strong) BRRequestDelete *deleteFile;
-
 @property (nonatomic, strong) NSMutableData *downloadData;
 @property (nonatomic, strong) NSData *uploadData;
-
+@property (nonatomic, strong) GCDAsyncSocket *gcdAsyncSocket;
+@property (nonatomic, strong) GCDAsyncUdpSocket *gcdAsyncUdpSocket;
 
 @end
 
 @implementation ArDroneUtils
 
-- (void) uploadSer2udp {
+- (void) uploadProgramToDrone {
     //----- get the file to upload as an NSData object
     
     _uploadData = [FileUtils dataFromFileInMainBundleWithName: @"ser2udp.gz"];
@@ -65,392 +87,291 @@
 
 
 
-- (void)telArdrone{
+- (void)makeTelnetConnectionToDrone{
     
     NSLog(@"%s",__FUNCTION__);
-    gcdsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    _gcdAsyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
-    if (![gcdsocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
+    if (![_gcdAsyncSocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
         NSLog(@"I goofed: %@", err);
     }
-    //[gcdsocket readDataWithTimeout:5 tag:1];
-    
-    
 }
 
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     NSLog(@"Telnet Connected!");
-    [gcdsocket readDataWithTimeout:-1 tag:TAG_WELCOME];
-    
+    [_gcdAsyncSocket readDataWithTimeout:-1 tag:0];
     
     NSLog(@"Kill any previously running ser2udp rogram");
     NSString *requestStr = @"killall ser2udp\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:-1 tag:5];
-    //[gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:5];//CRLFData
-    [gcdsocket readDataWithTimeout:-1 tag:TAG_KILL];
-    
+    [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:5];
     
     NSLog(@"Trying to check file");
     requestStr = @"ls -ltr /data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:-1 tag:TAG_FILESTATUS];
-    // [gcdsocket readDataWithTimeout:5 tag:TAG_FILESTATUS];
-    [gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:TAG_FILESTATUS];//CRLFData
-    
-    
+    [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:0];
     
     NSLog(@"Unzipping program");
     requestStr = @"gunzip -f /data/video/ser2udp.gz\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:-1 tag:1];
-    [gcdsocket readDataWithTimeout:-1 tag:1];
+    [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:1];
     
     NSLog(@"changing permissions");
     requestStr = @"chmod 755 /data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:-1 tag:2];
-    [gcdsocket readDataWithTimeout:-1 tag:2];
+    [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:2];
     
     NSLog(@"running program");
     requestStr = @"/data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdsocket writeData:requestData withTimeout:-1 tag:3];
-    [gcdsocket readDataWithTimeout:-1 tag:3];
-
+    [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:3];
 
 }
-
-
-
-- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-    
-    
-    
-    if (tag == TAG_FILESTATUS)
-    {
-        NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-     //   NSLog(@"HERE Response = %@", response);
-     
-    }
-    
-  //  [gcdsocket readDataWithTimeout:-1 tag:TAG_FILESTATUS];
-    
-    
-
-}
-
-
-- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
-{
-    switch (tag){
-        case TAG_FILESTATUS:
-            [gcdsocket readDataWithTimeout:-1 tag:TAG_FILESTATUS];
-           // [gcdsocket readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:TAG_FILESTATUS];//CRLFData
-            break;
-            
-        default:
-            break;
-            
-    }
-
-    /*
-    if (tag == 1)
-        NSLog(@"First request sent");
-    else if (tag == 2)
-        NSLog(@"Second request sent");
-    else if (tag == 3)
-        NSLog(@"Third request sent");
-    else if (tag == 4)
-        NSLog(@"Fourth request sent");
-     */
-
-}
-
 
 
 - (void)ConnectArDroneUDP{
     
     NSLog(@"%s",__FUNCTION__);
-    gcdUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    _gcdAsyncUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
-    if (![gcdUdpSocket connectToHost:@"192.168.1.1" onPort:5556 error:&err]) {
+    if (![_gcdAsyncUdpSocket connectToHost:@"192.168.1.1" onPort:5556 error:&err]) {
         NSLog(@"I goofed: %@", err);
     }
-    //[gcdsocket readDataWithTimeout:5 tag:1];
-    
     NSLog(@"running program");
     
 }
 
-
-
-
-- (void)AtCommandedTakeOff{
+- (void)atCommandedTakeOff{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    [self CalibrateHorizontalPlane];
+    [self resetWatchDogTimer];
+    [self calibrateHorizontalPlane];
     
     NSLog(@"Sending AT Command to launch");
-    NSString *requestStr = @"AT*REF=1,290718208\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    NSData *requestData = [ArDroneAtUtilsAtCommandedTakeOff dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
 }
 
-- (void)ToggleEmergency{
+- (void)toggleEmergency{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
+    [self resetWatchDogTimer];
     NSLog(@"Sending AT Command to clear emergency");
-    NSString *requestStr = @"AT*REF=1,290717952\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    NSData *requestData = [ArDroneAtUtilsToggleEmergency dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
 }
 
-- (void)ATLand{
+- (void)atCommandedLand{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
+    [self resetWatchDogTimer];
     NSLog(@"Sending AT Command to land the ArDrone");
-    NSString *requestStr = @"AT*REF=1,290717696\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    NSData *requestData = [ArDroneAtUtilsAtCommandedLand dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
-- (void)CalibrateHorizontalPlane{
+- (void)calibrateHorizontalPlane{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    
+    [self resetWatchDogTimer];
     NSLog(@"Sending AT Command to calibrate the horiziontal plane");
-    NSString *requestStr = @"AT*FTRIM=1\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    NSData *requestData = [ArDroneAtUtilsCalibrateHorizontalPlane dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void)CalibrateMagnetometer{
+- (void)calibrateMagnetometer{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    
+    [self resetWatchDogTimer];
     NSLog(@"Sending AT Command to calibrate the magnetometer");
-    NSString *requestStr = @"AT*CALIB=1,0\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    NSData *requestData = [ArDroneAtUtilsCalibrateMagnetometer dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
+
+- (void)resetWatchDogTimer{
+    NSData *requestData = [ArDroneAtUtilsResetWatchDogTimer dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    
 }
 
 
+//The Following 20 Commands are Parrot ArDrone Animations
+//Please see the Parrot SDK for information and a possible
+//description.
 - (void) phiM30{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"0,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsPhiM30 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 - (void) phi30{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"1,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsPhi30 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 - (void) thetaM30{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"2,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsThetaM30 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 - (void) theta30{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"3,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsTheta30 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
-
 
 - (void) theta20degYaw200{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"4,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsTheta20degYaw200 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
-
 
 - (void) theta20degYawM200{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"5,1000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsTheta20degYawM200 dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 - (void) turnAround{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"6,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsTurnAround dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 - (void) turnAroundGoDown{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"7,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsTurnAroundGoDown dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
 - (void) yawShake{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"8,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsYawShake dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
 - (void) yawDance{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"9,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsYawDance dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
 - (void) phiDance{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"10,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsPhiDance dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
 - (void) thetaDance{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"11,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsThetaDance dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
-- (void) VzDance{
+- (void) vzDance{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"12,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsVzDance dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void) Wave{
+- (void) wave{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"13,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsWave dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
-- (void) PhiTheataMixed{
+- (void) phiThetaMixed{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"14,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsPhiThetaMixed dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
 
-
-- (void) DoublePhiTheataMixed{
+- (void) doublePhiThetaMixed{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"15,5000\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsDoublePhiThetaMixed dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-
-- (void) FlipAhead{
+- (void) flipAhead{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"16,15\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsFlipAhead dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void) FlipBehind{
+- (void) flipBehind{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"17,15\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsFlipBehind dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void) FlipLeft{
+- (void) flipLeft{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"18,15\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsFlipLeft dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
 
-- (void) FlipRight{
+- (void) flipRight{
     [self ConnectArDroneUDP];
-    [self ResetWatchDogTimer];
-    NSLog(@"Sending AT Command to flip right");
-    NSString *requestStr = @"AT*CONFIG=1,\"control:flight_anim\",\"19,15\"\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
+    [self resetWatchDogTimer];
+    NSData *requestData = [ArDroneAtUtilsFlipRight dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
-
-- (void)ResetWatchDogTimer{
-    NSString *requestStr = @"AT*COMWDG=1\r";
-    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [gcdUdpSocket sendData:requestData withTimeout:-1 tag:3];
-    
-}
+//The previous 20 Commands are Parrot ArDrone Animations
+//Please see the Parrot SDK for information and a possible
+//description.
 
 
-- (void)mavArdrone {
+- (void)mavlinkCommandedTakeoff {
     NSLog(@"Mav Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendMavtest];
+    [[CommController sharedInstance].mavLinkInterface sendMavlinkTakeOffCommand];
     
     
 }
 
-- (void)MavlinkLand {
+- (void)mavlinkLand {
     NSLog(@"LND Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdroneLand];
     
 }
 
-- (void)MavlinkReturnToLaunch {
+- (void)mavlinkReturnToLaunch {
     NSLog(@"RTL Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdroneRtl];
     
 }
 
-- (void)specArdrone {
+- (void)StartSpektrumPairing {
     NSLog(@"Spec Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendArdronePairSpektrumDSMX];
     
 }
-
 
 
 //Request Completed

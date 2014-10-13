@@ -14,7 +14,6 @@
 #import "ArDroneUtils.h"
 
 @interface DebugViewController : UIViewController <BRRequestDelegate> {
-    GCDAsyncSocket *gcdsocket;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
