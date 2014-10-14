@@ -7,12 +7,25 @@
 //
 
 #import "DebugViewController.h"
-
 #import "CommController.h"
-
 #import "Logger.h"
-
 #import "ExceptionHandler.h"
+
+#import "BRRequestCreateDirectory.h"
+#import "BRRequestDelete.h"
+#import "BRRequestUpload.h"
+#import "BRRequestError.h"
+#import "BRStreamInfo.h"
+#import "BRRequestListDirectory.h"
+#import "BRRequestQueue.h"
+
+#import <sys/socket.h>
+#import "GCDAsyncSocket.h"
+#import "GCDAsyncUdpSocket.h"
+#import "FileUtils.h"
+#import "iGCSMavLinkInterface.h"
+#import "ArDroneUtils.h"
+
 
 @interface DebugViewController ()
 
@@ -114,6 +127,59 @@
     [userDefaults synchronize];
 }
 
+- (IBAction)ftpClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 uploadProgramToDrone];
+}
+
+
+- (IBAction)telClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 makeTelnetConnectionToDrone];
+}
+
+- (IBAction)mavClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 mavlinkCommandedTakeoff];
+    
+}
+
+- (IBAction)lndClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 atCommandedLand];
+}
+
+- (IBAction)rtlClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 mavlinkReturnToLaunch];
+}
+
+- (IBAction)specClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 atCommandedTakeOff];
+    
+}
+
+- (IBAction)emerClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 toggleEmergency];
+    
+}
+
+- (IBAction)calClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 calibrateMagnetometer];
+    
+}
+
+- (IBAction)flipClicked:(id)sender {
+    _arDrone2 = [[ArDroneUtils alloc] init];
+    [_arDrone2 flipBehind];
+    
+}
+
+
+
 -(void)consoleMessage:(NSString*)messageText
 {
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
@@ -130,18 +196,14 @@
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
 }
 
--(void)errorMessage:(NSString*)messageText
-{
+-(void)errorMessage:(NSString*)messageText {
     NSString *currentText = self.errorsTextView.text;
     
     NSString *updatedText;
     
-    if (currentText)
-    {
+    if (currentText) {
         updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-    }
-    else
-    {
+    } else {
         updatedText = messageText;
     }
     
@@ -149,14 +211,11 @@
 
 }
 
-
-
 - (void)viewDidUnload {
     [self setConsoleTextView:nil];
     [self setErrorsTextView:nil];
     [super viewDidUnload];
 }
-
 
 @end
 

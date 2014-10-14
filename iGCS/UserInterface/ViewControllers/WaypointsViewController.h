@@ -10,7 +10,7 @@
 #import "WaypointsHolder.h"
 
 #define TABLE_MAP_SLIDE_AMOUNT 100
-#define WAYPOINT_DEFAULT_ALTITUDE 50
+#define WAYPOINT_DEFAULT_ALTITUDE 10
 
 @protocol MissionItemEditingDelegate
 - (WaypointsHolder*) cloneMission;

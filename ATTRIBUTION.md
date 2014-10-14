@@ -24,3 +24,9 @@ PureLayout v1.0 (MIT license)
 CocoaLumberjack v1.9.2 (BSD license)
  - https://github.com/CocoaLumberjack/CocoaLumberjack/tree/1.9.2
  
+ CocoaAsyncSocket v7.4.1 (Public Domain)
+ https://github.com/robbiehanson/CocoaAsyncSocket
+ 
+ BlackRaccoon (MIT license)
+ https://github.com/lloydsargent/BlackRaccoon
+ 
