@@ -40,6 +40,10 @@
 - (IBAction)rtlClicked:(id)sender;
 - (IBAction)specClicked:(id)sender;
 
+- (IBAction)calClicked:(id)sender;
+- (IBAction)emergencyClicked:(id)sender;
+- (IBAction)flipClicked:(id)sender;
+
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;
 

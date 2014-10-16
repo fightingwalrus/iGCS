@@ -50,4 +50,31 @@
 - (void) sendArdroneRtl;
 - (void) sendArdronePairSpektrumDSMX;
 
+#pragma mark - ArDrone AT commands;
+- (void) sendAtCommandToTakeOff;
+- (void) sendAtCommandToLand;
+- (void) sendAtCommandCalibrateHorizontalPlane;
+- (void) sendAtCommandCalibrateMagnetometer;
+- (void) sendAtCommandToggleEmergency;
+- (void) sendAtCommandResetWatchDogTimer;
+- (void) sendAtCommandPhiM30;
+- (void) sendAtCommandPhi30;
+- (void) sendAtCommandThetaM30;
+- (void) sendAtCommandTheta30;
+- (void) sendAtCommandTheta20degYaw200;
+- (void) sendAtCommandTheta20degYawM200;
+- (void) sendAtCommandTurnAround;
+- (void) sendAtCommandTurnAroundGoDown;
+- (void) sendAtCommandYawShake;
+- (void) sendAtCommandYawDance;
+- (void) sendAtCommandPhiDance;
+- (void) sendAtCommandThetaDance;
+- (void) sendAtCommandVzDance;
+- (void) sendAtCommandWave;
+- (void) sendAtCommandPhiThetaMixed;
+- (void) sendAtCommandFlipAhead;
+- (void) sendAtCommandFlipBehind;
+- (void) sendAtCommandFlipLeft;
+- (void) sendAtCommandFlipRight;
+
 @end

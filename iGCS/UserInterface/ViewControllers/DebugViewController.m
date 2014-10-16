@@ -145,8 +145,7 @@
 }
 
 - (IBAction)lndClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 atCommandedLand];
+    [[CommController sharedInstance].mavLinkInterface sendAtCommandToLand];
 }
 
 - (IBAction)rtlClicked:(id)sender {
@@ -155,26 +154,23 @@
 }
 
 - (IBAction)specClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 atCommandedTakeOff];
+    [[CommController sharedInstance].mavLinkInterface sendAtCommandCalibrateHorizontalPlane];
+    [[CommController sharedInstance].mavLinkInterface sendAtCommandToTakeOff];
     
 }
 
-- (IBAction)emerClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 toggleEmergency];
+- (IBAction)emergencyClicked:(id)sender {
+   [[CommController sharedInstance].mavLinkInterface sendAtCommandToggleEmergency];
     
 }
 
 - (IBAction)calClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 calibrateMagnetometer];
+    [[CommController sharedInstance].mavLinkInterface sendAtCommandCalibrateMagnetometer];
     
 }
 
 - (IBAction)flipClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 flipBehind];
+    [[CommController sharedInstance].mavLinkInterface sendAtCommandFlipLeft];
     
 }
 
