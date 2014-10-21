@@ -277,15 +277,15 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, 10);
 }
 
-- (void) sendArdroneLand {
+- (void) sendLand {
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_LAND, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
-- (void) sendArdroneRtl {
+- (void) sendReturnToLaunch {
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_NAV_RETURN_TO_LAUNCH, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
-- (void) sendArdronePairSpektrumDSMX{
+- (void) sendPairSpektrumDSMX{
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_START_RX_PAIR, 0, 1, 0, 0, 0, 0, 0, 0);
 }
 
@@ -310,153 +310,153 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - ArDrone AT commands
 
-- (void) sendAtCommandToTakeOff {
+- (void) arDroneTakeOff {
     const char* buf = [ArDroneAtUtilsAtCommandedTakeOff cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandToLand {
+- (void) arDroneLand {
     const char* buf = [ArDroneAtUtilsAtCommandedLand cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandCalibrateHorizontalPlane {
+- (void) arDroneCalibrateHorizontalPlane {
     const char* buf = [ArDroneAtUtilsCalibrateHorizontalPlane cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandCalibrateMagnetometer {
+- (void) arDroneCalibrateMagnetometer {
     const char* buf = [ArDroneAtUtilsCalibrateMagnetometer cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandToggleEmergency {
+- (void) arDroneToggleEmergency {
     const char* buf = [ArDroneAtUtilsToggleEmergency cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandResetWatchDogTimer {
+- (void) arDroneResetWatchDogTimer {
     const char* buf = [ArDroneAtUtilsResetWatchDogTimer cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
 
-- (void) sendAtCommandPhiM30 {
+- (void) arDronePhiM30 {
     const char* buf = [ArDroneAtUtilsPhiM30 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandPhi30 {
+- (void) arDronePhi30 {
     const char* buf = [ArDroneAtUtilsPhi30 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandThetaM30 {
+- (void) arDroneThetaM30 {
     const char* buf = [ArDroneAtUtilsThetaM30 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandTheta30 {
+- (void) arDroneTheta30 {
     const char* buf = [ArDroneAtUtilsTheta30 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandTheta20degYaw200 {
+- (void) arDroneTheta20degYaw200 {
     const char* buf = [ArDroneAtUtilsTheta20degYaw200 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandTheta20degYawM200 {
+- (void) arDroneTheta20degYawM200 {
     const char* buf = [ArDroneAtUtilsTheta20degYawM200 cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandTurnAround {
+- (void) arDroneTurnAround {
     const char* buf = [ArDroneAtUtilsTurnAround cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandTurnAroundGoDown {
+- (void) arDroneTurnAroundGoDown {
     const char* buf = [ArDroneAtUtilsTurnAroundGoDown cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandYawShake {
+- (void) arDroneYawShake {
     const char* buf = [ArDroneAtUtilsYawShake cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandYawDance {
+- (void) arDroneYawDance {
     const char* buf = [ArDroneAtUtilsYawDance cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandPhiDance {
+- (void) arDronePhiDance {
     const char* buf = [ArDroneAtUtilsPhiDance cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandThetaDance {
+- (void) arDroneThetaDance {
     const char* buf = [ArDroneAtUtilsThetaDance cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandVzDance {
+- (void) arDroneVzDance {
     const char* buf = [ArDroneAtUtilsVzDance cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandWave {
+- (void) arDroneWave {
     const char* buf = [ArDroneAtUtilsWave cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandPhiThetaMixed {
+- (void) arDronePhiThetaMixed {
     const char* buf = [ArDroneAtUtilsPhiThetaMixed cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandFlipAhead {
+- (void) arDroneFlipAhead {
     const char* buf = [ArDroneAtUtilsFlipAhead cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandFlipBehind {
+- (void) arDroneFlipBehind {
     const char* buf = [ArDroneAtUtilsFlipBehind cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
 
-- (void) sendAtCommandFlipLeft {
+- (void) arDroneFlipLeft {
     const char* buf = [ArDroneAtUtilsFlipLeft cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
-- (void) sendAtCommandFlipRight {
+- (void) arDroneFlipRight {
     const char* buf = [ArDroneAtUtilsFlipRight cStringUsingEncoding:NSASCIIStringEncoding];
     uint32_t len = (uint32_t)strlen(buf);
     [appMLI produceData:(uint8_t*)buf length:len];
