@@ -46,8 +46,35 @@
 -(void) sendHeatbeatToAutopilot;
 
 - (void) sendMavlinkTakeOffCommand;
-- (void) sendArdroneLand;
-- (void) sendArdroneRtl;
-- (void) sendArdronePairSpektrumDSMX;
+- (void) sendLand;
+- (void) sendReturnToLaunch;
+- (void) sendPairSpektrumDSMX;
+
+#pragma mark - ArDrone AT commands;
+- (void) arDroneTakeOff;
+- (void) arDroneLand;
+- (void) arDroneCalibrateHorizontalPlane;
+- (void) arDroneCalibrateMagnetometer;
+- (void) arDroneToggleEmergency;
+- (void) arDroneResetWatchDogTimer;
+- (void) arDronePhiM30;
+- (void) arDronePhi30;
+- (void) arDroneThetaM30;
+- (void) arDroneTheta30;
+- (void) arDroneTheta20degYaw200;
+- (void) arDroneTheta20degYawM200;
+- (void) arDroneTurnAround;
+- (void) arDroneTurnAroundGoDown;
+- (void) arDroneYawShake;
+- (void) arDroneYawDance;
+- (void) arDronePhiDance;
+- (void) arDroneThetaDance;
+- (void) arDroneVzDance;
+- (void) arDroneWave;
+- (void) arDronePhiThetaMixed;
+- (void) arDroneFlipAhead;
+- (void) arDroneFlipBehind;
+- (void) arDroneFlipLeft;
+- (void) arDroneFlipRight;
 
 @end

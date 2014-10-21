@@ -357,19 +357,19 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 
 - (void)mavlinkLand {
     NSLog(@"LND Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdroneLand];
+    [[CommController sharedInstance].mavLinkInterface sendLand];
     
 }
 
 - (void)mavlinkReturnToLaunch {
     NSLog(@"RTL Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdroneRtl];
+    [[CommController sharedInstance].mavLinkInterface sendReturnToLaunch];
     
 }
 
 - (void)StartSpektrumPairing {
     NSLog(@"Spec Button Clicked");
-    [[CommController sharedInstance].mavLinkInterface sendArdronePairSpektrumDSMX];
+    [[CommController sharedInstance].mavLinkInterface sendPairSpektrumDSMX];
     
 }
 
