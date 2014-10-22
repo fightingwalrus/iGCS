@@ -42,31 +42,11 @@
     CPTXYGraph *dataRateGraph;
 }
 
-@synthesize windIconView;
-@synthesize ahIndicatorView;
-@synthesize compassView;
-@synthesize airspeedView;
-@synthesize altitudeView;
-
-@synthesize voltageLabel;
-@synthesize currentLabel;
-
-// 3 modes
-//  * auto (initiates/returns to mission)
-//  * misc (manual, stabilize, etc; not selectable)
-//  * guided (goto/follow me)
-@synthesize controlModeSegment;
-
 enum {
     CONTROL_MODE_RC       = 0,
     CONTROL_MODE_AUTO     = 1,
     CONTROL_MODE_GUIDED   = 2
 };
-
-#ifdef VIDEOSTREAMING
-@synthesize kxMovieVC = _kxMovieVC;
-@synthesize availableStreams = _availableStreams;
-#endif
 
 static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 
@@ -207,32 +187,32 @@ static const int AIRPLANE_ICON_SIZE = 48;
         // This constraint is used to fix the size of the mode segmented control, principally
         // to allow sufficient header space for other labels on supported iPhone (7.0+). Because
         // the constrained width is too narrow for iPad 6.X, we'll just remove it.
-        [controlModeSegment removeConstraint:_controlModeSegmentSizeConstraint];
+        [_controlModeSegment removeConstraint:_controlModeSegmentSizeConstraint];
     }
     
 	// Do any additional setup after loading the view, typically from a nib.
-    [map addAnnotation:uavPos];
+    [self.mapView addAnnotation:uavPos];
     
     // Initialize subviews
-    [ahIndicatorView setRoll: 0 pitch: 0];
-    [compassView setHeading: 0];
+    [_ahIndicatorView setRoll: 0 pitch: 0];
+    [_compassView setHeading: 0];
     
-    [airspeedView setTitle:@"m/s"];
-    [airspeedView setScale:20];
-    [airspeedView setValue:0];
+    [_airspeedView setTitle:@"m/s"];
+    [_airspeedView setScale:20];
+    [_airspeedView setValue:0];
     
-    [altitudeView setTitle:@"m"];
-    [altitudeView setScale:200];
-    [altitudeView setValue:0];
-    [altitudeView setCeilingThreshold:400 * 0.3048]; // IGCS-44: future user setting
-    [altitudeView setCeilingThresholdBackground:[[GCSThemeManager sharedInstance] altimeterCeilingBreachColor]];
-    [altitudeView setCeilingThresholdEnabled:YES];
+    [_altitudeView setTitle:@"m"];
+    [_altitudeView setScale:200];
+    [_altitudeView setValue:0];
+    [_altitudeView setCeilingThreshold:400 * 0.3048]; // IGCS-44: future user setting
+    [_altitudeView setCeilingThresholdBackground:[[GCSThemeManager sharedInstance] altimeterCeilingBreachColor]];
+    [_altitudeView setCeilingThresholdEnabled:YES];
     
-    windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
+    _windIconView = [[UIImageView alloc] initWithImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
                                                                  withColor:[UIColor redColor]]];
-    windIconView.frame = CGRectMake(42, 50, windIconView.frame.size.width, windIconView.frame.size.height);
-    [map addSubview: windIconView];
-    windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
+    _windIconView.frame = CGRectMake(42, 50, _windIconView.frame.size.width, _windIconView.frame.size.height);
+    [self.mapView addSubview:_windIconView];
+    _windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
     
     self.telemetryLossView = [[GCSTelemetryLossOverlayView alloc] initWithParentView:self.view];
 }
@@ -351,7 +331,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #pragma mark Button Click callbacks
 
 - (IBAction) changeControlModeSegment {
-    NSInteger idx = controlModeSegment.selectedSegmentIndex;
+    NSInteger idx = _controlModeSegment.selectedSegmentIndex;
     DDLogDebug(@"changeControlModeSegment: %d", idx);
     [self deactivateFollowMe];
     switch (idx) {
@@ -369,12 +349,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (void) clearGuidedPositions {
     if (currentGuidedAnnotation != nil) {
-        [map removeAnnotation:currentGuidedAnnotation];
+        [self.mapView removeAnnotation:currentGuidedAnnotation];
     }
     currentGuidedAnnotation = nil;
     
     if (requestedGuidedAnnotation != nil) {
-        [map removeAnnotation:requestedGuidedAnnotation];
+        [self.mapView removeAnnotation:requestedGuidedAnnotation];
     }
     requestedGuidedAnnotation = nil;
 }
@@ -389,8 +369,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
     // Drop an icon for the proposed GUIDED point
     currentGuidedAnnotation = [[GuidedPointAnnotation alloc] initWithCoordinate:coordinates];
-    [map addAnnotation:currentGuidedAnnotation];
-    [map setNeedsDisplay];
+    [self.mapView addAnnotation:currentGuidedAnnotation];
+    [self.mapView setNeedsDisplay];
 
     [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
 }
@@ -435,12 +415,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     // Update map
     if (requestedGuidedAnnotation != nil)
-        [map removeAnnotation:requestedGuidedAnnotation];
+        [self.mapView removeAnnotation:requestedGuidedAnnotation];
     
     if (showProposedFollowPos) {
         requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
-        [map addAnnotation:requestedGuidedAnnotation];
-        [map setNeedsDisplay];
+        [self.mapView addAnnotation:requestedGuidedAnnotation];
+        [self.mapView setNeedsDisplay];
     }
 
     DDLogDebug(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
@@ -466,7 +446,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         return;
 
     // Set the coordinates of the map point being held down
-    gotoCoordinates = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
+    gotoCoordinates = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
     
     // Confirm acceptance of GOTO point
     CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:@"Fly-to position?"
@@ -550,8 +530,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
                                              scaledToSize: CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                                  rotation: attitudePkt.yaw];
             
-            [ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
-            [ahIndicatorView requestRedraw];
+            [_ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
+            [_ahIndicatorView requestRedraw];
         }
         break;
 
@@ -559,13 +539,13 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_vfr_hud_t  vfrHudPkt;
             mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
             
-            [compassView setHeading:vfrHudPkt.heading];
-            [airspeedView setValue:vfrHudPkt.airspeed]; // m/s
-            [altitudeView setValue:vfrHudPkt.alt];      // m
+            [_compassView setHeading:vfrHudPkt.heading];
+            [_airspeedView setValue:vfrHudPkt.airspeed]; // m/s
+            [_altitudeView setValue:vfrHudPkt.alt];      // m
 
-            [compassView  requestRedraw];
-            [airspeedView requestRedraw];
-            [altitudeView requestRedraw];
+            [_compassView  requestRedraw];
+            [_airspeedView requestRedraw];
+            [_altitudeView requestRedraw];
         }
         break;
             
@@ -573,9 +553,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_nav_controller_output_t navCtrlOutPkt;
             mavlink_msg_nav_controller_output_decode(msg, &navCtrlOutPkt);
             
-            [compassView setNavBearing:navCtrlOutPkt.nav_bearing];
-            [airspeedView setTargetDelta:navCtrlOutPkt.aspd_error]; // m/s
-            [altitudeView setTargetDelta:navCtrlOutPkt.alt_error];  // m
+            [_compassView setNavBearing:navCtrlOutPkt.nav_bearing];
+            [_airspeedView setTargetDelta:navCtrlOutPkt.aspd_error]; // m/s
+            [_altitudeView setTargetDelta:navCtrlOutPkt.alt_error];  // m
         }
         break;
             
@@ -589,15 +569,15 @@ static const int AIRPLANE_ICON_SIZE = 48;
         case MAVLINK_MSG_ID_SYS_STATUS: {
             mavlink_sys_status_t sysStatus;
             mavlink_msg_sys_status_decode(msg, &sysStatus);
-            [voltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
-            [currentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
+            [_voltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
+            [_currentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
         }
         break;
 
         case MAVLINK_MSG_ID_WIND: {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
-            windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
+            _windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
         }
         break;
             
@@ -626,8 +606,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
             }
             
             // Change the segmented control to reflect the heartbeat
-            if (idx != controlModeSegment.selectedSegmentIndex) {
-                controlModeSegment.selectedSegmentIndex = idx;
+            if (idx != _controlModeSegment.selectedSegmentIndex) {
+                _controlModeSegment.selectedSegmentIndex = idx;
             }
             
             // If the current mode is not GUIDED, and has just changed
@@ -676,7 +656,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
         CustomPointAnnotation *customPoint = (CustomPointAnnotation*)annotation;
         
-        MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
+        MKAnnotationView *view = (MKAnnotationView*) [self.mapView dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
         if (view == nil) {
             view = [[MKAnnotationView alloc] initWithAnnotation:customPoint reuseIdentifier:[customPoint viewIdentifier]];
             [view.layer removeAllAnimations];

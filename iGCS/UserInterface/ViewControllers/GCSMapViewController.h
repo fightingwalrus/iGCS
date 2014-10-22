@@ -47,6 +47,11 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *armedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *customModeLabel;
+
+// 3 modes
+//  * auto (initiates/returns to mission)
+//  * misc (manual, stabilize, etc; not selectable)
+//  * guided (goto/follow me)
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlModeSegment;
 @property (nonatomic, retain) IBOutlet NSLayoutConstraint *controlModeSegmentSizeConstraint;
 

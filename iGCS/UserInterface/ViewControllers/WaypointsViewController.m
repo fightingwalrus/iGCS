@@ -79,7 +79,7 @@
     
     // Compute new frames
     CGRect tableRect = _containerForTableView.frame;
-    CGRect mapRect   = map.frame;
+    CGRect mapRect   = self.mapView.frame;
     tableRect.origin.y -= y;
     mapRect.origin.y   -= y;
     
@@ -95,7 +95,7 @@
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
     _containerForTableView.frame = tableRect;
-    map.frame = mapRect;
+    self.mapView.frame = mapRect;
     [UIView commitAnimations];
 }
 
@@ -216,7 +216,7 @@
         return;
     
     // Set the coordinates of the map point being held down
-    CLLocationCoordinate2D pos = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
+    CLLocationCoordinate2D pos = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
     [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
     [self resetWaypoints];
 }
@@ -238,7 +238,7 @@
 
     // Slide/grow/shrink the map and table views
     CGRect tableRect = _containerForTableView.frame;
-    CGRect mapRect   = map.frame;
+    CGRect mapRect   = self.mapView.frame;
 
     tableRect.origin.y += delta;
     tableRect.size.height -= delta;
@@ -249,7 +249,7 @@
     [UIView setAnimationDuration:0.75];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     _containerForTableView.frame = tableRect;
-    map.frame = mapRect;
+    self.mapView.frame = mapRect;
     [UIView commitAnimations];
     
     // Update the map view with non/editable waypoints

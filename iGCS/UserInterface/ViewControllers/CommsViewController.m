@@ -14,21 +14,6 @@
 
 @implementation CommsViewController
 
-@synthesize attitudeTextView;
-@synthesize vfrHUDTextView;
-@synthesize gpsIntTextView;
-@synthesize gpsRawTextView;
-@synthesize sysStatusView;
-
-@synthesize gpsStatusView;
-@synthesize navControllerOutputTextView;
-
-@synthesize defaultTextView;
-
-@synthesize connectionStatus;
-
-@synthesize dataRateGraphView;
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -166,8 +151,8 @@
 
 - (void) setCableConnectionStatus: (bool) connectedP {
     // Change the connection status button
-    [connectionStatus setTitle:(connectedP ? @"ON" : @"OFF") forState:UIControlStateNormal];
-    [connectionStatus setHighlighted:connectedP]; // FIXME: red/green would be nicer
+    [_connectionStatus setTitle:(connectedP ? @"ON" : @"OFF") forState:UIControlStateNormal];
+    [_connectionStatus setHighlighted:connectedP]; // FIXME: red/green would be nicer
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
@@ -181,41 +166,41 @@
     
     switch (msg->msgid) {
         case MAVLINK_MSG_ID_ATTITUDE:
-            [attitudeTextView setText:msgToNSString(msg, true)];
+            [_attitudeTextView setText:msgToNSString(msg, true)];
             break;
             
         case MAVLINK_MSG_ID_VFR_HUD:
-            [vfrHUDTextView setText:msgToNSString(msg, true)];
+            [_vfrHUDTextView setText:msgToNSString(msg, true)];
             break;
      
         case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-            [gpsIntTextView setText:msgToNSString(msg, true)];
+            [_gpsIntTextView setText:msgToNSString(msg, true)];
             break;
             
         case MAVLINK_MSG_ID_GPS_RAW_INT:
-            [gpsRawTextView setText:msgToNSString(msg, true)];
+            [_gpsRawTextView setText:msgToNSString(msg, true)];
             break;
             
         case MAVLINK_MSG_ID_SYS_STATUS:
-            [sysStatusView setText:msgToNSString(msg, true)];
+            [_sysStatusView setText:msgToNSString(msg, true)];
             break;
             
         case MAVLINK_MSG_ID_GPS_STATUS:
-            [gpsStatusView setText:msgToNSString(msg, true)];
+            [_gpsStatusView setText:msgToNSString(msg, true)];
             break;
             
         case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
-            [navControllerOutputTextView setText:msgToNSString(msg, true)];
+            [_navControllerOutputTextView setText:msgToNSString(msg, true)];
             break;
             
         default: {
             // Append string representation of msg
-            NSString *newText = [defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,false)];
+            NSString *newText = [_defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,false)];
             // Limit length of text buffer
             if (newText.length > 2560)
                 newText = [newText substringFromIndex:(newText.length-2560)];
-            [defaultTextView setText:newText];
-            [defaultTextView scrollRangeToVisible:NSMakeRange([defaultTextView.text length], 0)];
+            [_defaultTextView setText:newText];
+            [_defaultTextView scrollRangeToVisible:NSMakeRange([_defaultTextView.text length], 0)];
         }
             break;
     }

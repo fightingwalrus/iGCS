@@ -23,8 +23,6 @@
 
 static AppDelegate *shared;
 
-@synthesize window = _window;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #if DEBUG
     DDFileLogger* fileLogger = [[DDFileLogger alloc] init];

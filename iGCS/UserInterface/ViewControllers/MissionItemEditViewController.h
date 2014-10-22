@@ -18,16 +18,16 @@
     
     WaypointsHolder *originalMission;
 
-    unsigned int itemIndex;
     BOOL saveEdits;
 }
 
-- (void) initInstance:(unsigned int)_missionItemRow with:(id <MissionItemEditingDelegate>)_delegate;
+- (void) initInstance:(unsigned int)missionItemRow with:(id <MissionItemEditingDelegate>)delegate;
 
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UITableView *itemDetails;
+@property (nonatomic, readonly) unsigned int itemIndex;
 @property (weak, readonly) id <MissionItemEditingDelegate> delegate;
 
 @end

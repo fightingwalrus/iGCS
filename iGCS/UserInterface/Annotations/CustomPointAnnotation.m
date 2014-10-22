@@ -11,12 +11,6 @@
 
 @implementation CustomPointAnnotation
 
-@synthesize coordinate     = _coordinate;
-@synthesize title          = _title;
-@synthesize viewIdentifier = _viewIdentifer;
-@synthesize color          = _color;
-@synthesize doAnimation    = _doAnimation;
-
 - (NSString*) subtitle {
     return [NSString stringWithFormat:@"%@, %@",
             [MiscUtilities prettyPrintCoordAxis:_coordinate.latitude  as:GCSLatitude],

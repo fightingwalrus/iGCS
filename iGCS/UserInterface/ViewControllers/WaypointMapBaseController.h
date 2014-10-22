@@ -30,14 +30,13 @@
     unsigned int numTrackPoints;
     
 @protected
-    MKMapView *map;
     bool draggableWaypointsP;
     
     CLLocationManager *locationManager;
     CLLocation *userPosition;
 }
 
-@property (nonatomic, retain) IBOutlet MKMapView *_mapView;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq;

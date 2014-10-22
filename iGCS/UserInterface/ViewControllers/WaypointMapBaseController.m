@@ -13,8 +13,6 @@
 
 @implementation WaypointMapBaseController
 
-@synthesize _mapView = map;
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -27,7 +25,7 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-    map.delegate = self;
+    _mapView.delegate = self;
     
     currentWaypointNum = -1;
     
@@ -43,7 +41,7 @@
     longPressGesture.numberOfTapsRequired = 0;
     longPressGesture.numberOfTouchesRequired = 1;
     longPressGesture.minimumPressDuration = 1.0;
-    [map addGestureRecognizer:longPressGesture];
+    [_mapView addGestureRecognizer:longPressGesture];
     
     // Start listening for location updates
     locationManager = [[CLLocationManager alloc] init];
@@ -59,13 +57,13 @@
 }
 
 - (NSArray*) getWaypointAnnotations {
-    return [map.annotations
+    return [_mapView.annotations
             filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)",
                                          [WaypointAnnotation class]]];
 }
 
 - (void) removeExistingWaypointAnnotations {
-    [map removeAnnotations:[self getWaypointAnnotations]];
+    [_mapView removeAnnotations:[self getWaypointAnnotations]];
 }
 
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
@@ -83,7 +81,7 @@
     
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
-    [map removeOverlay:waypointRoutePolyline];
+    [_mapView removeOverlay:waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
     WaypointsHolder *navWaypoints = [_waypoints navWaypoints];
@@ -100,7 +98,7 @@
         WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
                                                                             andWayPoint:waypoint
                                                                                 atIndex:[_waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
-        [map addAnnotation:annotation];
+        [_mapView addAnnotation:annotation];
         
         // Construct the MKMapPoint
         navMKMapPoints[i] = MKMapPointForCoordinate(coordinate);
@@ -108,7 +106,7 @@
     
     // Add the polyline overlay
     waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
-    [map addOverlay:waypointRoutePolyline];
+    [_mapView addOverlay:waypointRoutePolyline];
     
     // Set the map extents
     MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
@@ -117,20 +115,20 @@
         MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
         region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
         region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
-        [map setRegion:region animated:YES];
+        [_mapView setRegion:region animated:YES];
     } else if ([waypointRoutePolyline pointCount] == 1) {
         // Fallback to a padded box centered on the single waypoint
         CLLocationCoordinate2D coord = MKCoordinateForMapPoint([waypointRoutePolyline points][0]);
-        [map setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+        [_mapView setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
     }
-    [map setNeedsDisplay];
+    [_mapView setNeedsDisplay];
     
     free(navMKMapPoints);
 }
 
 - (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
     if (annotation) {
-        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[map viewForAnnotation: annotation]
+        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[_mapView viewForAnnotation: annotation]
                                      selectedWaypointSeq:currentWaypointNum];
     }
 }
@@ -158,7 +156,7 @@
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];
         
         // See also viewForAnnotation
-        MKAnnotationView *av = [map viewForAnnotation:waypointAnnotation];
+        MKAnnotationView *av = [_mapView viewForAnnotation:waypointAnnotation];
         [av setCanShowCallout: !draggableWaypointsP];
         [av setDraggable: draggableWaypointsP];
         [av setSelected: draggableWaypointsP];
@@ -219,13 +217,13 @@
     numTrackPoints++;
     
     // Clean up existing objects
-    [map removeOverlay:trackPolyline];
+    [_mapView removeOverlay:trackPolyline];
     
     trackPolyline = [MKPolyline polylineWithPoints:trackMKMapPoints count:numTrackPoints];
     
     // Add the polyline overlay
-    [map addOverlay:trackPolyline];
-    [map setNeedsDisplay];
+    [_mapView addOverlay:trackPolyline];
+    [_mapView setNeedsDisplay];
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {

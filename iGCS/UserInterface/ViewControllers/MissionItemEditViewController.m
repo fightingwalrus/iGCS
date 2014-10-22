@@ -18,9 +18,6 @@
 
 @implementation MissionItemEditViewController
 
-@synthesize itemDetails;
-@synthesize delegate;
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -29,9 +26,9 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate {
-    delegate = _delegate;
-    itemIndex = _idx;
+- (void) initInstance:(unsigned int)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
+    _delegate = delegate;
+    _itemIndex = itemIndex;
     saveEdits = NO;
 
     // Clone the original mission
@@ -50,7 +47,7 @@
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     if (!saveEdits) {
-        [delegate resetMission: originalMission];
+        [_delegate resetMission: originalMission];
     }
 }
 
@@ -60,7 +57,7 @@
     // Get the sorted list of all commands IDs for use in indexing the picker view
     missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
 
-    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", itemIndex]];
+    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", _itemIndex]];
     [self refreshWithMissionItem];
 }
 
@@ -90,7 +87,7 @@
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
     missionItem.command = [((NSNumber*)missionItemCommandIDs[row]) unsignedIntValue];
-    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
+    [_delegate replaceMissionItem:missionItem atIndex:_itemIndex];
     [self.itemDetails reloadData];
 }
 
@@ -118,7 +115,7 @@
 }
 
 - (mavlink_mission_item_t)getCurrentMissionItem {
-    return [delegate getMissionItemAtIndex:itemIndex];
+    return [_delegate getMissionItemAtIndex:_itemIndex];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -132,7 +129,7 @@
 - (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
-    UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
+    UITableViewCell *cell = [_itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
     UILabel *label    = (UILabel *)    [cell viewWithTag:100];
@@ -155,7 +152,7 @@
     while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
         cell = [cell superview];
     }
-    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)cell];
+    NSIndexPath *indexPath = [_itemDetails indexPathForCell:(UITableViewCell*)cell];
     assert(indexPath != NULL);
     DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
@@ -165,7 +162,7 @@
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];
 
-    [delegate replaceMissionItem:item atIndex:itemIndex];
+    [_delegate replaceMissionItem:item atIndex:_itemIndex];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

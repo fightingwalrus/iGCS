@@ -23,18 +23,13 @@
 
 @implementation HeaderSpec
 
-@synthesize width;
-@synthesize align;
-@synthesize text;
-@synthesize tag;
-
-- (instancetype) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
+- (instancetype) initWithWidth:(NSInteger)width alignment:(NSTextAlignment)align text:(NSString*)text tag:(NSInteger)tag {
     self = [super init];
     if (self) {
-        self.text =  _text;
-        self.width = _width;
-        self.align = _align;
-        self.tag   = _tag;
+        _text =  text;
+        _width = width;
+        _align = align;
+        _tag   = tag;
     }
     return self;
 }
