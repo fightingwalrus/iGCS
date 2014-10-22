@@ -20,14 +20,11 @@
 
 #import "GCSSidebarController.h"
 
-@class DataRateRecorder;
-
-@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GCSFollowMeCtrlChangeProtocol, CPTPlotDataSource>
+@interface GCSMapViewController : WaypointMapBaseController <MavLinkPacketHandler, GCSFollowMeCtrlChangeProtocol>
 
 @property (weak) id <GCSFollowMeCtrlProtocol> followMeControlDelegate;
-@property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
-@property (strong, nonatomic) IBOutlet UILabel *debugConsoleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *debugConsoleLabel;
 
 @property (nonatomic, retain) IBOutlet UIButton *sidebarButton;
 - (IBAction)toggleSidebar:(id)sender;

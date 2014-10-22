@@ -17,7 +17,6 @@
 #import "MiscUtilities.h"
 
 #import "CommController.h"
-#import "DataRateRecorder.h"
 
 #import "CXAlertView.h"
 
@@ -34,8 +33,6 @@
     BOOL _showProposedFollowPos;
     NSDate *_lastFollowMeUpdate;
     uint32_t _lastCustomMode;
-    
-    CPTXYGraph *_dataRateGraph;
 }
 
 enum {
@@ -116,56 +113,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
     _windIconView.transform = CGAffineTransformMakeRotation((WIND_ICON_OFFSET_ANG) * M_PI/180.0f);
     
     self.telemetryLossView = [[GCSTelemetryLossOverlayView alloc] initWithParentView:self.view];
-}
-
-- (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
-    _dataRateRecorder = dataRateRecorder;
-
-    // Setup the sparkline view
-    _dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateSparklineView.bounds];
-    self.dataRateSparklineView.hostedGraph = _dataRateGraph;
-    
-    // Setup initial plot ranges
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
-                                                    length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds]/6.0)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
-                                                    length:CPTDecimalFromFloat(1.0)];
-    
-    // Hide the axes
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)_dataRateGraph.axisSet;
-    axisSet.xAxis.hidden = axisSet.yAxis.hidden = YES;
-    axisSet.xAxis.labelingPolicy = axisSet.yAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
-    
-    // Create the plot object
-    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:_dataRateGraph.hostingView.bounds];
-    dateRatePlot.identifier = @"Data Rate Sparkline";
-    dateRatePlot.dataSource = self;
-    
-    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-    lineStyle.lineWidth = 1.0f;
-    lineStyle.lineColor = [CPTColor colorWithCGColor:[[GCSThemeManager sharedInstance] appTintColor].CGColor];
-    dateRatePlot.dataLineStyle = lineStyle;
-    
-    dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
-    [_dataRateGraph addPlot:dateRatePlot];
-    
-    // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
-    _dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor clearColor]];
-    _dataRateGraph.plotAreaFrame.paddingTop    = 0;
-    _dataRateGraph.plotAreaFrame.paddingBottom = 0;
-    _dataRateGraph.plotAreaFrame.paddingLeft   = 0;
-    _dataRateGraph.plotAreaFrame.paddingRight  = 0;
-    _dataRateGraph.paddingTop    = 0;
-    _dataRateGraph.paddingBottom = 0;
-    _dataRateGraph.paddingLeft   = 0;
-    _dataRateGraph.paddingRight  = 0;
-    
-    // Listen to data recorder ticks
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDataRateUpdate:)
-                                                 name:GCSDataRecorderTick
-                                               object:_dataRateRecorder];
 }
 
 - (void)toggleSidebar:(id)sender {
@@ -570,25 +517,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     userPosition = location;
     [self updateFollowMePosition:[_followMeControlDelegate followMeControlValues]];
-}
-
--(void) onDataRateUpdate:(NSNotification*)notification {
-    // Reset the y-axis range and reload the graph data
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
-                                                    length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
-    [_dataRateGraph reloadData];
-    
-    [_dataRateLabel setText:[NSString stringWithFormat:@"%0.1fkB/s", [_dataRateRecorder latestValue]]];
-}
-
--(NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [_dataRateRecorder count];
-}
-
--(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
-                recordIndex:(NSUInteger)index {
-    return @((fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]);
 }
 
 @end
