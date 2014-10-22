@@ -29,7 +29,7 @@
     return [WaypointHelper navWaypointToDetailString: _waypoint];
 }
 
-- (UIColor*) getColor {
+- (UIColor*) color {
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
     
     switch (_waypoint.command) {            

@@ -10,7 +10,7 @@
 
 @implementation TxMissionClearAll
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface {
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface {
     if ((self = [super init])) {
         _interface    = interface;
         

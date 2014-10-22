@@ -14,7 +14,7 @@
 
 @implementation FillStrokePolyLineView
 
-- (id) initWithPolyline:(MKPolyline*)polyline {
+- (instancetype) initWithPolyline:(MKPolyline*)polyline {
 	self = [super initWithOverlay:polyline];
 	if (self) {
 		self.polyline = polyline;

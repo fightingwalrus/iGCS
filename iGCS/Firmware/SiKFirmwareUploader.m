@@ -13,11 +13,11 @@
 @interface BootLoader : NSObject
 @property (nonatomic) BYTE identifier;
 @property (nonatomic) BYTE frequency;
-- (id) initWithIdentifier: (uint8_t)identity andFrequency:(uint8_t)freq;
+- (instancetype) initWithIdentifier: (uint8_t)identity andFrequency:(uint8_t)freq NS_DESIGNATED_INITIALIZER;
 @end
 
 @implementation BootLoader : NSObject
-- (id) initWithIdentifier: (uint8_t)identifier andFrequency:(uint8_t)frequency {
+- (instancetype) initWithIdentifier: (uint8_t)identifier andFrequency:(uint8_t)frequency {
     self = [super init];
     if (self) {
         self.identifier = identifier;
@@ -56,7 +56,7 @@ typedef NS_ENUM(BYTE, FWUCommandResponse) {
 
 @implementation SiKFirmwareUploader
 
-- (id) initWithPort: (id<SikFirmwareUploaderPort>)port {
+- (instancetype) initWithPort: (id<SikFirmwareUploaderPort>)port {
     self = [super init];
     if (self) {
         _port = port;

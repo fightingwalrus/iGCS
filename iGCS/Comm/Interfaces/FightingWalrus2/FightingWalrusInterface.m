@@ -42,7 +42,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
 #pragma mark Public Methods
 
-- (id)initWithProtocolString:(NSString *) protocolString {
+- (instancetype)initWithProtocolString:(NSString *) protocolString {
     if (self = [super init]) {
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
@@ -74,7 +74,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     if (_selectedAccessory == nil) {
         self.accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
         if ([self.accessoryList count]) {
-            _selectedAccessory = [self.accessoryList objectAtIndex:0];
+            _selectedAccessory = (self.accessoryList)[0];
             NSArray *protocolStrings = [self.selectedAccessory protocolStrings];
             self.protocolString = [self enabledProtocolFromProtocolStrings:protocolStrings];;
         }
@@ -264,7 +264,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         return nil;
     }
 
-    return [protocols objectAtIndex:idx];
+    return protocols[idx];
 }
 
 -(void)notifyIfFirmwareUpdateNeeded {

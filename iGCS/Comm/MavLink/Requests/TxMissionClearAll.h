@@ -17,6 +17,6 @@
 
 @property (nonatomic, readonly) iGCSMavLinkInterface* interface;
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface;
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface NS_DESIGNATED_INITIALIZER;
 
 @end

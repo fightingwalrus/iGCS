@@ -23,7 +23,7 @@
 
 
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];

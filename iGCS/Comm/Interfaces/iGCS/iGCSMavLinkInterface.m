@@ -51,7 +51,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
     return interface;
 }
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {
         // radio has entered config mode

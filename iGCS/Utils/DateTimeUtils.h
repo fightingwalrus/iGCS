@@ -28,6 +28,6 @@
                     withFormat:(NSString *)formatString
                    andTimeZone:(NSTimeZone *)timeZone;
 
--(uint64_t) unixTimeInMicroseconds;
+@property (nonatomic, readonly) uint64_t unixTimeInMicroseconds;
 
 @end

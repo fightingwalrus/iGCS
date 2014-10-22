@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface GCSFirmwareUpdateManager : NSObject <UIAlertViewDelegate>
--(id)initWithTargetView:(UIView *)aTargetView;
+-(instancetype)initWithTargetView:(UIView *)aTargetView NS_DESIGNATED_INITIALIZER;
 @end

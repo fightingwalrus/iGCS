@@ -62,7 +62,7 @@
 
 
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
@@ -78,7 +78,7 @@
                 }
             }
 			NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-			self.protocolString = [protocolStrings objectAtIndex:0];
+			self.protocolString = protocolStrings[0];
 		}
 	}
 
@@ -93,9 +93,9 @@
 	if (_selectedAccessory == nil) {
 		_accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
 		if ([_accessoryList count]) {
-			_selectedAccessory = [_accessoryList objectAtIndex:0];
+			_selectedAccessory = _accessoryList[0];
 			NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-			self.protocolString = [protocolStrings objectAtIndex:0];
+			self.protocolString = protocolStrings[0];
 		}
 	}
 	return _selectedAccessory;

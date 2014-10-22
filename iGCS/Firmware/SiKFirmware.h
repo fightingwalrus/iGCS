@@ -12,7 +12,7 @@
 @property (nonatomic, readonly) NSUInteger address;
 @property (nonatomic, readonly) NSData *data;
 
-- (id) initWithAddress: (NSUInteger)address andData:(NSData*)data;
+- (instancetype) initWithAddress: (NSUInteger)address andData:(NSData*)data NS_DESIGNATED_INITIALIZER;
 - (AddressDataPair*) extend:(AddressDataPair*)adp;
 - (NSComparisonResult)compare:(AddressDataPair*)object;
 @end
@@ -21,7 +21,7 @@
 
 @property (nonatomic, readonly) NSArray* sortedAddressDataPairs;
 
-- (id) initWithDict:(NSDictionary*)dict; // Dictionary with AddressDataPair values - only exposed for testing purposes
+- (instancetype) initWithDict:(NSDictionary*)dict NS_DESIGNATED_INITIALIZER; // Dictionary with AddressDataPair values - only exposed for testing purposes
 
 + (SiKFirmware*) firmwareFromString:(NSString*)s;
 

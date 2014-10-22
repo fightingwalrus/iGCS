@@ -11,7 +11,7 @@
 
 @implementation GuidedPointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _title = @"Flying to";

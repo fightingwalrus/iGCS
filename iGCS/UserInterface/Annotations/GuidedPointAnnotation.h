@@ -10,6 +10,6 @@
 
 @interface GuidedPointAnnotation :  CustomPointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate NS_DESIGNATED_INITIALIZER;
 
 @end

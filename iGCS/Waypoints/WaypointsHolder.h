@@ -14,10 +14,14 @@
     unsigned int expectedCount;
 }
 
-- (id)initWithExpectedCount:(unsigned int)_expectedCount;
+- (instancetype)initWithExpectedCount:(unsigned int)_expectedCount NS_DESIGNATED_INITIALIZER;
 
-- (bool) allWaypointsReceivedP;
-- (unsigned int)numWaypoints;
+@property (nonatomic, readonly) bool allWaypointsReceivedP;
+@property (nonatomic, readonly) unsigned int numWaypoints;
+
+@property (nonatomic, readonly) mavlink_mission_item_t lastWaypoint;
+@property (nonatomic, readonly, strong) WaypointsHolder *navWaypoints;
+@property (nonatomic, readonly, copy) NSString *toOutputFormat;
 
 + (NSValue*) makeBoxedWaypoint:(mavlink_mission_item_t)waypoint;
 + (mavlink_mission_item_t) unBoxWaypoint:(id)obj;
@@ -29,11 +33,6 @@
 
 - (int) getIndexOfWaypointWithSeq:(int)sequence;
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index;
-- (mavlink_mission_item_t) getLastWaypoint;
-
-- (WaypointsHolder*) getNavWaypoints;
-
-- (NSString*) toOutputFormat;
 + (WaypointsHolder*) createFromQGCString:(NSString*)qgcString;
 
 + (WaypointsHolder*) createDemoMission;

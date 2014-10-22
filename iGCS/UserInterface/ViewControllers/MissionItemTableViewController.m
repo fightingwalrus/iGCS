@@ -28,7 +28,7 @@
 @synthesize text;
 @synthesize tag;
 
-- (id) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
+- (instancetype) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
     self = [super init];
     if (self) {
         self.text =  _text;
@@ -49,7 +49,7 @@
 
 @implementation MissionItemTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -90,7 +90,7 @@
 }
 
 - (WaypointsHolder*) getWaypointsHolder {
-    return [[self getWaypointsVC] getWaypointsHolder];
+    return [[self getWaypointsVC] waypointsHolder];
 }
 
 #pragma mark - Table view data source
@@ -161,7 +161,7 @@ NSArray* headerSpecs = nil;
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
         unsigned int x = 0;
         for (unsigned int i = 0; i < [headerSpecs count]; i++) {
-            int width = [((HeaderSpec*)[headerSpecs objectAtIndex:i]) width];
+            int width = [((HeaderSpec*)headerSpecs[i]) width];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 44)];
             label.tag = TAG_INDEX+i;
             label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
@@ -244,7 +244,7 @@ NSArray* headerSpecs = nil;
         
         // Delete the row from the data source
         [[self getWaypointsHolder] removeWaypoint:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

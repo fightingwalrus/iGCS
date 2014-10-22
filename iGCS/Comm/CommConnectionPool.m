@@ -13,7 +13,7 @@
 @implementation CommConnectionPool
 
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {
         self.sourceInterfaces = [NSMutableArray array];

@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSIndexPath *lastIndexPath;
 
 - (void) markSelectedRow:(NSInteger)idx;
-- (BOOL) toggleEditing;
+@property (nonatomic, readonly) BOOL toggleEditing;
 - (void) resetWaypoints;
 
 @end

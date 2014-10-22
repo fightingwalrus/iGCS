@@ -34,7 +34,7 @@
 @implementation GKLocalController
 
 
--(id)init:(BluetoothStream*)bts {
+-(instancetype)init:(BluetoothStream*)bts {
     self = [super init];
     if (self) {
         self.parentStream = bts;
@@ -219,9 +219,9 @@
 		
 		NSData *packet = [NSData dataWithBytes: networkPacket length: (length+8)];
 		if(howtosend == YES) {
-			[session sendData:packet toPeers:[NSArray arrayWithObject:self.gamePeerId] withDataMode:GKSendDataReliable error:nil];
+			[session sendData:packet toPeers:@[self.gamePeerId] withDataMode:GKSendDataReliable error:nil];
 		} else {
-			[session sendData:packet toPeers:[NSArray arrayWithObject:self.gamePeerId] withDataMode:GKSendDataUnreliable error:nil];
+			[session sendData:packet toPeers:@[self.gamePeerId] withDataMode:GKSendDataUnreliable error:nil];
 		}
 	}
 }

@@ -44,7 +44,7 @@
             
             CGContextSetLineJoin(context, kCGLineJoinRound);
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
+            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
             CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextDrawPath(context, kCGPathFillStroke);
         }
@@ -53,7 +53,7 @@
         default:
             // Draw a circle icon
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
+            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
             CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextFillEllipseInRect(context, outerR);
             CGContextStrokeEllipseInRect(context, outerR);

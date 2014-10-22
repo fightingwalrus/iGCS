@@ -10,7 +10,7 @@
 
 @implementation MissionItemField
 
-- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType {
+- (instancetype)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType {
     if ((self = [super init])) {
         _label     = aLabel;
         _units     = units;
@@ -19,7 +19,7 @@
     return self;
 }
 
-- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType {
+- (instancetype)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType {
     return [self initWithLabel:aLabel andUnits:GCSItemUnitNone andFieldType:fieldType];
 }
 

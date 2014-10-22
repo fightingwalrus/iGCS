@@ -14,7 +14,7 @@
     UIView* parentView;
 }
 
-- (id) initWithParentView:(UIView*)_parentView {
+- (instancetype) initWithParentView:(UIView*)_parentView {
     self = [super init];
     if (self) {
         parentView = _parentView;

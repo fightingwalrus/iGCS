@@ -15,7 +15,7 @@
 
 @synthesize _mapView = map;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -71,7 +71,7 @@
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
-        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)[waypointAnnotations objectAtIndex:i];;
+        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
         if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
             return waypointAnnotation;
         }
@@ -86,7 +86,7 @@
     [map removeOverlay:waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
-    WaypointsHolder *navWaypoints = [_waypoints getNavWaypoints];
+    WaypointsHolder *navWaypoints = [_waypoints navWaypoints];
     unsigned int numWaypoints = [navWaypoints numWaypoints];
     
     MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
@@ -155,7 +155,7 @@
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
-        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)[waypointAnnotations objectAtIndex:i];
+        WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];
         
         // See also viewForAnnotation
         MKAnnotationView *av = [map viewForAnnotation:waypointAnnotation];

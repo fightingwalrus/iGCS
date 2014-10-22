@@ -19,6 +19,6 @@
 @property (nonatomic, readonly) iGCSMavLinkInterface* interface;
 @property (nonatomic, readonly) uint16_t sequence;
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface andSequence:(uint16_t)sequence;
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface andSequence:(uint16_t)sequence NS_DESIGNATED_INITIALIZER;
 
 @end

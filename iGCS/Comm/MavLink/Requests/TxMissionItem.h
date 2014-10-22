@@ -19,6 +19,6 @@
 @property (nonatomic, readonly) WaypointsHolder *mission;
 @property (nonatomic, readonly) uint16_t currentIndex;
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface withMission:(WaypointsHolder*)mission andCurrentIndex:(uint16_t)currentIndex;
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface withMission:(WaypointsHolder*)mission andCurrentIndex:(uint16_t)currentIndex NS_DESIGNATED_INITIALIZER;
 
 @end

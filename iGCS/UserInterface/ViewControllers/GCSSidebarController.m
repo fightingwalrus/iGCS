@@ -13,7 +13,7 @@
 
 @implementation FollowMeCtrlValues
 
-- (id) initWithBearing:(double)bearing distance:(double)distance altitudeOffset:(double)altitudeOffset isActive:(BOOL)isActive {
+- (instancetype) initWithBearing:(double)bearing distance:(double)distance altitudeOffset:(double)altitudeOffset isActive:(BOOL)isActive {
     self = [super init];
     if (self) {
         _bearing  = bearing;
@@ -33,7 +33,7 @@
 
 @implementation GCSSidebarController
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
     }

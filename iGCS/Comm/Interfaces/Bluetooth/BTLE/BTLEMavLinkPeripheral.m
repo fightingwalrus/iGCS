@@ -23,7 +23,7 @@
 
 @implementation BTLEMavLinkPeripheral
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     if (self) {
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];

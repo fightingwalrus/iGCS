@@ -11,7 +11,7 @@
 
 @implementation TxMissionItemCount
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface andMission:(WaypointsHolder*)mission {
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface andMission:(WaypointsHolder*)mission {
     if ((self = [super init])) {
         _interface = interface;
         _mission   = mission;

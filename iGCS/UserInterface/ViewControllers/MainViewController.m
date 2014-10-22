@@ -35,7 +35,7 @@
 - (void)awakeFromNib {
     // Get the views for convenience
     // FIXME: adopt a cleaner pattern for this (see also viewDidLoad)
-    SWRevealViewController *gcsRevealVC = [[self viewControllers] objectAtIndex:0];
+    SWRevealViewController *gcsRevealVC = [self viewControllers][0];
     [gcsRevealVC view];
     self.gcsMapVC     = (GCSMapViewController*)[gcsRevealVC frontViewController];
     self.gcsSidebarVC = (GCSSidebarController*)[gcsRevealVC rearViewController].childViewControllers.lastObject;
@@ -43,11 +43,11 @@
     self.gcsMapVC.followMeControlDelegate    = self.gcsSidebarVC;
     self.gcsSidebarVC.followMeChangeListener = self.gcsMapVC;
     
-    self.waypointVC = [[self viewControllers] objectAtIndex:1];
-    self.commsVC    = [[self viewControllers] objectAtIndex:2];
+    self.waypointVC = [self viewControllers][1];
+    self.commsVC    = [self viewControllers][2];
 
 #ifdef DEBUG
-    self.debugVC    = [[self viewControllers] objectAtIndex:3];
+    self.debugVC    = [self viewControllers][3];
 #endif
 
     // Initialize MavLink Interfaces

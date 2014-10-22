@@ -10,7 +10,7 @@
 
 @interface GCSTelemetryLossOverlayView : NSObject
 
-- (id) initWithParentView:(UIView*)parentView;
+- (instancetype) initWithParentView:(UIView*)parentView NS_DESIGNATED_INITIALIZER;
 - (void) show;
 - (void) hide;
 

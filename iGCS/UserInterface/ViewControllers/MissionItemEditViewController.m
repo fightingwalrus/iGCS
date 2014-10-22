@@ -21,7 +21,7 @@
 @synthesize itemDetails;
 @synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -78,18 +78,18 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [WaypointHelper commandIDToString: ((NSNumber*)[missionItemCommandIDs objectAtIndex:row]).intValue];
+    return [WaypointHelper commandIDToString: ((NSNumber*)missionItemCommandIDs[row]).intValue];
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    DDLogDebug(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
+    DDLogDebug(@"Selected Mission Item: %@ at index %i", missionItemCommandIDs[row], row);
     
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
+    missionItem.command = [((NSNumber*)missionItemCommandIDs[row]) unsignedIntValue];
     [delegate replaceMissionItem:missionItem atIndex:itemIndex];
     [self.itemDetails reloadData];
 }
@@ -98,7 +98,7 @@
     // Check that we have a supported mission item 
     int row = -1;
     for (unsigned int i = 0; i < [missionItemCommandIDs count]; i++) {
-        uint16_t commandID = ((NSNumber*)[missionItemCommandIDs objectAtIndex:i]).intValue;
+        uint16_t commandID = ((NSNumber*)missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {
             row = i;
             break;
@@ -131,7 +131,7 @@
 
 - (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
     UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
@@ -160,7 +160,7 @@
     DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
 
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];
