@@ -20,12 +20,12 @@
     return self;
 }
 
-- (void) setHeading:(float)_heading {
-    if (_heading >= 0 && _heading <= 360) heading = _heading;
+- (void) setHeading:(float)heading {
+    if (heading >= 0 && heading <= 360) _heading = heading;
 }
 
-- (void) setNavBearing:(float)_navBearing {
-    if (_navBearing >= 0 && _navBearing <= 360) navBearing = _navBearing;
+- (void) setNavBearing:(float)navBearing {
+    if (navBearing >= 0 && navBearing <= 360) _navBearing = navBearing;
 }
 
 #if DO_ANIMATION
@@ -81,8 +81,8 @@
     //
     // They also run in an "anticlockwise" direction; that is, [NE --- N --- NW], 
     // but have deliberately chosen a more intuitive display here
-    int startAng = ((int)heading - 180)/5 * 5;
-    const float startX = c.x + (startAng-heading) * oneDegX;
+    int startAng = ((int)_heading - 180)/5 * 5;
+    const float startX = c.x + (startAng-_heading) * oneDegX;
     int ang = (startAng < 0) ? startAng += 360 : startAng;    
     for (int i = 0; i < 360; i += 5, ang = (ang+5) % 360) {
         // Find the x position of this tick
@@ -165,7 +165,7 @@
     CGColorSpaceRelease(colorSpace);
     
     // Draw bearing chevron
-    float bearingError = (navBearing - heading);
+    float bearingError = (_navBearing - _heading);
     if (bearingError >  180) bearingError -= 360;
     if (bearingError < -180) bearingError += 360;
     

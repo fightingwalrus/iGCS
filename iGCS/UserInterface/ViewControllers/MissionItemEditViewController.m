@@ -122,11 +122,11 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
-- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
     UITableViewCell *cell = [_itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];

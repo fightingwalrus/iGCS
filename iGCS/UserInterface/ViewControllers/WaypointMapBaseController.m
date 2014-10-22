@@ -77,14 +77,14 @@
     return nil;
 }
 
-- (void) resetWaypoints:(WaypointsHolder *)_waypoints {
+- (void) resetWaypoints:(WaypointsHolder *)waypoints {
     
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
     [_mapView removeOverlay:waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
-    WaypointsHolder *navWaypoints = [_waypoints navWaypoints];
+    WaypointsHolder *navWaypoints = [waypoints navWaypoints];
     unsigned int numWaypoints = [navWaypoints numWaypoints];
     
     MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
@@ -97,7 +97,7 @@
         // Add the annotation
         WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
                                                                             andWayPoint:waypoint
-                                                                                atIndex:[_waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
+                                                                                atIndex:[waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
         [_mapView addAnnotation:annotation];
         
         // Construct the MKMapPoint

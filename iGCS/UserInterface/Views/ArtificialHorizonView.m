@@ -19,9 +19,9 @@
     return self;
 }
 
-- (void) setRoll:(float)_roll pitch:(float)_pitch {
-    if (_roll  <= M_PI &&   _roll  >= -M_PI)   roll  = _roll;
-    if (_pitch <= M_PI/2 && _pitch >= -M_PI/2) pitch = _pitch;
+- (void) setRoll:(float)roll pitch:(float)pitch {
+    if (roll  <= M_PI &&   roll  >= -M_PI)   _roll  = roll;
+    if (pitch <= M_PI/2 && pitch >= -M_PI/2) _pitch = pitch;
 }
 
 #if DO_ANIMATION
@@ -77,9 +77,9 @@
     // Rotate about the centre point, and translate to desired "pitch"
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, roll);
+    transform = CGAffineTransformRotate(transform, _roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
-    transform = CGAffineTransformTranslate(transform, 0, pitch*RAD2DEG/5.0 * yMinorDelta);
+    transform = CGAffineTransformTranslate(transform, 0, _pitch*RAD2DEG/5.0 * yMinorDelta);
     CGContextConcatCTM(ctx, transform);
     
     // Ground
@@ -164,7 +164,7 @@
     // Rotate about the centre
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, roll);
+    transform = CGAffineTransformRotate(transform, _roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
     CGContextConcatCTM(ctx, transform);
     
