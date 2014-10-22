@@ -11,13 +11,11 @@
 
 @implementation GCSActivityIndicatorView
 
-- (id)init
-{
+- (id)init {
     return [self initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 }
 
--(id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
-{
+-(id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style {
     self = [super initWithActivityIndicatorStyle:style];
     if (self) {
         [self configureView];

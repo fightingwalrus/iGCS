@@ -15,8 +15,7 @@
 
 @synthesize _mapView = map;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -24,8 +23,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
@@ -55,8 +53,7 @@
     [locationManager startUpdatingLocation];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -170,8 +167,7 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView
    didChangeDragState:(MKAnnotationViewDragState)newState
-   fromOldState:(MKAnnotationViewDragState)oldState
-{
+   fromOldState:(MKAnnotationViewDragState)oldState {
     if ([annotationView.annotation isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation* annot = annotationView.annotation;
         if (newState == MKAnnotationViewDragStateEnding) {
@@ -232,8 +228,7 @@
     [map setNeedsDisplay];
 }
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
-{
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
     
     if (overlay == waypointRoutePolyline) {
@@ -277,7 +272,7 @@
     [view.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 
-+ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq{
++ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq {
     static const int ICON_VIEW_TAG = 101;
 
     WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
@@ -306,8 +301,7 @@
     
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     static const int LABEL_TAG = 100;
     
     // If it's the user location, just return nil.

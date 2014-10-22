@@ -10,8 +10,7 @@
 
 @implementation BluetoothStream
 
-+(BluetoothStream*) createForTx
-{
++(BluetoothStream*) createForTx {
     DDLogInfo(@"Creating BluetoothStream for Peripheral mode (Tx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
@@ -27,8 +26,7 @@
 }
 
 
-+(BluetoothStream*) createForRx
-{
++(BluetoothStream*) createForRx {
     DDLogInfo(@"Creating BluetoothStream for Central mode (Rx).");
     
     BluetoothStream *bts = [[BluetoothStream alloc] init];
@@ -50,23 +48,18 @@
 
 
 // MavLinkInterface destination override (used for Tx)
--(void)consumeData:(const uint8_t*)bytes length:(int)length
-{
-    if (self.gkLocalController)
-    {
+-(void)consumeData:(const uint8_t*)bytes length:(int)length {
+    if (self.gkLocalController) {
         [self.gkLocalController sendMavlinkData:bytes length:length];
     }
 }
 
--(void) close
-{
-    if (self.streamCentral)
-    {
+-(void) close {
+    if (self.streamCentral) {
         [self.streamCentral stopScan];
     }
     
-    if (self.streamPeripheral)
-    {
+    if (self.streamPeripheral) {
         [self.streamPeripheral stopStream];
     }
 }

@@ -88,7 +88,6 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 
 
 - (void)makeTelnetConnectionToDrone{
-    
     NSLog(@"%s",__FUNCTION__);
     _gcdAsyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
@@ -131,7 +130,6 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 
 
 - (void)ConnectArDroneUDP{
-    
     NSLog(@"%s",__FUNCTION__);
     _gcdAsyncUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
@@ -386,16 +384,14 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 - (void)requestFailed:(BRRequest *)request{
     
     NSLog(@"FTP FAILED");
-    if (request == _uploadFile)
-    {
+    if (request == _uploadFile) {
         NSLog(@"%@", request.error.message);
         _uploadFile = nil;
     }
     
 }
 
-- (NSData *) requestDataToSend: (BRRequestUpload *) request
-{
+- (NSData *) requestDataToSend: (BRRequestUpload *) request {
     //----- returns data object or nil when complete
     //----- basically, first time we return the pointer to the NSData.
     //----- and BR will upload the data.
@@ -413,8 +409,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
     NSLog(@"Overwrite function called");
     
     //----- set this as appropriate if you want the file to be overwritten
-    if (request == _uploadFile)
-    {
+    if (request == _uploadFile) {
         //----- if uploading a file, we set it to YES (if set to NO, nothing happens)
         return YES;
     }

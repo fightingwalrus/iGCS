@@ -82,8 +82,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #define kGCSZ3Stream @"kGCSZ3Stream"
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
@@ -185,7 +184,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 #endif
 
--(CGRect)videoFrameWithSize:(CGSize)size andUAVPoint:(CGPoint) uavPoint{
+-(CGRect)videoFrameWithSize:(CGSize)size andUAVPoint:(CGPoint) uavPoint {
     CGRect rect = CGRectZero;
     rect.size.height = size.height;
     rect.size.width = size.width;
@@ -203,8 +202,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Adjust view for iOS6 differences
@@ -297,21 +295,18 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [self.revealViewController revealToggle:sender];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setDebugConsoleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
 #ifdef VIDEOSTREAMING
@@ -341,18 +336,15 @@ static const int AIRPLANE_ICON_SIZE = 48;
 #endif
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
 }
@@ -533,8 +525,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
-        case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-        {
+        case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
             mavlink_global_position_int_t gpsPosIntPkt;
             mavlink_msg_global_position_int_decode(msg, &gpsPosIntPkt);
             
@@ -544,8 +535,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
         */
-        case MAVLINK_MSG_ID_GPS_RAW_INT:
-        {
+        case MAVLINK_MSG_ID_GPS_RAW_INT: {
             mavlink_gps_raw_int_t gpsRawIntPkt;
             mavlink_msg_gps_raw_int_decode(msg, &gpsRawIntPkt);
             
@@ -555,8 +545,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
             
-        case MAVLINK_MSG_ID_ATTITUDE:
-        {
+        case MAVLINK_MSG_ID_ATTITUDE: {
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
@@ -569,8 +558,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
 
-        case MAVLINK_MSG_ID_VFR_HUD:
-        {
+        case MAVLINK_MSG_ID_VFR_HUD: {
             mavlink_vfr_hud_t  vfrHudPkt;
             mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
             
@@ -584,8 +572,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
             
-        case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
-        {
+        case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT: {
             mavlink_nav_controller_output_t navCtrlOutPkt;
             mavlink_msg_nav_controller_output_decode(msg, &navCtrlOutPkt);
             
@@ -595,16 +582,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
             
-        case MAVLINK_MSG_ID_MISSION_CURRENT:
-        {
+        case MAVLINK_MSG_ID_MISSION_CURRENT: {
             mavlink_mission_current_t currentWaypoint;
             mavlink_msg_mission_current_decode(msg, &currentWaypoint);
             [self maybeUpdateCurrentWaypoint:currentWaypoint.seq];
         }
         break;
             
-        case MAVLINK_MSG_ID_SYS_STATUS:
-        {
+        case MAVLINK_MSG_ID_SYS_STATUS: {
             mavlink_sys_status_t sysStatus;
             mavlink_msg_sys_status_decode(msg, &sysStatus);
             [voltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
@@ -612,16 +597,14 @@ static const int AIRPLANE_ICON_SIZE = 48;
         }
         break;
 
-        case MAVLINK_MSG_ID_WIND:
-        {
+        case MAVLINK_MSG_ID_WIND: {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
             windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
         }
         break;
             
-        case MAVLINK_MSG_ID_HEARTBEAT:
-        {
+        case MAVLINK_MSG_ID_HEARTBEAT: {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
             
@@ -635,8 +618,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             [_customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
-            switch (heartbeat.custom_mode)
-            {
+            switch (heartbeat.custom_mode) {
                 case AUTO:
                     idx = CONTROL_MODE_AUTO;
                     break;
@@ -688,8 +670,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     view.rightCalloutAccessoryView = setWPButton;
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     MKAnnotationView* v = [super mapView:theMapView viewForAnnotation:annotation];
     if (v != nil)
         return v;
@@ -777,8 +758,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 -(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
-                recordIndex:(NSUInteger)index
-{
+                recordIndex:(NSUInteger)index {
     return @((fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]);
 }
 

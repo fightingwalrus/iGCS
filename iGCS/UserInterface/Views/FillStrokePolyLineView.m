@@ -14,8 +14,7 @@
 
 @implementation FillStrokePolyLineView
 
-- (id) initWithPolyline:(MKPolyline*)polyline
-{
+- (id) initWithPolyline:(MKPolyline*)polyline {
 	self = [super initWithOverlay:polyline];
 	if (self) {
 		self.polyline = polyline;
@@ -28,8 +27,7 @@
 - (void) drawPath:(CGPathRef)path
             color:(CGColorRef)color
             width:(CGFloat)width
-       andContext:(CGContextRef)context
-{
+       andContext:(CGContextRef)context {
 	CGContextAddPath(context, path);
     CGContextSetStrokeColorWithColor(context, color);
 	CGContextSetLineWidth(context, width);
@@ -40,8 +38,7 @@
 
 - (void) drawMapRect:(MKMapRect)mapRect
            zoomScale:(MKZoomScale)zoomScale
-           inContext:(CGContextRef)context
-{
+           inContext:(CGContextRef)context {
     // Create the path
     CGMutablePathRef path = CGPathCreateMutable();
 	for (int i = 0; i < self.polyline.pointCount; i++) {

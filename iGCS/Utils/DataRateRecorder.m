@@ -21,8 +21,7 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
     NSUInteger numBytesSinceTick;
 }
 
-- (id) init
-{
+- (id) init {
     self = [super init];
     if (self) {
         // Initialize the data rate tracking timer and counters

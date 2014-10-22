@@ -14,16 +14,14 @@
 
 static DebugViewController *debugVC;
 
-+(void) start:(DebugViewController*)dVC
-{
++(void) start:(DebugViewController*)dVC {
 #ifdef DEBUG
     debugVC = dVC;
     NSSetUncaughtExceptionHandler(&catchUnhandledException);
 #endif
 }
 
-void catchUnhandledException(NSException* e)
-{
+void catchUnhandledException(NSException* e) {
     DDLogCError(@"Exception raised: ");
     DDLogCError(@"%@",[e description]);
 }

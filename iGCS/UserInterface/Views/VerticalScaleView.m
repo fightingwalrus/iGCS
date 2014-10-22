@@ -12,8 +12,7 @@
 
 @implementation VerticalScaleView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -40,8 +39,7 @@
 
 
 // FIXME: Refactor out common code with CompassView 
-- (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
-{
+- (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect {
     DDLogVerbose(@"VerticalScale: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     
     const float HORZ_INSET_PERC = 0.0;

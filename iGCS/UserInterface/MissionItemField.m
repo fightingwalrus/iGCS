@@ -10,8 +10,7 @@
 
 @implementation MissionItemField
 
-- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType
-{
+- (id)initWithLabel:(NSString*)aLabel andUnits:(GCSMissionItemUnit)units andFieldType:(GCSMissionItemParamField)fieldType {
     if ((self = [super init])) {
         _label     = aLabel;
         _units     = units;
@@ -20,13 +19,11 @@
     return self;
 }
 
-- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType
-{
+- (id)initWithLabel:(NSString*)aLabel andFieldType:(GCSMissionItemParamField)fieldType {
     return [self initWithLabel:aLabel andUnits:GCSItemUnitNone andFieldType:fieldType];
 }
 
-- (NSString*)unitsToString
-{
+- (NSString*)unitsToString {
     switch (_units) {
         case GCSItemUnitNone:                 return @"";
         case GCSItemUnitDegrees:              return @"degrees";
@@ -40,8 +37,7 @@
     }
 }
 
-- (NSString*)valueToString:(mavlink_mission_item_t)item
-{
+- (NSString*)valueToString:(mavlink_mission_item_t)item {
     float val;
     switch (_fieldType) {
         case GCSItemParamZ: val = item.z;      break;

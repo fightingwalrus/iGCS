@@ -20,8 +20,7 @@
     return newPos.x;
 }
 
-+ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang
-{
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize rotation:(double)ang {
     UIGraphicsBeginImageContext( newSize );
     //[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     

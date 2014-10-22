@@ -12,8 +12,7 @@
 
 @implementation WaypointsHolder
 
-- (id)initWithExpectedCount:(unsigned int)_expectedCount
-{
+- (id)initWithExpectedCount:(unsigned int)_expectedCount {
     self = [super init];
     if (self) {
         // Initialization code
@@ -23,8 +22,7 @@
     return self;
 }
 
-- (id) mutableCopyWithZone:(NSZone *)zone
-{
+- (id) mutableCopyWithZone:(NSZone *)zone {
     WaypointsHolder *copy = [[WaypointsHolder allocWithZone: zone] init];
     copy->array = [array mutableCopyWithZone: zone];
     copy->expectedCount = expectedCount;

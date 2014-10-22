@@ -21,43 +21,32 @@
 
 @end
 
-
-
 @implementation BTLEMavLinkPeripheral
 
-
-
--(id)init
-{
+-(id)init {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     }
     return self;
 }
 
 
--(void)startStream
-{
+-(void)startStream {
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
 }
 
--(void)stopStream
-{
+-(void)stopStream {
     [self.peripheralManager stopAdvertising];
 }
 
 
 #pragma mark - Peripheral Methods
 
-
-
 /** Required protocol method.  A full app should take care of all the possible states,
  *  but we're just waiting for  to know when the CBPeripheralManager is ready
  */
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
-{
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     // Opt out from any other state
     if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
         return;
@@ -88,8 +77,7 @@
 
 /** Catch when someone subscribes to our characteristic, then start sending them data
  */
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
-{
+- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
     DDLogDebug(@"Central subscribed to characteristic");
     
     // Get the data
@@ -105,16 +93,14 @@
 
 /** Recognise when the central unsubscribes
  */
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
-{
+- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic {
     DDLogDebug(@"Central unsubscribed from characteristic");
 }
 
 
 /** Sends the next amount of data to the connected central
  */
-- (void)sendData
-{
+- (void)sendData {
     // First up, check if we're meant to be sending an EOM
     static BOOL sendingEOM = NO;
     
@@ -204,15 +190,9 @@
 /** This callback comes in when the PeripheralManager is ready to send the next chunk of data.
  *  This is to ensure that packets will arrive in the order they are sent
  */
-- (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
-{
+- (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral {
     // Start sending again
     [self sendData];
 }
-
-
-
-
-
 
 @end

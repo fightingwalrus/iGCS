@@ -34,11 +34,9 @@
 @implementation GKLocalController
 
 
--(id)init:(BluetoothStream*)bts
-{
+-(id)init:(BluetoothStream*)bts {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         self.parentStream = bts;
         
         
@@ -52,8 +50,7 @@
 }
 
 
--(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length
-{
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length {
     DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %i",length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
 }
@@ -158,8 +155,7 @@
 	
 	lastPacketTime = packetTime;
 	switch( packetID ) {
-		case NETWORK_COINTOSS:
-        {
+		case NETWORK_COINTOSS: {
             // coin toss to determine roles of the two players
             int coinToss = pIntData[2];
             // if other player's coin is higher than ours then that player is the server
@@ -168,8 +164,7 @@
             }
         }
 			break;
-		case NETWORK_HEARTBEAT:
-        {
+		case NETWORK_HEARTBEAT: {
             // Received heartbeat data with other player's position, destination, and firing status.
             
             /*
@@ -192,8 +187,7 @@
             }
         }
             
-        case NETWORK_MAVLINK:
-        {
+        case NETWORK_MAVLINK: {
             DDLogVerbose(@"GKSession: Received MavLink: %i bytes",[data length]);
             
             int headerSize = 2 * sizeof(int);
@@ -211,8 +205,7 @@
 	}
 }
 
-- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend
-{
+- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend {
 	static unsigned char networkPacket[kMaxPacketSize];
 	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	
@@ -259,9 +252,5 @@
 		self.gameState = kStateStartGame;
 	}
 }
-
-
-
-
 
 @end

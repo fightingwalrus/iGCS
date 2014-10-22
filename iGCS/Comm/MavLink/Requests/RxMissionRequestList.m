@@ -11,8 +11,7 @@
 
 @implementation RxMissionRequestList
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface
-{
+- (id)initWithInterface:(iGCSMavLinkInterface*)interface {
     if ((self = [super init])) {
         _interface = interface;
 

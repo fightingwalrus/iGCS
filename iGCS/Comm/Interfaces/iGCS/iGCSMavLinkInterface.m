@@ -42,8 +42,7 @@ mavlink_status_t status;
 mavlink_heartbeat_t heartbeat;
 MavLinkRetryingRequestHandler* retryRequestHandler;
 
-+(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC
-{
++(iGCSMavLinkInterface*)createWithViewController:(MainViewController*)mainVC {
     iGCSMavLinkInterface *interface = [[iGCSMavLinkInterface alloc] init];
     interface.mainVC = mainVC;
     appMLI = interface;
@@ -76,15 +75,13 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
     _mavlinkLogger = [[MavLinkLogger alloc] initWithLogName:logName];
 }
 
-static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint16_t len)
-{
+static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint16_t len) {
     DDLogCVerbose(@"iGCSMavLinkInterface:send_uart_bytes: sending %hu chars to connection pool", len);
     [appMLI produceData:buffer length:len];
 }
 
 // MavLink destination override
--(void)consumeData:(const uint8_t*)bytes length:(int)length
-{
+-(void)consumeData:(const uint8_t*)bytes length:(int)length {
     @autoreleasepool {
         // Notify receipt of length bytes
         [self.mainVC.dataRateRecorder bytesReceived:length];

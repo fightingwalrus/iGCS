@@ -19,14 +19,12 @@
 
 @implementation WaypointsViewController
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Adjust view for iOS6 differences
@@ -58,15 +56,13 @@
                                                object:nil];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString * segueName = segue.identifier;
     if ([segueName isEqualToString: @"editItemVC_embed"]) {
         navVCEditItemVC = (UINavigationController*) [segue destinationViewController];
@@ -103,30 +99,25 @@
     [UIView commitAnimations];
 }
 
-- (void)keyboardShowing:(NSNotification *)notification
-{
+- (void)keyboardShowing:(NSNotification *)notification {
     [self handleKeyboardDisplay: notification showing:YES];
 }
 
-- (void)keyboardHiding:(NSNotification *)notification
-{
+- (void)keyboardHiding:(NSNotification *)notification {
     [self handleKeyboardDisplay: notification showing:NO];
 }
 
-- (MissionItemTableViewController*) missionTableViewController
-{
+- (MissionItemTableViewController*) missionTableViewController {
     assert(navVCEditItemVC);
     return [navVCEditItemVC.viewControllers objectAtIndex:0];
 }
 
-- (WaypointsHolder*)getWaypointsHolder
-{
+- (WaypointsHolder*)getWaypointsHolder {
     return waypoints;
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 

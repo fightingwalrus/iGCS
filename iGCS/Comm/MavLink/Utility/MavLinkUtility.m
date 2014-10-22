@@ -199,8 +199,7 @@ NSDictionary *_ardupilotModes;
     }
     //The ARDrone shows up as a MAV_AUTOPILOT_GENERIC
     //It also uses the system_status field for the moding instead of the custom_mode field
-    if(heartbeat.autopilot == MAV_AUTOPILOT_GENERIC)
-    {
+    if (heartbeat.autopilot == MAV_AUTOPILOT_GENERIC) {
         modeName = [MavLinkUtility mavStateEnumToString:heartbeat.system_status];
     }
     

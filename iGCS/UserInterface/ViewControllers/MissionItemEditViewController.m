@@ -21,8 +21,7 @@
 @synthesize itemDetails;
 @synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -30,7 +29,7 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate  {
+- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate {
     delegate = _delegate;
     itemIndex = _idx;
     saveEdits = NO;
@@ -55,8 +54,7 @@
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
@@ -66,8 +64,7 @@
     [self refreshWithMissionItem];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -132,8 +129,7 @@
     return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
-- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
     UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
@@ -172,16 +168,14 @@
     [delegate replaceMissionItem:item atIndex:itemIndex];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
 // Limit textfields to numeric values only
 // ref: http://stackoverflow.com/questions/9344159/validate-numeric-input-to-uitextfield-as-the-user-enters-input
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSString *expression = @"^(-)?([0-9]+)?(\\.([0-9]*)?)?$";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression

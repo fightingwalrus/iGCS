@@ -49,8 +49,7 @@
 
 @implementation MissionItemTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -68,8 +67,7 @@
     [[[self getWaypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -82,8 +80,7 @@
     [self.tableView setAllowsSelectionDuringEditing: true];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -98,13 +95,11 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) return [[self getWaypointsHolder] numWaypoints];
     return 0;
 }
@@ -152,8 +147,7 @@ NSArray* headerSpecs = nil;
     return param == 0 ? @"0" : [NSString stringWithFormat:@"%0.2f", param];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"MissionItemCellID";
     int TAG_INDEX = 100;
     
@@ -244,8 +238,7 @@ NSArray* headerSpecs = nil;
 }
 
 // Support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         assert (indexPath.section == 0);
         
@@ -263,15 +256,13 @@ NSArray* headerSpecs = nil;
 
 
 // Support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
 // Support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
     [[self getWaypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
     
@@ -280,14 +271,12 @@ NSArray* headerSpecs = nil;
 }
 
 // Support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the view that will hold the header labels
     UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
     unsigned int x = 0;
@@ -391,8 +380,7 @@ NSArray* headerSpecs = nil;
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger idx = indexPath.row;
     
     if (tableView.isEditing) {
@@ -413,8 +401,7 @@ NSArray* headerSpecs = nil;
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString * segueName = segue.identifier;    
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;

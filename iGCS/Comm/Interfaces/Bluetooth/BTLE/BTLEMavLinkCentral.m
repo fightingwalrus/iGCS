@@ -23,19 +23,16 @@
 
 
 
--(id)init
-{
+-(id)init {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     }
     return self;
 }
 
 
--(void)startScan
-{
+-(void)startScan {
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
@@ -43,8 +40,7 @@
 }
 
 
--(void)stopScan
-{
+-(void)stopScan {
     [self.centralManager stopScan];
 }
 
@@ -58,8 +54,7 @@
  *  In this instance, we're just using it to wait for CBCentralManagerStatePoweredOn, which indicates
  *  the Central is ready to be used.
  */
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     if (central.state != CBCentralManagerStatePoweredOn) {
         // In a real app, you'd deal with all the states correctly
         return;
@@ -77,8 +72,7 @@
  *  We check the RSSI, to make sure it's close enough that we're interested in it, and if it is,
  *  we start the connection process
  */
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
-{
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     // Reject any where the value is above reasonable range
     if (RSSI.integerValue > -15) {
         return;
@@ -106,8 +100,7 @@
 
 /** If the connection fails for whatever reason, we need to deal with it.
  */
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     DDLogError(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
     [self cleanup];
 }
@@ -115,8 +108,7 @@
 
 /** We've connected to the peripheral, now we need to discover the services and characteristics to find the 'transfer' characteristic.
  */
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
-{
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     DDLogInfo(@"Peripheral Connected");
     
     // Stop scanning
@@ -136,8 +128,7 @@
 
 /** The Transfer Service was discovered
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     if (error) {
         DDLogError(@"Error discovering services: %@", [error localizedDescription]);
         [self cleanup];
@@ -156,8 +147,7 @@
 /** The Transfer characteristic was discovered.
  *  Once this has been found, we want to subscribe to it, which lets the peripheral know we want the data it contains
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     // Deal with errors (if any)
     if (error) {
         DDLogError(@"Error discovering characteristics: %@", [error localizedDescription]);
@@ -167,10 +157,8 @@
     
     // Again, we loop through the array, just in case.
     for (CBCharacteristic *characteristic in service.characteristics) {
-        
         // And check if it's the right one
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-            
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
         }
@@ -182,8 +170,7 @@
 
 /** This callback lets us know more data has arrived via notification on the characteristic
  */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
         DDLogError(@"Error discovering characteristics: %@", [error localizedDescription]);
         return;
@@ -216,8 +203,7 @@
 
 /** The peripheral letting us know whether our subscribe/unsubscribe happened or not
  */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
         DDLogError(@"Error changing notification state: %@", error.localizedDescription);
     }
@@ -244,8 +230,7 @@
 
 /** Once the disconnection happens, we need to clean up our local copy of the peripheral
  */
-- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     DDLogInfo(@"Peripheral Disconnected");
     self.discoveredPeripheral = nil;
     
@@ -258,8 +243,7 @@
  *  This cancels any subscriptions if there are any, or straight disconnects if not.
  *  (didUpdateNotificationStateForCharacteristic will cancel the connection if a subscription is involved)
  */
-- (void)cleanup
-{
+- (void)cleanup {
     // Don't do anything if we're not connected
     if (!self.discoveredPeripheral.isConnected) {
         return;
@@ -287,6 +271,5 @@
     // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
     [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
 }
-
 
 @end
