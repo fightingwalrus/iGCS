@@ -25,6 +25,7 @@
 #import "FileUtils.h"
 #import "iGCSMavLinkInterface.h"
 #import "ArDroneUtils.h"
+#import "ArDroneViewController.h"
 
 
 @interface DebugViewController ()
@@ -173,6 +174,17 @@
     [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
     
 }
+
+- (IBAction)testClicked:(id)sender {
+        ArDroneViewController *arDroneViewController = [[ArDroneViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:arDroneViewController];
+        
+        navController.navigationBar.barStyle = UIBarStyleDefault;
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navController animated:YES completion:nil];
+    
+}
+
 
 
 
