@@ -41,23 +41,12 @@ static AppDelegate *shared;
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif
 
-#ifdef VIDEOSTREAMING
-    // set up defaults
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"videoSource": @"testStream", @"videoScaleFactor": @1,
-     @"videoDisplayLocation": @"corner"}];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-#endif
-    
     //TODO: Not sure this should exist
 	alertView = [[UIAlertView alloc] initWithTitle:@"Accessory Not Found"
 										   message:@"Fighting Walrus Radio is not attached."
 										  delegate:self
 								 cancelButtonTitle:@"Retry"
 								 otherButtonTitles:@"More Info", nil];
-    
-
     
     shared = self;
 

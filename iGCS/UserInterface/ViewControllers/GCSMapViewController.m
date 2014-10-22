@@ -25,10 +25,6 @@
     MKPointAnnotation *_uavPos;
     MKAnnotationView *_uavView;
     
-    GLKView *_videoOverlayView;
-    EAGLContext *_context;
-    NSMutableDictionary *_availableStreams;
-    
     GuidedPointAnnotation *_currentGuidedAnnotation;
     RequestedPointAnnotation *_requestedGuidedAnnotation;
     
@@ -55,10 +51,6 @@ static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
 static const int AIRPLANE_ICON_SIZE = 48;
 
-#define kGCSBryansTestStream @"kGCSBryansTestStream"
-#define kGCSZ3Stream @"kGCSZ3Stream"
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
@@ -74,8 +66,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
                                      scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                          rotation: 0];
     _uavView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(airplanTapped:)];
-    [_uavView addGestureRecognizer:tap];
     _uavView.centerOffset = CGPointMake(0, 0);
     
     _currentGuidedAnnotation   = nil;
@@ -85,97 +75,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
     
     _showProposedFollowPos = NO;
     _lastFollowMeUpdate = [NSDate date];
-
-#ifdef VIDEOSTREAMING
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
-#endif
-    
-//    // Initialize the video overlay view
-//    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-//    videoOverlayView = [[GLKView alloc] initWithFrame:CGRectMake(0,0,48,32) context:_context]; // 32 is max permitted height
-//    videoOverlayView.context = _context;
-//    videoOverlayView.delegate = self;
-//    videoOverlayView.enableSetNeedsDisplay = NO;
-//
-//    uavPos.title = @"On-board Video"; // Some value is required to ensure callout is displayed
-//    uavView.canShowCallout = YES;
-//    uavView.leftCalloutAccessoryView  = videoOverlayView;
-//
-//    [EAGLContext setCurrentContext:_context];
-//    glEnable(GL_DEPTH_TEST);
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    glOrthof(0, 1, 0, 1, -1, 1);
-//    glViewport(0, 0, videoOverlayView.bounds.size.width, videoOverlayView.bounds.size.height);
-//    
-//    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderVideoOverlayView:)];
-//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
--(NSDictionary *)availableStreams {
-    if (!_availableStreams) {
-        _availableStreams = [NSMutableDictionary dictionary];
-        _availableStreams[kGCSBryansTestStream] = @{@"url": @"rtsp://70.36.196.50/axis-media/media.amp", @"size": [NSValue valueWithCGSize:CGSizeMake(640, 480)], @"minBufferedDuration": @(2.0f), @"maxBufferedDuration": @(6.0f)};
-        
-        NSString *bryansTestStreamURL = [NSString stringWithFormat:@"file:/%@",[[NSBundle mainBundle] pathForResource:@"multicast_h264_aac_48000" ofType:@"sdp"]];
-        _availableStreams[kGCSZ3Stream] = @{@"url": bryansTestStreamURL, @"size": [NSValue valueWithCGSize:CGSizeMake(1024, 768)], @"minBufferedDuration": @(0.2f), @"maxBufferedDuration": @(0.6f)};
-    }
-    return (NSDictionary *)_availableStreams;
-}
-
-#ifdef VIDEOSTREAMING
--(void)configureVideoStreamWithName:(NSString *) streamName
-                     andScaleFactor:(float) scaleFactor {
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[KxMovieParameterDisableDeinterlacing] = @(YES);
-    params[KxMovieParameterMinBufferedDuration] = self.availableStreams[streamName][@"minBufferedDuration"];
-    params[KxMovieParameterMaxBufferedDuration] = self.availableStreams[streamName][@"maxBufferedDuration"];
-    self.kxMovieVC = [KxMovieViewController movieViewControllerWithContentPath:self.availableStreams[streamName][@"url"] parameters:params];
-    
-    NSValue *videoResolution = self.availableStreams[streamName][@"size"];
-    CGSize videoDisplaySize = [self CGSizeFromSize:[videoResolution CGSizeValue] withScaleFactor:scaleFactor];
-    CGRect f = [self videoFrameWithSize:videoDisplaySize andUAVPoint:uavView.frame.origin];
-    DDLogVerbose(@"videoFrame: x:%f y:%f w:%f h:%f", f.origin.x, f.origin.y, f.size.width, f.size.height);
-    self.kxMovieVC.view.frame  =  f;
-}
-#endif
-
--(CGSize)CGSizeFromSize:(CGSize) size
-        withScaleFactor:(float) scaleFactor {
-    CGSize newSize = CGSizeZero;
-    newSize.width = size.width * scaleFactor;
-    newSize.height = size.height * scaleFactor;
-    return newSize;
-}
-
-#ifdef VIDEOSTREAMING
--(void)connectToVideoStream {
-    if ([self.kxMovieVC.view isDescendantOfView:self.parentViewController.view]) {
-        [self.kxMovieVC.view removeFromSuperview];
-    } else {
-        [self.parentViewController.view addSubview:self.kxMovieVC.view];
-        [self.view bringSubviewToFront:self.kxMovieVC.view];
-        [self.kxMovieVC play];
-    }
-}
-#endif
-
--(CGRect)videoFrameWithSize:(CGSize)size andUAVPoint:(CGPoint) uavPoint {
-    CGRect rect = CGRectZero;
-    rect.size.height = size.height;
-    rect.size.width = size.width;
-    rect.origin.x = (self.parentViewController.view.bounds.size.width - (size.width)); //+ size.height + 8;
-    rect.origin.y = 20; //uavPoint.y;
-    
-    return rect;
-}
-
--(void)airplanTapped:(UITapGestureRecognizer *)gesture {
-#ifdef VIDEOSTREAMING
-    [self connectToVideoStream];
-#endif
-}
 
 #pragma mark - View lifecycle
 
@@ -285,32 +186,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-#ifdef VIDEOSTREAMING
-    NSString *videoSource = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoSource"];
-    NSString *videoDisplayLocation =  [[NSUserDefaults standardUserDefaults] objectForKey:@"videoDisplayLocation"];
-    
-    float scaleFactor;
-    
-    if ([videoSource isEqualToString:@"Z3"]) {
-        
-        if ([videoDisplayLocation isEqualToString:@"corner"]) {
-            scaleFactor = 0.4;
-        } else {
-            scaleFactor = 1.0;
-        }
-        
-        [self configureVideoStreamWithName:kGCSZ3Stream andScaleFactor:scaleFactor];
-    }else {
-        
-        if ([videoDisplayLocation isEqualToString:@"corner"]) {
-            scaleFactor = 0.4;
-        } else {
-            scaleFactor = 1.0;
-        }
-        [self configureVideoStreamWithName:kGCSBryansTestStream andScaleFactor:scaleFactor];
-    }
-#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -682,30 +557,6 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
     
     return nil;
-}
-
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    // FIXME: should check if callout is actually displayed before performing
-    // any serious work (alt: check in renderVideoOverlayView)
-    static bool goingUp = false;
-    static float redVal = 0;
-    
-    redVal += goingUp ? 0.02 : -0.02;
-    if (redVal >= 1.0) {
-        redVal = 1.0;
-        goingUp = NO;
-    }
-    if (redVal <= 0.0) {
-        redVal = 0.0;
-        goingUp = YES;
-    }
-    
-    glClearColor(redVal, 0.0, 1.0, 0.1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-- (void)renderVideoOverlayView:(CADisplayLink*)displayLink {
-    [_videoOverlayView display];
 }
 
 // Override the base locationManager: didUpdateLocations
