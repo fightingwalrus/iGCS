@@ -13,8 +13,7 @@
 #import "GCDAsyncUdpSocket.h"
 #import "ArDroneUtils.h"
 
-@interface DebugViewController : UIViewController <BRRequestDelegate> {
-}
+@interface DebugViewController : UIViewController <BRRequestDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
 @property (strong, nonatomic) IBOutlet UITextView *errorsTextView;

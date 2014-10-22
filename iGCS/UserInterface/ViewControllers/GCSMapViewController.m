@@ -22,24 +22,24 @@
 #import "CXAlertView.h"
 
 @implementation GCSMapViewController {
-    MKPointAnnotation *uavPos;
-    MKAnnotationView *uavView;
+    MKPointAnnotation *_uavPos;
+    MKAnnotationView *_uavView;
     
-    GLKView *videoOverlayView;
+    GLKView *_videoOverlayView;
     EAGLContext *_context;
     NSMutableDictionary *_availableStreams;
     
-    GuidedPointAnnotation *currentGuidedAnnotation;
-    RequestedPointAnnotation *requestedGuidedAnnotation;
+    GuidedPointAnnotation *_currentGuidedAnnotation;
+    RequestedPointAnnotation *_requestedGuidedAnnotation;
     
-    CLLocationCoordinate2D gotoCoordinates;
-    float gotoAltitude;
+    CLLocationCoordinate2D _gotoCoordinates;
+    float _gotoAltitude;
     
-    BOOL showProposedFollowPos;
-    NSDate *lastFollowMeUpdate;
-    uint32_t lastCustomMode;
+    BOOL _showProposedFollowPos;
+    NSDate *_lastFollowMeUpdate;
+    uint32_t _lastCustomMode;
     
-    CPTXYGraph *dataRateGraph;
+    CPTXYGraph *_dataRateGraph;
 }
 
 enum {
@@ -66,25 +66,25 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (void)awakeFromNib {
     
-    uavPos  = [[MKPointAnnotation alloc] init];
-    [uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
+    _uavPos  = [[MKPointAnnotation alloc] init];
+    [_uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
-    uavView = [[MKAnnotationView  alloc] initWithAnnotation:uavPos reuseIdentifier:@"uavView"];
-    uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
+    _uavView = [[MKAnnotationView  alloc] initWithAnnotation:_uavPos reuseIdentifier:@"uavView"];
+    _uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
                                      scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
                                          rotation: 0];
-    uavView.userInteractionEnabled = YES;
+    _uavView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(airplanTapped:)];
-    [uavView addGestureRecognizer:tap];
-    uavView.centerOffset = CGPointMake(0, 0);
+    [_uavView addGestureRecognizer:tap];
+    _uavView.centerOffset = CGPointMake(0, 0);
     
-    currentGuidedAnnotation   = nil;
-    requestedGuidedAnnotation = nil;
+    _currentGuidedAnnotation   = nil;
+    _requestedGuidedAnnotation = nil;
     
-    gotoAltitude = 50;
+    _gotoAltitude = 50;
     
-    showProposedFollowPos = NO;
-    lastFollowMeUpdate = [NSDate date];
+    _showProposedFollowPos = NO;
+    _lastFollowMeUpdate = [NSDate date];
 
 #ifdef VIDEOSTREAMING
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectToVideoStream) name:@"com.kxmovie.done" object:nil];
@@ -191,7 +191,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
     
 	// Do any additional setup after loading the view, typically from a nib.
-    [self.mapView addAnnotation:uavPos];
+    [self.mapView addAnnotation:_uavPos];
     
     // Initialize subviews
     [_ahIndicatorView setRoll: 0 pitch: 0];
@@ -221,23 +221,23 @@ static const int AIRPLANE_ICON_SIZE = 48;
     _dataRateRecorder = dataRateRecorder;
 
     // Setup the sparkline view
-    dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateSparklineView.bounds];
-    self.dataRateSparklineView.hostedGraph = dataRateGraph;
+    _dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateSparklineView.bounds];
+    self.dataRateSparklineView.hostedGraph = _dataRateGraph;
     
     // Setup initial plot ranges
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds]/6.0)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat(1.0)];
     
     // Hide the axes
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)dataRateGraph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)_dataRateGraph.axisSet;
     axisSet.xAxis.hidden = axisSet.yAxis.hidden = YES;
     axisSet.xAxis.labelingPolicy = axisSet.yAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
     
     // Create the plot object
-    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:dataRateGraph.hostingView.bounds];
+    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:_dataRateGraph.hostingView.bounds];
     dateRatePlot.identifier = @"Data Rate Sparkline";
     dateRatePlot.dataSource = self;
     
@@ -247,18 +247,18 @@ static const int AIRPLANE_ICON_SIZE = 48;
     dateRatePlot.dataLineStyle = lineStyle;
     
     dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
-    [dataRateGraph addPlot:dateRatePlot];
+    [_dataRateGraph addPlot:dateRatePlot];
     
     // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
-    dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor clearColor]];
-    dataRateGraph.plotAreaFrame.paddingTop    = 0;
-    dataRateGraph.plotAreaFrame.paddingBottom = 0;
-    dataRateGraph.plotAreaFrame.paddingLeft   = 0;
-    dataRateGraph.plotAreaFrame.paddingRight  = 0;
-    dataRateGraph.paddingTop    = 0;
-    dataRateGraph.paddingBottom = 0;
-    dataRateGraph.paddingLeft   = 0;
-    dataRateGraph.paddingRight  = 0;
+    _dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor clearColor]];
+    _dataRateGraph.plotAreaFrame.paddingTop    = 0;
+    _dataRateGraph.plotAreaFrame.paddingBottom = 0;
+    _dataRateGraph.plotAreaFrame.paddingLeft   = 0;
+    _dataRateGraph.plotAreaFrame.paddingRight  = 0;
+    _dataRateGraph.paddingTop    = 0;
+    _dataRateGraph.paddingBottom = 0;
+    _dataRateGraph.paddingLeft   = 0;
+    _dataRateGraph.paddingRight  = 0;
     
     // Listen to data recorder ticks
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -348,15 +348,15 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) clearGuidedPositions {
-    if (currentGuidedAnnotation != nil) {
-        [self.mapView removeAnnotation:currentGuidedAnnotation];
+    if (_currentGuidedAnnotation != nil) {
+        [self.mapView removeAnnotation:_currentGuidedAnnotation];
     }
-    currentGuidedAnnotation = nil;
+    _currentGuidedAnnotation = nil;
     
-    if (requestedGuidedAnnotation != nil) {
-        [self.mapView removeAnnotation:requestedGuidedAnnotation];
+    if (_requestedGuidedAnnotation != nil) {
+        [self.mapView removeAnnotation:_requestedGuidedAnnotation];
     }
-    requestedGuidedAnnotation = nil;
+    _requestedGuidedAnnotation = nil;
 }
 
 - (void) issueGuidedCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude withFollowing:(BOOL)following {
@@ -368,8 +368,8 @@ static const int AIRPLANE_ICON_SIZE = 48;
     [self clearGuidedPositions];
 
     // Drop an icon for the proposed GUIDED point
-    currentGuidedAnnotation = [[GuidedPointAnnotation alloc] initWithCoordinate:coordinates];
-    [self.mapView addAnnotation:currentGuidedAnnotation];
+    _currentGuidedAnnotation = [[GuidedPointAnnotation alloc] initWithCoordinate:coordinates];
+    [self.mapView addAnnotation:_currentGuidedAnnotation];
     [self.mapView setNeedsDisplay];
 
     [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
@@ -377,13 +377,13 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
-    showProposedFollowPos = YES;
+    _showProposedFollowPos = YES;
     [self updateFollowMePosition:vals];
 }
 
 - (void) deactivateFollowMe {
     [_followMeControlDelegate followMeDeactivate];
-    showProposedFollowPos = NO;
+    _showProposedFollowPos = NO;
 }
 
 + (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos {
@@ -414,20 +414,20 @@ static const int AIRPLANE_ICON_SIZE = 48;
     CLLocationCoordinate2D fmCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
-    if (requestedGuidedAnnotation != nil)
-        [self.mapView removeAnnotation:requestedGuidedAnnotation];
+    if (_requestedGuidedAnnotation != nil)
+        [self.mapView removeAnnotation:_requestedGuidedAnnotation];
     
-    if (showProposedFollowPos) {
-        requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
-        [self.mapView addAnnotation:requestedGuidedAnnotation];
+    if (_showProposedFollowPos) {
+        _requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
+        [self.mapView addAnnotation:_requestedGuidedAnnotation];
         [self.mapView setNeedsDisplay];
     }
 
     DDLogDebug(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
     if (ctrlValues.isActive &&
-        (-[lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
+        (-[_lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
         [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
-        lastFollowMeUpdate = [NSDate date];
+        _lastFollowMeUpdate = [NSDate date];
         
         [self issueGuidedCommand:fmCoords withAltitude:fmHeightOffset withFollowing:YES];
     }
@@ -446,16 +446,17 @@ static const int AIRPLANE_ICON_SIZE = 48;
         return;
 
     // Set the coordinates of the map point being held down
-    gotoCoordinates = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
+    _gotoCoordinates = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
     
     // Confirm acceptance of GOTO point
     CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:@"Fly-to position?"
-                                                        message:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]
+                                                        message:[GCSMapViewController formatGotoAlertMessage:_gotoCoordinates
+                                                                                                     withAlt:_gotoAltitude]
                                               cancelButtonTitle:nil];
     [alertView addButtonWithTitle:@"Confirm" // Order buttons as per Apple's HIG ("destructive" action on left)
                              type:CXAlertViewButtonTypeCustom
                           handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
-                              [self issueGuidedCommand:gotoCoordinates withAltitude:gotoAltitude withFollowing:NO];
+                              [self issueGuidedCommand:_gotoCoordinates withAltitude:_gotoAltitude withFollowing:NO];
                               [alertView dismiss];
                           }];
     [alertView addButtonWithTitle:@"Cancel"
@@ -484,11 +485,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
         return;
     }
     
-    gotoAltitude += (lastTranslate.y-translate.y)/10;
+    _gotoAltitude += (lastTranslate.y-translate.y)/10;
     lastTranslate = translate;
     
     CXAlertView *alertView = (CXAlertView*)(sender.view);
-    [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage: gotoCoordinates withAlt:gotoAltitude]];
+    [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage:_gotoCoordinates withAlt:_gotoAltitude]];
 }
 
 - (void) rescheduleHeartbeatLossCheck {
@@ -517,7 +518,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_msg_gps_raw_int_decode(msg, &gpsRawIntPkt);
             
             CLLocationCoordinate2D pos = CLLocationCoordinate2DMake(gpsRawIntPkt.lat/10000000.0, gpsRawIntPkt.lon/10000000.0);
-            [uavPos setCoordinate:pos];
+            [_uavPos setCoordinate:pos];
             [self addToTrack:pos];
         }
         break;
@@ -526,9 +527,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
-                                             scaledToSize: CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
-                                                 rotation: attitudePkt.yaw];
+            _uavView.image = [MiscUtilities imageWithImage: [UIImage imageNamed:@"airplane.png"]
+                                              scaledToSize: CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
+                                                  rotation: attitudePkt.yaw];
             
             [_ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [_ahIndicatorView requestRedraw];
@@ -613,11 +614,11 @@ static const int AIRPLANE_ICON_SIZE = 48;
             // If the current mode is not GUIDED, and has just changed
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
-            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != lastCustomMode) {
+            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != _lastCustomMode) {
                 [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }
-            lastCustomMode = heartbeat.custom_mode;
+            _lastCustomMode = heartbeat.custom_mode;
         }
         break;
     }
@@ -677,7 +678,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     }
     
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
-        return uavView;
+        return _uavView;
     }
     
     return nil;
@@ -704,7 +705,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void)renderVideoOverlayView:(CADisplayLink*)displayLink {
-    [videoOverlayView display];
+    [_videoOverlayView display];
 }
 
 // Override the base locationManager: didUpdateLocations
@@ -722,10 +723,10 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 -(void) onDataRateUpdate:(NSNotification*)notification {
     // Reset the y-axis range and reload the graph data
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
                                                     length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
-    [dataRateGraph reloadData];
+    [_dataRateGraph reloadData];
     
     [_dataRateLabel setText:[NSString stringWithFormat:@"%0.1fkB/s", [_dataRateRecorder latestValue]]];
 }

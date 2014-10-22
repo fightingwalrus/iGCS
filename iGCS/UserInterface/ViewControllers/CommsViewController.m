@@ -30,13 +30,13 @@
 - (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
     _dataRateRecorder = dataRateRecorder;
     
-    dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
+    _dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.dataRateGraphView;
-    hostingView.hostedGraph = dataRateGraph;
+    hostingView.hostedGraph = _dataRateGraph;
     
     // Setup initial plot ranges
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds])];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
@@ -59,7 +59,7 @@
     textStyle.fontSize = 13.0f;
     textStyle.color    = [CPTColor whiteColor];
     
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)dataRateGraph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)_dataRateGraph.axisSet;
     
     CPTXYAxis *xAxis = axisSet.xAxis;
     lineStyle.lineWidth = 2.0f;
@@ -94,7 +94,7 @@
     yAxis.titleTextStyle = textStyle;
     
     // Create the plot object
-    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:dataRateGraph.hostingView.bounds];
+    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:_dataRateGraph.hostingView.bounds];
     dateRatePlot.identifier = @"Data Rate Plot";
     dateRatePlot.dataSource = self;
     lineStyle.lineWidth = 1.0f;
@@ -102,18 +102,18 @@
     
     dateRatePlot.dataLineStyle = lineStyle;
     dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
-    [dataRateGraph addPlot:dateRatePlot];
+    [_dataRateGraph addPlot:dateRatePlot];
     
     // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
-    dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor blackColor]];
-    dataRateGraph.plotAreaFrame.paddingTop    = 10;
-    dataRateGraph.plotAreaFrame.paddingBottom = 20;
-    dataRateGraph.plotAreaFrame.paddingLeft   = 45;
-    dataRateGraph.plotAreaFrame.paddingRight  = 20;
-    dataRateGraph.paddingTop    = 0;
-    dataRateGraph.paddingBottom = 0;
-    dataRateGraph.paddingLeft   = 5;
-    dataRateGraph.paddingRight  = 5;
+    _dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor blackColor]];
+    _dataRateGraph.plotAreaFrame.paddingTop    = 10;
+    _dataRateGraph.plotAreaFrame.paddingBottom = 20;
+    _dataRateGraph.plotAreaFrame.paddingLeft   = 45;
+    _dataRateGraph.plotAreaFrame.paddingRight  = 20;
+    _dataRateGraph.paddingTop    = 0;
+    _dataRateGraph.paddingBottom = 0;
+    _dataRateGraph.paddingLeft   = 5;
+    _dataRateGraph.paddingRight  = 5;
     
     // Listen to data recorder ticks
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -209,10 +209,10 @@
 // CorePlot protocol implementation
 -(void) onDataRateUpdate:(NSNotification*)notification {
     // Reset the y-axis range and reload the graph data
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
                                                     length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
-    [dataRateGraph reloadData];
+    [_dataRateGraph reloadData];
 }
 
 -(NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot {

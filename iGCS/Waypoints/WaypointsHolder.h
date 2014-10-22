@@ -10,11 +10,11 @@
 #import "MavLinkPacketHandler.h"
 
 @interface WaypointsHolder : NSObject <NSMutableCopying> {
-    NSMutableArray *array;
-    unsigned int expectedCount;
+    NSMutableArray *_array;
+    unsigned int _expectedCount;
 }
 
-- (instancetype)initWithExpectedCount:(unsigned int)_expectedCount NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithExpectedCount:(unsigned int)expectedCount NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, readonly) bool allWaypointsReceivedP;
 @property (nonatomic, readonly) unsigned int numWaypoints;
