@@ -13,7 +13,7 @@
 
 @implementation FollowMeCtrlValues
 
-- (id) initWithBearing:(double)bearing distance:(double)distance altitudeOffset:(double)altitudeOffset isActive:(BOOL)isActive {
+- (instancetype) initWithBearing:(double)bearing distance:(double)distance altitudeOffset:(double)altitudeOffset isActive:(BOOL)isActive {
     self = [super init];
     if (self) {
         _bearing  = bearing;
@@ -33,21 +33,18 @@
 
 @implementation GCSSidebarController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
@@ -61,8 +58,7 @@
     switch (msg->msgid) {
             
         // Status section
-        case MAVLINK_MSG_ID_HEARTBEAT:
-        {
+        case MAVLINK_MSG_ID_HEARTBEAT: {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
             [_mavBaseModeLabel   setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
@@ -72,8 +68,7 @@
             break;
             
         // Aircraft section
-        case MAVLINK_MSG_ID_VFR_HUD:
-        {
+        case MAVLINK_MSG_ID_VFR_HUD: {
             mavlink_vfr_hud_t  vfrHudPkt;
             mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
             [_acThrottleLabel    setText:[NSString stringWithFormat:@"%d%%", vfrHudPkt.throttle]];
@@ -82,8 +77,7 @@
         }
             break;
             
-        case MAVLINK_MSG_ID_SYS_STATUS:
-        {
+        case MAVLINK_MSG_ID_SYS_STATUS: {
             mavlink_sys_status_t sysStatus;
             mavlink_msg_sys_status_decode(msg, &sysStatus);
             [_acVoltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
@@ -93,8 +87,7 @@
 
             
         // GPS section
-        case MAVLINK_MSG_ID_GPS_RAW_INT:
-        {
+        case MAVLINK_MSG_ID_GPS_RAW_INT: {
             mavlink_gps_raw_int_t gpsRawIntPkt;
             mavlink_msg_gps_raw_int_decode(msg, &gpsRawIntPkt);
             [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsRawIntPkt.satellites_visible]];
@@ -102,8 +95,7 @@
         }
             break;
 
-        case MAVLINK_MSG_ID_GPS_STATUS:
-        {
+        case MAVLINK_MSG_ID_GPS_STATUS: {
             mavlink_gps_status_t gpsStatus;
             mavlink_msg_gps_status_decode(msg, &gpsStatus);
             [_numSatellitesLabel setText:[NSString stringWithFormat:@"%d", gpsStatus.satellites_visible]];
@@ -112,8 +104,7 @@
             
         
         // Wind section
-        case MAVLINK_MSG_ID_WIND:
-        {
+        case MAVLINK_MSG_ID_WIND: {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
             [_windDirLabel    setText:[NSString stringWithFormat:@"%d", (int)wind.direction]];
@@ -124,32 +115,28 @@
     
 
         // System section
-        case MAVLINK_MSG_ID_ATTITUDE:
-        {
+        case MAVLINK_MSG_ID_ATTITUDE: {
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             [_sysUptimeLabel  setText:[NSString stringWithFormat:@"%0.1f s", attitudePkt.time_boot_ms/1000.0f]];
         }
             break;
             
-        case MAVLINK_MSG_ID_HWSTATUS:
-        {
+        case MAVLINK_MSG_ID_HWSTATUS: {
             mavlink_hwstatus_t hwStatus;
             mavlink_msg_hwstatus_decode(msg, &hwStatus);
             [_sysVoltageLabel setText:[NSString stringWithFormat:@"%0.2fV", hwStatus.Vcc/1000.f]];
         }
             break;
             
-        case MAVLINK_MSG_ID_MEMINFO:
-        {
+        case MAVLINK_MSG_ID_MEMINFO: {
             mavlink_meminfo_t memFree;
             mavlink_msg_meminfo_decode(msg, &memFree);
             [_sysMemFreeLabel setText:[NSString stringWithFormat:@"%0.1fkB", memFree.freemem/1024.0f]];
         }
             break;
 
-        case MAVLINK_MSG_ID_RADIO_STATUS:
-        {
+        case MAVLINK_MSG_ID_RADIO_STATUS: {
             mavlink_radio_status_t radioStatus;
             mavlink_msg_radio_status_decode(msg, &radioStatus);
             [_sysRemoteRSSI setText:[NSString stringWithFormat:@"%u", radioStatus.remrssi]];

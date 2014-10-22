@@ -10,7 +10,7 @@
 
 @implementation RequestedPointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _title = @"Next \"Follow Me\" request";

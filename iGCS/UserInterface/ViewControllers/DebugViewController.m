@@ -33,8 +33,7 @@
 
 @implementation DebugViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -45,8 +44,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     NSString *videoSource = [[NSUserDefaults standardUserDefaults] valueForKey:@"videoSource"];
@@ -67,14 +65,11 @@
 }
 
 
--(void)viewDidAppear:(BOOL)animated
-{
+-(void)viewDidAppear:(BOOL)animated {
     [Logger setDebugVC:self];
 
-    if ([[Logger getPendingErrorMessages] count] > 0)
-    {
-        for (NSString *message in [Logger getPendingErrorMessages])
-        {
+    if ([[Logger getPendingErrorMessages] count] > 0) {
+        for (NSString *message in [Logger getPendingErrorMessages]) {
             [self errorMessage:message];
         }
     }
@@ -82,8 +77,7 @@
     [Logger clearPendingErrorMessages];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -176,12 +170,10 @@
 
 
 
--(void)consoleMessage:(NSString*)messageText
-{
+-(void)consoleMessage:(NSString*)messageText {
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
     NSUInteger maxLength = 1000;
-    if(consoleMessagesStringLength > maxLength)
-    {
+    if(consoleMessagesStringLength > maxLength) {
         NSUInteger startIdx = consoleMessagesStringLength - maxLength;
         NSString *cutString = [self.consoleTextView.text substringFromIndex:startIdx];
         NSRange firstReturn = [cutString rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]];

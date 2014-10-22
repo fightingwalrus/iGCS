@@ -13,8 +13,7 @@
 @implementation RedparkSerialCable
 
 
-+(RedparkSerialCable*)createWithViews:(MainViewController*)mvc
-{
++(RedparkSerialCable*)createWithViews:(MainViewController*)mvc {
     RedparkSerialCable *rsc = [[RedparkSerialCable alloc] init];
     
     rsc.mainVC = mvc;
@@ -34,8 +33,7 @@
     DDLogInfo(@"Redpark close method...");
 }
 
--(void)consumeData:(uint8_t *)bytes length:(int)length
-{
+-(void)consumeData:(uint8_t *)bytes length:(int)length {
     int n = [self.rscMgr write:bytes Length:length];
     if (n == length) {
         DDLogDebug(@"send_uart_bytes: output %d chars", n);
@@ -49,8 +47,7 @@
 
 // Redpark Serial Cable has been connected and/or application moved to foreground.
 // protocol is the string which matched from the protocol list passed to initWithProtocol:
-- (void) cableConnected:(NSString *)protocol
-{
+- (void) cableConnected:(NSString *)protocol {
     @try {
         DDLogInfo(@"Redpark: cableConnected");
         
@@ -76,8 +73,7 @@
 
 
 // Redpark Serial Cable has been disconnected and/or application moved to background.
-- (void) cableDisconnected
-{
+- (void) cableDisconnected {
     @try {
         DDLogInfo(@"Redpark: cableDisconnected");
         self.cableConnected = NO;
@@ -90,27 +86,21 @@
 
 // serial port status has changed
 // user can call getModemStatus or getPortStatus to get current state
-- (void) portStatusChanged
-{
+- (void) portStatusChanged {
     DDLogDebug(@"Redpark: portStatusChanged");
 }
 
 // bytes are available to be read (user calls read:)
-- (void) readBytesAvailable:(UInt32)length
-{
+- (void) readBytesAvailable:(UInt32)length {
     @try {
         // Read the available bytes out of the serial cable manager
         uint8_t buf[length];
         int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
         [self produceData:buf length:n];
     }
-    @catch (NSException *e)
-    {
+    @catch (NSException *e) {
         [Logger dumpException:e];
     }
 }
-
-
-
 
 @end

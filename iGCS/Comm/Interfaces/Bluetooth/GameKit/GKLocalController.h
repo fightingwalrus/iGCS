@@ -11,27 +11,27 @@
 @class BluetoothStream;
 
 
-typedef enum {
+typedef NS_ENUM(NSInteger, gameStates) {
 	kStateStartGame,
 	kStatePicker,
 	kStateMultiplayer,
 	kStateMultiplayerCointoss,
 	kStateMultiplayerReconnect
-} gameStates;
+} ;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, packetCodes) {
 	NETWORK_ACK,					// no packet
 	NETWORK_COINTOSS,				// decide who is going to be the server
 	NETWORK_MOVE_EVENT,				// send position
 	NETWORK_FIRE_EVENT,				// send fire
 	NETWORK_HEARTBEAT,				// send of entire state at regular intervals
     NETWORK_MAVLINK
-} packetCodes;
+} ;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, gameNetwork) {
 	kServer,
 	kClient
-} gameNetwork;
+} ;
 
 
 
@@ -39,7 +39,7 @@ typedef enum {
 @interface GKLocalController : NSObject
 
 
--(id)init:(BluetoothStream*)bts;
+-(instancetype)init:(BluetoothStream*)bts NS_DESIGNATED_INITIALIZER;
 -(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length;
 
 

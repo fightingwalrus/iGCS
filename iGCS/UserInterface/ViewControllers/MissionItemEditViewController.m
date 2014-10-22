@@ -21,8 +21,7 @@
 @synthesize itemDetails;
 @synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -30,7 +29,7 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate  {
+- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate {
     delegate = _delegate;
     itemIndex = _idx;
     saveEdits = NO;
@@ -55,8 +54,7 @@
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
@@ -66,8 +64,7 @@
     [self refreshWithMissionItem];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -81,18 +78,18 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [WaypointHelper commandIDToString: ((NSNumber*)[missionItemCommandIDs objectAtIndex:row]).intValue];
+    return [WaypointHelper commandIDToString: ((NSNumber*)missionItemCommandIDs[row]).intValue];
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    DDLogDebug(@"Selected Mission Item: %@ at index %i", [missionItemCommandIDs objectAtIndex:row], row);
+    DDLogDebug(@"Selected Mission Item: %@ at index %i", missionItemCommandIDs[row], row);
     
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    missionItem.command = [((NSNumber*)[missionItemCommandIDs objectAtIndex:row]) unsignedIntValue];
+    missionItem.command = [((NSNumber*)missionItemCommandIDs[row]) unsignedIntValue];
     [delegate replaceMissionItem:missionItem atIndex:itemIndex];
     [self.itemDetails reloadData];
 }
@@ -101,7 +98,7 @@
     // Check that we have a supported mission item 
     int row = -1;
     for (unsigned int i = 0; i < [missionItemCommandIDs count]; i++) {
-        uint16_t commandID = ((NSNumber*)[missionItemCommandIDs objectAtIndex:i]).intValue;
+        uint16_t commandID = ((NSNumber*)missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {
             row = i;
             break;
@@ -132,10 +129,9 @@
     return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
-- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
     UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
@@ -164,7 +160,7 @@
     DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
     mavlink_mission_item_t item = [self getCurrentMissionItem];
-    MissionItemField *field = (MissionItemField*)[[MavLinkUtility missionItemMetadataWith: item.command] objectAtIndex: indexPath.row];
+    MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
 
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];
@@ -172,16 +168,14 @@
     [delegate replaceMissionItem:item atIndex:itemIndex];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
 // Limit textfields to numeric values only
 // ref: http://stackoverflow.com/questions/9344159/validate-numeric-input-to-uitextfield-as-the-user-enters-input
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSString *expression = @"^(-)?([0-9]+)?(\\.([0-9]*)?)?$";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression

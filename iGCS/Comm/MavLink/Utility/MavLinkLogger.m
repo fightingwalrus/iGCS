@@ -14,7 +14,7 @@
 
 @implementation MavLinkLogger
 
--(id)initWithLogName:(NSString *)logName {
+-(instancetype)initWithLogName:(NSString *)logName {
     self = [super init];
     if (self) {
         NSString *fullLogPath = [[FileUtils URLToFileInDocumentsDirWithFileName:logName] path];

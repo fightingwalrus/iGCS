@@ -18,10 +18,10 @@
 @property (nonatomic, assign)   CLLocationCoordinate2D  coordinate;
 @property (nonatomic, readonly) mavlink_mission_item_t  waypoint;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index;
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index NS_DESIGNATED_INITIALIZER;
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
-- (UIColor*) getColor;
+@property (nonatomic, readonly, copy) UIColor *color;
 - (bool) isCurrentWaypointP:(int)currentWaypointSeq;
 
 @end

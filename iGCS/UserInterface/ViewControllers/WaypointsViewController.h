@@ -25,7 +25,7 @@
     UINavigationController* navVCEditItemVC;
 }
 
-- (WaypointsHolder*) getWaypointsHolder;  // for MissionItemEditViewController
+@property (nonatomic, readonly, strong) WaypointsHolder *waypointsHolder;  // for MissionItemEditViewController
 - (void) resetWaypoints;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *carrierPadding;

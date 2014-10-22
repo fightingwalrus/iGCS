@@ -32,7 +32,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     return sharedObject;
 }
 
--(id) init {
+-(instancetype) init {
     self = [super init];
     if (self) {
         _connectionPool = [[CommConnectionPool alloc] init];

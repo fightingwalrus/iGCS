@@ -11,7 +11,7 @@
 #import "SiKFirmware.h"
 
 @implementation AddressDataPair : NSObject
-- (id) initWithAddress: (NSUInteger)address andData:(NSData*)data {
+- (instancetype) initWithAddress: (NSUInteger)address andData:(NSData*)data {
     self = [super init];
     if (self) {
         _address = address;
@@ -42,7 +42,7 @@
 
 @implementation SiKFirmware
 
-- (id) initWithDict:(NSDictionary*)dict {
+- (instancetype) initWithDict:(NSDictionary*)dict {
     self = [super init];
     if (self) {
         _sortedAddressDataPairs = [[dict allValues] sortedArrayUsingSelector: @selector(compare:)];
@@ -98,8 +98,8 @@
 + (NSMutableDictionary*) insertAddressDataPair:(AddressDataPair*)adp into:(NSMutableDictionary*)dict {
     
     // look for a pair that immediately follows this one
-    NSNumber *nextAddress = [NSNumber numberWithUnsignedInteger:[adp nextAddress]];
-    AddressDataPair *nextPair = [dict objectForKey:nextAddress];
+    NSNumber *nextAddress = @([adp nextAddress]);
+    AddressDataPair *nextPair = dict[nextAddress];
     if (nextPair != nil) {
         // found one, remove from dict and merge to the end of adp
         [dict removeObjectForKey:nextAddress];
@@ -108,17 +108,17 @@
     
     // iterate the existing pairs, looking for one that precedes adp
     for (NSNumber *key in [dict allKeys]) {
-        AddressDataPair *prevPair = [dict objectForKey:key];
+        AddressDataPair *prevPair = dict[key];
         if ([prevPair nextAddress] == adp.address) {
             // found one, so merge adp to the end of it
             prevPair = [prevPair extend:adp];
-            [dict setObject:prevPair forKey:key];
+            dict[key] = prevPair;
             return dict;
         }
     }
     
     // otherwise, just insert it, keyed on address
-    [dict setObject:adp forKey:[NSNumber numberWithUnsignedInteger:adp.address]];
+    dict[@(adp.address)] = adp;
     return dict;
 }
 

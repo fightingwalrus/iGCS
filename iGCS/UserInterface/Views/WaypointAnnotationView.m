@@ -14,8 +14,7 @@
 
 @implementation WaypointAnnotationView
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGRect centre = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 0, 0);
     CGRect outerR = CGRectInset(centre, -WAYPOINT_INNER_RADIUS, -WAYPOINT_INNER_RADIUS);
     
@@ -27,8 +26,7 @@
     
     switch (annotation.waypoint.command) {
         case MAV_CMD_NAV_LAND:
-        case MAV_CMD_NAV_TAKEOFF:
-        {
+        case MAV_CMD_NAV_TAKEOFF: {
             // Draw an equilateral triangle icon at the centre of the rect
             // (pointing up for takeoff, down for landing)
             BOOL isTakeOff = (annotation.waypoint.command == MAV_CMD_NAV_TAKEOFF);
@@ -46,7 +44,7 @@
             
             CGContextSetLineJoin(context, kCGLineJoinRound);
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
+            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
             CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextDrawPath(context, kCGPathFillStroke);
         }
@@ -55,7 +53,7 @@
         default:
             // Draw a circle icon
             CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation getColor].CGColor);
+            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
             CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
             CGContextFillEllipseInRect(context, outerR);
             CGContextStrokeEllipseInRect(context, outerR);

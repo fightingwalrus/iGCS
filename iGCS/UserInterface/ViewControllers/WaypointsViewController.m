@@ -19,14 +19,12 @@
 
 @implementation WaypointsViewController
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Adjust view for iOS6 differences
@@ -58,15 +56,13 @@
                                                object:nil];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString * segueName = segue.identifier;
     if ([segueName isEqualToString: @"editItemVC_embed"]) {
         navVCEditItemVC = (UINavigationController*) [segue destinationViewController];
@@ -76,7 +72,7 @@
 - (void)handleKeyboardDisplay:(NSNotification *)notification showing:(bool)showing {
     
     // Determine amount to slide the map and table views
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize keyboardSize = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
     CGFloat y = (keyboardSize.width - tabBarSize.height);
     if (!showing) y = -y;
@@ -91,8 +87,8 @@
     NSDictionary* userInfo = [notification userInfo];
     NSTimeInterval animationDuration;
     UIViewAnimationCurve animationCurve;
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
 
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -103,30 +99,25 @@
     [UIView commitAnimations];
 }
 
-- (void)keyboardShowing:(NSNotification *)notification
-{
+- (void)keyboardShowing:(NSNotification *)notification {
     [self handleKeyboardDisplay: notification showing:YES];
 }
 
-- (void)keyboardHiding:(NSNotification *)notification
-{
+- (void)keyboardHiding:(NSNotification *)notification {
     [self handleKeyboardDisplay: notification showing:NO];
 }
 
-- (MissionItemTableViewController*) missionTableViewController
-{
+- (MissionItemTableViewController*) missionTableViewController {
     assert(navVCEditItemVC);
-    return [navVCEditItemVC.viewControllers objectAtIndex:0];
+    return (navVCEditItemVC.viewControllers)[0];
 }
 
-- (WaypointsHolder*)getWaypointsHolder
-{
+- (WaypointsHolder*) waypointsHolder {
     return waypoints;
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -193,10 +184,10 @@
     CLLocationCoordinate2D pos;
 
     // Determine the next "default" waypoint position
-    WaypointsHolder *currentNavPoints = [waypoints getNavWaypoints];
+    WaypointsHolder *currentNavPoints = [waypoints navWaypoints];
     if ([currentNavPoints numWaypoints] > 0) {
         // Add a new point slightly to the east of the last one
-        mavlink_mission_item_t lastNavItem = [currentNavPoints getLastWaypoint];
+        mavlink_mission_item_t lastNavItem = [currentNavPoints lastWaypoint];
         pos.latitude  = lastNavItem.x;
         pos.longitude = lastNavItem.y + 0.002; // ~200m equatorially
         if (pos.longitude > 180) {

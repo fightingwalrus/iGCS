@@ -31,7 +31,7 @@ NSString *const GCSSikHayesModeDescription[] = {
 
 @implementation GCSSikAT
 
--(id) init {
+-(instancetype) init {
     self = [super init];
     if (self) {
         // registers that *must* match on both of the connected radios

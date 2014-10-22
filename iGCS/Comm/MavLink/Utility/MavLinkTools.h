@@ -26,8 +26,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
  */
 static const mavlink_message_info_t message_info[256] = MAVLINK_MESSAGE_INFO;
 
-static NSString* primitiveFieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, int idx)
-{
+static NSString* primitiveFieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, int idx) {
 	switch (f->type) {
         case MAVLINK_TYPE_CHAR:
             return [NSString stringWithFormat:@"%c", _MAV_RETURN_char(msg, f->wire_offset+idx*1)];
@@ -66,8 +65,7 @@ static NSString* primitiveFieldToNSString(mavlink_message_t *msg, const mavlink_
     return @"";
 }
 
-static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, bool prettyPrint)
-{
+static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, bool prettyPrint) {
 	NSString *s = [NSString stringWithFormat:(prettyPrint ? @"%14s: " : @"%s: "), f->name];    
 	if (f->array_length == 0) {
         s = [s stringByAppendingFormat:@"%@ ", primitiveFieldToNSString(msg, f, 0)];        
@@ -90,8 +88,7 @@ static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_inf
     return s;
 }
 
-static NSString* msgToNSString(mavlink_message_t *msg, bool prettyPrint)
-{
+static NSString* msgToNSString(mavlink_message_t *msg, bool prettyPrint) {
 	const mavlink_message_info_t *m = &message_info[msg->msgid];
 	const mavlink_field_info_t *f = m->fields;
     NSString *s = [NSString stringWithFormat:@"%s { ", m->name];

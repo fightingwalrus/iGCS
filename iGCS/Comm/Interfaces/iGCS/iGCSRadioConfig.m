@@ -32,7 +32,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 }
 
 -(id)gcs_shift {
-    id anObject = [self objectAtIndex:0];
+    id anObject = self[0];
     [self removeObjectAtIndex:0];
     return anObject;
 }
@@ -42,7 +42,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 @implementation iGCSRadioConfig
 
--(id) init {
+-(instancetype) init {
     self = [super init];
     if (self) {
         // public

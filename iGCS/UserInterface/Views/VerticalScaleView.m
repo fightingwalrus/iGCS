@@ -12,8 +12,7 @@
 
 @implementation VerticalScaleView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -40,8 +39,7 @@
 
 
 // FIXME: Refactor out common code with CompassView 
-- (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
-{
+- (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect {
     DDLogVerbose(@"VerticalScale: Drawing to {%f,%f, %f,%f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     
     const float HORZ_INSET_PERC = 0.0;
@@ -127,10 +125,8 @@
     // Draw "shadow to simulate depth
     // http://www.raywenderlich.com/2033/core-graphics-101-lines-rectangles-and-gradients
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    NSArray *colors = [NSArray arrayWithObjects:
-                       (__bridge id)[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0].CGColor, 
-                       (__bridge id)[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0].CGColor, 
-                       nil];
+    NSArray *colors = @[(__bridge id)[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0].CGColor, 
+                        (__bridge id)[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0].CGColor];
     CGFloat locations[] = {0.0, 1.0};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
     for (int i = 0; i < 2; i++) {

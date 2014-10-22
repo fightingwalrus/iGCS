@@ -19,6 +19,6 @@
 @property (nonatomic, readonly) iGCSMavLinkInterface* interface;
 @property (nonatomic, readonly) WaypointsHolder* mission;
 
-- (id)initWithInterface:(iGCSMavLinkInterface*)interface andMission:(WaypointsHolder*)mission;
+- (instancetype)initWithInterface:(iGCSMavLinkInterface*)interface andMission:(WaypointsHolder*)mission NS_DESIGNATED_INITIALIZER;
 
 @end

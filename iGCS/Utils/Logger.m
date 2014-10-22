@@ -75,7 +75,7 @@ static BOOL loggerEnabled = NO;
     if (pendingErrorMessages) {
         return [NSArray arrayWithArray:pendingErrorMessages];
     } else {
-        return [NSArray array];
+        return @[];
     }
 }
 

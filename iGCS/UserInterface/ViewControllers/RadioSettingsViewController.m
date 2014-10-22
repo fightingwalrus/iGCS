@@ -64,7 +64,7 @@ static void *SVKvoContext = &SVKvoContext;
 
 @implementation RadioSettingsViewController
 
--(id)init {
+-(instancetype)init {
     self = [super init];
 
     if (self) {
@@ -361,7 +361,7 @@ static void *SVKvoContext = &SVKvoContext;
     // local radio settings
     if (object == _localRadioSettingsModel) {
         if ([keyPath isEqual:@"radioVersion"]) {
-            self.localRadioFirmwareVersion.text = [change objectForKey:NSKeyValueChangeNewKey];
+            self.localRadioFirmwareVersion.text = change[NSKeyValueChangeNewKey];
 
         }else if ([keyPath isEqual:@"boardType"]) {
             // noop
@@ -385,7 +385,7 @@ static void *SVKvoContext = &SVKvoContext;
 //            self.localRadioAirBaudRate.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
 
         }else if ([keyPath isEqual:@"netId"]) {
-            self.localRadioNetId.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+            self.localRadioNetId.text = [change[NSKeyValueChangeNewKey] stringValue];
 
         } else if ([keyPath isEqual:@"transmitterPower"]) {
 //            self.localRadioTransmitPower.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
@@ -419,7 +419,7 @@ static void *SVKvoContext = &SVKvoContext;
     // remote radio settings
     if (object == _remoteRadioSettingsModel) {
         if ([keyPath isEqual:@"radioVersion"]) {
-            self.remoteRadioFirmwareVersion.text = [change objectForKey:NSKeyValueChangeNewKey];
+            self.remoteRadioFirmwareVersion.text = change[NSKeyValueChangeNewKey];
             self.connectionStatus.text = @"YES";
         }
     }
@@ -467,8 +467,7 @@ static void *SVKvoContext = &SVKvoContext;
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

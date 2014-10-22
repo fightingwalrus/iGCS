@@ -24,7 +24,7 @@
 
 #pragma mark - radio update UI
 
--(id)initWithTargetView:(UIView *)aTargetView {
+-(instancetype)initWithTargetView:(UIView *)aTargetView {
     self = [super init];
     if (self) {
         _targetView = aTargetView;

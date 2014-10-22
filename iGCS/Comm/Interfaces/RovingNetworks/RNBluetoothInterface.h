@@ -11,9 +11,7 @@
 #import <ExternalAccessory/ExternalAccessory.h>
 
 
-
-@interface RNBluetoothInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate>
-{
+@interface RNBluetoothInterface : CommInterface <EAAccessoryDelegate, NSStreamDelegate> {
     NSMutableArray *_accessoryList;
     EAAccessory *_selectedAccessory;
     EASession *_session;

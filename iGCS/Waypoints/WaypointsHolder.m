@@ -12,8 +12,7 @@
 
 @implementation WaypointsHolder
 
-- (id)initWithExpectedCount:(unsigned int)_expectedCount
-{
+- (instancetype)initWithExpectedCount:(unsigned int)_expectedCount {
     self = [super init];
     if (self) {
         // Initialization code
@@ -23,8 +22,7 @@
     return self;
 }
 
-- (id) mutableCopyWithZone:(NSZone *)zone
-{
+- (id) mutableCopyWithZone:(NSZone *)zone {
     WaypointsHolder *copy = [[WaypointsHolder allocWithZone: zone] init];
     copy->array = [array mutableCopyWithZone: zone];
     copy->expectedCount = expectedCount;
@@ -73,7 +71,7 @@
 
 - (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint {
     assert(index >= 0 && index < [self numWaypoints]);
-    [array replaceObjectAtIndex:index withObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
+    array[index] = [WaypointsHolder makeBoxedWaypoint:waypoint];
 }
 
 - (void) moveWaypoint:(unsigned int)from to:(unsigned int)to {
@@ -84,10 +82,10 @@
 
 - (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
     assert(index >= 0 && index < [self numWaypoints]);
-    return [WaypointsHolder unBoxWaypoint: [array objectAtIndex:index]];
+    return [WaypointsHolder unBoxWaypoint: array[index]];
 }
 
-- (mavlink_mission_item_t) getLastWaypoint {
+- (mavlink_mission_item_t) lastWaypoint {
     return [self getWaypoint: ([self numWaypoints]-1)];
 }
 
@@ -101,7 +99,7 @@
     return -1;
 }
 
-- (WaypointsHolder*) getNavWaypoints {
+- (WaypointsHolder*) navWaypoints {
     WaypointsHolder *navWayPoints = [[WaypointsHolder alloc] initWithExpectedCount:[self numWaypoints]];
     for (unsigned int i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
@@ -149,14 +147,14 @@
     NSUInteger numLines = [lines count];
     
     // Check header
-    if (numLines == 0 || ![((NSString*)[lines objectAtIndex:0]) isEqualToString:@"QGC WPL 110"]) {
+    if (numLines == 0 || ![((NSString*)lines[0]) isEqualToString:@"QGC WPL 110"]) {
         return nil;
     }
     
     // Read waypoints
     WaypointsHolder *mission = [[WaypointsHolder alloc] initWithExpectedCount:numLines];
     for (NSUInteger i = 1; i < numLines; i++) {
-        NSString *line = [lines objectAtIndex:i];
+        NSString *line = lines[i];
         if ([line length] == 0 && (i == numLines - 1)) {
             break; // allow an empty line at the end
         }

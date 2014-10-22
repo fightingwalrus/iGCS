@@ -16,7 +16,7 @@
     dispatch_queue_t serialQueue;
 }
 
--(id)initWithLogName:(NSString *)logName;
+-(instancetype)initWithLogName:(NSString *)logName NS_DESIGNATED_INITIALIZER;
 -(void)handlePacket:(mavlink_message_t *)msg;
 
 @end

@@ -14,6 +14,6 @@
 
 @property CGFloat fillWidth;
 
-- (id) initWithPolyline:(MKPolyline*)polyline;
+- (instancetype) initWithPolyline:(MKPolyline*)polyline NS_DESIGNATED_INITIALIZER;
 
 @end

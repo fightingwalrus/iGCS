@@ -10,8 +10,7 @@
 
 @implementation RNBluetoothInterface
 
-+(RNBluetoothInterface*)create
-{
++(RNBluetoothInterface*)create {
     RNBluetoothInterface *rn = [[RNBluetoothInterface alloc] init];
     
     if (rn.selectedAccessory) {
@@ -22,9 +21,7 @@
     }
 }
 
--(void)consumeData:(const uint8_t *)bytes length:(int)length
-{
-    
+-(void)consumeData:(const uint8_t *)bytes length:(int)length {
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
     
@@ -32,8 +29,7 @@
 
 #pragma mark Internal
 
-- (void)writeDataFromBufferToStream
-{
+- (void)writeDataFromBufferToStream {
 	DDLogVerbose(@"RNBluetoothInterface::writeDataFromBufferToStream");
     while (([[_session outputStream] hasSpaceAvailable]) && ([_writeDataBuffer length] > 0)) {
         NSInteger bytesWritten = [[_session outputStream] write:[_writeDataBuffer bytes] maxLength:[_writeDataBuffer length]];
@@ -66,7 +62,7 @@
 
 
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         // Custom initialization
         _writeDataBuffer = [[NSMutableData alloc] init];
@@ -75,15 +71,14 @@
 		if ([_accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
                 BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Roving Networks"];
-                if(comparison)
-                {
+                if(comparison) {
                     _selectedAccessory = currentAccessory;
                     DDLogDebug(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
                     break;
                 }
             }
 			NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-			self.protocolString = [protocolStrings objectAtIndex:0];
+			self.protocolString = protocolStrings[0];
 		}
 	}
 
@@ -94,15 +89,13 @@
     return self;
 }
 
-- (EAAccessory *)selectedAccessory
-{
+- (EAAccessory *)selectedAccessory {
 	if (_selectedAccessory == nil) {
 		_accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
-		if ([_accessoryList count])
-		{
-			_selectedAccessory = [_accessoryList objectAtIndex:0];
+		if ([_accessoryList count]) {
+			_selectedAccessory = _accessoryList[0];
 			NSArray *protocolStrings = [_selectedAccessory protocolStrings];
-			self.protocolString = [protocolStrings objectAtIndex:0];
+			self.protocolString = protocolStrings[0];
 		}
 	}
 	return _selectedAccessory;
@@ -209,8 +202,7 @@
 
 - (void)accessoryConnected:(NSNotification *)notification {
 	DDLogInfo(@"RNBluetoothInterface::accessoryConnected");
-	if (![self isAccessoryConnected])
-	{
+	if (![self isAccessoryConnected]) {
 		EAAccessory *a = [self selectedAccessory];
 		[self setupControllerForAccessory:a withProtocolString:_protocolString];
 		[self closeSession];
