@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ArDroneUtils.h"
 
-@interface ArDroneViewController : UIViewController
+@interface ArDroneViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) ArDroneUtils * arDrone2;
 

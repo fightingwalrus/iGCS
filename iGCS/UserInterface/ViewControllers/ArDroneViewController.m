@@ -28,9 +28,15 @@
 @property (strong, nonatomic) UIButton *emergencyButton;
 @property (strong, nonatomic) UIButton *doAnimationButton;
 @property (strong, nonatomic) UIButton *calibrationButton;
+@property (strong, nonatomic) UIButton *resetWatchDogButton;
 
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
+
+@property (strong, nonatomic) UITextField *tf;
+@property (strong, nonatomic) NSArray *theData;
+
+
 
 
 @end
@@ -41,8 +47,33 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     [self configureViewLayout];
+    UIPickerView *picker = [[UIPickerView alloc] init];
+    picker.dataSource = self;
+    picker.delegate = self;
+    self.tf.inputView = picker;
+    self.theData = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave"];
+    
     
 }
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.theData.count;
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return  1;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.theData[row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.tf.text = self.theData[row];
+    [self.tf resignFirstResponder];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -110,6 +141,15 @@
     [self.view addSubview:self.doAnimationButton];
     
     
+    self.resetWatchDogButton = [UIButton newAutoLayoutView];
+    [self.resetWatchDogButton setTitle :@"Reset Watchdog Timer" forState:UIControlStateNormal];
+    [self.resetWatchDogButton addTarget:self action:@selector(doAnimationProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.resetWatchDogButton];
+
+    
+    
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
     [self.emergencyButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:35.0]];
@@ -144,7 +184,7 @@
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:180.0f];
     
-    NSArray *buttonlViews2 = @[self.takeOffButton, self.landButton, self.calibrationButton, self.doAnimationButton];
+    NSArray *buttonlViews2 = @[self.takeOffButton, self.landButton, self.calibrationButton, self.resetWatchDogButton, self.doAnimationButton];
     
     previousLabel = nil;
     for (UIView *view in buttonlViews2) {
@@ -160,7 +200,16 @@
     }
 
 
-
+    self.tf = [UITextField newAutoLayoutView];
+    [self.tf setText :@"Choose Animation"];
+    //[self.tf.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:35.0]];
+    [self.tf addTarget:self action:@selector(emergencyProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.tf setTextColor:[GCSThemeManager sharedInstance].appTintColor];
+    //[self.tf setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.tf];
+    [self.tf autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.tf autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
+    
     
 }
 
@@ -196,7 +245,25 @@
     [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];}
 
 - (void) doAnimationProgram {
-    [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];}
+    
+    NSLog(@"The picker data %@", self.tf.text);
+    
+    if ([self.tf.text isEqualToString:@"Flip Left"])
+        [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
+    else if ([self.tf.text isEqualToString:@"Flip Right"])
+        [[CommController sharedInstance].mavLinkInterface arDroneFlipRight];
+    else if ([self.tf.text isEqualToString:@"Flip Ahead"])
+        [[CommController sharedInstance].mavLinkInterface arDroneFlipAhead];
+    else if ([self.tf.text isEqualToString:@"Flip Behind"])
+        [[CommController sharedInstance].mavLinkInterface arDroneFlipBehind];
+    else if ([self.tf.text isEqualToString:@"Wave"])
+        [[CommController sharedInstance].mavLinkInterface arDroneWave];
+    
+      
+    }
+        
+        
+    
 
 
 @end
