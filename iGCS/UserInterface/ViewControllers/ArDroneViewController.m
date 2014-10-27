@@ -51,7 +51,7 @@
     picker.dataSource = self;
     picker.delegate = self;
     self.tf.inputView = picker;
-    self.theData = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave"];
+    self.theData = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
     
     
 }
@@ -184,7 +184,7 @@
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:180.0f];
     
-    NSArray *buttonlViews2 = @[self.takeOffButton, self.landButton, self.calibrationButton, self.resetWatchDogButton, self.doAnimationButton];
+    NSArray *buttonlViews2 = @[self.takeOffButton, self.landButton, self.calibrationButton, self.resetWatchDogButton];
     
     previousLabel = nil;
     for (UIView *view in buttonlViews2) {
@@ -207,6 +207,11 @@
     [self.tf setTextColor:[GCSThemeManager sharedInstance].appTintColor];
     //[self.tf setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.tf];
+    
+    
+    [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:180.0f];
+    
     [self.tf autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.tf autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
     
@@ -245,8 +250,8 @@
     [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];}
 
 - (void) doAnimationProgram {
+
     
-    NSLog(@"The picker data %@", self.tf.text);
     
     if ([self.tf.text isEqualToString:@"Flip Left"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
@@ -258,8 +263,11 @@
         [[CommController sharedInstance].mavLinkInterface arDroneFlipBehind];
     else if ([self.tf.text isEqualToString:@"Wave"])
         [[CommController sharedInstance].mavLinkInterface arDroneWave];
+    else if ([self.tf.text isEqualToString:@"Turn Around"])
+        [[CommController sharedInstance].mavLinkInterface arDroneTurnAround];
+    else if ([self.tf.text isEqualToString:@"Phi Theta Mixed"])
+        [[CommController sharedInstance].mavLinkInterface arDronePhiThetaMixed];
     
-      
     }
         
         
