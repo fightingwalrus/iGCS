@@ -18,9 +18,6 @@
 
 @implementation MissionItemEditViewController
 
-@synthesize itemDetails;
-@synthesize delegate;
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -29,13 +26,13 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate {
-    delegate = _delegate;
-    itemIndex = _idx;
-    saveEdits = NO;
+- (void) initInstance:(unsigned int)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
+    _delegate = delegate;
+    _itemIndex = itemIndex;
+    _saveEdits = NO;
 
     // Clone the original mission
-    originalMission = [delegate cloneMission];
+    _originalMission = [delegate cloneMission];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,8 +46,8 @@
 
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
-    if (!saveEdits) {
-        [delegate resetMission: originalMission];
+    if (!_saveEdits) {
+        [_delegate resetMission:_originalMission];
     }
 }
 
@@ -58,9 +55,9 @@
     [super viewDidLoad];
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
-    missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
+    _missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
 
-    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", itemIndex]];
+    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", _itemIndex]];
     [self refreshWithMissionItem];
 }
 
@@ -74,31 +71,31 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    return [missionItemCommandIDs count];
+    return [_missionItemCommandIDs count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [WaypointHelper commandIDToString: ((NSNumber*)missionItemCommandIDs[row]).intValue];
+    return [WaypointHelper commandIDToString: ((NSNumber*)_missionItemCommandIDs[row]).intValue];
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    DDLogDebug(@"Selected Mission Item: %@ at index %i", missionItemCommandIDs[row], row);
+    DDLogDebug(@"Selected Mission Item: %@ at index %i", _missionItemCommandIDs[row], row);
     
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    missionItem.command = [((NSNumber*)missionItemCommandIDs[row]) unsignedIntValue];
-    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
+    missionItem.command = [((NSNumber*)_missionItemCommandIDs[row]) unsignedIntValue];
+    [_delegate replaceMissionItem:missionItem atIndex:_itemIndex];
     [self.itemDetails reloadData];
 }
 
 - (void) refreshWithMissionItem {
     // Check that we have a supported mission item 
     int row = -1;
-    for (unsigned int i = 0; i < [missionItemCommandIDs count]; i++) {
-        uint16_t commandID = ((NSNumber*)missionItemCommandIDs[i]).intValue;
+    for (unsigned int i = 0; i < [_missionItemCommandIDs count]; i++) {
+        uint16_t commandID = ((NSNumber*)_missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {
             row = i;
             break;
@@ -113,26 +110,26 @@
     }
     
     // Set the corresponding picker view row, and refresh the table view
-    [pickerView selectRow:row inComponent:0 animated:NO];
+    [_pickerView selectRow:row inComponent:0 animated:NO];
     [self.itemDetails reloadData];
 }
 
 - (mavlink_mission_item_t)getCurrentMissionItem {
-    return [delegate getMissionItemAtIndex:itemIndex];
+    return [_delegate getMissionItemAtIndex:_itemIndex];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
-- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
-    UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
+    UITableViewCell *cell = [_itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
     UILabel *label    = (UILabel *)    [cell viewWithTag:100];
@@ -155,7 +152,7 @@
     while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
         cell = [cell superview];
     }
-    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)cell];
+    NSIndexPath *indexPath = [_itemDetails indexPathForCell:(UITableViewCell*)cell];
     assert(indexPath != NULL);
     DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
@@ -165,7 +162,7 @@
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];
 
-    [delegate replaceMissionItem:item atIndex:itemIndex];
+    [_delegate replaceMissionItem:item atIndex:_itemIndex];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -190,12 +187,12 @@
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
-    saveEdits = false;
+    _saveEdits = false;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveButtonClicked:(id)sender {
-    saveEdits = true;
+    _saveEdits = true;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

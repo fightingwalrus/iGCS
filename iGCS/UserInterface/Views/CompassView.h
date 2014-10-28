@@ -10,13 +10,13 @@
 #import "DoubleBufferedAsyncView.h"
 
 @interface CompassView : DoubleBufferedAsyncView {
-    float heading;
-    float navBearing;
+    float _heading;
+    float _navBearing;
 }
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 
-- (void) setHeading:(float)_heading;
-- (void) setNavBearing:(float)_navBearing;
+- (void) setHeading:(float)heading;
+- (void) setNavBearing:(float)navBearing;
 
 @end

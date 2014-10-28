@@ -13,7 +13,7 @@
 @interface MavLinkLogger : NSObject <MavLinkPacketHandler> {
     NSFileHandle *_fileHandle;
     DateTimeUtils *_dateTimeUtils;
-    dispatch_queue_t serialQueue;
+    dispatch_queue_t _serialQueue;
 }
 
 -(instancetype)initWithLogName:(NSString *)logName NS_DESIGNATED_INITIALIZER;

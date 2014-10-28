@@ -22,15 +22,15 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (!initializedBuffers) {
-        doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
-        doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
-        currentBuffer = 0;
-        initializedBuffers = true;
+    if (!_initializedBuffers) {
+        _doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
+        _doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
+        _currentBuffer = 0;
+        _initializedBuffers = true;
         [self requestRedraw];
     } else {
         @synchronized(self) {
-            CGContextDrawLayerAtPoint(context, CGPointMake(0,0), doubleBuffer[(currentBuffer + 1) % 2]);
+            CGContextDrawLayerAtPoint(context, CGPointMake(0,0), _doubleBuffer[(_currentBuffer + 1) % 2]);
         }
     }
 }
@@ -49,22 +49,22 @@
 }
 
 - (void)updateLayer {
-    if (!OSAtomicCompareAndSwapInt(0, 1, &casLock)) {
+    if (!OSAtomicCompareAndSwapInt(0, 1, &_casLock)) {
         return; // update already in progress
     }
 
     @autoreleasepool {
-        if (initializedBuffers) {
-            CGContextRef ctx = CGLayerGetContext(doubleBuffer[currentBuffer]);
+        if (_initializedBuffers) {
+            CGContextRef ctx = CGLayerGetContext(_doubleBuffer[_currentBuffer]);
             [self drawToContext:ctx rect:self.bounds];
             @synchronized(self) {
-                currentBuffer = (currentBuffer + 1) % 2;
+                _currentBuffer = (_currentBuffer + 1) % 2;
             }
         }
         [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:true];
     }
     
-    casLock = 0;
+    _casLock = 0;
 }
 
 @end

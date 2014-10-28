@@ -13,7 +13,7 @@
 @class DataRateRecorder;
 
 @interface CommsViewController : UIViewController <MavLinkPacketHandler, CPTPlotDataSource> {
-    CPTXYGraph *dataRateGraph;
+    CPTXYGraph *_dataRateGraph;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView  *attitudeTextView;

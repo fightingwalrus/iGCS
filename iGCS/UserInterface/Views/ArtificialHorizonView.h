@@ -10,10 +10,11 @@
 #import "DoubleBufferedAsyncView.h"
 
 @interface ArtificialHorizonView : DoubleBufferedAsyncView {
-    float roll, pitch;
+    float _roll;
+    float _pitch;
 }
 
-- (void) setRoll: (float)_roll pitch:(float)_pitch;
+- (void) setRoll: (float)roll pitch:(float)pitch;
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 - (void) drawAHGaugeInnerCircle: (CGContextRef)ctx centre:(CGPoint)c radius:(float)r;

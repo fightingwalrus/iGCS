@@ -12,11 +12,8 @@
 
 @interface CommConnection : NSObject
 
-
-
 @property (strong) CommInterface *source;
 @property (strong) CommInterface *destination;
-
 
 +(CommConnection*)createForSource:(CommInterface*)source destination:(CommInterface*)destination;
 

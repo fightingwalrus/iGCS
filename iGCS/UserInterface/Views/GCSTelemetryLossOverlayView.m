@@ -10,46 +10,46 @@
 #import "LFGlassView.h"
 
 @implementation GCSTelemetryLossOverlayView {
-    LFGlassView *overlayView;
-    UIView* parentView;
+    LFGlassView *_overlayView;
+    UIView* _parentView;
 }
 
-- (instancetype) initWithParentView:(UIView*)_parentView {
+- (instancetype) initWithParentView:(UIView*)parentView {
     self = [super init];
     if (self) {
-        parentView = _parentView;
+        _parentView = parentView;
     }
     return self;
 }
 
 - (void) show {
-    if (overlayView) {
+    if (_overlayView) {
         return;
     }
     
-    CGRect frame = parentView.frame;
-    overlayView = [[LFGlassView alloc] initWithFrame:frame];
-    overlayView.clipsToBounds = YES;
-    overlayView.layer.cornerRadius = 0.0;
-    overlayView.blurRadius = 1.0;
-    overlayView.scaleFactor = 1.0;
-    overlayView.liveBlurring = YES;
-    [parentView addSubview:overlayView];
+    CGRect frame = _parentView.frame;
+    _overlayView = [[LFGlassView alloc] initWithFrame:frame];
+    _overlayView.clipsToBounds = YES;
+    _overlayView.layer.cornerRadius = 0.0;
+    _overlayView.blurRadius = 1.0;
+    _overlayView.scaleFactor = 1.0;
+    _overlayView.liveBlurring = YES;
+    [_parentView addSubview:_overlayView];
     
     UILabel *l = [[UILabel alloc] initWithFrame:frame];
-    l.center = overlayView.center;
+    l.center = _overlayView.center;
     l.text = @"Telemetry lost";
     l.textAlignment = NSTextAlignmentCenter;
     l.textColor = [UIColor whiteColor];
     l.font = [UIFont fontWithName:@"Helvetica" size: 64];
     l.backgroundColor = [UIColor clearColor];
-    [overlayView addSubview:l];
+    [_overlayView addSubview:l];
 }
 
 - (void) hide {
-    if (overlayView) {
-        [overlayView removeFromSuperview];
-        overlayView = nil;
+    if (_overlayView) {
+        [_overlayView removeFromSuperview];
+        _overlayView = nil;
     }
 }
 

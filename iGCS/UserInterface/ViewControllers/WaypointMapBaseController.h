@@ -21,27 +21,26 @@
 
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
-    MKPolyline *waypointRoutePolyline;
-    int currentWaypointNum;
+    MKPolyline *_waypointRoutePolyline;
+    int _currentWaypointNum;
 
-    MKPolyline *trackPolyline;
-    MKMapPoint *trackMKMapPoints;
-    unsigned int trackMKMapPointsLen;
-    unsigned int numTrackPoints;
+    MKPolyline *_trackPolyline;
+    MKMapPoint *_trackMKMapPoints;
+    unsigned int _trackMKMapPointsLen;
+    unsigned int _numTrackPoints;
     
 @protected
-    MKMapView *map;
     bool draggableWaypointsP;
     
     CLLocationManager *locationManager;
     CLLocation *userPosition;
 }
 
-@property (nonatomic, retain) IBOutlet MKMapView *_mapView;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq;
-- (void) resetWaypoints:(WaypointsHolder *)_waypoints;
+- (void) resetWaypoints:(WaypointsHolder *)waypoints;
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;

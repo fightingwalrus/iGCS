@@ -12,6 +12,7 @@
 
 #import "CommsViewController.h"
 #import "GCSMapViewController.h"
+#import "GCSMapViewController+DataRate.h"
 
 #import "CommController.h"
 #import "DataRateRecorder.h"

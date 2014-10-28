@@ -23,18 +23,13 @@
 
 @implementation HeaderSpec
 
-@synthesize width;
-@synthesize align;
-@synthesize text;
-@synthesize tag;
-
-- (instancetype) initWithWidth:(NSInteger)_width alignment:(NSTextAlignment)_align text:(NSString*)_text tag:(NSInteger)_tag {
+- (instancetype) initWithWidth:(NSInteger)width alignment:(NSTextAlignment)align text:(NSString*)text tag:(NSInteger)tag {
     self = [super init];
     if (self) {
-        self.text =  _text;
-        self.width = _width;
-        self.align = _align;
-        self.tag   = _tag;
+        _text =  text;
+        _width = width;
+        _align = align;
+        _tag   = tag;
     }
     return self;
 }
@@ -58,13 +53,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[[self getWaypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
+    [[[self waypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
     [self unmarkSelectedRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     // Prevent the edit/done button being touched while editing a mission item
-    [[[self getWaypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
+    [[[self waypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
 }
 
 - (void)viewDidLoad {
@@ -85,12 +80,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (WaypointsViewController*) getWaypointsVC {
+- (WaypointsViewController*) waypointsVC {
     return (WaypointsViewController*)self.parentViewController.parentViewController;
 }
 
-- (WaypointsHolder*) getWaypointsHolder {
-    return [[self getWaypointsVC] waypointsHolder];
+- (WaypointsHolder*) waypointsHolder {
+    return [[self waypointsVC] waypoints];
 }
 
 #pragma mark - Table view data source
@@ -100,7 +95,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) return [[self getWaypointsHolder] numWaypoints];
+    if (section == 0) return [[self waypointsHolder] numWaypoints];
     return 0;
 }
 
@@ -174,7 +169,7 @@ NSArray* headerSpecs = nil;
         }
     }
     
-    mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint: indexPath.row];
+    mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint: indexPath.row];
     BOOL isNavCommand = [WaypointHelper isNavCommand:waypoint];
     
     // Prepare the cell
@@ -243,7 +238,7 @@ NSArray* headerSpecs = nil;
         assert (indexPath.section == 0);
         
         // Delete the row from the data source
-        [[self getWaypointsHolder] removeWaypoint:indexPath.row];
+        [[self waypointsHolder] removeWaypoint:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -251,7 +246,7 @@ NSArray* headerSpecs = nil;
     }
     
     // Reset the map and table views
-    [[self getWaypointsVC] resetWaypoints];
+    [[self waypointsVC] resetWaypoints];
 }
 
 
@@ -264,10 +259,10 @@ NSArray* headerSpecs = nil;
 // Support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
-    [[self getWaypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
+    [[self waypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
     
     // Reset the map and table views
-    [[self getWaypointsVC] resetWaypoints];
+    [[self waypointsVC] resetWaypoints];
 }
 
 // Support conditional rearranging of the table view.
@@ -330,7 +325,7 @@ NSArray* headerSpecs = nil;
 }
 
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
-    mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:row];
+    mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:row];
     NSMutableDictionary *dict = [self headerTagToLabelDictWith:waypoint.command];
     
     // If we recognise this mission item type, then populate the fields (default is ""),
@@ -343,7 +338,7 @@ NSArray* headerSpecs = nil;
 
 - (void)unmarkSelectedRow {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
-    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:-1];
+    [[self waypointsVC] maybeUpdateCurrentWaypoint:-1];
     self.lastIndexPath = nil;
 }
 
@@ -351,7 +346,7 @@ NSArray* headerSpecs = nil;
     NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self modifyHeadersForSelectedRow:idx];
-    [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+    [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
 }
 
 - (BOOL) toggleEditing {
@@ -384,10 +379,10 @@ NSArray* headerSpecs = nil;
     NSInteger idx = indexPath.row;
     
     if (tableView.isEditing) {
-        mavlink_mission_item_t waypoint = [[self getWaypointsHolder] getWaypoint:idx];
+        mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
         if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
             [self unmarkSelectedRow];
-            [[self getWaypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
+            [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
             [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
         }
     } else {
@@ -396,7 +391,7 @@ NSArray* headerSpecs = nil;
             [self unmarkSelectedRow];
         } else {
             self.lastIndexPath = indexPath;
-            [[self getWaypointsVC] maybeUpdateCurrentWaypoint:[[self getWaypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
+            [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
         }
     }
 }
@@ -406,7 +401,7 @@ NSArray* headerSpecs = nil;
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;
         unsigned int row = [rowNum unsignedIntValue];
-        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row with:[self getWaypointsVC]];
+        [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row with:[self waypointsVC]];
     }
 }
 
