@@ -22,7 +22,7 @@
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 @property (nonatomic, readonly, copy) UIColor *color;
-- (BOOL) isCurrentWaypointP:(NSInteger)currentWaypointSeq;
+- (BOOL) hasMatchingSeq:(NSInteger)seq;
 
 @end
 

@@ -52,8 +52,8 @@
     return [theme waypointOtherColor];
 }
 
-- (BOOL) isCurrentWaypointP:(NSInteger)currentWaypointSeq {
-    return (currentWaypointSeq == _waypoint.seq);
+- (BOOL) hasMatchingSeq:(NSInteger)seq {
+    return (seq == _waypoint.seq);
 }
 
 @end

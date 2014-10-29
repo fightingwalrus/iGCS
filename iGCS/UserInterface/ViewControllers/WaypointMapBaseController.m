@@ -70,7 +70,7 @@
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
-        if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
+        if ([waypointAnnotation hasMatchingSeq:waypointSeq]) {
             return waypointAnnotation;
         }
     }
@@ -343,7 +343,7 @@
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
-        [WaypointMapBaseController updateWaypointIconFor:view isSelected:[waypointAnnotation isCurrentWaypointP:_currentWaypointNum]];
+        [WaypointMapBaseController updateWaypointIconFor:view isSelected:[waypointAnnotation hasMatchingSeq:_currentWaypointNum]];
 
         // Provide subclasses with a chance to customize the waypoint annotation view
         [self customizeWaypointAnnotationView:view];
