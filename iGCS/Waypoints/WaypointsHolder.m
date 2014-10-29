@@ -89,7 +89,7 @@
     return [self getWaypoint: ([self numWaypoints]-1)];
 }
 
-- (NSInteger)getIndexOfWaypointWithSeq:(NSInteger)sequence {
+- (NSInteger)getIndexOfWaypointWithSeq:(NSUInteger)sequence {
     for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
         if (waypoint.seq == sequence) {

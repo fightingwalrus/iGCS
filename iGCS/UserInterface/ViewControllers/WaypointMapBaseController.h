@@ -49,7 +49,7 @@
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
 // Following methods are intended to be overridden by subclasses
-- (void) waypointWithSeq:(NSInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 
