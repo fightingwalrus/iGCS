@@ -170,12 +170,12 @@ static const int AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) clearGuidedPositions {
-    if (_currentGuidedAnnotation != nil) {
+    if (_currentGuidedAnnotation) {
         [self.mapView removeAnnotation:_currentGuidedAnnotation];
     }
     _currentGuidedAnnotation = nil;
     
-    if (_requestedGuidedAnnotation != nil) {
+    if (_requestedGuidedAnnotation) {
         [self.mapView removeAnnotation:_requestedGuidedAnnotation];
     }
     _requestedGuidedAnnotation = nil;
@@ -236,8 +236,9 @@ static const int AIRPLANE_ICON_SIZE = 48;
     CLLocationCoordinate2D fmCoords = CLLocationCoordinate2DMake(followMeLat*RAD2DEG, followMeLong*RAD2DEG);
     
     // Update map
-    if (_requestedGuidedAnnotation != nil)
+    if (_requestedGuidedAnnotation) {
         [self.mapView removeAnnotation:_requestedGuidedAnnotation];
+    }
     
     if (_showProposedFollowPos) {
         _requestedGuidedAnnotation = [[RequestedPointAnnotation alloc] initWithCoordinate:fmCoords];
@@ -472,19 +473,18 @@ static const int AIRPLANE_ICON_SIZE = 48;
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     MKAnnotationView* v = [super mapView:theMapView viewForAnnotation:annotation];
-    if (v != nil)
-        return v;
+    if (v) return v;
     
     // Handle our custom point annotations
     if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
         CustomPointAnnotation *customPoint = (CustomPointAnnotation*)annotation;
         
         MKAnnotationView *view = (MKAnnotationView*) [self.mapView dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
-        if (view == nil) {
+        if (view) {
+            view.annotation = customPoint;
+        } else {
             view = [[MKAnnotationView alloc] initWithAnnotation:customPoint reuseIdentifier:[customPoint viewIdentifier]];
             [view.layer removeAllAnimations];
-        } else {
-            view.annotation = customPoint;
         }
         
         view.enabled = YES;

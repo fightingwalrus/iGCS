@@ -186,7 +186,7 @@
         if (pos.longitude > 180) {
             pos.longitude -= 360;
         }
-    } else if (userPosition != nil) {
+    } else if (userPosition) {
         // Place the first point near the current user
         pos = userPosition.coordinate;
     } else {

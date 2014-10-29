@@ -78,7 +78,7 @@
 	picker.delegate = nil;
 	
 	// invalidate and release game session if one is around.
-	if(self.gameSession != nil)	{
+	if (self.gameSession)	{
 		[self invalidateSession:self.gameSession];
 		self.gameSession = nil;
 	}
@@ -124,7 +124,7 @@
 // invalidate session
 //
 - (void)invalidateSession:(GKSession *)session {
-	if(session != nil) {
+	if (session) {
 		[session disconnectFromAllPeers];
 		session.available = NO;
 		[session setDataReceiveHandler: nil withContext: NULL];

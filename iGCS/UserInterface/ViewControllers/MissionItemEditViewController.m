@@ -149,7 +149,7 @@
     // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already
     // using for another purpose; namely, using viewWithTag to find/configure the cell from the storyboard prototype)
     UIView *cell = textField;
-    while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
+    while (cell && ![cell isKindOfClass:[UITableViewCell class]]) {
         cell = [cell superview];
     }
     NSIndexPath *indexPath = [_itemDetails indexPathForCell:(UITableViewCell*)cell];

@@ -71,7 +71,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 - (EAAccessory *)selectedAccessory {
-    if (_selectedAccessory == nil) {
+    if (!_selectedAccessory) {
         self.accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
         if ([self.accessoryList count]) {
             _selectedAccessory = (self.accessoryList)[0];
@@ -89,7 +89,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 - (BOOL)openSession {
-	if (self.session == nil) {
+	if (!self.session) {
         DDLogInfo(@"FightingWalrusInterface: openSession");
         [self.selectedAccessory setDelegate:self];
         self.session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];

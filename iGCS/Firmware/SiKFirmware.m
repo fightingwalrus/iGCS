@@ -100,7 +100,7 @@
     // look for a pair that immediately follows this one
     NSNumber *nextAddress = @([adp nextAddress]);
     AddressDataPair *nextPair = dict[nextAddress];
-    if (nextPair != nil) {
+    if (nextPair) {
         // found one, remove from dict and merge to the end of adp
         [dict removeObjectForKey:nextAddress];
         adp = [adp extend:nextPair];
@@ -129,7 +129,7 @@
     NSArray* lines = [s componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     for (NSString *line in lines) {
         AddressDataPair *ad = [SiKFirmware parseLine:line];
-        if (ad != nil) {
+        if (ad) {
             dict = [SiKFirmware insertAddressDataPair:ad into:dict];
         }
     }

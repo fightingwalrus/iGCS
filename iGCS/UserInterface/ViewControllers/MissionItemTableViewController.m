@@ -147,12 +147,12 @@ NSArray* headerSpecs = nil;
     int TAG_INDEX = 100;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    // FIXME: outside the above "if (cell == nil)..." because it seems cells are already pre-created. Why? Precreated in nib?
+    // FIXME: outside the above "if (!cell)..." because it seems cells are already pre-created. Why? Precreated in nib?
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
         unsigned int x = 0;
         for (unsigned int i = 0; i < [headerSpecs count]; i++) {

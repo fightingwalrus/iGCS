@@ -206,8 +206,9 @@
     // Check array bounds
     if (_numTrackPoints == _trackMKMapPointsLen) {
         MKMapPoint *newAlloc = realloc(_trackMKMapPoints, _trackMKMapPointsLen*2 * sizeof(MKMapPoint));
-        if (newAlloc == nil)
+        if (!newAlloc) {
             return;
+        }
         _trackMKMapPoints = newAlloc;
         _trackMKMapPointsLen *= 2;
     }
@@ -313,7 +314,9 @@
         // FIXME: Dequeuing disabled due to issue observed on iOS7.1 only - cf IGCS-110
         //MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         WaypointAnnotationView *view = nil;
-        if (view == nil) {
+        if (view) {
+            view.annotation = annotation;
+        } else {
             view = [[WaypointAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
             [view setBackgroundColor:[UIColor clearColor]];
@@ -328,8 +331,6 @@
             label.layer.shadowRadius  = 1.0f;
             
             [view addSubview:label];
-        } else {
-            view.annotation = annotation;
         }
         
         view.enabled = YES;

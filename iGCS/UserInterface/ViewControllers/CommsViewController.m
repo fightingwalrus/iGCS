@@ -158,8 +158,9 @@
 - (void) handlePacket:(mavlink_message_t*)msg {
     NSAssert([NSThread isMainThread], @"handlePacket called on non-main thread");    
     // FIXME: Ugh - forcing view load here to ensure the sub UITextView is already loaded. Make nicer.
-    if (self.defaultTextView == nil)
+    if (!self.defaultTextView) {
         [self loadView];
+    }
     
     static unsigned int packetCount = 0;
     packetCount++;
