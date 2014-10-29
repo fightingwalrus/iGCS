@@ -52,8 +52,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *voltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentLabel;
 
-@property (nonatomic, retain) GCSTelemetryLossOverlayView *telemetryLossView;
-
 - (IBAction) changeControlModeSegment;
 
 + (BOOL) isAcceptableFollowMePosition:(CLLocation*)pos;
