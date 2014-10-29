@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  CommsViewController.h
 //  iGCS
 //
 //  Created by Claudio Natoli on 5/02/12.
@@ -12,9 +12,7 @@
 
 @class DataRateRecorder;
 
-@interface CommsViewController : UIViewController <MavLinkPacketHandler, CPTPlotDataSource> {
-    CPTXYGraph *_dataRateGraph;
-}
+@interface CommsViewController : UIViewController <MavLinkPacketHandler, CPTPlotDataSource>
 
 @property (nonatomic, retain) IBOutlet UITextView  *attitudeTextView;
 @property (nonatomic, retain) IBOutlet UITextView  *vfrHUDTextView;
