@@ -27,7 +27,7 @@
 	// Do any additional setup after loading the view.
     _mapView.delegate = self;
     
-    _currentWaypointNum = -1;
+    _currentWaypointNum = WAYPOINTSEQ_NONE;
     
     _trackMKMapPointsLen = 1000;
     _trackMKMapPoints = malloc(_trackMKMapPointsLen * sizeof(MKMapPoint));
@@ -66,7 +66,7 @@
     [_mapView removeAnnotations:[self getWaypointAnnotations]];
 }
 
-- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq {
+- (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
@@ -126,25 +126,28 @@
     free(navMKMapPoints);
 }
 
-- (void)updateWaypointIcon:(WaypointAnnotation*)annotation isSelected:(BOOL)isSelected {
+- (void)updateWaypointIconAtSeq:(WaypointSeqOpt)seq isSelected:(BOOL)isSelected {
+    if (seq == WAYPOINTSEQ_NONE) return;
+    
+    WaypointAnnotation* annotation = [self getWaypointAnnotation:seq];
     if (annotation) {
         [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[_mapView viewForAnnotation: annotation]
                                               isSelected:isSelected];
     }
 }
 
-- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq {
+- (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq {
     if (_currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
-        NSInteger previousWaypointNum = _currentWaypointNum;
+        WaypointSeqOpt previousWaypointNum = _currentWaypointNum;
         
         //  first, update the current value (so we get the desired
         // side-effect, from viewForAnnotation, when resetting the waypoints), then...
         _currentWaypointNum = newCurrentWaypointSeq;
 
         //  reset the previous and new current waypoints
-        [self updateWaypointIcon:[self getWaypointAnnotation:previousWaypointNum] isSelected:NO];
-        [self updateWaypointIcon:[self getWaypointAnnotation:_currentWaypointNum] isSelected:YES];
+        [self updateWaypointIconAtSeq:previousWaypointNum isSelected:NO];
+        [self updateWaypointIconAtSeq:_currentWaypointNum isSelected:YES];
     }
 }
 
@@ -184,7 +187,7 @@
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?
-- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+- (void) waypointWithSeq:(WaypointSeq)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
 }
 
 // FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
@@ -343,7 +346,8 @@
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
-        [WaypointMapBaseController updateWaypointIconFor:view isSelected:[waypointAnnotation hasMatchingSeq:_currentWaypointNum]];
+        BOOL isSelected = (_currentWaypointNum != WAYPOINTSEQ_NONE) && [waypointAnnotation hasMatchingSeq:_currentWaypointNum];
+        [WaypointMapBaseController updateWaypointIconFor:view isSelected:isSelected];
 
         // Provide subclasses with a chance to customize the waypoint annotation view
         [self customizeWaypointAnnotationView:view];

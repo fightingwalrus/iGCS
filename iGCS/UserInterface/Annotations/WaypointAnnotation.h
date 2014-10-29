@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "MavLinkPacketHandler.h"
 #import "GCSThemeManager.h"
+#import "WaypointsHolder.h"
 
 @interface WaypointAnnotation : NSObject <MKAnnotation> {
     NSInteger _index;
@@ -22,8 +23,6 @@
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 @property (nonatomic, readonly, copy) UIColor *color;
-- (BOOL) hasMatchingSeq:(NSInteger)seq;
+- (BOOL) hasMatchingSeq:(WaypointSeq)seq;
 
 @end
-
-

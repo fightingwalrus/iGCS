@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkPacketHandler.h"
 
+// TODO: Adopt proper Option type for this... my kingdom for a Maybe.
+typedef NSUInteger WaypointSeq;
+typedef NSInteger  WaypointSeqOpt;
+#define WAYPOINTSEQ_NONE -1
+
 @interface WaypointsHolder : NSObject <NSMutableCopying> {
     NSMutableArray *_array;
     NSUInteger _expectedCount;
@@ -31,7 +36,7 @@
 - (void) replaceWaypoint:(NSUInteger) index with:(mavlink_mission_item_t)waypoint;
 - (void) moveWaypoint:(NSUInteger) index1 to:(NSUInteger)index2;
 
-- (NSInteger) getIndexOfWaypointWithSeq:(NSUInteger)sequence;
+- (NSInteger) getIndexOfWaypointWithSeq:(WaypointSeq)sequence;
 - (mavlink_mission_item_t) getWaypoint:(NSUInteger) index;
 + (WaypointsHolder*) createFromQGCString:(NSString*)qgcString;
 

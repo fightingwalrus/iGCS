@@ -22,7 +22,7 @@
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *_waypointRoutePolyline;
-    NSInteger _currentWaypointNum;
+    WaypointSeqOpt _currentWaypointNum;
 
     MKPolyline *_trackPolyline;
     MKMapPoint *_trackMKMapPoints;
@@ -39,9 +39,9 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
-- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
+- (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq;
 - (void) resetWaypoints:(WaypointsHolder *)waypoints;
-- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
+- (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
@@ -49,7 +49,7 @@
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
 // Following methods are intended to be overridden by subclasses
-- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) waypointWithSeq:(WaypointSeq)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 
