@@ -187,12 +187,12 @@
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
-    _saveEdits = false;
+    _saveEdits = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveButtonClicked:(id)sender {
-    _saveEdits = true;
+    _saveEdits = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

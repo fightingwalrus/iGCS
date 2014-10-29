@@ -52,7 +52,7 @@
     return [theme waypointOtherColor];
 }
 
-- (bool) isCurrentWaypointP:(int)currentWaypointSeq {
+- (BOOL) isCurrentWaypointP:(int)currentWaypointSeq {
     return (currentWaypointSeq == _waypoint.seq);
 }
 

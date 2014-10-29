@@ -16,7 +16,7 @@
 
 - (instancetype)initWithExpectedCount:(unsigned int)expectedCount NS_DESIGNATED_INITIALIZER;
 
-@property (nonatomic, readonly) bool allWaypointsReceivedP;
+@property (nonatomic, readonly) BOOL allWaypointsReceivedP;
 @property (nonatomic, readonly) unsigned int numWaypoints;
 
 @property (nonatomic, readonly) mavlink_mission_item_t lastWaypoint;

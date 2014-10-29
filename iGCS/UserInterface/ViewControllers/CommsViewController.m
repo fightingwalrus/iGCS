@@ -149,7 +149,7 @@
     return YES;
 }
 
-- (void) setCableConnectionStatus: (bool) connectedP {
+- (void) setCableConnectionStatus: (BOOL) connectedP {
     // Change the connection status button
     [_connectionStatus setTitle:(connectedP ? @"ON" : @"OFF") forState:UIControlStateNormal];
     [_connectionStatus setHighlighted:connectedP]; // FIXME: red/green would be nicer
@@ -167,36 +167,36 @@
     
     switch (msg->msgid) {
         case MAVLINK_MSG_ID_ATTITUDE:
-            [_attitudeTextView setText:msgToNSString(msg, true)];
+            [_attitudeTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_VFR_HUD:
-            [_vfrHUDTextView setText:msgToNSString(msg, true)];
+            [_vfrHUDTextView setText:msgToNSString(msg, YES)];
             break;
      
         case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-            [_gpsIntTextView setText:msgToNSString(msg, true)];
+            [_gpsIntTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_GPS_RAW_INT:
-            [_gpsRawTextView setText:msgToNSString(msg, true)];
+            [_gpsRawTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_SYS_STATUS:
-            [_sysStatusView setText:msgToNSString(msg, true)];
+            [_sysStatusView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_GPS_STATUS:
-            [_gpsStatusView setText:msgToNSString(msg, true)];
+            [_gpsStatusView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
-            [_navControllerOutputTextView setText:msgToNSString(msg, true)];
+            [_navControllerOutputTextView setText:msgToNSString(msg, YES)];
             break;
             
         default: {
             // Append string representation of msg
-            NSString *newText = [_defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,false)];
+            NSString *newText = [_defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,NO)];
             // Limit length of text buffer
             if (newText.length > 2560)
                 newText = [newText substringFromIndex:(newText.length-2560)];

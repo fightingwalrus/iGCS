@@ -43,7 +43,7 @@
     return waypoint;
 }
 
-- (bool)allWaypointsReceivedP {
+- (BOOL)allWaypointsReceivedP {
     return ([_array count] == _expectedCount);
 }
 

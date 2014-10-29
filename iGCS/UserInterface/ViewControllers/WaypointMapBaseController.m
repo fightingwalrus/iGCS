@@ -33,7 +33,7 @@
     _trackMKMapPoints = malloc(_trackMKMapPointsLen * sizeof(MKMapPoint));
     _numTrackPoints = 0;
     
-    draggableWaypointsP = false;
+    draggableWaypointsP = NO;
     
     // Add recognizer for long press gestures
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]
@@ -148,7 +148,7 @@
     }
 }
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP {
+- (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP {
     draggableWaypointsP = _draggableWaypointsP;
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];

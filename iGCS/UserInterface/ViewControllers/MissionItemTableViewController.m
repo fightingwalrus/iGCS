@@ -71,8 +71,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    [self.tableView setAllowsSelection: true];
-    [self.tableView setAllowsSelectionDuringEditing: true];
+    [self.tableView setAllowsSelection:YES];
+    [self.tableView setAllowsSelectionDuringEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -337,7 +337,7 @@ NSArray* headerSpecs = nil;
 }
 
 - (void)unmarkSelectedRow {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [[self waypointsVC] maybeUpdateCurrentWaypoint:-1];
     self.lastIndexPath = nil;
 }
@@ -353,7 +353,7 @@ NSArray* headerSpecs = nil;
     BOOL isEditing = !self.isEditing;
     
     // Toggle the table editing state
-    [self setEditing:isEditing animated:true];
+    [self setEditing:isEditing animated:YES];
     
     // Slide the section header along to match the table cells
     CGRect r = [_sectionHeaderContainer frame];

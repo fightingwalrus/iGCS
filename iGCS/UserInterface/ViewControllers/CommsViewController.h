@@ -33,6 +33,6 @@
 
 @property (nonatomic, weak) DataRateRecorder *dataRateRecorder;
 
-- (void) setCableConnectionStatus:(bool) connectedP;
+- (void) setCableConnectionStatus:(BOOL) connectedP;
 
 @end

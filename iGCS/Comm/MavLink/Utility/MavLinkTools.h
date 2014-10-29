@@ -65,7 +65,7 @@ static NSString* primitiveFieldToNSString(mavlink_message_t *msg, const mavlink_
     return @"";
 }
 
-static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, bool prettyPrint) {
+static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_info_t *f, BOOL prettyPrint) {
 	NSString *s = [NSString stringWithFormat:(prettyPrint ? @"%14s: " : @"%s: "), f->name];    
 	if (f->array_length == 0) {
         s = [s stringByAppendingFormat:@"%@ ", primitiveFieldToNSString(msg, f, 0)];        
@@ -88,7 +88,7 @@ static NSString* fieldToNSString(mavlink_message_t *msg, const mavlink_field_inf
     return s;
 }
 
-static NSString* msgToNSString(mavlink_message_t *msg, bool prettyPrint) {
+static NSString* msgToNSString(mavlink_message_t *msg, BOOL prettyPrint) {
 	const mavlink_message_info_t *m = &message_info[msg->msgid];
 	const mavlink_field_info_t *f = m->fields;
     NSString *s = [NSString stringWithFormat:@"%s { ", m->name];

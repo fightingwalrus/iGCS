@@ -30,7 +30,7 @@
     unsigned int _numTrackPoints;
     
 @protected
-    bool draggableWaypointsP;
+    BOOL draggableWaypointsP;
     
     CLLocationManager *locationManager;
     CLLocation *userPosition;
@@ -43,7 +43,7 @@
 - (void) resetWaypoints:(WaypointsHolder *)waypoints;
 - (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;

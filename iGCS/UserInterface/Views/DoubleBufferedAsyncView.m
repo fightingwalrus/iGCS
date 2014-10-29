@@ -26,7 +26,7 @@
         _doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
         _doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
         _currentBuffer = 0;
-        _initializedBuffers = true;
+        _initializedBuffers = YES;
         [self requestRedraw];
     } else {
         @synchronized(self) {
@@ -61,7 +61,7 @@
                 _currentBuffer = (_currentBuffer + 1) % 2;
             }
         }
-        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:true];
+        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
     }
     
     _casLock = 0;

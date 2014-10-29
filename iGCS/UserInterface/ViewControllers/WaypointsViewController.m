@@ -69,7 +69,7 @@
     }
 }
 
-- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(bool)showing {
+- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(BOOL)showing {
     
     // Determine amount to slide the map and table views
     CGSize keyboardSize = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
