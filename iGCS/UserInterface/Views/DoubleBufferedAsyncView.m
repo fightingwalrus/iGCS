@@ -30,7 +30,7 @@
         [self requestRedraw];
     } else {
         @synchronized(self) {
-            CGContextDrawLayerAtPoint(context, CGPointMake(0,0), _doubleBuffer[(_currentBuffer + 1) % 2]);
+            CGContextDrawLayerAtPoint(context, CGPointZero, _doubleBuffer[(_currentBuffer + 1) % 2]);
         }
     }
 }

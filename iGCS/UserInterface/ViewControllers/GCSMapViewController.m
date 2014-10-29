@@ -479,7 +479,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
     if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
         CustomPointAnnotation *customPoint = (CustomPointAnnotation*)annotation;
         
-        MKAnnotationView *view = (MKAnnotationView*) [self.mapView dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
+        MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:[customPoint viewIdentifier]];
         if (view) {
             view.annotation = customPoint;
         } else {
@@ -489,7 +489,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         
         view.enabled = YES;
         view.canShowCallout = YES;
-        view.centerOffset = CGPointMake(0,0);      
+        view.centerOffset = CGPointZero;
         view.image = [MiscUtilities image:[UIImage imageNamed:@"13-target.png"]
                                 withColor:[customPoint color]];
         

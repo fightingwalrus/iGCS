@@ -53,7 +53,7 @@
         CGContextRef ctx = CGLayerGetContext(frontFaceLayer);
         [self drawAHGaugeFrontFace:   ctx centre:c radius:r];
     }
-    CGContextDrawLayerAtPoint(ctx, CGPointMake(0,0), frontFaceLayer);
+    CGContextDrawLayerAtPoint(ctx, CGPointZero, frontFaceLayer);
 }
 
 - (void) drawAHGaugeInnerCircle:(CGContextRef) ctx centre:(CGPoint)c radius:(float) r {
