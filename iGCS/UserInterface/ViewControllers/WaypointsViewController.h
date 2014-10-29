@@ -14,9 +14,9 @@
 
 @protocol MissionItemEditingDelegate
 - (WaypointsHolder*) cloneMission;
-- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx;
+- (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx;
 - (void) resetMission:(WaypointsHolder*) mission;
-- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx;
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx;
 @end
 
 @interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, MissionItemEditingDelegate> {    

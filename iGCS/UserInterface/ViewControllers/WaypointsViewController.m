@@ -263,7 +263,7 @@
     return [_waypoints mutableCopy];
 }
 
-- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx {
+- (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx {
     return [_waypoints getWaypoint:idx];
 }
 
@@ -271,7 +271,7 @@
     [self resetWaypoints: mission];
 }
 
-- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx {
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {
     [_waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
     [self resetWaypoints]; // Reset the map and table views
 }

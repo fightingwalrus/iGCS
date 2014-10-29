@@ -41,7 +41,7 @@
            inContext:(CGContextRef)context {
     // Create the path
     CGMutablePathRef path = CGPathCreateMutable();
-	for (int i = 0; i < self.polyline.pointCount; i++) {
+	for (NSUInteger i = 0; i < self.polyline.pointCount; i++) {
 		CGPoint p = [self pointForMapPoint:_polyline.points[i]];
 		if (i == 0) {
 			CGPathMoveToPoint(path, nil, p.x, p.y);

@@ -162,7 +162,7 @@
         [self loadView];
     }
     
-    static unsigned int packetCount = 0;
+    static NSUInteger packetCount = 0;
     packetCount++;
     
     switch (msg->msgid) {

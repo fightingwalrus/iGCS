@@ -154,8 +154,8 @@ NSArray* headerSpecs = nil;
     
     // FIXME: outside the above "if (!cell)..." because it seems cells are already pre-created. Why? Precreated in nib?
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
-        unsigned int x = 0;
-        for (unsigned int i = 0; i < [headerSpecs count]; i++) {
+        NSUInteger x = 0;
+        for (NSUInteger i = 0; i < [headerSpecs count]; i++) {
             int width = [((HeaderSpec*)headerSpecs[i]) width];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 44)];
             label.tag = TAG_INDEX+i;
@@ -274,7 +274,7 @@ NSArray* headerSpecs = nil;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the view that will hold the header labels
     UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
-    unsigned int x = 0;
+    NSUInteger x = 0;
     for (HeaderSpec *spec in headerSpecs) {
         int width = [spec width];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 20)];
@@ -400,7 +400,7 @@ NSArray* headerSpecs = nil;
     NSString * segueName = segue.identifier;    
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;
-        unsigned int row = [rowNum unsignedIntValue];
+        NSUInteger row = [rowNum unsignedIntValue];
         [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row with:[self waypointsVC]];
     }
 }

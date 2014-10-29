@@ -93,7 +93,7 @@ static NSString* msgToNSString(mavlink_message_t *msg, BOOL prettyPrint) {
 	const mavlink_field_info_t *f = m->fields;
     NSString *s = [NSString stringWithFormat:@"%s { ", m->name];
     if (prettyPrint) s = [s stringByAppendingString:@"\n"];
-	for (unsigned int i=0; i<m->num_fields; i++) {
+	for (NSUInteger i = 0; i < m->num_fields; i++) {
 		s = [s stringByAppendingFormat:@"%@ ", fieldToNSString(msg, &f[i], prettyPrint)];
         if (prettyPrint) s = [s stringByAppendingString:@"\n"];
 	}

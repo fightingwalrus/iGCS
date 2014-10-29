@@ -26,8 +26,8 @@
 
     MKPolyline *_trackPolyline;
     MKMapPoint *_trackMKMapPoints;
-    unsigned int _trackMKMapPointsLen;
-    unsigned int _numTrackPoints;
+    NSUInteger _trackMKMapPointsLen;
+    NSUInteger _numTrackPoints;
     
 @protected
     BOOL draggableWaypointsP;

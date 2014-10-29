@@ -68,7 +68,7 @@
 
 - (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
         if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
             return waypointAnnotation;
@@ -85,12 +85,12 @@
     
     // Get the nav-specfic waypoints
     WaypointsHolder *navWaypoints = [waypoints navWaypoints];
-    unsigned int numWaypoints = [navWaypoints numWaypoints];
+    NSUInteger numWaypoints = [navWaypoints numWaypoints];
     
     MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
     
     // Add waypoint annotations, and convert to array of MKMapPoints
-    for (unsigned int i = 0; i < numWaypoints; i++) {
+    for (NSUInteger i = 0; i < numWaypoints; i++) {
         mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
@@ -152,7 +152,7 @@
     draggableWaypointsP = _draggableWaypointsP;
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];
         
         // See also viewForAnnotation

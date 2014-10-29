@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, readonly) double latestValue;
 
-- (void) bytesReceived:(unsigned int)numBytes;
+- (void) bytesReceived:(NSUInteger)numBytes;
 
 - (double) secondsSince:(NSUInteger)index;
 - (double) valueAt:(NSUInteger)index;

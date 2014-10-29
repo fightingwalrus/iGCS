@@ -10,7 +10,7 @@
 
 @interface DoubleBufferedAsyncView : UIView {
     CGLayerRef _doubleBuffer[2];
-    unsigned int _currentBuffer;
+    NSUInteger _currentBuffer;
     BOOL _initializedBuffers;
     
     volatile int _casLock;

@@ -39,9 +39,9 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
 - (void) numBytesTimerTick:(NSTimer *)timer {
     // Place the next kB/tick value in the circular buffer, and add to previous NUM_KPBS_TICKS_PER_SECOND-1 points
     double kB = (_numBytesSinceTick/1024.0f);
-    for (unsigned int i = 0; i < NUM_KPBS_TICKS_PER_SECOND; i++) {
+    for (NSUInteger i = 0; i < NUM_KPBS_TICKS_PER_SECOND; i++) {
         if (_circularIndex >= i) {
-            unsigned int idx = (_circularIndex - i) % NUM_KBPS_DATA_POINTS;
+            NSUInteger idx = (_circularIndex - i) % NUM_KBPS_DATA_POINTS;
             if (i == 0) {
                 _avgKBps[idx] = kB;
             } else {
@@ -52,7 +52,7 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
     
     // Find the maximum value
     _maxValue = 0;
-    for (unsigned int i = 0; i < [self count]; i++) {
+    for (NSUInteger i = 0; i < [self count]; i++) {
         _maxValue = MAX(_maxValue, _avgKBps[i]);
     }
     
@@ -65,7 +65,7 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
 }
 
 
-- (void) bytesReceived:(unsigned int)numBytes {
+- (void) bytesReceived:(NSUInteger)numBytes {
     _numBytesSinceTick += numBytes;
 }
 

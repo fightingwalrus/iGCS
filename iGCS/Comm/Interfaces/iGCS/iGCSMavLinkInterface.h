@@ -16,7 +16,7 @@
 
 
 @property (strong) MainViewController *mainVC;
-@property unsigned int heartbeatOnlyCount;
+@property NSUInteger heartbeatOnlyCount;
 @property BOOL mavLinkInitialized;
 
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;

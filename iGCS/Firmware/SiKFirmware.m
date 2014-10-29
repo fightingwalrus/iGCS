@@ -53,7 +53,7 @@
 // ref: http://stackoverflow.com/questions/2501033/nsstring-hex-to-bytes
 + (NSData*)hexStrToNSData:(NSString*)s {
     const char *chars = [s UTF8String];
-    int i = 0, len = s.length;
+    NSUInteger i = 0, len = s.length;
     
     assert(len % 2 == 0);
     

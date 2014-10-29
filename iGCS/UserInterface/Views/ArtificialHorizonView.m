@@ -26,7 +26,7 @@
 
 #if DO_ANIMATION
 - (void) doAnimation {
-    static int i = 0;
+    static NSUInteger i = 0;
     i++;
     [self setRoll:(fmodf(AH_ROT_ANGLE + AH_ROT_PER_STEP*i +180, 360)-180) * DEG2RAD pitch: AH_PITCH_ANGLE * DEG2RAD];
     [self requestRedraw];
@@ -112,7 +112,7 @@
     //CGContextSetCharacterSpacing(ctx, 5); 
 
     // Add pitch lines
-    for (int i = 1; i <= 4; i++) {
+    for (NSUInteger i = 1; i <= 4; i++) {
         NSString *label = [NSString stringWithFormat:@"%d", i*10];
         
         // Increasing size of horizontal stroke moving out from centre
@@ -120,7 +120,7 @@
         float yOffset      = (i  ) * 2 * yMinorDelta;
 
         // For both above and below the horizon
-        for (int j = 0; j < 2; j++) {
+        for (NSUInteger j = 0; j < 2; j++) {
             
             // Main stroke
             float y = c.y + (j == 0 ? yOffset : -yOffset);
@@ -190,7 +190,7 @@
     // Add horizon ticks
     CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     CGContextSetLineWidth(ctx, 0.04*r);
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         CGContextBeginPath(ctx);
         CGContextMoveToPoint   (ctx, c.x + (i==0 ? r : -r), c.y);
         CGContextAddLineToPoint(ctx, c.x + (i==0 ? FRONT_FACE_INNER_RADIUS : -FRONT_FACE_INNER_RADIUS), c.y);
@@ -199,7 +199,7 @@
 
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     // +/-45 + 0 deg arrow marks
-    for (int i = 0; i < 3; i++) {
+    for (NSUInteger i = 0; i < 3; i++) {
         float outerRad = FRONT_FACE_MAJOR_TICK_RADIUS;
         if (i == 1) // 0 def
             outerRad = r;
@@ -216,7 +216,7 @@
     
     // +/- 30 + 60 deg major ticks
     CGContextSetLineWidth(ctx, 0.02*r);
-    for (int i = 1; i < 6; i++) {
+    for (NSUInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = -30 * i * DEG2RAD;
         
@@ -228,7 +228,7 @@
 
     // +/- 10 + 20 deg minor ticks
     CGContextSetLineWidth(ctx, 0.01*r);
-    for (int i = 1; i < 6; i++) {
+    for (NSUInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = (-120 + i*10) * DEG2RAD;
         
@@ -302,7 +302,7 @@
     CGContextFillPath(ctx);
     
     // Draw the "airplane" pointer
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         if (i == 0) {
             // Draw background of pointer
             CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
@@ -327,7 +327,7 @@
         
     // Draw the front face arrow
     float y = c.y - TRIANGLE_POINTER_APEX;
-    for (int i = 0; i < 2; i++) {        
+    for (NSUInteger i = 0; i < 2; i++) {        
         if (i == 0) {
             // Draw background of pointer
             CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);

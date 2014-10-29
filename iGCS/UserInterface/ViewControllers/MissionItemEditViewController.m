@@ -26,7 +26,7 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
+- (void) initInstance:(NSUInteger)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
     _delegate = delegate;
     _itemIndex = itemIndex;
     _saveEdits = NO;
@@ -94,7 +94,7 @@
 - (void) refreshWithMissionItem {
     // Check that we have a supported mission item 
     int row = -1;
-    for (unsigned int i = 0; i < [_missionItemCommandIDs count]; i++) {
+    for (NSUInteger i = 0; i < [_missionItemCommandIDs count]; i++) {
         uint16_t commandID = ((NSNumber*)_missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {
             row = i;

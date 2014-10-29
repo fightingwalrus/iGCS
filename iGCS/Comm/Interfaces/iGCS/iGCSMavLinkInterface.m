@@ -92,7 +92,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
         }
 
         // Pass each byte to the MAVLINK parser
-        for (unsigned int byteIdx = 0; byteIdx < length; byteIdx++) {
+        for (NSUInteger byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
                 if (msg.msgid == MAVLINK_MSG_ID_HEARTBEAT) {
@@ -264,7 +264,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 - (void) issueSetAUTOModeCommand {
-    for (unsigned int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, AUTO);
         [NSThread sleepForTimeInterval:0.01];
     }

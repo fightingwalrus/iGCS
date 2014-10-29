@@ -19,7 +19,7 @@
     BOOL _saveEdits;
 }
 
-- (void) initInstance:(unsigned int)missionItemRow with:(id <MissionItemEditingDelegate>)delegate;
+- (void) initInstance:(NSUInteger)missionItemRow with:(id <MissionItemEditingDelegate>)delegate;
 
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;
@@ -27,7 +27,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *itemDetails;
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 
-@property (nonatomic, readonly) unsigned int itemIndex;
+@property (nonatomic, readonly) NSUInteger itemIndex;
 @property (weak, readonly) id <MissionItemEditingDelegate> delegate;
 
 @end

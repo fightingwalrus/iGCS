@@ -207,7 +207,7 @@
 
 - (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend {
 	static unsigned char networkPacket[kMaxPacketSize];
-	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
+	const NSUInteger packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	
 	if(length < (kMaxPacketSize - packetHeaderSize)) { // our networkPacket buffer size minus the size of the header info
 		int *pIntData = (int *)&networkPacket[0];
