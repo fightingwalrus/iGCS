@@ -93,6 +93,10 @@
     [self sendATCommand:[self.sikAt setRadioParamCommand:NetId withValue:aNetId]];
 }
 
+-(void)setTxPower:(GCSSikPowerLevel)powerLevel {
+    [self sendATCommand:[self.sikAt setRadioParamCommand:TxPower withValue:powerLevel]];
+}
+
 -(void)enableRSSIDebug {
     [self sendATCommand:[self.sikAt enableRSSIDebugCommand]];
 }

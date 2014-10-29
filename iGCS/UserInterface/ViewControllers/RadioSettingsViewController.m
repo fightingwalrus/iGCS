@@ -30,6 +30,9 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersionLabel;
 @property (strong, nonatomic) UILabel *localRadioFirmwareVersion;
 
+@property (strong, nonatomic) UILabel *localRadioTxPowerLabel;
+@property (strong, nonatomic) UITextField *localRadioTxPower;
+
 @property (strong, nonatomic) UILabel *remoteRadioFirmwareVersionLabel;
 @property (strong, nonatomic) UILabel *remoteRadioFirmwareVersion;
 
@@ -148,6 +151,21 @@ static void *SVKvoContext = &SVKvoContext;
     self.localRadioNetId.textAlignment = NSTextAlignmentLeft;
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
+
+    // PowerTx UI
+    self.localRadioTxPowerLabel = [UILabel newAutoLayoutView];
+    [self.view addSubview:self.localRadioTxPowerLabel];
+    [self.localRadioTxPowerLabel setText:@"Power Level:"];
+    self.localRadioTxPowerLabel.textAlignment = NSTextAlignmentRight;
+
+    self.localRadioTxPower = [UITextField newAutoLayoutView];
+    self.localRadioTxPower.borderStyle = UITextBorderStyleRoundedRect;
+    [self.localRadioTxPower autoSetDimension:ALDimensionWidth toSize:150.0f];
+    [self.view  addSubview:self.localRadioTxPower];
+    self.localRadioTxPower.textAlignment = NSTextAlignmentLeft;
+    self.localRadioTxPower.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
+
     // Local radio version
     self.localRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
     [self.view  addSubview:self.localRadioFirmwareVersionLabel];
@@ -186,7 +204,7 @@ static void *SVKvoContext = &SVKvoContext;
     [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
 #endif
 
-    NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
+    NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioTxPowerLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
 
     UIView *previousLabel = nil;
     for (UIView *view in labelViews) {
@@ -208,6 +226,9 @@ static void *SVKvoContext = &SVKvoContext;
 
     [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
     [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
+
+    [self.localRadioTxPower autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioTxPowerLabel withOffset:10];
+    [self.localRadioTxPower autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioTxPowerLabel withOffset:0.0f];
 
     [self.localRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioFirmwareVersionLabel withOffset:10];
     [self.localRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioFirmwareVersionLabel withOffset:0.0f];
@@ -332,6 +353,7 @@ static void *SVKvoContext = &SVKvoContext;
     [self.localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+    [self.localRadioSettingsModel addObserver:self forKeyPath:@"transmitterPower" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 
     if (!self.remoteRadioSettingsModel) {
         self.remoteRadioSettingsModel = [CommController sharedInstance].radioConfig.remoteRadioSettings;
@@ -341,6 +363,7 @@ static void *SVKvoContext = &SVKvoContext;
     [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -388,8 +411,8 @@ static void *SVKvoContext = &SVKvoContext;
             self.localRadioNetId.text = [change[NSKeyValueChangeNewKey] stringValue];
 
         } else if ([keyPath isEqual:@"transmitterPower"]) {
-//            self.localRadioTransmitPower.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
-
+            self.localRadioTxPower.text = [[change objectForKey:NSKeyValueChangeNewKey] stringValue];
+            
         }else if ([keyPath isEqual:@"isECCenabled"]) {
             // noop
 

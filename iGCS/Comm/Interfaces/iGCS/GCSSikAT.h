@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, GCSSikPowerLevel) {
     GCSSiKPowerLevel2   =   2,
     GCSSiKPowerLevel5   =   5,
     GCSSiKPowerLevel8   =   8,
-    GCSSiKPowerLevel11  =   1,
+    GCSSiKPowerLevel11  =   11,
     GCSSiKPowerLevel14  =   14,
     GCSSiKPowerLevel17  =   17,
     GCSSiKPowerLevel20  =   20

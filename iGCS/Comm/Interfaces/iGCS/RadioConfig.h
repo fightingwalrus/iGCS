@@ -12,5 +12,6 @@
 #import "iGCSRadioConfig.h"
 #import "iGCSRadioConfig+CommandBatches.h"
 #import "iGCSRadioConfig+Commands.h"
+#import "iGCSRadioConfig_Commands.h"
 
 #endif

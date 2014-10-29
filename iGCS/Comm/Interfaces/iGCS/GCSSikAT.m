@@ -95,6 +95,7 @@ NSString *const GCSSikHayesModeDescription[] = {
     return (self.hayesMode == AT) ? tWriteCurrentParamsToLocalRadioEEPROM: tWriteCurrentParamsToRemoteRadioEEPROM;
 }
 
+
 -(NSString *)resetToFactoryDefaultCommand {
     return (self.hayesMode == AT) ? tResetLocalRadioToFactoryDefault: tResetRemoteRadioToFactoryDefault;
 }

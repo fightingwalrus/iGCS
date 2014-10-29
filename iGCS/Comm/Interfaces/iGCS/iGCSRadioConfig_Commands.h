@@ -12,6 +12,7 @@
 
 #pragma mark - write radio settings via AT/RT commands
 -(void)setNetId:(NSInteger) aNetId withHayesMode:(GCSSikHayesMode) hayesMode;
+-(void)setTxPower:(GCSSikPowerLevel)powerLevel;
 -(void)enableRSSIDebug;
 -(void)disableDebug;
 -(void)rebootRadioWithHayesMode:(GCSSikHayesMode) hayesMode;
