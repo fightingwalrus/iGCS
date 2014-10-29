@@ -27,8 +27,8 @@ static const BOOL GCSStandardDataRateModeEnabled = YES;
  */
 #import "DDLog.h"
 #ifdef DEBUG
-static const int ddLogLevel = LOG_LEVEL_DEBUG;
+static const NSInteger ddLogLevel = LOG_LEVEL_DEBUG;
 #else
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const NSInteger ddLogLevel = LOG_LEVEL_WARN;
 #endif
 

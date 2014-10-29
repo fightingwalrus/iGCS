@@ -130,8 +130,8 @@
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
 
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
-    int index = [_waypoints getIndexOfWaypointWithSeq:waypointSeq];
+- (void) waypointWithSeq:(NSInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+    NSInteger index = [_waypoints getIndexOfWaypointWithSeq:waypointSeq];
     if (index != -1) {
         mavlink_mission_item_t waypoint = [_waypoints getWaypoint:index];
         waypoint.x = latitude;
@@ -227,7 +227,7 @@
     _txMissionButton.enabled = !isEditing;
     _loadDemoButton.enabled  = !isEditing;
 
-    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
     CGRect tableRect = _containerForTableView.frame;

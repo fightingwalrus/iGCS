@@ -21,10 +21,9 @@
     }
 }
 
--(void)consumeData:(const uint8_t *)bytes length:(int)length {
+-(void)consumeData:(const uint8_t *)bytes length:(NSInteger)length {
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
-    
 }
 
 #pragma mark Internal

@@ -93,7 +93,7 @@
 
 - (void) refreshWithMissionItem {
     // Check that we have a supported mission item 
-    int row = -1;
+    NSInteger row = -1;
     for (NSUInteger i = 0; i < [_missionItemCommandIDs count]; i++) {
         uint16_t commandID = ((NSNumber*)_missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {

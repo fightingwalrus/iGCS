@@ -31,7 +31,7 @@
 - (void) replaceWaypoint:(NSUInteger) index with:(mavlink_mission_item_t)waypoint;
 - (void) moveWaypoint:(NSUInteger) index1 to:(NSUInteger)index2;
 
-- (int) getIndexOfWaypointWithSeq:(int)sequence;
+- (NSInteger) getIndexOfWaypointWithSeq:(NSInteger)sequence;
 - (mavlink_mission_item_t) getWaypoint:(NSUInteger) index;
 + (WaypointsHolder*) createFromQGCString:(NSString*)qgcString;
 

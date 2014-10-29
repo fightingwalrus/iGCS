@@ -81,9 +81,9 @@
     //
     // They also run in an "anticlockwise" direction; that is, [NE --- N --- NW], 
     // but have deliberately chosen a more intuitive display here
-    int startAng = ((int)_heading - 180)/5 * 5;
+    NSInteger startAng = ((NSInteger)_heading - 180)/5 * 5;
     const float startX = c.x + (startAng-_heading) * oneDegX;
-    int ang = (startAng < 0) ? startAng += 360 : startAng;    
+    NSInteger ang = (startAng < 0) ? startAng += 360 : startAng;    
     for (NSUInteger i = 0; i < 360; i += 5, ang = (ang+5) % 360) {
         // Find the x position of this tick
         const float x = startX + i*oneDegX;

@@ -66,7 +66,7 @@
     [_mapView removeAnnotations:[self getWaypointAnnotations]];
 }
 
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
+- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
@@ -133,10 +133,10 @@
     }
 }
 
-- (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
+- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq {
     if (_currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
-        int previousWaypointNum = _currentWaypointNum;
+        NSInteger previousWaypointNum = _currentWaypointNum;
         
         //  first, update the current value (so we get the desired
         // side-effect when resetting the waypoints), then...
@@ -184,7 +184,7 @@
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+- (void) waypointWithSeq:(NSInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
 }
 
 // FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
@@ -271,8 +271,8 @@
     [view.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 
-+ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq {
-    static const int ICON_VIEW_TAG = 101;
++ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(NSInteger)selectedWaypointSeq {
+    static const NSInteger ICON_VIEW_TAG = 101;
 
     WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
     
@@ -301,7 +301,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static const int LABEL_TAG = 100;
+    static const NSInteger LABEL_TAG = 100;
     
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])

@@ -11,7 +11,7 @@
 
 @implementation CommInterface
 
--(void)consumeData:(const uint8_t*)bytes length:(int)length {
+-(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length {
     // gets called when matching source interface in a MavLinkConnection has new data
 
     // must always be overridden for destination interfaces
@@ -19,7 +19,7 @@
 }
 
 // call this method for source interfaces when new data is available
--(void)produceData:(const uint8_t*)bytes length:(int)length {
+-(void)produceData:(const uint8_t*)bytes length:(NSInteger)length {
 
     // ConnectionPool must be assigned
     NSAssert(self.connectionPool, @"connectionPool can not be nil.");

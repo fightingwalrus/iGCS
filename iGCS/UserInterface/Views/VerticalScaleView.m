@@ -95,7 +95,7 @@
         
         // Draw the "numbers"
         if (i % 2 == 0) {
-            NSString *label = [NSString stringWithFormat:@"%d", (int)round(tickVal)];
+            NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(tickVal)];
             CGContextSetTextPosition(ctx, x + TICK_MINOR_WIDTH/2, y + FONT_SIZE_SMALL/3.0);
             CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
         }
@@ -112,7 +112,7 @@
     
     CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
     CGContextSelectFont(ctx, "Arial Rounded MT Bold", FONT_SIZE_LARGE, kCGEncodingMacRoman);
-    NSString *label = [NSString stringWithFormat:@"%d", (int)round(_value)];
+    NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(_value)];
 
     float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);

@@ -144,7 +144,7 @@ NSArray* headerSpecs = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"MissionItemCellID";
-    int TAG_INDEX = 100;
+    NSInteger TAG_INDEX = 100;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -156,7 +156,7 @@ NSArray* headerSpecs = nil;
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
         NSUInteger x = 0;
         for (NSUInteger i = 0; i < [headerSpecs count]; i++) {
-            int width = [((HeaderSpec*)headerSpecs[i]) width];
+            NSInteger width = [((HeaderSpec*)headerSpecs[i]) width];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 44)];
             label.tag = TAG_INDEX+i;
             label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
@@ -276,7 +276,7 @@ NSArray* headerSpecs = nil;
     UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
     NSUInteger x = 0;
     for (HeaderSpec *spec in headerSpecs) {
-        int width = [spec width];
+        NSInteger width = [spec width];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 20)];
         label.tag  = spec.tag;
         label.text = [spec text];

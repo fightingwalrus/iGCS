@@ -46,7 +46,7 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-static const int AIRPLANE_ICON_SIZE = 48;
+static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -401,7 +401,7 @@ static const int AIRPLANE_ICON_SIZE = 48;
         case MAVLINK_MSG_ID_WIND: {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
-            _windIconView.transform = CGAffineTransformMakeRotation(((360 + (int)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
+            _windIconView.transform = CGAffineTransformMakeRotation(((360 + (NSInteger)wind.direction + WIND_ICON_OFFSET_ANG) % 360) * M_PI/180.0f);
         }
         break;
             

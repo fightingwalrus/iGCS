@@ -55,7 +55,7 @@
     // FIXME: We require unique seq numbers, thanks to the dubious usages of getIndexOfWaypointWithSeq.
     //  This seems fragile, and prone to error. Probably best to bite the bullet, wrap each waypoint
     // in an actual object, and use a guid for association.
-    int seqNum = -1;
+    NSInteger seqNum = -1;
     for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t wi = [self getWaypoint:i];
         seqNum = MAX(wi.seq, seqNum);
@@ -89,7 +89,7 @@
     return [self getWaypoint: ([self numWaypoints]-1)];
 }
 
-- (int)getIndexOfWaypointWithSeq:(int)sequence {
+- (NSInteger)getIndexOfWaypointWithSeq:(NSInteger)sequence {
     for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
         if (waypoint.seq == sequence) {
