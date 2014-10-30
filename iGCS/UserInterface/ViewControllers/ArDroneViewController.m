@@ -14,8 +14,6 @@
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
 
-
-
 @interface ArDroneViewController ()
 
 //Navigation bar items
@@ -31,15 +29,12 @@
 @property (strong, nonatomic) UIButton *doAnimationButton;
 @property (strong, nonatomic) UIButton *calibrationButton;
 @property (strong, nonatomic) UIButton *resetWatchDogButton;
-@property (strong, nonatomic) UIButton *manualControlButton;
 
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
 
 @property (strong, nonatomic) UITextField *tf;
 @property (strong, nonatomic) NSArray *theData;
-
-@property int sequenceNumber;
 
 
 
@@ -152,14 +147,6 @@
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.resetWatchDogButton];
-    
-    self.manualControlButton = [UIButton newAutoLayoutView];
-    [self.manualControlButton setTitle :@"Manual Flight" forState:UIControlStateNormal];
-    [self.manualControlButton addTarget:self action:@selector(manualFlightProgram) forControlEvents:UIControlEventTouchUpInside];
-    [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
-    [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
-    [self.view addSubview:self.manualControlButton];
-
 
     
     
@@ -222,9 +209,6 @@
     [self.view addSubview:self.tf];
     
     
-    [self.manualControlButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
-    
     [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:180.0f];
     
@@ -265,61 +249,9 @@
 - (void) emergencyProgram {
     [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];}
 
-- (void) manualFlightProgram {
-    NSLog(@"manual flight function");
-    
-    //http://nscookbook.com/2013/03/ios-programming-recipe-19-using-core-motion-to-access-gyro-and-accelerometer/
-    
-    self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.accelerometerUpdateInterval = .01;
-    self.motionManager.gyroUpdateInterval = .01;
-    
-    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
-                                             withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
-                                                 [self outputMotionData:deviceMotion];
-                                                 if(error){
-                                                     
-                                                     NSLog(@"%@", error);
-                                                 }
-                                             }];
-    
-    
-}
-
-
--(void)outputMotionData:(CMDeviceMotion*)deviceMotion
-{
-    
-    //Probably need to make more robust and switch to Quaternions to calculate the roll, pitch, and yaw values
-    
-    float roll = (float) deviceMotion.attitude.roll / M_PI;
-    float pitch = (float) deviceMotion.attitude.pitch / M_PI;
-    float yaw = (float) deviceMotion.attitude.yaw / M_PI;
-    
-    NSLog(@"The Roll, Pitch, Yaw is %f, %f, %f", roll, pitch, yaw);
-
-    NSString *instrumData = [NSString stringWithFormat:@"AT*PCMD=%i,%d,%d,%d,%d,%d\r",
-                             self.sequenceNumber,                //seq
-                             1,                  //flag
-                             *(int*)(&roll),     //roll
-                             *(int*)(&pitch),    //pitch
-                             0,                  //gaz (vertical speed)
-                             *(int*)(&yaw)       //yaw
-                             ];
-    self.sequenceNumber++;
-    NSLog(@"the converted data is %@", instrumData);
-    //NSString *testDFL = @"AT*PCMD=1,1,0,0,0,1061158912\r";
-    //[[CommController sharedInstance].mavLinkInterface arDroneResetWatchDogTimer];
-    //[[CommController sharedInstance].mavLinkInterface arDroneMove:instrumData];
-    
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 droneMove:instrumData];
-    
-}
-
-
-
 - (void) doAnimationProgram {
+
+    
     
     if ([self.tf.text isEqualToString:@"Flip Left"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
@@ -336,36 +268,10 @@
     else if ([self.tf.text isEqualToString:@"Phi Theta Mixed"])
         [[CommController sharedInstance].mavLinkInterface arDronePhiThetaMixed];
     
-}
-
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self becomeFirstResponder];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [self.motionManager stopDeviceMotionUpdates];
-   
-}
-        
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (motion == UIEventSubtypeMotionShake)
-    {
-        [self doAnimationProgram];
     }
-}
-
-
-
-
-
-
+        
+        
+    
 
 
 @end
-
-
