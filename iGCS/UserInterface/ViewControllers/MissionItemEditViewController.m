@@ -186,9 +186,7 @@
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
                                                         options:0
                                                           range:NSMakeRange(0, [newString length])];
-    if (numberOfMatches == 0)
-        return NO;
-    return YES;
+    return (numberOfMatches != 0);
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
