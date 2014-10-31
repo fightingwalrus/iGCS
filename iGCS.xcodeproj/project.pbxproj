@@ -49,6 +49,7 @@
 		01CEC5F019D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CEC5F119D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CEC5F219D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
+		01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */; };
 		01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
@@ -625,6 +626,8 @@
 		01CEC5CF19D9FA3800320A34 /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
 		01CEC5EE19D9FA9C00320A34 /* ArDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneUtils.h; sourceTree = "<group>"; };
 		01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneUtils.m; sourceTree = "<group>"; };
+		01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneViewController.h; sourceTree = "<group>"; };
+		01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneViewController.m; sourceTree = "<group>"; };
 		01F898D919CA8EC900F3C884 /* BRRequestDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDelete.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
@@ -1826,6 +1829,8 @@
 		496E627616DAFB8B00E52E4A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */,
+				01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */,
 				496E627716DAFB8B00E52E4A /* CommsViewController.h */,
 				496E627816DAFB8B00E52E4A /* CommsViewController.m */,
 				CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */,
@@ -2906,6 +2911,7 @@
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
+				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
