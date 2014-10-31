@@ -11,6 +11,6 @@
 
 @interface ArDroneViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (strong, nonatomic) ArDroneUtils * arDrone2;
+@property (nonatomic, strong) ArDroneUtils *arDrone2;
 
 @end

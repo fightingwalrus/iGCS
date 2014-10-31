@@ -9,8 +9,6 @@
 #import "CommController.h"
 #import "ArDroneViewController.h"
 #import "GCSThemeManager.h"
-
-
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
 
@@ -21,8 +19,6 @@
 
 
 //UI Elements
-
-
 @property (strong, nonatomic) UIButton *takeOffButton;
 @property (strong, nonatomic) UIButton *landButton;
 @property (strong, nonatomic) UIButton *emergencyButton;
@@ -33,10 +29,8 @@
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
 
-@property (strong, nonatomic) UITextField *tf;
-@property (strong, nonatomic) NSArray *theData;
-
-
+@property (strong, nonatomic) UITextField *pickerTextField;
+@property (strong, nonatomic) NSArray *animationNames;
 
 
 @end
@@ -50,14 +44,13 @@
     UIPickerView *picker = [[UIPickerView alloc] init];
     picker.dataSource = self;
     picker.delegate = self;
-    self.tf.inputView = picker;
-    self.theData = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
-    
-    
+    self.pickerTextField.inputView = picker;
+    self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
+    _arDrone2 = [[ArDroneUtils alloc] init];
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.theData.count;
+    return self.animationNames.count;
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -65,14 +58,13 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.theData[row];
+    return self.animationNames[row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.tf.text = self.theData[row];
-    [self.tf resignFirstResponder];
+    self.pickerTextField.text = self.animationNames[row];
+    [self.pickerTextField resignFirstResponder];
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +74,6 @@
 
 -(void)configureNavigationBar {
     [self setTitle:@"ArDrone Test"];
-    
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                              target:self action:@selector(cancelChanges:)];
     
@@ -95,65 +86,57 @@
     
     self.ftpButton = [UIButton newAutoLayoutView];
     [self.ftpButton setTitle :@"FTP program to drone" forState:UIControlStateNormal];
-    [self.ftpButton addTarget:self action:@selector(ftpProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.ftpButton addTarget:self action:@selector(ftp) forControlEvents:UIControlEventTouchUpInside];
     [self.ftpButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.ftpButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.ftpButton];
- 
-    
-    
+
     self.telnetButton = [UIButton newAutoLayoutView];
     [self.telnetButton setTitle :@"Execute program on drone" forState:UIControlStateNormal];
-    [self.telnetButton addTarget:self action:@selector(telnetProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.telnetButton addTarget:self action:@selector(telnet) forControlEvents:UIControlEventTouchUpInside];
     [self.telnetButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.telnetButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.telnetButton];
     
-    
     self.takeOffButton = [UIButton newAutoLayoutView];
     [self.takeOffButton setTitle :@"Launch Drone" forState:UIControlStateNormal];
-    [self.takeOffButton addTarget:self action:@selector(takeoffProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.takeOffButton addTarget:self action:@selector(takeoff) forControlEvents:UIControlEventTouchUpInside];
     [self.takeOffButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.takeOffButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.takeOffButton];
 
-    
     self.landButton = [UIButton newAutoLayoutView];
     [self.landButton setTitle :@"Land Drone" forState:UIControlStateNormal];
-    [self.landButton addTarget:self action:@selector(landProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.landButton addTarget:self action:@selector(land) forControlEvents:UIControlEventTouchUpInside];
     [self.landButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.landButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.landButton];
     
     self.calibrationButton = [UIButton newAutoLayoutView];
     [self.calibrationButton setTitle :@"Calibrate Magnetometer" forState:UIControlStateNormal];
-    [self.calibrationButton addTarget:self action:@selector(calibrationProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.calibrationButton addTarget:self action:@selector(calibration) forControlEvents:UIControlEventTouchUpInside];
     [self.calibrationButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.calibrationButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.calibrationButton];
- 
     
     self.doAnimationButton = [UIButton newAutoLayoutView];
     [self.doAnimationButton setTitle :@"Do Animation" forState:UIControlStateNormal];
-    [self.doAnimationButton addTarget:self action:@selector(doAnimationProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.doAnimationButton addTarget:self action:@selector(executeAnimation) forControlEvents:UIControlEventTouchUpInside];
     [self.doAnimationButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.doAnimationButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.doAnimationButton];
     
-    
     self.resetWatchDogButton = [UIButton newAutoLayoutView];
     [self.resetWatchDogButton setTitle :@"Reset Watchdog Timer" forState:UIControlStateNormal];
-    [self.resetWatchDogButton addTarget:self action:@selector(doAnimationProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.resetWatchDogButton addTarget:self action:@selector(resetWatchDogTimer) forControlEvents:UIControlEventTouchUpInside];
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.resetWatchDogButton];
 
-    
-    
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
     [self.emergencyButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:35.0]];
-    [self.emergencyButton addTarget:self action:@selector(emergencyProgram) forControlEvents:UIControlEventTouchUpInside];
+    [self.emergencyButton addTarget:self action:@selector(emergency) forControlEvents:UIControlEventTouchUpInside];
     [self.emergencyButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.emergencyButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.emergencyButton];
@@ -180,7 +163,6 @@
     }
     
     
-    
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:180.0f];
     
@@ -199,23 +181,17 @@
         previousLabel = view;
     }
 
-
-    self.tf = [UITextField newAutoLayoutView];
-    [self.tf setText :@"Choose Animation"];
-    //[self.tf.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:35.0]];
-    [self.tf addTarget:self action:@selector(emergencyProgram) forControlEvents:UIControlEventTouchUpInside];
-    [self.tf setTextColor:[GCSThemeManager sharedInstance].appTintColor];
-    //[self.tf setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
-    [self.view addSubview:self.tf];
-    
+    self.pickerTextField = [UITextField newAutoLayoutView];
+    [self.pickerTextField setText :@"Choose Animation"];
+    [self.pickerTextField addTarget:self action:@selector(emergency) forControlEvents:UIControlEventTouchUpInside];
+    [self.pickerTextField setTextColor:[GCSThemeManager sharedInstance].appTintColor];
+    [self.view addSubview:self.pickerTextField];
     
     [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:180.0f];
     
-    [self.tf autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.tf autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
-    
-    
+    [self.pickerTextField autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.pickerTextField autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
 }
 
 
@@ -226,52 +202,50 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) ftpProgram {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 uploadProgramToDrone];
+- (void) ftp {
+    [self.arDrone2 uploadProgramToDrone];
 }
 
-- (void) telnetProgram {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 makeTelnetConnectionToDrone];
+- (void) telnet {
+    [self.arDrone2 makeTelnetConnectionToDrone];
 }
 
-- (void) takeoffProgram {
+- (void) takeoff {
     [[CommController sharedInstance].mavLinkInterface arDroneCalibrateHorizontalPlane];
-    [[CommController sharedInstance].mavLinkInterface arDroneTakeOff];}
+    [[CommController sharedInstance].mavLinkInterface arDroneTakeOff];
+}
 
-- (void) landProgram {
-    [[CommController sharedInstance].mavLinkInterface arDroneLand];}
+- (void) land {
+    [[CommController sharedInstance].mavLinkInterface arDroneLand];
+}
 
-- (void) calibrationProgram {
-    [[CommController sharedInstance].mavLinkInterface arDroneCalibrateMagnetometer];}
+- (void) calibration {
+    [[CommController sharedInstance].mavLinkInterface arDroneCalibrateMagnetometer];
+}
 
-- (void) emergencyProgram {
-    [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];}
+- (void) emergency {
+    [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];
+}
 
-- (void) doAnimationProgram {
+- (void) resetWatchDogTimer {
+    [[CommController sharedInstance].mavLinkInterface arDroneResetWatchDogTimer];
+}
 
-    
-    
-    if ([self.tf.text isEqualToString:@"Flip Left"])
+- (void) executeAnimation {
+    if ([self.pickerTextField.text isEqualToString:@"Flip Left"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
-    else if ([self.tf.text isEqualToString:@"Flip Right"])
+    else if ([self.pickerTextField.text isEqualToString:@"Flip Right"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipRight];
-    else if ([self.tf.text isEqualToString:@"Flip Ahead"])
+    else if ([self.pickerTextField.text isEqualToString:@"Flip Ahead"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipAhead];
-    else if ([self.tf.text isEqualToString:@"Flip Behind"])
+    else if ([self.pickerTextField.text isEqualToString:@"Flip Behind"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipBehind];
-    else if ([self.tf.text isEqualToString:@"Wave"])
+    else if ([self.pickerTextField.text isEqualToString:@"Wave"])
         [[CommController sharedInstance].mavLinkInterface arDroneWave];
-    else if ([self.tf.text isEqualToString:@"Turn Around"])
+    else if ([self.pickerTextField.text isEqualToString:@"Turn Around"])
         [[CommController sharedInstance].mavLinkInterface arDroneTurnAround];
-    else if ([self.tf.text isEqualToString:@"Phi Theta Mixed"])
+    else if ([self.pickerTextField.text isEqualToString:@"Phi Theta Mixed"])
         [[CommController sharedInstance].mavLinkInterface arDronePhiThetaMixed];
-    
-    }
-        
-        
-    
-
+}
 
 @end
