@@ -186,9 +186,9 @@
         if (pos.longitude > 180) {
             pos.longitude -= 360;
         }
-    } else if (userPosition) {
+    } else if (self.userPosition) {
         // Place the first point near the current user
-        pos = userPosition.coordinate;
+        pos = self.userPosition.coordinate;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to determine default waypoint"
                                                         message:@"Place the first waypoint manually, or enable GPS"
