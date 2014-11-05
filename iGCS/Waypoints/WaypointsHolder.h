@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkPacketHandler.h"
 
-@interface WaypointsHolder : NSObject <NSMutableCopying> {
-    NSMutableArray *_array;
-    NSUInteger _expectedCount;
-}
+@interface WaypointsHolder : NSObject <NSMutableCopying>
 
 - (instancetype)initWithExpectedCount:(NSUInteger)expectedCount NS_DESIGNATED_INITIALIZER;
 
