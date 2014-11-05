@@ -10,9 +10,11 @@
 
 #import "SWRevealViewController.h"
 
-#import "CommsViewController.h"
 #import "GCSMapViewController.h"
 #import "GCSMapViewController+DataRate.h"
+#import "WaypointsViewController.h"
+#import "CommsViewController.h"
+#import "DebugViewController.h"
 
 #import "CommController.h"
 #import "DataRateRecorder.h"
@@ -21,6 +23,12 @@
 #import "GCSFirmwareUpdateManager.h"
 
 @interface MainViewController ()
+@property (strong) GCSMapViewController *gcsMapVC;
+@property (strong) GCSSidebarController *gcsSidebarVC;
+@property (strong) WaypointsViewController *waypointVC;
+@property (strong) CommsViewController *commsVC;
+@property (strong) DebugViewController *debugVC;
+
 @property (nonatomic, strong) GCSFirmwareUpdateManager *firmwareManager;
 @end
 
@@ -97,6 +105,18 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+}
+
+- (void) handlePacket:(mavlink_message_t*)msg {
+    [self.gcsMapVC handlePacket:msg];
+    [self.gcsSidebarVC handlePacket:msg];
+    [self.waypointVC handlePacket:msg];
+    [self.commsVC  handlePacket:msg];
+}
+
+- (void) resetWaypoints:(WaypointsHolder*)mission {
+    [self.gcsMapVC   resetWaypoints:mission];
+    [self.waypointVC resetWaypoints:mission];
 }
 
 @end
