@@ -35,6 +35,7 @@
 - (IBAction)calClicked:(id)sender;
 - (IBAction)emergencyClicked:(id)sender;
 - (IBAction)flipClicked:(id)sender;
+- (IBAction)testClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
 -(void)errorMessage:(NSString*)messageText;
