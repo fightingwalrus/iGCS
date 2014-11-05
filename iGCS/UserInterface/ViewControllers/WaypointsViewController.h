@@ -19,9 +19,7 @@
 - (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx;
 @end
 
-@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, MissionItemEditingDelegate> {    
-    UINavigationController* _navVCEditItemVC;
-}
+@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, MissionItemEditingDelegate>
 
 @property (nonatomic, readonly, strong) WaypointsHolder *waypoints;  // for MissionItemEditViewController
 
