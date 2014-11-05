@@ -16,7 +16,7 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
 
 @implementation GCSFWRFirmwareInterface
 
--(void)consumeData:(const uint8_t*)bytes length:(int)length {
+-(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length {
 
     NSData *data = [NSData dataWithBytes:bytes length:length];
     NSString *response = [[NSString alloc] initWithData:data

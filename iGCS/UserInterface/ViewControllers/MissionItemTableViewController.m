@@ -71,8 +71,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    [self.tableView setAllowsSelection: true];
-    [self.tableView setAllowsSelectionDuringEditing: true];
+    [self.tableView setAllowsSelection:YES];
+    [self.tableView setAllowsSelectionDuringEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,19 +144,19 @@ NSArray* headerSpecs = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"MissionItemCellID";
-    int TAG_INDEX = 100;
+    NSInteger TAG_INDEX = 100;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    // FIXME: outside the above "if (cell == nil)..." because it seems cells are already pre-created. Why? Precreated in nib?
+    // FIXME: outside the above "if (!cell)..." because it seems cells are already pre-created. Why? Precreated in nib?
     if ([cell viewWithTag:TAG_INDEX] == NULL) {
-        unsigned int x = 0;
-        for (unsigned int i = 0; i < [headerSpecs count]; i++) {
-            int width = [((HeaderSpec*)headerSpecs[i]) width];
+        NSUInteger x = 0;
+        for (NSUInteger i = 0; i < [headerSpecs count]; i++) {
+            NSInteger width = [((HeaderSpec*)headerSpecs[i]) width];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 44)];
             label.tag = TAG_INDEX+i;
             label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
@@ -274,9 +274,9 @@ NSArray* headerSpecs = nil;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the view that will hold the header labels
     UIView* headerContainer = [[UIView alloc] initWithFrame:CGRectMake(self.isEditing ? HEADER_SPEC_EDIT_OFFSET : 0, 0,1024,20)];
-    unsigned int x = 0;
+    NSUInteger x = 0;
     for (HeaderSpec *spec in headerSpecs) {
-        int width = [spec width];
+        NSInteger width = [spec width];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 20)];
         label.tag  = spec.tag;
         label.text = [spec text];
@@ -337,7 +337,7 @@ NSArray* headerSpecs = nil;
 }
 
 - (void)unmarkSelectedRow {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [[self waypointsVC] maybeUpdateCurrentWaypoint:-1];
     self.lastIndexPath = nil;
 }
@@ -353,7 +353,7 @@ NSArray* headerSpecs = nil;
     BOOL isEditing = !self.isEditing;
     
     // Toggle the table editing state
-    [self setEditing:isEditing animated:true];
+    [self setEditing:isEditing animated:YES];
     
     // Slide the section header along to match the table cells
     CGRect r = [_sectionHeaderContainer frame];
@@ -400,7 +400,7 @@ NSArray* headerSpecs = nil;
     NSString * segueName = segue.identifier;    
     if ([segueName isEqualToString: @"editItemVC_segue"]) {
         NSNumber *rowNum = (NSNumber*)sender;
-        unsigned int row = [rowNum unsignedIntValue];
+        NSUInteger row = [rowNum unsignedIntValue];
         [((MissionItemEditViewController*)[segue destinationViewController]) initInstance:row with:[self waypointsVC]];
     }
 }

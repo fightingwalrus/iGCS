@@ -78,7 +78,7 @@
     const float step = _scale/10;
     const float startVal = floor((_value - _scale)/step)*step; // i.e. start at a point well below the scale boundary
     float tickVal = startVal;
-    for (int i = 0; i < 40; i++, tickVal = startVal + i*step/2) {
+    for (NSUInteger i = 0; i < 40; i++, tickVal = startVal + i*step/2) {
         // Find the y position of this tick
         const float y = c.y - (tickVal - _value) * oneScaleY;
         if (y < -20 || y > h + 20) continue;
@@ -95,7 +95,7 @@
         
         // Draw the "numbers"
         if (i % 2 == 0) {
-            NSString *label = [NSString stringWithFormat:@"%d", (int)round(tickVal)];
+            NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(tickVal)];
             CGContextSetTextPosition(ctx, x + TICK_MINOR_WIDTH/2, y + FONT_SIZE_SMALL/3.0);
             CGContextShowText(ctx, [label cStringUsingEncoding:NSASCIIStringEncoding], [label length]);
         }
@@ -112,7 +112,7 @@
     
     CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
     CGContextSelectFont(ctx, "Arial Rounded MT Bold", FONT_SIZE_LARGE, kCGEncodingMacRoman);
-    NSString *label = [NSString stringWithFormat:@"%d", (int)round(_value)];
+    NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(_value)];
 
     float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
@@ -129,7 +129,7 @@
                         (__bridge id)[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0].CGColor];
     CGFloat locations[] = {0.0, 1.0};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         CGRect subRect = CGRectMake(c.x-w/2, ((i == 0) ? c.y - h/2 : c.y + h/2 - h/5), w, h/5);
         CGPoint startPoint = CGPointMake(CGRectGetMinX(subRect), CGRectGetMinY(subRect));
         CGPoint endPoint = CGPointMake(CGRectGetMinX(subRect), CGRectGetMaxY(subRect));

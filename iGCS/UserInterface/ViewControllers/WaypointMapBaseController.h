@@ -22,15 +22,15 @@
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 @private
     MKPolyline *_waypointRoutePolyline;
-    int _currentWaypointNum;
+    NSInteger _currentWaypointNum;
 
     MKPolyline *_trackPolyline;
     MKMapPoint *_trackMKMapPoints;
-    unsigned int _trackMKMapPointsLen;
-    unsigned int _numTrackPoints;
+    NSUInteger _trackMKMapPointsLen;
+    NSUInteger _numTrackPoints;
     
 @protected
-    bool draggableWaypointsP;
+    BOOL draggableWaypointsP;
     
     CLLocationManager *locationManager;
     CLLocation *userPosition;
@@ -39,17 +39,17 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq;
+- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
 - (void) resetWaypoints:(WaypointsHolder *)waypoints;
-- (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
+- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
 // Following methods are intended to be overridden by subclasses
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 

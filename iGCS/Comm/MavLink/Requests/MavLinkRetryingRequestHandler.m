@@ -30,7 +30,7 @@
     [_requestStatusDialog setMessage:(attemptNum == 1) ? message : [NSString stringWithFormat:@"%@ - attempt %d", message, attemptNum]];
 }
 
-- (void) completedRequestStatusWithSuccess:(bool)success {
+- (void) completedRequestStatusWithSuccess:(BOOL)success {
     if (success) {
         [_requestStatusDialog dismissWithClickedButtonIndex:0 animated:YES];
     } else {
@@ -77,7 +77,7 @@
     [_currentRequest checkForACK:packet withHandler:self];
 }
 
-- (void) completedWithSuccess:(bool)success {
+- (void) completedWithSuccess:(BOOL)success {
     [self resetRequest:nil];
     [self completedRequestStatusWithSuccess:success];
 }

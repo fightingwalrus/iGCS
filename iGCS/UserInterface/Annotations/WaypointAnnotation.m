@@ -12,7 +12,7 @@
 
 @implementation WaypointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index {
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
@@ -52,8 +52,8 @@
     return [theme waypointOtherColor];
 }
 
-- (bool) isCurrentWaypointP:(int)currentWaypointSeq {
-    return (currentWaypointSeq == _waypoint.seq);
+- (BOOL) hasMatchingSeq:(NSInteger)seq {
+    return (seq == _waypoint.seq);
 }
 
 @end

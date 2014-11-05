@@ -83,19 +83,19 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 -(void)startTelemetryMode {
     DDLogInfo(@"CommController: startTelemetryMode");
     @try {
-        NSAssert(self.mainVC != nil, @"CommController.startTelemetryMode: mainVC cannot be nil");
+        NSAssert(self.mainVC, @"CommController.startTelemetryMode: mainVC cannot be nil");
         // Reset any active connections in the connection pool first
         [self closeAllInterfaces];
 
         self.mavLinkInterface = [iGCSMavLinkInterface createWithViewController:self.mainVC];
-        NSAssert(self.mavLinkInterface != nil , @"CommController.startTelemetryMode: mavLinkInterface cannot be nil");
+        NSAssert(self.mavLinkInterface, @"CommController.startTelemetryMode: mavLinkInterface cannot be nil");
 
         GCSAccessory accessory = [self connectedAccessory];
         if (accessory == GCSAccessoryFightingWalrusRadio) {
             
             self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringTelemetry];
 
-            NSAssert(self.fightingWalrusInterface != nil , @"CommController.startTelemetryMode: fightingWalrusInterface cannot be nil");
+            NSAssert(self.fightingWalrusInterface, @"CommController.startTelemetryMode: fightingWalrusInterface cannot be nil");
 
             [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface
                                        andLocalInterface:self.mavLinkInterface];

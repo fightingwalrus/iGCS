@@ -12,7 +12,7 @@
 
 @implementation WaypointsHolder
 
-- (instancetype)initWithExpectedCount:(unsigned int)expectedCount {
+- (instancetype)initWithExpectedCount:(NSUInteger)expectedCount {
     self = [super init];
     if (self) {
         // Initialization code
@@ -43,11 +43,11 @@
     return waypoint;
 }
 
-- (bool)allWaypointsReceivedP {
+- (BOOL)allWaypointsReceivedP {
     return ([_array count] == _expectedCount);
 }
 
-- (unsigned int)numWaypoints {
+- (NSUInteger)numWaypoints {
     return [_array count];
 }
 
@@ -55,8 +55,8 @@
     // FIXME: We require unique seq numbers, thanks to the dubious usages of getIndexOfWaypointWithSeq.
     //  This seems fragile, and prone to error. Probably best to bite the bullet, wrap each waypoint
     // in an actual object, and use a guid for association.
-    int seqNum = -1;
-    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+    NSInteger seqNum = -1;
+    for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t wi = [self getWaypoint:i];
         seqNum = MAX(wi.seq, seqNum);
     }
@@ -64,23 +64,23 @@
     [_array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];
 }
 
-- (void) removeWaypoint:(unsigned int) index {
+- (void) removeWaypoint:(NSUInteger) index {
     assert(index >= 0 && index < [self numWaypoints]);
     [_array removeObjectAtIndex: index];
 }
 
-- (void) replaceWaypoint:(unsigned int) index with:(mavlink_mission_item_t)waypoint {
+- (void) replaceWaypoint:(NSUInteger) index with:(mavlink_mission_item_t)waypoint {
     assert(index >= 0 && index < [self numWaypoints]);
     _array[index] = [WaypointsHolder makeBoxedWaypoint:waypoint];
 }
 
-- (void) moveWaypoint:(unsigned int)from to:(unsigned int)to {
+- (void) moveWaypoint:(NSUInteger)from to:(NSUInteger)to {
     mavlink_mission_item_t wp = [self getWaypoint: from];
     [_array removeObjectAtIndex:from];
     [_array insertObject:[WaypointsHolder makeBoxedWaypoint:wp] atIndex:to];
 }
 
-- (mavlink_mission_item_t) getWaypoint:(unsigned int) index {
+- (mavlink_mission_item_t) getWaypoint:(NSUInteger) index {
     assert(index >= 0 && index < [self numWaypoints]);
     return [WaypointsHolder unBoxWaypoint: _array[index]];
 }
@@ -89,8 +89,8 @@
     return [self getWaypoint: ([self numWaypoints]-1)];
 }
 
-- (int)getIndexOfWaypointWithSeq:(int)sequence {
-    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+- (NSInteger)getIndexOfWaypointWithSeq:(NSUInteger)sequence {
+    for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
         if (waypoint.seq == sequence) {
             return i;
@@ -101,7 +101,7 @@
 
 - (WaypointsHolder*) navWaypoints {
     WaypointsHolder *navWayPoints = [[WaypointsHolder alloc] initWithExpectedCount:[self numWaypoints]];
-    for (unsigned int i = 0; i < [self numWaypoints]; i++) {
+    for (NSUInteger i = 0; i < [self numWaypoints]; i++) {
         mavlink_mission_item_t waypoint = [self getWaypoint:i];
         if ([WaypointHelper isNavCommand: waypoint]) {
             [navWayPoints->_array addObject:[WaypointsHolder makeBoxedWaypoint:waypoint]];

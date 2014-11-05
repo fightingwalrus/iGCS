@@ -33,8 +33,8 @@
     DDLogInfo(@"Redpark close method...");
 }
 
--(void)consumeData:(uint8_t *)bytes length:(int)length {
-    int n = [self.rscMgr write:bytes Length:length];
+-(void)consumeData:(uint8_t *)bytes length:(NSInteger)length {
+    NSInteger n = [self.rscMgr write:bytes Length:length];
     if (n == length) {
         DDLogDebug(@"send_uart_bytes: output %d chars", n);
     } else {
@@ -95,7 +95,7 @@
     @try {
         // Read the available bytes out of the serial cable manager
         uint8_t buf[length];
-        int n = [self.rscMgr read:(uint8_t*)&buf Length:length];
+        NSInteger n = [self.rscMgr read:(uint8_t*)&buf Length:length];
         [self produceData:buf length:n];
     }
     @catch (NSException *e) {

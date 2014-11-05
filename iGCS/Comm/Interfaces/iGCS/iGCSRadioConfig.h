@@ -34,8 +34,8 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 @property (nonatomic, readwrite) float RTCommandTimeout;
 
 // receiveBytes processes bytes forwarded from another interface
--(void)consumeData:(const uint8_t*)bytes length:(int)length;
--(void)produceData:(const uint8_t*)bytes length:(int)length;
+-(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length;
+-(void)produceData:(const uint8_t*)bytes length:(NSInteger)length;
 -(void)close;
 
 // state

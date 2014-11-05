@@ -69,7 +69,7 @@
     }
 }
 
-- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(bool)showing {
+- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(BOOL)showing {
     
     // Determine amount to slide the map and table views
     CGSize keyboardSize = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -130,8 +130,8 @@
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
 
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
-    int index = [_waypoints getIndexOfWaypointWithSeq:waypointSeq];
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+    NSInteger index = [_waypoints getIndexOfWaypointWithSeq:waypointSeq];
     if (index != -1) {
         mavlink_mission_item_t waypoint = [_waypoints getWaypoint:index];
         waypoint.x = latitude;
@@ -186,7 +186,7 @@
         if (pos.longitude > 180) {
             pos.longitude -= 360;
         }
-    } else if (userPosition != nil) {
+    } else if (userPosition) {
         // Place the first point near the current user
         pos = userPosition.coordinate;
     } else {
@@ -227,7 +227,7 @@
     _txMissionButton.enabled = !isEditing;
     _loadDemoButton.enabled  = !isEditing;
 
-    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
     CGRect tableRect = _containerForTableView.frame;
@@ -263,7 +263,7 @@
     return [_waypoints mutableCopy];
 }
 
-- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx {
+- (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx {
     return [_waypoints getWaypoint:idx];
 }
 
@@ -271,7 +271,7 @@
     [self resetWaypoints: mission];
 }
 
-- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx {
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {
     [_waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
     [self resetWaypoints]; // Reset the map and table views
 }

@@ -12,17 +12,17 @@
 #import "GCSThemeManager.h"
 
 @interface WaypointAnnotation : NSObject <MKAnnotation> {
-    int _index;
+    NSInteger _index;
 }
 
 @property (nonatomic, assign)   CLLocationCoordinate2D  coordinate;
 @property (nonatomic, readonly) mavlink_mission_item_t  waypoint;
 
-- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(int)index NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index NS_DESIGNATED_INITIALIZER;
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 @property (nonatomic, readonly, copy) UIColor *color;
-- (bool) isCurrentWaypointP:(int)currentWaypointSeq;
+- (BOOL) hasMatchingSeq:(NSInteger)seq;
 
 @end
 

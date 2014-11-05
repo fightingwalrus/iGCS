@@ -33,7 +33,7 @@
     _trackMKMapPoints = malloc(_trackMKMapPointsLen * sizeof(MKMapPoint));
     _numTrackPoints = 0;
     
-    draggableWaypointsP = false;
+    draggableWaypointsP = NO;
     
     // Add recognizer for long press gestures
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]
@@ -66,11 +66,11 @@
     [_mapView removeAnnotations:[self getWaypointAnnotations]];
 }
 
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
+- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
-        if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
+        if ([waypointAnnotation hasMatchingSeq:waypointSeq]) {
             return waypointAnnotation;
         }
     }
@@ -85,12 +85,12 @@
     
     // Get the nav-specfic waypoints
     WaypointsHolder *navWaypoints = [waypoints navWaypoints];
-    unsigned int numWaypoints = [navWaypoints numWaypoints];
+    NSUInteger numWaypoints = [navWaypoints numWaypoints];
     
     MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
     
     // Add waypoint annotations, and convert to array of MKMapPoints
-    for (unsigned int i = 0; i < numWaypoints; i++) {
+    for (NSUInteger i = 0; i < numWaypoints; i++) {
         mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
@@ -126,33 +126,33 @@
     free(navMKMapPoints);
 }
 
-- (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
+- (void)updateWaypointIcon:(WaypointAnnotation*)annotation isSelected:(BOOL)isSelected {
     if (annotation) {
         [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[_mapView viewForAnnotation: annotation]
-                                     selectedWaypointSeq:_currentWaypointNum];
+                                              isSelected:isSelected];
     }
 }
 
-- (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
+- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq {
     if (_currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
-        int previousWaypointNum = _currentWaypointNum;
+        NSInteger previousWaypointNum = _currentWaypointNum;
         
         //  first, update the current value (so we get the desired
-        // side-effect when resetting the waypoints), then...
+        // side-effect, from viewForAnnotation, when resetting the waypoints), then...
         _currentWaypointNum = newCurrentWaypointSeq;
 
         //  reset the previous and new current waypoints
-        [self updateWaypointIcon: [self getWaypointAnnotation:previousWaypointNum]];
-        [self updateWaypointIcon: [self getWaypointAnnotation:_currentWaypointNum]];
+        [self updateWaypointIcon:[self getWaypointAnnotation:previousWaypointNum] isSelected:NO];
+        [self updateWaypointIcon:[self getWaypointAnnotation:_currentWaypointNum] isSelected:YES];
     }
 }
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP {
+- (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP {
     draggableWaypointsP = _draggableWaypointsP;
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];
         
         // See also viewForAnnotation
@@ -184,7 +184,7 @@
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
 }
 
 // FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
@@ -206,8 +206,9 @@
     // Check array bounds
     if (_numTrackPoints == _trackMKMapPointsLen) {
         MKMapPoint *newAlloc = realloc(_trackMKMapPoints, _trackMKMapPointsLen*2 * sizeof(MKMapPoint));
-        if (newAlloc == nil)
+        if (!newAlloc) {
             return;
+        }
         _trackMKMapPoints = newAlloc;
         _trackMKMapPointsLen *= 2;
     }
@@ -270,13 +271,10 @@
     [view.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 
-+ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq {
-    static const int ICON_VIEW_TAG = 101;
-
-    WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
-    
++ (void)updateWaypointIconFor:(WaypointAnnotationView*)view isSelected:(BOOL)isSelected {
+    static const NSInteger ICON_VIEW_TAG = 101;
     UIImage *icon = nil;
-    if ([waypointAnnotation isCurrentWaypointP:selectedWaypointSeq]) {
+    if (isSelected) {
         // Animate the waypoint view
         [WaypointMapBaseController animateMKAnnotationView:view from:1.0 to:1.1 duration:1.0];
         
@@ -300,7 +298,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static const int LABEL_TAG = 100;
+    static const NSInteger LABEL_TAG = 100;
     
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -313,7 +311,9 @@
         // FIXME: Dequeuing disabled due to issue observed on iOS7.1 only - cf IGCS-110
         //MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         WaypointAnnotationView *view = nil;
-        if (view == nil) {
+        if (view) {
+            view.annotation = annotation;
+        } else {
             view = [[WaypointAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
             [view setBackgroundColor:[UIColor clearColor]];
@@ -328,8 +328,6 @@
             label.layer.shadowRadius  = 1.0f;
             
             [view addSubview:label];
-        } else {
-            view.annotation = annotation;
         }
         
         view.enabled = YES;
@@ -345,7 +343,7 @@
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
-        [WaypointMapBaseController updateWaypointIconFor:view selectedWaypointSeq:_currentWaypointNum];
+        [WaypointMapBaseController updateWaypointIconFor:view isSelected:[waypointAnnotation hasMatchingSeq:_currentWaypointNum]];
 
         // Provide subclasses with a chance to customize the waypoint annotation view
         [self customizeWaypointAnnotationView:view];
