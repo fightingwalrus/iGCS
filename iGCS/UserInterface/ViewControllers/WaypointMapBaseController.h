@@ -40,7 +40,7 @@
 
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
-- (void) resetWaypoints:(WaypointsHolder *)waypoints;
+- (void) replaceMission:(WaypointsHolder*)mission;
 - (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP;

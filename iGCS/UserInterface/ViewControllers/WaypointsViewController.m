@@ -117,13 +117,13 @@
 }
 
 - (void) resetWaypoints {
-    [self resetWaypoints:_waypoints];
+    [self replaceMission:_waypoints];
 }
 
-- (void) resetWaypoints:(WaypointsHolder*)waypoints {
-    // set waypoints ahead of waypointNumberForAnnotationView calls from [super resetWaypoints:...]
-    _waypoints = waypoints;
-    [super resetWaypoints:_waypoints];
+- (void) replaceMission:(WaypointsHolder*)mission {
+    // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
+    _waypoints = mission;
+    [super replaceMission:_waypoints];
     [self.missionTableViewController resetWaypoints];
 }
 
@@ -265,10 +265,6 @@
 
 - (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx {
     return [_waypoints getWaypoint:idx];
-}
-
-- (void) resetMission:(WaypointsHolder*) mission {
-    [self resetWaypoints: mission];
 }
 
 - (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {

@@ -114,9 +114,9 @@
     [self.commsVC  handlePacket:msg];
 }
 
-- (void) resetWaypoints:(WaypointsHolder*)mission {
-    [self.gcsMapVC   resetWaypoints:mission];
-    [self.waypointVC resetWaypoints:mission];
+- (void) replaceMission:(WaypointsHolder*)mission {
+    [self.gcsMapVC   replaceMission:mission];
+    [self.waypointVC replaceMission:mission];
 }
 
 @end

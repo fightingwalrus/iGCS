@@ -204,7 +204,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 - (void) loadNewMission:(WaypointsHolder*)mission {
     // Let the MainVC know we've got new waypoints
     DDLogDebug(@"Loading mission:\n%@", [mission toOutputFormat]);
-    [self.mainVC resetWaypoints:mission];
+    [self.mainVC replaceMission:mission];
 }
 
 
@@ -286,7 +286,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 - (void) loadDemoMission {
     WaypointsHolder* demo = [WaypointsHolder createDemoMission];
     DDLogDebug(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
-    [self.mainVC resetWaypoints:demo];
+    [self.mainVC replaceMission:demo];
 }
 
 -(void) sendHeatbeatToAutopilot {

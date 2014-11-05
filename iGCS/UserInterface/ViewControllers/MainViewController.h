@@ -23,5 +23,5 @@
 @property (weak) AppDelegate *appDelegate;
 @property (nonatomic, strong, readonly) DataRateRecorder *dataRateRecorder;
 
-- (void) resetWaypoints:(WaypointsHolder*)mission;
+- (void) replaceMission:(WaypointsHolder*)mission;
 @end

@@ -52,7 +52,7 @@
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     if (!self.saveEdits) {
-        [self.delegate resetMission:self.originalMission];
+        [self.delegate replaceMission:self.originalMission];
     }
 }
 
