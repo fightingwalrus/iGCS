@@ -28,8 +28,12 @@
 
 
 @interface DebugViewController ()
+@property (strong) NSMutableArray *pendingConsoleMessages;
+@property (strong) NSMutableArray *pendingErrorMessages;
 
+@property (strong, nonatomic) ArDroneUtils * arDrone2;
 @end
+
 
 @implementation DebugViewController
 
@@ -37,9 +41,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        self.pendingConsoleMessages = [NSMutableArray array];
-        self.pendingErrorMessages = [NSMutableArray array];
+        _pendingConsoleMessages = [NSMutableArray array];
+        _pendingErrorMessages = [NSMutableArray array];
     }
     return self;
 }
@@ -122,19 +125,19 @@
 }
 
 - (IBAction)ftpClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 uploadProgramToDrone];
+    self.arDrone2 = [[ArDroneUtils alloc] init];
+    [self.arDrone2 uploadProgramToDrone];
 }
 
 
 - (IBAction)telClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 makeTelnetConnectionToDrone];
+    self.arDrone2 = [[ArDroneUtils alloc] init];
+    [self.arDrone2 makeTelnetConnectionToDrone];
 }
 
 - (IBAction)mavClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 mavlinkCommandedTakeoff];
+    self.arDrone2 = [[ArDroneUtils alloc] init];
+    [self.arDrone2 mavlinkCommandedTakeoff];
     
 }
 
@@ -143,8 +146,8 @@
 }
 
 - (IBAction)rtlClicked:(id)sender {
-    _arDrone2 = [[ArDroneUtils alloc] init];
-    [_arDrone2 mavlinkReturnToLaunch];
+    self.arDrone2 = [[ArDroneUtils alloc] init];
+    [self.arDrone2 mavlinkReturnToLaunch];
 }
 
 - (IBAction)specClicked:(id)sender {
