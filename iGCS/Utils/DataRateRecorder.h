@@ -10,7 +10,7 @@
 
 @interface DataRateRecorder : NSObject
 
-@property (nonatomic, assign) double maxValue;
+@property (nonatomic, readonly) double maxValue;
 @property (nonatomic, readonly) NSUInteger maxDurationInSeconds;
 @property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, readonly) double latestValue;
