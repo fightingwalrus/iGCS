@@ -11,11 +11,9 @@
 
 @interface MissionItemTableViewController : UITableViewController
 
-@property (nonatomic, retain) UIView *sectionHeaderContainer;
-@property (nonatomic, retain) NSIndexPath *lastIndexPath;
+@property (nonatomic, readonly) BOOL toggleEditing;
 
 - (void) markSelectedRow:(NSInteger)idx;
-@property (nonatomic, readonly) BOOL toggleEditing;
 - (void) resetWaypoints;
 
 @end
