@@ -12,7 +12,7 @@
 
 @interface FillStrokePolyLineView : MKOverlayPathView
 
-@property CGFloat fillWidth;
+@property (nonatomic, assign) CGFloat fillWidth;
 
 - (instancetype) initWithPolyline:(MKPolyline*)polyline NS_DESIGNATED_INITIALIZER;
 

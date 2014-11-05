@@ -11,14 +11,14 @@
 
 @interface VerticalScaleView : DoubleBufferedAsyncView
 
-@property (nonatomic) NSString *title;
-@property (nonatomic) NSInteger scale;
-@property (nonatomic) float value;
-@property (nonatomic) float targetDelta;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) NSInteger scale;
+@property (nonatomic, assign) float value;
+@property (nonatomic, assign) float targetDelta;
 
-@property (nonatomic) BOOL ceilingThresholdEnabled;
-@property (nonatomic) float ceilingThreshold;
-@property (nonatomic, retain) UIColor* ceilingThresholdBackground;
+@property (nonatomic, assign) BOOL ceilingThresholdEnabled;
+@property (nonatomic, assign) float ceilingThreshold;
+@property (nonatomic, strong) UIColor* ceilingThresholdBackground;
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 
