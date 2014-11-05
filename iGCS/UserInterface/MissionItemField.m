@@ -24,7 +24,7 @@
 }
 
 - (NSString*)unitsToString {
-    switch (_units) {
+    switch (self.units) {
         case GCSItemUnitNone:                 return @"";
         case GCSItemUnitDegrees:              return @"degrees";
         case GCSItemUnitSeconds:              return @"s";
@@ -39,7 +39,7 @@
 
 - (NSString*)valueToString:(mavlink_mission_item_t)item {
     float val;
-    switch (_fieldType) {
+    switch (self.fieldType) {
         case GCSItemParamZ: val = item.z;      break;
         case GCSItemParam1: val = item.param1; break;
         case GCSItemParam2: val = item.param2; break;
@@ -53,7 +53,7 @@
 }
 
 - (void)setValue:(float)val inMissionItem:(mavlink_mission_item_t*)item {
-    switch (_fieldType) {
+    switch (self.fieldType) {
         case GCSItemParamZ: item->z      = val; break;
         case GCSItemParam1: item->param1 = val; break;
         case GCSItemParam2: item->param2 = val; break;
