@@ -124,7 +124,7 @@
     // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
     _waypoints = mission;
     [super replaceMission:_waypoints];
-    [self.missionTableViewController resetWaypoints];
+    [self.missionTableViewController refreshTableView];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {

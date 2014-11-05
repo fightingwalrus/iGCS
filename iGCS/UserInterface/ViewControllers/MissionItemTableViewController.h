@@ -14,6 +14,6 @@
 @property (nonatomic, readonly) BOOL toggleEditing;
 
 - (void) markSelectedRow:(NSInteger)idx;
-- (void) resetWaypoints;
+- (void) refreshTableView;
 
 @end

@@ -370,7 +370,7 @@ NSArray* headerSpecs = nil;
     return isEditing; // return the current editing state
 }
 
-- (void) resetWaypoints {
+- (void) refreshTableView {
     [self.tableView reloadData];
 }
 
