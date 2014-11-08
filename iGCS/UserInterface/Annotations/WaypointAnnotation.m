@@ -12,7 +12,7 @@
 
 @implementation WaypointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
