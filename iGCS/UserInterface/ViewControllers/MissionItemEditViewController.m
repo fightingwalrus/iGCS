@@ -11,6 +11,9 @@
 #import "WaypointHelper.h"
 #import "MavLinkUtility.h"
 
+#import "MissionItemEditCell.h"
+
+
 @interface MissionItemEditViewController ()
 @property (weak, readonly) id <MissionItemEditingDelegate> delegate;
 @property (nonatomic, readonly) NSUInteger itemIndex;
@@ -134,25 +137,15 @@
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
-    UITableViewCell *cell = [self.itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
-    
-    // Note: see prototype cell for magic #'s
-    UILabel *label    = (UILabel *)    [cell viewWithTag:100];
-    UITextField *text = (UITextField *)[cell viewWithTag:200];
-    UILabel *units    = (UILabel *)    [cell viewWithTag:300];
-    
-    [label setText:[field label]];
-    [text  setText:[field valueToString:item]];
-    [text setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [units setText:[field unitsToString]];
+    MissionItemEditCell *cell = [self.itemDetails dequeueReusableCellWithIdentifier:@"MissionItemEditCell"];
+    [cell configureFor:field withItem:item];
     return cell;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     // Traverse up the view hierarchy until the parent UITableViewCell is reached
     //
-    // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already
-    // using for another purpose; namely, using viewWithTag to find/configure the cell from the storyboard prototype)
+    // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield)
     UIView *cell = textField;
     while (cell && ![cell isKindOfClass:[UITableViewCell class]]) {
         cell = [cell superview];

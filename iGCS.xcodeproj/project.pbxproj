@@ -475,6 +475,10 @@
 		CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
 		CA10784B19A99C57007B42E5 /* TxMissionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10784819A99C57007B42E5 /* TxMissionCommon.m */; };
+		CA10B4CE1A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
+		CA10B4CF1A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
+		CA10B4D01A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
+		CA10B4D11A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
 		CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
@@ -1049,6 +1053,8 @@
 		CA10783619A98B58007B42E5 /* TxMissionClearAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionClearAll.m; path = Requests/TxMissionClearAll.m; sourceTree = "<group>"; };
 		CA10784719A99C57007B42E5 /* TxMissionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionCommon.h; path = Requests/TxMissionCommon.h; sourceTree = "<group>"; };
 		CA10784819A99C57007B42E5 /* TxMissionCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionCommon.m; path = Requests/TxMissionCommon.m; sourceTree = "<group>"; };
+		CA10B4CC1A09E1200082BFAE /* MissionItemEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionItemEditCell.h; path = TableViewCells/MissionItemEditCell.h; sourceTree = "<group>"; };
+		CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionItemEditCell.m; path = TableViewCells/MissionItemEditCell.m; sourceTree = "<group>"; };
 		CA10E12F188FCD42002DF0E4 /* GCSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSThemeManager.h; sourceTree = "<group>"; };
 		CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSThemeManager.m; sourceTree = "<group>"; };
 		CA154E7119BFE52000ECE919 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
@@ -1800,6 +1806,7 @@
 			children = (
 				496E627016DAFB8B00E52E4A /* Annotations */,
 				1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */,
+				CA10B4D61A09E1260082BFAE /* TableViewCells */,
 				CAF37A0D179BC4C000183159 /* Utility */,
 				496E627616DAFB8B00E52E4A /* ViewControllers */,
 				496E627F16DAFB8B00E52E4A /* Views */,
@@ -1998,6 +2005,15 @@
 				CA0B69A9189B69F50014C1E4 /* SWReveal */,
 			);
 			path = "3rd-party";
+			sourceTree = "<group>";
+		};
+		CA10B4D61A09E1260082BFAE /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CA10B4CC1A09E1200082BFAE /* MissionItemEditCell.h */,
+				CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		CA154E7019BFE52000ECE919 /* CocoaLumberjack */ = {
@@ -2705,6 +2721,7 @@
 				01CEC57019D9F8BD00320A34 /* GCDAsyncUdpSocket.m in Sources */,
 				1845DA87197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				01CEC5E419D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
+				CA10B4D01A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 				01CEC5D519D9FA3800320A34 /* BRRequest.m in Sources */,
 				18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */,
 				CA0574FE18BE07FE001EACFD /* CXAlertBackgroundWindow.m in Sources */,
@@ -2787,6 +2804,7 @@
 				01CEC56C19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
 				1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
+				CA10B4CF1A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
 				CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */,
@@ -2847,6 +2865,7 @@
 				18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				CAFBD04D180A87C900F5BCDB /* RxMissionRequestList.m in Sources */,
 				18B7F2CB1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
+				CA10B4CE1A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 				CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */,
 				1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
@@ -2923,6 +2942,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
+				CA10B4D11A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
