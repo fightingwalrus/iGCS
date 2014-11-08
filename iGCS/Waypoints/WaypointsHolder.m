@@ -47,7 +47,7 @@
     return waypoint;
 }
 
-- (BOOL)allWaypointsReceivedP {
+- (BOOL)hasReceivedAllWaypoints {
     return ([self.array count] == self.expectedCount);
 }
 

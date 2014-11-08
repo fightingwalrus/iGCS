@@ -40,14 +40,14 @@
     self.overlayView.liveBlurring = YES;
     [self.parentView addSubview:self.overlayView];
     
-    UILabel *l = [[UILabel alloc] initWithFrame:frame];
-    l.center = self.overlayView.center;
-    l.text = @"Telemetry lost";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.textColor = [UIColor whiteColor];
-    l.font = [UIFont fontWithName:@"Helvetica" size: 64];
-    l.backgroundColor = [UIColor clearColor];
-    [self.overlayView addSubview:l];
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.center = self.overlayView.center;
+    label.text = @"Telemetry lost";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size: 64];
+    label.backgroundColor = [UIColor clearColor];
+    [self.overlayView addSubview:label];
 }
 
 - (void) hide {

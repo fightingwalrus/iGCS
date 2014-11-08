@@ -20,7 +20,7 @@
 @property (nonatomic, assign) NSUInteger trackMKMapPointsLen;
 @property (nonatomic, assign) NSUInteger numTrackPoints;
 
-@property (nonatomic, assign) BOOL draggableWaypointsP;
+@property (nonatomic, assign) BOOL draggableWaypoints;
 @end
 
 @implementation WaypointMapBaseController
@@ -45,7 +45,7 @@
     self.trackMKMapPoints = malloc(self.trackMKMapPointsLen * sizeof(MKMapPoint));
     self.numTrackPoints = 0;
     
-    self.draggableWaypointsP = NO;
+    self.draggableWaypoints = NO;
     
     // Add recognizer for long press gestures
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]
@@ -160,8 +160,8 @@
     }
 }
 
-- (void) makeWaypointsDraggable:(BOOL)draggableWaypointsP {
-    self.draggableWaypointsP = draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)draggableWaypoints {
+    self.draggableWaypoints = draggableWaypoints;
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
     for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
@@ -169,9 +169,9 @@
         
         // See also viewForAnnotation
         MKAnnotationView *av = [self.mapView viewForAnnotation:waypointAnnotation];
-        [av setCanShowCallout: !draggableWaypointsP];
-        [av setDraggable: draggableWaypointsP];
-        [av setSelected: draggableWaypointsP];
+        [av setCanShowCallout: !draggableWaypoints];
+        [av setDraggable: draggableWaypoints];
+        [av setSelected: draggableWaypoints];
     }
 }
 
@@ -345,9 +345,9 @@
         view.enabled = YES;
         
         // See also makeWaypointsDraggable
-        view.canShowCallout = !self.draggableWaypointsP;
-        view.draggable = self.draggableWaypointsP;
-        view.selected = self.draggableWaypointsP;
+        view.canShowCallout = !self.draggableWaypoints;
+        view.draggable = self.draggableWaypoints;
+        view.selected = self.draggableWaypoints;
         
         // Set the waypoint label
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
