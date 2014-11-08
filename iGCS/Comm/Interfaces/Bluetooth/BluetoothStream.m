@@ -48,7 +48,7 @@
 
 
 // MavLinkInterface destination override (used for Tx)
--(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length {
+-(void)consumeData:(const uint8_t*)bytes length:(NSUInteger)length {
     if (self.gkLocalController) {
         [self.gkLocalController sendMavlinkData:bytes length:length];
     }

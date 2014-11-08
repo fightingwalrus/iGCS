@@ -35,6 +35,6 @@ typedef NS_ENUM(NSInteger, gameNetwork) {
 @interface GKLocalController : NSObject
 
 -(instancetype)init:(BluetoothStream*)bts NS_DESIGNATED_INITIALIZER;
--(void)sendMavlinkData:(const uint8_t*)bytes length:(NSInteger)length;
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(NSUInteger)length;
 
 @end
