@@ -220,7 +220,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 - (void) updateFollowMePosition:(FollowMeCtrlValues*)ctrlValues {
     // Determine user coord
     // CLLocationCoordinate2D userCoord = CLLocationCoordinate2DMake(47.258842, 11.331070); // Waypoint 0 in demo mission - useful for HIL testing
-    CLLocationCoordinate2D userCoord = userPosition.coordinate;
+    CLLocationCoordinate2D userCoord = self.userPosition.coordinate;
     
     // Determine new position
     double bearing  = M_PI + (2 * M_PI * ctrlValues.bearing);
@@ -251,10 +251,10 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
         [self.mapView setNeedsDisplay];
     }
 
-    DDLogDebug(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, userPosition.horizontalAccuracy);
+    DDLogDebug(@"FollowMe lat/long: %f,%f [accuracy: %f]", followMeLat*RAD2DEG, followMeLong*RAD2DEG, self.userPosition.horizontalAccuracy);
     if (ctrlValues.isActive &&
         (-[self.lastFollowMeUpdate timeIntervalSinceNow]) > FOLLOW_ME_MIN_UPDATE_TIME &&
-        [GCSMapViewController isAcceptableFollowMePosition:userPosition]) {
+        [GCSMapViewController isAcceptableFollowMePosition:self.userPosition]) {
         self.lastFollowMeUpdate = [NSDate date];
         
         [self issueGuidedCommand:fmCoords withAltitude:fmHeightOffset withFollowing:YES];
@@ -514,14 +514,14 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 
 // Override the base locationManager: didUpdateLocations
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = locationManager.location;
+    CLLocation *location = self.locationManager.location;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
     DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
     if (age > 5.0) return;
     
     [self.followMeControlDelegate followMeLocationAccuracy:location.horizontalAccuracy isAcceptable:[GCSMapViewController isAcceptableFollowMePosition:location]];
     
-    userPosition = location;
+    self.userPosition = location;
     [self updateFollowMePosition:[self.followMeControlDelegate followMeControlValues]];
 }
 

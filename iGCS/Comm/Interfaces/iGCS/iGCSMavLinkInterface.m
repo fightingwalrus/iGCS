@@ -162,10 +162,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                 [retryRequestHandler checkForAckOnCurrentRequest:msg];
                 
                 // Then send the packet on to the child views
-                [self.mainVC.gcsMapVC handlePacket:&msg];
-                [self.mainVC.gcsSidebarVC handlePacket:&msg];
-                [self.mainVC.waypointVC handlePacket:&msg];
-                [self.mainVC.commsVC  handlePacket:&msg];
+                [self.mainVC handlePacket:&msg];
                 [self.mavlinkLogger handlePacket:&msg];
             }
         }
@@ -205,10 +202,9 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 - (void) loadNewMission:(WaypointsHolder*)mission {
-    // Let the GCSMapView and WaypointsView know we've got new waypoints
+    // Let the MainVC know we've got new waypoints
     DDLogDebug(@"Loading mission:\n%@", [mission toOutputFormat]);
-    [self.mainVC.gcsMapVC   resetWaypoints:mission];
-    [self.mainVC.waypointVC resetWaypoints:mission];
+    [self.mainVC replaceMission:mission];
 }
 
 
@@ -290,9 +286,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 - (void) loadDemoMission {
     WaypointsHolder* demo = [WaypointsHolder createDemoMission];
     DDLogDebug(@"Loading mission:\n%@", [[WaypointsHolder createFromQGCString:[demo toOutputFormat]] toOutputFormat]);
-    
-    [self.mainVC.gcsMapVC resetWaypoints: demo];
-    [self.mainVC.waypointVC resetWaypoints: demo];
+    [self.mainVC replaceMission:demo];
 }
 
 -(void) sendHeatbeatToAutopilot {

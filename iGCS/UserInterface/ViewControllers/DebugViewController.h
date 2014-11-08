@@ -20,13 +20,6 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *videoSource;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *videoDisplayLocation;
 
-@property (strong) NSMutableArray *pendingConsoleMessages;
-@property (strong) NSMutableArray *pendingErrorMessages;
-
-@property (strong, nonatomic) ArDroneUtils * arDrone2;
-
-
-
 - (IBAction)bluetoothRxClicked:(id)sender;
 - (IBAction)bluetoothTxClicked:(id)sender;
 - (IBAction)videoSourceValueChanged:(id)sender;

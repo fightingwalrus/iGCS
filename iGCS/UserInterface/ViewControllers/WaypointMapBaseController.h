@@ -19,31 +19,19 @@
 #define MAP_REGION_PAD_FACTOR 1.10
 
 
-@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
-@private
-    MKPolyline *_waypointRoutePolyline;
-    NSInteger _currentWaypointNum;
+@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-    MKPolyline *_trackPolyline;
-    MKMapPoint *_trackMKMapPoints;
-    NSUInteger _trackMKMapPointsLen;
-    NSUInteger _numTrackPoints;
-    
-@protected
-    BOOL draggableWaypointsP;
-    
-    CLLocationManager *locationManager;
-    CLLocation *userPosition;
-}
+@property (nonatomic, strong, readonly) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *userPosition;
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
-- (void) resetWaypoints:(WaypointsHolder *)waypoints;
+- (void) replaceMission:(WaypointsHolder*)mission;
 - (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
 
-- (void) makeWaypointsDraggable:(BOOL)_draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;

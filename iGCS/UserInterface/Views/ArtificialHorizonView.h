@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DoubleBufferedAsyncView.h"
 
-@interface ArtificialHorizonView : DoubleBufferedAsyncView {
-    float _roll;
-    float _pitch;
-}
+@interface ArtificialHorizonView : DoubleBufferedAsyncView
 
 - (void) setRoll: (float)roll pitch:(float)pitch;
 

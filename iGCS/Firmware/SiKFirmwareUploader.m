@@ -20,8 +20,8 @@
 - (instancetype) initWithIdentifier: (uint8_t)identifier andFrequency:(uint8_t)frequency {
     self = [super init];
     if (self) {
-        self.identifier = identifier;
-        self.frequency  = frequency;
+        _identifier = identifier;
+        _frequency  = frequency;
     }
     return self;
 }
