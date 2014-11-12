@@ -21,10 +21,9 @@
     }
 }
 
--(void)consumeData:(const uint8_t *)bytes length:(int)length {
+-(void)consumeData:(const uint8_t *)bytes length:(NSInteger)length {
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
-    
 }
 
 #pragma mark Internal
@@ -90,7 +89,7 @@
 }
 
 - (EAAccessory *)selectedAccessory {
-	if (_selectedAccessory == nil) {
+	if (!_selectedAccessory) {
 		_accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
 		if ([_accessoryList count]) {
 			_selectedAccessory = _accessoryList[0];
@@ -108,7 +107,7 @@
 }
 
 - (BOOL)openSession {
-	if (_session == nil) {
+	if (!_session) {
 		DDLogInfo(@"RNBluetoothInterface::openSession");
 		[_selectedAccessory setDelegate:self];
 		_session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];

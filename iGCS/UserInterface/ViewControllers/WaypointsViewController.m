@@ -14,7 +14,7 @@
 #import "CommController.h"
 
 @interface WaypointsViewController ()
-
+@property (nonatomic, strong) UINavigationController *navVCEditItemVC;
 @end
 
 @implementation WaypointsViewController
@@ -29,20 +29,20 @@
 
     // Adjust view for iOS6 differences
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
-        _carrierPadding.width = 0;
-        _batteryPadding.width = 0;
+        self.carrierPadding.width = 0;
+        self.batteryPadding.width = 0;
     }
     
     // Custom initialization
-    waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
+    _waypoints = [[WaypointsHolder alloc] initWithExpectedCount:0];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
 #ifndef DEBUG
     // Hide the Load Demo UIBarButtonItem in non-DEBUG builds
-    _loadDemoButton.title = nil;   // UIBarButtonItem does not have a hidden property; this has the effect of hiding textual button items
-    _loadDemoButton.enabled = NO;
+    self.loadDemoButton.title = nil;   // UIBarButtonItem does not have a hidden property; this has the effect of hiding textual button items
+    self.loadDemoButton.enabled = NO;
 #endif
 
     // Register for keyboard show/hide notifications
@@ -65,11 +65,11 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString * segueName = segue.identifier;
     if ([segueName isEqualToString: @"editItemVC_embed"]) {
-        navVCEditItemVC = (UINavigationController*) [segue destinationViewController];
+        self.navVCEditItemVC = (UINavigationController*) [segue destinationViewController];
     }
 }
 
-- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(bool)showing {
+- (void)handleKeyboardDisplay:(NSNotification *)notification showing:(BOOL)showing {
     
     // Determine amount to slide the map and table views
     CGSize keyboardSize = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -78,8 +78,8 @@
     if (!showing) y = -y;
     
     // Compute new frames
-    CGRect tableRect = _containerForTableView.frame;
-    CGRect mapRect   = map.frame;
+    CGRect tableRect = self.containerForTableView.frame;
+    CGRect mapRect   = self.mapView.frame;
     tableRect.origin.y -= y;
     mapRect.origin.y   -= y;
     
@@ -94,8 +94,8 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    _containerForTableView.frame = tableRect;
-    map.frame = mapRect;
+    self.containerForTableView.frame = tableRect;
+    self.mapView.frame = mapRect;
     [UIView commitAnimations];
 }
 
@@ -108,42 +108,35 @@
 }
 
 - (MissionItemTableViewController*) missionTableViewController {
-    assert(navVCEditItemVC);
-    return (navVCEditItemVC.viewControllers)[0];
+    assert(self.navVCEditItemVC);
+    return (self.navVCEditItemVC.viewControllers)[0];
 }
-
-- (WaypointsHolder*) waypointsHolder {
-    return waypoints;
-}
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void) resetWaypoints {
-    [self resetWaypoints: waypoints];
+    [self replaceMission:self.waypoints];
 }
 
-- (void) resetWaypoints:(WaypointsHolder*)_waypoints {
-    // set waypoints ahead of waypointNumberForAnnotationView calls from [super resetWaypoints:...]
-    waypoints = _waypoints;
-    
-    [super resetWaypoints:_waypoints];
-    
-    [self.missionTableViewController resetWaypoints];
+- (void) replaceMission:(WaypointsHolder*)mission {
+    // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
+    _waypoints = mission;
+    [super replaceMission:self.waypoints];
+    [self.missionTableViewController refreshTableView];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
 
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
-    int index = [waypoints getIndexOfWaypointWithSeq:waypointSeq];
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+    NSInteger index = [self.waypoints getIndexOfWaypointWithSeq:waypointSeq];
     if (index != -1) {
-        mavlink_mission_item_t waypoint = [waypoints getWaypoint:index];
+        mavlink_mission_item_t waypoint = [self.waypoints getWaypoint:index];
         waypoint.x = latitude;
         waypoint.y = longitude;
-        [waypoints replaceWaypoint:index with:waypoint];
+        [self.waypoints replaceWaypoint:index with:waypoint];
         
         // Reset the map and table views
         [self resetWaypoints];  // FIXME: this is a little heavy handed. Want more fine-grained
@@ -154,13 +147,13 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[WaypointAnnotation class]]) {
         WaypointAnnotation *annotation = (WaypointAnnotation*)view.annotation;
-        [self.missionTableViewController markSelectedRow: [waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
+        [self.missionTableViewController markSelectedRow: [self.waypoints getIndexOfWaypointWithSeq: annotation.waypoint.seq]];
     }
 }
 
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
     // This subclass uses the row number
-    return [NSString stringWithFormat:@"%d", [waypoints getIndexOfWaypointWithSeq:item.seq]];
+    return [NSString stringWithFormat:@"%d", [self.waypoints getIndexOfWaypointWithSeq:item.seq]];
 }
 
 
@@ -184,7 +177,7 @@
     CLLocationCoordinate2D pos;
 
     // Determine the next "default" waypoint position
-    WaypointsHolder *currentNavPoints = [waypoints navWaypoints];
+    WaypointsHolder *currentNavPoints = [self.waypoints navWaypoints];
     if ([currentNavPoints numWaypoints] > 0) {
         // Add a new point slightly to the east of the last one
         mavlink_mission_item_t lastNavItem = [currentNavPoints lastWaypoint];
@@ -193,9 +186,9 @@
         if (pos.longitude > 180) {
             pos.longitude -= 360;
         }
-    } else if (userPosition != nil) {
+    } else if (self.userPosition) {
         // Place the first point near the current user
-        pos = userPosition.coordinate;
+        pos = self.userPosition.coordinate;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to determine default waypoint"
                                                         message:@"Place the first waypoint manually, or enable GPS"
@@ -206,7 +199,7 @@
         return;
     }
     
-    [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
+    [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
     [self resetWaypoints];
 }
 
@@ -216,8 +209,8 @@
         return;
     
     // Set the coordinates of the map point being held down
-    CLLocationCoordinate2D pos = [map convertPoint:[sender locationInView:map] toCoordinateFromView:map];
-    [waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
+    CLLocationCoordinate2D pos = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
+    [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
     [self resetWaypoints];
 }
 
@@ -226,19 +219,19 @@
     
     // Update the table and edit/add/upload buttons
     BOOL isEditing = [self.missionTableViewController toggleEditing];
-    _editDoneButton.title = isEditing ? @"Done" : @"Edit";
-    _editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+    self.editDoneButton.title = isEditing ? @"Done" : @"Edit";
+    self.editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
-    _addButton.enabled       = isEditing;
-    _rxMissionButton.enabled = !isEditing;
-    _txMissionButton.enabled = !isEditing;
-    _loadDemoButton.enabled  = !isEditing;
+    self.addButton.enabled       = isEditing;
+    self.rxMissionButton.enabled = !isEditing;
+    self.txMissionButton.enabled = !isEditing;
+    self.loadDemoButton.enabled  = !isEditing;
 
-    int delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
-    CGRect tableRect = _containerForTableView.frame;
-    CGRect mapRect   = map.frame;
+    CGRect tableRect = self.containerForTableView.frame;
+    CGRect mapRect   = self.mapView.frame;
 
     tableRect.origin.y += delta;
     tableRect.size.height -= delta;
@@ -248,8 +241,8 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.75];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    _containerForTableView.frame = tableRect;
-    map.frame = mapRect;
+    self.containerForTableView.frame = tableRect;
+    self.mapView.frame = mapRect;
     [UIView commitAnimations];
     
     // Update the map view with non/editable waypoints
@@ -258,7 +251,7 @@
 
 
 - (IBAction)mavTxMissionClicked:(id)sender {
-    [[[CommController sharedInstance] mavLinkInterface] startWriteMissionRequest: waypoints];
+    [[[CommController sharedInstance] mavLinkInterface] startWriteMissionRequest:self.waypoints];
 }
 
 - (IBAction)mavRxMissionClicked:(id)sender {
@@ -267,19 +260,15 @@
 
 // @protocol MissionItemEditingDelegate
 - (WaypointsHolder*) cloneMission {
-    return [waypoints mutableCopy];
+    return [self.waypoints mutableCopy];
 }
 
-- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx {
-    return [waypoints getWaypoint:idx];
+- (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx {
+    return [self.waypoints getWaypoint:idx];
 }
 
-- (void) resetMission:(WaypointsHolder*) mission {
-    [self resetWaypoints: mission];
-}
-
-- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx {
-    [waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {
+    [self.waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
     [self resetWaypoints]; // Reset the map and table views
 }
 // end @protocol MissionItemEditingDelegate

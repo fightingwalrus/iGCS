@@ -10,6 +10,11 @@
 #import "GaugeViewCommon.h"
 #import "MiscUtilities.h"
 
+@interface CompassView ()
+@property (nonatomic, readonly) float heading;
+@property (nonatomic, readonly) float navBearing;
+@end
+
 @implementation CompassView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -20,12 +25,12 @@
     return self;
 }
 
-- (void) setHeading:(float)_heading {
-    if (_heading >= 0 && _heading <= 360) heading = _heading;
+- (void) setHeading:(float)heading {
+    if (heading >= 0 && heading <= 360) _heading = heading;
 }
 
-- (void) setNavBearing:(float)_navBearing {
-    if (_navBearing >= 0 && _navBearing <= 360) navBearing = _navBearing;
+- (void) setNavBearing:(float)navBearing {
+    if (navBearing >= 0 && navBearing <= 360) _navBearing = navBearing;
 }
 
 #if DO_ANIMATION
@@ -81,10 +86,10 @@
     //
     // They also run in an "anticlockwise" direction; that is, [NE --- N --- NW], 
     // but have deliberately chosen a more intuitive display here
-    int startAng = ((int)heading - 180)/5 * 5;
-    const float startX = c.x + (startAng-heading) * oneDegX;
-    int ang = (startAng < 0) ? startAng += 360 : startAng;    
-    for (int i = 0; i < 360; i += 5, ang = (ang+5) % 360) {
+    NSInteger startAng = ((NSInteger)self.heading - 180)/5 * 5;
+    const float startX = c.x + (startAng-self.heading) * oneDegX;
+    NSInteger ang = (startAng < 0) ? startAng += 360 : startAng;    
+    for (NSUInteger i = 0; i < 360; i += 5, ang = (ang+5) % 360) {
         // Find the x position of this tick
         const float x = startX + i*oneDegX;
         if (x < -20 || x > w + 20) continue;
@@ -122,7 +127,7 @@
     //
     CGContextSaveGState(ctx);
     CGContextSetShadow (ctx, CGSizeMake (TICK_WIDTH, TICK_WIDTH), 2.5);
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         CGContextBeginPath(ctx);
         CGContextMoveToPoint(ctx,    c.x, c.y-h/2);
         CGContextAddLineToPoint(ctx, c.x, c.y+h/2);    
@@ -146,7 +151,7 @@
                         (__bridge id)[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0].CGColor];
     CGFloat locations[] = {0.0, 1.0};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         CGRect subRect = CGRectMake(((i == 0) ? c.x - w/2 : c.x + w/6), c.y - h/2, w/3, h);
         CGPoint startPoint = CGPointMake(CGRectGetMinX(subRect), CGRectGetMinY(subRect));
         CGPoint endPoint = CGPointMake(CGRectGetMaxX(subRect), CGRectGetMinY(subRect));
@@ -165,7 +170,7 @@
     CGColorSpaceRelease(colorSpace);
     
     // Draw bearing chevron
-    float bearingError = (navBearing - heading);
+    float bearingError = (self.navBearing - self.heading);
     if (bearingError >  180) bearingError -= 360;
     if (bearingError < -180) bearingError += 360;
     

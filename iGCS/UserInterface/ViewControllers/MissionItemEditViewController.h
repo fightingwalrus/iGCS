@@ -11,23 +11,14 @@
 #import "MissionItemField.h"
 #import "WaypointsViewController.h"
 
-@interface MissionItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet UIPickerView *pickerView;
-    
-    NSArray *missionItemCommandIDs;
-    
-    WaypointsHolder *originalMission;
+@interface MissionItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate>
 
-    unsigned int itemIndex;
-    BOOL saveEdits;
-}
-
-- (void) initInstance:(unsigned int)_missionItemRow with:(id <MissionItemEditingDelegate>)_delegate;
+- (void) initInstance:(NSUInteger)missionItemRow with:(id <MissionItemEditingDelegate>)delegate;
 
 - (IBAction)cancelButtonClicked:(id)sender;
 - (IBAction)saveButtonClicked:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UITableView *itemDetails;
-@property (weak, readonly) id <MissionItemEditingDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 
 @end

@@ -71,7 +71,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 - (EAAccessory *)selectedAccessory {
-    if (_selectedAccessory == nil) {
+    if (!_selectedAccessory) {
         self.accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
         if ([self.accessoryList count]) {
             _selectedAccessory = (self.accessoryList)[0];
@@ -89,7 +89,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 - (BOOL)openSession {
-	if (self.session == nil) {
+	if (!self.session) {
         DDLogInfo(@"FightingWalrusInterface: openSession");
         [self.selectedAccessory setDelegate:self];
         self.session = [[EASession alloc] initWithAccessory:[self selectedAccessory] forProtocol:_protocolString];
@@ -215,7 +215,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 #pragma mark -
 #pragma mark - CommInterfaceProtocol
 
--(void)consumeData:(const uint8_t *)bytes length:(int)length {
+-(void)consumeData:(const uint8_t *)bytes length:(NSInteger)length {
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
 }
@@ -245,7 +245,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
     while ([[self.session inputStream] hasBytesAvailable]) {
         NSInteger bytesRead = [[self.session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
         DDLogVerbose(@"read %ld bytes from input stream", (long)bytesRead);
-        [self produceData:buf length:(int)bytesRead];
+        [self produceData:buf length:(NSInteger)bytesRead];
     }
 }
 

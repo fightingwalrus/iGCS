@@ -9,6 +9,11 @@
 #import "ArtificialHorizonView.h"
 #import "GaugeViewCommon.h"
 
+@interface ArtificialHorizonView ()
+@property (nonatomic, assign) float roll;
+@property (nonatomic, assign) float pitch;
+@end
+
 @implementation ArtificialHorizonView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -19,14 +24,14 @@
     return self;
 }
 
-- (void) setRoll:(float)_roll pitch:(float)_pitch {
-    if (_roll  <= M_PI &&   _roll  >= -M_PI)   roll  = _roll;
-    if (_pitch <= M_PI/2 && _pitch >= -M_PI/2) pitch = _pitch;
+- (void) setRoll:(float)roll pitch:(float)pitch {
+    if (roll  <= M_PI &&   roll  >= -M_PI)   self.roll  = roll;
+    if (pitch <= M_PI/2 && pitch >= -M_PI/2) self.pitch = pitch;
 }
 
 #if DO_ANIMATION
 - (void) doAnimation {
-    static int i = 0;
+    static NSUInteger i = 0;
     i++;
     [self setRoll:(fmodf(AH_ROT_ANGLE + AH_ROT_PER_STEP*i +180, 360)-180) * DEG2RAD pitch: AH_PITCH_ANGLE * DEG2RAD];
     [self requestRedraw];
@@ -53,7 +58,7 @@
         CGContextRef ctx = CGLayerGetContext(frontFaceLayer);
         [self drawAHGaugeFrontFace:   ctx centre:c radius:r];
     }
-    CGContextDrawLayerAtPoint(ctx, CGPointMake(0,0), frontFaceLayer);
+    CGContextDrawLayerAtPoint(ctx, CGPointZero, frontFaceLayer);
 }
 
 - (void) drawAHGaugeInnerCircle:(CGContextRef) ctx centre:(CGPoint)c radius:(float) r {
@@ -77,9 +82,9 @@
     // Rotate about the centre point, and translate to desired "pitch"
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, roll);
+    transform = CGAffineTransformRotate(transform, self.roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
-    transform = CGAffineTransformTranslate(transform, 0, pitch*RAD2DEG/5.0 * yMinorDelta);
+    transform = CGAffineTransformTranslate(transform, 0, self.pitch*RAD2DEG/5.0 * yMinorDelta);
     CGContextConcatCTM(ctx, transform);
     
     // Ground
@@ -112,7 +117,7 @@
     //CGContextSetCharacterSpacing(ctx, 5); 
 
     // Add pitch lines
-    for (int i = 1; i <= 4; i++) {
+    for (NSUInteger i = 1; i <= 4; i++) {
         NSString *label = [NSString stringWithFormat:@"%d", i*10];
         
         // Increasing size of horizontal stroke moving out from centre
@@ -120,7 +125,7 @@
         float yOffset      = (i  ) * 2 * yMinorDelta;
 
         // For both above and below the horizon
-        for (int j = 0; j < 2; j++) {
+        for (NSUInteger j = 0; j < 2; j++) {
             
             // Main stroke
             float y = c.y + (j == 0 ? yOffset : -yOffset);
@@ -164,7 +169,7 @@
     // Rotate about the centre
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, roll);
+    transform = CGAffineTransformRotate(transform, self.roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
     CGContextConcatCTM(ctx, transform);
     
@@ -190,7 +195,7 @@
     // Add horizon ticks
     CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     CGContextSetLineWidth(ctx, 0.04*r);
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         CGContextBeginPath(ctx);
         CGContextMoveToPoint   (ctx, c.x + (i==0 ? r : -r), c.y);
         CGContextAddLineToPoint(ctx, c.x + (i==0 ? FRONT_FACE_INNER_RADIUS : -FRONT_FACE_INNER_RADIUS), c.y);
@@ -199,7 +204,7 @@
 
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     // +/-45 + 0 deg arrow marks
-    for (int i = 0; i < 3; i++) {
+    for (NSUInteger i = 0; i < 3; i++) {
         float outerRad = FRONT_FACE_MAJOR_TICK_RADIUS;
         if (i == 1) // 0 def
             outerRad = r;
@@ -216,7 +221,7 @@
     
     // +/- 30 + 60 deg major ticks
     CGContextSetLineWidth(ctx, 0.02*r);
-    for (int i = 1; i < 6; i++) {
+    for (NSUInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = -30 * i * DEG2RAD;
         
@@ -228,7 +233,7 @@
 
     // +/- 10 + 20 deg minor ticks
     CGContextSetLineWidth(ctx, 0.01*r);
-    for (int i = 1; i < 6; i++) {
+    for (NSUInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = (-120 + i*10) * DEG2RAD;
         
@@ -302,7 +307,7 @@
     CGContextFillPath(ctx);
     
     // Draw the "airplane" pointer
-    for (int i = 0; i < 2; i++) {
+    for (NSUInteger i = 0; i < 2; i++) {
         if (i == 0) {
             // Draw background of pointer
             CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
@@ -327,7 +332,7 @@
         
     // Draw the front face arrow
     float y = c.y - TRIANGLE_POINTER_APEX;
-    for (int i = 0; i < 2; i++) {        
+    for (NSUInteger i = 0; i < 2; i++) {        
         if (i == 0) {
             // Draw background of pointer
             CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);

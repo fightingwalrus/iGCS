@@ -12,14 +12,16 @@
 #import "MavLinkUtility.h"
 
 @interface MissionItemEditViewController ()
+@property (weak, readonly) id <MissionItemEditingDelegate> delegate;
+@property (nonatomic, readonly) NSUInteger itemIndex;
+@property (nonatomic, assign) BOOL saveEdits;
+@property (nonatomic, strong) WaypointsHolder *originalMission;
 
+@property (nonatomic, strong) NSArray *missionItemCommandIDs;
 @end
 
 
 @implementation MissionItemEditViewController
-
-@synthesize itemDetails;
-@synthesize delegate;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,13 +31,13 @@
     return self;
 }
 
-- (void) initInstance:(unsigned int)_idx with:(id <MissionItemEditingDelegate>)_delegate {
-    delegate = _delegate;
-    itemIndex = _idx;
-    saveEdits = NO;
+- (void) initInstance:(NSUInteger)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
+    _delegate = delegate;
+    _itemIndex = itemIndex;
+    _saveEdits = NO;
 
     // Clone the original mission
-    originalMission = [delegate cloneMission];
+    _originalMission = [delegate cloneMission];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,8 +51,8 @@
 
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
-    if (!saveEdits) {
-        [delegate resetMission: originalMission];
+    if (!self.saveEdits) {
+        [self.delegate replaceMission:self.originalMission];
     }
 }
 
@@ -58,9 +60,9 @@
     [super viewDidLoad];
     
     // Get the sorted list of all commands IDs for use in indexing the picker view
-    missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
+    self.missionItemCommandIDs = [MavLinkUtility supportedMissionItemTypes];
 
-    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", itemIndex]];
+    [self setTitle:[NSString stringWithFormat:@"Mission Item #%d", self.itemIndex]];
     [self refreshWithMissionItem];
 }
 
@@ -74,31 +76,31 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    return [missionItemCommandIDs count];
+    return [self.missionItemCommandIDs count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [WaypointHelper commandIDToString: ((NSNumber*)missionItemCommandIDs[row]).intValue];
+    return [WaypointHelper commandIDToString: ((NSNumber*)self.missionItemCommandIDs[row]).intValue];
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    DDLogDebug(@"Selected Mission Item: %@ at index %i", missionItemCommandIDs[row], row);
+    DDLogDebug(@"Selected Mission Item: %@ at index %i", self.missionItemCommandIDs[row], row);
     
     // Force any in-progress textfield to kick off textFieldDidEndEditing and friends
     [self.view.window endEditing: YES];
     
     // Change the command of the currently edited mission item
     mavlink_mission_item_t missionItem = [self getCurrentMissionItem];
-    missionItem.command = [((NSNumber*)missionItemCommandIDs[row]) unsignedIntValue];
-    [delegate replaceMissionItem:missionItem atIndex:itemIndex];
+    missionItem.command = [((NSNumber*)self.missionItemCommandIDs[row]) unsignedIntValue];
+    [self.delegate replaceMissionItem:missionItem atIndex:self.itemIndex];
     [self.itemDetails reloadData];
 }
 
 - (void) refreshWithMissionItem {
     // Check that we have a supported mission item 
-    int row = -1;
-    for (unsigned int i = 0; i < [missionItemCommandIDs count]; i++) {
-        uint16_t commandID = ((NSNumber*)missionItemCommandIDs[i]).intValue;
+    NSInteger row = -1;
+    for (NSUInteger i = 0; i < [self.missionItemCommandIDs count]; i++) {
+        uint16_t commandID = ((NSNumber*)self.missionItemCommandIDs[i]).intValue;
         if (commandID == [self getCurrentMissionItem].command) {
             row = i;
             break;
@@ -113,26 +115,26 @@
     }
     
     // Set the corresponding picker view row, and refresh the table view
-    [pickerView selectRow:row inComponent:0 animated:NO];
+    [self.pickerView selectRow:row inComponent:0 animated:NO];
     [self.itemDetails reloadData];
 }
 
 - (mavlink_mission_item_t)getCurrentMissionItem {
-    return [delegate getMissionItemAtIndex:itemIndex];
+    return [self.delegate getMissionItemAtIndex:self.itemIndex];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[MavLinkUtility missionItemMetadataWith: [self getCurrentMissionItem].command] count];
 }
 
-- (UITableViewCell *)tableView: (UITableView *)_tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath: (NSIndexPath *)indexPath {
     mavlink_mission_item_t item = [self getCurrentMissionItem];
     MissionItemField *field = (MissionItemField*)[MavLinkUtility missionItemMetadataWith: item.command][indexPath.row];
-    UITableViewCell *cell = [itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
+    UITableViewCell *cell = [self.itemDetails dequeueReusableCellWithIdentifier:@"missionItemCell"];
     
     // Note: see prototype cell for magic #'s
     UILabel *label    = (UILabel *)    [cell viewWithTag:100];
@@ -152,10 +154,10 @@
     // FIXME: is there a nicer way to do this? (without for instance, using a tag on textfield, which we're already
     // using for another purpose; namely, using viewWithTag to find/configure the cell from the storyboard prototype)
     UIView *cell = textField;
-    while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
+    while (cell && ![cell isKindOfClass:[UITableViewCell class]]) {
         cell = [cell superview];
     }
-    NSIndexPath *indexPath = [itemDetails indexPathForCell:(UITableViewCell*)cell];
+    NSIndexPath *indexPath = [self.itemDetails indexPathForCell:(UITableViewCell*)cell];
     assert(indexPath != NULL);
     DDLogDebug(@"textFieldDidEndEditing - tag: %d, indexPath.row = %d", textField.tag, indexPath.row);
 
@@ -165,7 +167,7 @@
     // Modify the respective field in the item
     [field setValue:[textField.text floatValue] inMissionItem:&item];
 
-    [delegate replaceMissionItem:item atIndex:itemIndex];
+    [self.delegate replaceMissionItem:item atIndex:self.itemIndex];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -184,18 +186,16 @@
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
                                                         options:0
                                                           range:NSMakeRange(0, [newString length])];
-    if (numberOfMatches == 0)
-        return NO;
-    return YES;
+    return (numberOfMatches != 0);
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
-    saveEdits = false;
+    self.saveEdits = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveButtonClicked:(id)sender {
-    saveEdits = true;
+    self.saveEdits = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

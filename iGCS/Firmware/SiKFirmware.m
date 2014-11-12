@@ -22,18 +22,18 @@
 
 // Create a new AddressDataPair, extending this.data with adp.data
 - (AddressDataPair*) extend:(AddressDataPair*)adp {
-    NSMutableData *newData = [NSMutableData dataWithCapacity:_data.length + adp.data.length];
-    [newData appendData:_data];
+    NSMutableData *newData = [NSMutableData dataWithCapacity:self.data.length + adp.data.length];
+    [newData appendData:self.data];
     [newData appendData:adp.data];
-    return [[AddressDataPair alloc] initWithAddress:_address andData:newData];
+    return [[AddressDataPair alloc] initWithAddress:self.address andData:newData];
 }
 
 - (NSComparisonResult)compare:(AddressDataPair*)object {
-    return (_address == object.address ? NSOrderedSame : (_address < object.address ? NSOrderedAscending : NSOrderedDescending));
+    return (self.address == object.address ? NSOrderedSame : (self.address < object.address ? NSOrderedAscending : NSOrderedDescending));
 }
 
 - (NSUInteger) nextAddress {
-    return _address + _data.length;
+    return self.address + self.data.length;
 }
 
 @end
@@ -53,7 +53,7 @@
 // ref: http://stackoverflow.com/questions/2501033/nsstring-hex-to-bytes
 + (NSData*)hexStrToNSData:(NSString*)s {
     const char *chars = [s UTF8String];
-    int i = 0, len = s.length;
+    NSUInteger i = 0, len = s.length;
     
     assert(len % 2 == 0);
     
@@ -100,7 +100,7 @@
     // look for a pair that immediately follows this one
     NSNumber *nextAddress = @([adp nextAddress]);
     AddressDataPair *nextPair = dict[nextAddress];
-    if (nextPair != nil) {
+    if (nextPair) {
         // found one, remove from dict and merge to the end of adp
         [dict removeObjectForKey:nextAddress];
         adp = [adp extend:nextPair];
@@ -129,7 +129,7 @@
     NSArray* lines = [s componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     for (NSString *line in lines) {
         AddressDataPair *ad = [SiKFirmware parseLine:line];
-        if (ad != nil) {
+        if (ad) {
             dict = [SiKFirmware insertAddressDataPair:ad into:dict];
         }
     }

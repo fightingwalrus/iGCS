@@ -11,9 +11,19 @@
 #import "FillStrokePolyLineView.h"
 #import "WaypointAnnotationView.h"
 
-@implementation WaypointMapBaseController
+@interface WaypointMapBaseController ()
+@property (nonatomic, strong) MKPolyline *waypointRoutePolyline;
+@property (nonatomic, assign) NSInteger currentWaypointNum;
 
-@synthesize _mapView = map;
+@property (nonatomic, strong) MKPolyline *trackPolyline;
+@property (nonatomic, assign) MKMapPoint *trackMKMapPoints;
+@property (nonatomic, assign) NSUInteger trackMKMapPointsLen;
+@property (nonatomic, assign) NSUInteger numTrackPoints;
+
+@property (nonatomic, assign) BOOL draggableWaypoints;
+@end
+
+@implementation WaypointMapBaseController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,15 +37,15 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-    map.delegate = self;
+    self.mapView.delegate = self;
     
-    currentWaypointNum = -1;
+    self.currentWaypointNum = -1;
     
-    trackMKMapPointsLen = 1000;
-    trackMKMapPoints = malloc(trackMKMapPointsLen * sizeof(MKMapPoint));
-    numTrackPoints = 0;
+    self.trackMKMapPointsLen = 1000;
+    self.trackMKMapPoints = malloc(self.trackMKMapPointsLen * sizeof(MKMapPoint));
+    self.numTrackPoints = 0;
     
-    draggableWaypointsP = false;
+    self.draggableWaypoints = NO;
     
     // Add recognizer for long press gestures
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]
@@ -43,14 +53,14 @@
     longPressGesture.numberOfTapsRequired = 0;
     longPressGesture.numberOfTouchesRequired = 1;
     longPressGesture.minimumPressDuration = 1.0;
-    [map addGestureRecognizer:longPressGesture];
+    [self.mapView addGestureRecognizer:longPressGesture];
     
     // Start listening for location updates
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 2.0f;
-    [locationManager startUpdatingLocation];
+    _locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 2.0f;
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,109 +69,109 @@
 }
 
 - (NSArray*) getWaypointAnnotations {
-    return [map.annotations
+    return [self.mapView.annotations
             filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)",
                                          [WaypointAnnotation class]]];
 }
 
 - (void) removeExistingWaypointAnnotations {
-    [map removeAnnotations:[self getWaypointAnnotations]];
+    [self.mapView removeAnnotations:[self getWaypointAnnotations]];
 }
 
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq {
+- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq {
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];;
-        if ([waypointAnnotation isCurrentWaypointP:waypointSeq]) {
+        if ([waypointAnnotation hasMatchingSeq:waypointSeq]) {
             return waypointAnnotation;
         }
     }
     return nil;
 }
 
-- (void) resetWaypoints:(WaypointsHolder *)_waypoints {
+- (void) replaceMission:(WaypointsHolder*)mission {
     
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
-    [map removeOverlay:waypointRoutePolyline];
+    [self.mapView removeOverlay:self.waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
-    WaypointsHolder *navWaypoints = [_waypoints navWaypoints];
-    unsigned int numWaypoints = [navWaypoints numWaypoints];
+    WaypointsHolder *navWaypoints = [mission navWaypoints];
+    NSUInteger numWaypoints = [navWaypoints numWaypoints];
     
     MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
     
     // Add waypoint annotations, and convert to array of MKMapPoints
-    for (unsigned int i = 0; i < numWaypoints; i++) {
+    for (NSUInteger i = 0; i < numWaypoints; i++) {
         mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
         // Add the annotation
         WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
                                                                             andWayPoint:waypoint
-                                                                                atIndex:[_waypoints getIndexOfWaypointWithSeq:waypoint.seq]];
-        [map addAnnotation:annotation];
+                                                                                atIndex:[mission getIndexOfWaypointWithSeq:waypoint.seq]];
+        [self.mapView addAnnotation:annotation];
         
         // Construct the MKMapPoint
         navMKMapPoints[i] = MKMapPointForCoordinate(coordinate);
     }
     
     // Add the polyline overlay
-    waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
-    [map addOverlay:waypointRoutePolyline];
+    self.waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
+    [self.mapView addOverlay:self.waypointRoutePolyline];
     
     // Set the map extents
-    MKMapRect bounds = [waypointRoutePolyline boundingMapRect];
+    MKMapRect bounds = [self.waypointRoutePolyline boundingMapRect];
     if (!MKMapRectIsNull(bounds)) {
         // Extend the bounding rect of the polyline slightly
         MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
         region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
         region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
-        [map setRegion:region animated:YES];
-    } else if ([waypointRoutePolyline pointCount] == 1) {
+        [self.mapView setRegion:region animated:YES];
+    } else if ([self.waypointRoutePolyline pointCount] == 1) {
         // Fallback to a padded box centered on the single waypoint
-        CLLocationCoordinate2D coord = MKCoordinateForMapPoint([waypointRoutePolyline points][0]);
-        [map setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+        CLLocationCoordinate2D coord = MKCoordinateForMapPoint([self.waypointRoutePolyline points][0]);
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
     }
-    [map setNeedsDisplay];
+    [self.mapView setNeedsDisplay];
     
     free(navMKMapPoints);
 }
 
-- (void)updateWaypointIcon:(WaypointAnnotation*)annotation {
+- (void)updateWaypointIcon:(WaypointAnnotation*)annotation isSelected:(BOOL)isSelected {
     if (annotation) {
-        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[map viewForAnnotation: annotation]
-                                     selectedWaypointSeq:currentWaypointNum];
+        [WaypointMapBaseController updateWaypointIconFor:(WaypointAnnotationView*)[self.mapView viewForAnnotation: annotation]
+                                              isSelected:isSelected];
     }
 }
 
-- (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq {
-    if (currentWaypointNum != newCurrentWaypointSeq) {
+- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq {
+    if (self.currentWaypointNum != newCurrentWaypointSeq) {
         // We've reached a new waypoint, so...
-        int previousWaypointNum = currentWaypointNum;
+        NSInteger previousWaypointNum = self.currentWaypointNum;
         
         //  first, update the current value (so we get the desired
-        // side-effect when resetting the waypoints), then...
-        currentWaypointNum = newCurrentWaypointSeq;
+        // side-effect, from viewForAnnotation, when resetting the waypoints), then...
+        self.currentWaypointNum = newCurrentWaypointSeq;
 
         //  reset the previous and new current waypoints
-        [self updateWaypointIcon: [self getWaypointAnnotation:previousWaypointNum]];
-        [self updateWaypointIcon: [self getWaypointAnnotation:currentWaypointNum]];
+        [self updateWaypointIcon:[self getWaypointAnnotation:previousWaypointNum] isSelected:NO];
+        [self updateWaypointIcon:[self getWaypointAnnotation:self.currentWaypointNum] isSelected:YES];
     }
 }
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP {
-    draggableWaypointsP = _draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)draggableWaypoints {
+    self.draggableWaypoints = draggableWaypoints;
     
     NSArray* waypointAnnotations = [self getWaypointAnnotations];
-    for (unsigned int i = 0; i < [waypointAnnotations count]; i++) {
+    for (NSUInteger i = 0; i < [waypointAnnotations count]; i++) {
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)waypointAnnotations[i];
         
         // See also viewForAnnotation
-        MKAnnotationView *av = [map viewForAnnotation:waypointAnnotation];
-        [av setCanShowCallout: !draggableWaypointsP];
-        [av setDraggable: draggableWaypointsP];
-        [av setSelected: draggableWaypointsP];
+        MKAnnotationView *av = [self.mapView viewForAnnotation:waypointAnnotation];
+        [av setCanShowCallout: !draggableWaypoints];
+        [av setDraggable: draggableWaypoints];
+        [av setSelected: draggableWaypoints];
     }
 }
 
@@ -186,7 +196,7 @@
 
 // FIXME: Ugh. This was a quick and dirty way to promote waypoint changes (due to dragging etc) to
 // the subclass (which overrides this method). Adopt a more idomatic pattern for this?
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
 }
 
 // FIXME: consider more efficient (and safe?) ways to do this - see iOS Breadcrumbs sample code
@@ -199,39 +209,40 @@
     }
     
     // Check distance from last point
-    if (numTrackPoints > 0) {
-        if (MKMetersBetweenMapPoints(newPoint, trackMKMapPoints[numTrackPoints-1]) < 1.0) {
+    if (self.numTrackPoints > 0) {
+        if (MKMetersBetweenMapPoints(newPoint, self.trackMKMapPoints[self.numTrackPoints-1]) < 1.0) {
             return;
         }
     }
     
     // Check array bounds
-    if (numTrackPoints == trackMKMapPointsLen) {
-        MKMapPoint *newAlloc = realloc(trackMKMapPoints, trackMKMapPointsLen*2 * sizeof(MKMapPoint));
-        if (newAlloc == nil)
+    if (self.numTrackPoints == self.trackMKMapPointsLen) {
+        MKMapPoint *newAlloc = realloc(self.trackMKMapPoints, self.trackMKMapPointsLen*2 * sizeof(MKMapPoint));
+        if (!newAlloc) {
             return;
-        trackMKMapPoints = newAlloc;
-        trackMKMapPointsLen *= 2;
+        }
+        self.trackMKMapPoints = newAlloc;
+        self.trackMKMapPointsLen *= 2;
     }
     
     // Add the next coord
-    trackMKMapPoints[numTrackPoints] = newPoint;
-    numTrackPoints++;
+    self.trackMKMapPoints[self.numTrackPoints] = newPoint;
+    self.numTrackPoints++;
     
     // Clean up existing objects
-    [map removeOverlay:trackPolyline];
+    [self.mapView removeOverlay:self.trackPolyline];
     
-    trackPolyline = [MKPolyline polylineWithPoints:trackMKMapPoints count:numTrackPoints];
+    self.trackPolyline = [MKPolyline polylineWithPoints:self.trackMKMapPoints count:self.numTrackPoints];
     
     // Add the polyline overlay
-    [map addOverlay:trackPolyline];
-    [map setNeedsDisplay];
+    [self.mapView addOverlay:self.trackPolyline];
+    [self.mapView setNeedsDisplay];
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
     
-    if (overlay == waypointRoutePolyline) {
+    if (overlay == self.waypointRoutePolyline) {
         FillStrokePolyLineView *waypointRouteView = [[FillStrokePolyLineView alloc] initWithPolyline:overlay];
         waypointRouteView.strokeColor = [theme waypointLineStrokeColor];
         waypointRouteView.fillColor   = [theme waypointLineFillColor];
@@ -240,7 +251,7 @@
         waypointRouteView.lineCap     = kCGLineCapRound;
         waypointRouteView.lineJoin    = kCGLineJoinRound;
         return waypointRouteView;
-    } else if (overlay == trackPolyline) {
+    } else if (overlay == self.trackPolyline) {
         MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
         trackView.fillColor     = [theme trackLineColor];
         trackView.strokeColor   = [theme trackLineColor];
@@ -272,13 +283,10 @@
     [view.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 
-+ (void)updateWaypointIconFor:(WaypointAnnotationView*)view selectedWaypointSeq:(int)selectedWaypointSeq {
-    static const int ICON_VIEW_TAG = 101;
-
-    WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)view.annotation;
-    
++ (void)updateWaypointIconFor:(WaypointAnnotationView*)view isSelected:(BOOL)isSelected {
+    static const NSInteger ICON_VIEW_TAG = 101;
     UIImage *icon = nil;
-    if ([waypointAnnotation isCurrentWaypointP:selectedWaypointSeq]) {
+    if (isSelected) {
         // Animate the waypoint view
         [WaypointMapBaseController animateMKAnnotationView:view from:1.0 to:1.1 duration:1.0];
         
@@ -302,7 +310,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static const int LABEL_TAG = 100;
+    static const NSInteger LABEL_TAG = 100;
     
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -315,7 +323,9 @@
         // FIXME: Dequeuing disabled due to issue observed on iOS7.1 only - cf IGCS-110
         //MKAnnotationView *view = (MKAnnotationView*) [map dequeueReusableAnnotationViewWithIdentifier:identifier];
         WaypointAnnotationView *view = nil;
-        if (view == nil) {
+        if (view) {
+            view.annotation = annotation;
+        } else {
             view = [[WaypointAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
             [view setBackgroundColor:[UIColor clearColor]];
@@ -330,16 +340,14 @@
             label.layer.shadowRadius  = 1.0f;
             
             [view addSubview:label];
-        } else {
-            view.annotation = annotation;
         }
         
         view.enabled = YES;
         
         // See also makeWaypointsDraggable
-        view.canShowCallout = !draggableWaypointsP;
-        view.draggable = draggableWaypointsP;
-        view.selected = draggableWaypointsP;
+        view.canShowCallout = !self.draggableWaypoints;
+        view.draggable = self.draggableWaypoints;
+        view.selected = self.draggableWaypoints;
         
         // Set the waypoint label
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
@@ -347,7 +355,7 @@
         label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
-        [WaypointMapBaseController updateWaypointIconFor:view selectedWaypointSeq:currentWaypointNum];
+        [WaypointMapBaseController updateWaypointIconFor:view isSelected:[waypointAnnotation hasMatchingSeq:self.currentWaypointNum]];
 
         // Provide subclasses with a chance to customize the waypoint annotation view
         [self customizeWaypointAnnotationView:view];
@@ -363,7 +371,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    userPosition = locationManager.location;
+    self.userPosition = self.locationManager.location;
 }
 
 @end

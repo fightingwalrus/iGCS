@@ -24,8 +24,8 @@
         }
         
         _dateTimeUtils = [[DateTimeUtils alloc] init];
-        if (!serialQueue) {
-            serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlinklogger", NULL);
+        if (!_serialQueue) {
+            _serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlinklogger", NULL);
         }
     }
     return self;
@@ -35,15 +35,14 @@
 #pragma mark Handle Mavlink data
 
 -(void) handlePacket:(mavlink_message_t *)msg {
-    const int len = MAVLINK_MAX_PACKET_LEN+sizeof(uint64_t);
-    uint8_t buffer[len];
+    uint8_t buffer[MAVLINK_MAX_PACKET_LEN+sizeof(uint64_t)];
     uint64_t currentTime = CFSwapInt64HostToBig([_dateTimeUtils unixTimeInMicroseconds]);
     memcpy(buffer, (void *)&currentTime, sizeof(uint64_t));
     uint16_t bufferLen = mavlink_msg_to_send_buffer(buffer+sizeof(uint64_t), msg);
     
     NSData *data = [NSData dataWithBytes:buffer length:bufferLen+sizeof(u_int64_t)];
     
-    dispatch_async(serialQueue ,
+    dispatch_async(_serialQueue ,
                    ^ {
                     // log format will be in little endian on ios device
                        [_fileHandle writeData:data];

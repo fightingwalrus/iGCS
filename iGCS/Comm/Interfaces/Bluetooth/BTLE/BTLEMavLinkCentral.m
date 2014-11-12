@@ -250,9 +250,9 @@
     }
     
     // See if we are subscribed to a characteristic on the peripheral
-    if (self.discoveredPeripheral.services != nil) {
+    if (self.discoveredPeripheral.services) {
         for (CBService *service in self.discoveredPeripheral.services) {
-            if (service.characteristics != nil) {
+            if (service.characteristics) {
                 for (CBCharacteristic *characteristic in service.characteristics) {
                     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
                         if (characteristic.isNotifying) {

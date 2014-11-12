@@ -8,13 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DoubleBufferedAsyncView : UIView {
-    CGLayerRef doubleBuffer[2];
-    unsigned int currentBuffer;
-    bool initializedBuffers;
-    
-    int casLock;
-}
+@interface DoubleBufferedAsyncView : UIView
 
 - (void) drawToContext:(CGContextRef)ctx rect:(CGRect)rect;
 - (void) requestRedraw;

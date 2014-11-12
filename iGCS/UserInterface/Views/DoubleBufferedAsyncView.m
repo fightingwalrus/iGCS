@@ -9,7 +9,15 @@
 #import "DoubleBufferedAsyncView.h"
 #include <libkern/OSAtomic.h>
 
-@implementation DoubleBufferedAsyncView
+@interface DoubleBufferedAsyncView ()
+@property (nonatomic, assign) NSUInteger currentBuffer;
+@property (nonatomic, assign) BOOL initializedBuffers;
+@end
+
+@implementation DoubleBufferedAsyncView {
+    CGLayerRef _doubleBuffer[2];
+    volatile int _casLock;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -22,15 +30,15 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (!initializedBuffers) {
-        doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
-        doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
-        currentBuffer = 0;
-        initializedBuffers = true;
+    if (!self.initializedBuffers) {
+        _doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
+        _doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
+        self.currentBuffer = 0;
+        self.initializedBuffers = YES;
         [self requestRedraw];
     } else {
         @synchronized(self) {
-            CGContextDrawLayerAtPoint(context, CGPointMake(0,0), doubleBuffer[(currentBuffer + 1) % 2]);
+            CGContextDrawLayerAtPoint(context, CGPointZero, _doubleBuffer[(self.currentBuffer + 1) % 2]);
         }
     }
 }
@@ -49,22 +57,22 @@
 }
 
 - (void)updateLayer {
-    if (!OSAtomicCompareAndSwapInt(0, 1, &casLock)) {
+    if (!OSAtomicCompareAndSwapInt(0, 1, &_casLock)) {
         return; // update already in progress
     }
 
     @autoreleasepool {
-        if (initializedBuffers) {
-            CGContextRef ctx = CGLayerGetContext(doubleBuffer[currentBuffer]);
+        if (self.initializedBuffers) {
+            CGContextRef ctx = CGLayerGetContext(_doubleBuffer[self.currentBuffer]);
             [self drawToContext:ctx rect:self.bounds];
             @synchronized(self) {
-                currentBuffer = (currentBuffer + 1) % 2;
+                self.currentBuffer = (self.currentBuffer + 1) % 2;
             }
         }
-        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:true];
+        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
     }
     
-    casLock = 0;
+    _casLock = 0;
 }
 
 @end

@@ -13,60 +13,65 @@
 
 NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.tick";
 
+@interface DataRateRecorder ()
+@property (nonatomic, strong) NSTimer *tickTimer;
+
+@property (nonatomic, assign) double maxValue;
+
+@property (nonatomic, assign) NSUInteger circularIndex;
+@property (nonatomic, assign) NSUInteger numBytesSinceTick;
+@end
+
 @implementation DataRateRecorder {
-    NSTimer *tickTimer;
-    
-    double avgKBps[NUM_KBPS_DATA_POINTS];
-    NSUInteger circularIndex;
-    NSUInteger numBytesSinceTick;
+    double _avgKBps[NUM_KBPS_DATA_POINTS];
 }
 
 - (instancetype) init {
     self = [super init];
     if (self) {
         // Initialize the data rate tracking timer and counters
-        circularIndex = 0;
-        numBytesSinceTick = 0;
-        tickTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0f/NUM_KPBS_TICKS_PER_SECOND)
-                                                     target:self
-                                                   selector:@selector(numBytesTimerTick:)
-                                                   userInfo:nil
-                                                    repeats:YES];
+        self.circularIndex = 0;
+        self.numBytesSinceTick = 0;
+        self.tickTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0f/NUM_KPBS_TICKS_PER_SECOND)
+                                                          target:self
+                                                        selector:@selector(numBytesTimerTick:)
+                                                        userInfo:nil
+                                                         repeats:YES];
     }
     return self;
 }
 
 - (void) numBytesTimerTick:(NSTimer *)timer {
     // Place the next kB/tick value in the circular buffer, and add to previous NUM_KPBS_TICKS_PER_SECOND-1 points
-    double kB = (numBytesSinceTick/1024.0f);
-    for (unsigned int i = 0; i < NUM_KPBS_TICKS_PER_SECOND; i++) {
-        if (circularIndex >= i) {
-            unsigned int idx = (circularIndex - i) % NUM_KBPS_DATA_POINTS;
+    double kB = (self.numBytesSinceTick/1024.0f);
+    for (NSUInteger i = 0; i < NUM_KPBS_TICKS_PER_SECOND; i++) {
+        if (self.circularIndex >= i) {
+            NSUInteger idx = (self.circularIndex - i) % NUM_KBPS_DATA_POINTS;
             if (i == 0) {
-                avgKBps[idx] = kB;
+                _avgKBps[idx] = kB;
             } else {
-                avgKBps[idx] += kB;
+                _avgKBps[idx] += kB;
             }
         }
     }
     
     // Find the maximum value
-    _maxValue = 0;
-    for (unsigned int i = 0; i < [self count]; i++) {
-        _maxValue = MAX(_maxValue,avgKBps[i]);
+    self.maxValue = 0;
+    for (NSUInteger i = 0; i < [self count]; i++) {
+        self.maxValue = MAX(self.maxValue, _avgKBps[i]);
     }
     
     // Prepare for next tick
-    numBytesSinceTick = 0;
-    circularIndex++;
+    self.numBytesSinceTick = 0;
+    self.circularIndex++;
     
     // Notify listeners
     [[NSNotificationCenter defaultCenter] postNotificationName:GCSDataRecorderTick object:self];
 }
 
 
-- (void) bytesReceived:(unsigned int)numBytes {
-    numBytesSinceTick += numBytes;
+- (void) bytesReceived:(NSUInteger)numBytes {
+    self.numBytesSinceTick += numBytes;
 }
 
 
@@ -75,7 +80,7 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
 }
 
 - (NSUInteger) count {
-    return MIN(circularIndex, NUM_KBPS_DATA_POINTS-NUM_KPBS_TICKS_PER_SECOND);
+    return MIN(self.circularIndex, NUM_KBPS_DATA_POINTS-NUM_KPBS_TICKS_PER_SECOND);
 }
 
 - (double) secondsSince:(NSUInteger)index {
@@ -86,7 +91,7 @@ NSString * const GCSDataRecorderTick = @"com.fightingwalrus.igcs.datarecorder.ti
     NSAssert(0 <= index && index < [self count], @"DataRateRecorder:valueAt with out-of-bounds index");
 
     // Hunt backwards through the buffer, from the most recent (index 0) fully populated point
-    return avgKBps[(circularIndex - NUM_KPBS_TICKS_PER_SECOND - index + NUM_KBPS_DATA_POINTS) % NUM_KBPS_DATA_POINTS];
+    return _avgKBps[(self.circularIndex - NUM_KPBS_TICKS_PER_SECOND - index + NUM_KBPS_DATA_POINTS) % NUM_KBPS_DATA_POINTS];
 }
 
 - (double) latestValue {

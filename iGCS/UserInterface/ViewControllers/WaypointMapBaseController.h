@@ -19,38 +19,25 @@
 #define MAP_REGION_PAD_FACTOR 1.10
 
 
-@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
-@private
-    MKPolyline *waypointRoutePolyline;
-    int currentWaypointNum;
+@interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-    MKPolyline *trackPolyline;
-    MKMapPoint *trackMKMapPoints;
-    unsigned int trackMKMapPointsLen;
-    unsigned int numTrackPoints;
-    
-@protected
-    MKMapView *map;
-    bool draggableWaypointsP;
-    
-    CLLocationManager *locationManager;
-    CLLocation *userPosition;
-}
+@property (nonatomic, strong, readonly) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *userPosition;
 
-@property (nonatomic, retain) IBOutlet MKMapView *_mapView;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
-- (WaypointAnnotation *) getWaypointAnnotation:(int)waypointSeq;
-- (void) resetWaypoints:(WaypointsHolder *)_waypoints;
-- (void) maybeUpdateCurrentWaypoint:(int)newCurrentWaypointSeq;
+- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
+- (void) replaceMission:(WaypointsHolder*)mission;
+- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
 
-- (void) makeWaypointsDraggable:(bool)_draggableWaypointsP;
+- (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
 // Following methods are intended to be overridden by subclasses
-- (void) waypointWithSeq:(int)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 

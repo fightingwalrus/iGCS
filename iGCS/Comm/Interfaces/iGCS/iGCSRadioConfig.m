@@ -71,7 +71,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 #pragma mark - CommInterfaceProtocol
 // receiveBytes processes bytes forwarded from another interface
--(void)consumeData:(const uint8_t*)bytes length:(int)length {
+-(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length {
     DDLogVerbose(@"begin consumeData:");
     [self logCurrentHayesIOState];
 
@@ -97,7 +97,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     DDLogVerbose(@"end handleHayesResponse:");
 }
 
--(void)produceData:(const uint8_t*)bytes length:(int)length {
+-(void)produceData:(const uint8_t*)bytes length:(NSInteger)length {
     DDLogVerbose(@"iGCSRadioConfig produceData");
     [super produceData:bytes length:length];
 }

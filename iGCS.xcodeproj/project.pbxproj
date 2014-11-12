@@ -49,6 +49,7 @@
 		01CEC5F019D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CEC5F119D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CEC5F219D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
+		01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */; };
 		01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
@@ -467,6 +468,10 @@
 		CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
+		CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
+		CA0E551C19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
+		CA0E551D19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
+		CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
@@ -624,6 +629,8 @@
 		01CEC5CF19D9FA3800320A34 /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
 		01CEC5EE19D9FA9C00320A34 /* ArDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneUtils.h; sourceTree = "<group>"; };
 		01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneUtils.m; sourceTree = "<group>"; };
+		01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneViewController.h; sourceTree = "<group>"; };
+		01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneViewController.m; sourceTree = "<group>"; };
 		01F898D919CA8EC900F3C884 /* BRRequestDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDelete.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
@@ -1047,6 +1054,8 @@
 		CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmwareUploader.m; path = Firmware/SiKFirmwareUploader.m; sourceTree = "<group>"; };
 		CA0D06E41975F4C6002458F5 /* GCSTelemetryLossOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSTelemetryLossOverlayView.h; sourceTree = "<group>"; };
 		CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSTelemetryLossOverlayView.m; sourceTree = "<group>"; };
+		CA0E551919F7C27A00B11F12 /* GCSMapViewController+DataRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCSMapViewController+DataRate.h"; sourceTree = "<group>"; };
+		CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCSMapViewController+DataRate.m"; sourceTree = "<group>"; };
 		CA10783519A98B58007B42E5 /* TxMissionClearAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionClearAll.h; path = Requests/TxMissionClearAll.h; sourceTree = "<group>"; };
 		CA10783619A98B58007B42E5 /* TxMissionClearAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxMissionClearAll.m; path = Requests/TxMissionClearAll.m; sourceTree = "<group>"; };
 		CA10784719A99C57007B42E5 /* TxMissionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionCommon.h; path = Requests/TxMissionCommon.h; sourceTree = "<group>"; };
@@ -1078,7 +1087,6 @@
 		CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGCS-Prefix.pch"; sourceTree = "<group>"; };
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CA499F8A14DE33BC00FCC9FB /* iGCSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = iGCSTests.octest; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
 		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1833,12 +1841,16 @@
 		496E627616DAFB8B00E52E4A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */,
+				01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */,
 				496E627716DAFB8B00E52E4A /* CommsViewController.h */,
 				496E627816DAFB8B00E52E4A /* CommsViewController.m */,
 				CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */,
 				CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */,
 				496E627916DAFB8B00E52E4A /* GCSMapViewController.h */,
 				496E627A16DAFB8B00E52E4A /* GCSMapViewController.m */,
+				CA0E551919F7C27A00B11F12 /* GCSMapViewController+DataRate.h */,
+				CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */,
 				496E627B16DAFB8B00E52E4A /* MainViewController.h */,
 				496E627C16DAFB8B00E52E4A /* MainViewController.m */,
 				CAFEE7941734B32E006BEF6A /* MissionItemEditViewController.h */,
@@ -2635,6 +2647,7 @@
 				CA05750A18BE07FE001EACFD /* CXAlertView.m in Sources */,
 				182FFA9D181F0C9100A8C31C /* GuidedPointAnnotation.m in Sources */,
 				1845DA7A1979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
+				CA0E551D19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
 				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
@@ -2774,6 +2787,7 @@
 				01CEC5E919D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18B9FADE18B2F7AF00668660 /* RNBluetoothInterface.m in Sources */,
 				18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */,
+				CA0E551C19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
 				CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */,
@@ -2895,6 +2909,7 @@
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
+				CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
 				CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
@@ -2918,6 +2933,7 @@
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
+				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
@@ -2928,6 +2944,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

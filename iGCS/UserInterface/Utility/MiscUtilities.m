@@ -97,10 +97,10 @@
     
     val = fabs(val);
     
-    int deg = (int)val;
+    NSInteger deg = (NSInteger)val;
     val = (val - deg) * 60;
     
-    int min = (int)val;
+    NSInteger min = (NSInteger)val;
     float sec = (val - min) * 60;
     
     return [NSString stringWithFormat:@"%02d° %02d' %02.2f%c", deg, min, sec, letter];

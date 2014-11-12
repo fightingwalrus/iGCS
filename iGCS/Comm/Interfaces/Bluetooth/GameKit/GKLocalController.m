@@ -50,7 +50,7 @@
 }
 
 
--(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length {
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(NSInteger)length {
     DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %i",length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
 }
@@ -78,7 +78,7 @@
 	picker.delegate = nil;
 	
 	// invalidate and release game session if one is around.
-	if(self.gameSession != nil)	{
+	if (self.gameSession)	{
 		[self invalidateSession:self.gameSession];
 		self.gameSession = nil;
 	}
@@ -124,7 +124,7 @@
 // invalidate session
 //
 - (void)invalidateSession:(GKSession *)session {
-	if(session != nil) {
+	if (session) {
 		[session disconnectFromAllPeers];
 		session.available = NO;
 		[session setDataReceiveHandler: nil withContext: NULL];
@@ -139,14 +139,14 @@
  * We set ourselves as the receive data handler in the -peerPickerController:didConnectPeer:toSession: method.
  */
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
-	static int lastPacketTime = -1;
+	static NSInteger lastPacketTime = -1;
 	unsigned char *incomingPacket = (unsigned char *)[data bytes];
 	int *pIntData = (int *)&incomingPacket[0];
 	//
 	// developer  check the network time and make sure packers are in order
 	//
-	int packetTime = pIntData[0];
-	int packetID = pIntData[1];
+	NSInteger packetTime = pIntData[0];
+	NSInteger packetID = pIntData[1];
 	if(packetTime < lastPacketTime && packetID != NETWORK_COINTOSS) {
 		return;
 	}
@@ -190,9 +190,9 @@
         case NETWORK_MAVLINK: {
             DDLogVerbose(@"GKSession: Received MavLink: %i bytes",[data length]);
             
-            int headerSize = 2 * sizeof(int);
+            NSUInteger headerSize = 2 * sizeof(int);
             uint8_t *mavlinkData = (uint8_t*)&incomingPacket[headerSize];
-            int mavlinkSize = [data length] - headerSize;
+            NSUInteger mavlinkSize = [data length] - headerSize;
             
             // TODO: Refactor to delegate interface to parentStream can be eliminated
             [self.parentStream produceData:mavlinkData length:mavlinkSize];
@@ -205,9 +205,9 @@
 	}
 }
 
-- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(const void *)data ofLength:(int)length reliable:(BOOL)howtosend {
+- (void)sendNetworkPacket:(GKSession *)session packetID:(NSInteger)packetID withData:(const void *)data ofLength:(NSInteger)length reliable:(BOOL)howtosend {
 	static unsigned char networkPacket[kMaxPacketSize];
-	const unsigned int packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
+	const NSUInteger packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	
 	if(length < (kMaxPacketSize - packetHeaderSize)) { // our networkPacket buffer size minus the size of the header info
 		int *pIntData = (int *)&networkPacket[0];

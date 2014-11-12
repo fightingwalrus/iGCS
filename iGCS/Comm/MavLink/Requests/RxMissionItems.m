@@ -32,7 +32,7 @@
             [_mission addWaypoint:waypoint];
 
             // Are we done?
-            if ([_mission allWaypointsReceivedP]) {
+            if ([_mission hasReceivedAllWaypoints]) {
                 [_interface completedReadMissionRequest:_mission];
                 [handler completedWithSuccess:YES];   // FIXME: was originally the first line of this branch but caused crashes; investigate why.
             } else {

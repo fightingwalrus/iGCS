@@ -10,7 +10,6 @@
 
 @class BluetoothStream;
 
-
 typedef NS_ENUM(NSInteger, gameStates) {
 	kStateStartGame,
 	kStatePicker,
@@ -33,14 +32,9 @@ typedef NS_ENUM(NSInteger, gameNetwork) {
 	kClient
 } ;
 
-
-
-
 @interface GKLocalController : NSObject
 
-
 -(instancetype)init:(BluetoothStream*)bts NS_DESIGNATED_INITIALIZER;
--(void)sendMavlinkData:(const uint8_t*)bytes length:(int)length;
-
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(NSInteger)length;
 
 @end

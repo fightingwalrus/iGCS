@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h" // For TestFlight control
+#import "MavLinkPacketHandler.h"
 
 #ifdef REDPARK
 #import "RscMgr.h"
@@ -14,22 +15,13 @@
 
 #import <MapKit/MKMapView.h>
 
-@class GCSMapViewController;
-@class GCSSidebarController;
-@class CommsViewController;
-@class WaypointsViewController;
-@class DebugViewController;
 @class DataRateRecorder;
+@class WaypointsHolder;
 
-@interface MainViewController : UITabBarController <UIAlertViewDelegate>
+@interface MainViewController : UITabBarController <UIAlertViewDelegate, MavLinkPacketHandler>
 
 @property (weak) AppDelegate *appDelegate;
+@property (nonatomic, strong, readonly) DataRateRecorder *dataRateRecorder;
 
-@property (strong) GCSMapViewController *gcsMapVC;
-@property (strong) GCSSidebarController *gcsSidebarVC;
-@property (strong) WaypointsViewController *waypointVC;
-@property (strong) CommsViewController *commsVC;
-@property (strong) DebugViewController *debugVC;
-
-@property (nonatomic, strong) DataRateRecorder *dataRateRecorder;
+- (void) replaceMission:(WaypointsHolder*)mission;
 @end

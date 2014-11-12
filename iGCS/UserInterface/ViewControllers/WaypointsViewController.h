@@ -14,19 +14,14 @@
 
 @protocol MissionItemEditingDelegate
 - (WaypointsHolder*) cloneMission;
-- (mavlink_mission_item_t) getMissionItemAtIndex:(unsigned int)idx;
-- (void) resetMission:(WaypointsHolder*) mission;
-- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(unsigned int)idx;
+- (mavlink_mission_item_t) getMissionItemAtIndex:(NSUInteger)idx;
+- (void) replaceMission:(WaypointsHolder*) mission;
+- (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx;
 @end
 
-@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, MissionItemEditingDelegate> {
-    WaypointsHolder *waypoints;
-    
-    UINavigationController* navVCEditItemVC;
-}
+@interface WaypointsViewController : WaypointMapBaseController <MavLinkPacketHandler, MissionItemEditingDelegate>
 
-@property (nonatomic, readonly, strong) WaypointsHolder *waypointsHolder;  // for MissionItemEditViewController
-- (void) resetWaypoints;
+@property (nonatomic, readonly, strong) WaypointsHolder *waypoints;  // for MissionItemEditViewController
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *carrierPadding;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *batteryPadding;
@@ -46,5 +41,7 @@
 
 - (IBAction)addClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;
+
+- (void) resetWaypoints;
 
 @end
