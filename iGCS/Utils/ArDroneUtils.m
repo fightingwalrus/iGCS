@@ -345,6 +345,12 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 //Please see the Parrot SDK for information and a possible
 //description.
 
+- (void) droneMove:(NSString*) moveCommand {
+    [self ConnectArDroneUDP];
+    [self resetWatchDogTimer];
+    NSData *requestData = [moveCommand dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
 
 - (void)mavlinkCommandedTakeoff {
     NSLog(@"Mav Button Clicked");

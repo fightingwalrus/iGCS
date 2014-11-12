@@ -453,6 +453,13 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     [appMLI produceData:(uint8_t*)buf length:len];
 }
 
+- (void) arDroneMove:(NSString*)moveCommand {
+    const char* buf = [moveCommand cStringUsingEncoding:NSASCIIStringEncoding];
+    uint32_t len = (uint32_t)strlen(buf);
+    [appMLI produceData:(uint8_t*)buf length:len];
+    NSLog(@"the at length is %u", len);
+}
+
 
 
 @end
