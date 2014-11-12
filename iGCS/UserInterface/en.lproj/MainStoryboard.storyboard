@@ -214,7 +214,6 @@
                         <outlet property="customModeLabel" destination="HBF-yg-xzq" id="mdu-jB-wqd"/>
                         <outlet property="dataRateLabel" destination="ha6-g8-onv" id="hHd-0t-vaT"/>
                         <outlet property="dataRateSparklineView" destination="jK7-ed-zhJ" id="wBH-CE-jUE"/>
-                        <outlet property="mapView" destination="GAr-p0-3d5" id="XvF-eE-JMH"/>
                         <outlet property="sidebarButton" destination="TX8-Vu-5JO" id="yeG-tZ-pqe"/>
                         <outlet property="voltageLabel" destination="QcI-s1-ehf" id="Lg5-TQ-Idv"/>
                     </connections>
@@ -1145,7 +1144,6 @@
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
                         <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>
-                        <outlet property="mapView" destination="qaC-XP-dCX" id="wUM-Ez-ehM"/>
                         <outlet property="rxMissionButton" destination="di6-Zt-zDe" id="Hpn-p7-z75"/>
                         <outlet property="txMissionButton" destination="SRA-QZ-232" id="JPD-Du-oRV"/>
                     </connections>
@@ -1313,6 +1311,42 @@
                                 </state>
                                 <connections>
                                     <action selector="specClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="SbB-2v-Xie"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy9-Zs-BqO">
+                                <rect key="frame" x="556" y="99" width="30" height="30"/>
+                                <state key="normal" title="CAL">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="calClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="LCt-8C-6Ns"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNt-JK-HfR">
+                                <rect key="frame" x="303" y="69" width="30" height="30"/>
+                                <state key="normal" title="FLP">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flipClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="3Qn-dv-n6X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwS-mP-31S">
+                                <rect key="frame" x="558" y="69" width="33" height="30"/>
+                                <state key="normal" title="EMR">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="emergencyClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="ig9-Hk-XBW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18Z-9w-QpY">
+                                <rect key="frame" x="303" y="98" width="30" height="30"/>
+                                <state key="normal" title="TST">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="ftK-0q-24k"/>
                                 </connections>
                             </button>
                         </subviews>

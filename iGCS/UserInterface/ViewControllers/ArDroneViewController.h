@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ArDroneUtils.h"
 
+#import <CoreMotion/CoreMotion.h>
+
 @interface ArDroneViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) ArDroneUtils *arDrone2;
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
+@property (strong, nonatomic) CMDeviceMotion *deviceMotion;
+@property (strong, nonatomic) CMAttitude *attitude;
 
 @end
