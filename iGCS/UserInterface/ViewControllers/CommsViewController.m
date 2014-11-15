@@ -200,7 +200,7 @@
             
         default: {
             // Append string representation of msg
-            NSString *newText = [self.defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,NO)];
+            NSString *newText = [self.defaultTextView.text stringByAppendingFormat:@"%7lu: %@\n", (unsigned long)packetCount, msgToNSString(msg,NO)];
             // Limit length of text buffer
             if (newText.length > 2560)
                 newText = [newText substringFromIndex:(newText.length-2560)];

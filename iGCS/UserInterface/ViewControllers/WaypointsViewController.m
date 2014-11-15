@@ -153,7 +153,7 @@
 
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
     // This subclass uses the row number
-    return [NSString stringWithFormat:@"%d", [self.waypoints getIndexOfWaypointWithSeq:item.seq]];
+    return [NSString stringWithFormat:@"%ld", (long)[self.waypoints getIndexOfWaypointWithSeq:item.seq]];
 }
 
 

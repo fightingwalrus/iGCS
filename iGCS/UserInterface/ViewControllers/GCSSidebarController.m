@@ -104,7 +104,7 @@
         case MAVLINK_MSG_ID_WIND: {
             mavlink_wind_t wind;
             mavlink_msg_wind_decode(msg, &wind);
-            [_windDirLabel    setText:[NSString stringWithFormat:@"%d", (NSInteger)wind.direction]];
+            [_windDirLabel    setText:[NSString stringWithFormat:@"%ld", (long)wind.direction]];
             [_windSpeedLabel  setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed]];
             [_windSpeedZLabel setText:[NSString stringWithFormat:@"%0.1f m/s", wind.speed_z]];
         }
