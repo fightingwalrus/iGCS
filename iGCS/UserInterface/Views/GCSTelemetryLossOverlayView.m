@@ -9,47 +9,51 @@
 #import "GCSTelemetryLossOverlayView.h"
 #import "LFGlassView.h"
 
-@implementation GCSTelemetryLossOverlayView {
-    LFGlassView *_overlayView;
-    UIView* _parentView;
-}
+@interface GCSTelemetryLossOverlayView ()
+@property (nonatomic, strong) LFGlassView *overlayView;
+@property (nonatomic, strong) UIView* parentView;
+@end
+
+@implementation GCSTelemetryLossOverlayView
+
 
 - (instancetype) initWithParentView:(UIView*)parentView {
     self = [super init];
     if (self) {
         _parentView = parentView;
+        _overlayView = nil;
     }
     return self;
 }
 
 - (void) show {
-    if (_overlayView) {
+    if (self.overlayView) {
         return;
     }
     
-    CGRect frame = _parentView.frame;
-    _overlayView = [[LFGlassView alloc] initWithFrame:frame];
-    _overlayView.clipsToBounds = YES;
-    _overlayView.layer.cornerRadius = 0.0;
-    _overlayView.blurRadius = 1.0;
-    _overlayView.scaleFactor = 1.0;
-    _overlayView.liveBlurring = YES;
-    [_parentView addSubview:_overlayView];
+    CGRect frame = self.parentView.frame;
+    self.overlayView = [[LFGlassView alloc] initWithFrame:frame];
+    self.overlayView.clipsToBounds = YES;
+    self.overlayView.layer.cornerRadius = 0.0;
+    self.overlayView.blurRadius = 1.0;
+    self.overlayView.scaleFactor = 1.0;
+    self.overlayView.liveBlurring = YES;
+    [self.parentView addSubview:self.overlayView];
     
-    UILabel *l = [[UILabel alloc] initWithFrame:frame];
-    l.center = _overlayView.center;
-    l.text = @"Telemetry lost";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.textColor = [UIColor whiteColor];
-    l.font = [UIFont fontWithName:@"Helvetica" size: 64];
-    l.backgroundColor = [UIColor clearColor];
-    [_overlayView addSubview:l];
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.center = self.overlayView.center;
+    label.text = @"Telemetry lost";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size: 64];
+    label.backgroundColor = [UIColor clearColor];
+    [self.overlayView addSubview:label];
 }
 
 - (void) hide {
-    if (_overlayView) {
-        [_overlayView removeFromSuperview];
-        _overlayView = nil;
+    if (self.overlayView) {
+        [self.overlayView removeFromSuperview];
+        self.overlayView = nil;
     }
 }
 

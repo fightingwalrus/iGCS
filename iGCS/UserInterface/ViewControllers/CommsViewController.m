@@ -1,5 +1,5 @@
 //
-//  SecondViewController.m
+//  CommsViewController.m
 //  iGCS
 //
 //  Created by Claudio Natoli on 5/02/12.
@@ -11,6 +11,10 @@
 
 #import "CommController.h"
 #import "DataRateRecorder.h"
+
+@interface CommsViewController ()
+@property (nonatomic, strong) CPTXYGraph *dataRateGraph;
+@end
 
 @implementation CommsViewController
 
@@ -30,13 +34,13 @@
 - (void) setDataRateRecorder:(DataRateRecorder *)dataRateRecorder {
     _dataRateRecorder = dataRateRecorder;
     
-    _dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
+    self.dataRateGraph = [[CPTXYGraph alloc] initWithFrame: self.dataRateGraphView.bounds];
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.dataRateGraphView;
-    hostingView.hostedGraph = _dataRateGraph;
+    hostingView.hostedGraph = self.dataRateGraph;
     
     // Setup initial plot ranges
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.dataRateGraph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
                                                     length:CPTDecimalFromFloat([_dataRateRecorder maxDurationInSeconds])];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0)
@@ -59,7 +63,7 @@
     textStyle.fontSize = 13.0f;
     textStyle.color    = [CPTColor whiteColor];
     
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)_dataRateGraph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)self.dataRateGraph.axisSet;
     
     CPTXYAxis *xAxis = axisSet.xAxis;
     lineStyle.lineWidth = 2.0f;
@@ -94,7 +98,7 @@
     yAxis.titleTextStyle = textStyle;
     
     // Create the plot object
-    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:_dataRateGraph.hostingView.bounds];
+    CPTScatterPlot *dateRatePlot = [[CPTScatterPlot alloc] initWithFrame:self.dataRateGraph.hostingView.bounds];
     dateRatePlot.identifier = @"Data Rate Plot";
     dateRatePlot.dataSource = self;
     lineStyle.lineWidth = 1.0f;
@@ -102,18 +106,18 @@
     
     dateRatePlot.dataLineStyle = lineStyle;
     dateRatePlot.plotSymbol = CPTPlotSymbolTypeNone;
-    [_dataRateGraph addPlot:dateRatePlot];
+    [self.dataRateGraph addPlot:dateRatePlot];
     
     // Position the plotArea within the plotAreaFrame, and the plotAreaFrame within the graph
-    _dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor blackColor]];
-    _dataRateGraph.plotAreaFrame.paddingTop    = 10;
-    _dataRateGraph.plotAreaFrame.paddingBottom = 20;
-    _dataRateGraph.plotAreaFrame.paddingLeft   = 45;
-    _dataRateGraph.plotAreaFrame.paddingRight  = 20;
-    _dataRateGraph.paddingTop    = 0;
-    _dataRateGraph.paddingBottom = 0;
-    _dataRateGraph.paddingLeft   = 5;
-    _dataRateGraph.paddingRight  = 5;
+    self.dataRateGraph.fill = [[CPTFill alloc] initWithColor: [CPTColor blackColor]];
+    self.dataRateGraph.plotAreaFrame.paddingTop    = 10;
+    self.dataRateGraph.plotAreaFrame.paddingBottom = 20;
+    self.dataRateGraph.plotAreaFrame.paddingLeft   = 45;
+    self.dataRateGraph.plotAreaFrame.paddingRight  = 20;
+    self.dataRateGraph.paddingTop    = 0;
+    self.dataRateGraph.paddingBottom = 0;
+    self.dataRateGraph.paddingLeft   = 5;
+    self.dataRateGraph.paddingRight  = 5;
     
     // Listen to data recorder ticks
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -151,8 +155,8 @@
 
 - (void) setCableConnectionStatus: (BOOL) connectedP {
     // Change the connection status button
-    [_connectionStatus setTitle:(connectedP ? @"ON" : @"OFF") forState:UIControlStateNormal];
-    [_connectionStatus setHighlighted:connectedP]; // FIXME: red/green would be nicer
+    [self.connectionStatus setTitle:(connectedP ? @"ON" : @"OFF") forState:UIControlStateNormal];
+    [self.connectionStatus setHighlighted:connectedP]; // FIXME: red/green would be nicer
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
@@ -167,41 +171,41 @@
     
     switch (msg->msgid) {
         case MAVLINK_MSG_ID_ATTITUDE:
-            [_attitudeTextView setText:msgToNSString(msg, YES)];
+            [self.attitudeTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_VFR_HUD:
-            [_vfrHUDTextView setText:msgToNSString(msg, YES)];
+            [self.vfrHUDTextView setText:msgToNSString(msg, YES)];
             break;
      
         case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-            [_gpsIntTextView setText:msgToNSString(msg, YES)];
+            [self.gpsIntTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_GPS_RAW_INT:
-            [_gpsRawTextView setText:msgToNSString(msg, YES)];
+            [self.gpsRawTextView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_SYS_STATUS:
-            [_sysStatusView setText:msgToNSString(msg, YES)];
+            [self.sysStatusView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_GPS_STATUS:
-            [_gpsStatusView setText:msgToNSString(msg, YES)];
+            [self.gpsStatusView setText:msgToNSString(msg, YES)];
             break;
             
         case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
-            [_navControllerOutputTextView setText:msgToNSString(msg, YES)];
+            [self.navControllerOutputTextView setText:msgToNSString(msg, YES)];
             break;
             
         default: {
             // Append string representation of msg
-            NSString *newText = [_defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,NO)];
+            NSString *newText = [self.defaultTextView.text stringByAppendingFormat:@"%7u: %@\n", packetCount, msgToNSString(msg,NO)];
             // Limit length of text buffer
             if (newText.length > 2560)
                 newText = [newText substringFromIndex:(newText.length-2560)];
-            [_defaultTextView setText:newText];
-            [_defaultTextView scrollRangeToVisible:NSMakeRange([_defaultTextView.text length], 0)];
+            [self.defaultTextView setText:newText];
+            [self.defaultTextView scrollRangeToVisible:NSMakeRange([self.defaultTextView.text length], 0)];
         }
             break;
     }
@@ -210,19 +214,19 @@
 // CorePlot protocol implementation
 -(void) onDataRateUpdate:(NSNotification*)notification {
     // Reset the y-axis range and reload the graph data
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_dataRateGraph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.dataRateGraph.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.01)
-                                                    length:CPTDecimalFromFloat(MAX([_dataRateRecorder maxValue]*1.1, 1))];
-    [_dataRateGraph reloadData];
+                                                    length:CPTDecimalFromFloat(MAX([self.dataRateRecorder maxValue]*1.1, 1))];
+    [self.dataRateGraph reloadData];
 }
 
 -(NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [_dataRateRecorder count];
+    return [self.dataRateRecorder count];
 }
 
 -(NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
                 recordIndex:(NSUInteger)index {
-    return @((fieldEnum == CPTScatterPlotFieldX) ? [_dataRateRecorder secondsSince:index] :[_dataRateRecorder valueAt:index]);
+    return @((fieldEnum == CPTScatterPlotFieldX) ? [self.dataRateRecorder secondsSince:index] :[self.dataRateRecorder valueAt:index]);
 }
 
 @end

@@ -60,7 +60,7 @@
     const float FONT_SIZE_LARGE  = 1.5*FONT_SIZE_SMALL;
     
     // Modify background color if the ceiling has been breached
-    UIColor *backgroundColor = (_ceilingThresholdEnabled && _value >= _ceilingThreshold) ? _ceilingThresholdBackground : [UIColor blackColor];
+    UIColor *backgroundColor = (self.ceilingThresholdEnabled && self.value >= self.ceilingThreshold) ? self.ceilingThresholdBackground : [UIColor blackColor];
     
     // Drawing code
     CGContextClearRect(ctx, rect);
@@ -75,12 +75,12 @@
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
 
     // Draw scale centred on current point
-    const float step = _scale/10;
-    const float startVal = floor((_value - _scale)/step)*step; // i.e. start at a point well below the scale boundary
+    const float step = self.scale/10;
+    const float startVal = floor((self.value - self.scale)/step)*step; // i.e. start at a point well below the scale boundary
     float tickVal = startVal;
     for (NSUInteger i = 0; i < 40; i++, tickVal = startVal + i*step/2) {
         // Find the y position of this tick
-        const float y = c.y - (tickVal - _value) * oneScaleY;
+        const float y = c.y - (tickVal - self.value) * oneScaleY;
         if (y < -20 || y > h + 20) continue;
 
         // Draw the tick
@@ -112,7 +112,7 @@
     
     CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
     CGContextSelectFont(ctx, "Arial Rounded MT Bold", FONT_SIZE_LARGE, kCGEncodingMacRoman);
-    NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(_value)];
+    NSString *label = [NSString stringWithFormat:@"%d", (NSInteger)round(self.value)];
 
     float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
@@ -148,13 +148,13 @@
     CGColorSpaceRelease(colorSpace);
 
     // Draw the title
-    float titleWidth = [MiscUtilities getTextWidth:_title withContext:ctx];
+    float titleWidth = [MiscUtilities getTextWidth:self.title withContext:ctx];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
     CGContextSetTextPosition(ctx, c.x - titleWidth/2, c.y - h/2 + FONT_SIZE_LARGE);
-    CGContextShowText(ctx, [_title cStringUsingEncoding:NSASCIIStringEncoding], [_title length]);
+    CGContextShowText(ctx, [self.title cStringUsingEncoding:NSASCIIStringEncoding], [self.title length]);
     
     // Draw target chevron
-    float chevY = c.y - _targetDelta * oneScaleY;
+    float chevY = c.y - self.targetDelta * oneScaleY;
     if (chevY > c.y + h/2) chevY = c.y + h/2;
     if (chevY < c.y - h/2) chevY = c.y - h/2;
     CGContextBeginPath(ctx);

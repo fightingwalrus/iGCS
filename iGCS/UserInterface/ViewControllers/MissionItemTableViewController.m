@@ -39,7 +39,8 @@
 
 
 @interface MissionItemTableViewController ()
-
+@property (nonatomic, retain) UIView *sectionHeaderContainer;
+@property (nonatomic, retain) NSIndexPath *lastIndexPath;
 @end
 
 @implementation MissionItemTableViewController
@@ -298,7 +299,7 @@ NSArray* headerSpecs = nil;
     sectionHeader.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
     sectionHeader.tag = section;
 
-    _sectionHeaderContainer = headerContainer;
+    self.sectionHeaderContainer = headerContainer;
     
     return sectionHeader;
 }
@@ -330,10 +331,10 @@ NSArray* headerSpecs = nil;
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
-    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
-    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
-    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
-    ((UILabel*)[_sectionHeaderContainer viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
 }
 
 - (void)unmarkSelectedRow {
@@ -356,20 +357,20 @@ NSArray* headerSpecs = nil;
     [self setEditing:isEditing animated:YES];
     
     // Slide the section header along to match the table cells
-    CGRect r = [_sectionHeaderContainer frame];
+    CGRect r = [self.sectionHeaderContainer frame];
     r.origin.x += isEditing ? HEADER_SPEC_EDIT_OFFSET : -HEADER_SPEC_EDIT_OFFSET;
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [_sectionHeaderContainer setFrame:r];
+                         [self.sectionHeaderContainer setFrame:r];
                      }
                      completion:nil];
     
     return isEditing; // return the current editing state
 }
 
-- (void) resetWaypoints {
+- (void) refreshTableView {
     [self.tableView reloadData];
 }
 

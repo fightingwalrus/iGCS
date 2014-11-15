@@ -10,6 +10,11 @@
 #import "GaugeViewCommon.h"
 #import "MiscUtilities.h"
 
+@interface CompassView ()
+@property (nonatomic, readonly) float heading;
+@property (nonatomic, readonly) float navBearing;
+@end
+
 @implementation CompassView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -81,8 +86,8 @@
     //
     // They also run in an "anticlockwise" direction; that is, [NE --- N --- NW], 
     // but have deliberately chosen a more intuitive display here
-    NSInteger startAng = ((NSInteger)_heading - 180)/5 * 5;
-    const float startX = c.x + (startAng-_heading) * oneDegX;
+    NSInteger startAng = ((NSInteger)self.heading - 180)/5 * 5;
+    const float startX = c.x + (startAng-self.heading) * oneDegX;
     NSInteger ang = (startAng < 0) ? startAng += 360 : startAng;    
     for (NSUInteger i = 0; i < 360; i += 5, ang = (ang+5) % 360) {
         // Find the x position of this tick
@@ -165,7 +170,7 @@
     CGColorSpaceRelease(colorSpace);
     
     // Draw bearing chevron
-    float bearingError = (_navBearing - _heading);
+    float bearingError = (self.navBearing - self.heading);
     if (bearingError >  180) bearingError -= 360;
     if (bearingError < -180) bearingError += 360;
     

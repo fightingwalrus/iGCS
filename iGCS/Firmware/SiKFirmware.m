@@ -22,18 +22,18 @@
 
 // Create a new AddressDataPair, extending this.data with adp.data
 - (AddressDataPair*) extend:(AddressDataPair*)adp {
-    NSMutableData *newData = [NSMutableData dataWithCapacity:_data.length + adp.data.length];
-    [newData appendData:_data];
+    NSMutableData *newData = [NSMutableData dataWithCapacity:self.data.length + adp.data.length];
+    [newData appendData:self.data];
     [newData appendData:adp.data];
-    return [[AddressDataPair alloc] initWithAddress:_address andData:newData];
+    return [[AddressDataPair alloc] initWithAddress:self.address andData:newData];
 }
 
 - (NSComparisonResult)compare:(AddressDataPair*)object {
-    return (_address == object.address ? NSOrderedSame : (_address < object.address ? NSOrderedAscending : NSOrderedDescending));
+    return (self.address == object.address ? NSOrderedSame : (self.address < object.address ? NSOrderedAscending : NSOrderedDescending));
 }
 
 - (NSUInteger) nextAddress {
-    return _address + _data.length;
+    return self.address + self.data.length;
 }
 
 @end

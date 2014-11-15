@@ -27,9 +27,6 @@
 @end
 
 
-@interface GCSSidebarController ()
-
-@end
 
 @implementation GCSSidebarController
 

@@ -9,6 +9,11 @@
 #import "ArtificialHorizonView.h"
 #import "GaugeViewCommon.h"
 
+@interface ArtificialHorizonView ()
+@property (nonatomic, assign) float roll;
+@property (nonatomic, assign) float pitch;
+@end
+
 @implementation ArtificialHorizonView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -20,8 +25,8 @@
 }
 
 - (void) setRoll:(float)roll pitch:(float)pitch {
-    if (roll  <= M_PI &&   roll  >= -M_PI)   _roll  = roll;
-    if (pitch <= M_PI/2 && pitch >= -M_PI/2) _pitch = pitch;
+    if (roll  <= M_PI &&   roll  >= -M_PI)   self.roll  = roll;
+    if (pitch <= M_PI/2 && pitch >= -M_PI/2) self.pitch = pitch;
 }
 
 #if DO_ANIMATION
@@ -77,9 +82,9 @@
     // Rotate about the centre point, and translate to desired "pitch"
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, _roll);
+    transform = CGAffineTransformRotate(transform, self.roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
-    transform = CGAffineTransformTranslate(transform, 0, _pitch*RAD2DEG/5.0 * yMinorDelta);
+    transform = CGAffineTransformTranslate(transform, 0, self.pitch*RAD2DEG/5.0 * yMinorDelta);
     CGContextConcatCTM(ctx, transform);
     
     // Ground
@@ -164,7 +169,7 @@
     // Rotate about the centre
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformTranslate(transform, c.x, c.y);
-    transform = CGAffineTransformRotate(transform, _roll);
+    transform = CGAffineTransformRotate(transform, self.roll);
     transform = CGAffineTransformTranslate(transform, -c.x, -c.y);
     CGContextConcatCTM(ctx, transform);
     

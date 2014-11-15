@@ -102,7 +102,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
         } else if (accessory == GCSAccessoryRedpark) {
 
             #ifdef REDPARK
-            self.redParkCable = [RedparkSerialCable createWithViews:_mainVC];
+            self.redParkCable = [RedparkSerialCable createWithViews:self.mainVC];
             [self setupNewConnectionsWithRemoteInterface:self.redParkCable
                                        andLocalInterface:self.mavLinkInterface];
             #endif

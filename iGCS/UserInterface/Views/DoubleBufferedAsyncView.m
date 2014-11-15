@@ -9,7 +9,15 @@
 #import "DoubleBufferedAsyncView.h"
 #include <libkern/OSAtomic.h>
 
-@implementation DoubleBufferedAsyncView
+@interface DoubleBufferedAsyncView ()
+@property (nonatomic, assign) NSUInteger currentBuffer;
+@property (nonatomic, assign) BOOL initializedBuffers;
+@end
+
+@implementation DoubleBufferedAsyncView {
+    CGLayerRef _doubleBuffer[2];
+    volatile int _casLock;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -22,15 +30,15 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (!_initializedBuffers) {
+    if (!self.initializedBuffers) {
         _doubleBuffer[0] = CGLayerCreateWithContext(context, self.frame.size, NULL);
         _doubleBuffer[1] = CGLayerCreateWithContext(context, self.frame.size, NULL);
-        _currentBuffer = 0;
-        _initializedBuffers = YES;
+        self.currentBuffer = 0;
+        self.initializedBuffers = YES;
         [self requestRedraw];
     } else {
         @synchronized(self) {
-            CGContextDrawLayerAtPoint(context, CGPointZero, _doubleBuffer[(_currentBuffer + 1) % 2]);
+            CGContextDrawLayerAtPoint(context, CGPointZero, _doubleBuffer[(self.currentBuffer + 1) % 2]);
         }
     }
 }
@@ -54,11 +62,11 @@
     }
 
     @autoreleasepool {
-        if (_initializedBuffers) {
-            CGContextRef ctx = CGLayerGetContext(_doubleBuffer[_currentBuffer]);
+        if (self.initializedBuffers) {
+            CGContextRef ctx = CGLayerGetContext(_doubleBuffer[self.currentBuffer]);
             [self drawToContext:ctx rect:self.bounds];
             @synchronized(self) {
-                _currentBuffer = (_currentBuffer + 1) % 2;
+                self.currentBuffer = (self.currentBuffer + 1) % 2;
             }
         }
         [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
