@@ -27,9 +27,9 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
-- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
+- (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq;
 - (void) replaceMission:(WaypointsHolder*)mission;
-- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
+- (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
