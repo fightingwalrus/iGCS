@@ -10,6 +10,10 @@
 #import "WaypointHelper.h"
 #import "GCSThemeManager.h"
 
+@interface WaypointAnnotation ()
+@property (nonatomic, assign) NSUInteger index;
+@end
+
 @implementation WaypointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
@@ -22,7 +26,7 @@
 }
 
 - (NSString*) title {
-    return [NSString stringWithFormat:@"%d: %@", _index, [WaypointHelper commandIDToString: _waypoint.command]];
+    return [NSString stringWithFormat:@"%ld: %@", (long)_index, [WaypointHelper commandIDToString: _waypoint.command]];
 }
 
 - (NSString*) subtitle {

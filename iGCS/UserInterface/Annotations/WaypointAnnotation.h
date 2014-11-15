@@ -11,17 +11,16 @@
 #import "MavLinkPacketHandler.h"
 #import "GCSThemeManager.h"
 
-@interface WaypointAnnotation : NSObject <MKAnnotation> {
-    NSInteger _index;
-}
+@interface WaypointAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, assign)   CLLocationCoordinate2D  coordinate;
 @property (nonatomic, readonly) mavlink_mission_item_t  waypoint;
+@property (nonatomic, readonly, copy) UIColor *color;
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index NS_DESIGNATED_INITIALIZER;
+
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
-@property (nonatomic, readonly, copy) UIColor *color;
 - (BOOL) hasMatchingSeq:(NSInteger)seq;
 
 @end
