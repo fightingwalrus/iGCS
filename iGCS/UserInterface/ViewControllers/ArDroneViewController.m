@@ -33,7 +33,7 @@
 @property (strong, nonatomic) UITextField *pickerTextField;
 @property (strong, nonatomic) NSArray *animationNames;
 
-@property int sequenceNumber;
+@property uint16_t sequenceNumber;
 
 
 @end
@@ -50,6 +50,7 @@
     self.pickerTextField.inputView = picker;
     self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
     _arDrone2 = [[ArDroneUtils alloc] init];
+    self.sequenceNumber = 0;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -261,6 +262,10 @@
         [[CommController sharedInstance].mavLinkInterface arDronePhiThetaMixed];
 }
 
+- (void) viewDidDisappear:(BOOL)animated{
+    [self.motionManager stopDeviceMotionUpdates];
+}
+
 
 - (void) manualFlight {
     NSLog(@"manual flight function");
@@ -287,30 +292,60 @@
 -(void)outputMotionData:(CMDeviceMotion*)deviceMotion
 {
     
-    //Probably need to make more robust and switch to Quaternions to calculate the roll, pitch, and yaw values
+    //http://stackoverflow.com/questions/9478630/get-pitch-yaw-roll-from-a-cmrotationmatrix/18764368#18764368
+    CMQuaternion quat = deviceMotion.attitude.quaternion;
     
-    float roll = (float) deviceMotion.attitude.roll / M_PI * -1.0;
-    float pitch = (float) deviceMotion.attitude.pitch / M_PI;
-    float yaw =  (float) deviceMotion.attitude.yaw / M_PI;
+    float rollQuat = (atan2(2*(quat.y*quat.w - quat.x*quat.z), 1-2*quat.y*quat.y - 2*quat.z*quat.z)) * (180/ M_PI) ;
+    float pitchQuat = (atan2(2*(quat.x*quat.w + quat.y*quat.z), 1-2*quat.x*quat.x - 2*quat.z*quat.z)) * (180/ M_PI);
+    float yawQuat =  (asin(2*quat.x*quat.y + 2*quat.w*quat.z)) * (180/ M_PI);
     
-    NSLog(@"The Roll, Pitch, Yaw is %f, %f, %f", roll, pitch, yaw);
+    int16_t roll = 0;
+    int16_t pitch = 0;
+    int16_t yaw = 0;
+    int16_t thrust = 0;
     
-    NSString *instrumData = [NSString stringWithFormat:@"AT*PCMD=%i,%d,%d,%d,%d,%d\r",
-                             self.sequenceNumber,                //seq
-                             1,                  //flag
-                             *(int*)(&roll),     //roll
-                             *(int*)(&pitch),    //pitch
-                             0,                  //gaz (vertical speed)
-                             *(int*)(&yaw)       //yaw
-                             ];
+    
+    //Convert to a percentage of 90 degrees and multiple by 1000 fall between -1000 and 1000
+    //We may want to make the max angle of the iDevice less than 90 degress.
+    //Need to investegate.
+    pitch = 1000 * (pitchQuat/90);
+    roll =  1000 * (rollQuat/90);
+    yaw =   1000 * (yawQuat/90);
+    
+    
+    if (pitch > 1000){
+        pitch = 1000;
+    }
+    else if (pitch < -1000){
+        pitch = -1000;
+    }
+
+
+    if (roll > 1000){
+        roll = 1000;
+    }
+    else if (roll < -1000){
+        roll = -1000;
+    }
+    
+
+    if (yaw > 1000){
+        yaw = 1000;
+    }
+    else if (yaw < -1000){
+        yaw = -1000;
+    }
+    
+    
+ 
+    
+    
+    NSLog(@"The Roll, Pitch, thrust, Yaw is %d, %d, %d, %d", pitch, roll, thrust, yaw);
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:thrust:yaw:self.sequenceNumber];
+    
     self.sequenceNumber++;
-    NSLog(@"the converted data is %@", instrumData);
-    //NSString *testDFL = @"AT*PCMD=1,1,0,0,0,1061158912\r";
-    //[[CommController sharedInstance].mavLinkInterface arDroneResetWatchDogTimer];
-      [[CommController sharedInstance].mavLinkInterface arDroneMove:instrumData];
     
    
-    //[self.arDrone2 droneMove:instrumData];
     
 }
 
