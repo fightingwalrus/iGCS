@@ -9,17 +9,11 @@
 #import "MissionItemTableViewController.h"
 #import "MissionItemEditViewController.h"
 
+#import "MissionItemCell.h"
+
 #import "MiscUtilities.h"
 #import "MavLinkUtility.h"
 #import "WaypointHelper.h"
-
-@interface HeaderSpec : NSObject
-@property (nonatomic, assign) NSInteger width;
-@property (nonatomic, assign) NSTextAlignment align;
-@property (nonatomic, retain) NSString *text;
-@property (nonatomic, assign) NSInteger tag;
-@end
-
 
 @implementation HeaderSpec
 
@@ -35,7 +29,6 @@
 }
 
 @end
-
 
 
 @interface MissionItemTableViewController ()
@@ -102,20 +95,12 @@
 
 
 #define TABLE_HEADER_FONT_SIZE 14
-
-#define TABLE_CELL_CMD_FONT_SIZE 16
-#define TABLE_CELL_FONT_SIZE   12
-
-#define DEBUG_SHOW_SEQ 0
-
 #define HEADER_SPEC_EDIT_OFFSET 40
 
-#define TAG_PARAM1 100
-#define TAG_PARAM2 200
-#define TAG_PARAM3 300
-#define TAG_PARAM4 400
+#define TAG_OFFSET 100
 
 NSArray* headerSpecs = nil;
+NSArray* headerWidths = nil;
 
 + (void) initialize {
     if (!headerSpecs) { 
@@ -129,107 +114,39 @@ NSArray* headerSpecs = nil;
                          [[HeaderSpec alloc] initWithWidth: 90 alignment:NSTextAlignmentCenter text:@"Longitude" tag:0], // y
                          [[HeaderSpec alloc] initWithWidth: 65 alignment:NSTextAlignmentCenter text:@"Altitude"  tag:0], // z
                          //
-                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param1" tag:TAG_PARAM1], // param1
-                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param2" tag:TAG_PARAM2], // param2
-                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param3" tag:TAG_PARAM3], // param3
-                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param4" tag:TAG_PARAM4], // param4
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param1" tag:GCSItemParam1 + TAG_OFFSET], // param1
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param2" tag:GCSItemParam2 + TAG_OFFSET], // param2
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param3" tag:GCSItemParam3 + TAG_OFFSET], // param3
+                         [[HeaderSpec alloc] initWithWidth: 95 alignment:NSTextAlignmentRight  text:@"Param4" tag:GCSItemParam4 + TAG_OFFSET], // param4
                          //
                          [[HeaderSpec alloc] initWithWidth:100 alignment:NSTextAlignmentCenter text:@"Autocontinue" tag:0]
                        ];
+        
+        NSMutableArray* widths = [[NSMutableArray alloc] initWithCapacity:[headerSpecs count]];
+        for (HeaderSpec *spec in headerSpecs) {
+            [widths addObject:@([spec width])];
+        }
+        headerWidths = widths;
     }
-}
-
-- (NSString*) formatParam:(float)param {
-    return param == 0 ? @"0" : [NSString stringWithFormat:@"%0.2f", param];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"MissionItemCellID";
-    NSInteger TAG_INDEX = 100;
+    static NSString *cellIdentifier = @"MissionItemCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MissionItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MissionItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell initializeLabels:headerWidths];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    // FIXME: outside the above "if (!cell)..." because it seems cells are already pre-created. Why? Precreated in nib?
-    if ([cell viewWithTag:TAG_INDEX] == NULL) {
-        NSUInteger x = 0;
-        for (NSUInteger i = 0; i < [headerSpecs count]; i++) {
-            NSInteger width = [((HeaderSpec*)headerSpecs[i]) width];
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 44)];
-            label.tag = TAG_INDEX+i;
-            label.font = [UIFont systemFontOfSize:TABLE_CELL_FONT_SIZE];
-            label.textAlignment = NSTextAlignmentRight;
-            label.textColor = [UIColor blackColor];
-            label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-            [cell.contentView addSubview:label];
-            //
-            x += width;
-        }
-    }
-    
-    mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint: indexPath.row];
-    BOOL isNavCommand = [WaypointHelper isNavCommand:waypoint];
-    
     // Prepare the cell
-    cell.editingAccessoryType = [MavLinkUtility isSupportedMissionItemType:waypoint.command] ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-    
-    // Row number (which masquerades as the seq #)
-    UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%4ld:", (long)indexPath.row];
-    label.textAlignment = NSTextAlignmentLeft;
+    NSUInteger idx = indexPath.row;
+    mavlink_mission_item_t item = [[self waypointsHolder] getWaypoint:idx];
 
-#if DEBUG_SHOW_SEQ
-    // Seq number
-    label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%d:", waypoint.seq];
-    label.textAlignment = NSTextAlignmentLeft;
-#endif
+    cell.editingAccessoryType = [MavLinkUtility isSupportedMissionItemType:item.command] ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     
-    // Command
-    label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.font = [UIFont systemFontOfSize:TABLE_CELL_CMD_FONT_SIZE];
-    label.text = [NSString stringWithFormat:@"%@", [WaypointHelper commandIDToString: waypoint.command]];
-    label.textAlignment = NSTextAlignmentLeft;
-
-    // X (Latitude)
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [MiscUtilities prettyPrintCoordAxis:waypoint.x as:GCSLatitude] : @"-";
-    
-    // Y (Longitude)
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [MiscUtilities prettyPrintCoordAxis:waypoint.y as:GCSLongitude] : @"-";
-
-    // Z (Altitude)
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = isNavCommand ? [NSString stringWithFormat:@"%0.2f m", waypoint.z] : @"-";
-    
-    // Used to determine whether we have a named header for the respective param
-    NSMutableDictionary *dict = [self headerTagToLabelDictWith: waypoint.command];
-    
-    // param1
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (dict && dict[@(TAG_PARAM1)]) ? [self formatParam:waypoint.param1] : @"-";
-    
-    // param2
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (dict && dict[@(TAG_PARAM2)]) ? [self formatParam:waypoint.param2] : @"-";
-    
-    // param3
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (dict && dict[@(TAG_PARAM3)]) ? [self formatParam:waypoint.param3] : @"-";
-    
-    // param4
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = (dict && dict[@(TAG_PARAM4)]) ? [self formatParam:waypoint.param4] : @"-";
-    
-    // autocontinue
-    label = (UILabel*)[cell.contentView viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%@", waypoint.autocontinue ? @"Yes" : @"No"];
-    label.textAlignment = NSTextAlignmentCenter;
-
+    [cell configureFor:idx withItem:item];
     return cell;
 }
 
@@ -304,22 +221,21 @@ NSArray* headerSpecs = nil;
     return sectionHeader;
 }
 
-- (NSMutableDictionary*) headerTagToLabelDictWith:(uint16_t)command {
++ (NSDictionary*) paramEnumToLabelDictWith:(uint16_t)command {
     NSArray* fields = [MavLinkUtility missionItemMetadataWith: command];
     if (!fields) return nil;
     
-    NSDictionary *fieldTypeToHeaderTag = @{
-                                           @(GCSItemParam1) : @(TAG_PARAM1),
-                                           @(GCSItemParam2) : @(TAG_PARAM2),
-                                           @(GCSItemParam3) : @(TAG_PARAM3),
-                                           @(GCSItemParam4) : @(TAG_PARAM4)
-                                           };
+    NSSet *paramTypes = [[NSSet alloc] initWithObjects:
+                         @(GCSItemParam1),
+                         @(GCSItemParam2),
+                         @(GCSItemParam3),
+                         @(GCSItemParam4),
+                         nil];
     
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for (MissionItemField* field in fields) {
-        NSNumber *tag = fieldTypeToHeaderTag[@(field.fieldType)];
-        if (tag) {
-            dict[tag] = field.label;
+        if ([paramTypes containsObject:@(field.fieldType)]) {
+            dict[@(field.fieldType)] = field.label;
         }
     }
     return dict;
@@ -327,14 +243,14 @@ NSArray* headerSpecs = nil;
 
 - (void)modifyHeadersForSelectedRow:(NSInteger)row {
     mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:row];
-    NSMutableDictionary *dict = [self headerTagToLabelDictWith:waypoint.command];
+    NSDictionary *dict = [MissionItemTableViewController paramEnumToLabelDictWith:waypoint.command];
     
     // If we recognise this mission item type, then populate the fields (default is ""),
     // otherwise, fallback to "ParamX"
-    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM1]).text = dict ? (dict[@(TAG_PARAM1)] ?: @"") : @"Param1";
-    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM2]).text = dict ? (dict[@(TAG_PARAM2)] ?: @"") : @"Param2";
-    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM3]).text = dict ? (dict[@(TAG_PARAM3)] ?: @"") : @"Param3";
-    ((UILabel*)[self.sectionHeaderContainer viewWithTag: TAG_PARAM4]).text = dict ? (dict[@(TAG_PARAM4)] ?: @"") : @"Param4";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag:GCSItemParam1 + TAG_OFFSET]).text = dict ? (dict[@(GCSItemParam1)] ?: @"") : @"Param1";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag:GCSItemParam2 + TAG_OFFSET]).text = dict ? (dict[@(GCSItemParam2)] ?: @"") : @"Param2";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag:GCSItemParam3 + TAG_OFFSET]).text = dict ? (dict[@(GCSItemParam3)] ?: @"") : @"Param3";
+    ((UILabel*)[self.sectionHeaderContainer viewWithTag:GCSItemParam4 + TAG_OFFSET]).text = dict ? (dict[@(GCSItemParam4)] ?: @"") : @"Param4";
 }
 
 - (void)unmarkSelectedRow {
