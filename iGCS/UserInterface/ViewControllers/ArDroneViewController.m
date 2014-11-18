@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIButton *calibrationButton;
 @property (strong, nonatomic) UIButton *resetWatchDogButton;
 @property (strong, nonatomic) UIButton *manualControlButton;
+@property (strong, nonatomic) UIButton *stopManualControlButton;
 
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
@@ -50,7 +51,7 @@
     self.pickerTextField.inputView = picker;
     self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
     _arDrone2 = [[ArDroneUtils alloc] init];
-    self.sequenceNumber = 0;
+    self.sequenceNumber = 1;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -138,11 +139,22 @@
     [self.view addSubview:self.resetWatchDogButton];
     
     self.manualControlButton = [UIButton newAutoLayoutView];
-    [self.manualControlButton setTitle :@"Manual Flight" forState:UIControlStateNormal];
+    [self.manualControlButton setTitle :@"Start Manual Flight" forState:UIControlStateNormal];
+    [self.manualControlButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
     [self.manualControlButton addTarget:self action:@selector(manualFlight) forControlEvents:UIControlEventTouchUpInside];
     [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.manualControlButton];
+    
+    self.stopManualControlButton = [UIButton newAutoLayoutView];
+    [self.stopManualControlButton setTitle :@"Stop Manual Flight" forState:UIControlStateNormal];
+    [self.stopManualControlButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
+    [self.stopManualControlButton addTarget:self action:@selector(stopManualFlight) forControlEvents:UIControlEventTouchUpInside];
+    [self.stopManualControlButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.stopManualControlButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.stopManualControlButton];
+    
+    
 
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
@@ -198,14 +210,18 @@
     [self.pickerTextField setTextColor:[GCSThemeManager sharedInstance].appTintColor];
     [self.view addSubview:self.pickerTextField];
     
-    [self.manualControlButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20.0f];
     [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
     
+    [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20.0f];
+    [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
+
+    
     [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:180.0f];
+    [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:160.0f];
     
     [self.pickerTextField autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.pickerTextField autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
+    [self.pickerTextField autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:130.0f];
 }
 
 
@@ -299,33 +315,27 @@
     float pitchQuat = (atan2(2*(quat.x*quat.w + quat.y*quat.z), 1-2*quat.x*quat.x - 2*quat.z*quat.z)) * (180/ M_PI);
     float yawQuat =  (asin(2*quat.x*quat.y + 2*quat.w*quat.z)) * (180/ M_PI);
     
-    int16_t roll = 0;
-    int16_t pitch = 0;
-    int16_t yaw = 0;
-    int16_t thrust = 0;
     
-    
-    //Convert to a percentage of 90 degrees and multiple by 1000 fall between -1000 and 1000
-    //We may want to make the max angle of the iDevice less than 90 degress.
+    //Convert to a percentage of 60 degrees and multiple by 1000 fall between -1000 and 1000
+    //We may want to make the max angle of the iDevice less than 60 degress.
     //Need to investegate.
-    pitch = 1000 * (pitchQuat/90);
-    roll =  1000 * (rollQuat/90);
-    yaw =   1000 * (yawQuat/90);
-    
-    
-    if (pitch > 1000){
-        pitch = 1000;
-    }
-    else if (pitch < -1000){
-        pitch = -1000;
-    }
-
+    int16_t pitch = 1000 * (pitchQuat/60);
+    int16_t roll =  1000 * (rollQuat/60);
+    int16_t yaw =   1000 * (yawQuat/60);
+    int16_t thrust = 0;
 
     if (roll > 1000){
         roll = 1000;
     }
     else if (roll < -1000){
         roll = -1000;
+    }
+    
+    if (pitch > 1000){
+        pitch = 1000;
+    }
+    else if (pitch < -1000){
+        pitch = -1000;
     }
     
 
@@ -336,17 +346,30 @@
         yaw = -1000;
     }
     
+    if ((roll > -100) && (roll < 100)){
+        roll = 0;
+    }
     
- 
+    if ((pitch > -100) && (pitch < 100)){
+        pitch = 0;
+    }
+    
+    if ((yaw > -100) && (yaw < 100)){
+        yaw = 0;
+    }
     
     
-    NSLog(@"The Roll, Pitch, thrust, Yaw is %d, %d, %d, %d", pitch, roll, thrust, yaw);
     [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:thrust:yaw:self.sequenceNumber];
     
     self.sequenceNumber++;
+
     
-   
-    
+}
+
+
+- (void) stopManualFlight {
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:0:0:0:0:0];
+    [self.motionManager stopDeviceMotionUpdates];
 }
 
 
