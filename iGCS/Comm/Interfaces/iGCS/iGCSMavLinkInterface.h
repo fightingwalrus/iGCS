@@ -77,6 +77,6 @@
 - (void) arDroneFlipBehind;
 - (void) arDroneFlipLeft;
 - (void) arDroneFlipRight;
-- (void) arDroneMove:(NSString*)moveCommand;
+
 
 @end
