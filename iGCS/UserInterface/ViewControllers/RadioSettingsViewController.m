@@ -24,6 +24,8 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
 
+@property (strong, nonatomic) UIScrollView *scrollView;
+
 @property (strong, nonatomic) GCSActivityIndicatorView *activityIndicatorView;
 
 // UI elements
@@ -130,6 +132,10 @@ static void *SVKvoContext = &SVKvoContext;
 
 -(void)configureViewLayout {
 
+    self.scrollView = [UIScrollView newAutoLayoutView];
+    [self.view addSubview:self.scrollView];
+    [self.scrollView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+
     self.localRadioFirmwareVersion.text = nil;
     self.remoteRadioFirmwareVersion.text = nil;
     self.connectionStatus.text = nil;
@@ -137,56 +143,68 @@ static void *SVKvoContext = &SVKvoContext;
 
     // NetID UI
     self.localRadioNetIdLabel = [UILabel newAutoLayoutView];
-    [self.view addSubview:self.localRadioNetIdLabel];
+    [self.scrollView addSubview:self.localRadioNetIdLabel];
     [self.localRadioNetIdLabel setText:@"Net ID:"];
     self.localRadioNetIdLabel.textAlignment = NSTextAlignmentRight;
+
 
     self.localRadioNetId = [UITextField newAutoLayoutView];
     self.localRadioNetId.borderStyle = UITextBorderStyleRoundedRect;
     [self.localRadioNetId autoSetDimension:ALDimensionWidth toSize:150.0f];
-    [self.view  addSubview:self.localRadioNetId];
+    [self.scrollView  addSubview:self.localRadioNetId];
     self.localRadioNetId.textAlignment = NSTextAlignmentLeft;
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
     // Local radio version
     self.localRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.localRadioFirmwareVersionLabel];
+    [self.scrollView  addSubview:self.localRadioFirmwareVersionLabel];
     [self.localRadioFirmwareVersionLabel setText:@"Local Radio Firmware:"];
     self.localRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
 
     self.localRadioFirmwareVersion = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.localRadioFirmwareVersion];
+    [self.scrollView  addSubview:self.localRadioFirmwareVersion];
     [self.localRadioFirmwareVersion setText:@"-"];
     self.localRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
 
     // remote radio version
     self.remoteRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.remoteRadioFirmwareVersionLabel];
+    [self.scrollView  addSubview:self.remoteRadioFirmwareVersionLabel];
     [self.remoteRadioFirmwareVersionLabel setText:@"Remote Radio Firmware:"];
     self.remoteRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
 
     self.remoteRadioFirmwareVersion = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.remoteRadioFirmwareVersion];
+    [self.scrollView  addSubview:self.remoteRadioFirmwareVersion];
     [self.remoteRadioFirmwareVersion setText:@"-"];
     self.remoteRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
 
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
 
-    // normally the app will propt if a connection is opened to a FWR that needs updated
-    // we want an easy way to test the firmware updater.
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
+    } else {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:44.0f + 25.0f];
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
+    }
+
+
+    // normally the app will prompt if a connection is opened to a FWR that needs updated
+    // hoever we want an easy way to test the firmware updater.
+
+    NSArray *labelViews;
 #if DEBUG
     UIButton *fwrFirmwareUpdateButton = [UIButton newAutoLayoutView];
     [fwrFirmwareUpdateButton setTitle:@"Update Firmware" forState:UIControlStateNormal];
     [fwrFirmwareUpdateButton addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
     [fwrFirmwareUpdateButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
-    [self.view addSubview:fwrFirmwareUpdateButton];
+    [self.scrollView addSubview:fwrFirmwareUpdateButton];
 
     [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
     [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
-#endif
 
-    NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
+    labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel, fwrFirmwareUpdateButton];
+#else
+    labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
+#endif
 
     UIView *previousLabel = nil;
     for (UIView *view in labelViews) {
@@ -201,19 +219,24 @@ static void *SVKvoContext = &SVKvoContext;
         previousLabel = view;
     }
 
-    [self.remoteRadioFirmwareVersionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
+    // need one scroll view subview pinned to bottom of scroll view in order for scrolling to work with autolayout
+#if DEBUG
+  [fwrFirmwareUpdateButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.scrollView withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
+#else
+  [self.remoteRadioFirmwareVersionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.scrollView withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
+#endif
 
     [labelViews autoAlignViewsToEdge:ALEdgeRight];
     [labelViews autoMatchViewsDimension:ALDimensionWidth];
 
     [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
-    [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
+    [self.localRadioNetId autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.localRadioNetIdLabel];
 
     [self.localRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioFirmwareVersionLabel withOffset:10];
-    [self.localRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioFirmwareVersionLabel withOffset:0.0f];
+    [self.localRadioFirmwareVersion autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.localRadioFirmwareVersionLabel];
 
     [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.remoteRadioFirmwareVersionLabel withOffset:10];
-    [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.remoteRadioFirmwareVersionLabel withOffset:0.0f];
+    [self.remoteRadioFirmwareVersion autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.remoteRadioFirmwareVersionLabel];
 
 }
 
