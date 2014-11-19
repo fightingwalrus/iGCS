@@ -68,7 +68,7 @@
             break;
             
         case MAV_CMD_NAV_LOITER_TURNS:
-            str = [str stringByAppendingFormat:@"\nNum Turns: %d\n", (NSInteger)waypoint.param1];
+            str = [str stringByAppendingFormat:@"\nNum Turns: %ld\n", (long)waypoint.param1];
             break;
             
         case MAV_CMD_NAV_LOITER_TIME:

@@ -178,7 +178,7 @@ NSArray* headerSpecs = nil;
     
     // Row number (which masquerades as the seq #)
     UILabel *label = (UILabel*)[cell viewWithTag:TAG_INDEX++];
-    label.text = [NSString stringWithFormat:@"%4d:", indexPath.row];
+    label.text = [NSString stringWithFormat:@"%4ld:", (long)indexPath.row];
     label.textAlignment = NSTextAlignmentLeft;
 
 #if DEBUG_SHOW_SEQ

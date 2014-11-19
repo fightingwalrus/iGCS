@@ -8,18 +8,18 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface CustomPointAnnotation : NSObject <MKAnnotation> {
-    CLLocationCoordinate2D _coordinate;
-    NSString *_title;
-    NSString *_viewIdentifer;
-    UIColor  *_color;
-    BOOL     _doAnimation;
-}
+@interface CustomPointAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *viewIdentifier;
 @property (nonatomic, readonly, copy) UIColor  *color;
 @property (nonatomic, readonly) BOOL doAnimation;
+
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate
+                             title:(NSString*)title
+                            viewID:(NSString*)viewIdentifier
+                             color:(UIColor*)color
+                      andAnimation:(BOOL)doAnimation;
 
 @end

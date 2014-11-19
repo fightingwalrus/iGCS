@@ -12,14 +12,11 @@
 @implementation GuidedPointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
-    if ((self = [super init])) {
-        _coordinate = coordinate;
-        _title = @"Flying to";
-        _viewIdentifer = @"GUIDED";
-        _color = [[GCSThemeManager sharedInstance] waypointNavColor];
-        _doAnimation = YES;
-    }
-    return self;
+    return [super initWithCoordinate:coordinate
+                               title:@"Flying to"
+                              viewID:@"GUIDED"
+                               color:[[GCSThemeManager sharedInstance] waypointNavColor]
+                        andAnimation:YES];
 }
 
 @end

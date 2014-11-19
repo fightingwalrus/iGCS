@@ -11,14 +11,11 @@
 @implementation RequestedPointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
-    if ((self = [super init])) {
-        _coordinate = coordinate;
-        _title = @"Next \"Follow Me\" request";
-        _viewIdentifer = @"REQUESTED";
-        _color = [UIColor orangeColor];
-        _doAnimation = NO;
-    }
-    return self;
+    return [super initWithCoordinate:coordinate
+                               title:@"Next \"Follow Me\" request"
+                              viewID:@"REQUESTED"
+                               color:[UIColor orangeColor]
+                        andAnimation:NO];
 }
 
 @end

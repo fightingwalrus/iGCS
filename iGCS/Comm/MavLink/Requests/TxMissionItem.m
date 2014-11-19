@@ -44,7 +44,7 @@
 - (void) performRequest {
     // Send the requested mission item
     //   - for now, we assume that all coords are in the MAV_FRAME_GLOBAL_RELATIVE_ALT frame; see also issueGOTOCommand
-    NSAssert(_currentIndex < [_mission numWaypoints], @"Requested waypoint %d of %d", _currentIndex, [_mission numWaypoints]);
+    NSAssert(_currentIndex < [_mission numWaypoints], @"Requested waypoint %d of %lu", _currentIndex, (unsigned long)[_mission numWaypoints]);
     mavlink_mission_item_t item = [_mission getWaypoint:_currentIndex];
     item.seq = _currentIndex;
     item.frame = MAV_FRAME_GLOBAL_RELATIVE_ALT;

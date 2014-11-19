@@ -27,7 +27,7 @@
 }
 
 - (void) updateRequestStatusDialog:(NSString*)message withAttemptNum:(NSUInteger)attemptNum {
-    [_requestStatusDialog setMessage:(attemptNum == 1) ? message : [NSString stringWithFormat:@"%@ - attempt %d", message, attemptNum]];
+    [_requestStatusDialog setMessage:(attemptNum == 1) ? message : [NSString stringWithFormat:@"%@ - attempt %lu", message, (unsigned long)attemptNum]];
 }
 
 - (void) completedRequestStatusWithSuccess:(BOOL)success {
