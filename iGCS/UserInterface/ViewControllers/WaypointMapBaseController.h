@@ -27,9 +27,9 @@
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 - (void) removeExistingWaypointAnnotations;
-- (WaypointAnnotation *) getWaypointAnnotation:(NSInteger)waypointSeq;
+- (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq;
 - (void) replaceMission:(WaypointsHolder*)mission;
-- (void) maybeUpdateCurrentWaypoint:(NSInteger)newCurrentWaypointSeq;
+- (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
 - (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
@@ -37,7 +37,7 @@
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 
 // Following methods are intended to be overridden by subclasses
-- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
+- (void) waypointWithSeq:(WaypointSeq)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude;
 - (void) customizeWaypointAnnotationView:(MKAnnotationView*)view;
 - (void) handleLongPressGesture:(UIGestureRecognizer*)sender;
 
