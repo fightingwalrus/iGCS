@@ -339,7 +339,7 @@ NSArray* headerSpecs = nil;
 
 - (void)unmarkSelectedRow {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    [[self waypointsVC] maybeUpdateCurrentWaypoint:-1];
+    [[self waypointsVC] maybeUpdateCurrentWaypoint:WAYPOINTSEQ_NONE];
     self.lastIndexPath = nil;
 }
 

@@ -130,7 +130,7 @@
 - (void) handlePacket:(mavlink_message_t*)msg {
 }
 
-- (void) waypointWithSeq:(NSUInteger)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
+- (void) waypointWithSeq:(WaypointSeq)waypointSeq wasMovedToLat:(double)latitude andLong:(double)longitude {
     NSInteger index = [self.waypoints getIndexOfWaypointWithSeq:waypointSeq];
     if (index != -1) {
         mavlink_mission_item_t waypoint = [self.waypoints getWaypoint:index];
