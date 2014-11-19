@@ -83,7 +83,7 @@
 
 }
 
--(void)interface:(CommInterface*)interface producedBytes:(const uint8_t*)bytes length:(NSInteger)length {
+-(void)interface:(CommInterface*)interface producedBytes:(const uint8_t*)bytes length:(NSUInteger)length {
     @try {
         for (CommConnection *connection in self.connections) {
             if ([connection.source isEqual:interface]) {

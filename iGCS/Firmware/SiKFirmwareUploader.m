@@ -223,7 +223,7 @@ typedef void (^FWUChunkFn)(NSUInteger, NSData*);
     FWUChunkFn fn = ^void(NSUInteger address, NSData *chunk) {
         if (![self verifyMulti:chunk]) {
             @throw([NSException exceptionWithName:NSGenericException
-                                           reason:[NSString stringWithFormat:@"Verification failed in group at 0x%x", address]
+                                           reason:[NSString stringWithFormat:@"Verification failed in group at 0x%lx", (unsigned long)address]
                                          userInfo:nil]);
         }
     };

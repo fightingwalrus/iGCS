@@ -8,7 +8,7 @@
 
 #import "CustomPointAnnotation.h"
 
-@interface RequestedPointAnnotation :  CustomPointAnnotation
+@interface RequestedPointAnnotation : CustomPointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate NS_DESIGNATED_INITIALIZER;
 

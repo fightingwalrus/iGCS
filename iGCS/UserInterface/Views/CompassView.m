@@ -113,7 +113,7 @@
                 label = array[ang/90];
             } else {
                 // Plain old number
-                label = [NSString stringWithFormat:@"%03d", ang];
+                label = [NSString stringWithFormat:@"%03ld", (long)ang];
             }
             
             float labelWidth = [MiscUtilities getTextWidth:label withContext:ctx];

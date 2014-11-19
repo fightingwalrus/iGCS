@@ -50,8 +50,8 @@
 }
 
 
--(void)sendMavlinkData:(const uint8_t*)bytes length:(NSInteger)length {
-    DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %i",length);
+-(void)sendMavlinkData:(const uint8_t*)bytes length:(NSUInteger)length {
+    DDLogVerbose(@"GKSessionController: Sending MavLink bytes: %lu",(unsigned long)length);
     [self sendNetworkPacket:self.gameSession packetID:NETWORK_MAVLINK withData:bytes ofLength:length reliable:YES];
 }
 
@@ -151,7 +151,7 @@
 		return;
 	}
     
-    DDLogVerbose(@"GKSession receiveData: %i bytes",[data length]);
+    DDLogVerbose(@"GKSession receiveData: %lu bytes",(unsigned long)[data length]);
 	
 	lastPacketTime = packetTime;
 	switch( packetID ) {
@@ -188,7 +188,7 @@
         }
             
         case NETWORK_MAVLINK: {
-            DDLogVerbose(@"GKSession: Received MavLink: %i bytes",[data length]);
+            DDLogVerbose(@"GKSession: Received MavLink: %lu bytes",(unsigned long)[data length]);
             
             NSUInteger headerSize = 2 * sizeof(int);
             uint8_t *mavlinkData = (uint8_t*)&incomingPacket[headerSize];
@@ -205,7 +205,7 @@
 	}
 }
 
-- (void)sendNetworkPacket:(GKSession *)session packetID:(NSInteger)packetID withData:(const void *)data ofLength:(NSInteger)length reliable:(BOOL)howtosend {
+- (void)sendNetworkPacket:(GKSession *)session packetID:(NSInteger)packetID withData:(const void *)data ofLength:(NSUInteger)length reliable:(BOOL)howtosend {
 	static unsigned char networkPacket[kMaxPacketSize];
 	const NSUInteger packetHeaderSize = 2 * sizeof(int); // we have two "ints" for our header
 	

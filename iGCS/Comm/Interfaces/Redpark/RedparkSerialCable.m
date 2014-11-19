@@ -33,7 +33,7 @@
     DDLogInfo(@"Redpark close method...");
 }
 
--(void)consumeData:(uint8_t *)bytes length:(NSInteger)length {
+-(void)consumeData:(uint8_t *)bytes length:(NSUInteger)length {
     NSInteger n = [self.rscMgr write:bytes Length:length];
     if (n == length) {
         DDLogDebug(@"send_uart_bytes: output %d chars", n);

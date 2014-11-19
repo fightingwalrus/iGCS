@@ -21,7 +21,7 @@
     }
 }
 
--(void)consumeData:(const uint8_t *)bytes length:(NSInteger)length {
+-(void)consumeData:(const uint8_t *)bytes length:(NSUInteger)length {
     NSData *dataToStream = [NSData dataWithBytes:bytes length:length];
     [self writeData:dataToStream];
 }
@@ -52,6 +52,10 @@
 	while ([[_session inputStream] hasBytesAvailable]) {
 		NSInteger bytesRead = [[_session inputStream] read:buf maxLength:EAD_INPUT_BUFFER_SIZE];
 		DDLogVerbose(@"read %ld bytes from input stream", (long)bytesRead);
+        if (bytesRead < 0) {
+            DDLogError(@"read error");
+            return;
+        }
         [self produceData:buf length:bytesRead];
 	}
 }

@@ -81,7 +81,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 // MavLink destination override
--(void)consumeData:(const uint8_t*)bytes length:(NSInteger)length {
+-(void)consumeData:(const uint8_t*)bytes length:(NSUInteger)length {
     @autoreleasepool {
         // Notify receipt of length bytes
         [self.mainVC.dataRateRecorder bytesReceived:length];
