@@ -27,6 +27,9 @@
 @property (strong, nonatomic) UIButton *resetWatchDogButton;
 @property (strong, nonatomic) UIButton *manualControlButton;
 @property (strong, nonatomic) UIButton *stopManualControlButton;
+@property (strong, nonatomic) UIButton *thrustPlusButton;
+@property (strong, nonatomic) UIButton *thrustMinusButton;
+@property (strong, nonatomic) UIButton *thrustZeroButton;
 
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
@@ -35,6 +38,7 @@
 @property (strong, nonatomic) NSArray *animationNames;
 
 @property uint16_t sequenceNumber;
+@property int16_t thrust;
 
 
 @end
@@ -52,6 +56,7 @@
     self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
     _arDrone2 = [[ArDroneUtils alloc] init];
     self.sequenceNumber = 1;
+    self.thrust = 0;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -155,6 +160,31 @@
     [self.view addSubview:self.stopManualControlButton];
     
     
+    self.thrustPlusButton = [UIButton newAutoLayoutView];
+    [self.thrustPlusButton setTitle :@"+" forState:UIControlStateNormal];
+    [self.thrustPlusButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustPlusButton addTarget:self action:@selector(plusThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustPlusButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustPlusButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustPlusButton];
+    
+    self.thrustMinusButton = [UIButton newAutoLayoutView];
+    [self.thrustMinusButton setTitle :@"-" forState:UIControlStateNormal];
+    [self.thrustMinusButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustMinusButton addTarget:self action:@selector(minusThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustMinusButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustMinusButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustMinusButton];
+    
+    self.thrustZeroButton = [UIButton newAutoLayoutView];
+    [self.thrustZeroButton setTitle :@"0" forState:UIControlStateNormal];
+    [self.thrustZeroButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustZeroButton addTarget:self action:@selector(zeroThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustZeroButton];
+    
+    
 
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
@@ -215,6 +245,16 @@
     
     [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20.0f];
     [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
+    
+    
+    [self.thrustPlusButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustPlusButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:500.0f];
+    
+    [self.thrustZeroButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustZeroButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:400.0f];
+    
+    [self.thrustMinusButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustMinusButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:300.0f];
 
     
     [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
@@ -322,7 +362,6 @@
     int16_t pitch = 1000 * (pitchQuat/60);
     int16_t roll =  1000 * (rollQuat/60);
     int16_t yaw =   1000 * (yawQuat/60);
-    int16_t thrust = 0;
 
     if (roll > 1000){
         roll = 1000;
@@ -346,6 +385,13 @@
         yaw = -1000;
     }
     
+    if (self.thrust > 1000){
+        self.thrust = 1000;
+    }
+    else if (self.thrust < -1000){
+        self.thrust = -1000;
+    }
+    
     if ((roll > -100) && (roll < 100)){
         roll = 0;
     }
@@ -358,9 +404,13 @@
         yaw = 0;
     }
     
+    if ((self.thrust > -100) && (self.thrust < 100)){
+        self.thrust = 0;
+    }
     
-    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:thrust:yaw:self.sequenceNumber];
     
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:self.thrust:yaw:self.sequenceNumber];
+
     self.sequenceNumber++;
 
     
@@ -370,6 +420,19 @@
 - (void) stopManualFlight {
     [[CommController sharedInstance].mavLinkInterface sendMoveCommand:0:0:0:0:0];
     [self.motionManager stopDeviceMotionUpdates];
+    self.thrust = 0;
+}
+
+- (void) plusThrust {
+    self.thrust = 500;
+}
+
+- (void) minusThrust {
+    self.thrust = -500;
+}
+
+- (void) zeroThrust {
+    self.thrust = 0;
 }
 
 
