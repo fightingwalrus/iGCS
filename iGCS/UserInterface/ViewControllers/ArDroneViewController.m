@@ -324,8 +324,6 @@
 
 
 - (void) manualFlight {
-    NSLog(@"manual flight function");
-    
     //http://nscookbook.com/2013/03/ios-programming-recipe-19-using-core-motion-to-access-gyro-and-accelerometer/
     
     self.motionManager = [[CMMotionManager alloc] init];
@@ -359,10 +357,17 @@
     //Convert to a percentage of 60 degrees and multiple by 1000 fall between -1000 and 1000
     //We may want to make the max angle of the iDevice less than 60 degress.
     //Need to investegate.
+    
+    //Default orientation = UIDeviceOrientationPortrait
     int16_t pitch = 1000 * (pitchQuat/60);
     int16_t roll =  1000 * (rollQuat/60);
-    int16_t yaw =   1000 * (yawQuat/60);
-
+    int16_t yaw =   -1000 * (yawQuat/60);
+    
+    //Change to Landscape Right (button on the left. radio on left)
+    pitch = 1000 * (rollQuat/60);
+    roll = -1000 * (pitchQuat/60);
+   
+    
     if (roll > 1000){
         roll = 1000;
     }
@@ -385,12 +390,6 @@
         yaw = -1000;
     }
     
-    if (self.thrust > 1000){
-        self.thrust = 1000;
-    }
-    else if (self.thrust < -1000){
-        self.thrust = -1000;
-    }
     
     if ((roll > -100) && (roll < 100)){
         roll = 0;
@@ -403,11 +402,6 @@
     if ((yaw > -100) && (yaw < 100)){
         yaw = 0;
     }
-    
-    if ((self.thrust > -100) && (self.thrust < 100)){
-        self.thrust = 0;
-    }
-    
     
     [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:self.thrust:yaw:self.sequenceNumber];
 
