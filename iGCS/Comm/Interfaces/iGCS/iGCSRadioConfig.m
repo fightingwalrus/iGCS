@@ -297,7 +297,13 @@ NSString * const GCSHayesResponseStateDescription[] = {
         return;
     }
 
-    dispatch_time_t timeout = dispatch_time(0, self.ATCommandTimeout * NSEC_PER_SEC);
+    dispatch_time_t timeout;
+    if (self.sikAt.hayesMode == AT) {
+        timeout = dispatch_time(0, self.ATCommandTimeout * NSEC_PER_SEC);
+    } else {
+        timeout = dispatch_time(0, self.RTCommandTimeout * NSEC_PER_SEC);
+    }
+
     long ret = dispatch_semaphore_wait(self.atCommandSemaphore, timeout);
 
     // if semiphore was signaled then do work otherwise just fall through
