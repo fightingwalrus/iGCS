@@ -9,6 +9,7 @@
 #import "CommController.h"
 #import "Logger.h"
 #import "SoundUtils.h"
+#import "GCSFirmwareUtils.h"
 
 NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
 
@@ -214,7 +215,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     for (EAAccessory *accessory in accessories) {
         DDLogDebug(@"%@",accessory.manufacturer);
 
-        if ([accessory.manufacturer isEqualToString:@"Fighting Walrus LLC"]) {
+        if ([GCSFirmwareUtils isSupportedAccessoryWithAccessory:accessory]) {
             gcsAccessory = GCSAccessoryFightingWalrusRadio;
             break;
         }

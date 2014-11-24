@@ -53,7 +53,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         DDLogInfo(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
         if ([self.accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
-                BOOL comparison = [currentAccessory.manufacturer isEqualToString:@"Fighting Walrus LLC"];
+                BOOL comparison = [GCSFirmwareUtils isSupportedAccessoryWithAccessory:currentAccessory];
                 if(comparison){
                     self.selectedAccessory = currentAccessory;
                     DDLogDebug(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);

@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ExternalAccessory/ExternalAccessory.h>
 
 @interface GCSFirmwareUtils : NSObject
 +(BOOL)isFirmwareUpdateNeededWithFirmwareRevision:(NSString *) firmwareRevision;
 +(void)notifyFwrFirmwareUpateNeeded;
-+(void)setAwaitingPostUpgradeDisconnect:(BOOL)value;
++(void)setAwaitingPostUpgradeDisconnect:(BOOL) value;
++(BOOL)isSupportedAccessoryWithAccessory:(EAAccessory *)accessory;
 @end
 
 extern NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated;
 extern NSString * const GCSCurrentFirmwareFileName;
 extern NSString * const GCSFirmwareVersionInBundle;
+extern NSString * const GCSCompanyName;
