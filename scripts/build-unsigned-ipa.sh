@@ -2,7 +2,7 @@
 
 # The MIT License (MIT)
 # 
-# Copyright (c) 2014 Fighting Walrus LLC
+# Copyright (c) 2014 Fighting Walrus, LLC
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ DSYM_DIR="$ARCHIVE_PATH.xcarchive/dSYMs/"
 DYSM_FILE_NAME="iGCS.app.dSYM"
 DSYM_FILE_PATH="$DSYM_DIR/$DYSM_FILE_NAME"
 
-xcrun -sdk iphoneos8.1 PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
+xcrun -sdk iphoneos PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Applications/iGCS.app" \
 -o "$IPA_FILE"
 
 else
