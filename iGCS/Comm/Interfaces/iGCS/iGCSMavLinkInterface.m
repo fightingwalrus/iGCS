@@ -284,10 +284,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 - (void) sendMoveCommandWithPitch:(int16_t)pitch
-                        andRoll:(int16_t)roll
+                          andRoll:(int16_t)roll
                         andThrust:(int16_t)thrust
-                        andYaw:(int16_t)yaw
-                        andSequenceNumber:(uint16_t)sequenceNumber{
+                           andYaw:(int16_t)yaw
+                andSequenceNumber:(uint16_t)sequenceNumber{
     mavlink_msg_manual_control_send(msg.sysid, msg.compid, pitch, roll, thrust, yaw, sequenceNumber);
 }
 

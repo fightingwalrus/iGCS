@@ -38,8 +38,8 @@
 @property (strong, nonatomic) UITextField *pickerTextField;
 @property (strong, nonatomic) NSArray *animationNames;
 
-@property uint16_t sequenceNumber;
-@property int16_t thrust;
+@property (nonatomic, assign) uint16_t sequenceNumber;
+@property (nonatomic, assign) int16_t thrust;
 
 
 @end
