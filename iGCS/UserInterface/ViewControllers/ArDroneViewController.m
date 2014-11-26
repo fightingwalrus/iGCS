@@ -342,21 +342,17 @@
                                                     DDLogDebug(@"%@", error);
                                                 }
                                             }];
-    
-    
 }
 
 
--(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion
-{
+-(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion {
     CMQuaternion quat = deviceMotion.attitude.quaternion;
     GCSMAVRotationAngles anglesOfRotation = [CoreMotionUtils normalizedRotationAnglesFromQuaternion:quat];
     return anglesOfRotation;
 }
 
 
-- (void) stopManualFlight {
-    
+- (void) stopManualFlight {   
     [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:0 andRoll:0 andThrust:0 andYaw:0 andSequenceNumber:1];
         self.thrust = 0;
 }
