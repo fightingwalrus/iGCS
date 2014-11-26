@@ -11,12 +11,7 @@
 #import "GCSThemeManager.h"
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
-
-struct GCSMAVMove{
-    int16_t roll, pitch, yaw;
-};
-
-#define MAXDEGREES 60
+#import "CoreMotionUtils.h"
 
 @interface ArDroneViewController ()
 
@@ -338,7 +333,7 @@ struct GCSMAVMove{
     
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
                                             withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
-                                                struct GCSMAVMove anglesOfRotation = [self outputMotionData:deviceMotion];
+                                                GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion];
                                                 DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d", anglesOfRotation.pitch, anglesOfRotation.roll, anglesOfRotation.yaw);
                                                 [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:anglesOfRotation.pitch andRoll:anglesOfRotation.roll andThrust:self.thrust andYaw:anglesOfRotation.yaw andSequenceNumber:self.sequenceNumber];
                                                 self.sequenceNumber++;
@@ -352,10 +347,10 @@ struct GCSMAVMove{
 }
 
 
--(struct GCSMAVMove)outputMotionData:(CMDeviceMotion*)deviceMotion
+-(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion
 {
     CMQuaternion quat = deviceMotion.attitude.quaternion;
-    struct GCSMAVMove anglesOfRotation = [self quaternionToNormalizedPitchRollYawWithQuat:quat];
+    GCSMAVRotationAngles anglesOfRotation = [CoreMotionUtils normalizedRotationAnglesFromQuaternion:quat];
     return anglesOfRotation;
 }
 
@@ -378,61 +373,5 @@ struct GCSMAVMove{
     self.thrust = 0;
 }
 
-- (struct GCSMAVMove) quaternionToNormalizedPitchRollYawWithQuat:(CMQuaternion)quat {
-    
-    struct GCSMAVMove anglesOfRotation;
-    
-    float rollQuat = (atan2(2*(quat.y*quat.w - quat.x*quat.z), 1-2*quat.y*quat.y - 2*quat.z*quat.z)) * (180/M_PI) ;
-    float pitchQuat  = (atan2(2*(quat.x*quat.w + quat.y*quat.z), 1-2*quat.x*quat.x - 2*quat.z*quat.z)) * (180/M_PI);
-    float yawQuat =  (asin(2*quat.x*quat.y + 2*quat.w*quat.z)) * (180/M_PI);
-    
-    //Default orientation = UIDeviceOrientationPortrait
-    anglesOfRotation.pitch = (1000/MAXDEGREES) * pitchQuat;
-    anglesOfRotation.roll =  (1000/MAXDEGREES) * rollQuat;
-    anglesOfRotation.yaw =   (-1000/MAXDEGREES) * yawQuat;
-    
-    //Change to Landscape Right (button on the left. radio on left)
-    anglesOfRotation.pitch = (1000/MAXDEGREES) * rollQuat;
-    anglesOfRotation.roll = (-1000/MAXDEGREES) * pitchQuat;
-    
-    
-    if (anglesOfRotation.roll > 1000){
-        anglesOfRotation.roll = 1000;
-    }
-    else if (anglesOfRotation.roll < -1000){
-        anglesOfRotation.roll = -1000;
-    }
-    
-    if (anglesOfRotation.pitch > 1000){
-        anglesOfRotation.pitch = 1000;
-    }
-    else if (anglesOfRotation.pitch < -1000){
-        anglesOfRotation.pitch = -1000;
-    }
-    
-    
-    if (anglesOfRotation.yaw > 1000){
-        anglesOfRotation.yaw = 1000;
-    }
-    else if (anglesOfRotation.yaw < -1000){
-        anglesOfRotation.yaw = -1000;
-    }
-    
-    
-    if ((anglesOfRotation.roll > -100) && (anglesOfRotation.roll < 100)){
-        anglesOfRotation.roll = 0;
-    }
-    
-    if ((anglesOfRotation.pitch > -100) && (anglesOfRotation.pitch < 100)){
-        anglesOfRotation.pitch = 0;
-    }
-    
-    if ((anglesOfRotation.yaw > -100) && (anglesOfRotation.yaw < 100)){
-        anglesOfRotation.yaw = 0;
-    }
-
-    
-    return anglesOfRotation;
-}
 
 @end

@@ -51,6 +51,9 @@
 		01CEC5F219D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */; };
 		01E9F18D1A04427800901980 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E9F18C1A04427800901980 /* CoreMotion.framework */; };
+		01EC4F0D1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
+		01EC4F0E1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
+		01EC4F0F1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
 		01F898F119CA8EC900F3C884 /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F898D919CA8EC900F3C884 /* BRRequestDelete.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC11836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
@@ -634,6 +637,8 @@
 		01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneViewController.h; sourceTree = "<group>"; };
 		01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneViewController.m; sourceTree = "<group>"; };
 		01E9F18C1A04427800901980 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreMotionUtils.h; sourceTree = "<group>"; };
+		01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMotionUtils.m; sourceTree = "<group>"; };
 		01F898D919CA8EC900F3C884 /* BRRequestDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestDelete.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
@@ -1477,6 +1482,8 @@
 				189B2DC719DB3E0E00AAC466 /* SoundUtils.m */,
 				01CEC5EE19D9FA9C00320A34 /* ArDroneUtils.h */,
 				01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */,
+				01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */,
+				01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2711,6 +2718,7 @@
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				01CEC5D819D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
+				01EC4F0F1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */,
 				CA154E8319BFE52000ECE919 /* DDLog.m in Sources */,
 				01CEC5D219D9FA3800320A34 /* BRRequest+_UserData.m in Sources */,
 				01CEC5F219D9FA9C00320A34 /* ArDroneUtils.m in Sources */,
@@ -2829,6 +2837,7 @@
 				01CEC5E019D9FA3800320A34 /* BRRequestError.m in Sources */,
 				01CEC5D719D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
 				18B9FAF718B2F7AF00668660 /* RedparkSerialCable.m in Sources */,
+				01EC4F0E1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */,
 				CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				01CEC5D119D9FA3800320A34 /* BRRequest+_UserData.m in Sources */,
 				01CEC5F119D9FA9C00320A34 /* ArDroneUtils.m in Sources */,
@@ -2929,6 +2938,7 @@
 				1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
 				01CEC5D619D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
+				01EC4F0D1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */,
 				CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */,
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
