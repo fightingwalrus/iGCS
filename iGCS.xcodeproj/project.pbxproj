@@ -465,6 +465,10 @@
 		CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
+		CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
+		CA0E11911A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
+		CA0E11921A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
+		CA0E11931A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
 		CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA0E551C19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA0E551D19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
@@ -1047,6 +1051,8 @@
 		CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmwareUploader.m; path = Firmware/SiKFirmwareUploader.m; sourceTree = "<group>"; };
 		CA0D06E41975F4C6002458F5 /* GCSTelemetryLossOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSTelemetryLossOverlayView.h; sourceTree = "<group>"; };
 		CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSTelemetryLossOverlayView.m; sourceTree = "<group>"; };
+		CA0E118E1A0A1B1D00E0E622 /* MissionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionItemCell.h; path = TableViewCells/MissionItemCell.h; sourceTree = "<group>"; };
+		CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionItemCell.m; path = TableViewCells/MissionItemCell.m; sourceTree = "<group>"; };
 		CA0E551919F7C27A00B11F12 /* GCSMapViewController+DataRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCSMapViewController+DataRate.h"; sourceTree = "<group>"; };
 		CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCSMapViewController+DataRate.m"; sourceTree = "<group>"; };
 		CA10783519A98B58007B42E5 /* TxMissionClearAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxMissionClearAll.h; path = Requests/TxMissionClearAll.h; sourceTree = "<group>"; };
@@ -2010,6 +2016,8 @@
 		CA10B4D61A09E1260082BFAE /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				CA0E118E1A0A1B1D00E0E622 /* MissionItemCell.h */,
+				CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */,
 				CA10B4CC1A09E1200082BFAE /* MissionItemEditCell.h */,
 				CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */,
 			);
@@ -2646,6 +2654,7 @@
 				1845DA7A1979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
 				CA0E551D19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				182FFA9E181F0C9100A8C31C /* WaypointAnnotation.m in Sources */,
+				CA0E11921A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				182FFA9F181F0C9100A8C31C /* CommsViewController.m in Sources */,
 				182FFAA0181F0C9100A8C31C /* GCSMapViewController.m in Sources */,
 				1845DA4A19778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
@@ -2741,6 +2750,7 @@
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
 				18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */,
+				CA0E11911A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
@@ -2849,6 +2859,7 @@
 				01CEC5DF19D9FA3800320A34 /* BRRequestError.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
+				CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
@@ -2942,6 +2953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
+				CA0E11931A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA10B4D11A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
