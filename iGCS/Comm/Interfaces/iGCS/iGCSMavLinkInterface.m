@@ -283,7 +283,11 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     mavlink_msg_command_long_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_CMD_START_RX_PAIR, 0, 1, 0, 0, 0, 0, 0, 0);
 }
 
-- (void) sendMoveCommand:(int16_t)pitch :(int16_t)roll :(int16_t)thrust :(int16_t)yaw :(uint16_t)sequenceNumber{
+- (void) sendMoveCommandWithPitch:(int16_t)pitch
+                        andRoll:(int16_t)roll
+                        andThrust:(int16_t)thrust
+                        andYaw:(int16_t)yaw
+                        andSequenceNumber:(uint16_t)sequenceNumber{
     mavlink_msg_manual_control_send(msg.sysid, msg.compid, pitch, roll, thrust, yaw, sequenceNumber);
 }
 

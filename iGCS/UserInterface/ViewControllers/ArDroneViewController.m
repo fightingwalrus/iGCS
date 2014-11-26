@@ -12,6 +12,12 @@
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
 
+struct GCSMAVMove{
+    int16_t roll, pitch, yaw;
+};
+
+#define MAXDEGREES 60
+
 @interface ArDroneViewController ()
 
 //Navigation bar items
@@ -332,10 +338,13 @@
     
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
                                             withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
-                                                [self outputMotionData:deviceMotion];
+                                                struct GCSMAVMove anglesOfRotation = [self outputMotionData:deviceMotion];
+                                                DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d", anglesOfRotation.pitch, anglesOfRotation.roll, anglesOfRotation.yaw);
+                                                [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:anglesOfRotation.pitch andRoll:anglesOfRotation.roll andThrust:self.thrust andYaw:anglesOfRotation.yaw andSequenceNumber:self.sequenceNumber];
+                                                self.sequenceNumber++;
                                                 if(error){
                                                     
-                                                    NSLog(@"%@", error);
+                                                    DDLogDebug(@"%@", error);
                                                 }
                                             }];
     
@@ -343,78 +352,18 @@
 }
 
 
--(void)outputMotionData:(CMDeviceMotion*)deviceMotion
+-(struct GCSMAVMove)outputMotionData:(CMDeviceMotion*)deviceMotion
 {
-    
-    //http://stackoverflow.com/questions/9478630/get-pitch-yaw-roll-from-a-cmrotationmatrix/18764368#18764368
     CMQuaternion quat = deviceMotion.attitude.quaternion;
-    
-    float rollQuat = (atan2(2*(quat.y*quat.w - quat.x*quat.z), 1-2*quat.y*quat.y - 2*quat.z*quat.z)) * (180/ M_PI) ;
-    float pitchQuat = (atan2(2*(quat.x*quat.w + quat.y*quat.z), 1-2*quat.x*quat.x - 2*quat.z*quat.z)) * (180/ M_PI);
-    float yawQuat =  (asin(2*quat.x*quat.y + 2*quat.w*quat.z)) * (180/ M_PI);
-    
-    
-    //Convert to a percentage of 60 degrees and multiple by 1000 fall between -1000 and 1000
-    //We may want to make the max angle of the iDevice less than 60 degress.
-    //Need to investegate.
-    
-    //Default orientation = UIDeviceOrientationPortrait
-    int16_t pitch = 1000 * (pitchQuat/60);
-    int16_t roll =  1000 * (rollQuat/60);
-    int16_t yaw =   -1000 * (yawQuat/60);
-    
-    //Change to Landscape Right (button on the left. radio on left)
-    pitch = 1000 * (rollQuat/60);
-    roll = -1000 * (pitchQuat/60);
-   
-    
-    if (roll > 1000){
-        roll = 1000;
-    }
-    else if (roll < -1000){
-        roll = -1000;
-    }
-    
-    if (pitch > 1000){
-        pitch = 1000;
-    }
-    else if (pitch < -1000){
-        pitch = -1000;
-    }
-    
-
-    if (yaw > 1000){
-        yaw = 1000;
-    }
-    else if (yaw < -1000){
-        yaw = -1000;
-    }
-    
-    
-    if ((roll > -100) && (roll < 100)){
-        roll = 0;
-    }
-    
-    if ((pitch > -100) && (pitch < 100)){
-        pitch = 0;
-    }
-    
-    if ((yaw > -100) && (yaw < 100)){
-        yaw = 0;
-    }
-    
-    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:pitch:roll:self.thrust:yaw:self.sequenceNumber];
-
-    self.sequenceNumber++;
-
-    
+    struct GCSMAVMove anglesOfRotation = [self quaternionToNormalizedPitchRollYawWithQuat:quat];
+    return anglesOfRotation;
 }
 
 
 - (void) stopManualFlight {
-    [[CommController sharedInstance].mavLinkInterface sendMoveCommand:0:0:0:0:0];
-    [self.motionManager stopDeviceMotionUpdates];
-    self.thrust = 0;
+    
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:0 andRoll:0 andThrust:0 andYaw:0 andSequenceNumber:1];
+        self.thrust = 0;
 }
 
 - (void) plusThrust {
@@ -429,5 +378,61 @@
     self.thrust = 0;
 }
 
+- (struct GCSMAVMove) quaternionToNormalizedPitchRollYawWithQuat:(CMQuaternion)quat {
+    
+    struct GCSMAVMove anglesOfRotation;
+    
+    float rollQuat = (atan2(2*(quat.y*quat.w - quat.x*quat.z), 1-2*quat.y*quat.y - 2*quat.z*quat.z)) * (180/M_PI) ;
+    float pitchQuat  = (atan2(2*(quat.x*quat.w + quat.y*quat.z), 1-2*quat.x*quat.x - 2*quat.z*quat.z)) * (180/M_PI);
+    float yawQuat =  (asin(2*quat.x*quat.y + 2*quat.w*quat.z)) * (180/M_PI);
+    
+    //Default orientation = UIDeviceOrientationPortrait
+    anglesOfRotation.pitch = (1000/MAXDEGREES) * pitchQuat;
+    anglesOfRotation.roll =  (1000/MAXDEGREES) * rollQuat;
+    anglesOfRotation.yaw =   (-1000/MAXDEGREES) * yawQuat;
+    
+    //Change to Landscape Right (button on the left. radio on left)
+    anglesOfRotation.pitch = (1000/MAXDEGREES) * rollQuat;
+    anglesOfRotation.roll = (-1000/MAXDEGREES) * pitchQuat;
+    
+    
+    if (anglesOfRotation.roll > 1000){
+        anglesOfRotation.roll = 1000;
+    }
+    else if (anglesOfRotation.roll < -1000){
+        anglesOfRotation.roll = -1000;
+    }
+    
+    if (anglesOfRotation.pitch > 1000){
+        anglesOfRotation.pitch = 1000;
+    }
+    else if (anglesOfRotation.pitch < -1000){
+        anglesOfRotation.pitch = -1000;
+    }
+    
+    
+    if (anglesOfRotation.yaw > 1000){
+        anglesOfRotation.yaw = 1000;
+    }
+    else if (anglesOfRotation.yaw < -1000){
+        anglesOfRotation.yaw = -1000;
+    }
+    
+    
+    if ((anglesOfRotation.roll > -100) && (anglesOfRotation.roll < 100)){
+        anglesOfRotation.roll = 0;
+    }
+    
+    if ((anglesOfRotation.pitch > -100) && (anglesOfRotation.pitch < 100)){
+        anglesOfRotation.pitch = 0;
+    }
+    
+    if ((anglesOfRotation.yaw > -100) && (anglesOfRotation.yaw < 100)){
+        anglesOfRotation.yaw = 0;
+    }
+
+    
+    return anglesOfRotation;
+}
 
 @end

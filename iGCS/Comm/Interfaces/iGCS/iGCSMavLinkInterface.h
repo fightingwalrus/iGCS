@@ -49,7 +49,11 @@
 - (void) sendLand;
 - (void) sendReturnToLaunch;
 - (void) sendPairSpektrumDSMX;
-- (void) sendMoveCommand:(int16_t)pitch :(int16_t)roll :(int16_t)thrust :(int16_t)yaw :(uint16_t)sequenceNumber;
+- (void) sendMoveCommandWithPitch:(int16_t)pitch
+                          andRoll:(int16_t)roll
+                        andThrust:(int16_t)thrust
+                           andYaw:(int16_t)yaw
+                andSequenceNumber:(uint16_t)sequenceNumber;
 
 #pragma mark - ArDrone AT commands;
 - (void) arDroneTakeOff;
