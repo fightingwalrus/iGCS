@@ -44,6 +44,7 @@
 - (void) flipLeft;
 - (void) flipRight;
 - (void) resetWatchDogTimer;
+- (void) droneMove:(NSString*) moveCommand;
 
 @end
 

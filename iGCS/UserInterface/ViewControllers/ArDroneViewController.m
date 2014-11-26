@@ -11,6 +11,7 @@
 #import "GCSThemeManager.h"
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
+#import "CoreMotionUtils.h"
 
 @interface ArDroneViewController ()
 
@@ -25,12 +26,20 @@
 @property (strong, nonatomic) UIButton *doAnimationButton;
 @property (strong, nonatomic) UIButton *calibrationButton;
 @property (strong, nonatomic) UIButton *resetWatchDogButton;
+@property (strong, nonatomic) UIButton *manualControlButton;
+@property (strong, nonatomic) UIButton *stopManualControlButton;
+@property (strong, nonatomic) UIButton *thrustPlusButton;
+@property (strong, nonatomic) UIButton *thrustMinusButton;
+@property (strong, nonatomic) UIButton *thrustZeroButton;
 
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
 
 @property (strong, nonatomic) UITextField *pickerTextField;
 @property (strong, nonatomic) NSArray *animationNames;
+
+@property (nonatomic, assign) uint16_t sequenceNumber;
+@property (nonatomic, assign) int16_t thrust;
 
 
 @end
@@ -47,6 +56,8 @@
     self.pickerTextField.inputView = picker;
     self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
     _arDrone2 = [[ArDroneUtils alloc] init];
+    self.sequenceNumber = 1;
+    self.thrust = 0;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -132,6 +143,49 @@
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.resetWatchDogButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.resetWatchDogButton];
+    
+    self.manualControlButton = [UIButton newAutoLayoutView];
+    [self.manualControlButton setTitle :@"Start Manual Flight" forState:UIControlStateNormal];
+    [self.manualControlButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
+    [self.manualControlButton addTarget:self action:@selector(manualFlight) forControlEvents:UIControlEventTouchUpInside];
+    [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.manualControlButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.manualControlButton];
+    
+    self.stopManualControlButton = [UIButton newAutoLayoutView];
+    [self.stopManualControlButton setTitle :@"Stop Manual Flight" forState:UIControlStateNormal];
+    [self.stopManualControlButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
+    [self.stopManualControlButton addTarget:self action:@selector(stopManualFlight) forControlEvents:UIControlEventTouchUpInside];
+    [self.stopManualControlButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.stopManualControlButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.stopManualControlButton];
+    
+    
+    self.thrustPlusButton = [UIButton newAutoLayoutView];
+    [self.thrustPlusButton setTitle :@"+" forState:UIControlStateNormal];
+    [self.thrustPlusButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustPlusButton addTarget:self action:@selector(plusThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustPlusButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustPlusButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustPlusButton];
+    
+    self.thrustMinusButton = [UIButton newAutoLayoutView];
+    [self.thrustMinusButton setTitle :@"-" forState:UIControlStateNormal];
+    [self.thrustMinusButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustMinusButton addTarget:self action:@selector(minusThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustMinusButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustMinusButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustMinusButton];
+    
+    self.thrustZeroButton = [UIButton newAutoLayoutView];
+    [self.thrustZeroButton setTitle :@"0" forState:UIControlStateNormal];
+    [self.thrustZeroButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50.0]];
+    [self.thrustZeroButton addTarget:self action:@selector(zeroThrust) forControlEvents:UIControlEventTouchUpInside];
+    [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.thrustZeroButton];
+    
+    
 
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
@@ -187,11 +241,28 @@
     [self.pickerTextField setTextColor:[GCSThemeManager sharedInstance].appTintColor];
     [self.view addSubview:self.pickerTextField];
     
+    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20.0f];
+    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
+    
+    [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20.0f];
+    [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
+    
+    
+    [self.thrustPlusButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustPlusButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:500.0f];
+    
+    [self.thrustZeroButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustZeroButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:400.0f];
+    
+    [self.thrustMinusButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:30.0f];
+    [self.thrustMinusButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:300.0f];
+
+    
     [self.doAnimationButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:180.0f];
+    [self.doAnimationButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:160.0f];
     
     [self.pickerTextField autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.pickerTextField autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:150.0f];
+    [self.pickerTextField autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:130.0f];
 }
 
 
@@ -247,5 +318,56 @@
     else if ([self.pickerTextField.text isEqualToString:@"Phi Theta Mixed"])
         [[CommController sharedInstance].mavLinkInterface arDronePhiThetaMixed];
 }
+
+- (void) viewDidDisappear:(BOOL)animated{
+    [self.motionManager stopDeviceMotionUpdates];
+}
+
+
+- (void) manualFlight {
+    //http://nscookbook.com/2013/03/ios-programming-recipe-19-using-core-motion-to-access-gyro-and-accelerometer/
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.accelerometerUpdateInterval = .01;
+    self.motionManager.gyroUpdateInterval = .01;
+    
+    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
+                                            withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
+                                                GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion];
+                                                DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d", anglesOfRotation.pitch, anglesOfRotation.roll, anglesOfRotation.yaw);
+                                                [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:anglesOfRotation.pitch andRoll:anglesOfRotation.roll andThrust:self.thrust andYaw:anglesOfRotation.yaw andSequenceNumber:self.sequenceNumber];
+                                                self.sequenceNumber++;
+                                                if(error){
+                                                    
+                                                    DDLogDebug(@"%@", error);
+                                                }
+                                            }];
+}
+
+
+-(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion {
+    CMQuaternion quat = deviceMotion.attitude.quaternion;
+    GCSMAVRotationAngles anglesOfRotation = [CoreMotionUtils normalizedRotationAnglesFromQuaternion:quat];
+    return anglesOfRotation;
+}
+
+
+- (void) stopManualFlight {   
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:0 andRoll:0 andThrust:0 andYaw:0 andSequenceNumber:1];
+        self.thrust = 0;
+}
+
+- (void) plusThrust {
+    self.thrust = 500;
+}
+
+- (void) minusThrust {
+    self.thrust = -500;
+}
+
+- (void) zeroThrust {
+    self.thrust = 0;
+}
+
 
 @end
