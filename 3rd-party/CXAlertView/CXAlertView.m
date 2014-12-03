@@ -426,11 +426,15 @@ static BOOL __cx_statsu_prefersStatusBarHidden;
     CGFloat screenWidth = frame.size.width;
     CGFloat screenHeight = frame.size.height;
     
-    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        CGFloat tmp = screenWidth;
-        screenWidth = screenHeight;
-        screenHeight = tmp;
+    // iGCS-201 Adjust for orientation in iOS 8.0+ only
+    // c.f. http://stackoverflow.com/questions/24150359/is-uiscreen-mainscreen-bounds-size-becoming-orientation-dependent-in-ios8
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            CGFloat tmp = screenWidth;
+            screenWidth = screenHeight;
+            screenHeight = tmp;
+        }
     }
     
     return CGSizeMake(screenWidth, screenHeight);
