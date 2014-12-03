@@ -39,6 +39,8 @@
 
 // ref: http://coffeeshopped.com/2010/09/iphone-how-to-dynamically-color-a-uiimage
 + (UIImage *)image:(UIImage*)img withColor:(UIColor*)color {
+    NSAssert(img, @"img is nil");
+    
     // begin a new image context, to draw our colored image onto
     UIGraphicsBeginImageContext(img.size);
     
