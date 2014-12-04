@@ -2,7 +2,7 @@
 
 # The MIT License (MIT)
 # 
-# Copyright (c) 2014 Fighting Walrus LLC
+# Copyright (c) 2014 Fighting Walrus, LLC
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 # use SHA-1 for codesign -s instead of name to avoid 
 # issues when multiple certs with similar or the same name
 # exist on the system.
-SIGNING_IDENTITY="89632EFC233C40AF85B9FB45634F8601266031AF"
+SIGNING_IDENTITY="75B3B0029975C93D5F879264E58C53512DE13761"
 AD_HOC_PROVISION_FILE="$PROJECT_ROOT/dependencies/iGCS__Ad_hoc.mobileprovision"
 
 API_KEYS_FILE="$PROJECT_ROOT/dependencies/apikeys.txt"
