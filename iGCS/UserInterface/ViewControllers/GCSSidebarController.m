@@ -179,7 +179,7 @@
         [self presentViewController:navController animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Radio not connected"
-                                                        message:@"Fighting Walrus Radio is not connected." delegate:self
+                                                        message:@"Please connect a supported accessory." delegate:self
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
