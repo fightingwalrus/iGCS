@@ -7,12 +7,9 @@
 //
 
 #import "MissionItemEditViewController.h"
-
 #import "WaypointHelper.h"
 #import "MavLinkUtility.h"
-
 #import "MissionItemEditCell.h"
-
 
 @interface MissionItemEditViewController ()
 @property (weak, readonly) id <MissionItemEditingDelegate> delegate;
@@ -25,14 +22,6 @@
 
 
 @implementation MissionItemEditViewController
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void) initInstance:(NSUInteger)itemIndex with:(id <MissionItemEditingDelegate>)delegate {
     _delegate = delegate;

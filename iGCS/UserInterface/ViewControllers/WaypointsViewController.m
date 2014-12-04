@@ -44,16 +44,25 @@
     self.loadDemoButton.title = nil;   // UIBarButtonItem does not have a hidden property; this has the effect of hiding textual button items
     self.loadDemoButton.enabled = NO;
 #endif
+}
 
-    // Register for keyboard show/hide notifications
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowing:)
                                                  name:UIKeyboardWillShowNotification
-                                               object:nil];
+                                               object:self.view.window];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardHiding:)
                                                  name:UIKeyboardWillHideNotification
-                                               object:nil];
+                                               object:self.view.window];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidUnload {
@@ -74,7 +83,15 @@
     // Determine amount to slide the map and table views
     CGSize keyboardSize = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
-    CGFloat y = (keyboardSize.width - tabBarSize.height);
+
+    // account for new orientation dependent bounds in iOS 8
+    CGFloat y;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        y = (keyboardSize.height - tabBarSize.height);
+    } else {
+        y = (keyboardSize.width - tabBarSize.height);
+    }
+
     if (!showing) y = -y;
     
     // Compute new frames
