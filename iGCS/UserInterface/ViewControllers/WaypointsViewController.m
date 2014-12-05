@@ -44,6 +44,11 @@
     self.loadDemoButton.title = nil;   // UIBarButtonItem does not have a hidden property; this has the effect of hiding textual button items
     self.loadDemoButton.enabled = NO;
 #endif
+    
+    // Effectively, disable autolayout for these views
+    //  - corrects the expanding/contract effect on Edit for iOS8
+    [self.containerForTableView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.mapView setTranslatesAutoresizingMaskIntoConstraints:YES];
 
     // Register for keyboard show/hide notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
