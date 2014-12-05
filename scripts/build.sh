@@ -76,7 +76,19 @@ else
   agvtool bump -all
 fi
 
-#commit version bump
+# update version string in Settings.bundle
+PLIST_FILE="$PROJECT_ROOT/iGCS/iGCS-Info.plist"
+SHORT_VERSION="$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$PLIST_FILE")"
+BUNDLE_VERSION="$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$PLIST_FILE")"
+
+/usr/libexec/PlistBuddy "$PROJECT_ROOT/iGCS/Settings.bundle/Root.plist" -c "set PreferenceSpecifiers:0:DefaultValue $SHORT_VERSION \($BUNDLE_VERSION\)"
+
+# update Acknowledgements.plist
+LICENSE_FILE_ROOT_DIR="$PROJECT_ROOT/3rd-party/"
+CREDITS_PLIST_FILE="$PROJECT_ROOT/iGCS/Settings.bundle/Acknowledgements.plist"
+"$PROJECT_ROOT/3rd-party/LicenseGenerator-iOS/credits.py" -d "$LICENSE_FILE_ROOT_DIR" -o "$CREDITS_PLIST_FILE"
+
+# commit version bump
 APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-beta.$(agvtool vers -terse)"
 git commit -am "Auto build: Bump version to v$APP_FULL_VERSION_NAME"
 
@@ -85,7 +97,7 @@ git tag -am "Auto version bump and tag during build" "v$APP_FULL_VERSION_NAME"
 CURRENT_GIT_HASH="$(git rev-parse --short HEAD)"
 CURRENT_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
-#push version bump and tag
+# push version bump and tag
 git push origin $CURRENT_GIT_BRANCH --tag
 
 ARCHIVE_NAME="igcs-app-build-$(agvtool vers -terse)"
@@ -115,7 +127,7 @@ xcrun -sdk iphoneos PackageApplication -v "$ARCHIVE_PATH.xcarchive/Products/Appl
 cd "$DSYM_DIR"
 zip -r "$DYSM_FILE_NAME.zip" "$DYSM_FILE_NAME"
 
-#upload ipa and zipped dSYM file to hockeyapp.net
+# upload ipa and zipped dSYM file to hockeyapp.net
 if [ -e "$IPA_FILE" ]; then
 
 curl \

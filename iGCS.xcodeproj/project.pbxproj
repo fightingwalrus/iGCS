@@ -171,6 +171,12 @@
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854468018D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		186699A01A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		186699A41A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
+		186699A51A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
+		186699A61A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -200,6 +206,9 @@
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A42CD818895B6200408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
+		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
+		18B6EA0619DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
 		18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
 		18B7541E197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
@@ -387,9 +396,6 @@
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917D19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
-		18D8917E19817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
-		18D8917F19817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
-		18D8918019817CB1001ED845 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917119817CB1001ED845 /* LICENSE */; };
 		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8D198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
@@ -691,6 +697,11 @@
 		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
 		1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSettingsViewController.m; sourceTree = "<group>"; };
 		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		1866999B1A314ADF00B5723A /* credits.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = credits.py; sourceTree = "<group>"; };
+		1866999C1A314ADF00B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1866999D1A314ADF00B5723A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		186699B31A31617C00B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		186699BB1A31632100B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
 		186DC2381992F60600A672A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -928,6 +939,12 @@
 		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
 		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
 		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		18B6EA0319DF648C0084B666 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		18B6EA0B19DF83430084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA0F19DF84050084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1319DF84EC0084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1719DF857A0084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18B6EA1819DF85F60084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
 		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
@@ -975,7 +992,7 @@
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
 		18D8917019817CB1001ED845 /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
-		18D8917119817CB1001ED845 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18D8917119817CB1001ED845 /* _LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _LICENSE.txt; sourceTree = "<group>"; };
 		18E58A85198993EB0025A516 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
 		18E58A86198993EB0025A516 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
 		18E58A87198993EB0025A516 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
@@ -1092,7 +1109,7 @@
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
 		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CA43DE0915143E570014F7C8 /* _Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_Read me first - license.txt"; sourceTree = "<group>"; };
+		CA43DE0915143E570014F7C8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA43DFC515143E570014F7C8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
 		CA43DFC615143E570014F7C8 /* RscMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RscMgr.h; sourceTree = "<group>"; };
 		CA43DFC815143E570014F7C8 /* libRscMgrUniv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRscMgrUniv.a; sourceTree = "<group>"; };
@@ -1284,6 +1301,7 @@
 		01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
+				186699B31A31617C00B5723A /* LICENSE */,
 				01CEC56319D9F8BD00320A34 /* Documentation.html */,
 				01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */,
 				01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */,
@@ -1296,6 +1314,7 @@
 		01CEC5BA19D9FA3800320A34 /* BlackRaccoon */ = {
 			isa = PBXGroup;
 			children = (
+				186699BB1A31632100B5723A /* LICENSE */,
 				01CEC5BB19D9FA3800320A34 /* BRGlobal.h */,
 				01CEC5BC19D9FA3800320A34 /* BRRequest+_UserData.h */,
 				01CEC5BD19D9FA3800320A34 /* BRRequest+_UserData.m */,
@@ -1413,6 +1432,16 @@
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1866999B1A314ADF00B5723A /* credits.py */,
+				1866999C1A314ADF00B5723A /* LICENSE */,
+				1866999D1A314ADF00B5723A /* README.md */,
+			);
+			path = "LicenseGenerator-iOS";
 			sourceTree = "<group>";
 		};
 		18759787189108980012DF6D /* Icons */ = {
@@ -1757,6 +1786,7 @@
 		18B7F2B81958953B00D2406A /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA0F19DF84050084B666 /* LICENSE */,
 				18B7F2B91958953B00D2406A /* ALView+PureLayout.h */,
 				18B7F2BA1958953B00D2406A /* ALView+PureLayout.m */,
 				18B7F2BC1958953B00D2406A /* NSArray+PureLayout.h */,
@@ -1783,7 +1813,7 @@
 			children = (
 				18D8916B19817CB1001ED845 /* CHANGELOG */,
 				18D8916C19817CB1001ED845 /* HockeySDK.embeddedframework */,
-				18D8917119817CB1001ED845 /* LICENSE */,
+				18D8917119817CB1001ED845 /* _LICENSE.txt */,
 			);
 			path = "HockeySDK-iOS";
 			sourceTree = "<group>";
@@ -1957,6 +1987,7 @@
 		CA0574F118BE07FE001EACFD /* CXAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1719DF857A0084B666 /* LICENSE */,
 				CA0E27E61A2E76CA00788619 /* CXBlurView.h */,
 				CA0E27E71A2E76CA00788619 /* CXBlurView.m */,
 				CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */,
@@ -1974,6 +2005,7 @@
 		CA05751018BE080B001EACFD /* LiveFrost */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1819DF85F60084B666 /* LICENSE */,
 				CA05751118BE080B001EACFD /* LFDisplayBridge.h */,
 				CA05751218BE080B001EACFD /* LFDisplayBridge.m */,
 				CA05751318BE080B001EACFD /* LFGlassView.h */,
@@ -1995,6 +2027,7 @@
 		CA0B69A9189B69F50014C1E4 /* SWReveal */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA0B19DF83430084B666 /* LICENSE */,
 				CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */,
 				CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */,
 			);
@@ -2019,6 +2052,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
 				01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */,
 				CA154E7019BFE52000ECE919 /* CocoaLumberjack */,
@@ -2048,6 +2082,7 @@
 		CA154E7019BFE52000ECE919 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
+				18B6EA1319DF84EC0084B666 /* LICENSE */,
 				CA154E7119BFE52000ECE919 /* DDASLLogger.h */,
 				CA154E7219BFE52000ECE919 /* DDASLLogger.m */,
 				CA154E7319BFE52000ECE919 /* DDFileLogger.h */,
@@ -2082,7 +2117,7 @@
 		CA43DE0815143E570014F7C8 /* glyphish-icons */ = {
 			isa = PBXGroup;
 			children = (
-				CA43DE0915143E570014F7C8 /* _Read me first - license.txt */,
+				CA43DE0915143E570014F7C8 /* LICENSE */,
 				18C86276198AD4A800F99CD3 /* 05-shuffle.png */,
 				CA0CA63C1A2F7EBA007E1142 /* 13-target.png */,
 				CA0CA63D1A2F7EBA007E1142 /* 193-location-arrow.png */,
@@ -2223,6 +2258,7 @@
 				CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */,
 				CA499F6E14DE33BC00FCC9FB /* main.m */,
 				CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */,
+				18B6EA0319DF648C0084B666 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2442,10 +2478,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D8918019817CB1001ED845 /* LICENSE in Resources */,
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				18C86290198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
+				186699A01A314ADF00B5723A /* credits.py in Resources */,
 				18D8917D19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */,
 				182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */,
@@ -2468,6 +2504,7 @@
 				1842F8CB1892D2F80050F680 /* Icon-29.png in Resources */,
 				182FFAF8181F0C9100A8C31C /* InfoPlist.strings in Resources */,
 				18C862BD198AD4A800F99CD3 /* 181-hammer@2x.png in Resources */,
+				18B6EA0619DF648C0084B666 /* Settings.bundle in Resources */,
 				18C8628A198AD4A800F99CD3 /* 05-shuffle.png in Resources */,
 				1842F8D11892D2F80050F680 /* Icon-58.png in Resources */,
 				CA0CA6401A2F7EBA007E1142 /* 13-target.png in Resources */,
@@ -2494,10 +2531,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D8917F19817CB1001ED845 /* LICENSE in Resources */,
 				18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */,
 				18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */,
 				18C8628F198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
+				1866999F1A314ADF00B5723A /* credits.py in Resources */,
 				18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				18B9FB2018B2F7AF00668660 /* mission-mavread.png in Resources */,
 				18B9FB2118B2F7AF00668660 /* mission-mavwrite.png in Resources */,
@@ -2520,6 +2557,7 @@
 				18B9FB2618B2F7AF00668660 /* Icon-29.png in Resources */,
 				18B9FB2718B2F7AF00668660 /* InfoPlist.strings in Resources */,
 				18C862BC198AD4A800F99CD3 /* 181-hammer@2x.png in Resources */,
+				18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */,
 				18C86289198AD4A800F99CD3 /* 05-shuffle.png in Resources */,
 				18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */,
 				CA0CA63F1A2F7EBA007E1142 /* 13-target.png in Resources */,
@@ -2556,6 +2594,7 @@
 				CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */,
 				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
 				18C862DD198B5BF700F99CD3 /* Icon-120.png in Resources */,
+				1866999E1A314ADF00B5723A /* credits.py in Resources */,
 				18C862A9198AD4A800F99CD3 /* 73-radar@2x.png in Resources */,
 				1842F8CE1892D2F80050F680 /* Icon-50.png in Resources */,
 				CA0CA63E1A2F7EBA007E1142 /* 13-target.png in Resources */,
@@ -2568,6 +2607,7 @@
 				18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
 				18C8629A198AD4A800F99CD3 /* 20-gear-2.png in Resources */,
+				18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
 				18C862B5198AD4A800F99CD3 /* 176-ipad@2x.png in Resources */,
 				18C862B2198AD4A800F99CD3 /* 176-ipad.png in Resources */,
@@ -2580,7 +2620,6 @@
 				1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18C862A0198AD4A800F99CD3 /* 38-airplane.png in Resources */,
 				1875978F189108980012DF6D /* Icon-76.png in Resources */,
-				18D8917E19817CB1001ED845 /* LICENSE in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
 				1842F8D21892D2F80050F680 /* Icon-80.png in Resources */,
 				01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */,
@@ -2738,6 +2777,7 @@
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
+				186699A61A314ADF00B5723A /* README.md in Sources */,
 				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
@@ -2837,6 +2877,7 @@
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				186699A51A314ADF00B5723A /* README.md in Sources */,
 				01CEC5E619D9FA3800320A34 /* BRRequestQueue.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
@@ -2975,6 +3016,7 @@
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
+				186699A41A314ADF00B5723A /* README.md in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
@@ -3221,7 +3263,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 30;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3267,7 +3309,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 30;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

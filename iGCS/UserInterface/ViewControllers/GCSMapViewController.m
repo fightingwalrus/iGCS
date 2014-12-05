@@ -9,7 +9,6 @@
 
 #import "GCSMapViewController.h"
 #import "SWRevealViewController.h"
-
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
@@ -19,6 +18,7 @@
 #import "CommController.h"
 
 #import "CXAlertView.h"
+
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;

@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *debugConsoleLabel;
 
+@property (nonatomic, strong) UIButton *aboutInfoButton;
+
 @property (nonatomic, retain) IBOutlet UIButton *sidebarButton;
 - (IBAction)toggleSidebar:(id)sender;
 
