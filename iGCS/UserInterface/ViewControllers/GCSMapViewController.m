@@ -159,7 +159,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 
 - (IBAction) changeControlModeSegment {
     NSInteger idx = self.controlModeSegment.selectedSegmentIndex;
-    DDLogDebug(@"changeControlModeSegment: %d", idx);
+    DDLogDebug(@"changeControlModeSegment: %ld", (long)idx);
     [self deactivateFollowMe];
     switch (idx) {
         case CONTROL_MODE_RC:

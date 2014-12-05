@@ -81,47 +81,47 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
     _uploadFile.password = nil;
     
     //we start the request
-    NSLog(@"start the ftp upload");
+    DDLogDebug(@"start the ftp upload");
     [_uploadFile start];
 }
 
 
 
 - (void)makeTelnetConnectionToDrone{
-    NSLog(@"%s",__FUNCTION__);
+    DDLogDebug(@"%s",__FUNCTION__);
     _gcdAsyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
     if (![_gcdAsyncSocket connectToHost:@"192.168.1.1" onPort:23 error:&err]) {
-        NSLog(@"I goofed: %@", err);
+        DDLogDebug(@"I goofed: %@", err);
     }
 }
 
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-    NSLog(@"Telnet Connected!");
+    DDLogDebug(@"Telnet Connected!");
     [_gcdAsyncSocket readDataWithTimeout:-1 tag:0];
     
-    NSLog(@"Kill any previously running ser2udp rogram");
+    DDLogDebug(@"Kill any previously running ser2udp rogram");
     NSString *requestStr = @"killall ser2udp\r";
     NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:5];
     
-    NSLog(@"Trying to check file");
+    DDLogDebug(@"Trying to check file");
     requestStr = @"ls -ltr /data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:0];
     
-    NSLog(@"Unzipping program");
+    DDLogDebug(@"Unzipping program");
     requestStr = @"gunzip -f /data/video/ser2udp.gz\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:1];
     
-    NSLog(@"changing permissions");
+    DDLogDebug(@"changing permissions");
     requestStr = @"chmod 755 /data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:2];
     
-    NSLog(@"running program");
+    DDLogDebug(@"running program");
     requestStr = @"/data/video/ser2udp\r";
     requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncSocket writeData:requestData withTimeout:-1 tag:3];
@@ -130,13 +130,13 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 
 
 - (void)ConnectArDroneUDP{
-    NSLog(@"%s",__FUNCTION__);
+    DDLogDebug(@"%s",__FUNCTION__);
     _gcdAsyncUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
     if (![_gcdAsyncUdpSocket connectToHost:@"192.168.1.1" onPort:5556 error:&err]) {
-        NSLog(@"I goofed: %@", err);
+        DDLogDebug(@"I goofed: %@", err);
     }
-    NSLog(@"running program");
+    DDLogDebug(@"running program");
     
 }
 
@@ -145,7 +145,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
     [self resetWatchDogTimer];
     [self calibrateHorizontalPlane];
     
-    NSLog(@"Sending AT Command to launch");
+    DDLogDebug(@"Sending AT Command to launch");
     NSData *requestData = [ArDroneAtUtilsAtCommandedTakeOff dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
@@ -154,7 +154,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 - (void)toggleEmergency{
     [self ConnectArDroneUDP];
     [self resetWatchDogTimer];
-    NSLog(@"Sending AT Command to clear emergency");
+    DDLogDebug(@"Sending AT Command to clear emergency");
     NSData *requestData = [ArDroneAtUtilsToggleEmergency dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
     
@@ -163,7 +163,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 - (void)atCommandedLand{
     [self ConnectArDroneUDP];
     [self resetWatchDogTimer];
-    NSLog(@"Sending AT Command to land the ArDrone");
+    DDLogDebug(@"Sending AT Command to land the ArDrone");
     NSData *requestData = [ArDroneAtUtilsAtCommandedLand dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
@@ -172,7 +172,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 - (void)calibrateHorizontalPlane{
     [self ConnectArDroneUDP];
     [self resetWatchDogTimer];
-    NSLog(@"Sending AT Command to calibrate the horiziontal plane");
+    DDLogDebug(@"Sending AT Command to calibrate the horiziontal plane");
     NSData *requestData = [ArDroneAtUtilsCalibrateHorizontalPlane dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
@@ -180,7 +180,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 - (void)calibrateMagnetometer{
     [self ConnectArDroneUDP];
     [self resetWatchDogTimer];
-    NSLog(@"Sending AT Command to calibrate the magnetometer");
+    DDLogDebug(@"Sending AT Command to calibrate the magnetometer");
     NSData *requestData = [ArDroneAtUtilsCalibrateMagnetometer dataUsingEncoding:NSUTF8StringEncoding];
     [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
 }
@@ -345,28 +345,30 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 //Please see the Parrot SDK for information and a possible
 //description.
 
+- (void) droneMove:(NSString*) moveCommand {
+    [self ConnectArDroneUDP];
+    [self resetWatchDogTimer];
+    NSData *requestData = [moveCommand dataUsingEncoding:NSUTF8StringEncoding];
+    [_gcdAsyncUdpSocket sendData:requestData withTimeout:-1 tag:3];
+}
 
 - (void)mavlinkCommandedTakeoff {
-    NSLog(@"Mav Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendMavlinkTakeOffCommand];
     
     
 }
 
 - (void)mavlinkLand {
-    NSLog(@"LND Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendLand];
     
 }
 
 - (void)mavlinkReturnToLaunch {
-    NSLog(@"RTL Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendReturnToLaunch];
     
 }
 
 - (void)StartSpektrumPairing {
-    NSLog(@"Spec Button Clicked");
     [[CommController sharedInstance].mavLinkInterface sendPairSpektrumDSMX];
     
 }
@@ -374,7 +376,7 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 
 //Request Completed
 - (void)requestCompleted:(BRRequest *)request {
-    NSLog(@"FTP Request Completed");
+    DDLogDebug(@"FTP Request Completed");
     _uploadFile = nil;
     
 }
@@ -383,9 +385,9 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
 /// \param request The request object
 - (void)requestFailed:(BRRequest *)request{
     
-    NSLog(@"FTP FAILED");
+    DDLogDebug(@"FTP FAILED");
     if (request == _uploadFile) {
-        NSLog(@"%@", request.error.message);
+        DDLogDebug(@"%@", request.error.message);
         _uploadFile = nil;
     }
     
@@ -399,14 +401,14 @@ NSString * const ArDroneAtUtilsFlipRight = @"AT*CONFIG=1,\"control:flight_anim\"
     NSData *temp = _uploadData;   // this is a shallow copy of the pointer
     
     _uploadData = nil;            // next time around, return nil...
-    NSLog(@"request data to send called");
+    DDLogDebug(@"request data to send called");
     return temp;
 }
 
 /// shouldOverwriteFileWithRequest
 /// \param request The request object;
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request {
-    NSLog(@"Overwrite function called");
+    DDLogDebug(@"Overwrite function called");
     
     //----- set this as appropriate if you want the file to be overwritten
     if (request == _uploadFile) {

@@ -10,9 +10,13 @@
 #import "WaypointHelper.h"
 #import "GCSThemeManager.h"
 
+@interface WaypointAnnotation ()
+@property (nonatomic, assign) NSUInteger index;
+@end
+
 @implementation WaypointAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
+- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
@@ -22,7 +26,7 @@
 }
 
 - (NSString*) title {
-    return [NSString stringWithFormat:@"%d: %@", _index, [WaypointHelper commandIDToString: _waypoint.command]];
+    return [NSString stringWithFormat:@"%ld: %@", (long)_index, [WaypointHelper commandIDToString: _waypoint.command]];
 }
 
 - (NSString*) subtitle {
@@ -52,7 +56,7 @@
     return [theme waypointOtherColor];
 }
 
-- (BOOL) hasMatchingSeq:(NSInteger)seq {
+- (BOOL) hasMatchingSeq:(WaypointSeq)seq {
     return (seq == _waypoint.seq);
 }
 

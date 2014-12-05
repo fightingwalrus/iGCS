@@ -12,6 +12,12 @@
 #undef MAVLINK_USE_CONVENIENCE_FUNCTIONS // Prevents definitions of _mavlink_send_uart
 #import "mavlink_helpers.h"
 
+@interface MavLinkLogger ()
+@property (nonatomic, strong) NSFileHandle *fileHandle;
+@property (nonatomic, strong) DateTimeUtils *dateTimeUtils;
+@property (nonatomic, strong) dispatch_queue_t serialQueue;
+@end
+
 @implementation MavLinkLogger
 
 -(instancetype)initWithLogName:(NSString *)logName {

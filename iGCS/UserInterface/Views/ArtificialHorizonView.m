@@ -118,7 +118,7 @@
 
     // Add pitch lines
     for (NSUInteger i = 1; i <= 4; i++) {
-        NSString *label = [NSString stringWithFormat:@"%d", i*10];
+        NSString *label = [NSString stringWithFormat:@"%lu", (long)i*10];
         
         // Increasing size of horizontal stroke moving out from centre
         float xMajorDelta  = (i+1)     * xMinorDelta;

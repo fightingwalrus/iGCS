@@ -10,7 +10,8 @@
 
 NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated = @"com.fightingwalrus.firmwareutils.fwrfirmware.needsupdate";
 NSString * const GCSFwrFirmwareFileName = @"walrus.bin";
-NSString * const GCSFirmwareVersionInBundle = @"0.1.0";
+NSString * const GCSFirmwareVersionInBundle = @"1.0.6";
+NSString * const GCSCompanyName = @"Fighting Walrus, LLC";
 
 static BOOL _awaitingPostUpgradeDisconnect;
 
@@ -31,6 +32,18 @@ static BOOL _awaitingPostUpgradeDisconnect;
 
 +(void)setAwaitingPostUpgradeDisconnect:(BOOL)value {
     _awaitingPostUpgradeDisconnect = value;
+}
+
++(BOOL)isAccessorySupportedWithAccessory:(EAAccessory *)accessory {
+    NSCharacterSet *nonAlphaCharacterSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+
+    NSString *accessoryManufactuer = [[[accessory.manufacturer componentsSeparatedByCharactersInSet:nonAlphaCharacterSet]
+                                      componentsJoinedByString:@""] lowercaseString];
+
+    NSString *companyName = [[[GCSCompanyName componentsSeparatedByCharactersInSet:nonAlphaCharacterSet]
+                             componentsJoinedByString:@""] lowercaseString];
+
+    return [accessoryManufactuer isEqualToString:companyName];
 }
 
 @end
