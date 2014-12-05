@@ -83,6 +83,11 @@ BUNDLE_VERSION="$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$PLIST_FIL
 
 /usr/libexec/PlistBuddy "$PROJECT_ROOT/iGCS/Settings.bundle/Root.plist" -c "set PreferenceSpecifiers:0:DefaultValue $SHORT_VERSION \($BUNDLE_VERSION\)"
 
+# update Acknowledgements.plist
+LICENSE_FILE_ROOT_DIR="$PROJECT_ROOT/3rd-party/"
+CREDITS_PLIST_FILE="$PROJECT_ROOT/iGCS/Settings.bundle/Acknowledgements.plist"
+"$PROJECT_ROOT/3rd-party/LicenseGenerator-iOS/credits.py" -d "$LICENSE_FILE_ROOT_DIR" -o "$CREDITS_PLIST_FILE"
+
 # commit version bump
 APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-beta.$(agvtool vers -terse)"
 git commit -am "Auto build: Bump version to v$APP_FULL_VERSION_NAME"

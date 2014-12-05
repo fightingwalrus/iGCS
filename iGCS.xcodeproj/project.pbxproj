@@ -70,9 +70,6 @@
 		18069FD71836F7C70068E7A5 /* RedparkSerialCable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */; };
 		18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
 		18069FD91836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
-		182800E619E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
-		182800E719E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
-		182800E819E30EE900C6263D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182800E519E30EE900C6263D /* AboutViewController.m */; };
 		182FFA99181F0C9100A8C31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		182FFA9A181F0C9100A8C31C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
 		182FFA9B181F0C9100A8C31C /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
@@ -174,6 +171,12 @@
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854468018D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		186699A01A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		186699A41A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
+		186699A51A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
+		186699A61A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -673,8 +676,6 @@
 		18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
 		18069FBE1836F7C70068E7A5 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
-		182800E419E30EE900C6263D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		182800E519E30EE900C6263D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		182FFAFF181F0C9100A8C31C /* iGCS video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS video.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
@@ -696,6 +697,11 @@
 		1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioSettingsViewController.h; sourceTree = "<group>"; };
 		1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioSettingsViewController.m; sourceTree = "<group>"; };
 		1854468218D8F05B004F4BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		1866999B1A314ADF00B5723A /* credits.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = credits.py; sourceTree = "<group>"; };
+		1866999C1A314ADF00B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1866999D1A314ADF00B5723A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		186699B31A31617C00B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		186699BB1A31632100B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
 		186DC2381992F60600A672A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -986,7 +992,7 @@
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
 		18D8917019817CB1001ED845 /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
-		18D8917119817CB1001ED845 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		18D8917119817CB1001ED845 /* _LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _LICENSE.txt; sourceTree = "<group>"; };
 		18E58A85198993EB0025A516 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
 		18E58A86198993EB0025A516 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
 		18E58A87198993EB0025A516 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
@@ -1295,6 +1301,7 @@
 		01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
+				186699B31A31617C00B5723A /* LICENSE */,
 				01CEC56319D9F8BD00320A34 /* Documentation.html */,
 				01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */,
 				01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */,
@@ -1307,6 +1314,7 @@
 		01CEC5BA19D9FA3800320A34 /* BlackRaccoon */ = {
 			isa = PBXGroup;
 			children = (
+				186699BB1A31632100B5723A /* LICENSE */,
 				01CEC5BB19D9FA3800320A34 /* BRGlobal.h */,
 				01CEC5BC19D9FA3800320A34 /* BRRequest+_UserData.h */,
 				01CEC5BD19D9FA3800320A34 /* BRRequest+_UserData.m */,
@@ -1424,6 +1432,16 @@
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1866999B1A314ADF00B5723A /* credits.py */,
+				1866999C1A314ADF00B5723A /* LICENSE */,
+				1866999D1A314ADF00B5723A /* README.md */,
+			);
+			path = "LicenseGenerator-iOS";
 			sourceTree = "<group>";
 		};
 		18759787189108980012DF6D /* Icons */ = {
@@ -1795,7 +1813,7 @@
 			children = (
 				18D8916B19817CB1001ED845 /* CHANGELOG */,
 				18D8916C19817CB1001ED845 /* HockeySDK.embeddedframework */,
-				18D8917119817CB1001ED845 /* LICENSE */,
+				18D8917119817CB1001ED845 /* _LICENSE.txt */,
 			);
 			path = "HockeySDK-iOS";
 			sourceTree = "<group>";
@@ -1899,8 +1917,6 @@
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
 				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
-				182800E419E30EE900C6263D /* AboutViewController.h */,
-				182800E519E30EE900C6263D /* AboutViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1972,8 +1988,6 @@
 			isa = PBXGroup;
 			children = (
 				18B6EA1719DF857A0084B666 /* LICENSE */,
-				CA0574F218BE07FE001EACFD /* CXAlertBackgroundWindow.h */,
-				CA0574F318BE07FE001EACFD /* CXAlertBackgroundWindow.m */,
 				CA0E27E61A2E76CA00788619 /* CXBlurView.h */,
 				CA0E27E71A2E76CA00788619 /* CXBlurView.m */,
 				CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */,
@@ -2038,6 +2052,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
 				01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */,
 				CA154E7019BFE52000ECE919 /* CocoaLumberjack */,
@@ -2466,6 +2481,7 @@
 				1875978E189108980012DF6D /* Icon-152.png in Resources */,
 				182FFAF4181F0C9100A8C31C /* airplane.png in Resources */,
 				18C86290198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
+				186699A01A314ADF00B5723A /* credits.py in Resources */,
 				18D8917D19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				182FFAF5181F0C9100A8C31C /* mission-mavread.png in Resources */,
 				182FFAF6181F0C9100A8C31C /* mission-mavwrite.png in Resources */,
@@ -2518,6 +2534,7 @@
 				18B9FB1D18B2F7AF00668660 /* Icon-152.png in Resources */,
 				18B9FB1F18B2F7AF00668660 /* airplane.png in Resources */,
 				18C8628F198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
+				1866999F1A314ADF00B5723A /* credits.py in Resources */,
 				18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				18B9FB2018B2F7AF00668660 /* mission-mavread.png in Resources */,
 				18B9FB2118B2F7AF00668660 /* mission-mavwrite.png in Resources */,
@@ -2577,6 +2594,7 @@
 				CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */,
 				CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */,
 				18C862DD198B5BF700F99CD3 /* Icon-120.png in Resources */,
+				1866999E1A314ADF00B5723A /* credits.py in Resources */,
 				18C862A9198AD4A800F99CD3 /* 73-radar@2x.png in Resources */,
 				1842F8CE1892D2F80050F680 /* Icon-50.png in Resources */,
 				CA0CA63E1A2F7EBA007E1142 /* 13-target.png in Resources */,
@@ -2759,6 +2777,7 @@
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
+				186699A61A314ADF00B5723A /* README.md in Sources */,
 				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
@@ -2768,7 +2787,6 @@
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
-				182800E819E30EE900C6263D /* AboutViewController.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
 				01CEC5D819D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
 				01EC4F0F1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */,
@@ -2859,6 +2877,7 @@
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				186699A51A314ADF00B5723A /* README.md in Sources */,
 				01CEC5E619D9FA3800320A34 /* BRRequestQueue.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
@@ -2879,7 +2898,6 @@
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
 				18E58A92198993EB0025A516 /* Logger.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
-				182800E719E30EE900C6263D /* AboutViewController.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
 				189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */,
 				18B9FAF318B2F7AF00668660 /* GKLocalController.m in Sources */,
@@ -2948,7 +2966,6 @@
 				496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */,
 				01CEC5EB19D9FA3800320A34 /* BRStreamInfo.m in Sources */,
 				CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
-				182800E619E30EE900C6263D /* AboutViewController.m in Sources */,
 				496E62C616DAFBF600E52E4A /* CommController.m in Sources */,
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
@@ -2999,6 +3016,7 @@
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
+				186699A41A314ADF00B5723A /* README.md in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
@@ -3245,7 +3263,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 30;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3291,7 +3309,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 30;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

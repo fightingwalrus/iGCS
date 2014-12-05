@@ -9,7 +9,6 @@
 
 #import "GCSMapViewController.h"
 #import "SWRevealViewController.h"
-
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
@@ -19,6 +18,7 @@
 #import "CommController.h"
 
 #import "CXAlertView.h"
+
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
@@ -523,15 +523,6 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
     
     self.userPosition = location;
     [self updateFollowMePosition:[self.followMeControlDelegate followMeControlValues]];
-}
-
-#pragma mark - 
--(void) showAboutViewController {
-    AboutViewController *aboutViewController = [[AboutViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
-    navController.navigationBar.barStyle = UIBarStyleDefault;
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self.parentViewController presentViewController:navController animated:YES completion:nil];
 }
 
 @end
