@@ -4,7 +4,7 @@ Airplane icon
 - http://findicons.com/icon/70207/airplane (Creative Commons Attribution Non-commercial (by-nc))
 
 glypish-icons
-- http://glyphish.com/ (Free set published under a Creative Commons Attribution license)
+- http://glyphish.com/ (Free set published under a Creative Commons Attribution License)
 
 CorePlot
 - as per https://github.com/core-plot/core-plot/blob/master/License.txt
@@ -30,5 +30,5 @@ CocoaAsyncSocket v7.4.1 (Public Domain)
 BlackRaccoon (MIT License)
  - https://github.com/lloydsargent/BlackRaccoon
 
-LicenseGenerator-iOS (MIT license)
+LicenseGenerator-iOS (MIT License)
  - https://github.com/carloe/LicenseGenerator-iOS
