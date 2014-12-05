@@ -174,9 +174,6 @@
 		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		186699A01A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
-		186699A41A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
-		186699A51A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
-		186699A61A314ADF00B5723A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1866999D1A314ADF00B5723A /* README.md */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -2777,7 +2774,6 @@
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
-				186699A61A314ADF00B5723A /* README.md in Sources */,
 				1854467D18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				182FFAC1181F0C9100A8C31C /* SetWPRequest.m in Sources */,
 				CA0D06E81975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
@@ -2877,7 +2873,6 @@
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
-				186699A51A314ADF00B5723A /* README.md in Sources */,
 				01CEC5E619D9FA3800320A34 /* BRRequestQueue.m in Sources */,
 				18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */,
 				18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */,
@@ -3016,7 +3011,6 @@
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
-				186699A41A314ADF00B5723A /* README.md in Sources */,
 				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
