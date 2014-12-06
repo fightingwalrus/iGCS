@@ -174,6 +174,9 @@
 		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		186699A01A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
+		186A7FAC1A33064200BF5C18 /* UIViews+gcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A7FAB1A33064200BF5C18 /* UIViews+gcs.m */; };
+		186A7FAD1A33064300BF5C18 /* UIViews+gcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A7FAB1A33064200BF5C18 /* UIViews+gcs.m */; };
+		186A7FAE1A33064300BF5C18 /* UIViews+gcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A7FAB1A33064200BF5C18 /* UIViews+gcs.m */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
 		186AFA3118F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -699,6 +702,8 @@
 		1866999D1A314ADF00B5723A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		186699B31A31617C00B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		186699BB1A31632100B5723A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		186A7FAA1A33064200BF5C18 /* UIViews+gcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViews+gcs.h"; sourceTree = "<group>"; };
+		186A7FAB1A33064200BF5C18 /* UIViews+gcs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViews+gcs.m"; sourceTree = "<group>"; };
 		186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSikAT.h; sourceTree = "<group>"; };
 		186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSikAT.m; sourceTree = "<group>"; };
 		186DC2381992F60600A672A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1527,6 +1532,8 @@
 				01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */,
 				01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */,
 				01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */,
+				186A7FAA1A33064200BF5C18 /* UIViews+gcs.h */,
+				186A7FAB1A33064200BF5C18 /* UIViews+gcs.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2771,6 +2778,7 @@
 				CA05750618BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				182FFAB3181F0C9100A8C31C /* (null) in Sources */,
 				182FFAB8181F0C9100A8C31C /* DebugViewController.m in Sources */,
+				186A7FAE1A33064300BF5C18 /* UIViews+gcs.m in Sources */,
 				182FFABA181F0C9100A8C31C /* TxMissionItem.m in Sources */,
 				182FFABC181F0C9100A8C31C /* FileUtils.m in Sources */,
 				182FFABE181F0C9100A8C31C /* WaypointMapBaseController.m in Sources */,
@@ -2836,6 +2844,7 @@
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
 				1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
+				186A7FAD1A33064300BF5C18 /* UIViews+gcs.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
@@ -2921,6 +2930,7 @@
 				CA05750818BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18069FD01836F7C70068E7A5 /* FightingWalrusInterface.m in Sources */,
 				CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */,
+				186A7FAC1A33064200BF5C18 /* UIViews+gcs.m in Sources */,
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				01CEC5D319D9FA3800320A34 /* BRRequest.m in Sources */,
 				CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */,

@@ -19,6 +19,7 @@
 
 #import "CXAlertView.h"
 
+#import "UIViews+gcs.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
@@ -328,7 +329,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
-    
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND ,0), ^{
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
@@ -399,7 +400,8 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
         case MAVLINK_MSG_ID_SYS_STATUS: {
             mavlink_sys_status_t sysStatus;
             mavlink_msg_sys_status_decode(msg, &sysStatus);
-            [self.voltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
+
+            [self.voltageLabel gcs_setTextOnMain:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
             [self.currentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
         }
         break;
@@ -451,6 +453,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
         }
         break;
     }
+});
 }
 
 // Handle taps on "Set Waypoint" inside WaypointAnnotation view callouts
