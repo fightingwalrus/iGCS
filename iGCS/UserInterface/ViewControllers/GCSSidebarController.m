@@ -143,31 +143,6 @@
     }
 }
 
-#pragma mark - Follow me section
-- (IBAction) followMeSliderChanged:(UISlider*)slider {
-    [_followMeChangeListener followMeControlChange:[self followMeControlValues]];
-}
-
-- (IBAction) followMeSwitchChanged:(UISwitch*)s {
-    [_followMeChangeListener followMeControlChange:[self followMeControlValues]];
-}
-
-- (void) followMeDeactivate {
-    [_followMeSwitch setOn:NO animated:YES];
-}
-
-- (FollowMeCtrlValues*) followMeControlValues {
-    return [[FollowMeCtrlValues alloc] initWithBearing:_followMeBearingSlider.value
-                                              distance:_followMeDistanceSlider.value
-                                        altitudeOffset:_followMeHeightSlider.value
-                                              isActive:_followMeSwitch.isOn];
-}
-
-- (void) followMeLocationAccuracy:(CLLocationAccuracy)accuracy isAcceptable:(BOOL)acceptable {
-    _userLocationAccuracyLabel.text = [NSString stringWithFormat:@"%0.1fm", accuracy];
-    _userLocationAccuracyLabel.textColor = acceptable ? [UIColor greenColor] : [UIColor redColor];
-}
-
 #pragma mark - Settings
 - (IBAction)configureRadio:(id)sender {
     if ([CommController sharedInstance].connectedAccessory == GCSAccessoryFightingWalrusRadio) {

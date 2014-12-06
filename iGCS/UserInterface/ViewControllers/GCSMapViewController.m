@@ -518,11 +518,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
     NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
     DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
     if (age > 5.0) return;
-    
-    [self.followMeControlDelegate followMeLocationAccuracy:location.horizontalAccuracy isAcceptable:[GCSMapViewController isAcceptableFollowMePosition:location]];
-    
     self.userPosition = location;
-    [self updateFollowMePosition:[self.followMeControlDelegate followMeControlValues]];
 }
 
 @end
