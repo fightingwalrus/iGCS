@@ -11,6 +11,7 @@
 
 @interface iGCSRadioConfig (CommandBatches)
 -(void)exitConfigMode;
+-(void)checkForPairedRemoteRadio;
 -(void)enterConfigMode;
 -(void)loadRadioVersion;
 -(void)loadAllSettings;
@@ -20,6 +21,7 @@
 @end
 
 // consts for NSNotification messages
+extern NSString * const GCSRadioConfigBatchNameExitConfigMode;
 extern NSString * const GCSRadioConfigBatchNameExitConfigMode;
 extern NSString * const GCSRadioConfigBatchNameEnterConfigMode;
 extern NSString * const GCSRadioConfigBatchNameLoadRadioVersion;

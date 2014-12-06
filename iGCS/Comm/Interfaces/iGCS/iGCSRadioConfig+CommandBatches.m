@@ -12,6 +12,7 @@
 
 // consts for NSNotification message names
 NSString * const GCSRadioConfigBatchNameExitConfigMode = @"com.fightingwalrus.radioconfig.batchname.exitconfigmode";
+NSString * const GCSRadioConfigBatchNameCheckForPairedRemoteRadio = @"com.fightingwalrus.radioconfig.batchname.checkpairedremoteradio";
 NSString * const GCSRadioConfigBatchNameEnterConfigMode = @"com.fightingwalrus.radioconfig.batchname.enterconfigmode";
 NSString * const GCSRadioConfigBatchNameLoadRadioVersion = @"com.fightingwalrus.radioconfig.batchname.loadradioversion";
 NSString * const GCSRadioConfigBatchNameLoadBasicSettings = @"com.fightingwalrus.radioconfig.batchname.loadbasicsettings";
@@ -73,6 +74,33 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
                                                               userInfo:[self userInfoFromCurrentState]];
         });
     });
+}
+
+-(void)checkForPairedRemoteRadio {
+    dispatch_group_t group = dispatch_group_create();
+
+    // set RT mode.
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        self.sikAt.hayesMode = RT;
+    });
+
+    dispatch_group_async(group, self.atCommandQueue, ^{
+        [self netId];
+    });
+
+    dispatch_group_notify(group, self.atCommandQueue, ^{
+        // set hayesMode back to AT;
+        self.sikAt.hayesMode = AT;
+
+        // post notification on main thread
+        dispatch_async(dispatch_get_main_queue(),^{
+            DDLogInfo(@">>>> iGCSRadioConfig.checkForPairedRemoteRadio complete");
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigBatchNameCheckForPairedRemoteRadio
+                                                                object:nil
+                                                              userInfo:[self userInfoFromCurrentState]];
+        });
+    });
+
 }
 
 -(void)loadRadioVersion {
