@@ -49,15 +49,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *windSpeedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *windSpeedZLabel;
 
-// Temporary controls to mock out future UI control of "follow" me mode
-@property (nonatomic, retain) IBOutlet UILabel  *userLocationAccuracyLabel;
-@property (nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
-@property (nonatomic, retain) IBOutlet UISlider *followMeBearingSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeDistanceSlider;
-@property (nonatomic, retain) IBOutlet UISlider *followMeHeightSlider;
-- (IBAction) followMeSwitchChanged:(UISwitch*)s;
-- (IBAction) followMeSliderChanged:(UISlider*)slider;
-
 @property (nonatomic, retain) IBOutlet UILabel *sysUptimeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysVoltageLabel;
 @property (nonatomic, retain) IBOutlet UILabel *sysMemFreeLabel;
