@@ -53,9 +53,9 @@
     self.gcsSidebarVC.followMeChangeListener = self.gcsMapVC;
     
     self.waypointVC = [self viewControllers][1];
-    self.commsVC    = [self viewControllers][2];
 
 #ifdef DEBUG
+    self.commsVC    = [self viewControllers][2];
     self.debugVC    = [self viewControllers][3];
 #endif
 
@@ -65,7 +65,7 @@
 
 // Don't show debug view controller in tab bar if we are not on a debug build
 #ifndef DEBUG
-    NSArray *tabBarControllers = @[gcsRevealVC, self.waypointVC, self.commsVC];
+    NSArray *tabBarControllers = @[gcsRevealVC, self.waypointVC];
     [self setViewControllers:tabBarControllers animated:NO];
 #endif
 
@@ -111,7 +111,9 @@
     [self.gcsMapVC handlePacket:msg];
     [self.gcsSidebarVC handlePacket:msg];
     [self.waypointVC handlePacket:msg];
+#ifdef DEBUG
     [self.commsVC  handlePacket:msg];
+#endif
 }
 
 - (void) replaceMission:(WaypointsHolder*)mission {
