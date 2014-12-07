@@ -204,7 +204,8 @@
 
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     // +/-45 + 0 deg arrow marks
-    for (NSUInteger i = 0; i < 3; i++) {
+    // Note: use an NSInteger for the "i" index throughout here due to the signed math
+    for (NSInteger i = 0; i < 3; i++) {
         float outerRad = FRONT_FACE_MAJOR_TICK_RADIUS;
         if (i == 1) // 0 def
             outerRad = r;
@@ -221,7 +222,7 @@
     
     // +/- 30 + 60 deg major ticks
     CGContextSetLineWidth(ctx, 0.02*r);
-    for (NSUInteger i = 1; i < 6; i++) {
+    for (NSInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = -30 * i * DEG2RAD;
         
@@ -233,7 +234,7 @@
 
     // +/- 10 + 20 deg minor ticks
     CGContextSetLineWidth(ctx, 0.01*r);
-    for (NSUInteger i = 1; i < 6; i++) {
+    for (NSInteger i = 1; i < 6; i++) {
         if (i == 3) continue;
         float ang = (-120 + i*10) * DEG2RAD;
         
