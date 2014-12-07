@@ -384,6 +384,9 @@
 		18C862DD198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
 		18C862DE198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
 		18C862DF198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
+		18CBECB41A33C3560030BF60 /* GCSMavLinkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBECB31A33C3560030BF60 /* GCSMavLinkManager.m */; };
+		18CBECB51A33C3560030BF60 /* GCSMavLinkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBECB31A33C3560030BF60 /* GCSMavLinkManager.m */; };
+		18CBECB61A33C3560030BF60 /* GCSMavLinkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBECB31A33C3560030BF60 /* GCSMavLinkManager.m */; };
 		18D89163198104EC001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916919810517001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
@@ -989,6 +992,8 @@
 		18C862CC198B5AFA00F99CD3 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		18C862D8198B5B1000F99CD3 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
 		18C862DC198B5BF700F99CD3 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		18CBECB21A33C3560030BF60 /* GCSMavLinkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSMavLinkManager.h; sourceTree = "<group>"; };
+		18CBECB31A33C3560030BF60 /* GCSMavLinkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSMavLinkManager.m; sourceTree = "<group>"; };
 		18D89162198104EC001ED845 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18D8916B19817CB1001ED845 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
@@ -1812,6 +1817,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		18CBECAD1A33C2D10030BF60 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				18CBECB21A33C3560030BF60 /* GCSMavLinkManager.h */,
+				18CBECB31A33C3560030BF60 /* GCSMavLinkManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		18D8916A19817CB1001ED845 /* HockeySDK-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2238,6 +2252,7 @@
 			isa = PBXGroup;
 			children = (
 				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
+				18CBECAD1A33C2D10030BF60 /* Managers */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,
 				18759787189108980012DF6D /* Icons */,
@@ -2789,6 +2804,7 @@
 				CA056B6518C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
 				182FFAC4181F0C9100A8C31C /* MissionItemTableViewController.m in Sources */,
 				182FFAC5181F0C9100A8C31C /* MissionItemField.m in Sources */,
+				18CBECB61A33C3560030BF60 /* GCSMavLinkManager.m in Sources */,
 				182FFAC6181F0C9100A8C31C /* RequestedPointAnnotation.m in Sources */,
 				182FFAC7181F0C9100A8C31C /* TxMissionItemCount.m in Sources */,
 				182FFAC8181F0C9100A8C31C /* CustomPointAnnotation.m in Sources */,
@@ -2867,6 +2883,7 @@
 				18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */,
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
+				18CBECB51A33C3560030BF60 /* GCSMavLinkManager.m in Sources */,
 				CA10784A19A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B9FADD18B2F7AF00668660 /* MavLinkRetryingRequestHandler.m in Sources */,
 				CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */,
@@ -2961,6 +2978,7 @@
 				1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */,
 				186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */,
+				18CBECB41A33C3560030BF60 /* GCSMavLinkManager.m in Sources */,
 				01CEC5D019D9FA3800320A34 /* BRRequest+_UserData.m in Sources */,
 				18A42CD518895B3700408D71 /* GKNetController.m in Sources */,
 				18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,

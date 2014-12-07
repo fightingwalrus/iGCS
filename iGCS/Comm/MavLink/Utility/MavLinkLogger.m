@@ -31,7 +31,7 @@
         
         _dateTimeUtils = [[DateTimeUtils alloc] init];
         if (!_serialQueue) {
-            _serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlinklogger", NULL);
+            _serialQueue = dispatch_queue_create("com.fightingwalrus.igcs.mavlinklogger", DISPATCH_QUEUE_PRIORITY_DEFAULT);
         }
     }
     return self;
@@ -48,7 +48,7 @@
     
     NSData *data = [NSData dataWithBytes:buffer length:bufferLen+sizeof(u_int64_t)];
     
-    dispatch_async(_serialQueue ,
+    dispatch_async(self.serialQueue,
                    ^ {
                     // log format will be in little endian on ios device
                        [_fileHandle writeData:data];

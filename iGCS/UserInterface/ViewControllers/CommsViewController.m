@@ -11,6 +11,7 @@
 
 #import "CommController.h"
 #import "DataRateRecorder.h"
+#import "GCSMavLinkManager.h"
 #import "UIViews+gcs.h"
 
 @interface CommsViewController ()
@@ -167,59 +168,59 @@
         [self loadView];
     }
 
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND ,0), ^{
+    dispatch_async([GCSMavLinkManager sharedInstance].concurrentQueue, ^{
 
-    static NSUInteger packetCount = 0;
-    packetCount++;
+        static NSUInteger packetCount = 0;
+        packetCount++;
 
-    switch (msg->msgid) {
-        case MAVLINK_MSG_ID_ATTITUDE:
-            [self.attitudeTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        case MAVLINK_MSG_ID_VFR_HUD:
-            [self.vfrHUDTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-     
-        case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
-            [self.gpsIntTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        case MAVLINK_MSG_ID_GPS_RAW_INT:
-            [self.gpsRawTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        case MAVLINK_MSG_ID_SYS_STATUS:
-            [self.sysStatusView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        case MAVLINK_MSG_ID_GPS_STATUS:
-            [self.gpsStatusView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
-            [self.navControllerOutputTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
-            break;
-            
-        default: {
-            // Append string representation of msg
-            NSString *newText = [self.defaultTextView.text stringByAppendingFormat:@"%7lu: %@\n", (unsigned long)packetCount, msgToNSString(msg,NO)];
-            // Limit length of text buffer
+        switch (msg->msgid) {
+            case MAVLINK_MSG_ID_ATTITUDE:
+                [self.attitudeTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            case MAVLINK_MSG_ID_VFR_HUD:
+                [self.vfrHUDTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+         
+            case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
+                [self.gpsIntTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            case MAVLINK_MSG_ID_GPS_RAW_INT:
+                [self.gpsRawTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            case MAVLINK_MSG_ID_SYS_STATUS:
+                [self.sysStatusView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            case MAVLINK_MSG_ID_GPS_STATUS:
+                [self.gpsStatusView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            case MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT:
+                [self.navControllerOutputTextView gcs_setTextOnMain:msgToNSString(msg, YES)];
+                break;
+                
+            default: {
+                // Append string representation of msg
+                NSString *newText = [self.defaultTextView.text stringByAppendingFormat:@"%7lu: %@\n", (unsigned long)packetCount, msgToNSString(msg,NO)];
+                // Limit length of text buffer
 
-            if (newText.length > 2560) {
-                newText = [newText substringFromIndex:(newText.length-2560)];
+                if (newText.length > 2560) {
+                    newText = [newText substringFromIndex:(newText.length-2560)];
+                }
+
+                [self.defaultTextView gcs_setTextOnMain:newText];
+
+                dispatch_async(dispatch_get_main_queue() , ^{
+                    [self.defaultTextView scrollRangeToVisible:NSMakeRange([self.defaultTextView.text length], 0)];
+                });
+
             }
-
-            [self.defaultTextView gcs_setTextOnMain:newText];
-
-            dispatch_async(dispatch_get_main_queue() , ^{
-                [self.defaultTextView scrollRangeToVisible:NSMakeRange([self.defaultTextView.text length], 0)];
-            });
-
+                break;
         }
-            break;
-    }
-});
+    });
 
 }
 

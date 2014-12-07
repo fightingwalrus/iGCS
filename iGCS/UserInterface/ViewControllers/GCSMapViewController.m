@@ -12,13 +12,12 @@
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
+#import "GCSMavLinkManager.h"
 #import "MavLinkUtility.h"
 #import "MiscUtilities.h"
 
 #import "CommController.h"
-
 #import "CXAlertView.h"
-
 #import "UIViews+gcs.h"
 
 @interface GCSMapViewController ()
@@ -329,7 +328,8 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND ,0), ^{
+
+dispatch_async([GCSMavLinkManager sharedInstance].concurrentQueue, ^{
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
