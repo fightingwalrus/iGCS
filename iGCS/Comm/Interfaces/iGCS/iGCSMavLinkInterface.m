@@ -86,11 +86,6 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     @autoreleasepool {
         // Notify receipt of length bytes
         [self.mainVC.dataRateRecorder bytesReceived:length];
-        
-        // set up log file the first time we get any data
-        if (!_mavlinkLogger) {
-            [self setupLogger];
-        }
 
         // Pass each byte to the MAVLINK parser
         for (NSUInteger byteIdx = 0; byteIdx < length; byteIdx++) {
@@ -164,7 +159,6 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                 
                 // Then send the packet on to the child views
                 [self.mainVC handlePacket:&msg];
-                [self.mavlinkLogger handlePacket:&msg];
             }
         }
     }
