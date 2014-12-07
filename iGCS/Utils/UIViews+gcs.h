@@ -10,6 +10,7 @@
 
 @interface UILabel (gcs)
 -(void)gcs_setTextOnMain:(NSString*)string;
+-(void)gcs_setTextColorOnMain:(UIColor *)color;
 @end
 
 @interface UITextView (gcs)

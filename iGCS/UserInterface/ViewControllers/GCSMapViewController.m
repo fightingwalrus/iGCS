@@ -402,7 +402,7 @@ dispatch_async([GCSMavLinkManager sharedInstance].concurrentQueue, ^{
             mavlink_msg_sys_status_decode(msg, &sysStatus);
 
             [self.voltageLabel gcs_setTextOnMain:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
-            [self.currentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
+            [self.currentLabel gcs_setTextOnMain:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
         }
         break;
 
@@ -422,9 +422,9 @@ dispatch_async([GCSMavLinkManager sharedInstance].concurrentQueue, ^{
             
             // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
-            [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
-            [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+            [self.armedLabel gcs_setTextOnMain:isArmed ? @"Armed" : @"Disarmed"];
+            [self.armedLabel gcs_setTextColorOnMain:isArmed ? [UIColor redColor] : [UIColor greenColor]];
+            [self.customModeLabel gcs_setTextOnMain:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode) {

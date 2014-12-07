@@ -16,6 +16,12 @@
     });
 }
 
+-(void)gcs_setTextColorOnMain:(UIColor *)color {
+    dispatch_async(dispatch_get_main_queue() , ^{
+        [self setTextColor:color];
+    });
+}
+
 @end
 
 @implementation UITextView (gcs)
