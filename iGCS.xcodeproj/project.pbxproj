@@ -480,15 +480,12 @@
 		CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
 		CA0E11911A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
 		CA0E11921A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
-		CA0E11931A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
 		CA0E27E81A2E76CA00788619 /* CXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E27E71A2E76CA00788619 /* CXBlurView.m */; };
 		CA0E27E91A2E76CA00788619 /* CXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E27E71A2E76CA00788619 /* CXBlurView.m */; };
 		CA0E27EA1A2E76CA00788619 /* CXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E27E71A2E76CA00788619 /* CXBlurView.m */; };
-		CA0E27EB1A2E76CA00788619 /* CXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E27E71A2E76CA00788619 /* CXBlurView.m */; };
 		CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA0E551C19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA0E551D19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
-		CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E551A19F7C27A00B11F12 /* GCSMapViewController+DataRate.m */; };
 		CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783819A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
 		CA10783919A98B58007B42E5 /* TxMissionClearAll.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10783619A98B58007B42E5 /* TxMissionClearAll.m */; };
@@ -498,7 +495,6 @@
 		CA10B4CE1A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
 		CA10B4CF1A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
 		CA10B4D01A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
-		CA10B4D11A09E1200082BFAE /* MissionItemEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */; };
 		CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10E130188FCD42002DF0E4 /* GCSThemeManager.m */; };
 		CA154E7919BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
 		CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7219BFE52000ECE919 /* DDASLLogger.m */; };
@@ -3023,10 +3019,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0E551E19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
-				CA0E11931A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
-				CA0E27EB1A2E76CA00788619 /* CXBlurView.m in Sources */,
-				CA10B4D11A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
