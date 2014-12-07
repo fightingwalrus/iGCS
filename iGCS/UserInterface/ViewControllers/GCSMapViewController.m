@@ -12,13 +12,13 @@
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
 
+#import "GCSMavLinkManager.h"
 #import "MavLinkUtility.h"
 #import "MiscUtilities.h"
 
 #import "CommController.h"
-
 #import "CXAlertView.h"
-
+#import "UIViews+gcs.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
@@ -328,7 +328,8 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {
-    
+
+dispatch_async([GCSMavLinkManager sharedInstance].concurrentQueue, ^{
     switch (msg->msgid) {
         /*
         // Temporarily disabled in favour of MAVLINK_MSG_ID_GPS_RAW_INT
@@ -399,8 +400,9 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
         case MAVLINK_MSG_ID_SYS_STATUS: {
             mavlink_sys_status_t sysStatus;
             mavlink_msg_sys_status_decode(msg, &sysStatus);
-            [self.voltageLabel setText:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
-            [self.currentLabel setText:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
+
+            [self.voltageLabel gcs_setTextOnMain:[NSString stringWithFormat:@"%0.1fV", sysStatus.voltage_battery/1000.0f]];
+            [self.currentLabel gcs_setTextOnMain:[NSString stringWithFormat:@"%0.1fA", sysStatus.current_battery/100.0f]];
         }
         break;
 
@@ -420,9 +422,9 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
             
             // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
-            [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
-            [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+            [self.armedLabel gcs_setTextOnMain:isArmed ? @"Armed" : @"Disarmed"];
+            [self.armedLabel gcs_setTextColorOnMain:isArmed ? [UIColor redColor] : [UIColor greenColor]];
+            [self.customModeLabel gcs_setTextOnMain:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
             switch (heartbeat.custom_mode) {
@@ -451,6 +453,7 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
         }
         break;
     }
+});
 }
 
 // Handle taps on "Set Waypoint" inside WaypointAnnotation view callouts
