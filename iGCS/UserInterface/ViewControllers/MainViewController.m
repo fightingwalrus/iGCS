@@ -63,7 +63,7 @@
 
     [CommController sharedInstance].mainVC = self;
 
-// Don't show debug view controller in tab bar if we are not on a debug build
+// Hide all tabs except map view and mission editor in release mode
 #ifndef DEBUG
     NSArray *tabBarControllers = @[gcsRevealVC, self.waypointVC];
     [self setViewControllers:tabBarControllers animated:NO];
