@@ -186,6 +186,11 @@ NSString * const GCSHayesResponseStateDescription[] = {
             self.isRadioInConfigMode = NO;
         }
 
+        // whenever we save something we will dissmiss the UI and start telemetry.
+        if ([hayesResponse rangeOfString:tWriteCurrentParamsToLocalRadioEEPROM].location != NSNotFound) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+        }
+
     } else {
         DDLogWarn(@"Command expected echo of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
     }
@@ -294,6 +299,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
     // if a previous command has timed out we just return
     if (self.commandHasTimedOut) {
+        DDLogVerbose(@"$$Command has timed: %@", atCommand);
         return;
     }
 
@@ -301,6 +307,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     long ret = dispatch_semaphore_wait(self.atCommandSemaphore, timeout);
 
     // if semiphore was signaled then do work otherwise just fall through
+
     if(ret == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (_hayesResponseState != HayesReadyForCommand) {
@@ -325,6 +332,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
         // blocks in the queue will return before doing
         // any work
         self.commandHasTimedOut = YES;
+        DDLogVerbose(@"sendATCommand: %@ has timed out", atCommand);
     }
 }
 
