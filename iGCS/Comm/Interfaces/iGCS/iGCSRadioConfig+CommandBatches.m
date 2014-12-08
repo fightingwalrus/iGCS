@@ -97,16 +97,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
 
     dispatch_group_t group = dispatch_group_create();
 
-    dispatch_group_async(group, self.atCommandQueue, ^{[self radioVersion];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boardType];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boardFrequency];;});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self boardVersion];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self serialSpeed];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self airSpeed];});
     dispatch_group_async(group, self.atCommandQueue, ^{[self netId];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self maxFrequency];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self transmitPower];});
-    dispatch_group_async(group, self.atCommandQueue, ^{[self dutyCycle];});
 
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
@@ -155,6 +146,20 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
     });
 }
 
+-(void)setNetID:(NSInteger)netId andHayesMode:(GCSSikHayesMode) hayesMode {
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
+    dispatch_async(self.atCommandQueue, ^{
+          [self setNetId:netId withHayesMode:hayesMode];
+    });
+}
+
+-(void)saveSettingsWithHayesMode:(GCSSikHayesMode) hayesMode {
+    [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
+    dispatch_async(self.atCommandQueue, ^{
+        [self saveWithHayesMode:hayesMode];
+    });
+}
+
 -(void)saveAndResetWithNetID:(NSInteger) netId withHayesMode:(GCSSikHayesMode) hayesMode{
     [self prepareQueueForNewCommandsWithName:GCSRadioConfigBatchNameSaveAndResetWithNetID];
 
@@ -168,10 +173,6 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
         [self saveWithHayesMode:hayesMode];
     });
 
-    dispatch_group_async(group, self.atCommandQueue, ^{
-        [self rebootRadioWithHayesMode:hayesMode];
-    });
-
     dispatch_group_notify(group, self.atCommandQueue, ^{
         dispatch_async(dispatch_get_main_queue(),^{
             DDLogInfo(@">>>> iGCSRadioConfig.saveAndResetWithNetID complete");
@@ -182,13 +183,14 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
     });
 }
 
+
 # pragma mark - helpers
 -(NSDictionary *)userInfoFromCurrentState {
     return @{GCSRadioConfigHayesResponseStateKey: @(self.hayesResponseState),
              GCSRadioConfigIsRadioBootedKey: @(self.isRadioBooted),
              GCSRadioConfigIsRadioInConfigModeKey: @(self.isRadioInConfigMode),
              GCSRadioConfigIsRemoteRadioRespondingKey: @(self.isRemoteRadioResponding),
-             GCSRadioConfigCommandHasTimedOutKey: @(self.commandHasTimedOut)};
+             GCSRadioConfigCommandHasTimedOutKey: @(self.commandHasTimedout)};
 }
 
 @end

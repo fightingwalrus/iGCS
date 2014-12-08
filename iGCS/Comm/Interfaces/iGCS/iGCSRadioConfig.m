@@ -87,13 +87,20 @@ NSString * const GCSHayesResponseStateDescription[] = {
     self.responseBuffer = responsesArray;
     [self.completeResponseBuffer addObjectsFromArray:responsesArray];
 
-    for (NSString *hayesResponse in self.responseBuffer) {
-        if (hayesResponse.length == 0) {
-            continue;
+    if ([[self.sentCommands firstObject] isEqualToString:@"+++"]) {
+        if ([currentString rangeOfString:@"OK"].location != NSNotFound) {
+            [self handleHayesResponse:@"OK"];
         }
+    } else {
+        for (NSString *hayesResponse in self.responseBuffer) {
+            if (hayesResponse.length == 0) {
+                continue;
+            }
 
-        [self handleHayesResponse:hayesResponse];
+            [self handleHayesResponse:hayesResponse];
+        }
     }
+
     DDLogVerbose(@"end handleHayesResponse:");
 }
 
@@ -186,6 +193,11 @@ NSString * const GCSHayesResponseStateDescription[] = {
             self.isRadioInConfigMode = NO;
         }
 
+        // whenever we save something we will dissmiss the UI and start telemetry.
+        if ([hayesResponse rangeOfString:tWriteCurrentParamsToLocalRadioEEPROM].location != NSNotFound) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:GCSRadioConfigRadioDidSaveAndBoot object:nil];
+        }
+
     } else {
         DDLogWarn(@"Command expected echo of %@ got %@ instead,", [self.sentCommands lastObject], hayesResponse);
     }
@@ -232,7 +244,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 
 #pragma mark - Queue, state and timer helpers
 -(void)prepareQueueForNewCommandsWithName:(NSString *) name{
-    self.commandHasTimedOut = NO;
+    self.commandHasTimedout = NO;
     [self.sentCommands removeAllObjects];
     self.commandQueueName = name;
 }
@@ -254,7 +266,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
 -(void)sendConfigModeCommand {
 
     // if a previous command has timed out we just return
-    if (self.commandHasTimedOut) {
+    if (self.commandHasTimedout) {
         return;
     }
 
@@ -286,14 +298,15 @@ NSString * const GCSHayesResponseStateDescription[] = {
         // by setting commandHasTimedOut to YES all other
         // blocks in the serial queue will return before doing
         // any work
-        self.commandHasTimedOut = YES;
+        self.commandHasTimedout = YES;
     }
 }
 
 -(void)sendATCommand:(NSString *)atCommand {
 
     // if a previous command has timed out we just return
-    if (self.commandHasTimedOut) {
+    if (self.commandHasTimedout) {
+        DDLogVerbose(@"$$Command has timed: %@", atCommand);
         return;
     }
 
@@ -301,6 +314,7 @@ NSString * const GCSHayesResponseStateDescription[] = {
     long ret = dispatch_semaphore_wait(self.atCommandSemaphore, timeout);
 
     // if semiphore was signaled then do work otherwise just fall through
+
     if(ret == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (_hayesResponseState != HayesReadyForCommand) {
@@ -324,7 +338,8 @@ NSString * const GCSHayesResponseStateDescription[] = {
         // by setting commandHasTimedOut to YES all other
         // blocks in the queue will return before doing
         // any work
-        self.commandHasTimedOut = YES;
+        self.commandHasTimedout = YES;
+        DDLogVerbose(@"sendATCommand: %@ has timed out", atCommand);
     }
 }
 

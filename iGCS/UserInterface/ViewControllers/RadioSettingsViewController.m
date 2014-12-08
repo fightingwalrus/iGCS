@@ -81,6 +81,7 @@ static void *SVKvoContext = &SVKvoContext;
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
 
         _activityIndicatorView = [[GCSActivityIndicatorView alloc] init];
+
     }
     return self;
 
@@ -147,74 +148,27 @@ static void *SVKvoContext = &SVKvoContext;
     [self.view  addSubview:self.localRadioNetId];
     self.localRadioNetId.textAlignment = NSTextAlignmentLeft;
     self.localRadioNetId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-
-    // Local radio version
-    self.localRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.localRadioFirmwareVersionLabel];
-    [self.localRadioFirmwareVersionLabel setText:@"Local Radio Firmware:"];
-    self.localRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
-
-    self.localRadioFirmwareVersion = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.localRadioFirmwareVersion];
-    [self.localRadioFirmwareVersion setText:@"-"];
-    self.localRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
-
-    // remote radio version
-    self.remoteRadioFirmwareVersionLabel = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.remoteRadioFirmwareVersionLabel];
-    [self.remoteRadioFirmwareVersionLabel setText:@"Remote Radio Firmware:"];
-    self.remoteRadioFirmwareVersionLabel.textAlignment = NSTextAlignmentRight;
-
-    self.remoteRadioFirmwareVersion = [UILabel newAutoLayoutView];
-    [self.view  addSubview:self.remoteRadioFirmwareVersion];
-    [self.remoteRadioFirmwareVersion setText:@"-"];
-    self.remoteRadioFirmwareVersion.textAlignment = NSTextAlignmentLeft;
-
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:60.0f];
-
-    // normally the app will propt if a connection is opened to a FWR that needs updated
-    // we want an easy way to test the firmware updater.
-#if DEBUG
-    UIButton *fwrFirmwareUpdateButton = [UIButton newAutoLayoutView];
-    [fwrFirmwareUpdateButton setTitle:@"Update Firmware" forState:UIControlStateNormal];
-    [fwrFirmwareUpdateButton addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
-    [fwrFirmwareUpdateButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
-    [self.view addSubview:fwrFirmwareUpdateButton];
-
-    [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
-    [fwrFirmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
-#endif
-
-    NSArray *labelViews = @[self.localRadioNetIdLabel, self.localRadioFirmwareVersionLabel, self.remoteRadioFirmwareVersionLabel];
-
-    UIView *previousLabel = nil;
-    for (UIView *view in labelViews) {
-        if (previousLabel) {
-            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousLabel withOffset:30.0f];
-            UILayoutPriority priority = (view == self.remoteRadioFirmwareVersionLabel) ? UILayoutPriorityDefaultHigh + 1 : UILayoutPriorityRequired;
-            [UIView autoSetPriority:priority forConstraints:^{
-                [view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:previousLabel];
-                [view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:previousLabel];
-            }];
-        }
-        previousLabel = view;
-    }
-
-    [self.remoteRadioFirmwareVersionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.view withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
-
-    [labelViews autoAlignViewsToEdge:ALEdgeRight];
-    [labelViews autoMatchViewsDimension:ALDimensionWidth];
+    self.localRadioNetId.delegate = self;
 
     [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
     [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
 
-    [self.localRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioFirmwareVersionLabel withOffset:10];
-    [self.localRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioFirmwareVersionLabel withOffset:0.0f];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 10];
+    } else {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f];
+    }
 
-    [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.remoteRadioFirmwareVersionLabel withOffset:10];
-    [self.remoteRadioFirmwareVersion autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.remoteRadioFirmwareVersionLabel withOffset:0.0f];
+    [self.localRadioNetIdLabel autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.view withOffset:160];
 
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self saveSettingsToLocalRadio];
+
+    return YES;
 }
 
 #pragma mark - UINavigationBar Button handlers
@@ -279,6 +233,10 @@ static void *SVKvoContext = &SVKvoContext;
 
 #pragma mark - radio commands
 
+-(void)saveLocalSettings {
+    [[CommController sharedInstance].radioConfig saveSettingsWithHayesMode:AT];
+}
+
 -(void)enterConfigMode {
     DDLogDebug(@"enterConfigMode");
     [[CommController sharedInstance].radioConfig enterConfigMode];
@@ -308,7 +266,9 @@ static void *SVKvoContext = &SVKvoContext;
 
 -(void)saveSettingsToLocalRadio {
     NSInteger netId = [self.localRadioNetId.text integerValue];
-    [[CommController sharedInstance].radioConfig saveAndResetWithNetID:netId withHayesMode:AT];
+    [[CommController sharedInstance].radioConfig setNetID:netId andHayesMode:AT];
+
+    [self performSelector:@selector(saveLocalSettings) withObject:nil afterDelay:1.1f];
 }
 
 -(void)setupConfigAccessoryConnection {
@@ -328,19 +288,13 @@ static void *SVKvoContext = &SVKvoContext;
         self.localRadioSettingsModel = [CommController sharedInstance].radioConfig.localRadioSettings;
     }
 
-    [self.localRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.localRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [self.localRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [self.localRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 
     if (!self.remoteRadioSettingsModel) {
         self.remoteRadioSettingsModel = [CommController sharedInstance].radioConfig.remoteRadioSettings;
     }
 
-    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"radioVersion" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
     [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"netId" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"minFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
-    [self.remoteRadioSettingsModel addObserver:self forKeyPath:@"maxFrequency" options:NSKeyValueObservingOptionNew context:&SVKvoContext];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
