@@ -50,8 +50,6 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order to display your location on the iGCS map</string>
-	<key>UILaunchStoryboardName</key>
-	<string>MainStoryboard</string>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
