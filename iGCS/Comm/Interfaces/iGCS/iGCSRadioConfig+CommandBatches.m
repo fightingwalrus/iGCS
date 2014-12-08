@@ -190,7 +190,7 @@ NSString * const GCSRadioConfigCommandHasTimedOutKey = @"GCSRadioConfigCommandHa
              GCSRadioConfigIsRadioBootedKey: @(self.isRadioBooted),
              GCSRadioConfigIsRadioInConfigModeKey: @(self.isRadioInConfigMode),
              GCSRadioConfigIsRemoteRadioRespondingKey: @(self.isRemoteRadioResponding),
-             GCSRadioConfigCommandHasTimedOutKey: @(self.commandHasTimedOut)};
+             GCSRadioConfigCommandHasTimedOutKey: @(self.commandHasTimedout)};
 }
 
 @end

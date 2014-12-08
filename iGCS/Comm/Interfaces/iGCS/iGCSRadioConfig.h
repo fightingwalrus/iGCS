@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, GCSHayesReponseState) {
 @property (readwrite) BOOL isRadioInConfigMode;
 @property (readwrite) BOOL isLocalRadioResponding;
 @property (readwrite) BOOL isRemoteRadioResponding;
-@property (readwrite) BOOL commandHasTimedOut;
+@property (readwrite) BOOL commandHasTimedout;
 // timeout for single AT and RT command roundtrip
 @property (nonatomic, readwrite) float ATCommandTimeout;
 @property (nonatomic, readwrite) float RTCommandTimeout;

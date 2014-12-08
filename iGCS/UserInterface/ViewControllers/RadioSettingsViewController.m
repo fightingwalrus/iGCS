@@ -81,6 +81,7 @@ static void *SVKvoContext = &SVKvoContext;
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
 
         _activityIndicatorView = [[GCSActivityIndicatorView alloc] init];
+
     }
     return self;
 
