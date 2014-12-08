@@ -447,12 +447,6 @@
 		CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05750E18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
-		CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
-		CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
-		CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751218BE080B001EACFD /* LFDisplayBridge.m */; };
-		CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
-		CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
-		CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05751418BE080B001EACFD /* LFGlassView.m */; };
 		CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
 		CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
@@ -937,7 +931,6 @@
 		18B6EA0F19DF84050084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B6EA1319DF84EC0084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B6EA1719DF857A0084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		18B6EA1819DF85F60084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
 		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
@@ -1054,11 +1047,6 @@
 		CA0574F918BE07FE001EACFD /* CXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertView.m; sourceTree = "<group>"; };
 		CA0574FA18BE07FE001EACFD /* CXAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertViewController.h; sourceTree = "<group>"; };
 		CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertViewController.m; sourceTree = "<group>"; };
-		CA05751118BE080B001EACFD /* LFDisplayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFDisplayBridge.h; sourceTree = "<group>"; };
-		CA05751218BE080B001EACFD /* LFDisplayBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFDisplayBridge.m; sourceTree = "<group>"; };
-		CA05751318BE080B001EACFD /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
-		CA05751418BE080B001EACFD /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
-		CA05751518BE080B001EACFD /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
 		CA07822F192716A0007FCFD5 /* SiKFirmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiKFirmware.h; path = Firmware/SiKFirmware.h; sourceTree = "<group>"; };
 		CA078230192716A0007FCFD5 /* SiKFirmware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiKFirmware.m; path = Firmware/SiKFirmware.m; sourceTree = "<group>"; };
 		CA094F2418D534AA00AC6AE4 /* FillStrokePolyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillStrokePolyLineView.h; sourceTree = "<group>"; };
@@ -1995,19 +1983,6 @@
 			path = CXAlertView;
 			sourceTree = "<group>";
 		};
-		CA05751018BE080B001EACFD /* LiveFrost */ = {
-			isa = PBXGroup;
-			children = (
-				18B6EA1819DF85F60084B666 /* LICENSE */,
-				CA05751118BE080B001EACFD /* LFDisplayBridge.h */,
-				CA05751218BE080B001EACFD /* LFDisplayBridge.m */,
-				CA05751318BE080B001EACFD /* LFGlassView.h */,
-				CA05751418BE080B001EACFD /* LFGlassView.m */,
-				CA05751518BE080B001EACFD /* LiveFrost.h */,
-			);
-			path = LiveFrost;
-			sourceTree = "<group>";
-		};
 		CA0AED6E192C3DD80017BB9E /* test-resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2053,7 +2028,6 @@
 				CA43DE0815143E570014F7C8 /* glyphish-icons */,
 				CA20FD24164E4754005187A8 /* mavlink-include */,
 				CA0574F118BE07FE001EACFD /* CXAlertView */,
-				CA05751018BE080B001EACFD /* LiveFrost */,
 				18B7F2B81958953B00D2406A /* PureLayout */,
 				CA43DFC315143E570014F7C8 /* Redpark Serial SDK */,
 				CA0B69A9189B69F50014C1E4 /* SWReveal */,
@@ -2738,7 +2712,6 @@
 				01CEC5EA19D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				01CEC5DB19D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				01CEC5ED19D9FA3800320A34 /* BRStreamInfo.m in Sources */,
-				CA05751818BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				182FFAA5181F0C9100A8C31C /* CompassView.m in Sources */,
 				18B7F29B195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				18B7F2D01958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2751,7 +2724,6 @@
 				CA0E27EA1A2E76CA00788619 /* CXBlurView.m in Sources */,
 				01CEC5E119D9FA3800320A34 /* BRRequestError.m in Sources */,
 				18B7F2CD1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
-				CA05751C18BE080B001EACFD /* LFGlassView.m in Sources */,
 				CA154E8719BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				18A42CD618895B3700408D71 /* GKNetController.m in Sources */,
 				182FFAA9181F0C9100A8C31C /* CommController.m in Sources */,
@@ -2825,7 +2797,6 @@
 				18B7F29A195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */,
 				18B9FACD18B2F7AF00668660 /* CommsViewController.m in Sources */,
 				18B9FACE18B2F7AF00668660 /* GCSMapViewController.m in Sources */,
-				CA05751718BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				01CEC5EC19D9FA3800320A34 /* BRStreamInfo.m in Sources */,
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
@@ -2839,7 +2810,6 @@
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18E58A8F198993EB0025A516 /* FileUtils.m in Sources */,
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
-				CA05751B18BE080B001EACFD /* LFGlassView.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
@@ -2920,7 +2890,6 @@
 				496E626B16DAFAF600E52E4A /* WaypointHelper.m in Sources */,
 				01CEC5D319D9FA3800320A34 /* BRRequest.m in Sources */,
 				CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */,
-				CA05751618BE080B001EACFD /* LFDisplayBridge.m in Sources */,
 				01CEC5DF19D9FA3800320A34 /* BRRequestError.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
@@ -3007,7 +2976,6 @@
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
-				CA05751A18BE080B001EACFD /* LFGlassView.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,

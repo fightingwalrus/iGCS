@@ -14,9 +14,6 @@ SWRevealViewController
 
 CXAlertView
  - https://github.com/ChrisXu1221/CXAlertView (MIT License)
- 
-LiveFrost
- - https://github.com/radi/LiveFrost (MIT License)
 
 PureLayout v1.0 (MIT License)
  - https://github.com/smileyborg/PureLayout.git
