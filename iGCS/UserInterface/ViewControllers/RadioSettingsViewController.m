@@ -152,7 +152,11 @@ static void *SVKvoContext = &SVKvoContext;
     [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
     [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
 
-    [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 50.0f];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 10];
+    } else {
+        [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f];
+    }
 
     [self.localRadioNetIdLabel autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.view withOffset:160];
 
