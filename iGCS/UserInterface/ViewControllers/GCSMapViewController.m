@@ -73,7 +73,7 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
     self.currentGuidedAnnotation   = nil;
     self.requestedGuidedAnnotation = nil;
     
-    self.gotoAltitude = 50;
+    self.gotoAltitude = 25;
     
     self.showProposedFollowPos = NO;
     self.lastFollowMeUpdate = [NSDate date];
