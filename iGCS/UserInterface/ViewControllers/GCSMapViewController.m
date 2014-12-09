@@ -48,8 +48,8 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-static const NSUInteger AIRPLANE_ICON_SIZE = 48;
-
+NSString * const AIRCRAFT_ICON_NAME = @"quadrocopter.png";
+static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
 
 @implementation GCSMapViewController
 
@@ -64,8 +64,8 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     self.uavView = [[MKAnnotationView  alloc] initWithAnnotation:self.uavPos reuseIdentifier:@"uavView"];
-    self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:@"airplane.png"]
-                                          scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
+    self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:AIRCRAFT_ICON_NAME]
+                                          scaledToSize:CGSizeMake(AIRCRAFT_ICON_SIZE,AIRCRAFT_ICON_SIZE)
                                               rotation:0];
     self.uavView.userInteractionEnabled = YES;
     self.uavView.centerOffset = CGPointZero;
@@ -356,8 +356,8 @@ static const NSUInteger AIRPLANE_ICON_SIZE = 48;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:@"airplane.png"]
-                                                  scaledToSize:CGSizeMake(AIRPLANE_ICON_SIZE,AIRPLANE_ICON_SIZE)
+            self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:AIRCRAFT_ICON_NAME]
+                                                  scaledToSize:CGSizeMake(AIRCRAFT_ICON_SIZE,AIRCRAFT_ICON_SIZE)
                                                       rotation:attitudePkt.yaw];
             
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
