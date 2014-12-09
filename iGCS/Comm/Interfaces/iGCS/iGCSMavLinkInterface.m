@@ -58,6 +58,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
         // radio has entered config mode
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRadioEnteredConfigMode)
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
+        _heartbeatOnlyCount = 0;
     }
     return self;
 }
@@ -91,69 +92,85 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
         for (NSUInteger byteIdx = 0; byteIdx < length; byteIdx++) {
             if (mavlink_parse_char(MAVLINK_COMM_0, bytes[byteIdx], &msg, &status)) {
                 // We completed a packet, so...
-                if (msg.msgid == MAVLINK_MSG_ID_HEARTBEAT) {
-                    DDLogDebug(@"MavLink Heartbeat.");
-                    
-                    // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
-                    if (++self.heartbeatOnlyCount >= 5) {
-                        self.mavLinkInitialized = NO;
-                    }
-
-                    if (!self.mavLinkInitialized) {
+                switch (msg.msgid) {
+                    case MAVLINK_MSG_ID_HEARTBEAT:
+                        DDLogDebug(@"MavLink Heartbeat.");
                         
-                        self.mavLinkInitialized = YES;
-                        
-                        // Decode the heartbeat message
-                        mavlink_msg_heartbeat_decode(&msg, &heartbeat);
-                        mavlink_system.sysid  = msg.sysid;
-                        mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
-                        
-                        DDLogInfo(@"Sending request for MavLink messages.");
-                        
-                        // Send requests to set the stream rates
-
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_ALL, 0, 0); // stop all
-
-                        // only message requested for low datarate mode
-                        mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                             MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
-
-                        if (GCSStandardDataRateModeEnabled) {
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
-                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
-                                                                 MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
-
-                        // only start mission request if we are in normal data rate mode
-                        [self startReadMissionRequest];
-
+                        // If we haven't gotten anything but heartbeats in 5 seconds re-request the messages
+                        if ((++ _heartbeatOnlyCount) >= 5) {
+                            self.mavLinkInitialized = NO;
                         }
-
-                        // only send heartbeat in normal data rate mode
-                        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
-                            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                                                                    target:self
-                                                                                  selector:@selector(sendHeatbeatToAutopilot)
-                                                                                 userInfo:nil repeats:YES];
+                        
+                        if (!self.mavLinkInitialized) {
+                            
+                            self.mavLinkInitialized = YES;
+                            
+                            // Decode the heartbeat message
+                            mavlink_msg_heartbeat_decode(&msg, &heartbeat);
+                            mavlink_system.sysid  = msg.sysid;
+                            mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
+                            
+                            DDLogInfo(@"Sending request for MavLink messages.");
+                            
+                            // Send requests to set the stream rates
+                            
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_ALL, 0, 0); // stop all
+                            
+                            // only message requested for low datarate mode
+                            mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                 MAV_DATA_STREAM_EXTRA1, RATE_ATTITUDE, 1);
+                            
+                            if (GCSStandardDataRateModeEnabled) {
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                     MAV_DATA_STREAM_RAW_SENSORS, RATE_RAW_SENSORS, 1);
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                                                     MAV_DATA_STREAM_RC_CHANNELS, RATE_RC_CHANNELS, 1);
+                                
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                 MAV_DATA_STREAM_RAW_CONTROLLER, RATE_RAW_CONTROLLER, 1);
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                 MAV_DATA_STREAM_EXTENDED_STATUS, RATE_CHAN2, 1);
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                 MAV_DATA_STREAM_POSITION, RATE_GPS_POS_INT, 1);
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                 MAV_DATA_STREAM_EXTRA2, RATE_VFR_HUD, 1);
+                                mavlink_msg_request_data_stream_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                 MAV_DATA_STREAM_EXTRA3, RATE_EXTRA3, 1);
+                                
+                                
+                                // only start mission request if we are in normal data rate mode
+                                [self startReadMissionRequest];
+                                
+                            }
+                            
+                            // only send heartbeat in normal data rate mode
+                            if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
+                                self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                                       target:self
+                                                                                     selector:@selector(sendHeatbeatToAutopilot)
+                                                                                     userInfo:nil repeats:YES];
+                            }
+                            
                         }
-
-                    }
-                } else {
-                    // If we get any other message than heartbeat, we are getting the messages we requested
-                    self.heartbeatOnlyCount = 0;
+                        
+                        break;
+                    case MAVLINK_MSG_ID_RADIO_STATUS:
+                       // DDLogDebug(@"Mavlink msg Radio Status found (109)");
+                        break;
+                    case MAVLINK_MSG_ID_RADIO:
+                       // DDLogDebug(@"Mavlink msg Radio found (166)");
+                        break;
+                    case MAVLINK_MSG_ID_STATUSTEXT:
+                        break;
+                    case MAVLINK_MSG_ID_SYS_STATUS:
+                        break;
+                    default:
+                        // If we get any other message than heartbeat, we are getting the messages we requested
+                        self.heartbeatOnlyCount = 0;
+                        NSLog(@"The msg id is %d", msg.msgid);
+                        break;
                 }
-                
                 // Pass to the retrying request handler in case we need to process an ACK
                 [retryRequestHandler checkForAckOnCurrentRequest:msg];
                 
