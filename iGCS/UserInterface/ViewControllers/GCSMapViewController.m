@@ -205,11 +205,9 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
     self.showProposedFollowPos = YES;
-    [self updateFollowMePosition:vals];
 }
 
 - (void) deactivateFollowMe {
-    [self.followMeControlDelegate followMeDeactivate];
     self.showProposedFollowPos = NO;
 }
 
