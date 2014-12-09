@@ -1,7 +1,8 @@
 Resources
 =========
-Airplane icon
-- http://findicons.com/icon/70207/airplane (Creative Commons Attribution Non-commercial (by-nc))
+Quadrocopter icon (noun_80255_cc.png)
+ - http://thenounproject.com/term/quadcopter/22061/ Creative Commons Attribution 3.0 United States (CC BY 3.0 US))
+ - by Nithin Davis Nanthikkara (http://thenounproject.com/nithindavis)
 
 glypish-icons
 - http://glyphish.com/ (Free set published under a Creative Commons Attribution License)
