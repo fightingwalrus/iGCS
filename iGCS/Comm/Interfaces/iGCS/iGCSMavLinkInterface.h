@@ -28,6 +28,7 @@
 - (void) completedReadMissionRequest:(WaypointsHolder*)mission;
 - (void) issueRawMissionRequestList;
 - (void) issueRawMissionRequest:(uint16_t)sequence;
+- (void) processHeartbeat;
 - (void) requestDataStreams;
 - (void) stopRecevingMessages;
 

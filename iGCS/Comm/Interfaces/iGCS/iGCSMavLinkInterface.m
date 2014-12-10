@@ -94,35 +94,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                 // We completed a packet, so...
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
-                        DDLogDebug(@"MavLink Heartbeat.");
-                        
-                        // If we haven't gotten anything but heartbeats or Radio messages in 5 seconds re-request the messages
-                        if ((++ _heartbeatOnlyCount) >= 5) {
-                            self.mavLinkInitialized = NO;
-                        }
-                        
-                        if (!self.mavLinkInitialized) {
-                            
-                            self.mavLinkInitialized = YES;
-                            
-                            // Decode the heartbeat message
-                            mavlink_msg_heartbeat_decode(&msg, &heartbeat);
-                            mavlink_system.sysid  = msg.sysid;
-                            mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
-                            
-                            //Reqeuest the data streams to be sent
-                            [self requestDataStreams];
-                            
-                            // only send heartbeat in normal data rate mode
-                            if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
-                                self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                                                                       target:self
-                                                                                     selector:@selector(sendHeatbeatToAutopilot)
-                                                                                     userInfo:nil repeats:YES];
-                            }
-                            
-                        }
-                        
+                        [self processHeartbeat];                        
                         break;
                     case MAVLINK_MSG_ID_RADIO_STATUS:
                         DDLogDebug(@"Mavlink msg Radio Status found (109)");
@@ -175,6 +147,37 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 - (void) issueRawMissionAck {
     // Finish Read MAV waypoint protocol transaction
     mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_MISSION_ACCEPTED);
+}
+
+- (void) processHeartbeat {
+    DDLogDebug(@"MavLink Heartbeat.");
+    
+    // If we haven't gotten anything but heartbeats or Radio messages in 5 seconds re-request the messages
+    if ((++ _heartbeatOnlyCount) >= 5) {
+        self.mavLinkInitialized = NO;
+    }
+    
+    if (!self.mavLinkInitialized) {
+        
+        self.mavLinkInitialized = YES;
+        
+        // Decode the heartbeat message
+        mavlink_msg_heartbeat_decode(&msg, &heartbeat);
+        mavlink_system.sysid  = msg.sysid;
+        mavlink_system.compid = (msg.compid+1) % 255; // Use a compid that is distinct from the vehicle's
+        
+        //Reqeuest the data streams to be sent
+        [self requestDataStreams];
+        
+        // only send heartbeat in normal data rate mode
+        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
+            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                   target:self
+                                                                 selector:@selector(sendHeatbeatToAutopilot)
+                                                                 userInfo:nil repeats:YES];
+        }
+        
+    }
 }
 
 
