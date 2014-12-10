@@ -98,6 +98,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         break;
                     case MAVLINK_MSG_ID_RADIO_STATUS:
                         DDLogDebug(@"Mavlink msg Radio Status found (109)");
+                        DDLogDebug(@"Remote RSSI is %u", mavlink_msg_radio_status_get_remrssi(&msg));
+                        if (mavlink_msg_radio_status_get_remrssi(&msg) > 50){
+                            _radiosLinked = YES;
+                        }
                         break;
                     case MAVLINK_MSG_ID_RADIO:
                         DDLogDebug(@"Mavlink msg Radio found (166)");
@@ -109,7 +113,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                     default:
                         // If we get any other message than heartbeat or radio messages, we are getting the messages we requested
                         self.heartbeatOnlyCount = 0;
-                        DDLogDebug(@"The msg id is %d", msg.msgid);
+                        DDLogDebug(@"The msg id is %d (0x%x)", msg.msgid, msg.msgid);
                         break;
                 }
                 // Pass to the retrying request handler in case we need to process an ACK
@@ -158,6 +162,16 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     }
     
     if (!self.mavLinkInitialized) {
+        // only send heartbeat in normal data rate mode
+        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
+            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                   target:self
+                                                                 selector:@selector(sendHeatbeatToAutopilot)
+                                                                 userInfo:nil repeats:YES];
+        }
+    }
+    
+    if ((!self.mavLinkInitialized) && _radiosLinked) {
         
         self.mavLinkInitialized = YES;
         
@@ -169,13 +183,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
         //Reqeuest the data streams to be sent
         [self requestDataStreams];
         
-        // only send heartbeat in normal data rate mode
-        if (GCSStandardDataRateModeEnabled && !self.heartbeatTimer) {
-            self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                                                   target:self
-                                                                 selector:@selector(sendHeatbeatToAutopilot)
-                                                                 userInfo:nil repeats:YES];
-        }
+
         
     }
 }

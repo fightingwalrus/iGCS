@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "MavLinkUtility.h"
 
-#define MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT      0.5 // seconds
+#define MAVLINK_RX_MISSION_RETRANSMISSION_TIMEOUT      0.25 // seconds
 
 // FIXME: from reading the APM Mission Planner sources, it appears some fine tuning might be
 // required on both the timeouts and the number of retries
-#define MAVLINK_TX_MISSION_ITEM_RETRANSMISSION_TIMEOUT       1.0 // seconds
-#define MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT 1.0 // seconds
+#define MAVLINK_TX_MISSION_ITEM_RETRANSMISSION_TIMEOUT       0.3 // seconds
+#define MAVLINK_TX_MISSION_ITEM_COUNT_RETRANSMISSION_TIMEOUT 0.6 // seconds
 
-#define MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT          2.0 // seconds
+#define MAVLINK_SET_WP_RETRANSMISSION_TIMEOUT          0.25 // seconds
 
 @class MavLinkRetryingRequestHandler;
 
