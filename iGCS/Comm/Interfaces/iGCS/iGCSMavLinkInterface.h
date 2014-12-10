@@ -16,7 +16,7 @@
 
 
 @property (strong) MainViewController *mainVC;
-@property NSUInteger heartbeatOnlyCount;
+@property (nonatomic, assign) NSUInteger heartbeatOnlyCount;
 @property BOOL mavLinkInitialized;
 
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;
@@ -28,6 +28,8 @@
 - (void) completedReadMissionRequest:(WaypointsHolder*)mission;
 - (void) issueRawMissionRequestList;
 - (void) issueRawMissionRequest:(uint16_t)sequence;
+- (void) processHeartbeat;
+- (void) requestDataStreams;
 - (void) stopRecevingMessages;
 
 - (void) startWriteMissionRequest:(WaypointsHolder*)mission;
