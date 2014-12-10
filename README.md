@@ -1,11 +1,11 @@
 ![alt tag](https://raw.github.com/fightingwalrus/iGCS/master/iGCS/Icons/Icon-50.png) iGCS
 ====
 
-iGCS is a UAV Ground Control Station for iPad. 
+iGCS is a UAV Ground Control Station for iPad and iPhone. 
 
 It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://dev.ardupilot.com), the Pixhawk as used in the 3DR Iris, and the AR.Drone 2.0 (with Flight Recorder).
 
-At present, it requires the use of a RedPark Serial cable for connecting to serial device such as an XBee or XTend radio. Support for the Fighting Walrus Radio is under active development.
+It requires the iDroneLink available at www.fightingwalrus.com or a RedPark Serial cable for connecting to serial device such as an XBee or XTend radio for development purposes.
 
 For further details, see:
 - http://www.fightingwalrus.com
@@ -21,19 +21,9 @@ Screenshots
 Building
 ========
 
-Recent additions to the project include the kxvideo submodule. kxvideo in turn relies on ffmpeg and the gas preprocessor. Both are included as submodules to the kxvideo project so the build steps are a bit more involved now.
-
 1. clone the project
 2. cd iGCS
 3. ./scripts/updatedepends.sh
-4. cd submodules/kxmovie
-5. rake build_ffmpeg
-(The first time you will be warned to install the gas preprocessor, follow the instructions provided)
-8. Run the iCGS project in Xcode
-
-*Note: building ffmpeg as outlined above no longer works with Xcode 5. Please use the main iGCS target 
-for now as the kxmovie/ffmpeg dependencies have been temporarily moved to the iGCS-video-streaming target.*
-
 
 Updating the MAVLink library
 ============================

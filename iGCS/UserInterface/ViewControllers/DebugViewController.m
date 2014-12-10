@@ -50,21 +50,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSString *videoSource = [[NSUserDefaults standardUserDefaults] valueForKey:@"videoSource"];
-    if ([videoSource isEqualToString:@"testStream"]) {
-        self.videoSource.selectedSegmentIndex = 0;
-    } else {
-        self.videoSource.selectedSegmentIndex = 1;
-    }
-    
-    NSString *videoDisplayLocation = [[NSUserDefaults standardUserDefaults] valueForKey:@"videoDisplayLocation"];
-    if ([videoDisplayLocation isEqualToString:@"corner"]) {
-        self.videoDisplayLocation.selectedSegmentIndex = 0;
-    } else {
-        self.videoDisplayLocation.selectedSegmentIndex = 1;
-    }
-    
     [ExceptionHandler start:self];
 }
 
@@ -94,35 +79,6 @@
 
 - (IBAction)bluetoothTxClicked:(id)sender {
     [[CommController sharedInstance] startBluetoothTx];
-}
-
-- (IBAction)videoSourceValueChanged:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([segmentedControl selectedSegmentIndex] == 1) {
-        DDLogDebug(@"Video Source: Z3");
-        [userDefaults setObject:@"Z3" forKey:@"videoSource"];
-    } else {
-        DDLogDebug(@"Video Source: Test Stream");
-        [userDefaults setObject:@"testStream" forKey:@"videoSource"];
-    }
-    [userDefaults synchronize];
-}
-
-
-- (IBAction)videoDisplayLocationValueChanged:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([segmentedControl selectedSegmentIndex] == 1) {
-        DDLogDebug(@"Video Location: Full Screen");
-        [userDefaults setObject:@"fullScreen" forKey:@"videoDisplayLocation"];
-    } else {
-        DDLogDebug(@"Video Source: Test Stream");
-        [userDefaults setObject:@"corner" forKey:@"videoDisplayLocation"];
-    }
-    [userDefaults synchronize];
 }
 
 - (IBAction)ftpClicked:(id)sender {
