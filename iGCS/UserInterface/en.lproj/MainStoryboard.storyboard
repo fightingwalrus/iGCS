@@ -1074,64 +1074,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Network Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-Up-iNO">
-                                <rect key="frame" x="620" y="110" width="145" height="26"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzc-Sg-SCE">
-                                <rect key="frame" x="620" y="144" width="230" height="44"/>
-                                <state key="normal" title="Bluetooth RX">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="bluetoothCentralClicked:" destination="3" eventType="touchUpInside" id="MhI-Mg-UGP"/>
-                                    <action selector="bluetoothRxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="0nt-Lj-vWY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2d9-A1-3No">
-                                <rect key="frame" x="620" y="195" width="230" height="44"/>
-                                <state key="normal" title="Bluetooth Tx">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="bluetoothPeripheralClicked:" destination="3" eventType="touchUpInside" id="eH8-Le-158"/>
-                                    <action selector="bluetoothTxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="nSV-tJ-0zA"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Video Source" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3I-9g-Mub" userLabel="Label - Video Source">
-                                <rect key="frame" x="620" y="20" width="126" height="26"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UfW-BU-E7h">
-                                <rect key="frame" x="620" y="54" width="105" height="29"/>
-                                <segments>
-                                    <segment title="Test"/>
-                                    <segment title="Z3"/>
-                                </segments>
-                                <connections>
-                                    <action selector="videoSourceValueChanged:" destination="PSV-eg-xmf" eventType="valueChanged" id="5hz-aU-3ou"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Video Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pe-GY-KsJ">
-                                <rect key="frame" x="764" y="20" width="133" height="26"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="syq-fH-S2E">
-                                <rect key="frame" x="764" y="54" width="225" height="29"/>
-                                <segments>
-                                    <segment title="Corner"/>
-                                    <segment title="Full Screen"/>
-                                </segments>
-                                <connections>
-                                    <action selector="videoDisplayLocationValueChanged:" destination="PSV-eg-xmf" eventType="valueChanged" id="pRf-zN-ygA"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MV2-W6-gnA">
                                 <rect key="frame" x="508" y="69" width="30" height="30"/>
                                 <state key="normal" title="FTP">
@@ -1186,6 +1128,32 @@
                                     <action selector="specClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="SbB-2v-Xie"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Network Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-Up-iNO">
+                                <rect key="frame" x="621" y="46" width="145" height="26"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzc-Sg-SCE">
+                                <rect key="frame" x="621" y="80" width="230" height="44"/>
+                                <state key="normal" title="Bluetooth RX">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bluetoothCentralClicked:" destination="3" eventType="touchUpInside" id="MhI-Mg-UGP"/>
+                                    <action selector="bluetoothRxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="0nt-Lj-vWY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2d9-A1-3No">
+                                <rect key="frame" x="621" y="131" width="230" height="44"/>
+                                <state key="normal" title="Bluetooth Tx">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bluetoothPeripheralClicked:" destination="3" eventType="touchUpInside" id="eH8-Le-158"/>
+                                    <action selector="bluetoothTxClicked:" destination="PSV-eg-xmf" eventType="touchUpInside" id="nSV-tJ-0zA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1200,8 +1168,6 @@
                     <connections>
                         <outlet property="consoleTextView" destination="yF1-8o-Uj0" id="tz7-lU-HLL"/>
                         <outlet property="errorsTextView" destination="z9D-OV-EQr" id="QtZ-Eb-1rf"/>
-                        <outlet property="videoDisplayLocation" destination="syq-fH-S2E" id="fis-8e-e5e"/>
-                        <outlet property="videoSource" destination="UfW-BU-E7h" id="3Mx-uS-llT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIl-9f-qkK" userLabel="First Responder" sceneMemberID="firstResponder"/>
