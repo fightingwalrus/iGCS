@@ -17,8 +17,8 @@
 
 @property (strong) MainViewController *mainVC;
 @property (nonatomic, assign) NSUInteger heartbeatOnlyCount;
-@property BOOL mavLinkInitialized;
-@property BOOL radiosLinked;
+@property (nonatomic, assign, getter=isRadioLinked) BOOL radioLinked;
+@property(nonatomic, assign, getter= isMavLinkInitialized) BOOL mavLinkInitialized;
 
 @property (nonatomic, retain) MavLinkLogger *mavlinkLogger;
 @property (nonatomic, retain) NSTimer* heartbeatTimer;

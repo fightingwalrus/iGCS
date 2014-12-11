@@ -100,7 +100,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                         DDLogDebug(@"Mavlink msg Radio Status found (109)");
                         DDLogDebug(@"Remote RSSI is %u", mavlink_msg_radio_status_get_remrssi(&msg));
                         if (mavlink_msg_radio_status_get_remrssi(&msg) > 50){
-                            _radiosLinked = YES;
+                            self.radioLinked = YES;
                         }
                         break;
                     case MAVLINK_MSG_ID_RADIO:
@@ -171,7 +171,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
         }
     }
     
-    if ((!self.mavLinkInitialized) && _radiosLinked) {
+    if ((!self.mavLinkInitialized) && self.radioLinked) {
         
         self.mavLinkInitialized = YES;
         
