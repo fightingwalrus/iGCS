@@ -237,7 +237,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 
-#define EAD_INPUT_BUFFER_SIZE 128
+#define EAD_INPUT_BUFFER_SIZE 256
 
 - (void)readDataFromStreamToBuffer {
     DDLogVerbose(@"FightingWalrusInterface: readDataFromStreamToBuffer");
