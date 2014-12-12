@@ -20,7 +20,7 @@
 // local interfaces
 #import "iGCSMavLinkInterface.h"
 #import "RadioConfig.h"
-#import "GCSFWRFirmwareInterface.h"
+#import "GCSAccessoryFirmwareInterface.h"
 
 #import "RNBluetoothInterface.h"
 #import "FightingWalrusInterface.h"
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
 // local interfaces
 @property (nonatomic, retain) iGCSMavLinkInterface *mavLinkInterface;
 @property (nonatomic, retain) iGCSRadioConfig *radioConfig;
-@property (nonatomic, strong) GCSFWRFirmwareInterface *fwrFirmwareInterface;
+@property (nonatomic, strong) GCSAccessoryFirmwareInterface *accessoryFirmwareInterface;
 
 // remote interfaces
 @property (nonatomic, retain) RNBluetoothInterface *rnBluetooth;
@@ -71,4 +71,4 @@ typedef NS_ENUM(NSUInteger, GCSAccessory) {
 
 @end
 
-extern NSString * const GCSCommControllerFightingWalrusRadioNotConnected;
+extern NSString * const GCSCommControllerRadioNotConnected;

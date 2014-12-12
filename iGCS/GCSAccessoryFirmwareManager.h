@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GCSFirmwareUpdateManager : NSObject <UIAlertViewDelegate>
+@interface GCSAccessoryFirmwareManager : NSObject <UIAlertViewDelegate>
 -(instancetype)initWithTargetView:(UIView *)aTargetView NS_DESIGNATED_INITIALIZER;
 @end

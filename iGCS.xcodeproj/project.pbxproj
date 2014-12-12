@@ -53,10 +53,10 @@
 		1842F8D01892D2F80050F680 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C71892D2F80050F680 /* Icon-58.png */; };
 		1842F8D21892D2F80050F680 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C81892D2F80050F680 /* Icon-80.png */; };
 		1842F8D41892D2F80050F680 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C91892D2F80050F680 /* Icon-100.png */; };
-		1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
-		1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */; };
-		1845DA781979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */; };
-		1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */; };
+		1845DA4819778ED9008945F8 /* GCSAccessoryFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSAccessoryFirmwareInterface.m */; };
+		1845DA4919778ED9008945F8 /* GCSAccessoryFirmwareInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA4719778ED9008945F8 /* GCSAccessoryFirmwareInterface.m */; };
+		1845DA781979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m */; };
+		1845DA791979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA771979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m */; };
 		1845DA85197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */; };
 		1845DA86197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */; };
 		1851D84F191AE00400ED5C87 /* GCSRadioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */; };
@@ -91,8 +91,8 @@
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
 		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
-		18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
-		18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */; };
+		18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */; };
+		18B7541D197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */; };
 		18B7F28F1955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
 		18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */; };
 		18B7F299195554CF00D2406A /* iGCSRadioConfig+Commands.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */; };
@@ -487,10 +487,10 @@
 		1842F8C81892D2F80050F680 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		1842F8C91892D2F80050F680 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
-		1845DA4619778ED9008945F8 /* GCSFWRFirmwareInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFWRFirmwareInterface.h; sourceTree = "<group>"; };
-		1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFWRFirmwareInterface.m; sourceTree = "<group>"; };
-		1845DA761979E5CD008945F8 /* GCSFirmwareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUtils.h; sourceTree = "<group>"; };
-		1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUtils.m; sourceTree = "<group>"; };
+		1845DA4619778ED9008945F8 /* GCSAccessoryFirmwareInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAccessoryFirmwareInterface.h; sourceTree = "<group>"; };
+		1845DA4719778ED9008945F8 /* GCSAccessoryFirmwareInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAccessoryFirmwareInterface.m; sourceTree = "<group>"; };
+		1845DA761979E5CD008945F8 /* GCSAccessoryFirmwareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAccessoryFirmwareUtils.h; sourceTree = "<group>"; };
+		1845DA771979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAccessoryFirmwareUtils.m; sourceTree = "<group>"; };
 		1845DA83197B8834008945F8 /* GCSActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSActivityIndicatorView.h; sourceTree = "<group>"; };
 		1845DA84197B8834008945F8 /* GCSActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSActivityIndicatorView.m; sourceTree = "<group>"; };
 		1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSRadioSettings.h; sourceTree = "<group>"; };
@@ -743,8 +743,8 @@
 		18B6EA0F19DF84050084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B6EA1319DF84EC0084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B6EA1719DF857A0084B666 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSFirmwareUpdateManager.h; sourceTree = "<group>"; };
-		18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSFirmwareUpdateManager.m; sourceTree = "<group>"; };
+		18B7541A197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAccessoryFirmwareManager.h; sourceTree = "<group>"; };
+		18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAccessoryFirmwareManager.m; sourceTree = "<group>"; };
 		18B7F28D1955520900D2406A /* iGCSRadioConfig+CommandBatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iGCSRadioConfig+CommandBatches.h"; sourceTree = "<group>"; };
 		18B7F28E1955520900D2406A /* iGCSRadioConfig+CommandBatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iGCSRadioConfig+CommandBatches.m"; sourceTree = "<group>"; };
 		18B7F296195552BC00D2406A /* iGCSRadioConfig_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGCSRadioConfig_Private.h; sourceTree = "<group>"; };
@@ -1158,8 +1158,8 @@
 				18B7F298195554CF00D2406A /* iGCSRadioConfig+Commands.m */,
 				186AFA2D18F90CAD00541FD6 /* GCSSikAT.h */,
 				186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */,
-				1845DA4619778ED9008945F8 /* GCSFWRFirmwareInterface.h */,
-				1845DA4719778ED9008945F8 /* GCSFWRFirmwareInterface.m */,
+				1845DA4619778ED9008945F8 /* GCSAccessoryFirmwareInterface.h */,
+				1845DA4719778ED9008945F8 /* GCSAccessoryFirmwareInterface.m */,
 			);
 			path = iGCS;
 			sourceTree = "<group>";
@@ -1767,10 +1767,10 @@
 				CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */,
 				CA07822F192716A0007FCFD5 /* SiKFirmware.h */,
 				CA078230192716A0007FCFD5 /* SiKFirmware.m */,
-				1845DA761979E5CD008945F8 /* GCSFirmwareUtils.h */,
-				1845DA771979E5CD008945F8 /* GCSFirmwareUtils.m */,
-				18B7541A197DCB4D0075B7BD /* GCSFirmwareUpdateManager.h */,
-				18B7541B197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m */,
+				1845DA761979E5CD008945F8 /* GCSAccessoryFirmwareUtils.h */,
+				1845DA771979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m */,
+				18B7541A197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.h */,
+				18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */,
 			);
 			name = Firmware;
 			sourceTree = "<group>";
@@ -2393,17 +2393,17 @@
 				18B9FAE918B2F7AF00668660 /* SetWPRequest.m in Sources */,
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
 				1845DA86197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
-				1845DA4919778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
+				1845DA4919778ED9008945F8 /* GCSAccessoryFirmwareInterface.m in Sources */,
 				186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				01CEC56C19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
-				1845DA791979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
+				1845DA791979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m in Sources */,
 				CA10B4CF1A09E1200082BFAE /* MissionItemEditCell.m in Sources */,
 				18B9FAED18B2F7AF00668660 /* MissionItemField.m in Sources */,
 				18B9FAEE18B2F7AF00668660 /* RequestedPointAnnotation.m in Sources */,
 				CA154E7E19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
-				18B7541D197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
+				18B7541D197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */,
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
 				18E58A92198993EB0025A516 /* Logger.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
@@ -2478,7 +2478,7 @@
 				CAFBD035180A674100F5BCDB /* MavLinkRetryingRequestHandler.m in Sources */,
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				01CEC5DC19D9FA3800320A34 /* BRRequestDownload.m in Sources */,
-				1845DA781979E5CD008945F8 /* GCSFirmwareUtils.m in Sources */,
+				1845DA781979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m in Sources */,
 				CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
@@ -2498,7 +2498,7 @@
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
-				18B7541C197DCB4D0075B7BD /* GCSFirmwareUpdateManager.m in Sources */,
+				18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,
 				CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
@@ -2516,7 +2516,7 @@
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
 				CAFD1CC91789670E00B5EC88 /* CustomPointAnnotation.m in Sources */,
-				1845DA4819778ED9008945F8 /* GCSFWRFirmwareInterface.m in Sources */,
+				1845DA4819778ED9008945F8 /* GCSAccessoryFirmwareInterface.m in Sources */,
 				01CEC5D619D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
 				CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */,
 				01EC4F0D1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */,

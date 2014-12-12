@@ -9,9 +9,9 @@
 #import "CommController.h"
 #import "Logger.h"
 #import "SoundUtils.h"
-#import "GCSFirmwareUtils.h"
+#import "GCSAccessoryFirmwareUtils.h"
 
-NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fightingwalrus.commcontroller.fwr.notconnected";
+NSString * const GCSCommControllerRadioNotConnected = @"com.fightingwalrus.commcontroller.radio.notconnected";
 
 @interface CommController()
 @property (nonatomic, strong) UIAlertView *alertView;
@@ -135,7 +135,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
 
     } else {
         DDLogDebug(@"No supported accessory connected");
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerRadioNotConnected object:nil];
     }
 }
 
@@ -146,13 +146,13 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     GCSAccessory accessory = [self connectedAccessory];
     if (accessory == GCSAccessoryFightingWalrusRadio) {
 
-        self.fwrFirmwareInterface = [[GCSFWRFirmwareInterface alloc] init];
+        self.accessoryFirmwareInterface = [[GCSAccessoryFirmwareInterface alloc] init];
         self.fightingWalrusInterface = [FightingWalrusInterface createWithProtocolString:GCSProtocolStringUpdate];
-        [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.fwrFirmwareInterface];
+        [self setupNewConnectionsWithRemoteInterface:self.fightingWalrusInterface andLocalInterface:self.accessoryFirmwareInterface];
 
     } else {
         DDLogDebug(@"No supported accessory connected");
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSCommControllerRadioNotConnected object:nil];
     }
 }
 
@@ -215,7 +215,7 @@ NSString * const GCSCommControllerFightingWalrusRadioNotConnected = @"com.fighti
     for (EAAccessory *accessory in accessories) {
         DDLogDebug(@"%@",accessory.manufacturer);
 
-        if ([GCSFirmwareUtils isAccessorySupportedWithAccessory:accessory]) {
+        if ([GCSAccessoryFirmwareUtils isAccessorySupportedWithAccessory:accessory]) {
             gcsAccessory = GCSAccessoryFightingWalrusRadio;
             break;
         }

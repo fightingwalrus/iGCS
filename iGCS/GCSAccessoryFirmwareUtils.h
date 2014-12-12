@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <ExternalAccessory/ExternalAccessory.h>
 
-@interface GCSFirmwareUtils : NSObject
+@interface GCSAccessoryFirmwareUtils : NSObject
 +(BOOL)isFirmwareUpdateNeededWithFirmwareRevision:(NSString *) firmwareRevision;
-+(void)notifyFwrFirmwareUpateNeeded;
++(void)notifyOfFirmwareUpateNeededWithModelNumber:(NSString *) modelNumber;
 +(void)setAwaitingPostUpgradeDisconnect:(BOOL) value;
 +(BOOL)isAccessorySupportedWithAccessory:(EAAccessory *)accessory;
 @end
 
-extern NSString * const GCSFirmwareUtilsFwrFirmwareNeedsUpdated;
-extern NSString * const GCSCurrentFirmwareFileName;
-extern NSString * const GCSFirmwareVersionInBundle;
-extern NSString * const GCSCompanyName;
+extern NSString * const GCSAccessoryFirmwareNeedsUpdated;
+extern NSString * const GCSAccessoryCurrentFirmwareFileName;
+extern NSString * const GCSAccessoryFirmwareVersionInBundle;
+extern NSString * const GCSAccessoryCompanyName;

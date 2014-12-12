@@ -197,7 +197,7 @@ static void *SVKvoContext = &SVKvoContext;
 }
 
 -(void)sendFirmwareToFWR {
-    [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
+    [[CommController sharedInstance].accessoryFirmwareInterface updateFirmware];
 }
 
 #pragma mark - NSNotifcation handlers
