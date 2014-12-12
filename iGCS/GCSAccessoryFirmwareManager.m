@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIAlertView *firmwareUpdateCompleteAlert;
 @property (nonatomic, strong) UIAlertView *notConnectedAlert;
 @property (nonatomic, strong) GCSActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) NSDictionary *accessoryModelName;
 @property (nonatomic, weak) UIView *targetView;
 @end
 
@@ -37,7 +38,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateFailed)
                                                      name:GCSAccessoryFirmwareUpdateFail object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewRadioNotConnectedWithNoti:)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewRadioNotConnected)
                                                      name:GCSCommControllerRadioNotConnected object:nil];
 
     }
@@ -51,7 +52,7 @@
 #pragma mark  - NSNotification handlers and UI
 -(void)alertUserToUpateFirmwareWithNoti:(NSNotification *)noti {
     NSString *message = [NSString stringWithFormat:@"The %@ firmware needs to be upgraded.",
-                         [self accessoryNameForModel:noti.object]];
+                         [(EAAccessory *)noti.object name]];
 
     self.updateFirmwareAlert = [[UIAlertView alloc] initWithTitle:@"Update Firmware"
                                                           message:message
@@ -63,7 +64,7 @@
 
 -(void)alertViewFirmwareUpdateCompleteWithNoti:(NSNotification *)noti {
     NSString *message = [NSString stringWithFormat:@"Please disconnect and reconnect %@ to complete firmware upgrade.",
-                         [self accessoryNameForModel:noti.object]];
+                         [(EAAccessory *)noti.object name]];
 
     self.firmwareUpdateCompleteAlert = [[UIAlertView alloc] initWithTitle:@"Firmware Updated"
                                                                   message:message
@@ -73,12 +74,10 @@
     [self.firmwareUpdateCompleteAlert show];
 }
 
--(void)alertViewRadioNotConnectedWithNoti:(NSNotification *)noti {
-    NSString *message = [NSString stringWithFormat:@"The %@ is not connected.",
-                         [self accessoryNameForModel:noti.object]];
+-(void)alertViewRadioNotConnected {
 
     self.notConnectedAlert = [[UIAlertView alloc] initWithTitle:@"Accessory not connected"
-                                                          message:message
+                                                          message:@"A supported accessory is not connected."
                                                          delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
@@ -119,16 +118,6 @@
     } else {
         [self stopAndRemoveActivityIndicator];
     }
-}
-
-#pragma mark - helpers
--(NSString *)accessoryNameForModel:(NSString *) model {
-    NSDictionary *dict = @{@"iDLITP915HR22855230005048": @"iDroneLink",
-                           @"IDLITP915HR1": @"iDroneLink",
-                           @"IDLITP433HR1": @"iDroneLink",
-                           @"FWR30P915HR1855230005024": @"Fighting Walrus Radio"};
-
-    return dict[model] ? : @"Accessory";
 }
 
 @end

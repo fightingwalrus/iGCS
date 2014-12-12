@@ -10,6 +10,7 @@
 #import  "GCSAccessoryFirmwareUtils.h"
 #import "FileUtils.h"
 #import <zlib.h>
+#import "CommController.h"
 
 NSString * const GCSAccessoryFirmwareUpdateSuccess = @"com.fightingwalrus.fwrfirmware.updatesuccess";
 NSString * const GCSAccessoryFirmwareUpdateFail = @"com.fightingwalrus.fwrfirmware.updatefail";
@@ -27,8 +28,19 @@ NSString * const GCSAccessoryFirmwareUpdateFail = @"com.fightingwalrus.fwrfirmwa
 
     if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
         DDLogInfo(@"FWR Firmware updaded successfully");
+
+        NSArray * connectedAccessories = [EAAccessoryManager sharedAccessoryManager].connectedAccessories;
+        EAAccessory *supportedConnectedAccessory;
+        for (EAAccessory *accessory in connectedAccessories) {
+            if ([GCSAccessoryFirmwareUtils isAccessorySupportedWithAccessory:accessory]) {
+                supportedConnectedAccessory = accessory;
+                break;
+            }
+        }
+
         [GCSAccessoryFirmwareUtils setAwaitingPostUpgradeDisconnect:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareUpdateSuccess object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareUpdateSuccess
+                                                            object:supportedConnectedAccessory];
 
     }else if ([response rangeOfString:@"FAIL"].location !=NSNotFound) {
         DDLogWarn(@"FWR Firmware failed to update");

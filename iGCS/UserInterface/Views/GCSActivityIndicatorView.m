@@ -33,9 +33,17 @@
 
 -(void)centerOnView:(UIView *)view {
     CGSize thisViewSize = view.bounds.size;
-    self.center = CGPointMake(thisViewSize.width / 2.0, thisViewSize.height / 2.0);
+
+    // Handle centering on both iOS 7 and iOS 8 where the frame is
+    // now orientation aware. Current implementation expects device to be in
+    // landscape view.
+    self.center = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) ?
+    CGPointMake(thisViewSize.width / 2.0, thisViewSize.height / 2.0):
+    CGPointMake(thisViewSize.height / 2.0, thisViewSize.width / 2.0);
+
     [view addSubview:self];
     [view bringSubviewToFront:self];
+
 }
 
 @end

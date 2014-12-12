@@ -22,9 +22,9 @@ static BOOL _awaitingPostUpgradeDisconnect;
                 [GCSAccessoryFirmwareVersionInBundle compare:firmwareRevision options:NSNumericSearch] == NSOrderedDescending);
 }
 
-+(void)notifyOfFirmwareUpateNeededWithModelNumber:(NSString *) modelNumber {
++(void)notifyOfFirmwareUpateNeededForAccessory:(EAAccessory *) accessory {
     dispatch_async(dispatch_get_main_queue(),^{
-         [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareNeedsUpdated object:modelNumber];
+         [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareNeedsUpdated object:accessory];
     });
 }
 
