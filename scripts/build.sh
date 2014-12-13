@@ -89,7 +89,7 @@ CREDITS_PLIST_FILE="$PROJECT_ROOT/iGCS/Settings.bundle/Acknowledgements.plist"
 "$PROJECT_ROOT/3rd-party/LicenseGenerator-iOS/credits.py" -d "$LICENSE_FILE_ROOT_DIR" -o "$CREDITS_PLIST_FILE"
 
 # commit version bump
-APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-beta.$(agvtool vers -terse)"
+APP_FULL_VERSION_NAME="$(agvtool mvers -terse1 | tail -1)-build.$(agvtool vers -terse)"
 git commit -am "Auto build: Bump version to v$APP_FULL_VERSION_NAME"
 
 git tag -am "Auto version bump and tag during build" "v$APP_FULL_VERSION_NAME" 

@@ -7,8 +7,8 @@
 //
 
 #import "FightingWalrusInterface.h"
-#import "GCSFWRFirmwareInterface.h"
-#import "GCSFirmwareUtils.h"
+#import "GCSAccessoryFirmwareInterface.h"
+#import "GCSAccessoryFirmwareUtils.h"
 
 NSString * const GCSProtocolStringTelemetry = @"com.fightingwalrus.telemetry";
 NSString * const GCSProtocolStringConfig = @"com.fightingwalrus.config";
@@ -53,7 +53,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
         DDLogInfo(@"accessory count: %lu", (unsigned long)[_accessoryList count]);
         if ([self.accessoryList count]) {
             for(EAAccessory *currentAccessory in _accessoryList) {
-                BOOL comparison = [GCSFirmwareUtils isAccessorySupportedWithAccessory:currentAccessory];
+                BOOL comparison = [GCSAccessoryFirmwareUtils isAccessorySupportedWithAccessory:currentAccessory];
                 if(comparison){
                     self.selectedAccessory = currentAccessory;
                     DDLogDebug(@"Manufacturer of our device is %@",_selectedAccessory.manufacturer);
@@ -206,7 +206,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 }
 
 -(void)disconnectSession {
-    [GCSFirmwareUtils setAwaitingPostUpgradeDisconnect:NO];
+    [GCSAccessoryFirmwareUtils setAwaitingPostUpgradeDisconnect:NO];
     if (![self isAccessoryConnected]){
 		[self closeSession];
     }
@@ -273,9 +273,8 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 
 -(void)notifyIfFirmwareUpdateNeeded {
     // check if we need to update fwr firmware
-
-    if ([GCSFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:self.selectedAccessory.firmwareRevision]) {
-        [GCSFirmwareUtils notifyFwrFirmwareUpateNeeded];
+    if ([GCSAccessoryFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:self.selectedAccessory.firmwareRevision]) {
+        [GCSAccessoryFirmwareUtils notifyOfFirmwareUpateNeededForAccessory:self.selectedAccessory];
     }
 }
 

@@ -6,15 +6,16 @@
 //
 //
 
-#import "GCSFWRFirmwareInterface.h"
-#import  "GCSFirmwareUtils.h"
+#import "GCSAccessoryFirmwareInterface.h"
+#import  "GCSAccessoryFirmwareUtils.h"
 #import "FileUtils.h"
 #import <zlib.h>
+#import "CommController.h"
 
-NSString * const GCSFirmewareIntefaceFirmwareUpdateSuccess = @"com.fightingwalrus.fwrfirmware.updatesuccess";
-NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.fwrfirmware.updatefail";
+NSString * const GCSAccessoryFirmwareUpdateSuccess = @"com.fightingwalrus.fwrfirmware.updatesuccess";
+NSString * const GCSAccessoryFirmwareUpdateFail = @"com.fightingwalrus.fwrfirmware.updatefail";
 
-@implementation GCSFWRFirmwareInterface
+@implementation GCSAccessoryFirmwareInterface
 
 -(void)consumeData:(const uint8_t*)bytes length:(NSUInteger)length {
 
@@ -27,25 +28,36 @@ NSString * const GCSFirmewareIntefaceFirmwareUpdateFail = @"com.fightingwalrus.f
 
     if ([response rangeOfString:@"SUCCESS"].location != NSNotFound) {
         DDLogInfo(@"FWR Firmware updaded successfully");
-        [GCSFirmwareUtils setAwaitingPostUpgradeDisconnect:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateSuccess object:nil];
+
+        NSArray * connectedAccessories = [EAAccessoryManager sharedAccessoryManager].connectedAccessories;
+        EAAccessory *supportedConnectedAccessory;
+        for (EAAccessory *accessory in connectedAccessories) {
+            if ([GCSAccessoryFirmwareUtils isAccessorySupportedWithAccessory:accessory]) {
+                supportedConnectedAccessory = accessory;
+                break;
+            }
+        }
+
+        [GCSAccessoryFirmwareUtils setAwaitingPostUpgradeDisconnect:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareUpdateSuccess
+                                                            object:supportedConnectedAccessory];
 
     }else if ([response rangeOfString:@"FAIL"].location !=NSNotFound) {
         DDLogWarn(@"FWR Firmware failed to update");
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareUpdateFail object:nil];
     }
 }
 
 -(void) close {
-    DDLogDebug(@"GCSFWRFirmwareInterface.close is a noop");
+    DDLogDebug(@"GCSAccessoryFirmwareInterface.close is a noop");
 }
 
--(void)updateFwrFirmware {
+-(void)updateFirmware {
     DDLogDebug(@"updateFwrFirmware");
     NSData *firmware = [FileUtils dataFromFileInMainBundleWithName:@"walrus.bin"];
 
     if (!firmware) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareUpdateFail object:nil];
         return;
     }
 

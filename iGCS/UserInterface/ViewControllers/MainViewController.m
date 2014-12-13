@@ -20,7 +20,7 @@
 #import "DataRateRecorder.h"
 
 #import "GaugeViewCommon.h"
-#import "GCSFirmwareUpdateManager.h"
+#import "GCSAccessoryFirmwareManager.h"
 
 @interface MainViewController ()
 @property (strong) GCSMapViewController *gcsMapVC;
@@ -29,7 +29,7 @@
 @property (strong) CommsViewController *commsVC;
 @property (strong) DebugViewController *debugVC;
 
-@property (nonatomic, strong) GCSFirmwareUpdateManager *firmwareManager;
+@property (nonatomic, strong) GCSAccessoryFirmwareManager *firmwareManager;
 @end
 
 @implementation MainViewController
@@ -74,7 +74,7 @@
         [self.tabBar setHidden:YES];
     }
 
-    self.firmwareManager = [[GCSFirmwareUpdateManager alloc] initWithTargetView:self.view];
+    self.firmwareManager = [[GCSAccessoryFirmwareManager alloc] initWithTargetView:self.view];
 }
 
 #pragma mark - View lifecycle

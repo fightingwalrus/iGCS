@@ -6,39 +6,40 @@
 //
 //
 
-#import "GCSFirmwareUpdateManager.h"
-#import "GCSFWRFirmwareInterface.h"
-#import "GCSFirmwareUtils.h"
+#import "GCSAccessoryFirmwareManager.h"
+#import "GCSAccessoryFirmwareInterface.h"
+#import "GCSAccessoryFirmwareUtils.h"
 #import "GCSActivityIndicatorView.h"
 #import "CommController.h"
 
-@interface GCSFirmwareUpdateManager ()
+@interface GCSAccessoryFirmwareManager ()
 @property (nonatomic, strong) UIAlertView *updateFirmwareAlert;
 @property (nonatomic, strong) UIAlertView *firmwareUpdateCompleteAlert;
-@property (nonatomic, strong) UIAlertView *fwrNotConnectedAlert;
+@property (nonatomic, strong) UIAlertView *notConnectedAlert;
 @property (nonatomic, strong) GCSActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) NSDictionary *accessoryModelName;
 @property (nonatomic, weak) UIView *targetView;
 @end
 
-@implementation GCSFirmwareUpdateManager
+@implementation GCSAccessoryFirmwareManager
 
-#pragma mark - radio update UI
+#pragma mark - init and lifecycle
 
 -(instancetype)initWithTargetView:(UIView *)aTargetView {
     self = [super init];
     if (self) {
         _targetView = aTargetView;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertUserToUpateFirmware)
-                                                     name:GCSFirmwareUtilsFwrFirmwareNeedsUpdated object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertUserToUpateFirmwareWithNotification:)
+                                                     name:GCSAccessoryFirmwareNeedsUpdated object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateComplete)
-                                                     name:GCSFirmewareIntefaceFirmwareUpdateSuccess object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateCompleteWithNotification:)
+                                                     name:GCSAccessoryFirmwareUpdateSuccess object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateFailed)
-                                                     name:GCSFirmewareIntefaceFirmwareUpdateFail object:nil];
+                                                     name:GCSAccessoryFirmwareUpdateFail object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFwrNotConnected)
-                                                     name:GCSCommControllerFightingWalrusRadioNotConnected object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewRadioNotConnected)
+                                                     name:GCSCommControllerRadioNotConnected object:nil];
 
     }
     return self;
@@ -48,31 +49,39 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)alertUserToUpateFirmware {
+#pragma mark  - NSNotification handlers and UI
+-(void)alertUserToUpateFirmwareWithNotification:(NSNotification *)notification {
+    NSString *message = [NSString stringWithFormat:@"The %@ firmware needs to be upgraded.",
+                         [(EAAccessory *)notification.object name]];
+
     self.updateFirmwareAlert = [[UIAlertView alloc] initWithTitle:@"Update Firmware"
-                                                          message:@"The Fighting Walrus Radio firmware needs to be upgraded."
+                                                          message:message
                                                          delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
     [self.updateFirmwareAlert show];
 }
 
--(void)alertViewFirmwareUpdateComplete {
+-(void)alertViewFirmwareUpdateCompleteWithNotification:(NSNotification *)notification {
+    NSString *message = [NSString stringWithFormat:@"Please disconnect and reconnect %@ to complete firmware upgrade.",
+                         [(EAAccessory *)notification.object name]];
+
     self.firmwareUpdateCompleteAlert = [[UIAlertView alloc] initWithTitle:@"Firmware Updated"
-                                                                  message:@"Please disconnect and reconnect Fighting Walrus Radio to complete firmware upgrade."
+                                                                  message:message
                                                                  delegate:self
                                                         cancelButtonTitle:@"OK"
                                                         otherButtonTitles:nil];
     [self.firmwareUpdateCompleteAlert show];
 }
 
--(void)alertViewFwrNotConnected {
-    self.fwrNotConnectedAlert = [[UIAlertView alloc] initWithTitle:@"Accessory not connected"
-                                                          message:@"The Fighting Walrus Radio is not connected."
+-(void)alertViewRadioNotConnected {
+
+    self.notConnectedAlert = [[UIAlertView alloc] initWithTitle:@"Accessory not connected"
+                                                          message:@"A supported accessory is not connected."
                                                          delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
-    [self.fwrNotConnectedAlert show];
+    [self.notConnectedAlert show];
 }
 
 -(void)showActivityIndicator {
@@ -95,16 +104,16 @@
     [alert show];
 }
 
-#pragma UIAlertViewDelegate
+#pragma mark - UIAlertViewDelegate
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView == self.updateFirmwareAlert) {
-        // 1. put up splinner
+        // 1. put up spinner
         [self showActivityIndicator];
 
         // 2. start firmware upload
-            [[CommController sharedInstance] startFWRFirmwareUpdateMode];
-            [[CommController sharedInstance].fwrFirmwareInterface updateFwrFirmware];
+        [[CommController sharedInstance] startFWRFirmwareUpdateMode];
+        [[CommController sharedInstance].accessoryFirmwareInterface updateFirmware];
 
     } else {
         [self stopAndRemoveActivityIndicator];
