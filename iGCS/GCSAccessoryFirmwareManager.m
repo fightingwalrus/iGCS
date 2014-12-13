@@ -29,10 +29,10 @@
     self = [super init];
     if (self) {
         _targetView = aTargetView;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertUserToUpateFirmwareWithNoti:)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertUserToUpateFirmwareWithNotification:)
                                                      name:GCSAccessoryFirmwareNeedsUpdated object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateCompleteWithNoti:)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateCompleteWithNotification:)
                                                      name:GCSAccessoryFirmwareUpdateSuccess object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertViewFirmwareUpdateFailed)
@@ -50,9 +50,9 @@
 }
 
 #pragma mark  - NSNotification handlers and UI
--(void)alertUserToUpateFirmwareWithNoti:(NSNotification *)noti {
+-(void)alertUserToUpateFirmwareWithNotification:(NSNotification *)notification {
     NSString *message = [NSString stringWithFormat:@"The %@ firmware needs to be upgraded.",
-                         [(EAAccessory *)noti.object name]];
+                         [(EAAccessory *)notification.object name]];
 
     self.updateFirmwareAlert = [[UIAlertView alloc] initWithTitle:@"Update Firmware"
                                                           message:message
@@ -62,9 +62,9 @@
     [self.updateFirmwareAlert show];
 }
 
--(void)alertViewFirmwareUpdateCompleteWithNoti:(NSNotification *)noti {
+-(void)alertViewFirmwareUpdateCompleteWithNotification:(NSNotification *)notification {
     NSString *message = [NSString stringWithFormat:@"Please disconnect and reconnect %@ to complete firmware upgrade.",
-                         [(EAAccessory *)noti.object name]];
+                         [(EAAccessory *)notification.object name]];
 
     self.firmwareUpdateCompleteAlert = [[UIAlertView alloc] initWithTitle:@"Firmware Updated"
                                                                   message:message
