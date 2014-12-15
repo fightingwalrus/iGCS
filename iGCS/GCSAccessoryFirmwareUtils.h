@@ -11,7 +11,7 @@
 
 @interface GCSAccessoryFirmwareUtils : NSObject
 +(BOOL)isFirmwareUpdateNeededWithFirmwareRevision:(NSString *) firmwareRevision;
-+(void)notifyOfFirmwareUpateNeededForAccessory:(EAAccessory *) accessory;
++(void)notifyOfFirmwareUpdateNeededForAccessory:(EAAccessory *) accessory;
 +(void)setAwaitingPostUpgradeDisconnect:(BOOL) value;
 +(BOOL)isAccessorySupportedWithAccessory:(EAAccessory *) accessory;
 @end
