@@ -22,7 +22,7 @@ static BOOL _awaitingPostUpgradeDisconnect;
                 [GCSAccessoryFirmwareVersionInBundle compare:firmwareRevision options:NSNumericSearch] == NSOrderedDescending);
 }
 
-+(void)notifyOfFirmwareUpateNeededForAccessory:(EAAccessory *) accessory {
++(void)notifyOfFirmwareUpdateNeededForAccessory:(EAAccessory *) accessory {
     dispatch_async(dispatch_get_main_queue(),^{
          [[NSNotificationCenter defaultCenter] postNotificationName:GCSAccessoryFirmwareNeedsUpdated object:accessory];
     });

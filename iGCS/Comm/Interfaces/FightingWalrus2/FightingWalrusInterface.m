@@ -274,7 +274,7 @@ NSString * const GCSProtocolStringUpdate = @"com.fightingwalrus.update";
 -(void)notifyIfFirmwareUpdateNeeded {
     // check if we need to update fwr firmware
     if ([GCSAccessoryFirmwareUtils isFirmwareUpdateNeededWithFirmwareRevision:self.selectedAccessory.firmwareRevision]) {
-        [GCSAccessoryFirmwareUtils notifyOfFirmwareUpateNeededForAccessory:self.selectedAccessory];
+        [GCSAccessoryFirmwareUtils notifyOfFirmwareUpdateNeededForAccessory:self.selectedAccessory];
     }
 }
 

@@ -11,6 +11,7 @@
 #import "GCSRadioSettings.h"
 #import "GCSThemeManager.h"
 #import "GCSActivityIndicatorView.h"
+#import "GCSAccessoryFirmwareUtils.h"
 
 #import "PureLayout.h"
 
@@ -23,7 +24,6 @@ static void *SVKvoContext = &SVKvoContext;
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
-
 @property (strong, nonatomic) GCSActivityIndicatorView *activityIndicatorView;
 
 // UI elements
@@ -68,6 +68,7 @@ static void *SVKvoContext = &SVKvoContext;
     self = [super init];
 
     if (self) {
+
         // radio has booted
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioHasBooted)
                                                      name:GCSRadioConfigRadioHasBooted object:nil];
@@ -153,6 +154,19 @@ static void *SVKvoContext = &SVKvoContext;
     [self.localRadioNetId autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.localRadioNetIdLabel withOffset:10];
     [self.localRadioNetId autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.localRadioNetIdLabel withOffset:0.0f];
 
+    // normally the app will propt if a connection is opened to a FWR that needs updated
+    // we want an easy way to test the firmware updater.
+#if DEBUG
+    UIButton *firmwareUpdateButton = [UIButton newAutoLayoutView];
+    [firmwareUpdateButton setTitle:@"Update Firmware" forState:UIControlStateNormal];
+    [firmwareUpdateButton addTarget:self action:@selector(updateFirmware) forControlEvents:UIControlEventTouchUpInside];
+    [firmwareUpdateButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.view addSubview:firmwareUpdateButton];
+
+    [firmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
+    [firmwareUpdateButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
+#endif
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.localRadioNetIdLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:88.0f + 10];
     } else {
@@ -187,17 +201,6 @@ static void *SVKvoContext = &SVKvoContext;
     } else  {
         [self saveSettingsToLocalRadio];
     }
-}
-
--(void)updateFirmware {
-    DDLogDebug(@"Update FWR Firmware");
-    [[CommController sharedInstance] startFWRFirmwareUpdateMode];
-
-    [self performSelector:@selector(sendFirmwareToFWR) withObject:self afterDelay:0.2f];
-}
-
--(void)sendFirmwareToFWR {
-    [[CommController sharedInstance].accessoryFirmwareInterface updateFirmware];
 }
 
 #pragma mark - NSNotifcation handlers
@@ -452,6 +455,12 @@ static void *SVKvoContext = &SVKvoContext;
 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - manually update firmware
+-(void)updateFirmware {
+    NSLog(@"Update FWR Firmware");
+    [GCSAccessoryFirmwareUtils notifyOfFirmwareUpdateNeededForAccessory:nil];
 }
 
 #pragma mark - UIAlertViewDelegate
