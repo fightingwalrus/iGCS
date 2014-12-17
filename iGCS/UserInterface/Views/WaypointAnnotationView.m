@@ -14,49 +14,71 @@
 
 @implementation WaypointAnnotationView
 
++ (void)drawTriangle:(CGContextRef)context
+             centreX:(CGFloat)x width:(CGFloat)w
+               baseY:(CGFloat)y height:(CGFloat)h {
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context,    x,     y);
+    CGContextAddLineToPoint(context, x-w/2, y+h);
+    CGContextAddLineToPoint(context, x+w/2, y+h);
+    CGContextClosePath(context);
+    
+    CGContextDrawPath(context, kCGPathFillStroke);
+}
+
 - (void)drawRect:(CGRect)rect {
     CGRect centre = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 0, 0);
     CGRect outerR = CGRectInset(centre, -WAYPOINT_INNER_RADIUS, -WAYPOINT_INNER_RADIUS);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
 
     WaypointAnnotation* annotation = (WaypointAnnotation*)[self annotation];
-    
+    mavlink_mission_item_t item = annotation.waypoint;
+
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextSetFillColorWithColor(context, [annotation color].CGColor);
+    CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
     
-    switch (annotation.waypoint.command) {
+    switch (item.command) {
         case MAV_CMD_NAV_LAND:
         case MAV_CMD_NAV_TAKEOFF: {
             // Draw an equilateral triangle icon at the centre of the rect
             // (pointing up for takeoff, down for landing)
-            BOOL isTakeOff = (annotation.waypoint.command == MAV_CMD_NAV_TAKEOFF);
+            BOOL isTakeOff = (item.command == MAV_CMD_NAV_TAKEOFF);
             CGFloat w = outerR.size.height;
-            
             CGFloat h = w * 0.866;
-            CGFloat y1 = isTakeOff ? CGRectGetMinY(outerR) : CGRectGetMaxY(outerR);
-            CGFloat y2 = isTakeOff ? y1 + h: y1 - h;
-            
-            CGContextBeginPath(context);
-            CGContextMoveToPoint(context,    CGRectGetMidX(outerR),     y1);
-            CGContextAddLineToPoint(context, CGRectGetMidX(outerR)-w/2, y2);
-            CGContextAddLineToPoint(context, CGRectGetMidX(outerR)+w/2, y2);
-            CGContextClosePath(context);
-            
-            CGContextSetLineJoin(context, kCGLineJoinRound);
-            CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
-            CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
-            CGContextDrawPath(context, kCGPathFillStroke);
+            CGFloat y = isTakeOff ? CGRectGetMinY(outerR) : CGRectGetMaxY(outerR);
+            [WaypointAnnotationView drawTriangle:context
+                                         centreX:CGRectGetMidX(outerR)
+                                           width:w
+                                           baseY:y
+                                          height:(isTakeOff ? h : - h)];
         }
             break;
             
         default:
-            // Draw a circle icon
-            CGContextSetLineWidth(context, WAYPOINT_OUTER_WIDTH);
-            CGContextSetFillColorWithColor(context, [annotation color].CGColor);
-            CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
-            CGContextFillEllipseInRect(context, outerR);
-            CGContextStrokeEllipseInRect(context, outerR);
+            if (item.seq == 0) {
+                // Draw a primitive home icon for HOME/0 waypoint
+                CGContextSetStrokeColorWithColor(context, [annotation color].CGColor); // stroke with the fill color
+                
+                CGFloat y = CGRectGetMidY(outerR);
+                CGFloat wh = outerR.size.height/2;
+                [WaypointAnnotationView drawTriangle:context
+                                             centreX:CGRectGetMidX(outerR)
+                                               width:outerR.size.width
+                                               baseY:y-wh
+                                              height:wh];
+                
+                CGRect sqr = CGRectMake(CGRectGetMidX(outerR)-wh/2, y, wh, wh);
+                CGContextFillRect(context, sqr);
+                CGContextStrokeRect(context, sqr);
+            } else {
+                // Draw a circle icon
+                CGContextFillEllipseInRect(context, outerR);
+                CGContextStrokeEllipseInRect(context, outerR);
+            }
     }
 }
 
