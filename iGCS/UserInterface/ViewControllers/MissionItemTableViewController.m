@@ -170,8 +170,8 @@ NSArray* headerWidths = nil;
 
 // Support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    assert (indexPath.section == 0);
+    return indexPath.row != 0; // Prevent editing of the HOME/0 waypoint
 }
 
 // Support rearranging the table view.
@@ -185,8 +185,8 @@ NSArray* headerWidths = nil;
 
 // Support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    assert (indexPath.section == 0);
+    return indexPath.row != 0; // Prevent editing of the HOME/0 waypoint
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -296,6 +296,7 @@ NSArray* headerWidths = nil;
     NSInteger idx = indexPath.row;
     
     if (tableView.isEditing) {
+        if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
         mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
         if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
             [self unmarkSelectedRow];
