@@ -270,7 +270,7 @@
     return nil;
 }
 
-- (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item {
+- (NSString*) waypointLabelForAnnotationView:(mavlink_mission_item_t)item {
     // Base class uses the mission item sequence number
     return [NSString stringWithFormat:@"%d", item.seq];
 }
@@ -338,7 +338,7 @@
             [view setFrame:CGRectMake(0,0,WAYPOINT_TOUCH_TARGET_SIZE,WAYPOINT_TOUCH_TARGET_SIZE)];
             [view setBackgroundColor:[UIColor clearColor]];
 
-            UILabel *label = [[UILabel alloc]  initWithFrame:CGRectMake(WAYPOINT_TOUCH_TARGET_SIZE/2, -WAYPOINT_TOUCH_TARGET_SIZE/3, 32, 32)];
+            UILabel *label = [[UILabel alloc]  initWithFrame:CGRectMake(WAYPOINT_TOUCH_TARGET_SIZE/2, -WAYPOINT_TOUCH_TARGET_SIZE/3, 48, 32)];
             label.backgroundColor = [UIColor clearColor];
             label.textColor = [UIColor whiteColor];
             label.tag = LABEL_TAG;
@@ -359,8 +359,9 @@
         
         // Set the waypoint label
         WaypointAnnotation *waypointAnnotation = (WaypointAnnotation*)annotation;
+        BOOL isHome = (waypointAnnotation.waypoint.seq == 0); // handle the HOME/0 waypoint
         UILabel *label = (UILabel *)[view viewWithTag:LABEL_TAG];
-        label.text = [self waypointNumberForAnnotationView: waypointAnnotation.waypoint];
+        label.text = isHome ? @"Home" : [self waypointLabelForAnnotationView: waypointAnnotation.waypoint];
         
         // Add appropriate icon
         BOOL isSelected = (self.currentWaypointNum != WAYPOINTSEQ_NONE) && [waypointAnnotation hasMatchingSeq:self.currentWaypointNum];
