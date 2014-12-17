@@ -42,6 +42,59 @@
     CGContextSetStrokeColorWithColor(context, [theme waypointLineStrokeColor].CGColor);
     
     switch (item.command) {
+        case MAV_CMD_NAV_LOITER_TIME:
+        case MAV_CMD_NAV_LOITER_TURNS:
+        case MAV_CMD_NAV_LOITER_UNLIM: {
+            // Draw a circle icon
+            CGRect innerR = CGRectInset(outerR, 1, 1);
+            CGContextFillEllipseInRect(context, innerR);
+            CGContextStrokeEllipseInRect(context, innerR);
+            
+            CGContextSetStrokeColorWithColor(context, [annotation color].CGColor);
+
+            // Draw a circular arrow
+            // c.f. http://stackoverflow.com/questions/20952548/animated-pie-chart-in-ios
+            CGFloat startAngle = - M_PI / 4;
+            CGFloat endAngle = 0.85 * 2 * M_PI + startAngle;
+
+            CGFloat x = CGRectGetMidX(outerR);
+            CGFloat y = CGRectGetMidY(outerR);
+            
+            // Draw the circular line
+            CGFloat lineRadius = x * 0.65;
+            CGFloat arrowWidth = 0.35;
+            
+            CGMutablePathRef path = CGPathCreateMutable();
+            CGContextSetLineWidth(context, 2);
+            CGFloat lineEndAngle = ((endAngle - startAngle) >= arrowWidth) ? endAngle - arrowWidth : endAngle;
+            CGPathAddArc(path, NULL, x, y, lineRadius, startAngle, lineEndAngle, 0);
+            CGContextAddPath(context, path);
+            CGContextStrokePath(context);
+            CGPathRelease(path);
+
+            // Draw the arrow head
+            CGFloat arrowStartAngle = lineEndAngle - 0.01;
+            CGFloat arrowOuterRadius = x * 0.90;
+            CGFloat arrowInnerRadius = x * 0.54;
+            
+            CGFloat arrowX = x + (arrowOuterRadius * cosf(arrowStartAngle));
+            CGFloat arrowY = y + (arrowOuterRadius * sinf(arrowStartAngle));
+            CGContextMoveToPoint(context, arrowX, arrowY);  // top corner
+            
+            arrowX = x + (arrowInnerRadius * cosf(arrowStartAngle));
+            arrowY = y + (arrowInnerRadius * sinf(arrowStartAngle));
+            CGContextAddLineToPoint(context, arrowX, arrowY);  // bottom corner
+            
+            arrowX = x + (lineRadius * cosf(endAngle));
+            arrowY = y + (lineRadius * sinf(endAngle));
+            CGContextAddLineToPoint(context, arrowX, arrowY);  // point
+            
+            CGContextClosePath(context);
+            CGContextFillPath(context);
+        }
+            break;
+            
+            
         case MAV_CMD_NAV_LAND:
         case MAV_CMD_NAV_TAKEOFF: {
             // Draw an equilateral triangle icon at the centre of the rect

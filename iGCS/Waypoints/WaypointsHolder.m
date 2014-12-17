@@ -181,7 +181,7 @@
     waypoint.seq = 0; waypoint.command = 16; waypoint.x = 47.258470; waypoint.y = 11.331370; waypoint.z = 10; [demo addWaypoint:waypoint];
     waypoint.seq = 1; waypoint.command = 22; waypoint.x = 47.258842; waypoint.y = 11.331070; waypoint.z = 10; [demo addWaypoint:waypoint];
     waypoint.seq = 2; waypoint.command = 16; waypoint.x = 47.260709; waypoint.y = 11.348920; waypoint.z = 100; waypoint.param1 = 1; waypoint.param2 = 2; waypoint.param3 = 3; waypoint.param4 = 4; [demo addWaypoint:waypoint];
-    waypoint.seq = 3; waypoint.command = 16; waypoint.x = 47.264815; waypoint.y = 11.347847; waypoint.z = 100; [demo addWaypoint:waypoint];
+    waypoint.seq = 3; waypoint.command = 18; waypoint.x = 47.264815; waypoint.y = 11.347847; waypoint.z = 100; waypoint.param1 = 5; [demo addWaypoint:waypoint];
     
     // MAV_CMD_CONDITION_CHANGE_ALT
     waypoint.seq = 4; waypoint.command = 113; waypoint.x = 0; waypoint.y = 0; waypoint.z = 0; waypoint.param1 = 100; waypoint.param2 = 2000; [demo addWaypoint:waypoint];
