@@ -153,7 +153,7 @@ NSArray* headerWidths = nil;
 // Support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        assert (indexPath.section == 0);
+        NSAssert(indexPath.section == 0, @"Expect table section to be zero");
         
         // Delete the row from the data source
         [[self waypointsHolder] removeWaypoint:indexPath.row];
@@ -170,13 +170,13 @@ NSArray* headerWidths = nil;
 
 // Support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    assert (indexPath.section == 0);
+    NSAssert(indexPath.section == 0, @"Expect table section to be zero");
     return indexPath.row != 0; // Prevent editing of the HOME/0 waypoint
 }
 
 // Support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    assert (fromIndexPath.section == 0 && toIndexPath.section == 0);
+    NSAssert((fromIndexPath.section == 0 && toIndexPath.section == 0), @"Expect to and from table sections to be zero");
     [[self waypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
     
     // Reset the map and table views
@@ -185,7 +185,7 @@ NSArray* headerWidths = nil;
 
 // Support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    assert (indexPath.section == 0);
+    NSAssert(indexPath.section == 0, @"Expect table section to be zero");
     return indexPath.row != 0; // Prevent editing of the HOME/0 waypoint
 }
 

@@ -17,7 +17,7 @@
 @implementation WaypointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
-    assert((index == 0) == (waypoint.seq == 0));
+    NSAssert((index == 0) == (waypoint.seq == 0), @"Expect waypoint seq and index to both be zero");
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
