@@ -17,6 +17,7 @@
 @implementation WaypointAnnotation
 
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate andWayPoint:(mavlink_mission_item_t)waypoint atIndex:(NSInteger)index {
+    NSAssert((index == 0) == (waypoint.seq == 0), @"Expect waypoint seq and index to both be zero");
     if ((self = [super init])) {
         _coordinate = coordinate;
         _waypoint   = waypoint;
@@ -26,7 +27,7 @@
 }
 
 - (NSString*) title {
-    return [NSString stringWithFormat:@"%ld: %@", (long)_index, [WaypointHelper commandIDToString: _waypoint.command]];
+    return (_index == 0) ? @"Home" : [NSString stringWithFormat:@"%ld: %@", (long)_index, [WaypointHelper commandIDToString: _waypoint.command]]; // Specially handle the HOME/0 waypoint
 }
 
 - (NSString*) subtitle {
@@ -35,6 +36,7 @@
 
 - (UIColor*) color {
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
+    if (_index == 0) return [theme waypointHomeColor]; // Specially handle the HOME/0 waypoint
     
     switch (_waypoint.command) {            
         case MAV_CMD_NAV_WAYPOINT:

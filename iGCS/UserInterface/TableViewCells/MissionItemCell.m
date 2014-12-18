@@ -110,9 +110,11 @@
 
 - (void) configureFor:(NSInteger)rowNum withItem:(mavlink_mission_item_t)item {
     BOOL isNavCommand = [WaypointHelper isNavCommand:item];
+    BOOL isHome = (rowNum == 0);
     
     // Row number (which masquerades as the seq #)
-    self.rowNum.text = [NSString stringWithFormat:@"%4ld:", (long)rowNum];
+    //  - display nothing for the HOME/0 waypoint
+    self.rowNum.text = isHome ? @"" : [NSString stringWithFormat:@"%4ld:", (long)rowNum];
     
 #if DEBUG_SHOW_SEQ
     // Seq number
@@ -120,7 +122,7 @@
 #endif
     
     // Command
-    self.command.text = [NSString stringWithFormat:@"%@", [WaypointHelper commandIDToString: item.command]];
+    self.command.text = isHome ? @"Home" : [NSString stringWithFormat:@"%@", [WaypointHelper commandIDToString: item.command]];
     
     // Latitude
     self.x.text = isNavCommand ? [MiscUtilities prettyPrintCoordAxis:item.x as:GCSLatitude] : @"-";
