@@ -32,7 +32,7 @@
 - (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
-- (NSString*) waypointNumberForAnnotationView:(mavlink_mission_item_t)item;
+- (NSString*) waypointLabelForAnnotationView:(mavlink_mission_item_t)item;
 
 - (void) addToTrack:(CLLocationCoordinate2D)pos;
 

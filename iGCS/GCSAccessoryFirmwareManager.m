@@ -51,8 +51,16 @@
 
 #pragma mark  - NSNotification handlers and UI
 -(void)alertUserToUpateFirmwareWithNotification:(NSNotification *)notification {
-    NSString *message = [NSString stringWithFormat:@"The %@ firmware needs to be upgraded.",
-                         [(EAAccessory *)notification.object name]];
+    NSString *message;
+    if (notification.object) {
+        message = [NSString stringWithFormat:@"The %@ firmware needs to be upgraded.",
+                             [(EAAccessory *)notification.object name]];
+    }else {
+        // case where firmware updated is kicked off manually without
+        // sending out EAAccesory object via
+        // [GCSAccessoryFirmwareUtils notifyOfFirmwareUpdateNeededForAccessory:]
+        message = @"Hit OK to update the accessories firmware.";
+    }
 
     self.updateFirmwareAlert = [[UIAlertView alloc] initWithTitle:@"Update Firmware"
                                                           message:message

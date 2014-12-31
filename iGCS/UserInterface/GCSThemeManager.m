@@ -33,7 +33,7 @@
         
         _waypointNavColor         = UIColorFromRGB(0x08ff08); // fluoro green
         _waypointNavNextColor     = [UIColor redColor];
-        _waypointLoiterColor      = UIColorFromRGB(0x87cefa); // light sky blue
+        _waypointLoiterColor      = UIColorFromRGB(0x08ff08); // fluoro green
         _waypointTakeoffLandColor = UIColorFromRGB(0xff8c00); // dark orange
         _waypointHomeColor        = [UIColor whiteColor];
         _waypointOtherColor       = UIColorFromRGB(0xd02090);  // violet red
