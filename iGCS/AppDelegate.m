@@ -11,6 +11,8 @@
 #import "DDFileLogger.h"
 #import "DDTTYLogger.h"
 
+#import "QTouchposeApplication.h"
+
 // API keys for hockeyapp.net etc are passed in via scrips/build.sh
 // from a private xcconfig file using GCC_PREPROCESSOR_DEFINITIONS
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)
@@ -31,6 +33,8 @@ static AppDelegate *shared;
     [DDLog addLogger:fileLogger];
 #endif
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
+    touchposeApplication.alwaysShowTouches = YES;
 
     
 #if defined(HOCKEY_APP_BETA_ID) && defined(HOCKEY_APP_BETA_SECRET)

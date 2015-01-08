@@ -39,6 +39,7 @@
 		01E9F18D1A04427800901980 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E9F18C1A04427800901980 /* CoreMotion.framework */; };
 		01EC4F0D1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
 		01EC4F0E1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
+		01EEF9331A5F180E00735287 /* QTouchposeApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEF9321A5F180E00735287 /* QTouchposeApplication.m */; };
 		18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069F9F1836F7C70068E7A5 /* BluetoothStream.m */; };
 		18069FC21836F7C70068E7A5 /* BTLEMavLinkCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA21836F7C70068E7A5 /* BTLEMavLinkCentral.m */; };
 		18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FA41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m */; };
@@ -461,6 +462,8 @@
 		01E9F18C1A04427800901980 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreMotionUtils.h; sourceTree = "<group>"; };
 		01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMotionUtils.m; sourceTree = "<group>"; };
+		01EEF9311A5F180E00735287 /* QTouchposeApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTouchposeApplication.h; sourceTree = "<group>"; };
+		01EEF9321A5F180E00735287 /* QTouchposeApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTouchposeApplication.m; sourceTree = "<group>"; };
 		18069F9E1836F7C70068E7A5 /* BluetoothStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothStream.h; sourceTree = "<group>"; };
 		18069F9F1836F7C70068E7A5 /* BluetoothStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStream.m; sourceTree = "<group>"; };
 		18069FA11836F7C70068E7A5 /* BTLEMavLinkCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEMavLinkCentral.h; sourceTree = "<group>"; };
@@ -1778,6 +1781,8 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				01EEF9311A5F180E00735287 /* QTouchposeApplication.h */,
+				01EEF9321A5F180E00735287 /* QTouchposeApplication.m */,
 				18C268141A36881200BEF61C /* QuadrocopterIcon */,
 				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
@@ -2441,6 +2446,7 @@
 				01CEC5DF19D9FA3800320A34 /* BRRequestError.m in Sources */,
 				496E626D16DAFAF600E52E4A /* WaypointsHolder.m in Sources */,
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
+				01EEF9331A5F180E00735287 /* QTouchposeApplication.m in Sources */,
 				CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
