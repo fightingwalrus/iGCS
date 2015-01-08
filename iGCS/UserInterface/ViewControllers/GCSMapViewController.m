@@ -48,7 +48,9 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-NSString * const AIRCRAFT_ICON_NAME = @"quadrocopter.png";
+NSString * const AIRCRAFT_ICON_NAME = @"quad-icon.png";
+//NSString * const AIRCRAFT_ICON_NAME = @"quadrocopter.png";
+
 static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
 
 @implementation GCSMapViewController
