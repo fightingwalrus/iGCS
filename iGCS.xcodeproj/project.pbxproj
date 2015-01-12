@@ -75,15 +75,11 @@
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
 		1875979318910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
 		1875979518910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
-		1879752B1A5F366900EB4416 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1879752A1A5F366900EB4416 /* quad-icon.png */; };
-		1879752C1A5F366900EB4416 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1879752A1A5F366900EB4416 /* quad-icon.png */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
 		1888DE6E170F7D3400ADA039 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */ = {isa = PBXBuildFile; fileRef = 1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */; };
-		1898C64B1A3694B3004AA6DA /* quadrocopter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1898C64A1A3694B3004AA6DA /* quadrocopter.png */; };
-		1898C64C1A3694B3004AA6DA /* quadrocopter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1898C64A1A3694B3004AA6DA /* quadrocopter.png */; };
 		189B2DC819DB3E0E00AAC466 /* SoundUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B2DC719DB3E0E00AAC466 /* SoundUtils.m */; };
 		189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 189B2DC719DB3E0E00AAC466 /* SoundUtils.m */; };
 		189E235E1710DBBC00548C88 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E235D1710DBBC00548C88 /* libiconv.dylib */; };
@@ -197,8 +193,6 @@
 		18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
 		18B9FB2E18B2F7AF00668660 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
 		18C011BD189394A5005B67E5 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */; };
-		18C268171A36881200BEF61C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18C268151A36881200BEF61C /* LICENSE */; };
-		18C268181A36881200BEF61C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18C268151A36881200BEF61C /* LICENSE */; };
 		18C86288198AD4A800F99CD3 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C86276198AD4A800F99CD3 /* 05-shuffle.png */; };
 		18C86289198AD4A800F99CD3 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C86276198AD4A800F99CD3 /* 05-shuffle.png */; };
 		18C8628B198AD4A800F99CD3 /* 05-shuffle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C86277198AD4A800F99CD3 /* 05-shuffle@2x.png */; };
@@ -254,6 +248,8 @@
 		18E58A8F198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
 		18E58A91198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
 		18E58A92198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
+		18ED8F1E1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
+		18ED8F1F1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
@@ -512,13 +508,11 @@
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		1875979218910AC50012DF6D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
-		1879752A1A5F366900EB4416 /* quad-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quad-icon.png"; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1888DE6D170F7D3400ADA039 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1888DE931710C85400ADA039 /* multicast_h264_aac_48000.sdp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multicast_h264_aac_48000.sdp; sourceTree = "<group>"; };
-		1898C64A1A3694B3004AA6DA /* quadrocopter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quadrocopter.png; sourceTree = "<group>"; };
 		189B2DC619DB3E0E00AAC466 /* SoundUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundUtils.h; sourceTree = "<group>"; };
 		189B2DC719DB3E0E00AAC466 /* SoundUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundUtils.m; sourceTree = "<group>"; };
 		189E235D1710DBBC00548C88 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -766,7 +760,6 @@
 		18B7F2C31958953B00D2406A /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		18B9FB3318B2F7AF00668660 /* iGCS redpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGCS redpark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "submodules/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
-		18C268151A36881200BEF61C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iGCS.entitlements; sourceTree = "<group>"; };
 		18C86276198AD4A800F99CD3 /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
 		18C86277198AD4A800F99CD3 /* 05-shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle@2x.png"; sourceTree = "<group>"; };
@@ -801,6 +794,7 @@
 		18E58A88198993EB0025A516 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		18E58A89198993EB0025A516 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		18E58A8A198993EB0025A516 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		18ED8F1D1A60C3190014A575 /* quad-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quad-icon.png"; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
 		18F803F617E2480900CB8052 /* CommInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommInterface.m; sourceTree = "<group>"; };
 		18F803FF17E24BB300CB8052 /* CommConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommConnection.h; sourceTree = "<group>"; };
@@ -1542,16 +1536,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18C268141A36881200BEF61C /* QuadrocopterIcon */ = {
-			isa = PBXGroup;
-			children = (
-				18C268151A36881200BEF61C /* LICENSE */,
-				1898C64A1A3694B3004AA6DA /* quadrocopter.png */,
-				1879752A1A5F366900EB4416 /* quad-icon.png */,
-			);
-			path = QuadrocopterIcon;
-			sourceTree = "<group>";
-		};
 		18D8916A19817CB1001ED845 /* HockeySDK-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1583,6 +1567,7 @@
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				18ED8F1D1A60C3190014A575 /* quad-icon.png */,
 				CACDAAB41802717F00B5A62A /* mission-mavread.png */,
 				CACDAAB8180271B100B5A62A /* mission-mavwrite.png */,
 				49C1FA0D16DC654100BAE96B /* wrench.png */,
@@ -1782,7 +1767,6 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
-				18C268141A36881200BEF61C /* QuadrocopterIcon */,
 				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
 				01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */,
@@ -2193,21 +2177,19 @@
 				18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */,
 				18C86289198AD4A800F99CD3 /* 05-shuffle.png in Resources */,
 				18B9FB2818B2F7AF00668660 /* Icon-58.png in Resources */,
+				18ED8F1F1A60C3190014A575 /* quad-icon.png in Resources */,
 				CA0CA63F1A2F7EBA007E1142 /* 13-target.png in Resources */,
 				01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */,
-				1879752C1A5F366900EB4416 /* quad-icon.png in Resources */,
 				18C862DA198B5B1000F99CD3 /* Icon-57.png in Resources */,
 				1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
 				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
 				18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
-				18C268181A36881200BEF61C /* LICENSE in Resources */,
 				18C862A7198AD4A800F99CD3 /* 73-radar.png in Resources */,
 				18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */,
 				18C8629B198AD4A800F99CD3 /* 20-gear-2.png in Resources */,
 				18C862DE198B5BF700F99CD3 /* Icon-120.png in Resources */,
-				1898C64C1A3694B3004AA6DA /* quadrocopter.png in Resources */,
 				18C862B6198AD4A800F99CD3 /* 176-ipad@2x.png in Resources */,
 				CA0CA6431A2F7EBA007E1142 /* 193-location-arrow.png in Resources */,
 				18C862CE198B5AFA00F99CD3 /* Icon-114.png in Resources */,
@@ -2220,7 +2202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C862D9198B5B1000F99CD3 /* Icon-57.png in Resources */,
-				1879752B1A5F366900EB4416 /* quad-icon.png in Resources */,
 				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
 				18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
@@ -2245,6 +2226,7 @@
 				18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */,
 				49C1FA0E16DC654100BAE96B /* wrench.png in Resources */,
 				18C862B5198AD4A800F99CD3 /* 176-ipad@2x.png in Resources */,
+				18ED8F1E1A60C3190014A575 /* quad-icon.png in Resources */,
 				18C862B2198AD4A800F99CD3 /* 176-ipad.png in Resources */,
 				1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */,
 				CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
@@ -2256,9 +2238,7 @@
 				18C862A0198AD4A800F99CD3 /* 38-airplane.png in Resources */,
 				1875978F189108980012DF6D /* Icon-76.png in Resources */,
 				1888DE941710C85400ADA039 /* multicast_h264_aac_48000.sdp in Resources */,
-				18C268171A36881200BEF61C /* LICENSE in Resources */,
 				1842F8D21892D2F80050F680 /* Icon-80.png in Resources */,
-				1898C64B1A3694B3004AA6DA /* quadrocopter.png in Resources */,
 				01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */,
 				18C86297198AD4A800F99CD3 /* 19-gear@2x.png in Resources */,
 				18C8628B198AD4A800F99CD3 /* 05-shuffle@2x.png in Resources */,
