@@ -87,6 +87,8 @@
 		18A42CD518895B3700408D71 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
+		18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
+		18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */; };
@@ -522,6 +524,7 @@
 		18A42CD218895B3700408D71 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
+		18AA3C751A6604FD007A28A8 /* plane-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane-icon.png"; sourceTree = "<group>"; };
 		18B6116E18A441AF0000E9DF /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		18B6116F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
 		18B6117018A441AF0000E9DF /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
@@ -1567,6 +1570,7 @@
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				18AA3C751A6604FD007A28A8 /* plane-icon.png */,
 				18ED8F1D1A60C3190014A575 /* quad-icon.png */,
 				CACDAAB41802717F00B5A62A /* mission-mavread.png */,
 				CACDAAB8180271B100B5A62A /* mission-mavwrite.png */,
@@ -2166,6 +2170,7 @@
 				18C862B9198AD4A800F99CD3 /* 181-hammer.png in Resources */,
 				18B9FB2418B2F7AF00668660 /* Icon-100.png in Resources */,
 				18C862A4198AD4A800F99CD3 /* 38-airplane@2x.png in Resources */,
+				18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */,
 				18C86298198AD4A800F99CD3 /* 19-gear@2x.png in Resources */,
 				18C862AA198AD4A800F99CD3 /* 73-radar@2x.png in Resources */,
 				18B9FB2518B2F7AF00668660 /* wrench.png in Resources */,
@@ -2219,6 +2224,7 @@
 				18C862CD198B5AFA00F99CD3 /* Icon-114.png in Resources */,
 				1875979318910AC50012DF6D /* Icon-72.png in Resources */,
 				18C8628E198AD4A800F99CD3 /* 07-map-marker.png in Resources */,
+				18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */,
 				CA0CA6421A2F7EBA007E1142 /* 193-location-arrow.png in Resources */,
 				18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */,
 				1842F8D41892D2F80050F680 /* Icon-100.png in Resources */,
