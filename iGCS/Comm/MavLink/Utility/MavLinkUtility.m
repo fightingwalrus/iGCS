@@ -109,36 +109,40 @@ NSDictionary *_ardupilotModes;
                                                                                             andUnits:GCSItemUnitSeconds
                                                                                         andFieldType:GCSItemParam3]];
         
-        NSDictionary *ardupilotFixedwingCustomModes = @{@(MANUAL): @"Manual",
-                                                        @(CIRCLE): @"Circle",
-                                                        @(STABILIZE): @"Stabilize",
-                                                        @(FLY_BY_WIRE_A): @"FBW_A",
-                                                        @(FLY_BY_WIRE_B): @"FBW_B",
-                                                        @(FLY_BY_WIRE_C): @"FBW_C",
-                                                        @(AUTO): @"Auto",
-                                                        @(RTL): @"RTL",
-                                                        @(LOITER): @"Loiter",
-                                                        @(TAKEOFF): @"Takeoff",
-                                                        @(LAND): @"Land",
-                                                        @(GUIDED): @"Guided",
-                                                        @(INITIALISING): @"Initialising"};
+        NSDictionary *arduPlaneCustomModes = @{@(MANUAL): @"Manual",
+                                               @(CIRCLE): @"Circle",
+                                               @(STABILIZE): @"Stabilize",
+                                               @(FLY_BY_WIRE_A): @"FBW_A",
+                                               @(FLY_BY_WIRE_B): @"FBW_B",
+                                               @(FLY_BY_WIRE_C): @"FBW_C",
+                                               @(AUTO): @"Auto",
+                                               @(RTL): @"RTL",
+                                               @(LOITER): @"Loiter",
+                                               @(TAKEOFF): @"Takeoff",
+                                               @(LAND): @"Land",
+                                               @(GUIDED): @"Guided",
+                                               @(INITIALISING): @"Initialising"};
         
-        NSDictionary *ardupilotQuadrotorCustomModes = @{@(Stabilize): @"Stabilize",
-                                                        @(Acro): @"Acro",
-                                                        @(AltHold): @"AltHold",
-                                                        @(Auto): @"Auto",
-                                                        @(Guided): @"Guided",
-                                                        @(Loiter): @"Loiter",
-                                                        @(Rtl): @"RTL",
-                                                        @(Circle): @"Circle",
-                                                        @(Position): @"Position",
-                                                        @(Land): @"Land",
-                                                        @(OfLoiter): @"OfLoiter",
-                                                        @(Drift): @"Drift",
-                                                        @(Sport): @"Sport"};
+        NSDictionary *arduCopterCustomModes = @{@(Stabilize): @"Stabilize",
+                                                @(Acro): @"Acro",
+                                                @(AltHold): @"AltHold",
+                                                @(Auto): @"Auto",
+                                                @(Guided): @"Guided",
+                                                @(Loiter): @"Loiter",
+                                                @(Rtl): @"RTL",
+                                                @(Circle): @"Circle",
+                                                @(Position): @"Position",
+                                                @(Land): @"Land",
+                                                @(OfLoiter): @"OfLoiter",
+                                                @(Drift): @"Drift",
+                                                @(Sport): @"Sport"};
         
-        _ardupilotModes = @{@(MAV_TYPE_FIXED_WING): ardupilotFixedwingCustomModes,
-                            @(MAV_TYPE_QUADROTOR):  ardupilotQuadrotorCustomModes};
+        _ardupilotModes = @{@(MAV_TYPE_FIXED_WING): arduPlaneCustomModes,
+                            @(MAV_TYPE_TRICOPTER):  arduCopterCustomModes,
+                            @(MAV_TYPE_QUADROTOR):  arduCopterCustomModes,
+                            @(MAV_TYPE_HEXAROTOR):  arduCopterCustomModes,
+                            @(MAV_TYPE_OCTOROTOR):  arduCopterCustomModes,
+                            @(MAV_TYPE_HELICOPTER): arduCopterCustomModes};
     }
 }
 
