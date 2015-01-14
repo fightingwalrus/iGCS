@@ -75,6 +75,10 @@
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
 		1875979318910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
 		1875979518910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
+		18820E821A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
+		18820E831A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
+		18820E851A64B19A006855E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18820E841A64B19A006855E9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18820E861A64B1A3006855E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18820E841A64B19A006855E9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
@@ -89,6 +93,8 @@
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
 		18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
+		18AA3C711A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
+		18AA3C721A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
 		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */; };
@@ -521,6 +527,9 @@
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		1875979218910AC50012DF6D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
+		18820E801A64AD0C006855E9 /* GCSSpeechManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSpeechManager.h; sourceTree = "<group>"; };
+		18820E811A64AD0C006855E9 /* GCSSpeechManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSpeechManager.m; sourceTree = "<group>"; };
+		18820E841A64B19A006855E9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -536,6 +545,8 @@
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		18AA3C751A6604FD007A28A8 /* plane-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane-icon.png"; sourceTree = "<group>"; };
+		18AA3C6F1A65BDE8007A28A8 /* GCSAircraftStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAircraftStatusModel.h; sourceTree = "<group>"; };
+		18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAircraftStatusModel.m; sourceTree = "<group>"; };
 		18B6116E18A441AF0000E9DF /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		18B6116F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
 		18B6117018A441AF0000E9DF /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
@@ -984,6 +995,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18820E861A64B1A3006855E9 /* AVFoundation.framework in Frameworks */,
 				18D8916819810510001ED845 /* CoreText.framework in Frameworks */,
 				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FAF918B2F7AF00668660 /* GameKit.framework in Frameworks */,
@@ -1021,6 +1033,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18820E851A64B19A006855E9 /* AVFoundation.framework in Frameworks */,
 				01E9F18D1A04427800901980 /* CoreMotion.framework in Frameworks */,
 				186DC2391992F60700A672A6 /* CoreData.framework in Frameworks */,
 				18D89163198104EC001ED845 /* CoreText.framework in Frameworks */,
@@ -1209,6 +1222,8 @@
 				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
+				18AA3C6F1A65BDE8007A28A8 /* GCSAircraftStatusModel.h */,
+				18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1241,6 +1256,15 @@
 				1875978A189108980012DF6D /* Icon-76.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		18820E7D1A64ACC9006855E9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				18820E801A64AD0C006855E9 /* GCSSpeechManager.h */,
+				18820E811A64AD0C006855E9 /* GCSSpeechManager.m */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		1888DE921710C85400ADA039 /* sdpFiles */ = {
@@ -1957,6 +1981,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18820E841A64B19A006855E9 /* AVFoundation.framework */,
 				01E9F18C1A04427800901980 /* CoreMotion.framework */,
 				186DC2381992F60600A672A6 /* CoreData.framework */,
 				1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */,
@@ -1995,6 +2020,7 @@
 			isa = PBXGroup;
 			children = (
 				18C91D201A71F71C009400C3 /* Managers */,
+				18820E7D1A64ACC9006855E9 /* Managers */,
 				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,
@@ -2393,11 +2419,13 @@
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */,
+				18820E831A64AD0C006855E9 /* GCSSpeechManager.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				01CEC5E319D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18E58A8F198993EB0025A516 /* FileUtils.m in Sources */,
+				18AA3C721A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */,
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
@@ -2540,6 +2568,7 @@
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */,
+				18AA3C711A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
@@ -2571,6 +2600,7 @@
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
+				18820E821A64AD0C006855E9 /* GCSSpeechManager.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,

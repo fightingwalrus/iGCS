@@ -19,9 +19,7 @@
 
 #import "CXAlertView.h"
 
-#import "GCSDataManager.h"
-#import "GCSCraftModelGenerator.h"
-
+#import "GCSSpeechManager.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
@@ -302,6 +300,7 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
                           handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
                               [alertView dismiss];
                           }];
+    
     alertView.showBlurBackground = YES;
 
     // Add pan gesture to allow modification of target altitude
@@ -312,6 +311,10 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
     [alertView addGestureRecognizer:panGesture];
 
     [alertView show];
+
+    GCSSpeechManager *speechManager = [[GCSSpeechManager alloc]init];
+    [speechManager flyToPosition];
+
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
