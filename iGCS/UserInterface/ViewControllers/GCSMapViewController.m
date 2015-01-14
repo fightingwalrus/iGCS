@@ -21,6 +21,7 @@
 
 
 @interface GCSMapViewController ()
+@property (nonatomic, assign) enum MAV_TYPE uavType;
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
 @property (nonatomic, strong) MKAnnotationView  *uavView;
 
@@ -48,12 +49,18 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-NSString * const AIRCRAFT_ICON_NAME = @"quad-icon.png";
-//NSString * const AIRCRAFT_ICON_NAME = @"quadrocopter.png";
+static const NSUInteger VEHICLE_ICON_SIZE = 62;
 
-static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
+static UIImage *planeIcon = nil;
+static UIImage *quadIcon = nil;
 
 @implementation GCSMapViewController
+
++ (void)initialize {
+    // Initialize static resources
+    if (!planeIcon) planeIcon = [UIImage imageNamed:@"plane-icon.png"];
+    if (!quadIcon) quadIcon = [UIImage imageNamed:@"quad-icon.png"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -61,14 +68,13 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
 }
 
 - (void)awakeFromNib {
+    self.uavType = MAV_TYPE_FIXED_WING;
     
     self.uavPos = [[MKPointAnnotation alloc] init];
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     self.uavView = [[MKAnnotationView  alloc] initWithAnnotation:self.uavPos reuseIdentifier:@"uavView"];
-    self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:AIRCRAFT_ICON_NAME]
-                                          scaledToSize:CGSizeMake(AIRCRAFT_ICON_SIZE,AIRCRAFT_ICON_SIZE)
-                                              rotation:0];
+    self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:0];
     self.uavView.userInteractionEnabled = YES;
     self.uavView.centerOffset = CGPointZero;
     
@@ -81,6 +87,11 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
     self.lastFollowMeUpdate = [NSDate date];
 }
 
++ (UIImage*) uavIconForType:(enum MAV_TYPE)type withYaw:(double)rotation {
+    return [MiscUtilities imageWithImage:(type == MAV_TYPE_FIXED_WING ? planeIcon : quadIcon) // if not fixed wing, default to quadIcon
+                            scaledToSize:CGSizeMake(VEHICLE_ICON_SIZE,VEHICLE_ICON_SIZE)
+                                rotation:rotation];
+}
 
 #pragma mark - View lifecycle
 
@@ -356,9 +367,7 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [MiscUtilities imageWithImage:[UIImage imageNamed:AIRCRAFT_ICON_NAME]
-                                                  scaledToSize:CGSizeMake(AIRCRAFT_ICON_SIZE,AIRCRAFT_ICON_SIZE)
-                                                      rotation:attitudePkt.yaw];
+            self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:attitudePkt.yaw];
             
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [self.ahIndicatorView requestRedraw];
@@ -417,6 +426,9 @@ static const NSUInteger AIRCRAFT_ICON_SIZE = 62;
             
             // We got a heartbeat, so...
             [self rescheduleHeartbeatLossCheck];
+            
+            // Record the uav type
+            self.uavType = heartbeat.type;
             
             // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
