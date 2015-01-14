@@ -208,4 +208,8 @@
     CGContextStrokePath(ctx);
 }
 
+- (BOOL) pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    return NO; // Pass all UIEvents (e.g. touches) to the view underneath
+}
+
 @end
