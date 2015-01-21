@@ -177,7 +177,11 @@ NSArray* headerWidths = nil;
 // Support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     NSAssert((fromIndexPath.section == 0 && toIndexPath.section == 0), @"Expect to and from table sections to be zero");
-    [[self waypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
+    
+    // Prevent reordering of the HOME/0 waypoint (unable to reorder directly; this prevents other rows moving ahead of it)
+    if (!(toIndexPath.row == 0 || fromIndexPath.row == 0)) {
+        [[self waypointsHolder] moveWaypoint:fromIndexPath.row to:toIndexPath.row];
+    }
     
     // Reset the map and table views
     [[self waypointsVC] resetWaypoints];
