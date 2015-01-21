@@ -32,6 +32,15 @@
 @property (strong, nonatomic) UIButton *thrustMinusButton;
 @property (strong, nonatomic) UIButton *thrustZeroButton;
 
+@property (strong, nonatomic) UIButton *upTwoButton;
+@property (strong, nonatomic) UIButton *upOneButton;
+@property (strong, nonatomic) UIButton *neutralButton;
+@property (strong, nonatomic) UIButton *downOneButton;
+@property (strong, nonatomic) UIButton *downTwoButton;
+
+
+
+
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
 
@@ -197,6 +206,95 @@
     [self.emergencyButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.emergencyButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
     
+    
+    CGFloat buttonWidths = 80;
+    CGFloat buttonHeights = 140;
+    
+    self.neutralButton = [UIButton newAutoLayoutView];
+    [self.neutralButton setTitle :@"--" forState:UIControlStateNormal];
+    [self.neutralButton addTarget:self action:@selector(neutral) forControlEvents:UIControlEventTouchDown];
+    [self.neutralButton addTarget:self action:@selector(neutralRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.neutralButton addTarget:self action:@selector(neutralRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.neutralButton.backgroundColor = [UIColor grayColor];
+    [self.neutralButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.neutralButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.neutralButton];
+    
+    [self.neutralButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.neutralButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.neutralButton autoSetDimension:ALDimensionHeight toSize:buttonHeights];
+    [self.neutralButton autoSetDimension:ALDimensionWidth toSize:buttonWidths];
+    
+    
+    
+
+    
+    self.upOneButton = [UIButton newAutoLayoutView];
+    [self.upOneButton setTitle :@"^" forState:UIControlStateNormal];
+    [self.upOneButton addTarget:self action:@selector(oneUp) forControlEvents:UIControlEventTouchDown];
+    [self.upOneButton addTarget:self action:@selector(oneUpRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.upOneButton addTarget:self action:@selector(oneUpRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.upOneButton.backgroundColor = [UIColor blueColor];
+    [self.upOneButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.upOneButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.upOneButton];
+    
+    [self.upOneButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.upOneButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.neutralButton];
+    [self.upOneButton autoSetDimension:ALDimensionHeight toSize:buttonHeights];
+    [self.upOneButton autoSetDimension:ALDimensionWidth toSize:buttonWidths];
+    
+    
+    
+    self.upTwoButton = [UIButton newAutoLayoutView];
+    [self.upTwoButton setTitle :@"^^" forState:UIControlStateNormal];
+    [self.upTwoButton addTarget:self action:@selector(twoUp) forControlEvents:UIControlEventTouchDown];
+    [self.upTwoButton addTarget:self action:@selector(twoUpRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.upTwoButton addTarget:self action:@selector(twoUpRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.upTwoButton.backgroundColor = [UIColor greenColor];
+    [self.upTwoButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.upTwoButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.upTwoButton];
+    
+    [self.upTwoButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.upTwoButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.upOneButton];
+    [self.upTwoButton autoSetDimension:ALDimensionHeight toSize:buttonHeights];
+    [self.upTwoButton autoSetDimension:ALDimensionWidth toSize:buttonWidths];
+    
+    self.downOneButton = [UIButton newAutoLayoutView];
+    [self.downOneButton setTitle :@"v" forState:UIControlStateNormal];
+    [self.downOneButton addTarget:self action:@selector(oneDown) forControlEvents:UIControlEventTouchDown];
+    [self.downOneButton addTarget:self action:@selector(oneDownRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.downOneButton addTarget:self action:@selector(oneDownRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.downOneButton.backgroundColor = [UIColor yellowColor];
+    [self.downOneButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.downOneButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.downOneButton];
+    
+    [self.downOneButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.downOneButton autoPinEdge:ALEdgeTop  toEdge:ALEdgeBottom ofView:self.neutralButton];
+    [self.downOneButton autoSetDimension:ALDimensionHeight toSize:buttonHeights];
+    [self.downOneButton autoSetDimension:ALDimensionWidth toSize:buttonWidths];
+    
+    self.downTwoButton = [UIButton newAutoLayoutView];
+    [self.downTwoButton setTitle :@"vv" forState:UIControlStateNormal];
+    [self.downTwoButton addTarget:self action:@selector(twoDown) forControlEvents:UIControlEventTouchDown];
+    [self.downTwoButton addTarget:self action:@selector(twoDownRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.downTwoButton addTarget:self action:@selector(twoDownRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.downTwoButton.backgroundColor = [UIColor redColor];
+    [self.downTwoButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.downTwoButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.downTwoButton];
+    
+    [self.downTwoButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.downTwoButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.downOneButton];
+    [self.downTwoButton autoSetDimension:ALDimensionHeight toSize:buttonHeights];
+    [self.downTwoButton autoSetDimension:ALDimensionWidth toSize:buttonWidths];
+    
+    
+    
+    
+    
     [self.ftpButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.ftpButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:80.0f];
 
@@ -241,10 +339,10 @@
     [self.pickerTextField setTextColor:[GCSThemeManager sharedInstance].appTintColor];
     [self.view addSubview:self.pickerTextField];
     
-    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20.0f];
-    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
+    [self.manualControlButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.manualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:300.0f];
     
-    [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20.0f];
+    [self.stopManualControlButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.stopManualControlButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:240.0f];
     
     
@@ -301,6 +399,49 @@
 - (void) resetWatchDogTimer {
     [[CommController sharedInstance].mavLinkInterface arDroneResetWatchDogTimer];
 }
+
+- (void) twoUp {
+    NSLog(@"TwoUp Down");
+}
+
+- (void) twoUpRelease {
+    NSLog(@"TwoUp Released");
+}
+
+- (void) oneUp {
+    NSLog(@"OneUp Down");
+}
+
+- (void) oneUpRelease {
+    NSLog(@"OneUp Released");
+}
+
+- (void) neutral {
+    NSLog(@"Neutral Down");
+}
+
+- (void) neutralRelease {
+    NSLog(@"Neutral Released");
+}
+
+- (void) oneDown {
+    NSLog(@"OneDown Down");
+}
+
+- (void) oneDownRelease {
+    NSLog(@"OneDown Released");
+}
+
+- (void) twoDown {
+    NSLog(@"TwoDown Down");
+}
+
+- (void) twoDownRelease {
+    NSLog(@"TwoDown Released");
+}
+
+
+
 
 - (void) executeAnimation {
     if ([self.pickerTextField.text isEqualToString:@"Flip Left"])
