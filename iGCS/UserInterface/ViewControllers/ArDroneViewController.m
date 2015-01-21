@@ -19,6 +19,8 @@
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 
 
+
+
 //UI Elements
 @property (strong, nonatomic) UIButton *takeOffButton;
 @property (strong, nonatomic) UIButton *landButton;
@@ -31,6 +33,8 @@
 @property (strong, nonatomic) UIButton *thrustPlusButton;
 @property (strong, nonatomic) UIButton *thrustMinusButton;
 @property (strong, nonatomic) UIButton *thrustZeroButton;
+
+@property (strong, nonatomic) UIButton *pitchRollButton;
 
 @property (strong, nonatomic) UIButton *upTwoButton;
 @property (strong, nonatomic) UIButton *upOneButton;
@@ -49,6 +53,15 @@
 
 @property (nonatomic, assign) uint16_t sequenceNumber;
 @property (nonatomic, assign) int16_t thrust;
+
+@property (strong, nonatomic) CMAttitude* rollPitchOffset;
+@property (strong, nonatomic) CMAttitude* yawOffset;
+
+@property (nonatomic, assign) AngleStatusType sendRollPitch;
+@property (nonatomic, assign) AngleStatusType sendYawThrust;
+
+
+
 
 
 @end
@@ -206,6 +219,25 @@
     [self.emergencyButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.emergencyButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
     
+    
+    
+    
+    
+    
+    self.pitchRollButton = [UIButton newAutoLayoutView];
+    [self.pitchRollButton setTitle :@"O" forState:UIControlStateNormal];
+    [self.pitchRollButton addTarget:self action:@selector(pitchRoll) forControlEvents:UIControlEventTouchDown];
+    [self.pitchRollButton addTarget:self action:@selector(pitchRollRelease) forControlEvents:UIControlEventTouchUpInside];
+    [self.pitchRollButton addTarget:self action:@selector(pitchRollRelease) forControlEvents:UIControlEventTouchUpOutside];
+    self.pitchRollButton.backgroundColor = [UIColor grayColor];
+    [self.pitchRollButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
+    [self.pitchRollButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
+    [self.view addSubview:self.pitchRollButton];
+    
+    [self.pitchRollButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:160];
+    [self.pitchRollButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:160];
+    [self.pitchRollButton autoSetDimension:ALDimensionHeight toSize:100];
+    [self.pitchRollButton autoSetDimension:ALDimensionWidth toSize:100];
     
     CGFloat buttonWidths = 80;
     CGFloat buttonHeights = 140;
@@ -400,44 +432,71 @@
     [[CommController sharedInstance].mavLinkInterface arDroneResetWatchDogTimer];
 }
 
+- (void) pitchRoll {
+    NSLog(@"pitchRoll Down");
+    self.sendRollPitch = angleNeedsOffset;
+}
+
+- (void) pitchRollRelease {
+    NSLog(@"pitchRoll Released");
+    self.sendRollPitch = angleNotUsed;
+}
+
 - (void) twoUp {
     NSLog(@"TwoUp Down");
+    self.sendYawThrust = angleNeedsOffset;
+    self.thrust = 1000;
 }
 
 - (void) twoUpRelease {
     NSLog(@"TwoUp Released");
+    self.sendYawThrust = angleNotUsed;
 }
 
 - (void) oneUp {
     NSLog(@"OneUp Down");
+    self.sendYawThrust = angleNeedsOffset;
+    self.thrust = 500;
 }
 
 - (void) oneUpRelease {
     NSLog(@"OneUp Released");
+    self.sendYawThrust = angleNotUsed;
 }
 
 - (void) neutral {
     NSLog(@"Neutral Down");
+    self.sendYawThrust = angleNeedsOffset;
+    self.thrust = 0;
+
 }
 
 - (void) neutralRelease {
     NSLog(@"Neutral Released");
+    self.sendYawThrust = angleNotUsed;
 }
 
 - (void) oneDown {
     NSLog(@"OneDown Down");
+    self.sendYawThrust = angleNeedsOffset;
+    self.thrust = -500;
 }
 
 - (void) oneDownRelease {
     NSLog(@"OneDown Released");
+    self.sendYawThrust = angleNotUsed;
 }
 
 - (void) twoDown {
     NSLog(@"TwoDown Down");
+    self.sendYawThrust = angleNeedsOffset;
+    self.thrust = -1000;
 }
 
 - (void) twoDownRelease {
     NSLog(@"TwoDown Released");
+    self.sendYawThrust = angleNotUsed;
+
 }
 
 
@@ -469,14 +528,47 @@
     //http://nscookbook.com/2013/03/ios-programming-recipe-19-using-core-motion-to-access-gyro-and-accelerometer/
     
     self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.accelerometerUpdateInterval = .01;
-    self.motionManager.gyroUpdateInterval = .01;
+    self.motionManager.accelerometerUpdateInterval = .03;
+    self.motionManager.gyroUpdateInterval = .03;
     
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
                                             withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
-                                                GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion];
-                                                DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d", anglesOfRotation.pitch, anglesOfRotation.roll, anglesOfRotation.yaw);
-                                                [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:anglesOfRotation.pitch andRoll:anglesOfRotation.roll andThrust:self.thrust andYaw:anglesOfRotation.yaw andSequenceNumber:self.sequenceNumber];
+                                                
+                                                int16_t yaw = 0;
+                                                int16_t roll = 0;
+                                                int16_t pitch = 0;
+                                                int16_t thrust = 0;
+                                                //Get offsets at time of initial button press for each button
+                                                if(self.sendRollPitch == angleNeedsOffset)
+                                                {
+                                                    self.rollPitchOffset = [deviceMotion.attitude copy];
+                                                    self.sendRollPitch = angleHasOffset;
+                                                }
+                                                
+                                                if(self.sendYawThrust == angleNeedsOffset)
+                                                {
+                                                    self.yawOffset = [deviceMotion.attitude copy];
+                                                    self.sendYawThrust = angleHasOffset;
+                                                }
+                                                
+                                                //Once we have the offsets lets calculate the angles based on those offsets
+                                                if (self.sendRollPitch != angleNotUsed) {
+                                                    GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion relativeToOffset:self.rollPitchOffset];
+
+                                                    roll = anglesOfRotation.roll;
+                                                    pitch = anglesOfRotation.pitch;
+                                                }
+                                                if (self.sendYawThrust != angleNotUsed)
+                                                {
+                                                    GCSMAVRotationAngles anglesOfRotation2 = [self outputMotionData:deviceMotion relativeToOffset:self.yawOffset];
+                                                    yaw = anglesOfRotation2.yaw;
+                                                    thrust = self.thrust;
+                                                }
+                                                
+                                                DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d, Thrust : %d", pitch, roll, yaw, thrust);
+                                                
+
+                                                [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:pitch andRoll:roll andThrust:thrust andYaw:yaw andSequenceNumber:self.sequenceNumber];
                                                 self.sequenceNumber++;
                                                 if(error){
                                                     
@@ -492,8 +584,16 @@
     return anglesOfRotation;
 }
 
+-(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion relativeToOffset: (CMAttitude*) offset{
+    [deviceMotion.attitude multiplyByInverseOfAttitude:offset];
+    CMQuaternion quat = deviceMotion.attitude.quaternion;
+    GCSMAVRotationAngles anglesOfRotation = [CoreMotionUtils normalizedRotationAnglesFromQuaternion:quat];
+    return anglesOfRotation;
+}
 
-- (void) stopManualFlight {   
+
+- (void) stopManualFlight {
+    [self.motionManager stopDeviceMotionUpdates];
     [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:0 andRoll:0 andThrust:0 andYaw:0 andSequenceNumber:1];
         self.thrust = 0;
 }
