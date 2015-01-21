@@ -144,14 +144,6 @@
                                 </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </view>
-                            <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dV-1w-Z5N" userLabel="Airspeed View" customClass="VerticalScaleView">
-                                <rect key="frame" x="0.0" y="43" width="40" height="676"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="pP6-dX-UCI"/>
-                                </constraints>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-13"/>
-                            </view>
                             <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXV-5t-BKj" userLabel="Altitude View" customClass="VerticalScaleView">
                                 <rect key="frame" x="984" y="43" width="40" height="676"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -173,10 +165,25 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="13" maxX="0.0" maxY="-13"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lb-OI-PvF" userLabel="LocateUser">
+                                <rect key="frame" x="48" y="671" width="30" height="34"/>
+                                <connections>
+                                    <action selector="zoomInOnUser:" destination="2" eventType="touchUpInside" id="Tkz-Tq-vq4"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dV-1w-Z5N" userLabel="Airspeed View" customClass="VerticalScaleView">
+                                <rect key="frame" x="0.0" y="43" width="40" height="676"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="pP6-dX-UCI"/>
+                                </constraints>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-13"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="MXV-5t-BKj" secondAttribute="bottom" id="5rh-bj-5to"/>
+                            <constraint firstItem="0Lb-OI-PvF" firstAttribute="leading" secondItem="6dV-1w-Z5N" secondAttribute="trailing" constant="8" id="6LL-sd-v0f"/>
                             <constraint firstItem="6dV-1w-Z5N" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="7Hk-KT-Nsd"/>
                             <constraint firstItem="aMy-jv-l5b" firstAttribute="width" secondItem="17" secondAttribute="width" id="8tp-bN-tVl"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="top" secondItem="17" secondAttribute="top" id="8x8-cY-hj4"/>
@@ -191,6 +198,7 @@
                             <constraint firstAttribute="centerX" secondItem="yLv-Ho-H5N" secondAttribute="centerX" id="TyL-tX-IP3"/>
                             <constraint firstItem="GB7-I2-mGW" firstAttribute="top" secondItem="Igh-og-PSg" secondAttribute="bottom" id="VcV-uL-Hw9"/>
                             <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="GAr-p0-3d5" secondAttribute="bottom" id="aVM-c5-2pa"/>
+                            <constraint firstItem="0RE-bK-GnI" firstAttribute="top" secondItem="0Lb-OI-PvF" secondAttribute="bottom" constant="14" id="bJU-ZB-FDT"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="esA-4m-eCG"/>
                             <constraint firstItem="GAr-p0-3d5" firstAttribute="width" secondItem="17" secondAttribute="width" id="etn-k4-fqp"/>
                             <constraint firstItem="MXV-5t-BKj" firstAttribute="top" secondItem="aMy-jv-l5b" secondAttribute="bottom" id="hn9-qw-Mz2"/>
@@ -214,6 +222,7 @@
                         <outlet property="customModeLabel" destination="HBF-yg-xzq" id="mdu-jB-wqd"/>
                         <outlet property="dataRateLabel" destination="ha6-g8-onv" id="hHd-0t-vaT"/>
                         <outlet property="dataRateSparklineView" destination="jK7-ed-zhJ" id="wBH-CE-jUE"/>
+                        <outlet property="locateUser" destination="0Lb-OI-PvF" id="Lv8-H1-A0o"/>
                         <outlet property="mapView" destination="GAr-p0-3d5" id="XvF-eE-JMH"/>
                         <outlet property="sidebarButton" destination="TX8-Vu-5JO" id="yeG-tZ-pqe"/>
                         <outlet property="voltageLabel" destination="QcI-s1-ehf" id="Lg5-TQ-Idv"/>
@@ -1003,6 +1012,15 @@
                                     <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eT-rn-63l" userLabel="LocateUser">
+                                <rect key="frame" x="8" y="300" width="30" height="34"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomInOnUser:" destination="ZiK-du-awU" eventType="touchUpInside" id="pWr-MQ-lBh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1016,6 +1034,7 @@
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
                         <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>
+                        <outlet property="locateUser" destination="8eT-rn-63l" id="gOT-Nr-8vN"/>
                         <outlet property="mapView" destination="qaC-XP-dCX" id="wUM-Ez-ehM"/>
                         <outlet property="rxMissionButton" destination="di6-Zt-zDe" id="Hpn-p7-z75"/>
                         <outlet property="txMissionButton" destination="SRA-QZ-232" id="JPD-Du-oRV"/>

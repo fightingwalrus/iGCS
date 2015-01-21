@@ -524,13 +524,4 @@ static UIImage *quadIcon = nil;
     return nil;
 }
 
-// Override the base locationManager: didUpdateLocations
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = self.locationManager.location;
-    NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
-    DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
-    if (age > 5.0) return;
-    self.userPosition = location;
-}
-
 @end

@@ -55,6 +55,13 @@
     longPressGesture.minimumPressDuration = 1.0;
     [self.mapView addGestureRecognizer:longPressGesture];
     
+    // Start with locateUser button disabled
+    [self.locateUser setEnabled:NO];
+    [self.locateUser setImage:[MiscUtilities image:[UIImage imageNamed:@"193-location-arrow.png"]
+                                         withColor:[[GCSThemeManager sharedInstance] appTintColor]]
+                     forState:UIControlStateNormal];
+    [self.locateUser setShowsTouchWhenHighlighted:YES];
+    
     // Start listening for location updates
     _locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -381,7 +388,17 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    self.userPosition = self.locationManager.location;
+    CLLocation *location = self.locationManager.location;
+    NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
+    DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
+    if (age > 5.0) return;
+    
+    self.userPosition = location;
+    [self.locateUser setEnabled:(location.horizontalAccuracy >= 0 && location.horizontalAccuracy <= kCLLocationAccuracyHundredMeters)];
+}
+
+- (void) zoomInOnUser:(id)sender {
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, 400, 400) animated:YES];
 }
 
 @end

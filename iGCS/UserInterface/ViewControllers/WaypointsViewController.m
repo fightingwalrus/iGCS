@@ -254,10 +254,12 @@
     // Slide/grow/shrink the map and table views
     CGRect tableRect = self.containerForTableView.frame;
     CGRect mapRect   = self.mapView.frame;
-
+    CGRect locateUserRect = self.locateUser.frame;
+    
     tableRect.origin.y += delta;
     tableRect.size.height -= delta;
     mapRect.size.height += delta;
+    locateUserRect.origin.y += delta;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -265,6 +267,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     self.containerForTableView.frame = tableRect;
     self.mapView.frame = mapRect;
+    self.locateUser.frame = locateUserRect;
     [UIView commitAnimations];
     
     // Update the map view with non/editable waypoints
