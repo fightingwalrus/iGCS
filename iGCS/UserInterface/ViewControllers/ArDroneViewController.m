@@ -197,9 +197,9 @@
     [self.emergencyButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.emergencyButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
     
-
-    [self.ftpButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
+    [self.ftpButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.ftpButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:80.0f];
+
     
     NSArray *buttonlViews = @[self.ftpButton, self.telnetButton];
     
@@ -217,7 +217,7 @@
     }
     
     
-    [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
+    [self.takeOffButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.takeOffButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:180.0f];
     
     NSArray *buttonlViews2 = @[self.takeOffButton, self.landButton, self.calibrationButton, self.resetWatchDogButton];

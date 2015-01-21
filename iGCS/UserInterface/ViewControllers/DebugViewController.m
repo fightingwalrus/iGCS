@@ -71,6 +71,9 @@
 
 - (IBAction)arDroneCtrl:(id)sender {
     NSLog(@"You clicked the button, way to go");
+    ArDroneViewController *arDroneViewController = [[ArDroneViewController alloc] init];
+    [self presentViewController:arDroneViewController animated:YES completion:nil];
+    
 }
 
 
