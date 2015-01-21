@@ -212,9 +212,12 @@ static UIImage *quadIcon = nil;
     [self.mapView addAnnotation:self.currentGuidedAnnotation];
     [self.mapView setNeedsDisplay];
 
-    [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
-}
+    [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
+    });
+}
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
     self.showProposedFollowPos = YES;
