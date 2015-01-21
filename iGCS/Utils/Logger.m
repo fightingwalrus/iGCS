@@ -37,7 +37,6 @@ static BOOL loggerEnabled = NO;
 
         if (debugVC) {
             DDLogError(@"%@",message);
-            [debugVC errorMessage:messageString];
         } else {
             DDLogError(@"%@",message);
             [self addPendingErrorMessage:messageString];

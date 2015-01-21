@@ -30,9 +30,7 @@
 
 @interface DebugViewController ()
 @property (strong) NSMutableArray *pendingConsoleMessages;
-@property (strong) NSMutableArray *pendingErrorMessages;
 
-@property (strong, nonatomic) ArDroneUtils * arDrone2;
 @end
 
 
@@ -43,7 +41,6 @@
     if (self) {
         // Custom initialization
         _pendingConsoleMessages = [NSMutableArray array];
-        _pendingErrorMessages = [NSMutableArray array];
     }
     return self;
 }
@@ -55,15 +52,6 @@
 
 
 -(void)viewDidAppear:(BOOL)animated {
-    [Logger setDebugVC:self];
-
-    if ([[Logger getPendingErrorMessages] count] > 0) {
-        for (NSString *message in [Logger getPendingErrorMessages]) {
-            [self errorMessage:message];
-        }
-    }
-    
-    [Logger clearPendingErrorMessages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,61 +69,8 @@
     [[CommController sharedInstance] startBluetoothTx];
 }
 
-- (IBAction)ftpClicked:(id)sender {
-    self.arDrone2 = [[ArDroneUtils alloc] init];
-    [self.arDrone2 uploadProgramToDrone];
-}
-
-
-- (IBAction)telClicked:(id)sender {
-    self.arDrone2 = [[ArDroneUtils alloc] init];
-    [self.arDrone2 makeTelnetConnectionToDrone];
-}
-
-- (IBAction)mavClicked:(id)sender {
-    self.arDrone2 = [[ArDroneUtils alloc] init];
-    [self.arDrone2 mavlinkCommandedTakeoff];
-    
-}
-
-- (IBAction)lndClicked:(id)sender {
-    [[CommController sharedInstance].mavLinkInterface arDroneLand];
-}
-
-- (IBAction)rtlClicked:(id)sender {
-    self.arDrone2 = [[ArDroneUtils alloc] init];
-    [self.arDrone2 mavlinkReturnToLaunch];
-}
-
-- (IBAction)specClicked:(id)sender {
-    [[CommController sharedInstance].mavLinkInterface arDroneCalibrateHorizontalPlane];
-    [[CommController sharedInstance].mavLinkInterface arDroneTakeOff];
-    
-}
-
-- (IBAction)emergencyClicked:(id)sender {
-   [[CommController sharedInstance].mavLinkInterface arDroneToggleEmergency];
-    
-}
-
-- (IBAction)calClicked:(id)sender {
-    [[CommController sharedInstance].mavLinkInterface arDroneCalibrateMagnetometer];
-    
-}
-
-- (IBAction)flipClicked:(id)sender {
-    [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
-    
-}
-
-- (IBAction)testClicked:(id)sender {
-        ArDroneViewController *arDroneViewController = [[ArDroneViewController alloc] init];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:arDroneViewController];
-        
-        navController.navigationBar.barStyle = UIBarStyleDefault;
-        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:navController animated:YES completion:nil];
-    
+- (IBAction)arDroneCtrl:(id)sender {
+    NSLog(@"You clicked the button, way to go");
 }
 
 
@@ -155,24 +90,10 @@
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
 }
 
--(void)errorMessage:(NSString*)messageText {
-    NSString *currentText = self.errorsTextView.text;
-    
-    NSString *updatedText;
-    
-    if (currentText) {
-        updatedText = [NSString stringWithFormat:@"%@\n%@",currentText,messageText];
-    } else {
-        updatedText = messageText;
-    }
-    
-    self.errorsTextView.text = updatedText;
 
-}
 
 - (void)viewDidUnload {
     [self setConsoleTextView:nil];
-    [self setErrorsTextView:nil];
     [super viewDidUnload];
 }
 

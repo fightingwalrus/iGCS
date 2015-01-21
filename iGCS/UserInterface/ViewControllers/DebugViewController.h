@@ -13,28 +13,15 @@
 #import "GCDAsyncUdpSocket.h"
 #import "ArDroneUtils.h"
 
-@interface DebugViewController : UIViewController <BRRequestDelegate>
+@interface DebugViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextView *consoleTextView;
-@property (strong, nonatomic) IBOutlet UITextView *errorsTextView;
 
-- (IBAction)bluetoothRxClicked:(id)sender;
-- (IBAction)bluetoothTxClicked:(id)sender;
+- (IBAction)arDroneCtrl:(id)sender;
 
-- (IBAction)ftpClicked:(id)sender;
-- (IBAction)telClicked:(id)sender;
-- (IBAction)mavClicked:(id)sender;
-- (IBAction)lndClicked:(id)sender;
-- (IBAction)rtlClicked:(id)sender;
-- (IBAction)specClicked:(id)sender;
 
-- (IBAction)calClicked:(id)sender;
-- (IBAction)emergencyClicked:(id)sender;
-- (IBAction)flipClicked:(id)sender;
-- (IBAction)testClicked:(id)sender;
 
 -(void)consoleMessage:(NSString*)messageText;
--(void)errorMessage:(NSString*)messageText;
 
 
 @end
