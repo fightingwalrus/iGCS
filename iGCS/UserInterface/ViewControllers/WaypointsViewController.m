@@ -54,6 +54,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self enterEditingMode];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowing:)
@@ -238,7 +239,8 @@
 }
 
 // FIXME: also need to check and close the detail view if open
-- (IBAction)editDoneClicked:(id)sender {
+//- (IBAction)editDoneClicked:(id)sender {
+- (void)enterEditingMode {
     
     // Update the table and edit/add/upload buttons
     BOOL isEditing = [self.missionTableViewController toggleEditing];
@@ -246,9 +248,9 @@
     self.editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
     self.addButton.enabled       = isEditing;
-    self.rxMissionButton.enabled = !isEditing;
-    self.txMissionButton.enabled = !isEditing;
-    self.loadDemoButton.enabled  = !isEditing;
+    //self.rxMissionButton.enabled = !isEditing;
+    //self.txMissionButton.enabled = !isEditing;
+    //self.loadDemoButton.enabled  = !isEditing;
 
     NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
