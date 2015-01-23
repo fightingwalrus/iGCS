@@ -9,7 +9,10 @@
 #import "WaypointMapBaseController.h"
 #import "WaypointsHolder.h"
 
-#define TABLE_MAP_SLIDE_AMOUNT 100
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#define TABLE_MAP_SLIDE_AMOUNT (IS_IPAD ? 100 : 0)
+
 #define WAYPOINT_DEFAULT_ALTITUDE 25
 
 @protocol MissionItemEditingDelegate
