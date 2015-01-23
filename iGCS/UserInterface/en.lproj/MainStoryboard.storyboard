@@ -110,6 +110,9 @@
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="273" y="19" width="26" height="23"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="  -.-A" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DAe-Q0-ZRd" userLabel="Current Label">
                                         <rect key="frame" x="462" y="19" width="39" height="23"/>
@@ -990,9 +993,6 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
-                                </variation>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tke-gb-soE" userLabel="Holder">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
@@ -1000,9 +1000,6 @@
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qaC-XP-dCX">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="268"/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="-68" maxX="0.0" maxY="68"/>
-                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="168"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="368"/>
                                         </variation>
@@ -1011,9 +1008,6 @@
                                         <rect key="frame" x="0.0" y="268" width="600" height="268"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="168" width="1024" height="168"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
                                             <rect key="frame" x="0.0" y="368" width="1024" height="368"/>
                                         </variation>
@@ -1021,7 +1015,6 @@
                                             <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
                                         </connections>
                                     </containerView>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1jw-tf-q4R" userLabel="BaseMapViewTBR"/>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1031,34 +1024,23 @@
                                     <constraint firstAttribute="trailing" secondItem="qaC-XP-dCX" secondAttribute="trailing" id="IhM-Gx-2mr"/>
                                     <constraint firstItem="qaC-XP-dCX" firstAttribute="top" secondItem="Tke-gb-soE" secondAttribute="top" id="Mbi-yj-zDg"/>
                                     <constraint firstItem="qaC-XP-dCX" firstAttribute="height" secondItem="Tke-gb-soE" secondAttribute="height" multiplier="0.5" id="NuD-E2-PA8"/>
-                                    <constraint firstAttribute="trailing" secondItem="1jw-tf-q4R" secondAttribute="trailing" id="Qbv-6F-4qP"/>
                                     <constraint firstItem="5D9-Dd-q69" firstAttribute="height" secondItem="Tke-gb-soE" secondAttribute="height" multiplier="0.5" id="SF0-Ij-YC5"/>
-                                    <constraint firstAttribute="bottom" secondItem="1jw-tf-q4R" secondAttribute="bottom" id="Uhc-91-Ren"/>
-                                    <constraint firstItem="1jw-tf-q4R" firstAttribute="top" secondItem="Tke-gb-soE" secondAttribute="top" id="WVN-pf-K9P"/>
                                     <constraint firstAttribute="trailing" secondItem="5D9-Dd-q69" secondAttribute="trailing" id="vNO-VN-aIV"/>
                                     <constraint firstItem="qaC-XP-dCX" firstAttribute="leading" secondItem="Tke-gb-soE" secondAttribute="leading" id="vPX-eh-usS"/>
-                                    <constraint firstItem="1jw-tf-q4R" firstAttribute="leading" secondItem="Tke-gb-soE" secondAttribute="leading" id="vkA-v3-Pwz"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="1jw-tf-q4R"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="336"/>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Tke-gb-soE" secondAttribute="trailing" id="5Kh-Ui-CCA"/>
                             <constraint firstItem="CCn-PO-kYQ" firstAttribute="leading" secondItem="JlU-a8-ntD" secondAttribute="leading" id="935-a2-nAl"/>
-                            <constraint firstAttribute="bottom" secondItem="Tke-gb-soE" secondAttribute="bottom" id="APk-DE-4RX"/>
                             <constraint firstItem="3Z0-Dx-sHd" firstAttribute="top" secondItem="CCn-PO-kYQ" secondAttribute="top" id="UWg-oO-9lz"/>
                             <constraint firstItem="Tke-gb-soE" firstAttribute="top" secondItem="CCn-PO-kYQ" secondAttribute="bottom" id="Uvi-vB-c5a"/>
+                            <constraint firstItem="Xdo-aE-sQI" firstAttribute="top" secondItem="Tke-gb-soE" secondAttribute="bottom" id="aDM-zV-6Ve"/>
                             <constraint firstAttribute="trailing" secondItem="CCn-PO-kYQ" secondAttribute="trailing" id="dJi-ol-B3y"/>
                             <constraint firstItem="Tke-gb-soE" firstAttribute="leading" secondItem="JlU-a8-ntD" secondAttribute="leading" id="y4p-cD-uJL"/>
                         </constraints>
+                        <variation key="heightClass=compact-widthClass=compact"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mission" image="07-map-marker.png" id="4vf-Da-43r"/>
                     <nil key="simulatedTopBarMetrics"/>
