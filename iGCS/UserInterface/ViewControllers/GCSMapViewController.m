@@ -213,7 +213,11 @@ static UIImage *quadIcon = nil;
     [self.mapView addAnnotation:self.currentGuidedAnnotation];
     [self.mapView setNeedsDisplay];
 
-    [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
+    // As of APM:Copter 3.2 we *must* set mode to guided however we don't want to
+    // do this for APM:Plan
+    if ([GCSDataManager sharedInstance].craft.type != MAV_TYPE_FIXED_WING) {
+        [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
+    }
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
          [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
