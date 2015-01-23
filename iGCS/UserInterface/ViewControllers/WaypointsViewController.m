@@ -49,6 +49,7 @@
     //  - corrects the expanding/contract effect on Edit for iOS8
     [self.containerForTableView setTranslatesAutoresizingMaskIntoConstraints:YES];
     [self.mapView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.locateUser setTranslatesAutoresizingMaskIntoConstraints:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
