@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018C9CC11A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018C9CC01A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56B19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */; };
@@ -428,6 +429,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018C9CBF1A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboardSegue+CustomSegue.h"; sourceTree = "<group>"; };
+		018C9CC01A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboardSegue+CustomSegue.m"; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
@@ -1261,6 +1264,8 @@
 				01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */,
 				01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */,
 				01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */,
+				018C9CBF1A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.h */,
+				018C9CC01A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2504,6 +2509,7 @@
 				CAFEE7961734B32E006BEF6A /* MissionItemEditViewController.m in Sources */,
 				01CEC5E519D9FA3800320A34 /* BRRequestQueue.m in Sources */,
 				CAFEE7991734C28D006BEF6A /* MissionItemTableViewController.m in Sources */,
+				018C9CC11A72E53E00FD24C0 /* UIStoryboardSegue+CustomSegue.m in Sources */,
 				CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */,
 				CAFD1CC517895E6000B5EC88 /* RequestedPointAnnotation.m in Sources */,
 				CAFBD048180A83E000F5BCDB /* TxMissionItemCount.m in Sources */,
