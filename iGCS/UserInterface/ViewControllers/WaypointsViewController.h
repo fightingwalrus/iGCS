@@ -9,7 +9,6 @@
 #import "WaypointMapBaseController.h"
 #import "WaypointsHolder.h"
 
-#define TABLE_MAP_SLIDE_AMOUNT 100
 #define WAYPOINT_DEFAULT_ALTITUDE 25
 
 @protocol MissionItemEditingDelegate
@@ -31,7 +30,6 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *loadDemoButton;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
 @property (nonatomic, retain) IBOutlet UIView *containerForTableView;
 
 - (IBAction)mavRxMissionClicked: (id)sender;
@@ -40,7 +38,6 @@
 - (IBAction)loadDemoMision: (id)sender;
 
 - (IBAction)addClicked:(id)sender;
-- (IBAction)editDoneClicked:(id)sender;
 
 - (void) resetWaypoints;
 

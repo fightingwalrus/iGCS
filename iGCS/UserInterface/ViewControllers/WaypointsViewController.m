@@ -53,7 +53,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self enterEditingMode];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowing:)
@@ -228,7 +227,7 @@
 
 // Recognizer for long press gestures => add waypoint
 -(void) handleLongPressGesture:(UIGestureRecognizer*)sender {
-    if (!(self.missionTableViewController.isEditing && sender.state == UIGestureRecognizerStateBegan))
+    if (!(sender.state == UIGestureRecognizerStateBegan))
         return;
     
     // Set the coordinates of the map point being held down
@@ -239,39 +238,36 @@
 
 // FIXME: also need to check and close the detail view if open
 //- (IBAction)editDoneClicked:(id)sender {
+/*
 - (void)enterEditingMode {
     
-    // Update the table and edit/add/upload buttons
-    BOOL isEditing = [self.missionTableViewController toggleEditing];
-    self.editDoneButton.title = isEditing ? @"Done" : @"Edit";
-    self.editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
-    self.addButton.enabled       = isEditing;
     //self.rxMissionButton.enabled = !isEditing;
     //self.txMissionButton.enabled = !isEditing;
     //self.loadDemoButton.enabled  = !isEditing;
 
-    NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
+    //NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
 
     // Slide/grow/shrink the map and table views
-    CGRect tableRect = self.containerForTableView.frame;
+    //CGRect tableRect = self.containerForTableView.frame;
     CGRect mapRect   = self.mapView.frame;
 
     tableRect.origin.y += delta;
     tableRect.size.height -= delta;
     mapRect.size.height += delta;
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.75];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    //[UIView beginAnimations:nil context:NULL];
+    //[UIView setAnimationBeginsFromCurrentState:YES];
+    //[UIView setAnimationDuration:0.75];
+    //[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     self.containerForTableView.frame = tableRect;
     self.mapView.frame = mapRect;
-    [UIView commitAnimations];
+    //[UIView commitAnimations];
     
     // Update the map view with non/editable waypoints
     [self makeWaypointsDraggable:isEditing];
 }
+ */
 
 
 - (IBAction)mavTxMissionClicked:(id)sender {

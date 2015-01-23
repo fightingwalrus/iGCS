@@ -47,13 +47,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[[self waypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
     [self unmarkSelectedRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // Prevent the edit/done button being touched while editing a mission item
-    [[[self waypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
 }
 
 - (void)viewDidLoad {
@@ -62,11 +59,10 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     [self.tableView setAllowsSelection:YES];
     [self.tableView setAllowsSelectionDuringEditing:YES];
+    [self toggleEditing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -267,7 +263,8 @@ NSArray* headerWidths = nil;
 }
 
 - (BOOL) toggleEditing {
-    BOOL isEditing = !self.isEditing;
+    //FIXME: Temporary approach
+    BOOL isEditing = YES;
     
     // Toggle the table editing state
     [self setEditing:isEditing animated:YES];
