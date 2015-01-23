@@ -7,6 +7,7 @@
 //
 
 #import "MavLinkUtility.h"
+#import "GCSCraftModes.h"
 
 @implementation MavLinkUtility
 

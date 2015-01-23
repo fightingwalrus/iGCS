@@ -33,6 +33,9 @@
 #import "ArDroneUtils.h"
 #import "mavlink_msg_manual_control.h"
 
+#import "GCSCraftModes.h"
+#import "GCSDataManager.h"
+
 @implementation iGCSMavLinkInterface
 
 
@@ -283,32 +286,34 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
 
     mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                  2, // Special flag that indicates this is a GUIDED mode packet
+                                  MAV_GOTO_HOLD_AT_CURRENT_POSITION, // Special flag that indicates this is a GUIDED mode packet
                                   0, 0, 0, 0, 0,
                                   coordinates.latitude, coordinates.longitude, altitude);
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                      2, // Special flag that indicates this is a GUIDED mode packet
+                                      MAV_GOTO_HOLD_AT_CURRENT_POSITION, // Special flag that indicates this is a GUIDED mode packet
                                       0, 0, 0, 0, 0,
                                       coordinates.latitude, coordinates.longitude, altitude);
     });
 }
 
 - (void) issueSetAUTOModeCommand {
-    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, AUTO);
+    uint32_t apmAutoMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneAuto : APMCopterAuto);
 
+    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmAutoMode);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, AUTO);
+         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, APMCopterAuto);
     });
-
 }
 
 - (void) issueSetGuidedModeCommand {
-    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, Guided);
 
+    uint32_t apmGuidedMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneGuided : APMCopterGuided);
+
+    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmGuidedMode);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, Guided);
+        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, APMCopterGuided);
     });
 }
 

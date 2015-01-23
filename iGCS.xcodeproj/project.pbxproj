@@ -237,6 +237,10 @@
 		18C862DA198B5B1000F99CD3 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862D8198B5B1000F99CD3 /* Icon-57.png */; };
 		18C862DD198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
 		18C862DE198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
+		18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D241A71F739009400C3 /* GCSDataManager.m */; };
+		18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D241A71F739009400C3 /* GCSDataManager.m */; };
+		18C91D2A1A71FA89009400C3 /* GCSCraftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D291A71FA89009400C3 /* GCSCraftModel.m */; };
+		18C91D2B1A71FA89009400C3 /* GCSCraftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D291A71FA89009400C3 /* GCSCraftModel.m */; };
 		18D89163198104EC001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8917519817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
@@ -785,6 +789,12 @@
 		18C862CC198B5AFA00F99CD3 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		18C862D8198B5B1000F99CD3 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
 		18C862DC198B5BF700F99CD3 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		18C91D231A71F739009400C3 /* GCSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSDataManager.h; sourceTree = "<group>"; };
+		18C91D241A71F739009400C3 /* GCSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSDataManager.m; sourceTree = "<group>"; };
+		18C91D281A71FA89009400C3 /* GCSCraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModel.h; sourceTree = "<group>"; };
+		18C91D291A71FA89009400C3 /* GCSCraftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftModel.m; sourceTree = "<group>"; };
+		18C91D2C1A71FB02009400C3 /* GCSCraftModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModels.h; sourceTree = "<group>"; };
+		18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModes.h; sourceTree = "<group>"; };
 		18D89162198104EC001ED845 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18D8916B19817CB1001ED845 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
@@ -1185,6 +1195,7 @@
 		1851D848191ADFD900ED5C87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
 			);
@@ -1537,6 +1548,26 @@
 				18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		18C91D201A71F71C009400C3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				18C91D231A71F739009400C3 /* GCSDataManager.h */,
+				18C91D241A71F739009400C3 /* GCSDataManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		18C91D271A71F752009400C3 /* Craft */ = {
+			isa = PBXGroup;
+			children = (
+				18C91D2C1A71FB02009400C3 /* GCSCraftModels.h */,
+				18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */,
+				18C91D281A71FA89009400C3 /* GCSCraftModel.h */,
+				18C91D291A71FA89009400C3 /* GCSCraftModel.m */,
+			);
+			path = Craft;
 			sourceTree = "<group>";
 		};
 		18D8916A19817CB1001ED845 /* HockeySDK-iOS */ = {
@@ -1948,6 +1979,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D201A71F71C009400C3 /* Managers */,
 				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,
@@ -2341,9 +2373,11 @@
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
+				18C91D2B1A71FA89009400C3 /* GCSCraftModel.m in Sources */,
 				1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
+				18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				01CEC5E319D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
@@ -2487,8 +2521,10 @@
 				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
+				18C91D2A1A71FA89009400C3 /* GCSCraftModel.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,

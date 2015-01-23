@@ -19,6 +19,7 @@
 
 #import "CXAlertView.h"
 
+#import "GCSDataManager.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, assign) enum MAV_TYPE uavType;
@@ -429,7 +430,10 @@ static UIImage *quadIcon = nil;
             
             // We got a heartbeat, so...
             [self rescheduleHeartbeatLossCheck];
-            
+
+            // record heartbeat from the connected craft
+            [GCSDataManager sharedInstance].craft.heartbeat = heartbeat;
+
             // Record the uav type
             self.uavType = heartbeat.type;
             
@@ -442,9 +446,9 @@ static UIImage *quadIcon = nil;
             NSInteger idx = CONTROL_MODE_RC;
 
             if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
-                idx = CONTROL_MODE_AUTO
+                idx = CONTROL_MODE_AUTO;
             } else if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
-                idx = CONTROL_MODE_GUIDED
+                idx = CONTROL_MODE_GUIDED;
             }
             
             // Change the segmented control to reflect the heartbeat
