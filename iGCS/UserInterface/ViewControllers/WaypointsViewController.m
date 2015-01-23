@@ -47,8 +47,8 @@
     
     // Effectively, disable autolayout for these views
     //  - corrects the expanding/contract effect on Edit for iOS8
-    [self.containerForTableView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [self.mapView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.containerForTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

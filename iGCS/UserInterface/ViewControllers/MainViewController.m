@@ -67,12 +67,14 @@
 #ifndef DEBUG
     NSArray *tabBarControllers = @[gcsRevealVC, self.waypointVC];
     [self setViewControllers:tabBarControllers animated:NO];
-#endif
+
 
     // Hide tabBar on iPhone
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.tabBar setHidden:YES];
     }
+#endif
 
     self.firmwareManager = [[GCSAccessoryFirmwareManager alloc] initWithTargetView:self.view];
 }
