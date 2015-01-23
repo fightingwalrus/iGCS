@@ -440,14 +440,11 @@ static UIImage *quadIcon = nil;
             [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
-            switch (heartbeat.custom_mode) {
-                case AUTO:
-                    idx = CONTROL_MODE_AUTO;
-                    break;
 
-                case GUIDED:
-                    idx = CONTROL_MODE_GUIDED;
-                    break;
+            if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
+                idx = CONTROL_MODE_AUTO
+            } else if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
+                idx = CONTROL_MODE_GUIDED
             }
             
             // Change the segmented control to reflect the heartbeat
@@ -455,10 +452,12 @@ static UIImage *quadIcon = nil;
                 self.controlModeSegment.selectedSegmentIndex = idx;
             }
             
-            // If the current mode is not GUIDED, and has just changed
+            // If the current mode is not a GUIDED mode, and has just changed
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
-            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != _lastCustomMode) {
+            if ((heartbeat.custom_mode != APMPlaneGuided || heartbeat.custom_mode != APMCopterGuided) &&
+                heartbeat.custom_mode != _lastCustomMode) {
+
                 [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }
