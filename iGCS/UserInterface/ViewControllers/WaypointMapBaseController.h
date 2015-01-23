@@ -21,10 +21,14 @@
 
 @interface WaypointMapBaseController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+
 @property (nonatomic, strong, readonly) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *userPosition;
 
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UIButton *locateUser;
+
+- (IBAction) zoomInOnUser:(id)sender;
 
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq;
