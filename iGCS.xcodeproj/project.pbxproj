@@ -237,6 +237,8 @@
 		18C862DA198B5B1000F99CD3 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862D8198B5B1000F99CD3 /* Icon-57.png */; };
 		18C862DD198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
 		18C862DE198B5BF700F99CD3 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C862DC198B5BF700F99CD3 /* Icon-120.png */; };
+		18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D241A71F739009400C3 /* GCSDataManager.m */; };
+		18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C91D241A71F739009400C3 /* GCSDataManager.m */; };
 		18D89163198104EC001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8917519817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
@@ -333,6 +335,15 @@
 		CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA154E7819BFE52000ECE919 /* DDTTYLogger.m */; };
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
+		CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
+		CA2D60171A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
+		CA2D60181A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
+		CA2D601D1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
+		CA2D601E1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
+		CA2D601F1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
+		CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
+		CA2D60231A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
+		CA2D60241A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
@@ -785,6 +796,10 @@
 		18C862CC198B5AFA00F99CD3 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		18C862D8198B5B1000F99CD3 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
 		18C862DC198B5BF700F99CD3 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		18C91D231A71F739009400C3 /* GCSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSDataManager.h; sourceTree = "<group>"; };
+		18C91D241A71F739009400C3 /* GCSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSDataManager.m; sourceTree = "<group>"; };
+		18C91D281A71FA89009400C3 /* GCSCraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModel.h; sourceTree = "<group>"; };
+		18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModes.h; sourceTree = "<group>"; };
 		18D89162198104EC001ED845 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18D8916B19817CB1001ED845 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
@@ -901,6 +916,12 @@
 		CA154E7819BFE52000ECE919 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
 		CA26AD69173E22E300F8E7B3 /* MissionItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItemField.h; sourceTree = "<group>"; };
 		CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItemField.m; sourceTree = "<group>"; };
+		CA2D60141A733FD800AA2CBB /* GCSCraftModelGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModelGenerator.h; sourceTree = "<group>"; };
+		CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftModelGenerator.m; sourceTree = "<group>"; };
+		CA2D601B1A7342BD00AA2CBB /* GCSCraftArduCopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftArduCopter.h; sourceTree = "<group>"; };
+		CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftArduCopter.m; sourceTree = "<group>"; };
+		CA2D60201A734FE600AA2CBB /* GCSCraftArduPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftArduPlane.h; sourceTree = "<group>"; };
+		CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftArduPlane.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA43DFC515143E570014F7C8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
@@ -1185,6 +1206,7 @@
 		1851D848191ADFD900ED5C87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
 			);
@@ -1537,6 +1559,30 @@
 				18C011BA18939408005B67E5 /* libCorePlot-CocoaTouch.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		18C91D201A71F71C009400C3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				18C91D231A71F739009400C3 /* GCSDataManager.h */,
+				18C91D241A71F739009400C3 /* GCSDataManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		18C91D271A71F752009400C3 /* Craft */ = {
+			isa = PBXGroup;
+			children = (
+				18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */,
+				18C91D281A71FA89009400C3 /* GCSCraftModel.h */,
+				CA2D60141A733FD800AA2CBB /* GCSCraftModelGenerator.h */,
+				CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */,
+				CA2D601B1A7342BD00AA2CBB /* GCSCraftArduCopter.h */,
+				CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */,
+				CA2D60201A734FE600AA2CBB /* GCSCraftArduPlane.h */,
+				CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */,
+			);
+			path = Craft;
 			sourceTree = "<group>";
 		};
 		18D8916A19817CB1001ED845 /* HockeySDK-iOS */ = {
@@ -1948,6 +1994,7 @@
 		CA499F6814DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D201A71F71C009400C3 /* Managers */,
 				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,
@@ -2341,9 +2388,11 @@
 				18B9FACF18B2F7AF00668660 /* iGCSMavLinkInterface.m in Sources */,
 				18B9FAD018B2F7AF00668660 /* CommConnectionPool.m in Sources */,
 				18B9FAD118B2F7AF00668660 /* MainViewController.m in Sources */,
+				CA2D60171A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */,
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
+				18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				01CEC5E319D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
@@ -2361,6 +2410,7 @@
 				01CEC5DA19D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				18B9FAD818B2F7AF00668660 /* DoubleBufferedAsyncView.m in Sources */,
 				18B9FAD918B2F7AF00668660 /* BTLEMavLinkCentral.m in Sources */,
+				CA2D601E1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */,
 				18B9FADA18B2F7AF00668660 /* GKNetController.m in Sources */,
 				18B9FADB18B2F7AF00668660 /* VerticalScaleView.m in Sources */,
 				18B9FADC18B2F7AF00668660 /* CommController.m in Sources */,
@@ -2407,6 +2457,7 @@
 				18B9FAF418B2F7AF00668660 /* BTLEMavLinkPeripheral.m in Sources */,
 				01CEC56F19D9F8BD00320A34 /* GCDAsyncUdpSocket.m in Sources */,
 				18B9FAF518B2F7AF00668660 /* BluetoothStream.m in Sources */,
+				CA2D60231A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
 				18B9FAF618B2F7AF00668660 /* MavLinkLogger.m in Sources */,
 				01CEC5E019D9FA3800320A34 /* BRRequestError.m in Sources */,
 				01CEC5D719D9FA3800320A34 /* BRRequestCreateDirectory.m in Sources */,
@@ -2478,6 +2529,7 @@
 				01CEC56B19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */,
 				01CEC56E19D9F8BD00320A34 /* GCDAsyncUdpSocket.m in Sources */,
 				CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */,
+				CA2D601D1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */,
 				01CEC5E219D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
@@ -2487,6 +2539,7 @@
 				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
@@ -2519,7 +2572,9 @@
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
+				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
+				CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2527,6 +2582,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2D60181A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
+				CA2D601F1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */,
+				CA2D60241A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

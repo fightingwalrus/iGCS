@@ -19,9 +19,11 @@
 
 #import "CXAlertView.h"
 
+#import "GCSDataManager.h"
+#import "GCSCraftModelGenerator.h"
+
 
 @interface GCSMapViewController ()
-@property (nonatomic, assign) enum MAV_TYPE uavType;
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
 @property (nonatomic, strong) MKAnnotationView  *uavView;
 
@@ -51,16 +53,7 @@ static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
 static const NSUInteger VEHICLE_ICON_SIZE = 62;
 
-static UIImage *planeIcon = nil;
-static UIImage *quadIcon = nil;
-
 @implementation GCSMapViewController
-
-+ (void)initialize {
-    // Initialize static resources
-    if (!planeIcon) planeIcon = [UIImage imageNamed:@"plane-icon.png"];
-    if (!quadIcon) quadIcon = [UIImage imageNamed:@"quad-icon.png"];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -68,13 +61,12 @@ static UIImage *quadIcon = nil;
 }
 
 - (void)awakeFromNib {
-    self.uavType = MAV_TYPE_FIXED_WING;
-    
     self.uavPos = [[MKPointAnnotation alloc] init];
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     self.uavView = [[MKAnnotationView  alloc] initWithAnnotation:self.uavPos reuseIdentifier:@"uavView"];
-    self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:0];
+    self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                       withYaw:0];
     self.uavView.userInteractionEnabled = YES;
     self.uavView.centerOffset = CGPointZero;
     
@@ -87,8 +79,8 @@ static UIImage *quadIcon = nil;
     self.lastFollowMeUpdate = [NSDate date];
 }
 
-+ (UIImage*) uavIconForType:(enum MAV_TYPE)type withYaw:(double)rotation {
-    return [MiscUtilities imageWithImage:(type == MAV_TYPE_FIXED_WING ? planeIcon : quadIcon) // if not fixed wing, default to quadIcon
++ (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
+    return [MiscUtilities imageWithImage:craft.icon
                             scaledToSize:CGSizeMake(VEHICLE_ICON_SIZE,VEHICLE_ICON_SIZE)
                                 rotation:rotation];
 }
@@ -212,9 +204,16 @@ static UIImage *quadIcon = nil;
     [self.mapView addAnnotation:self.currentGuidedAnnotation];
     [self.mapView setNeedsDisplay];
 
-    [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
-}
+    // As of APM:Copter 3.2 we *must* set mode to guided however we don't want to
+    // do this for APM:Plane
+    if ([GCSDataManager sharedInstance].craft.setModeBeforeGuidedItems) {
+        [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
+    }
 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
+    });
+}
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
     self.showProposedFollowPos = YES;
@@ -367,7 +366,8 @@ static UIImage *quadIcon = nil;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:attitudePkt.yaw];
+            self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                               withYaw:attitudePkt.yaw];
             
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [self.ahIndicatorView requestRedraw];
@@ -426,25 +426,22 @@ static UIImage *quadIcon = nil;
             
             // We got a heartbeat, so...
             [self rescheduleHeartbeatLossCheck];
-            
-            // Record the uav type
-            self.uavType = heartbeat.type;
+
+            // Mutate existing craft, or replace if required (e.g. type has changed)
+            [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
+                                                                                     withCurrent:heartbeat];
             
             // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
             [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
             [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
-            switch (heartbeat.custom_mode) {
-                case AUTO:
-                    idx = CONTROL_MODE_AUTO;
-                    break;
-
-                case GUIDED:
-                    idx = CONTROL_MODE_GUIDED;
-                    break;
+            if ([GCSDataManager sharedInstance].craft.isInAutoMode) {
+                idx = CONTROL_MODE_AUTO;
+            } else if ([GCSDataManager sharedInstance].craft.isInGuidedMode) {
+                idx = CONTROL_MODE_GUIDED;
             }
             
             // Change the segmented control to reflect the heartbeat
@@ -452,10 +449,10 @@ static UIImage *quadIcon = nil;
                 self.controlModeSegment.selectedSegmentIndex = idx;
             }
             
-            // If the current mode is not GUIDED, and has just changed
+            // If the current mode is not a GUIDED mode, and has just changed
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
-            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != _lastCustomMode) {
+            if (![GCSDataManager sharedInstance].craft.isInGuidedMode && heartbeat.custom_mode != _lastCustomMode) {
                 [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }

@@ -33,6 +33,9 @@
 #import "ArDroneUtils.h"
 #import "mavlink_msg_manual_control.h"
 
+#import "GCSCraftModes.h"
+#import "GCSDataManager.h"
+
 @implementation iGCSMavLinkInterface
 
 
@@ -280,19 +283,35 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - Miscellaneous requests
 
++ (void)invokeBlock:(void (^)(void))block dispatchingAfter:(float)seconds {
+    block();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
+}
+
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
-     mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                   2, // Special flag that indicates this is a GUIDED mode packet
-                                   0, 0, 0, 0, 0,
-                                   coordinates.latitude, coordinates.longitude, altitude);
-    // FIXME: should check for ACK, and retry a few times if not ACKnowledged
+    // As per mission planner, send the GOTO command twice with a minor delay
+    // (simple way to improve reliability without checking return ACK)
+    [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0,
+                                                                       MAV_FRAME_GLOBAL_RELATIVE_ALT,
+                                                                       MAV_CMD_NAV_WAYPOINT,
+                                                                       // Special flag that indicates this is a GUIDED mode packet
+                                                                       MAV_GOTO_HOLD_AT_CURRENT_POSITION,
+                                                                       0, 0, 0, 0, 0,
+                                                                       coordinates.latitude, coordinates.longitude, altitude);}
+     dispatchingAfter:0.5];
+}
+
++ (void) issueModeCommand:(uint32_t)mode {
+    [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, mode); }
+                     dispatchingAfter:0.01];
 }
 
 - (void) issueSetAUTOModeCommand {
-    for (NSUInteger i = 0; i < 2; i++) {
-        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, AUTO);
-        [NSThread sleepForTimeInterval:0.01];
-    }
+    [iGCSMavLinkInterface issueModeCommand:[GCSDataManager sharedInstance].craft.autoMode];
+}
+
+- (void) issueSetGuidedModeCommand {
+    [iGCSMavLinkInterface issueModeCommand:[GCSDataManager sharedInstance].craft.guidedMode];
 }
 
 - (void) sendMavlinkTakeOffCommand {

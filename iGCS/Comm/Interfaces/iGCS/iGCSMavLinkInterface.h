@@ -44,6 +44,7 @@
 
 - (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude;
 - (void) issueSetAUTOModeCommand;
+- (void) issueSetGuidedModeCommand;
 
 - (void) loadDemoMission;
 - (void) sendHeatbeatToAutopilot;
