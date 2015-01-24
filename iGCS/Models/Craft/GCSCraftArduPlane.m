@@ -10,12 +10,21 @@
 
 @implementation GCSCraftArduPlane
 
+@synthesize craftType  = _craftType;
+@synthesize autoMode   = _autoMode;
+@synthesize guidedMode = _guidedMode;
+@synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
 
 - (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat {
     self = [super init];
     if (self) {
         _heartbeat = heartbeat;
+        
+        _craftType   = ArduPlane;
+        _autoMode    = APMPlaneAuto;
+        _guidedMode  = APMPlaneGuided;
+        _setModeBeforeGuidedItems = NO;
         _icon = [UIImage imageNamed:@"plane-icon.png"];
     }
     return self;
@@ -23,22 +32,6 @@
 
 - (void) update:(mavlink_heartbeat_t)heartbeat {
     self.heartbeat = heartbeat;
-}
-
-- (GCSCraftType) craftType {
-    return ArduPlane;
-}
-
-- (uint32_t) autoMode {
-    return APMPlaneAuto;
-}
-
-- (uint32_t) guidedMode {
-    return APMPlaneGuided;
-}
-
-- (BOOL) setModeBeforeGuidedItems {
-    return NO;
 }
 
 - (BOOL) isInAutoMode {
