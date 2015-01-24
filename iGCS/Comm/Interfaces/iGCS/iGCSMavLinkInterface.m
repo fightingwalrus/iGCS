@@ -283,39 +283,37 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - Miscellaneous requests
 
-- (void) issueGOTOCommandOnce:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
-    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                  MAV_GOTO_HOLD_AT_CURRENT_POSITION, // Special flag that indicates this is a GUIDED mode packet
-                                  0, 0, 0, 0, 0,
-                                  coordinates.latitude, coordinates.longitude, altitude);
++ (void)invokeBlock:(void (^)(void))block dispatchingAfter:(float)seconds {
+    block();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
 }
 
-- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
++ (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
     // As per mission planner, send the GOTO command twice with a minor delay
     // (simple way to improve reliability without checking return ACK)
-    [self issueGOTOCommandOnce:coordinates withAltitude:altitude];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self issueGOTOCommandOnce:coordinates withAltitude:altitude];
-    });
+    [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0,
+                                                                       MAV_FRAME_GLOBAL_RELATIVE_ALT,
+                                                                       MAV_CMD_NAV_WAYPOINT,
+                                                                       // Special flag that indicates this is a GUIDED mode packet
+                                                                       MAV_GOTO_HOLD_AT_CURRENT_POSITION,
+                                                                       0, 0, 0, 0, 0,
+                                                                       coordinates.latitude, coordinates.longitude, altitude);}
+     dispatchingAfter:0.5];
+}
+
++ (void) issueModeCommand:(uint32_t)mode {
+    [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, mode); }
+                     dispatchingAfter:0.5];
 }
 
 - (void) issueSetAUTOModeCommand {
     uint32_t apmAutoMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneAuto : APMCopterAuto);
-
-    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmAutoMode);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmAutoMode);
-    });
+    [iGCSMavLinkInterface issueModeCommand:apmAutoMode];
 }
 
 - (void) issueSetGuidedModeCommand {
-
     uint32_t apmGuidedMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneGuided : APMCopterGuided);
-
-    mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmGuidedMode);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmGuidedMode);
-    });
+    [iGCSMavLinkInterface issueModeCommand:apmGuidedMode];
 }
 
 - (void) sendMavlinkTakeOffCommand {
