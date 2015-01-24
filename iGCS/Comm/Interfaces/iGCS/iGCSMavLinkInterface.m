@@ -283,18 +283,19 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 #pragma mark - Miscellaneous requests
 
-- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
-
+- (void) issueGOTOCommandOnce:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
     mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
                                   MAV_GOTO_HOLD_AT_CURRENT_POSITION, // Special flag that indicates this is a GUIDED mode packet
                                   0, 0, 0, 0, 0,
                                   coordinates.latitude, coordinates.longitude, altitude);
+}
 
+- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
+    // As per mission planner, send the GOTO command twice with a minor delay
+    // (simple way to improve reliability without checking return ACK)
+    [self issueGOTOCommandOnce:coordinates withAltitude:altitude];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_CMD_NAV_WAYPOINT,
-                                      MAV_GOTO_HOLD_AT_CURRENT_POSITION, // Special flag that indicates this is a GUIDED mode packet
-                                      0, 0, 0, 0, 0,
-                                      coordinates.latitude, coordinates.longitude, altitude);
+        [self issueGOTOCommandOnce:coordinates withAltitude:altitude];
     });
 }
 
@@ -303,7 +304,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
     mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmAutoMode);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, APMCopterAuto);
+         mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmAutoMode);
     });
 }
 
@@ -313,7 +314,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
     mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmGuidedMode);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, APMCopterGuided);
+        mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, apmGuidedMode);
     });
 }
 
