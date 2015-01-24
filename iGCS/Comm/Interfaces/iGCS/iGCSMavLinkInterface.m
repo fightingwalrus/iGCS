@@ -288,7 +288,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
 }
 
-+ (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
+- (void) issueGOTOCommand:(CLLocationCoordinate2D)coordinates withAltitude:(float)altitude {
     // As per mission planner, send the GOTO command twice with a minor delay
     // (simple way to improve reliability without checking return ACK)
     [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid, 0,
