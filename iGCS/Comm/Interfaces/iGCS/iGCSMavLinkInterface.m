@@ -303,7 +303,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 + (void) issueModeCommand:(uint32_t)mode {
     [iGCSMavLinkInterface invokeBlock:^{ mavlink_msg_set_mode_send(MAVLINK_COMM_0, msg.sysid, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, mode); }
-                     dispatchingAfter:0.5];
+                     dispatchingAfter:0.01];
 }
 
 - (void) issueSetAUTOModeCommand {
