@@ -307,13 +307,11 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 - (void) issueSetAUTOModeCommand {
-    uint32_t apmAutoMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneAuto : APMCopterAuto);
-    [iGCSMavLinkInterface issueModeCommand:apmAutoMode];
+    [iGCSMavLinkInterface issueModeCommand:[GCSDataManager sharedInstance].craft.autoMode];
 }
 
 - (void) issueSetGuidedModeCommand {
-    uint32_t apmGuidedMode = ([GCSDataManager sharedInstance].craft.type == MAV_TYPE_FIXED_WING ? APMPlaneGuided : APMCopterGuided);
-    [iGCSMavLinkInterface issueModeCommand:apmGuidedMode];
+    [iGCSMavLinkInterface issueModeCommand:[GCSDataManager sharedInstance].craft.guidedMode];
 }
 
 - (void) sendMavlinkTakeOffCommand {

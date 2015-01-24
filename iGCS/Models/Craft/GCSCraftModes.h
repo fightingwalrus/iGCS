@@ -9,10 +9,19 @@
 #ifndef iGCS_GCSCraftModes_h
 #define iGCS_GCSCraftModes_h
 
+#pragma mark - Craft types
+
+// At some point, we may need to partition these by version too
+typedef NS_ENUM(NSUInteger, GCSCraftType) {
+    ArduPlane,
+    ArduCopter
+};
+
+
 #pragma mark - APM Mode enums
 // ref: ArduPlane defines.h
 // APM:Plane Auto Pilot Modes
-typedef NS_ENUM(uint32_t, APMPlaneModes) {
+typedef NS_ENUM(uint32_t, APMPlaneMode) {
     APMPlaneManual = 0,
 
     // When flying sans GPS, and we loose the radio, just circle
@@ -51,7 +60,7 @@ typedef NS_ENUM(uint32_t, APMPlaneModes) {
 };
 
 // APM:Copter Auto Pilot Modes
-typedef NS_ENUM(uint32_t, APMCopterModes) {
+typedef NS_ENUM(uint32_t, APMCopterMode) {
     APMCopterStabilize = 0,  // hold level position
     APMCopterAcro = 1,       // rate control
     APMCopterAltHold = 2,    // AUTO control

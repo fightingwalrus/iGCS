@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCSCraftModels.h"
+#import "GCSCraftModel.h"
 
 @interface GCSDataManager : NSObject
 + (instancetype) sharedInstance;
 
-@property (atomic, strong) GCSCraftModel *craft;
+@property (atomic, strong) id<GCSCraftModel> craft;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "GCSDataManager.h"
+#import "GCSCraftModelGenerator.h"
 
 @implementation GCSDataManager
 
@@ -22,7 +23,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _craft = [[GCSCraftModel alloc] init];
+        _craft = [GCSCraftModelGenerator createInitialModel];
     }
     return self;
 }

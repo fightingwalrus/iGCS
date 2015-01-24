@@ -20,6 +20,8 @@
 #import "CXAlertView.h"
 
 #import "GCSDataManager.h"
+#import "GCSCraftModelGenerator.h"
+
 
 @interface GCSMapViewController ()
 @property (nonatomic, assign) enum MAV_TYPE uavType;
@@ -215,7 +217,7 @@ static UIImage *quadIcon = nil;
 
     // As of APM:Copter 3.2 we *must* set mode to guided however we don't want to
     // do this for APM:Plane
-    if ([GCSDataManager sharedInstance].craft.type != MAV_TYPE_FIXED_WING) {
+    if ([GCSDataManager sharedInstance].craft.setModeBeforeGuidedItems) {
         [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
     }
 
@@ -435,9 +437,10 @@ static UIImage *quadIcon = nil;
             // We got a heartbeat, so...
             [self rescheduleHeartbeatLossCheck];
 
-            // record heartbeat from the connected craft
-            [GCSDataManager sharedInstance].craft.heartbeat = heartbeat;
-
+            // Mutate existing craft, or replace if required (e.g. type has changed)
+            [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
+                                                                                     withCurrent:heartbeat];
+            
             // Record the uav type
             self.uavType = heartbeat.type;
             

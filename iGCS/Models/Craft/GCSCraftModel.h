@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "mavlink.h"
+#import "GCSCraftModes.h"
 
-@interface GCSCraftModel : NSObject
-@property (atomic, assign) mavlink_heartbeat_t heartbeat;
-@property (nonatomic, readonly) uint32_t customMode; //< A bitfield for use for autopilot-specific flags.
-@property (nonatomic, readonly) uint8_t type; // MAV_TYPE ENUM
-@property (nonatomic, readonly) uint8_t autopilot; // MAV_AUTOPILOT ENUM
-@property (nonatomic, readonly) uint8_t baseMode; // MAV_MODE_FLAGS ENUM
-@property (nonatomic, readonly) uint8_t systemStatus; // MAV_STATE
+@protocol GCSCraftModel <NSObject>
+@required;
+- (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat;
+- (void) update:(mavlink_heartbeat_t)heartbeat;
 
+@property (nonatomic, readonly) GCSCraftType craftType;
+
+// Mode related
+@property (nonatomic, readonly) uint32_t autoMode;
+@property (nonatomic, readonly) uint32_t guidedMode;
+@property (nonatomic, readonly) BOOL setModeBeforeGuidedItems;
 @end
