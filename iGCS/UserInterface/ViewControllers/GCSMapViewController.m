@@ -435,13 +435,12 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
             [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
             [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
+            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:heartbeat]];
 
             NSInteger idx = CONTROL_MODE_RC;
-
-            if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
+            if ([GCSDataManager sharedInstance].craft.isInAutoMode) {
                 idx = CONTROL_MODE_AUTO;
-            } else if (heartbeat.custom_mode == APMPlaneAuto || heartbeat.custom_mode == APMCopterAuto) {
+            } else if ([GCSDataManager sharedInstance].craft.isInGuidedMode) {
                 idx = CONTROL_MODE_GUIDED;
             }
             
@@ -453,9 +452,7 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
             // If the current mode is not a GUIDED mode, and has just changed
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
-            if ((heartbeat.custom_mode != APMPlaneGuided || heartbeat.custom_mode != APMCopterGuided) &&
-                heartbeat.custom_mode != _lastCustomMode) {
-
+            if (![GCSDataManager sharedInstance].craft.isInGuidedMode && heartbeat.custom_mode != _lastCustomMode) {
                 [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }

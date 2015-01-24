@@ -17,10 +17,14 @@
 
 @property (nonatomic, readonly) GCSCraftType craftType;
 
-// Mode related
+// Mode change
 @property (nonatomic, readonly) uint32_t autoMode;
 @property (nonatomic, readonly) uint32_t guidedMode;
 @property (nonatomic, readonly) BOOL setModeBeforeGuidedItems;
+
+// Mode status
+@property (nonatomic, readonly) BOOL isInAutoMode;
+@property (nonatomic, readonly) BOOL isInGuidedMode;
 
 // Representation
 @property (nonatomic, readonly) UIImage* icon;

@@ -41,4 +41,12 @@
     return YES; // For 3.2+
 }
 
+- (BOOL) isInAutoMode {
+    return self.heartbeat.custom_mode == APMCopterAuto;
+}
+
+- (BOOL) isInGuidedMode {
+    return self.heartbeat.custom_mode == APMCopterGuided;
+}
+
 @end

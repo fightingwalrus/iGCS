@@ -41,4 +41,12 @@
     return NO;
 }
 
+- (BOOL) isInAutoMode {
+    return self.heartbeat.custom_mode == APMPlaneAuto;
+}
+
+- (BOOL) isInGuidedMode {
+    return self.heartbeat.custom_mode == APMPlaneGuided;
+}
+
 @end
