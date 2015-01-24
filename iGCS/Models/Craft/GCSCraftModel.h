@@ -21,4 +21,7 @@
 @property (nonatomic, readonly) uint32_t autoMode;
 @property (nonatomic, readonly) uint32_t guidedMode;
 @property (nonatomic, readonly) BOOL setModeBeforeGuidedItems;
+
+// Representation
+@property (nonatomic, readonly) UIImage* icon;
 @end

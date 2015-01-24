@@ -10,10 +10,13 @@
 
 @implementation GCSCraftArduPlane
 
+@synthesize icon = _icon;
+
 - (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat {
     self = [super init];
     if (self) {
         _heartbeat = heartbeat;
+        _icon = [UIImage imageNamed:@"plane-icon.png"];
     }
     return self;
 }

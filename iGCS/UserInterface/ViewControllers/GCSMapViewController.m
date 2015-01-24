@@ -24,7 +24,6 @@
 
 
 @interface GCSMapViewController ()
-@property (nonatomic, assign) enum MAV_TYPE uavType;
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
 @property (nonatomic, strong) MKAnnotationView  *uavView;
 
@@ -54,16 +53,7 @@ static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
 static const NSUInteger VEHICLE_ICON_SIZE = 62;
 
-static UIImage *planeIcon = nil;
-static UIImage *quadIcon = nil;
-
 @implementation GCSMapViewController
-
-+ (void)initialize {
-    // Initialize static resources
-    if (!planeIcon) planeIcon = [UIImage imageNamed:@"plane-icon.png"];
-    if (!quadIcon) quadIcon = [UIImage imageNamed:@"quad-icon.png"];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -71,13 +61,12 @@ static UIImage *quadIcon = nil;
 }
 
 - (void)awakeFromNib {
-    self.uavType = MAV_TYPE_FIXED_WING;
-    
     self.uavPos = [[MKPointAnnotation alloc] init];
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     self.uavView = [[MKAnnotationView  alloc] initWithAnnotation:self.uavPos reuseIdentifier:@"uavView"];
-    self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:0];
+    self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                       withYaw:0];
     self.uavView.userInteractionEnabled = YES;
     self.uavView.centerOffset = CGPointZero;
     
@@ -90,8 +79,8 @@ static UIImage *quadIcon = nil;
     self.lastFollowMeUpdate = [NSDate date];
 }
 
-+ (UIImage*) uavIconForType:(enum MAV_TYPE)type withYaw:(double)rotation {
-    return [MiscUtilities imageWithImage:(type == MAV_TYPE_FIXED_WING ? planeIcon : quadIcon) // if not fixed wing, default to quadIcon
++ (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
+    return [MiscUtilities imageWithImage:craft.icon
                             scaledToSize:CGSizeMake(VEHICLE_ICON_SIZE,VEHICLE_ICON_SIZE)
                                 rotation:rotation];
 }
@@ -377,7 +366,8 @@ static UIImage *quadIcon = nil;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:attitudePkt.yaw];
+            self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                               withYaw:attitudePkt.yaw];
             
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [self.ahIndicatorView requestRedraw];
@@ -440,9 +430,6 @@ static UIImage *quadIcon = nil;
             // Mutate existing craft, or replace if required (e.g. type has changed)
             [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
                                                                                      withCurrent:heartbeat];
-            
-            // Record the uav type
-            self.uavType = heartbeat.type;
             
             // Update custom mode and armed status labels
             BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
