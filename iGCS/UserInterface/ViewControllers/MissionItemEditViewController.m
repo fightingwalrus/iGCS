@@ -173,12 +173,24 @@
 
 - (IBAction)cancelButtonClicked:(id)sender {
     self.saveEdits = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!IS_IPAD){
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)saveButtonClicked:(id)sender {
     self.saveEdits = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!IS_IPAD){
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 @end
