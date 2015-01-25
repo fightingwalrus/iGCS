@@ -91,8 +91,6 @@
 		18A42CD518895B3700408D71 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
-		18AA3C711A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
-		18AA3C721A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
 		18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
@@ -544,8 +542,6 @@
 		18A42CD218895B3700408D71 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
-		18AA3C6F1A65BDE8007A28A8 /* GCSAircraftStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAircraftStatusModel.h; sourceTree = "<group>"; };
-		18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAircraftStatusModel.m; sourceTree = "<group>"; };
 		18AA3C751A6604FD007A28A8 /* plane-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane-icon.png"; sourceTree = "<group>"; };
 		18B6116E18A441AF0000E9DF /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		18B6116F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
@@ -1223,8 +1219,6 @@
 				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
-				18AA3C6F1A65BDE8007A28A8 /* GCSAircraftStatusModel.h */,
-				18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2419,7 +2413,6 @@
 				01CEC5E319D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
 				18B9FAD218B2F7AF00668660 /* WaypointsViewController.m in Sources */,
 				18E58A8F198993EB0025A516 /* FileUtils.m in Sources */,
-				18AA3C721A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */,
 				18B7F2901955520900D2406A /* iGCSRadioConfig+CommandBatches.m in Sources */,
 				18B9FAD318B2F7AF00668660 /* DateTimeUtils.m in Sources */,
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
@@ -2562,7 +2555,6 @@
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */,
-				18AA3C711A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
