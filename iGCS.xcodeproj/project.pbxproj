@@ -91,10 +91,10 @@
 		18A42CD518895B3700408D71 /* GKNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A42CD218895B3700408D71 /* GKNetController.m */; };
 		18A42CD718895B4C00408D71 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
 		18A777F217CE9E910014451B /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A777F117CE9E910014451B /* FileUtils.m */; };
-		18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
-		18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18AA3C711A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
 		18AA3C721A65BDE9007A28A8 /* GCSAircraftStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */; };
+		18AA3C761A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
+		18AA3C771A6604FD007A28A8 /* plane-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA3C751A6604FD007A28A8 /* plane-icon.png */; };
 		18B6EA0419DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B6EA0519DF648C0084B666 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B6EA0319DF648C0084B666 /* Settings.bundle */; };
 		18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7541B197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m */; };
@@ -544,9 +544,9 @@
 		18A42CD218895B3700408D71 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
-		18AA3C751A6604FD007A28A8 /* plane-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane-icon.png"; sourceTree = "<group>"; };
 		18AA3C6F1A65BDE8007A28A8 /* GCSAircraftStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSAircraftStatusModel.h; sourceTree = "<group>"; };
 		18AA3C701A65BDE9007A28A8 /* GCSAircraftStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSAircraftStatusModel.m; sourceTree = "<group>"; };
+		18AA3C751A6604FD007A28A8 /* plane-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane-icon.png"; sourceTree = "<group>"; };
 		18B6116E18A441AF0000E9DF /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
 		18B6116F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
 		18B6117018A441AF0000E9DF /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
@@ -811,6 +811,7 @@
 		18C91D241A71F739009400C3 /* GCSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSDataManager.m; sourceTree = "<group>"; };
 		18C91D281A71FA89009400C3 /* GCSCraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModel.h; sourceTree = "<group>"; };
 		18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModes.h; sourceTree = "<group>"; };
+		18C91D391A747065009400C3 /* GCSCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraft.h; sourceTree = "<group>"; };
 		18D89162198104EC001ED845 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18D8916B19817CB1001ED845 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
@@ -1258,15 +1259,6 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		18820E7D1A64ACC9006855E9 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				18820E801A64AD0C006855E9 /* GCSSpeechManager.h */,
-				18820E811A64AD0C006855E9 /* GCSSpeechManager.m */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		1888DE921710C85400ADA039 /* sdpFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1588,6 +1580,8 @@
 		18C91D201A71F71C009400C3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				18820E801A64AD0C006855E9 /* GCSSpeechManager.h */,
+				18820E811A64AD0C006855E9 /* GCSSpeechManager.m */,
 				18C91D231A71F739009400C3 /* GCSDataManager.h */,
 				18C91D241A71F739009400C3 /* GCSDataManager.m */,
 			);
@@ -1597,6 +1591,7 @@
 		18C91D271A71F752009400C3 /* Craft */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D391A747065009400C3 /* GCSCraft.h */,
 				18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */,
 				18C91D281A71FA89009400C3 /* GCSCraftModel.h */,
 				CA2D60141A733FD800AA2CBB /* GCSCraftModelGenerator.h */,
@@ -2020,7 +2015,6 @@
 			isa = PBXGroup;
 			children = (
 				18C91D201A71F71C009400C3 /* Managers */,
-				18820E7D1A64ACC9006855E9 /* Managers */,
 				18C4C32119CA04E6000CDBE8 /* iGCS.entitlements */,
 				CA0C44D519230F170099B718 /* Firmware */,
 				1851D848191ADFD900ED5C87 /* Models */,

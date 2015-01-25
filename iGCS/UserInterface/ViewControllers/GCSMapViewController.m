@@ -20,6 +20,7 @@
 #import "CXAlertView.h"
 
 #import "GCSSpeechManager.h"
+#import "GCSDataManager.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
