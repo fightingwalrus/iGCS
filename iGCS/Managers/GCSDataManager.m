@@ -24,6 +24,7 @@
     self = [super init];
     if (self) {
         _craft = [GCSCraftModelGenerator createInitialModel];
+        _lastViewedMapCamera = nil;
     }
     return self;
 }

@@ -11,6 +11,8 @@
 #import "FillStrokePolyLineView.h"
 #import "WaypointAnnotationView.h"
 
+#import "GCSDataManager.h"
+
 @interface WaypointMapBaseController ()
 @property (nonatomic, strong) MKPolyline *waypointRoutePolyline;
 @property (nonatomic, assign) WaypointSeqOpt currentWaypointNum;
@@ -73,6 +75,24 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Change to the stashed camera
+    //  - viewWillAppear would be preferred, however the order of viewWillAppear/Disappear
+    //    between the two respective views is not guaranteed.
+    if ([GCSDataManager sharedInstance].lastViewedMapCamera) {
+        [self.mapView setCamera:[GCSDataManager sharedInstance].lastViewedMapCamera animated:NO];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // Stash the current camera
+    [GCSDataManager sharedInstance].lastViewedMapCamera = self.mapView.camera;
 }
 
 - (void)didReceiveMemoryWarning {
