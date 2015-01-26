@@ -237,42 +237,6 @@
     [self resetWaypoints];
 }
 
-// FIXME: also need to check and close the detail view if open
-//- (IBAction)editDoneClicked:(id)sender {
-/*
-- (void)enterEditingMode {
-    
-    
-    //self.rxMissionButton.enabled = !isEditing;
-    //self.txMissionButton.enabled = !isEditing;
-    //self.loadDemoButton.enabled  = !isEditing;
-
-    //NSInteger delta = isEditing ? TABLE_MAP_SLIDE_AMOUNT : -TABLE_MAP_SLIDE_AMOUNT;
-
-    // Slide/grow/shrink the map and table views
-    //CGRect tableRect = self.containerForTableView.frame;
-    CGRect mapRect   = self.mapView.frame;
-    CGRect locateUserRect = self.locateUser.frame;
-    
-    tableRect.origin.y += delta;
-    tableRect.size.height -= delta;
-    mapRect.size.height += delta;
-    locateUserRect.origin.y += delta;
-    
-    //[UIView beginAnimations:nil context:NULL];
-    //[UIView setAnimationBeginsFromCurrentState:YES];
-    //[UIView setAnimationDuration:0.75];
-    //[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    self.containerForTableView.frame = tableRect;
-    self.mapView.frame = mapRect;
-    //[UIView commitAnimations];
-    
-    // Update the map view with non/editable waypoints
-    [self makeWaypointsDraggable:isEditing];
-}
- */
-
-
 - (IBAction)mavTxMissionClicked:(id)sender {
     [[[CommController sharedInstance] mavLinkInterface] startWriteMissionRequest:self.waypoints];
 }
