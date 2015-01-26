@@ -1,13 +1,13 @@
 ![alt tag](https://raw.github.com/fightingwalrus/iGCS/master/iGCS/Icons/Icon-50.png) iDroneCtrl
 ====
 
-iDroneCtrl (formally iGCS) is a UAV Ground Control Station for iPad and iPhone. 
+iDroneCtrl (formally iGCS) is a UAV ground control station for iPad and iPhone. 
 
-It is intended for use with UAVs conforming to the MAVLink protocol, such as the [ArduPilot Mega](http://dev.ardupilot.com), the Pixhawk as used in the 3DR IRIS, IRIS+ and the AR.Drone 2.0 (with Flight Recorder).
+It is intended for use with UAVs and autopilots supporting the [MAVLink](http://qgroundcontrol.org/mavlink/start) protocol, such as  [ArduPilot Mega](http://dev.ardupilot.com) and the Pixhawk in the 3DR IRIS and IRIS+. AR.Drone 2.0 (with Flight Recorder) has also been tested.
 
-It requires the "Made for iPhone" and "Made for iPad" iDroneLink available for sale at www.fightingwalrus.com
+iDroneCtrl requires the "Made for iPhone/iPad" iDroneLink available for sale at www.fightingwalrus.com
 
-You can download iDroneCtrl from the App Store here:
+You can download iDroneCtrl from the Apple App Store here:
 
 [iDroneCtrl - Fighting Walrus](https://itunes.apple.com/us/app/idronectrl/id948077202?mt=8&uo=4)
 
@@ -29,6 +29,7 @@ Building
 1. clone the project
 2. cd iGCS
 3. ./scripts/updatedepends.sh
+4. Run in the latest version of Xcode
 
 Updating the MAVLink library
 ============================
@@ -60,15 +61,15 @@ Folders and files to copy:
 - mavlink_types.h
 - protocal.h
 
-Commit and push your changes and open a pull request for review and further HIL testing. In the pull request please note the commit from the MAVLink repository that was used to generate the new MAVLink header files.
+Commit and push your changes and open a pull request for review and further HIL testing. In the pull request please note the commit or tag from the MAVLink repository that was used to generate the new MAVLink header files.
 
 License
 =======
-All iDroneLink (formally iGCS) code is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+All iDroneCtrl (formally iGCS) code is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 For other code and assets, see ATTRIBUTION.md.
 
 The MIT License (MIT)
-Copyright (c) 2013 Claudio Natoli et al
+Copyright (c) 2013-2015 Claudio Natoli et al
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
