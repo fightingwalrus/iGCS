@@ -8,6 +8,7 @@
 
 #import "GCSSpeechManager.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GCSDataManager.h"
 
 @interface GCSSpeechManager ()
 @property (nonatomic, assign) float utteranceRate;
@@ -25,18 +26,37 @@
         // only register for notifications on iOS 7+
         if ([AVSpeechUtterance class] && [AVSpeechSynthesizer class]) {
             // register for notifications
+
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(craftNavModeDidChange) name:@"GCSCraftNotificationsCraftNavModeModeDidChanged" object:nil];
         }
     }
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
--(void)flyToPosition {
+#pragma mark - handle craft related notification
+
+- (void)craftNavModeDidChange {
+    [self speakWithText:[GCSDataManager sharedInstance].craft.currentModeName];
+}
+
+#pragma mark - public methods
+
+- (void)flyToPosition {
+    [self speakWithText:@"Flying to position"];
+}
+
+#pragma mark - helpers
+
+- (void)speakWithText:(NSString *) text {
     // ensure availability on target device
     // text to speech works on IOS 7 and above
     if ([AVSpeechUtterance class] && [AVSpeechSynthesizer class]) {
-        NSString *string = @"Flying to position";
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:string];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:text];
         utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.defaultLanguage];
         utterance.rate = self.utteranceRate;
 

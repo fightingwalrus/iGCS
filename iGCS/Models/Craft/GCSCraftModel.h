@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "mavlink.h"
 #import "GCSCraftModes.h"
+#import "GCSCraftNotifications.h"
 
 @protocol GCSCraftModel <NSObject>
 @required;
@@ -25,6 +26,7 @@
 // Mode status
 @property (nonatomic, readonly) BOOL isInAutoMode;
 @property (nonatomic, readonly) BOOL isInGuidedMode;
+@property (nonatomic, readonly) NSString *currentModeName;
 
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
