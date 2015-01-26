@@ -366,9 +366,6 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
-                                                               withYaw:attitudePkt.yaw];
-            
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [self.ahIndicatorView requestRedraw];
         }
@@ -377,6 +374,9 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
         case MAVLINK_MSG_ID_VFR_HUD: {
             mavlink_vfr_hud_t  vfrHudPkt;
             mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
+            
+            self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                               withYaw:vfrHudPkt.heading * DEG2RAD];
             
             [self.compassView setHeading:vfrHudPkt.heading];
             [self.airspeedView setValue:vfrHudPkt.airspeed]; // m/s
