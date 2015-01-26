@@ -63,8 +63,6 @@
     [self.tableView setAllowsSelection:YES];
     [self.tableView setAllowsSelectionDuringEditing:YES];
     [self setEditing:YES animated:NO];
-    //CGRect r = [self.sectionHeaderContainer frame];
-    //r.origin.x += 40;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -277,22 +275,12 @@ NSArray* headerWidths = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger idx = indexPath.row;
     
-    if (tableView.isEditing) {
-        if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
-        mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
-        if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
-            [self unmarkSelectedRow];
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
-            [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
-        }
-    } else {
-        [self modifyHeadersForSelectedRow:idx];
-        if ([self.lastIndexPath isEqual:indexPath]) {
-            [self unmarkSelectedRow];
-        } else {
-            self.lastIndexPath = indexPath;
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-        }
+    if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
+    mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
+    if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
+        [self unmarkSelectedRow];
+        [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
+        [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
     }
 }
 

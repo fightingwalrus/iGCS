@@ -943,11 +943,11 @@
                                 </connections>
                             </containerView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qaC-XP-dCX">
-                                <rect key="frame" x="0.0" y="64" width="1024" height="381"/>
+                                <rect key="frame" x="0.0" y="44" width="1024" height="401"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="-68" maxX="0.0" maxY="68"/>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-PO-kYQ">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <rect key="frame" x="5" y="0.0" width="1024" height="44"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
                                         <barButtonItem key="leftBarButtonItem" style="done" id="US5-We-JEo">
