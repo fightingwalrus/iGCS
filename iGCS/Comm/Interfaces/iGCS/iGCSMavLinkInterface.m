@@ -113,7 +113,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                     default:
                         // If we get any other message than heartbeat or radio messages, we are getting the messages we requested
                         self.heartbeatOnlyCount = 0;
-                        DDLogDebug(@"The msg id is %d (0x%x)", msg.msgid, msg.msgid);
+                        DDLogVerbose(@"The msg id is %d (0x%x)", msg.msgid, msg.msgid);
                         break;
                 }
                 // Pass to the retrying request handler in case we need to process an ACK
