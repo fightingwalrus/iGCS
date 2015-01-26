@@ -13,4 +13,6 @@
 // generators with public interfaces
 #import "GCSCraftModel.h"
 #import "GCSCraftModelGenerator.h"
+#import "GCSCraftNotifications.h"
+
 #endif

@@ -17,6 +17,15 @@
 
 @implementation GCSSpeechManager
 
++ (instancetype) sharedInstance {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         // set speech defaults
@@ -28,7 +37,8 @@
             // register for notifications
 
             [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(craftNavModeDidChange) name:@"GCSCraftNotificationsCraftNavModeModeDidChanged" object:nil];
+                                                     selector:@selector(craftNavModeDidChange)
+                                                         name:GCSCraftNotificationsCraftNavModeModeDidChanged object:nil];
         }
     }
     return self;

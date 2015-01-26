@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface GCSSpeechManager : NSObject
--(void)flyToPosition;
++ (instancetype) sharedInstance;
+- (void)flyToPosition;
 @end

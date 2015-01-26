@@ -18,6 +18,7 @@
 #endif
 
 #import "CommController.h"
+#import "GCSSpeechManager.h"
 
 @implementation AppDelegate
 
@@ -58,8 +59,11 @@ static AppDelegate *shared;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         self.window.tintColor = [[GCSThemeManager sharedInstance] appTintColor];
     }
-    
-    NSLog(@"Application finished launching.");
+
+    // call on startup to setup NSNotifcation observers
+    [GCSSpeechManager sharedInstance];
+
+    DDLogInfo(@"Application finished launching.");
 
     return YES;
 }
