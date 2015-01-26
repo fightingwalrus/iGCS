@@ -343,13 +343,10 @@
 		CA26AD6B173E22E300F8E7B3 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
 		CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
 		CA2D60171A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
-		CA2D60181A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60151A733FD800AA2CBB /* GCSCraftModelGenerator.m */; };
 		CA2D601D1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
 		CA2D601E1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
-		CA2D601F1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
 		CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
 		CA2D60231A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
-		CA2D60241A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
@@ -2606,9 +2603,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2D60181A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
-				CA2D601F1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */,
-				CA2D60241A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

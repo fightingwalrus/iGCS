@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "mavlink.h"
 
-extern NSString * const GCSCraftNotificationsCraftNavModeModeDidChanged;
-
 @interface GCSCraftNotifications : NSObject
 
 + (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
                       andCurrentHeartbeat:(mavlink_heartbeat_t) currentHeartbeat;
 
 @end
+
+extern NSString * const GCSCraftNotificationsCraftNavModeModeDidChanged;

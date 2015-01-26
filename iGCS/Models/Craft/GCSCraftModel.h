@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "mavlink.h"
 #import "GCSCraftModes.h"
-#import "GCSCraftNotifications.h"
 
 @protocol GCSCraftModel <NSObject>
 @required;

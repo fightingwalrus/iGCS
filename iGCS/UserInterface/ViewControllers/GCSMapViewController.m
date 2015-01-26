@@ -312,10 +312,6 @@ static const NSUInteger VEHICLE_ICON_SIZE = 62;
     [alertView addGestureRecognizer:panGesture];
 
     [alertView show];
-
-    GCSSpeechManager *speechManager = [[GCSSpeechManager alloc]init];
-    [speechManager flyToPosition];
-
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
