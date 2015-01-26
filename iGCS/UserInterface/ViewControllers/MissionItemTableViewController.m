@@ -62,7 +62,9 @@
 
     [self.tableView setAllowsSelection:YES];
     [self.tableView setAllowsSelectionDuringEditing:YES];
-    [self toggleEditing];
+    [self setEditing:YES animated:NO];
+    //CGRect r = [self.sectionHeaderContainer frame];
+    //r.origin.x += 40;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -264,27 +266,6 @@ NSArray* headerWidths = nil;
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self modifyHeadersForSelectedRow:idx];
     [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-}
-
-- (BOOL) toggleEditing {
-    //FIXME: Temporary approach
-    BOOL isEditing = YES;
-    
-    // Toggle the table editing state
-    [self setEditing:isEditing animated:YES];
-    
-    // Slide the section header along to match the table cells
-    CGRect r = [self.sectionHeaderContainer frame];
-    r.origin.x += isEditing ? HEADER_SPEC_EDIT_OFFSET : -HEADER_SPEC_EDIT_OFFSET;
-    [UIView animateWithDuration:0.3f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         [self.sectionHeaderContainer setFrame:r];
-                     }
-                     completion:nil];
-    
-    return isEditing; // return the current editing state
 }
 
 - (void) refreshTableView {
