@@ -934,12 +934,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5D9-Dd-q69">
+                                <rect key="frame" x="0.0" y="446" width="1024" height="265"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                                <connections>
+                                    <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
+                                </connections>
+                            </containerView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qaC-XP-dCX">
-                                <rect key="frame" x="0.0" y="44" width="1024" height="300"/>
+                                <rect key="frame" x="0.0" y="44" width="1024" height="401"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="-68" maxX="0.0" maxY="68"/>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-PO-kYQ">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <rect key="frame" x="5" y="0.0" width="1024" height="44"/>
                                 <items>
                                     <navigationItem id="42B-zn-n5q">
                                         <barButtonItem key="leftBarButtonItem" style="done" id="US5-We-JEo">
@@ -982,19 +990,11 @@
                                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTU-hR-O8m">
                                                         <rect key="frame" x="0.0" y="-5" width="168" height="44"/>
                                                         <items>
-                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="mIv-4T-47r" userLabel="Flexible Space"/>
-                                                            <barButtonItem enabled="NO" style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
+                                                            <barButtonItem style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
                                                                 <connections>
                                                                     <action selector="addClicked:" destination="ZiK-du-awU" id="7k4-2W-smt"/>
                                                                 </connections>
                                                             </barButtonItem>
-                                                            <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="kUl-Du-vFa" userLabel="Padding"/>
-                                                            <barButtonItem title="Edit" id="Jzr-xS-XcN" userLabel="Edit/Done">
-                                                                <connections>
-                                                                    <action selector="editDoneClicked:" destination="ZiK-du-awU" id="gVu-iF-zV0"/>
-                                                                </connections>
-                                                            </barButtonItem>
-                                                            <barButtonItem width="80" style="plain" systemItem="fixedSpace" id="7Yb-mL-G2c" userLabel="Battery Padding"/>
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
@@ -1004,23 +1004,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5D9-Dd-q69">
-                                <rect key="frame" x="0.0" y="342" width="1024" height="369"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                                <connections>
-                                    <segue destination="vcb-J4-96F" kind="embed" identifier="editItemVC_embed" id="sLn-Pi-C24"/>
-                                </connections>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eT-rn-63l" userLabel="LocateUser">
-                                <rect key="frame" x="8" y="300" width="30" height="34"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="zoomInOnUser:" destination="ZiK-du-awU" eventType="touchUpInside" id="pWr-MQ-lBh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1029,12 +1012,9 @@
                     <connections>
                         <outlet property="_mapView" destination="qaC-XP-dCX" id="WMk-cu-uD9"/>
                         <outlet property="addButton" destination="4gU-lS-xY5" id="Gd1-w6-ae7"/>
-                        <outlet property="batteryPadding" destination="7Yb-mL-G2c" id="06y-YM-PMW"/>
                         <outlet property="carrierPadding" destination="hIh-iN-4ek" id="zke-hw-5Ie"/>
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
-                        <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
                         <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>
-                        <outlet property="locateUser" destination="8eT-rn-63l" id="gOT-Nr-8vN"/>
                         <outlet property="mapView" destination="qaC-XP-dCX" id="wUM-Ez-ehM"/>
                         <outlet property="rxMissionButton" destination="di6-Zt-zDe" id="Hpn-p7-z75"/>
                         <outlet property="txMissionButton" destination="SRA-QZ-232" id="JPD-Du-oRV"/>
@@ -1224,7 +1204,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5fV-AT-gfd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V1X-0T-qMo">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="369"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6i9-lU-q16">
@@ -1310,8 +1290,8 @@
         <scene sceneID="cVi-Id-eoD">
             <objects>
                 <tableViewController id="g0h-Hk-vw4" customClass="MissionItemTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J2H-Pu-dEF">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="369"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="J2H-Pu-dEF">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>

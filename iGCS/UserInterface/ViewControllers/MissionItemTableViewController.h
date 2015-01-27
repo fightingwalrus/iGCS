@@ -21,8 +21,6 @@
 
 @interface MissionItemTableViewController : UITableViewController
 
-@property (nonatomic, readonly) BOOL toggleEditing;
-
 - (void) markSelectedRow:(NSInteger)idx;
 - (void) refreshTableView;
 

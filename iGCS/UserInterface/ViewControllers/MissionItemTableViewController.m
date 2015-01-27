@@ -47,13 +47,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[[self waypointsVC] editDoneButton] setEnabled:YES]; // FIXME: ugh... nasty!
     [self unmarkSelectedRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // Prevent the edit/done button being touched while editing a mission item
-    [[[self waypointsVC] editDoneButton] setEnabled:NO]; // FIXME: more of the same
 }
 
 - (void)viewDidLoad {
@@ -62,11 +59,10 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     [self.tableView setAllowsSelection:YES];
     [self.tableView setAllowsSelectionDuringEditing:YES];
+    [self setEditing:YES animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -270,26 +266,6 @@ NSArray* headerWidths = nil;
     [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
 }
 
-- (BOOL) toggleEditing {
-    BOOL isEditing = !self.isEditing;
-    
-    // Toggle the table editing state
-    [self setEditing:isEditing animated:YES];
-    
-    // Slide the section header along to match the table cells
-    CGRect r = [self.sectionHeaderContainer frame];
-    r.origin.x += isEditing ? HEADER_SPEC_EDIT_OFFSET : -HEADER_SPEC_EDIT_OFFSET;
-    [UIView animateWithDuration:0.3f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         [self.sectionHeaderContainer setFrame:r];
-                     }
-                     completion:nil];
-    
-    return isEditing; // return the current editing state
-}
-
 - (void) refreshTableView {
     [self.tableView reloadData];
 }
@@ -299,22 +275,12 @@ NSArray* headerWidths = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger idx = indexPath.row;
     
-    if (tableView.isEditing) {
-        if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
-        mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
-        if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
-            [self unmarkSelectedRow];
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
-            [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
-        }
-    } else {
-        [self modifyHeadersForSelectedRow:idx];
-        if ([self.lastIndexPath isEqual:indexPath]) {
-            [self unmarkSelectedRow];
-        } else {
-            self.lastIndexPath = indexPath;
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-        }
+    if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
+    mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
+    if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
+        [self unmarkSelectedRow];
+        [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
+        [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
     }
 }
 
