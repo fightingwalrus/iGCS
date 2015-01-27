@@ -9,7 +9,7 @@
 #import "GCSCraftNotifications.h"
 #import "GCSCraftModes.h"
 
-NSString * const GCSCraftNotificationsCraftNavModeModeDidChanged = @"GCSCraftNotificationsCraftNavModeModeDidChanged";
+NSString * const GCSCraftNotificationsCraftCustomModeDidChange = @"GCSCraftNotificationsCraftCustomModeDidChange";
 
 @implementation GCSCraftNotifications
 
@@ -19,7 +19,7 @@ NSString * const GCSCraftNotificationsCraftNavModeModeDidChanged = @"GCSCraftNot
     if (lastHeartbeat.custom_mode == currentHeartbeat.custom_mode) return;
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftNavModeModeDidChanged
+        [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftCustomModeDidChange
                                                            object:nil];
     });
 }

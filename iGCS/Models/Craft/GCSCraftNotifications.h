@@ -16,4 +16,4 @@
 
 @end
 
-extern NSString * const GCSCraftNotificationsCraftNavModeModeDidChanged;
+extern NSString * const GCSCraftNotificationsCraftCustomModeDidChange;

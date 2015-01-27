@@ -38,7 +38,7 @@
 
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(craftNavModeDidChange)
-                                                         name:GCSCraftNotificationsCraftNavModeModeDidChanged object:nil];
+                                                         name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
         }
     }
     return self;
