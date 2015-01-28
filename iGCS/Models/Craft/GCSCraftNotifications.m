@@ -14,9 +14,9 @@ NSString * const GCSCraftNotificationsCraftCustomModeDidChange = @"GCSCraftNotif
 @implementation GCSCraftNotifications
 
 + (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                      andCurrentHeartbeat:(mavlink_heartbeat_t) currentHeartbeat {
+                      andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
 
-    if (lastHeartbeat.custom_mode == currentHeartbeat.custom_mode) return;
+    if (lastHeartbeat.custom_mode == newHeartbeat.custom_mode) return;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftCustomModeDidChange

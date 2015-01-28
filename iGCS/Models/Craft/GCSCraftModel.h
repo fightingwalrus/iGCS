@@ -13,7 +13,7 @@
 @protocol GCSCraftModel <NSObject>
 @required;
 - (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat;
-- (void) update:(mavlink_heartbeat_t)heartbeat;
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)newHeartbeat;
 
 @property (nonatomic, readonly) GCSCraftType craftType;
 

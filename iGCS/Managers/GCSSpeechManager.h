@@ -10,5 +10,5 @@
 
 @interface GCSSpeechManager : NSObject
 + (instancetype) sharedInstance;
-- (void) flyToPosition;
+- (void) sayflyToPosition;
 @end

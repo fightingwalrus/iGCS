@@ -8,11 +8,7 @@
 
 #import "GCSCraftArduCopter.h"
 #import "GCSCraftNotifications.h"
-
-@interface GCSCraftArduCopter ()
-@property (nonatomic, assign) mavlink_heartbeat_t lastHeartbeat;
-@property (nonatomic, strong) NSDictionary *customModeNames;
-@end
+#import "MavLinkUtility.h"
 
 @implementation GCSCraftArduCopter
 
@@ -32,31 +28,17 @@
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon.png"];
-        _customModeNames =  @{@(APMCopterStabilize): @"Stabilize",
-                              @(APMCopterAcro): @"Acro",
-                              @(APMCopterAltHold): @"AltHold",
-                              @(APMCopterAuto): @"Auto",
-                              @(APMCopterGuided): @"Guided",
-                              @(APMCopterLoiter): @"Loiter",
-                              @(APMCopterRtl): @"RTL",
-                              @(APMCopterCircle): @"Circle",
-                              @(APMCopterPosition): @"Position",
-                              @(APMCopterLand): @"Land",
-                              @(APMCopterOfLoiter): @"OfLoiter",
-                              @(APMCopterDrift): @"Drift",
-                              @(APMCopterSport): @"Sport"};
-
     }
 
     return self;
 }
 
-- (void) update:(mavlink_heartbeat_t)heartbeat {
-    self.lastHeartbeat = self.heartbeat;
-    self.heartbeat = heartbeat;
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)newHeartbeat {
 
-    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:self.lastHeartbeat
-                                         andCurrentHeartbeat:self.heartbeat];
+    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:self.heartbeat
+                                         andNewHeartbeat:newHeartbeat];
+
+    self.heartbeat = newHeartbeat;
 }
 
 - (BOOL) isInAutoMode {
@@ -68,7 +50,7 @@
 }
 
 - (NSString *) currentModeName {
-    return self.customModeNames[@(self.heartbeat.custom_mode)];
+    return [MavLinkUtility mavCustomModeToString:self.heartbeat];
 }
 
 @end

@@ -12,7 +12,7 @@
 @interface GCSCraftNotifications : NSObject
 
 + (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                      andCurrentHeartbeat:(mavlink_heartbeat_t) currentHeartbeat;
+                      andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
 
 @end
 

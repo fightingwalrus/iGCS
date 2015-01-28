@@ -8,11 +8,7 @@
 
 #import "GCSCraftArduPlane.h"
 #import "GCSCraftNotifications.h"
-
-@interface GCSCraftArduPlane ()
-@property (nonatomic, assign) mavlink_heartbeat_t lastHeartbeat;
-@property (nonatomic, strong) NSDictionary *customModeNames;
-@end
+#import "MavLinkUtility.h"
 
 @implementation GCSCraftArduPlane
 
@@ -32,31 +28,17 @@
         _guidedMode  = APMPlaneGuided;
         _setModeBeforeGuidedItems = NO;
         _icon = [UIImage imageNamed:@"plane-icon.png"];
-        _customModeNames = @{@(APMPlaneManual): @"Manual",
-                             @(APMPlaneCircle): @"Circle",
-                             @(APMPlaneStabilize): @"Stabilize",
-                             @(APMPlaneFlyByWireA): @"FBW_A",
-                             @(APMPlaneFlyByWireB): @"FBW_B",
-                             @(APMPlaneFlyByWireC): @"FBW_C",
-                             @(APMPlaneAuto): @"Auto",
-                             @(APMPlaneRtl): @"RTL",
-                             @(APMPlaneLoiter): @"Loiter",
-                             @(APMPlaneTakeoff): @"Takeoff",
-                             @(APMPlaneLand): @"Land",
-                             @(APMPlaneGuided): @"Guided",
-                             @(APMPlaneInitialising): @"Initialising"};
 
     }
     return self;
 }
 
-- (void) update:(mavlink_heartbeat_t)heartbeat {
-    self.lastHeartbeat = self.heartbeat;
-    self.heartbeat = heartbeat;
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)newHeartbeat {
 
-    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:self.lastHeartbeat
-                                         andCurrentHeartbeat:self.heartbeat];
+    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:self.heartbeat
+                                         andNewHeartbeat:newHeartbeat];
 
+    self.heartbeat = newHeartbeat;
 }
 
 - (BOOL) isInAutoMode {
@@ -68,7 +50,7 @@
 }
 
 - (NSString *) currentModeName {
-    return self.customModeNames[@(self.heartbeat.custom_mode)];
+    return [MavLinkUtility mavCustomModeToString:self.heartbeat];
 }
 
 @end

@@ -56,7 +56,7 @@
 
 #pragma mark - public methods
 
-- (void)flyToPosition {
+- (void)sayflyToPosition {
     [self speakWithText:@"Flying to position"];
 }
 
