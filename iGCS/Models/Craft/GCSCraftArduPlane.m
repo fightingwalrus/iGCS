@@ -25,7 +25,7 @@
         _autoMode    = APMPlaneAuto;
         _guidedMode  = APMPlaneGuided;
         _setModeBeforeGuidedItems = NO;
-        _icon = [UIImage imageNamed:@"plane-icon.png"];
+        _icon = [UIImage imageNamed:@"plane-icon-248.png"];
     }
     return self;
 }
