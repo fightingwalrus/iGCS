@@ -25,7 +25,7 @@
         _autoMode    = APMCopterAuto;
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
-        _icon = [UIImage imageNamed:@"quad-icon.png"];
+        _icon = [UIImage imageNamed:@"quad-icon-248.png"];
     }
     return self;
 }
