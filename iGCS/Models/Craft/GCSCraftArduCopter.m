@@ -9,6 +9,7 @@
 #import "GCSCraftArduCopter.h"
 #import "GCSCraftNotifications.h"
 #import "MavLinkUtility.h"
+#import "GCSCraftMixins.h"
 
 @implementation GCSCraftArduCopter
 
@@ -28,23 +29,11 @@
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon.png"];
+
+        [GCSCraftMixins addMixinsToModel:self];
     }
 
     return self;
-}
-
-- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat {
-    
-    // this is needed because we expect the model state to have
-    // already changed by the time NSNotifications are
-    // dispatch so the model properties must be updated
-    // before the notifications are sent out.
-    mavlink_heartbeat_t lastHeartbeat = self.heartbeat;
-    self.heartbeat = heartbeat;
-
-    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
-                                             andNewHeartbeat:self.heartbeat];
-    
 }
 
 - (BOOL) isInAutoMode {

@@ -263,6 +263,8 @@
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
+		18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
+		18FFD5C51A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -828,6 +830,8 @@
 		18F8040017E24BB300CB8052 /* CommConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnection.m; sourceTree = "<group>"; };
 		18F8040117E24BB300CB8052 /* CommConnectionPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommConnectionPool.h; sourceTree = "<group>"; };
 		18F8040217E24BB300CB8052 /* CommConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnectionPool.m; sourceTree = "<group>"; };
+		18FFD5C21A797ECA00DF038C /* GCSCraftMixins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftMixins.h; sourceTree = "<group>"; };
+		18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftMixins.m; sourceTree = "<group>"; };
 		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
 		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -1597,6 +1601,8 @@
 				CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */,
 				1885979E1A761A7E008D40EE /* GCSCraftNotifications.h */,
 				1885979F1A761A7E008D40EE /* GCSCraftNotifications.m */,
+				18FFD5C21A797ECA00DF038C /* GCSCraftMixins.h */,
+				18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */,
 			);
 			path = Craft;
 			sourceTree = "<group>";
@@ -2388,6 +2394,7 @@
 				18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */,
 				1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
+				18FFD5C51A797ECA00DF038C /* GCSCraftMixins.m in Sources */,
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
@@ -2505,6 +2512,7 @@
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
+				18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,

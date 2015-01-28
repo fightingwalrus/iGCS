@@ -12,6 +12,8 @@
 // import models and model
 // generators with public interfaces
 #import "GCSCraftModel.h"
+#import "GCSCraftArduCopter.h"
+#import "GCSCraftArduPlane.h"
 #import "GCSCraftModelGenerator.h"
 #import "GCSCraftNotifications.h"
 
