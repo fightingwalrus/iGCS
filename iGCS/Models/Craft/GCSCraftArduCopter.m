@@ -33,12 +33,18 @@
     return self;
 }
 
-- (void) updateWithHeartbeat:(mavlink_heartbeat_t)newHeartbeat {
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat {
+    
+    // this is needed because we expect the model state to have
+    // already changed by the time NSNotifications are
+    // dispatch so the model properties must be updated
+    // before the notifications are sent out.
+    mavlink_heartbeat_t lastHeartbeat = self.heartbeat;
+    self.heartbeat = heartbeat;
 
-    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:self.heartbeat
-                                         andNewHeartbeat:newHeartbeat];
-
-    self.heartbeat = newHeartbeat;
+    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
+                                             andNewHeartbeat:self.heartbeat];
+    
 }
 
 - (BOOL) isInAutoMode {
