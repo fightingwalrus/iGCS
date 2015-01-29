@@ -10,6 +10,7 @@
 #import "GCSCraftNotifications.h"
 #import "MavLinkUtility.h"
 #import "GCSCraftMixins.h"
+#import "Mixin.h"
 
 @implementation GCSCraftArduPlane
 
@@ -29,12 +30,16 @@
         _guidedMode  = APMPlaneGuided;
         _setModeBeforeGuidedItems = NO;
         _icon = [UIImage imageNamed:@"plane-icon.png"];
-
-        // Add all @optional yet shared GCSCraftModel methods using
-        [GCSCraftMixins addMixinsToModel:self];
     }
 
     return self;
+}
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self mixinFrom:[GCSCraftMixins class]];
+    });
 }
 
 - (BOOL) isInAutoMode {

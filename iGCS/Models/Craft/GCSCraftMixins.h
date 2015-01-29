@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "GCSCraft.h"
 
-void updateWithHeartbeatIMP (id self, SEL _cmd, mavlink_heartbeat_t heartbeat);
-
 @interface GCSCraftMixins : NSObject
-+ (void) addMixinsToModel:(id<GCSCraftModel>)craftModel;
+-(void)updateWithHeartbeat:(mavlink_heartbeat_t) heartbeat;
 @end

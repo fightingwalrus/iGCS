@@ -265,6 +265,10 @@
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
 		18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
 		18FFD5C51A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
+		18FFD5CB1A79D84400DF038C /* Mixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5CA1A79D84400DF038C /* Mixin.m */; };
+		18FFD5CC1A79D84400DF038C /* Mixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5CA1A79D84400DF038C /* Mixin.m */; };
+		18FFD5CE1A79D85900DF038C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18FFD5CD1A79D85900DF038C /* LICENSE */; };
+		18FFD5CF1A79D85900DF038C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18FFD5CD1A79D85900DF038C /* LICENSE */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -832,6 +836,9 @@
 		18F8040217E24BB300CB8052 /* CommConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnectionPool.m; sourceTree = "<group>"; };
 		18FFD5C21A797ECA00DF038C /* GCSCraftMixins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftMixins.h; sourceTree = "<group>"; };
 		18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftMixins.m; sourceTree = "<group>"; };
+		18FFD5C91A79D84400DF038C /* Mixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixin.h; sourceTree = "<group>"; };
+		18FFD5CA1A79D84400DF038C /* Mixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixin.m; sourceTree = "<group>"; };
+		18FFD5CD1A79D85900DF038C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
 		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -1635,6 +1642,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		18FFD5C81A79D84400DF038C /* ObjectiveMixin */ = {
+			isa = PBXGroup;
+			children = (
+				18FFD5CD1A79D85900DF038C /* LICENSE */,
+				18FFD5C91A79D84400DF038C /* Mixin.h */,
+				18FFD5CA1A79D84400DF038C /* Mixin.m */,
+			);
+			path = ObjectiveMixin;
+			sourceTree = "<group>";
+		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1839,6 +1856,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				18FFD5C81A79D84400DF038C /* ObjectiveMixin */,
 				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
 				01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */,
@@ -2259,6 +2277,7 @@
 				1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
 				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
+				18FFD5CF1A79D85900DF038C /* LICENSE in Resources */,
 				18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
 				18C862A7198AD4A800F99CD3 /* 73-radar.png in Resources */,
@@ -2318,6 +2337,7 @@
 				01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */,
 				18C86297198AD4A800F99CD3 /* 19-gear@2x.png in Resources */,
 				18C8628B198AD4A800F99CD3 /* 05-shuffle@2x.png in Resources */,
+				18FFD5CE1A79D85900DF038C /* LICENSE in Resources */,
 				18C86291198AD4A800F99CD3 /* 07-map-marker@2x.png in Resources */,
 				1875979518910AC50012DF6D /* Icon-144.png in Resources */,
 				1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */,
@@ -2428,6 +2448,7 @@
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
 				CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
+				18FFD5CC1A79D84400DF038C /* Mixin.m in Sources */,
 				188597A11A761A7E008D40EE /* GCSCraftNotifications.m in Sources */,
 				18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */,
 				18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */,
@@ -2512,6 +2533,7 @@
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
+				18FFD5CB1A79D84400DF038C /* Mixin.m in Sources */,
 				18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,

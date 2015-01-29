@@ -10,6 +10,7 @@
 #import "GCSCraftNotifications.h"
 #import "MavLinkUtility.h"
 #import "GCSCraftMixins.h"
+#import "Mixin.h"
 
 @implementation GCSCraftArduCopter
 
@@ -29,12 +30,18 @@
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon.png"];
-
-        [GCSCraftMixins addMixinsToModel:self];
     }
 
     return self;
 }
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self mixinFrom:[GCSCraftMixins class]];
+    });
+}
+
 
 - (BOOL) isInAutoMode {
     return self.heartbeat.custom_mode == APMCopterAuto;
