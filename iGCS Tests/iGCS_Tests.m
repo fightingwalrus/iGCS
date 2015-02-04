@@ -1,34 +1,47 @@
 //
-//  iGCSTests.m
-//  iGCSTests
+//  iGCS_Tests.m
+//  iGCS_Tests
 //
 //  Created by Claudio Natoli on 5/02/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "iGCSTests.h"
+
+#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
 #import "MavLinkUtility.h"
 #import "WaypointsHolder.h"
 
 #import "SiKFirmware.h"
 
-@implementation iGCSTests
+#import "GCSCraftModes.h"
 
-- (void)setUp
-{
+@interface iGCS_Tests : XCTestCase
+
+@end
+
+@implementation iGCS_Tests
+
+- (void)setUp {
     [super setUp];
-    // Set-up code here.
+    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
-{
-    // Tear-down code here.
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample
-{
-    //STFail(@"Unit tests are not implemented yet in iGCSTests");
+- (void)testExample {
+    // This is an example of a functional test case.
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
 }
 
 - (void)testWaypointsHolderConversionEmpty {
@@ -73,7 +86,7 @@
     // Convert to string
     NSString* demoQGC = [demo toOutputFormat];
     XCTAssertNotNil(demoQGC, @"Failed to convert QGC string");
-
+    
     // Convert back to mission
     WaypointsHolder* demo2 = [WaypointsHolder createFromQGCString:demoQGC];
     XCTAssertNotNil(demo2, @"Failed to convert QGC string");
@@ -88,22 +101,22 @@
     
     heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
     heartbeat.type      = MAV_TYPE_FIXED_WING;
-    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    heartbeat.custom_mode = APMPlaneFlyByWireC;
     XCTAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"FBW_C", @"Incorrect fixed wing mode");
     
     heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
     heartbeat.type      = MAV_TYPE_QUADROTOR;
-    heartbeat.custom_mode = Circle;
+    heartbeat.custom_mode = APMCopterCircle;
     XCTAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"Circle", @"Incorrect quadcopter mode");
-
+    
     heartbeat.autopilot = MAV_AUTOPILOT_ARDUPILOTMEGA;
     heartbeat.type      = MAV_TYPE_GENERIC;
-    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    heartbeat.custom_mode = APMPlaneFlyByWireC;
     XCTAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"CUSTOM_MODE (7)", @"Incorrect generic type mode");
-
+    
     heartbeat.autopilot = MAV_AUTOPILOT_GENERIC;
     heartbeat.type      = MAV_TYPE_FIXED_WING;
-    heartbeat.custom_mode = FLY_BY_WIRE_C;
+    heartbeat.custom_mode = APMPlaneFlyByWireC;
     XCTAssertEqualObjects([MavLinkUtility mavCustomModeToString:heartbeat], @"CUSTOM_MODE (7)", @"Incorrect generic autopilot mode");
 }
 
@@ -122,7 +135,7 @@
     XCTAssertEqual(oneExtendTwo.data.length, 2U,  @"oneExtendTwo data.length should be 2");
     XCTAssertEqual(((unsigned char*)oneExtendTwo.data.bytes)[0], b1,  @"oneExtendTwo data[0] should be b1");
     XCTAssertEqual(((unsigned char*)oneExtendTwo.data.bytes)[1], b2,  @"oneExtendTwo data[1] should be b2");
-
+    
     AddressDataPair *twoExtendOne = [adp2 extend:adp1];
     XCTAssertEqual(twoExtendOne.address, address2,  @"Address2 should be retained");
     XCTAssertEqual(twoExtendOne.data.length, 2U,  @"oneExtendTwo data.length should be 2");
@@ -139,7 +152,7 @@
     
     AddressDataPair *adp1 = [[AddressDataPair alloc] initWithAddress:address1 andData:[NSData dataWithBytes:&b1 length:1]];
     AddressDataPair *adp1b = [[AddressDataPair alloc] initWithAddress:address1 andData:[NSData dataWithBytes:&b1 length:1]];
-
+    
     AddressDataPair *adp2 = [[AddressDataPair alloc] initWithAddress:address2 andData:[NSData dataWithBytes:&b2 length:1]];
     
     XCTAssertTrue([adp1 compare:adp2] == NSOrderedAscending,  @"adp1 should be less than adp2");
@@ -163,7 +176,7 @@
                                                            nil]];
     XCTAssertEqual(((AddressDataPair*)sik1.sortedAddressDataPairs[0]).address, address1, @"sik1: First pair should have address 1");
     XCTAssertEqual(((AddressDataPair*)sik1.sortedAddressDataPairs[1]).address, address2, @"sik1: Second pair should have address 2");
-
+    
     SiKFirmware *sik2 = [[SiKFirmware alloc] initWithDict:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            adp2, [NSNumber numberWithUnsignedInteger:adp2.address],
                                                            adp1, [NSNumber numberWithUnsignedInteger:adp1.address],
@@ -176,7 +189,7 @@
          expectedLength:(NSUInteger)expectedLength
           referenceDict:(NSDictionary*)referenceDict
 {
-    NSString *path = [[NSBundle bundleForClass:[iGCSTests class]] pathForResource:filePrefix ofType:@"hex"];
+    NSString *path = [[NSBundle bundleForClass:[iGCS_Tests class]] pathForResource:filePrefix ofType:@"hex"];
     NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     // Check file length
@@ -186,8 +199,8 @@
     // Check we got the expected number of AddressDataPairs
     SiKFirmware* fw = [SiKFirmware firmwareFromString:content];
     NSArray *adPairs = fw.sortedAddressDataPairs;
-    XCTAssertEqual(adPairs.count, referenceDict.count, @"Incorrect number of AddressDataPairs", adPairs.count);
-
+    XCTAssertEqual(adPairs.count, referenceDict.count, @"Incorrect number of AddressDataPairs (%d)", adPairs.count);
+    
     // Check the existence, length, and first byte of each pair compared to the reference
     for (AddressDataPair *adp in adPairs) {
         NSArray *tuple = [referenceDict objectForKey:[@(adp.address) stringValue]];
@@ -246,3 +259,4 @@
 
 
 @end
+
