@@ -334,7 +334,7 @@
 		CA2D601E1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
 		CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
 		CA2D60231A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
-		CA35B6981A81A98500104924 /* iGCS_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6971A81A98500104924 /* iGCS_Tests.m */; };
+		CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6971A81A98500104924 /* MavUtilityTests.m */; };
 		CA35B6A01A81AC8600104924 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
 		CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtility.m */; };
 		CA35B6A41A81ACEE00104924 /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
@@ -343,6 +343,8 @@
 		CA35B6AA1A81AE4500104924 /* test1.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A71A81AE4500104924 /* test1.hex */; };
 		CA35B6AB1A81AE4500104924 /* test3.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A81A81AE4500104924 /* test3.hex */; };
 		CA35B6AC1A81AE4500104924 /* testparser.py in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A91A81AE4500104924 /* testparser.py */; };
+		CA35B6BB1A81B03E00104924 /* WaypointsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6BA1A81B03E00104924 /* WaypointsTests.m */; };
+		CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6BC1A81B08F00104924 /* FirmwareTests.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
@@ -889,10 +891,12 @@
 		CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftArduPlane.m; sourceTree = "<group>"; };
 		CA35B6931A81A98500104924 /* iGCS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iGCS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA35B6961A81A98500104924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA35B6971A81A98500104924 /* iGCS_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGCS_Tests.m; sourceTree = "<group>"; };
+		CA35B6971A81A98500104924 /* MavUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MavUtilityTests.m; sourceTree = "<group>"; };
 		CA35B6A71A81AE4500104924 /* test1.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test1.hex; path = "test-resources/test1.hex"; sourceTree = "<group>"; };
 		CA35B6A81A81AE4500104924 /* test3.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test3.hex; path = "test-resources/test3.hex"; sourceTree = "<group>"; };
 		CA35B6A91A81AE4500104924 /* testparser.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = testparser.py; path = "test-resources/testparser.py"; sourceTree = "<group>"; };
+		CA35B6BA1A81B03E00104924 /* WaypointsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsTests.m; sourceTree = "<group>"; };
+		CA35B6BC1A81B08F00104924 /* FirmwareTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTests.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA43DFC515143E570014F7C8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
@@ -1827,9 +1831,11 @@
 		CA35B6941A81A98500104924 /* iGCS Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CA35B6BC1A81B08F00104924 /* FirmwareTests.m */,
+				CA35B6971A81A98500104924 /* MavUtilityTests.m */,
+				CA35B6BA1A81B03E00104924 /* WaypointsTests.m */,
 				CA35B6951A81A98500104924 /* Supporting Files */,
 				CA35B6AD1A81AE5400104924 /* Test Resources */,
-				CA35B6971A81A98500104924 /* iGCS_Tests.m */,
 			);
 			path = "iGCS Tests";
 			sourceTree = "<group>";
@@ -2407,12 +2413,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA35B6981A81A98500104924 /* iGCS_Tests.m in Sources */,
+				CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */,
 				CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */,
+				CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */,
 				CA35B6A61A81AD2900104924 /* MissionItemField.m in Sources */,
 				CA35B6A01A81AC8600104924 /* SiKFirmware.m in Sources */,
 				CA35B6A51A81AD1500104924 /* WaypointHelper.m in Sources */,
 				CA35B6A41A81ACEE00104924 /* WaypointsHolder.m in Sources */,
+				CA35B6BB1A81B03E00104924 /* WaypointsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2870,6 +2878,7 @@
 				CA35B69D1A81A98500104924 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA499F5814DE33BC00FCC9FB /* Build configuration list for PBXProject "iGCS" */ = {
 			isa = XCConfigurationList;
