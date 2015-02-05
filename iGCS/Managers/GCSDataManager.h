@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MKMapCamera.h>
 #import "GCSCraft.h"
-#import "GCSCraftModel.h"
 
 @interface GCSDataManager : NSObject
 + (instancetype) sharedInstance;
