@@ -42,17 +42,12 @@
     });
 }
 
-
 - (BOOL) isInAutoMode {
     return self.heartbeat.custom_mode == APMCopterAuto;
 }
 
 - (BOOL) isInGuidedMode {
     return self.heartbeat.custom_mode == APMCopterGuided;
-}
-
-- (NSString *) currentModeName {
-    return [MavLinkUtility mavCustomModeToString:self.heartbeat];
 }
 
 @end

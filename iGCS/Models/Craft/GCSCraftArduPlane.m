@@ -50,8 +50,4 @@
     return self.heartbeat.custom_mode == APMPlaneGuided;
 }
 
-- (NSString *) currentModeName {
-    return [MavLinkUtility mavCustomModeToString:self.heartbeat];
-}
-
 @end

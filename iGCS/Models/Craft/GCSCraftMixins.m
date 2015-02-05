@@ -7,6 +7,7 @@
 //
 
 #import "GCSCraftMixins.h"
+#import "MavLinkUtility.h"
 #import <objc/runtime.h>
 
 @implementation GCSCraftMixins
@@ -21,6 +22,10 @@
 
     [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
                                              andNewHeartbeat:[(id)self heartbeat]];
+}
+
+- (NSString *) currentModeName {
+    return [MavLinkUtility mavCustomModeToString:[(id)self heartbeat]];
 }
 
 @end

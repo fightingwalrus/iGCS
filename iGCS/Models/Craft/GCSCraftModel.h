@@ -24,11 +24,14 @@
 // Mode status
 @property (nonatomic, readonly) BOOL isInAutoMode;
 @property (nonatomic, readonly) BOOL isInGuidedMode;
-@property (nonatomic, readonly) NSString *currentModeName;
 
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
 
-@optional
+// These methods are optional so they can be mixed in
+// at runtime
+@optional;
 - (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
+@property (nonatomic, readonly) NSString *currentModeName;
+
 @end

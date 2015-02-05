@@ -11,4 +11,5 @@
 
 @interface GCSCraftMixins : NSObject
 -(void)updateWithHeartbeat:(mavlink_heartbeat_t) heartbeat;
+- (NSString *) currentModeName;
 @end
