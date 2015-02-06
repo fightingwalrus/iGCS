@@ -62,11 +62,18 @@
 
 #pragma mark - helpers
 
+-(NSString *) cleanTextForSpeechWithText:(NSString *) text {
+    // remove characters that won't sound great when spoken
+    NSCharacterSet *characterToStrip = [[NSCharacterSet characterSetWithCharactersInString:@"_-()"] invertedSet];
+    return [[text componentsSeparatedByCharactersInSet:characterToStrip] componentsJoinedByString:@""];
+}
+
 - (void)speakWithText:(NSString *) text {
     // ensure availability on target device
     // text to speech works on IOS 7 and above
     if ([AVSpeechUtterance class] && [AVSpeechSynthesizer class]) {
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:text];
+        NSString *cleanText = [self cleanTextForSpeechWithText:text];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:cleanText];
         utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.defaultLanguage];
         utterance.rate = self.utteranceRate;
 
