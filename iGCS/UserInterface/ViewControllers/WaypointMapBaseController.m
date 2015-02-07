@@ -158,18 +158,7 @@
     }
     
     // Set the map extents
-    MKMapRect bounds = [[MKPolygon polygonWithCoordinates:coords count:numWaypoints] boundingMapRect];
-    if (!MKMapRectIsNull(bounds)) {
-        // Extend the bounding rect of the polyline slightly
-        MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
-        region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
-        region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
-        [self.mapView setRegion:region animated:YES];
-    } else if ([self.waypointRoutePolyline pointCount] == 1) {
-        // Fallback to a padded box centered on the single waypoint
-        CLLocationCoordinate2D coord = MKCoordinateForMapPoint([self.waypointRoutePolyline points][0]);
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
-    }
+    [self zoomInOnCoordinates:coords ofCount:numWaypoints];
     [self.mapView setNeedsDisplay];
     
     free(coords);
@@ -424,6 +413,20 @@
 
 - (void) zoomInOnUser:(id)sender {
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+}
+
+- (void) zoomInOnCoordinates:(CLLocationCoordinate2D*)coords ofCount:(NSUInteger)n {
+    MKMapRect bounds = [[MKPolygon polygonWithCoordinates:coords count:n] boundingMapRect];
+    if (!MKMapRectIsNull(bounds)) {
+        // Extend the bounding rect of the polyline slightly
+        MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
+        region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
+        region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
+        [self.mapView setRegion:region animated:YES];
+    } else if (n == 1) {
+        // Fallback to a padded box centered on the single waypoint
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coords[0], MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+    }
 }
 
 @end
