@@ -174,7 +174,8 @@
     [self configureRoutePolylines:coords withLength:numWaypoints withInitialisedHome:isHomeWPInitialised];
     
     // Set the map extents
-    [self zoomInOnCoordinates:coords withLength:numWaypoints];
+    NSUInteger offset = isHomeWPInitialised ? 0 : 1;
+    [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
     [self.mapView setNeedsDisplay];
     
     free(coords);
