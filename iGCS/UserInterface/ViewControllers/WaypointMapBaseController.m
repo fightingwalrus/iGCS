@@ -280,6 +280,13 @@
         waypointRouteView.lineCap     = kCGLineCapRound;
         waypointRouteView.lineJoin    = kCGLineJoinRound;
         return waypointRouteView;
+    } else if (overlay == self.homeToWP1Polyline) {
+        MKPolylineView *homeToWP1View = [[MKPolylineView alloc] initWithPolyline:overlay];
+        homeToWP1View.fillColor     = [theme waypointLineStrokeColor];
+        homeToWP1View.strokeColor   = [theme waypointLineFillColor];
+        homeToWP1View.lineWidth     = 2;
+        homeToWP1View.lineDashPattern = @[@5, @5];
+        return homeToWP1View;
     } else if (overlay == self.trackPolyline) {
         MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
         trackView.fillColor     = [theme trackLineColor];
