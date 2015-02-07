@@ -14,6 +14,7 @@
 #import "GCSDataManager.h"
 
 @interface WaypointMapBaseController ()
+@property (nonatomic, strong) MKPolyline *homeToWP1Polyline;
 @property (nonatomic, strong) MKPolyline *waypointRoutePolyline;
 @property (nonatomic, assign) WaypointSeqOpt currentWaypointNum;
 
@@ -125,35 +126,39 @@
     
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
+    [self.mapView removeOverlay:self.homeToWP1Polyline];
     [self.mapView removeOverlay:self.waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
     WaypointsHolder *navWaypoints = [mission navWaypoints];
     NSUInteger numWaypoints = [navWaypoints numWaypoints];
     
-    MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
-    
-    // Add waypoint annotations, and convert to array of MKMapPoints
+    // Build array of CLLocationCoordinate2D, and add waypoint annotations
+    CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * numWaypoints);
+    assert(coords);
     for (NSUInteger i = 0; i < numWaypoints; i++) {
         mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
+        coords[i] = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
         // Add the annotation
-        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
+        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coords[i]
                                                                             andWayPoint:waypoint
                                                                                 atIndex:[mission getIndexOfWaypointWithSeq:waypoint.seq]];
         [self.mapView addAnnotation:annotation];
-        
-        // Construct the MKMapPoint
-        navMKMapPoints[i] = MKMapPointForCoordinate(coordinate);
     }
     
-    // Add the polyline overlay
-    self.waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
-    [self.mapView addOverlay:self.waypointRoutePolyline];
+    // Add the polyline overlays
+    self.homeToWP1Polyline = [MKPolyline polylineWithCoordinates:coords
+                                                           count:MAX(numWaypoints,2)]; // use at most the first 2 points
+    self.waypointRoutePolyline = (numWaypoints <= 1) ? nil : [MKPolyline polylineWithCoordinates:coords+1
+                                                                                           count:numWaypoints-1]; // skip HOME/0 waypoint
+    [self.mapView addOverlay:self.homeToWP1Polyline];
+    if (self.waypointRoutePolyline) {
+        [self.mapView addOverlay:self.waypointRoutePolyline];
+    }
     
     // Set the map extents
-    MKMapRect bounds = [self.waypointRoutePolyline boundingMapRect];
+    MKMapRect bounds = [[MKPolygon polygonWithCoordinates:coords count:numWaypoints] boundingMapRect];
     if (!MKMapRectIsNull(bounds)) {
         // Extend the bounding rect of the polyline slightly
         MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
@@ -167,7 +172,7 @@
     }
     [self.mapView setNeedsDisplay];
     
-    free(navMKMapPoints);
+    free(coords);
 }
 
 - (void)updateWaypointIconAtSeq:(WaypointSeqOpt)seq isSelected:(BOOL)isSelected {
