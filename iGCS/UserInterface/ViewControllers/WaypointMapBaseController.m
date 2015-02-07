@@ -122,8 +122,29 @@
     return nil;
 }
 
-- (void) replaceMission:(WaypointsHolder*)mission {
+- (void) configureRoutePolylines:(CLLocationCoordinate2D*)coords withLength:(NSUInteger)n withInitialisedHome:(BOOL)isHomeWPInitialised {
+    // HOME/0 -> WP1 line
+    if (isHomeWPInitialised) {
+        self.homeToWP1Polyline = [MKPolyline polylineWithCoordinates:coords
+                                                               count:MIN(n,2)]; // use at most the first 2 points
+        [self.mapView addOverlay:self.homeToWP1Polyline];
+    } else {
+        self.homeToWP1Polyline = nil;
+    }
     
+    // Waypoint route line
+    if (n > 1) {
+        self.waypointRoutePolyline = [MKPolyline polylineWithCoordinates:coords+1 count:n-1]; // skip HOME/0 waypoint
+        [self.mapView addOverlay:self.waypointRoutePolyline];
+    } else {
+        self.waypointRoutePolyline = nil;
+    }
+}
+
+// 1e-5 is very approximately 1m
+#define CLLocationCoordinate2DEqual(x, y) (fabs((x).latitude - (y).latitude) < 1e-5 && fabs((x).longitude - (y).longitude) < 1e-5)
+
+- (void) replaceMission:(WaypointsHolder*)mission {
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
     [self.mapView removeOverlay:self.homeToWP1Polyline];
@@ -147,18 +168,13 @@
         [self.mapView addAnnotation:annotation];
     }
     
-    // Add the polyline overlays
-    self.homeToWP1Polyline = [MKPolyline polylineWithCoordinates:coords
-                                                           count:MIN(numWaypoints,2)]; // use at most the first 2 points
-    self.waypointRoutePolyline = (numWaypoints <= 1) ? nil : [MKPolyline polylineWithCoordinates:coords+1
-                                                                                           count:numWaypoints-1]; // skip HOME/0 waypoint
-    [self.mapView addOverlay:self.homeToWP1Polyline];
-    if (self.waypointRoutePolyline) {
-        [self.mapView addOverlay:self.waypointRoutePolyline];
-    }
+    // Check initialisation of HOME/0 waypoint
+    bool isHomeWPInitialised = (numWaypoints >= 1) && !CLLocationCoordinate2DEqual(coords[0], CLLocationCoordinate2DMake(0,0));
+
+    [self configureRoutePolylines:coords withLength:numWaypoints withInitialisedHome:isHomeWPInitialised];
     
     // Set the map extents
-    [self zoomInOnCoordinates:coords ofCount:numWaypoints];
+    [self zoomInOnCoordinates:coords withLength:numWaypoints];
     [self.mapView setNeedsDisplay];
     
     free(coords);
@@ -422,7 +438,7 @@
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
 }
 
-- (void) zoomInOnCoordinates:(CLLocationCoordinate2D*)coords ofCount:(NSUInteger)n {
+- (void) zoomInOnCoordinates:(CLLocationCoordinate2D*)coords withLength:(NSUInteger)n {
     MKMapRect bounds = [[MKPolygon polygonWithCoordinates:coords count:n] boundingMapRect];
     if (!MKMapRectIsNull(bounds)) {
         // Extend the bounding rect of the polyline slightly
