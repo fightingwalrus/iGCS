@@ -149,7 +149,7 @@
     
     // Add the polyline overlays
     self.homeToWP1Polyline = [MKPolyline polylineWithCoordinates:coords
-                                                           count:MAX(numWaypoints,2)]; // use at most the first 2 points
+                                                           count:MIN(numWaypoints,2)]; // use at most the first 2 points
     self.waypointRoutePolyline = (numWaypoints <= 1) ? nil : [MKPolyline polylineWithCoordinates:coords+1
                                                                                            count:numWaypoints-1]; // skip HOME/0 waypoint
     [self.mapView addOverlay:self.homeToWP1Polyline];
