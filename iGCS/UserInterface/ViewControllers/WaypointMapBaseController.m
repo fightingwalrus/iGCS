@@ -418,7 +418,7 @@
 }
 
 - (void) zoomInOnUser:(id)sender {
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, 200, 200) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
 }
 
 @end
