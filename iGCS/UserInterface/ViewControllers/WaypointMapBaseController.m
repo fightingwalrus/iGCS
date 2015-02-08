@@ -175,7 +175,9 @@
     
     // Set the map extents
     NSUInteger offset = isHomeWPInitialised ? 0 : 1;
-    [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
+    if (offset < numWaypoints) {
+        [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
+    }
     [self.mapView setNeedsDisplay];
     
     free(coords);
