@@ -65,7 +65,6 @@
 		1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
 		1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
-		1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -291,7 +290,6 @@
 		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
 		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
-		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C45CB0170A7810007C9999 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CAF170A7810007C9999 /* CFNetwork.framework */; };
 		49C45CB2170A7820007C9999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB1170A7820007C9999 /* MobileCoreServices.framework */; };
 		49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
@@ -307,22 +305,17 @@
 		CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA05750D18BE07FE001EACFD /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574FB18BE07FE001EACFD /* CXAlertViewController.m */; };
 		CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
-		CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6D170F7D3400ADA039 /* Accelerate.framework */; };
 		CA094F2618D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2718D534AA00AC6AE4 /* FillStrokePolyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */; };
 		CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
 		CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */; };
-		CA0AED74192C3DD80017BB9E /* test1.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA0AED70192C3DD80017BB9E /* test1.hex */; };
-		CA0AED7C192C4D050017BB9E /* test3.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA0AED7B192C4D050017BB9E /* test3.hex */; };
 		CA0B69AC189B69F50014C1E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */; };
 		CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0C44DB19230F570099B718 /* SiKFirmwareUploader.m */; };
 		CA0CA63E1A2F7EBA007E1142 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63C1A2F7EBA007E1142 /* 13-target.png */; };
 		CA0CA63F1A2F7EBA007E1142 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63C1A2F7EBA007E1142 /* 13-target.png */; };
-		CA0CA6411A2F7EBA007E1142 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63C1A2F7EBA007E1142 /* 13-target.png */; };
 		CA0CA6421A2F7EBA007E1142 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63D1A2F7EBA007E1142 /* 193-location-arrow.png */; };
 		CA0CA6431A2F7EBA007E1142 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63D1A2F7EBA007E1142 /* 193-location-arrow.png */; };
-		CA0CA6451A2F7EBA007E1142 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CA63D1A2F7EBA007E1142 /* 193-location-arrow.png */; };
 		CA0D06E61975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0D06E51975F4C6002458F5 /* GCSTelemetryLossOverlayView.m */; };
 		CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */; };
@@ -353,6 +346,17 @@
 		CA2D601E1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */; };
 		CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
 		CA2D60231A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */; };
+		CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6971A81A98500104924 /* MavUtilityTests.m */; };
+		CA35B6A01A81AC8600104924 /* SiKFirmware.m in Sources */ = {isa = PBXBuildFile; fileRef = CA078230192716A0007FCFD5 /* SiKFirmware.m */; };
+		CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtility.m */; };
+		CA35B6A41A81ACEE00104924 /* WaypointsHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626A16DAFAF600E52E4A /* WaypointsHolder.m */; };
+		CA35B6A51A81AD1500104924 /* WaypointHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E626816DAFAF600E52E4A /* WaypointHelper.m */; };
+		CA35B6A61A81AD2900104924 /* MissionItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA26AD6A173E22E300F8E7B3 /* MissionItemField.m */; };
+		CA35B6AA1A81AE4500104924 /* test1.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A71A81AE4500104924 /* test1.hex */; };
+		CA35B6AB1A81AE4500104924 /* test3.hex in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A81A81AE4500104924 /* test3.hex */; };
+		CA35B6AC1A81AE4500104924 /* testparser.py in Resources */ = {isa = PBXBuildFile; fileRef = CA35B6A91A81AE4500104924 /* testparser.py */; };
+		CA35B6BB1A81B03E00104924 /* WaypointsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6BA1A81B03E00104924 /* WaypointsTests.m */; };
+		CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35B6BC1A81B08F00104924 /* FirmwareTests.m */; };
 		CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42C2EE19359D0F0059F319 /* Images.xcassets */; };
 		CA499F6314DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
 		CA499F6514DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
@@ -360,9 +364,6 @@
 		CA499F6D14DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F6B14DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA499F6F14DE33BC00FCC9FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F6E14DE33BC00FCC9FB /* main.m */; };
 		CA499F7314DE33BC00FCC9FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA499F7214DE33BC00FCC9FB /* AppDelegate.m */; };
-		CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6214DE33BC00FCC9FB /* UIKit.framework */; };
-		CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6414DE33BC00FCC9FB /* Foundation.framework */; };
-		CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */; };
 		CA80C3E2180272AD0000BBB9 /* mission-mavread.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB41802717F00B5A62A /* mission-mavread.png */; };
 		CA80C3E3180272AD0000BBB9 /* mission-mavwrite.png in Resources */ = {isa = PBXBuildFile; fileRef = CACDAAB8180271B100B5A62A /* mission-mavwrite.png */; };
 		CA8CA89316576557003C6D50 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
@@ -371,14 +372,6 @@
 		CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D39170D3B520013D035 /* GLKit.framework */; };
 		CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		CABB696214DE4CFE00FC1520 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
-		CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF8ADA914E20A0100DB3D84 /* CoreLocation.framework */; };
-		CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8CA89216576557003C6D50 /* QuartzCore.framework */; };
-		CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA499F6614DE33BC00FCC9FB /* CoreGraphics.framework */; };
-		CABD957E1802500A003557A3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C813016DBD102004001FF /* GameKit.framework */; };
-		CABD95801802508A003557A3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E625A16DADDB100E52E4A /* CoreBluetooth.framework */; };
-		CABD9581180250A4003557A3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB696114DE4CFE00FC1520 /* ExternalAccessory.framework */; };
-		CABD9582180250D3003557A3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
-		CABD958318025115003557A3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB48D3B170D3D040013D035 /* OpenGLES.framework */; };
 		CAF37A0A179BC2AB00183159 /* MavLinkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A09179BC2AB00183159 /* MavLinkUtility.m */; };
 		CAF37A10179BC52000183159 /* MiscUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF37A0F179BC52000183159 /* MiscUtilities.m */; };
 		CAF7508F14DE3C2D008B8480 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF7508E14DE3C2D008B8480 /* MapKit.framework */; };
@@ -417,28 +410,7 @@
 			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
 			remoteInfo = "CorePlot-CocoaTouch";
 		};
-		18C4C31719C960B8000CDBE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
-			remoteInfo = iGCS;
-		};
-		18C4C31D19C960C4000CDBE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
-			remoteInfo = iGCS;
-		};
-		18C4C31F19C96107000CDBE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA499F5D14DE33BC00FCC9FB;
-			remoteInfo = iGCS;
-		};
-		CA499F8F14DE33BC00FCC9FB /* PBXContainerItemProxy */ = {
+		CA35B6991A81A98500104924 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA499F5514DE33BC00FCC9FB /* Project object */;
 			proxyType = 1;
@@ -900,8 +872,6 @@
 		CA094F2518D534AA00AC6AE4 /* FillStrokePolyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillStrokePolyLineView.m; sourceTree = "<group>"; };
 		CA094F2A18D534E100AC6AE4 /* WaypointAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAnnotationView.h; sourceTree = "<group>"; };
 		CA094F2B18D534E100AC6AE4 /* WaypointAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointAnnotationView.m; sourceTree = "<group>"; };
-		CA0AED70192C3DD80017BB9E /* test1.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test1.hex; sourceTree = "<group>"; };
-		CA0AED7B192C4D050017BB9E /* test3.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test3.hex; sourceTree = "<group>"; };
 		CA0B69AA189B69F50014C1E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CA0B69AB189B69F50014C1E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSidebarController.h; sourceTree = "<group>"; };
@@ -942,6 +912,14 @@
 		CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftArduCopter.m; sourceTree = "<group>"; };
 		CA2D60201A734FE600AA2CBB /* GCSCraftArduPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftArduPlane.h; sourceTree = "<group>"; };
 		CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftArduPlane.m; sourceTree = "<group>"; };
+		CA35B6931A81A98500104924 /* iGCS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iGCS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA35B6961A81A98500104924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA35B6971A81A98500104924 /* MavUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MavUtilityTests.m; sourceTree = "<group>"; };
+		CA35B6A71A81AE4500104924 /* test1.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test1.hex; path = "test-resources/test1.hex"; sourceTree = "<group>"; };
+		CA35B6A81A81AE4500104924 /* test3.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test3.hex; path = "test-resources/test3.hex"; sourceTree = "<group>"; };
+		CA35B6A91A81AE4500104924 /* testparser.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = testparser.py; path = "test-resources/testparser.py"; sourceTree = "<group>"; };
+		CA35B6BA1A81B03E00104924 /* WaypointsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsTests.m; sourceTree = "<group>"; };
+		CA35B6BC1A81B08F00104924 /* FirmwareTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTests.m; sourceTree = "<group>"; };
 		CA42C2EE19359D0F0059F319 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA43DE0915143E570014F7C8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA43DFC515143E570014F7C8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
@@ -957,11 +935,6 @@
 		CA499F7014DE33BC00FCC9FB /* iGCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGCS-Prefix.pch"; sourceTree = "<group>"; };
 		CA499F7114DE33BC00FCC9FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA499F7214DE33BC00FCC9FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGCSTests-Info.plist"; sourceTree = "<group>"; };
-		CA499F9514DE33BC00FCC9FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CA499F9714DE33BC00FCC9FB /* iGCSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGCSTests.h; sourceTree = "<group>"; };
-		CA499F9814DE33BC00FCC9FB /* iGCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGCSTests.m; sourceTree = "<group>"; };
 		CA8CA89216576557003C6D50 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CA92514416F9761A0008E92F /* WaypointMapBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointMapBaseController.h; sourceTree = "<group>"; };
 		CA92514516F9761A0008E92F /* WaypointMapBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointMapBaseController.m; sourceTree = "<group>"; };
@@ -1038,6 +1011,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA35B6901A81A98500104924 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5B14DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1074,24 +1054,6 @@
 				CAB48D3A170D3B520013D035 /* GLKit.framework in Frameworks */,
 				CAB48D3C170D3D040013D035 /* OpenGLES.framework in Frameworks */,
 				18C011BD189394A5005B67E5 /* libCorePlot-CocoaTouch.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA499F8614DE33BC00FCC9FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA07823619272D06007FCFD5 /* Accelerate.framework in Frameworks */,
-				CABD958318025115003557A3 /* OpenGLES.framework in Frameworks */,
-				CABD9582180250D3003557A3 /* MapKit.framework in Frameworks */,
-				CABD9581180250A4003557A3 /* ExternalAccessory.framework in Frameworks */,
-				CABD95801802508A003557A3 /* CoreBluetooth.framework in Frameworks */,
-				CABD957E1802500A003557A3 /* GameKit.framework in Frameworks */,
-				CABD957D18024FF5003557A3 /* CoreGraphics.framework in Frameworks */,
-				CABD957B18024FCC003557A3 /* QuartzCore.framework in Frameworks */,
-				CABD957A18024FBE003557A3 /* CoreLocation.framework in Frameworks */,
-				CA499F8D14DE33BC00FCC9FB /* UIKit.framework in Frameworks */,
-				CA499F8E14DE33BC00FCC9FB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1819,15 +1781,6 @@
 			path = CXAlertView;
 			sourceTree = "<group>";
 		};
-		CA0AED6E192C3DD80017BB9E /* test-resources */ = {
-			isa = PBXGroup;
-			children = (
-				CA0AED70192C3DD80017BB9E /* test1.hex */,
-				CA0AED7B192C4D050017BB9E /* test3.hex */,
-			);
-			path = "test-resources";
-			sourceTree = "<group>";
-		};
 		CA0B69A9189B69F50014C1E4 /* SWReveal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1918,6 +1871,36 @@
 			path = "mavlink-include";
 			sourceTree = "<group>";
 		};
+		CA35B6941A81A98500104924 /* iGCS Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CA35B6BC1A81B08F00104924 /* FirmwareTests.m */,
+				CA35B6971A81A98500104924 /* MavUtilityTests.m */,
+				CA35B6BA1A81B03E00104924 /* WaypointsTests.m */,
+				CA35B6951A81A98500104924 /* Supporting Files */,
+				CA35B6AD1A81AE5400104924 /* Test Resources */,
+			);
+			path = "iGCS Tests";
+			sourceTree = "<group>";
+		};
+		CA35B6951A81A98500104924 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CA35B6961A81A98500104924 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA35B6AD1A81AE5400104924 /* Test Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA35B6A71A81AE4500104924 /* test1.hex */,
+				CA35B6A81A81AE4500104924 /* test3.hex */,
+				CA35B6A91A81AE4500104924 /* testparser.py */,
+			);
+			name = "Test Resources";
+			sourceTree = "<group>";
+		};
 		CA43DE0815143E570014F7C8 /* glyphish-icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1978,7 +1961,7 @@
 				CA0D06F719761986002458F5 /* 3rd-party */,
 				18C011B318939407005B67E5 /* CorePlot-CocoaTouch.xcodeproj */,
 				CA499F6814DE33BC00FCC9FB /* iGCS */,
-				CA499F9114DE33BC00FCC9FB /* iGCSTests */,
+				CA35B6941A81A98500104924 /* iGCS Tests */,
 				CA499F6114DE33BC00FCC9FB /* Frameworks */,
 				CA499F5F14DE33BC00FCC9FB /* Products */,
 			);
@@ -1988,8 +1971,8 @@
 			isa = PBXGroup;
 			children = (
 				CA499F5E14DE33BC00FCC9FB /* iGCS.app */,
-				CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */,
 				18B9FB3318B2F7AF00668660 /* iGCS redpark.app */,
+				CA35B6931A81A98500104924 /* iGCS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2066,26 +2049,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CA499F9114DE33BC00FCC9FB /* iGCSTests */ = {
-			isa = PBXGroup;
-			children = (
-				CA0AED6E192C3DD80017BB9E /* test-resources */,
-				CA499F9714DE33BC00FCC9FB /* iGCSTests.h */,
-				CA499F9814DE33BC00FCC9FB /* iGCSTests.m */,
-				CA499F9214DE33BC00FCC9FB /* Supporting Files */,
-			);
-			path = iGCSTests;
-			sourceTree = "<group>";
-		};
-		CA499F9214DE33BC00FCC9FB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CA499F9314DE33BC00FCC9FB /* iGCSTests-Info.plist */,
-				CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		CAF37A0D179BC4C000183159 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -2140,6 +2103,24 @@
 			productReference = 18B9FB3318B2F7AF00668660 /* iGCS redpark.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CA35B6921A81A98500104924 /* iGCS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA35B69B1A81A98500104924 /* Build configuration list for PBXNativeTarget "iGCS Tests" */;
+			buildPhases = (
+				CA35B68F1A81A98500104924 /* Sources */,
+				CA35B6901A81A98500104924 /* Frameworks */,
+				CA35B6911A81A98500104924 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA35B69A1A81A98500104924 /* PBXTargetDependency */,
+			);
+			name = "iGCS Tests";
+			productName = "iGCS Tests";
+			productReference = CA35B6931A81A98500104924 /* iGCS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CA499F5D14DE33BC00FCC9FB /* iGCS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA499F9C14DE33BC00FCC9FB /* Build configuration list for PBXNativeTarget "iGCS" */;
@@ -2159,28 +2140,6 @@
 			productReference = CA499F5E14DE33BC00FCC9FB /* iGCS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CA499F8914DE33BC00FCC9FB /* iGCSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA499F9F14DE33BC00FCC9FB /* Build configuration list for PBXNativeTarget "iGCSTests" */;
-			buildPhases = (
-				CA499F8514DE33BC00FCC9FB /* Sources */,
-				CA499F8614DE33BC00FCC9FB /* Frameworks */,
-				CA499F8714DE33BC00FCC9FB /* Resources */,
-				CA499F8814DE33BC00FCC9FB /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA499F9014DE33BC00FCC9FB /* PBXTargetDependency */,
-				18C4C31819C960B8000CDBE8 /* PBXTargetDependency */,
-				18C4C31E19C960C4000CDBE8 /* PBXTargetDependency */,
-				18C4C32019C96107000CDBE8 /* PBXTargetDependency */,
-			);
-			name = iGCSTests;
-			productName = iGCSTests;
-			productReference = CA499F8A14DE33BC00FCC9FB /* iGCSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2193,11 +2152,12 @@
 					18B9FAC018B2F7AF00668660 = {
 						DevelopmentTeam = V693RD5AXN;
 					};
+					CA35B6921A81A98500104924 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = CA499F5D14DE33BC00FCC9FB;
+					};
 					CA499F5D14DE33BC00FCC9FB = {
 						DevelopmentTeam = V693RD5AXN;
-					};
-					CA499F8914DE33BC00FCC9FB = {
-						TestTargetID = CA499F5D14DE33BC00FCC9FB;
 					};
 				};
 			};
@@ -2221,7 +2181,7 @@
 			targets = (
 				CA499F5D14DE33BC00FCC9FB /* iGCS */,
 				18B9FAC018B2F7AF00668660 /* iGCS-redpark */,
-				CA499F8914DE33BC00FCC9FB /* iGCSTests */,
+				CA35B6921A81A98500104924 /* iGCS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2291,6 +2251,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA35B6911A81A98500104924 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA35B6AA1A81AE4500104924 /* test1.hex in Resources */,
+				CA35B6AB1A81AE4500104924 /* test3.hex in Resources */,
+				CA35B6AC1A81AE4500104924 /* testparser.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA499F5C14DE33BC00FCC9FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2346,20 +2316,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA499F8714DE33BC00FCC9FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA499F9614DE33BC00FCC9FB /* InfoPlist.strings in Resources */,
-				1854468118D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
-				49C1FA0F16DC654100BAE96B /* wrench.png in Resources */,
-				CA0CA6451A2F7EBA007E1142 /* 193-location-arrow.png in Resources */,
-				CA0CA6411A2F7EBA007E1142 /* 13-target.png in Resources */,
-				CA0AED74192C3DD80017BB9E /* test1.hex in Resources */,
-				CA0AED7C192C4D050017BB9E /* test3.hex in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2388,19 +2344,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/scripts/copydepends.sh\"";
-		};
-		CA499F8814DE33BC00FCC9FB /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2513,6 +2456,21 @@
 				CA094F2D18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				01CEC5D119D9FA3800320A34 /* BRRequest+_UserData.m in Sources */,
 				01CEC5F119D9FA9C00320A34 /* ArDroneUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA35B68F1A81A98500104924 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */,
+				CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */,
+				CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */,
+				CA35B6A61A81AD2900104924 /* MissionItemField.m in Sources */,
+				CA35B6A01A81AC8600104924 /* SiKFirmware.m in Sources */,
+				CA35B6A51A81AD1500104924 /* WaypointHelper.m in Sources */,
+				CA35B6A41A81ACEE00104924 /* WaypointsHolder.m in Sources */,
+				CA35B6BB1A81B03E00104924 /* WaypointsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2649,25 +2607,10 @@
 			name = "CorePlot-CocoaTouch";
 			targetProxy = 18C011BB18939456005B67E5 /* PBXContainerItemProxy */;
 		};
-		18C4C31819C960B8000CDBE8 /* PBXTargetDependency */ = {
+		CA35B69A1A81A98500104924 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
-			targetProxy = 18C4C31719C960B8000CDBE8 /* PBXContainerItemProxy */;
-		};
-		18C4C31E19C960C4000CDBE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
-			targetProxy = 18C4C31D19C960C4000CDBE8 /* PBXContainerItemProxy */;
-		};
-		18C4C32019C96107000CDBE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
-			targetProxy = 18C4C31F19C96107000CDBE8 /* PBXContainerItemProxy */;
-		};
-		CA499F9014DE33BC00FCC9FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA499F5D14DE33BC00FCC9FB /* iGCS */;
-			targetProxy = CA499F8F14DE33BC00FCC9FB /* PBXContainerItemProxy */;
+			targetProxy = CA35B6991A81A98500104924 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2684,14 +2627,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				CA499F6C14DE33BC00FCC9FB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CA499F9414DE33BC00FCC9FB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA499F9514DE33BC00FCC9FB /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2766,6 +2701,65 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CA35B69C1A81A98500104924 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "iGCS Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
+			};
+			name = Debug;
+		};
+		CA35B69D1A81A98500104924 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "iGCS Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
 			};
 			name = Release;
 		};
@@ -2926,44 +2920,6 @@
 			};
 			name = Release;
 		};
-		CA499FA014DE33BC00FCC9FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/iGCS\\\"",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
-				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
-			};
-			name = Debug;
-		};
-		CA499FA114DE33BC00FCC9FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/iGCS\\\"",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iGCS/iGCS-Prefix.pch";
-				INFOPLIST_FILE = "iGCSTests/iGCSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2972,6 +2928,15 @@
 			buildConfigurations = (
 				18B9FB3118B2F7AF00668660 /* Debug */,
 				18B9FB3218B2F7AF00668660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA35B69B1A81A98500104924 /* Build configuration list for PBXNativeTarget "iGCS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA35B69C1A81A98500104924 /* Debug */,
+				CA35B69D1A81A98500104924 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2990,15 +2955,6 @@
 			buildConfigurations = (
 				CA499F9D14DE33BC00FCC9FB /* Debug */,
 				CA499F9E14DE33BC00FCC9FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA499F9F14DE33BC00FCC9FB /* Build configuration list for PBXNativeTarget "iGCSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA499FA014DE33BC00FCC9FB /* Debug */,
-				CA499FA114DE33BC00FCC9FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
