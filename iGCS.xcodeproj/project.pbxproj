@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		017832EB1A894A1F008E1F36 /* DefaultSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017832EA1A894A1F008E1F36 /* DefaultSettingsViewController.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56B19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */; };
@@ -408,6 +409,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		017832E91A894A1F008E1F36 /* DefaultSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSettingsViewController.h; sourceTree = "<group>"; };
+		017832EA1A894A1F008E1F36 /* DefaultSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSettingsViewController.m; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
@@ -1654,6 +1657,8 @@
 				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
 				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
+				017832E91A894A1F008E1F36 /* DefaultSettingsViewController.h */,
+				017832EA1A894A1F008E1F36 /* DefaultSettingsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2110,6 +2115,7 @@
 					};
 					CA35B6921A81A98500104924 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = V693RD5AXN;
 						TestTargetID = CA499F5D14DE33BC00FCC9FB;
 					};
 					CA499F5D14DE33BC00FCC9FB = {
@@ -2526,6 +2532,7 @@
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
+				017832EB1A894A1F008E1F36 /* DefaultSettingsViewController.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
@@ -2654,6 +2661,8 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2670,6 +2679,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
 			};
 			name = Debug;
@@ -2685,6 +2695,8 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2698,6 +2710,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGCS.app/iGCS";
 			};
 			name = Release;

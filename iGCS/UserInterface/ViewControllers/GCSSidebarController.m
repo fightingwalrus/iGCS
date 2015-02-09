@@ -8,6 +8,7 @@
 
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
+#import "DefaultSettingsViewController.h"
 #import "RadioSettingsViewController.h"
 #import "CommController.h"
 
@@ -142,6 +143,17 @@
             break;
     }
 }
+
+#pragma mark - Default Settings
+- (IBAction)configureSettings:(id)sender {
+        DefaultSettingsViewController *defaultSettingsViewController = [[DefaultSettingsViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:defaultSettingsViewController];
+        
+        navController.navigationBar.barStyle = UIBarStyleDefault;
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:navController animated:YES completion:nil];
+}
+
 
 #pragma mark - Settings
 - (IBAction)configureRadio:(id)sender {
