@@ -63,9 +63,31 @@
 #pragma mark - helpers
 
 -(NSString *) cleanTextForSpeechWithText:(NSString *) text {
-    // remove characters that won't sound great when spoken
-    NSCharacterSet *characterToStrip = [[NSCharacterSet characterSetWithCharactersInString:@"_-()"] invertedSet];
-    return [[text componentsSeparatedByCharactersInSet:characterToStrip] componentsJoinedByString:@""];
+     // remove characters that won't sound great when spoken
+     // by creating a whitelist of acceptable characters
+    __block NSMutableCharacterSet *characterSet = [NSMutableCharacterSet alphanumericCharacterSet];
+    [characterSet formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"#-"]];
+    __block NSMutableString *cleanedString = [[NSMutableString alloc] init];
+
+    [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+
+        unichar *buffer = calloc(enclosingRange.length, sizeof(unichar));
+        [substring getCharacters:buffer range:NSMakeRange(0, substring.length)];
+        if ([characterSet characterIsMember:*buffer]) {
+            [cleanedString appendString:substring];
+        } else {
+            [cleanedString appendString:@" "];
+        }
+    }];
+
+    // remove any duplicate whitespace
+    NSString *string = [cleanedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSArray *components = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]];
+
+    string = [components componentsJoinedByString:@" "];
+
+    return string;
 }
 
 - (void)speakWithText:(NSString *) text {

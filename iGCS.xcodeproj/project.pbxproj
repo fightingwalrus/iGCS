@@ -74,6 +74,7 @@
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
 		1875979318910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
 		1875979518910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
+		1880C8771A886F2500821B21 /* GCSSpeechManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */; };
 		18820E821A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
 		18820E831A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
 		18820E851A64B19A006855E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18820E841A64B19A006855E9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -502,6 +503,7 @@
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		1875979218910AC50012DF6D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
+		1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSpeechManagerTests.m; sourceTree = "<group>"; };
 		18820E801A64AD0C006855E9 /* GCSSpeechManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSpeechManager.h; sourceTree = "<group>"; };
 		18820E811A64AD0C006855E9 /* GCSSpeechManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSpeechManager.m; sourceTree = "<group>"; };
 		18820E841A64B19A006855E9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1874,6 +1876,7 @@
 		CA35B6941A81A98500104924 /* iGCS Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */,
 				CA35B6BC1A81B08F00104924 /* FirmwareTests.m */,
 				CA35B6971A81A98500104924 /* MavUtilityTests.m */,
 				CA35B6BA1A81B03E00104924 /* WaypointsTests.m */,
@@ -2463,6 +2466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1880C8771A886F2500821B21 /* GCSSpeechManagerTests.m in Sources */,
 				CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */,
 				CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */,
 				CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */,
@@ -2584,13 +2588,6 @@
 				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 				CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA499F8514DE33BC00FCC9FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
