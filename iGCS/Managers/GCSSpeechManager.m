@@ -29,7 +29,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         // set speech defaults
-        _utteranceRate = 0.2f;
+        _utteranceRate = 0.1f;
         _defaultLanguage = @"en-US";
 
         // only register for notifications on iOS 7+
