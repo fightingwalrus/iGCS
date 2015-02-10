@@ -8,7 +8,7 @@
 
 #import "GCSSidebarController.h"
 #import "MavLinkUtility.h"
-#import "DefaultSettingsViewController.h"
+#import "DefaultSettingsTableViewController.h"
 #import "RadioSettingsViewController.h"
 #import "CommController.h"
 
@@ -146,7 +146,7 @@
 
 #pragma mark - Default Settings
 - (IBAction)configureSettings:(id)sender {
-        DefaultSettingsViewController *defaultSettingsViewController = [[DefaultSettingsViewController alloc] init];
+        DefaultSettingsTableViewController *defaultSettingsViewController = [[DefaultSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:defaultSettingsViewController];
         
         navController.navigationBar.barStyle = UIBarStyleDefault;
