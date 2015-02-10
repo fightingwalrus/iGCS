@@ -36,6 +36,9 @@
     XCTAssertEqualObjects([[GCSSpeechManager sharedInstance] cleanTextForSpeechWithText:@"FBW_A"],
                           @"FBW A", @"cleanTextForSpeechWithText Failed");
 
+    XCTAssertEqualObjects([[GCSSpeechManager sharedInstance] cleanTextForSpeechWithText:@"FBW_B "],
+                          @"FBW B", @"cleanTextForSpeechWithText Failed");
+
     XCTAssertEqualObjects([[GCSSpeechManager sharedInstance] cleanTextForSpeechWithText:@"CUSTOM_MODE (7)"],
                           @"CUSTOM MODE 7", @"cleanTextForSpeechWithText Failed");
 
