@@ -11,7 +11,10 @@
 
 
 @interface DefaultSettingsTableViewController ()
-@property (nonatomic, retain) NSArray *settingsArray;
+@property (nonatomic, retain) NSArray *generalSettingsArray;
+@property (nonatomic, retain) NSArray *otherSettingsArray;
+@property (nonatomic, retain) NSArray *sectionHeadersArray;
+
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
@@ -34,15 +37,17 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     
-    self.title = @"User Settings";
-    self.settingsArray = [NSArray arrayWithObjects:@"About", @"Altitude", @"Units", nil];
-
-   
+    self.sectionHeadersArray = @[@"General", @"Other"];
     
+    //general settings
+    self.generalSettingsArray = @[@"Waypoint Altitude", @"Waypoint Radius", @"Altitude Ceiling", @"Units"];
+    
+    //other settings
+    self.otherSettingsArray = @[@"About", @"Other1", @"Other2"];    
 }
 
 -(void)configureNavigationBar {
-    [self setTitle:@"Default Settings"];
+    [self setTitle:@"Settings"];
     
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                              target:self action:@selector(cancelChanges:)];
@@ -59,11 +64,17 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.settingsArray.count;
+    if (section ==0) {
+        return self.generalSettingsArray.count;
+    }
+    else {
+        return self.otherSettingsArray.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,16 +85,26 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [self.settingsArray objectAtIndex:indexPath.row];
+    if (indexPath.section == 0) {
+       cell.textLabel.text = [self.generalSettingsArray objectAtIndex:indexPath.row];
+    }
+    else {
+        cell.textLabel.text = [self.otherSettingsArray objectAtIndex:indexPath.row];
+    }
+    
     
     return cell;
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0)
+        return self.sectionHeadersArray[0];
+    if (section == 1)
+        return self.sectionHeadersArray[1];
+    
 }
+
 
 
 #pragma mark - Table view delegate
@@ -124,6 +145,11 @@
 - (void)saveSettings:(id)sender {
     DDLogDebug(@"Save Default Settings");
     
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
