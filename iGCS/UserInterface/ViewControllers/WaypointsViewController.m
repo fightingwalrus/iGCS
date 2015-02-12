@@ -13,6 +13,8 @@
 
 #import "CommController.h"
 
+#import "CXAlertView.h"
+
 @interface WaypointsViewController ()
 @property (nonatomic, strong) UINavigationController *navVCEditItemVC;
 @end
@@ -196,6 +198,27 @@
     return waypoint;
 }
 
+- (IBAction) clearAllClicked:(id)sender {
+    if (self.waypoints.numWaypoints == 0) return;
+
+    CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:@"Clear Mission?"
+                                                        message:nil
+                                              cancelButtonTitle:nil];
+    [alertView addButtonWithTitle:@"OK" // Order buttons as per Apple's HIG ("destructive" action on left)
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [self replaceMission:[[WaypointsHolder alloc] initWithExpectedCount:0]];
+                              [alertView dismiss];
+                          }];
+    [alertView addButtonWithTitle:@"Cancel"
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [alertView dismiss];
+                          }];
+    alertView.showBlurBackground = YES;
+    [alertView show];
+}
+
 - (IBAction) addClicked:(id)sender {
     CLLocationCoordinate2D pos;
 
@@ -245,6 +268,7 @@
     self.editDoneButton.title = isEditing ? @"Done" : @"Edit";
     self.editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
+    self.clearAllButton.enabled  = isEditing;
     self.addButton.enabled       = isEditing;
     self.rxMissionButton.enabled = !isEditing;
     self.txMissionButton.enabled = !isEditing;
