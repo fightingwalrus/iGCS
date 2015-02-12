@@ -65,6 +65,7 @@
 		1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
 		1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1858D50B1A8C83B80051DCA3 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
 		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -2467,6 +2468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1880C8771A886F2500821B21 /* GCSSpeechManagerTests.m in Sources */,
+				1858D50B1A8C83B80051DCA3 /* GCSSpeechManager.m in Sources */,
 				CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */,
 				CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */,
 				CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */,

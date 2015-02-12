@@ -67,10 +67,8 @@
     NSMutableCharacterSet *characterSet = [NSMutableCharacterSet alphanumericCharacterSet];
     [characterSet formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"#-"]];
 
-    NSArray *components = [text componentsSeparatedByCharactersInSet:[characterSet invertedSet]];
-    components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]];
-
-    return [components componentsJoinedByString:@" "];
+    return [[[text componentsSeparatedByCharactersInSet:[characterSet invertedSet]]
+             filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]] componentsJoinedByString:@" "];
 }
 
 - (void)speakWithText:(NSString *) text {
