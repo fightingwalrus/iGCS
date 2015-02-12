@@ -7,6 +7,7 @@
 //
 
 #import "DefaultSettingsTableViewController.h"
+#import "WaypointSettingsViewController.h"
 
 
 
@@ -45,7 +46,7 @@
 - (void) createSectionData {
     
     //general settings
-    self.generalSettingsArray = @[@"Waypoint Altitude", @"Waypoint Radius", @"Altitude Ceiling", @"Units"];
+    self.generalSettingsArray = @[@"Waypoint Settings", @"Altitude Ceiling", @"Units"];
     
     //other settings
     self.otherSettingsArray = @[@"About", @"Other1", @"Other2"];
@@ -120,10 +121,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"Section is %li", (long)indexPath.section);
-    NSLog(@"Row is %li", (long)indexPath.row);
-
+    NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
+    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
+    
+    if ([cellContent isEqual: @"Waypoint Settings"]) {
+        WaypointSettingsViewController *wayPointSettingsViewController = [WaypointSettingsViewController alloc];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:wayPointSettingsViewController];
+        
+        navController.navigationBar.barStyle = UIBarStyleDefault;
+        navController.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:navController animated:YES completion:nil];
+
+        
+    }
     
 }
 
