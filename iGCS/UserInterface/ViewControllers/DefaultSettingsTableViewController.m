@@ -13,7 +13,10 @@
 @interface DefaultSettingsTableViewController ()
 @property (nonatomic, retain) NSArray *generalSettingsArray;
 @property (nonatomic, retain) NSArray *otherSettingsArray;
-@property (nonatomic, retain) NSArray *sectionHeadersArray;
+
+@property (nonatomic, retain) NSMutableArray *sectionKeysArray;
+@property (nonatomic, retain) NSMutableDictionary *sectionContentsDict;
+
 
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
@@ -36,14 +39,31 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     [self configureNavigationBar];
-    
-    self.sectionHeadersArray = @[@"General", @"Other"];
+    [self createSectionData];
+}
+
+- (void) createSectionData {
     
     //general settings
     self.generalSettingsArray = @[@"Waypoint Altitude", @"Waypoint Radius", @"Altitude Ceiling", @"Units"];
     
     //other settings
-    self.otherSettingsArray = @[@"About", @"Other1", @"Other2"];    
+    self.otherSettingsArray = @[@"About", @"Other1", @"Other2"];
+    
+    NSMutableArray *keys = [[NSMutableArray alloc] init];
+    NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
+    
+    NSString *generalSectionKey = @"General";
+    NSString *otherSectionKey = @"Other";
+    
+    [contents setObject:self.generalSettingsArray forKey:generalSectionKey];
+    [contents setObject:self.otherSettingsArray forKey:otherSectionKey];
+    
+    [keys addObject:generalSectionKey];
+    [keys addObject:otherSectionKey];
+    
+    [self setSectionKeysArray:keys];
+    [self setSectionContentsDict:contents];
 }
 
 -(void)configureNavigationBar {
@@ -64,45 +84,32 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return [[self sectionKeysArray] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section ==0) {
-        return self.generalSettingsArray.count;
-    }
-    else {
-        return self.otherSettingsArray.count;
-    }
-    
+    NSString *key = [self.sectionKeysArray objectAtIndex:section];
+    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSInteger rows = contents.count;
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
- static NSString *cellIdentifier = @"Cell";
+    
+    static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    if (indexPath.section == 0) {
-       cell.textLabel.text = [self.generalSettingsArray objectAtIndex:indexPath.row];
-    }
-    else {
-        cell.textLabel.text = [self.otherSettingsArray objectAtIndex:indexPath.row];
-    }
-    
-    
+    NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
+    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSString *cellContent = [contents objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellContent;
     return cell;
-
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0)
-        return self.sectionHeadersArray[0];
-    if (section == 1)
-        return self.sectionHeadersArray[1];
-    
+    return [self.sectionKeysArray objectAtIndex:section];
 }
 
 
