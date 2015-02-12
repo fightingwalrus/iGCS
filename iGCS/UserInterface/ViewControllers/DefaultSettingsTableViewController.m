@@ -128,13 +128,7 @@
     
     if ([cellContent isEqual: @"Waypoint Settings"]) {
         WaypointSettingsViewController *wayPointSettingsViewController = [WaypointSettingsViewController alloc];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:wayPointSettingsViewController];
-        
-        navController.navigationBar.barStyle = UIBarStyleDefault;
-        navController.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:navController animated:YES completion:nil];
-
-        
+        [self.navigationController pushViewController:wayPointSettingsViewController animated:YES];
     }
     
 }
