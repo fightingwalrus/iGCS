@@ -105,6 +105,7 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     cell.textLabel.text = cellContent;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -117,29 +118,30 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-/*
- 
-    NSInteger idx = indexPath.row;
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"Section is %li", (long)indexPath.section);
+    NSLog(@"Row is %li", (long)indexPath.row);
+
     
-    if (tableView.isEditing) {
-        if (idx == 0) return; // Prevent editing of the HOME/0 waypoint
-        mavlink_mission_item_t waypoint = [[self waypointsHolder] getWaypoint:idx];
-        if ([MavLinkUtility isSupportedMissionItemType:waypoint.command]) {
-            [self unmarkSelectedRow];
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:waypoint.seq]; // mark the selected waypoint
-            [self performSegueWithIdentifier:@"editItemVC_segue" sender:@(idx)];
-        }
-    } else {
-        [self modifyHeadersForSelectedRow:idx];
-        if ([self.lastIndexPath isEqual:indexPath]) {
-            [self unmarkSelectedRow];
-        } else {
-            self.lastIndexPath = indexPath;
-            [[self waypointsVC] maybeUpdateCurrentWaypoint:[[self waypointsHolder] getWaypoint:idx].seq]; // mark the selected waypoint
-        }
-    }
- */
+    
 }
+
+
+/* Probably eventually need to implement this to customize our header
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(20, 8, 320, 20);
+    myLabel.font = [UIFont boldSystemFontOfSize:18];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
+}
+*/
 
 
 #pragma mark - UINavigationBar Button handlers
