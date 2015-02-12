@@ -2,12 +2,12 @@
 //  WaypointSettingsViewController.h
 //  iGCS
 //
-//  Created by David Leskowicz on 2/11/15.
+//  Created by David Leskowicz on 2/12/15.
 //
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WaypointSettingsViewController : UIViewController
+@interface WaypointSettingsViewController : UITableViewController
 
 @end

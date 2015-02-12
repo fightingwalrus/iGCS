@@ -23,6 +23,8 @@
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
 
+@property (nonatomic, assign) BOOL standardSelected;
+
 
 @end
 
@@ -46,10 +48,10 @@
 - (void) createSectionData {
     
     //general settings
-    self.generalSettingsArray = @[@"Waypoint Settings", @"Altitude Ceiling", @"Units"];
+    self.generalSettingsArray = @[@"Waypoints", @"Units"];
     
     //other settings
-    self.otherSettingsArray = @[@"About", @"Other1", @"Other2"];
+    self.otherSettingsArray = @[@"About"];
     
     NSMutableArray *keys = [[NSMutableArray alloc] init];
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
@@ -98,22 +100,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"Cell";
+    NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
+    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSString *cellContent = [contents objectAtIndex:indexPath.row];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
-    NSArray *contents = [self.sectionContentsDict objectForKey:key];
-    NSString *cellContent = [contents objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = cellContent;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if ([cellContent isEqual: @"Units"]) {
+        UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+        cell.accessoryView = switchView;
+        [switchView setOn:NO animated:NO];
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
 }
 
+//Not sure I like the header, commend out for now
+/*
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.sectionKeysArray objectAtIndex:section];
 }
-
+*/
 
 
 #pragma mark - Table view delegate
@@ -125,11 +141,11 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
-    
-    if ([cellContent isEqual: @"Waypoint Settings"]) {
-        WaypointSettingsViewController *wayPointSettingsViewController = [WaypointSettingsViewController alloc];
+    if ([cellContent isEqual: @"Waypoints"]) {
+        WaypointSettingsViewController *wayPointSettingsViewController = [[WaypointSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:wayPointSettingsViewController animated:YES];
     }
+    
     
 }
 
@@ -168,6 +184,11 @@
 }
 
 
+- (void) switchChanged:(id)sender {
+    UISwitch *switchControl = sender;
+    NSLog(@"The switch is %@", switchControl.on ? @"Standard" : @"Metric");
+    self.standardSelected = switchControl.on;
+}
 
 
 
