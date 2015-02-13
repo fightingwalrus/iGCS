@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA761A89BBD600399798 /* DefaultSettingsTableViewController.m */; };
 		0127AA851A8C404100399798 /* WaypointSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA841A8C404100399798 /* WaypointSettingsViewController.m */; };
+		0127AA971A8D872200399798 /* SettingsCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA961A8D872200399798 /* SettingsCustomTableViewCell.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56B19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */; };
@@ -414,6 +415,8 @@
 		0127AA7A1A89BBFE00399798 /* DefaultSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSettingsTableViewController.h; sourceTree = "<group>"; };
 		0127AA831A8C404100399798 /* WaypointSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointSettingsViewController.h; sourceTree = "<group>"; };
 		0127AA841A8C404100399798 /* WaypointSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointSettingsViewController.m; sourceTree = "<group>"; };
+		0127AA951A8D872200399798 /* SettingsCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCustomTableViewCell.h; sourceTree = "<group>"; };
+		0127AA961A8D872200399798 /* SettingsCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCustomTableViewCell.m; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
@@ -1662,6 +1665,8 @@
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
 				0127AA7A1A89BBFE00399798 /* DefaultSettingsTableViewController.h */,
 				0127AA761A89BBD600399798 /* DefaultSettingsTableViewController.m */,
+				0127AA951A8D872200399798 /* SettingsCustomTableViewCell.h */,
+				0127AA961A8D872200399798 /* SettingsCustomTableViewCell.m */,
 				0127AA831A8C404100399798 /* WaypointSettingsViewController.h */,
 				0127AA841A8C404100399798 /* WaypointSettingsViewController.m */,
 			);
@@ -2454,6 +2459,7 @@
 				0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
+				0127AA971A8D872200399798 /* SettingsCustomTableViewCell.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
 				496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,

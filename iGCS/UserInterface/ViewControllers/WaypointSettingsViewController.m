@@ -7,6 +7,7 @@
 //
 
 #import "WaypointSettingsViewController.h"
+#import "SettingsCustomTableViewCell.h"
 
 
 @interface WaypointSettingsViewController ()
@@ -85,15 +86,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SettingsCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[SettingsCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     cell.textLabel.text = cellContent;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.customLabel.text = @"HERE";
+ 
+    cell.customTextField.text = @"test this";
+  
     return cell;
 }
 
