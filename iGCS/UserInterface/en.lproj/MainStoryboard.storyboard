@@ -976,11 +976,11 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="done" id="LKm-N4-6Op">
                                             <view key="customView" contentMode="scaleToFill" id="SGe-U7-fU6">
-                                                <rect key="frame" x="845" y="5" width="163" height="33"/>
+                                                <rect key="frame" x="759" y="5" width="230" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTU-hR-O8m">
-                                                        <rect key="frame" x="0.0" y="-5" width="168" height="44"/>
+                                                        <rect key="frame" x="0.0" y="-5" width="225" height="44"/>
                                                         <items>
                                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="mIv-4T-47r" userLabel="Flexible Space"/>
                                                             <barButtonItem enabled="NO" style="done" systemItem="add" id="4gU-lS-xY5" userLabel="Add (+)">
@@ -988,13 +988,19 @@
                                                                     <action selector="addClicked:" destination="ZiK-du-awU" id="7k4-2W-smt"/>
                                                                 </connections>
                                                             </barButtonItem>
-                                                            <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="kUl-Du-vFa" userLabel="Padding"/>
+                                                            <barButtonItem width="6" style="plain" systemItem="fixedSpace" id="E7o-fg-NrJ" userLabel="Padding"/>
+                                                            <barButtonItem enabled="NO" title="Clear All" style="done" id="LfC-iB-4aF">
+                                                                <connections>
+                                                                    <action selector="clearAllClicked:" destination="ZiK-du-awU" id="3OX-yM-nkt"/>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                            <barButtonItem width="6" style="plain" systemItem="fixedSpace" id="kUl-Du-vFa" userLabel="Padding"/>
                                                             <barButtonItem title="Edit" id="Jzr-xS-XcN" userLabel="Edit/Done">
                                                                 <connections>
                                                                     <action selector="editDoneClicked:" destination="ZiK-du-awU" id="gVu-iF-zV0"/>
                                                                 </connections>
                                                             </barButtonItem>
-                                                            <barButtonItem width="80" style="plain" systemItem="fixedSpace" id="7Yb-mL-G2c" userLabel="Battery Padding"/>
+                                                            <barButtonItem width="55" style="plain" systemItem="fixedSpace" id="7Yb-mL-G2c" userLabel="Battery Padding"/>
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
@@ -1031,6 +1037,7 @@
                         <outlet property="addButton" destination="4gU-lS-xY5" id="Gd1-w6-ae7"/>
                         <outlet property="batteryPadding" destination="7Yb-mL-G2c" id="06y-YM-PMW"/>
                         <outlet property="carrierPadding" destination="hIh-iN-4ek" id="zke-hw-5Ie"/>
+                        <outlet property="clearAllButton" destination="LfC-iB-4aF" id="etV-ES-CmH"/>
                         <outlet property="containerForTableView" destination="5D9-Dd-q69" id="vq5-Ze-Gm1"/>
                         <outlet property="editDoneButton" destination="Jzr-xS-XcN" id="2us-hj-iCC"/>
                         <outlet property="loadDemoButton" destination="n19-Dy-xrH" id="ng1-x1-slR"/>

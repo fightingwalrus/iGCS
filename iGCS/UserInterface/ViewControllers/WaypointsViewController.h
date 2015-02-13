@@ -30,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *txMissionButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *loadDemoButton;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *clearAllButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editDoneButton;
 @property (nonatomic, retain) IBOutlet UIView *containerForTableView;
@@ -39,6 +40,7 @@
 
 - (IBAction)loadDemoMision: (id)sender;
 
+- (IBAction)clearAllClicked:(id)sender;
 - (IBAction)addClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;
 
