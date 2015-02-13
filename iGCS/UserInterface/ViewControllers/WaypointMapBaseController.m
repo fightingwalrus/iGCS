@@ -14,6 +14,7 @@
 #import "GCSDataManager.h"
 
 @interface WaypointMapBaseController ()
+@property (nonatomic, strong) MKPolyline *homeToWP1Polyline;
 @property (nonatomic, strong) MKPolyline *waypointRoutePolyline;
 @property (nonatomic, assign) WaypointSeqOpt currentWaypointNum;
 
@@ -121,53 +122,65 @@
     return nil;
 }
 
-- (void) replaceMission:(WaypointsHolder*)mission {
+- (void) configureRoutePolylines:(CLLocationCoordinate2D*)coords withLength:(NSUInteger)n withInitialisedHome:(BOOL)isHomeWPInitialised {
+    // HOME/0 -> WP1 line
+    if (isHomeWPInitialised) {
+        self.homeToWP1Polyline = [MKPolyline polylineWithCoordinates:coords
+                                                               count:MIN(n,2)]; // use at most the first 2 points
+        [self.mapView addOverlay:self.homeToWP1Polyline];
+    } else {
+        self.homeToWP1Polyline = nil;
+    }
     
+    // Waypoint route line
+    if (n > 1) {
+        self.waypointRoutePolyline = [MKPolyline polylineWithCoordinates:coords+1 count:n-1]; // skip HOME/0 waypoint
+        [self.mapView addOverlay:self.waypointRoutePolyline];
+    } else {
+        self.waypointRoutePolyline = nil;
+    }
+}
+
+// 1e-5 is very approximately 1m
+#define CLLocationCoordinate2DEqual(x, y) (fabs((x).latitude - (y).latitude) < 1e-5 && fabs((x).longitude - (y).longitude) < 1e-5)
+
+- (void) replaceMission:(WaypointsHolder*)mission {
     // Clean up existing objects
     [self removeExistingWaypointAnnotations];
+    [self.mapView removeOverlay:self.homeToWP1Polyline];
     [self.mapView removeOverlay:self.waypointRoutePolyline];
     
     // Get the nav-specfic waypoints
     WaypointsHolder *navWaypoints = [mission navWaypoints];
     NSUInteger numWaypoints = [navWaypoints numWaypoints];
     
-    MKMapPoint *navMKMapPoints = malloc(sizeof(MKMapPoint) * numWaypoints);
-    
-    // Add waypoint annotations, and convert to array of MKMapPoints
+    // Build array of CLLocationCoordinate2D, and add waypoint annotations
+    CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * numWaypoints);
+    assert(coords);
     for (NSUInteger i = 0; i < numWaypoints; i++) {
         mavlink_mission_item_t waypoint = [navWaypoints getWaypoint:i];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
+        coords[i] = CLLocationCoordinate2DMake(waypoint.x, waypoint.y);
         
         // Add the annotation
-        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coordinate
+        WaypointAnnotation *annotation = [[WaypointAnnotation alloc] initWithCoordinate:coords[i]
                                                                             andWayPoint:waypoint
                                                                                 atIndex:[mission getIndexOfWaypointWithSeq:waypoint.seq]];
         [self.mapView addAnnotation:annotation];
-        
-        // Construct the MKMapPoint
-        navMKMapPoints[i] = MKMapPointForCoordinate(coordinate);
     }
     
-    // Add the polyline overlay
-    self.waypointRoutePolyline = [MKPolyline polylineWithPoints:navMKMapPoints count:numWaypoints];
-    [self.mapView addOverlay:self.waypointRoutePolyline];
+    // Check initialisation of HOME/0 waypoint
+    bool isHomeWPInitialised = (numWaypoints >= 1) && !CLLocationCoordinate2DEqual(coords[0], CLLocationCoordinate2DMake(0,0));
+
+    [self configureRoutePolylines:coords withLength:numWaypoints withInitialisedHome:isHomeWPInitialised];
     
     // Set the map extents
-    MKMapRect bounds = [self.waypointRoutePolyline boundingMapRect];
-    if (!MKMapRectIsNull(bounds)) {
-        // Extend the bounding rect of the polyline slightly
-        MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
-        region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
-        region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
-        [self.mapView setRegion:region animated:YES];
-    } else if ([self.waypointRoutePolyline pointCount] == 1) {
-        // Fallback to a padded box centered on the single waypoint
-        CLLocationCoordinate2D coord = MKCoordinateForMapPoint([self.waypointRoutePolyline points][0]);
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coord, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+    NSUInteger offset = isHomeWPInitialised ? 0 : 1;
+    if (offset < numWaypoints) {
+        [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
     }
     [self.mapView setNeedsDisplay];
     
-    free(navMKMapPoints);
+    free(coords);
 }
 
 - (void)updateWaypointIconAtSeq:(WaypointSeqOpt)seq isSelected:(BOOL)isSelected {
@@ -286,6 +299,13 @@
         waypointRouteView.lineCap     = kCGLineCapRound;
         waypointRouteView.lineJoin    = kCGLineJoinRound;
         return waypointRouteView;
+    } else if (overlay == self.homeToWP1Polyline) {
+        MKPolylineView *homeToWP1View = [[MKPolylineView alloc] initWithPolyline:overlay];
+        homeToWP1View.fillColor     = [theme waypointLineStrokeColor];
+        homeToWP1View.strokeColor   = [theme waypointLineFillColor];
+        homeToWP1View.lineWidth     = 2;
+        homeToWP1View.lineDashPattern = @[@5, @5];
+        return homeToWP1View;
     } else if (overlay == self.trackPolyline) {
         MKPolylineView *trackView = [[MKPolylineView alloc] initWithPolyline:overlay];
         trackView.fillColor     = [theme trackLineColor];
@@ -418,7 +438,21 @@
 }
 
 - (void) zoomInOnUser:(id)sender {
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, 200, 200) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.userPosition.coordinate, MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+}
+
+- (void) zoomInOnCoordinates:(CLLocationCoordinate2D*)coords withLength:(NSUInteger)n {
+    MKMapRect bounds = [[MKPolygon polygonWithCoordinates:coords count:n] boundingMapRect];
+    if (!MKMapRectIsNull(bounds)) {
+        // Extend the bounding rect of the polyline slightly
+        MKCoordinateRegion region = MKCoordinateRegionForMapRect(bounds);
+        region.span.latitudeDelta  = MIN(MAX(region.span.latitudeDelta  * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC),  90);
+        region.span.longitudeDelta = MIN(MAX(region.span.longitudeDelta * MAP_REGION_PAD_FACTOR, MAP_MINIMUM_ARC), 180);
+        [self.mapView setRegion:region animated:YES];
+    } else if (n == 1) {
+        // Fallback to a padded box centered on the single waypoint
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coords[0], MAP_MINIMUM_PAD, MAP_MINIMUM_PAD) animated:YES];
+    }
 }
 
 @end
