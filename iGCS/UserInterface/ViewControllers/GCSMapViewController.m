@@ -51,7 +51,7 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-static const NSUInteger VEHICLE_ICON_SIZE = 62;
+static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
 @implementation GCSMapViewController
 
