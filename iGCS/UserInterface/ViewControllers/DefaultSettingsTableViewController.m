@@ -51,7 +51,7 @@
     self.generalSettingsArray = @[@"Waypoints", @"Units"];
     
     //other settings
-    self.otherSettingsArray = @[@"About"];
+    self.otherSettingsArray = @[@"About", @"Radio"];
     
     NSMutableArray *keys = [[NSMutableArray alloc] init];
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
@@ -126,11 +126,11 @@
 }
 
 //Not sure I like the header, commend out for now
-/*
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.sectionKeysArray objectAtIndex:section];
 }
-*/
+
 
 
 #pragma mark - Table view delegate

@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsCustomTableViewCell : UITableViewCell {
-    UILabel *customLabel;
+@interface SettingsTextFieldCell : UITableViewCell {
     UITextField *customTextField;
+    UILabel *customLabel;
 
 }
 
-@property (nonatomic, retain) UILabel *customLabel;
 @property (nonatomic, retain) UITextField *customTextField;
+@property (nonatomic, retain) UILabel *customLabel;
 
 @end
