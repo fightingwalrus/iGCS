@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA761A89BBD600399798 /* DefaultSettingsTableViewController.m */; };
 		0127AA851A8C404100399798 /* WaypointSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA841A8C404100399798 /* WaypointSettingsViewController.m */; };
-		0127AA971A8D872200399798 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA961A8D872200399798 /* SettingsTextFieldCell.m */; };
-		01BFF8E71A8EC47A000927D6 /* SettingsLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFF8E61A8EC47A000927D6 /* SettingsLabelCell.m */; };
+		0127AA971A8D872200399798 /* SettingsWaypointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA961A8D872200399798 /* SettingsWaypointCell.m */; };
+		01BFF8E71A8EC47A000927D6 /* SettingsSegementedControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56B19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */; };
@@ -416,10 +416,10 @@
 		0127AA7A1A89BBFE00399798 /* DefaultSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSettingsTableViewController.h; sourceTree = "<group>"; };
 		0127AA831A8C404100399798 /* WaypointSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointSettingsViewController.h; sourceTree = "<group>"; };
 		0127AA841A8C404100399798 /* WaypointSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointSettingsViewController.m; sourceTree = "<group>"; };
-		0127AA951A8D872200399798 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = ViewControllers/SettingsTextFieldCell.h; sourceTree = "<group>"; };
-		0127AA961A8D872200399798 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = ViewControllers/SettingsTextFieldCell.m; sourceTree = "<group>"; };
-		01BFF8E51A8EC47A000927D6 /* SettingsLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsLabelCell.h; path = TableViewCells/SettingsLabelCell.h; sourceTree = "<group>"; };
-		01BFF8E61A8EC47A000927D6 /* SettingsLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsLabelCell.m; path = TableViewCells/SettingsLabelCell.m; sourceTree = "<group>"; };
+		0127AA951A8D872200399798 /* SettingsWaypointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsWaypointCell.h; path = ViewControllers/SettingsWaypointCell.h; sourceTree = "<group>"; };
+		0127AA961A8D872200399798 /* SettingsWaypointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsWaypointCell.m; path = ViewControllers/SettingsWaypointCell.m; sourceTree = "<group>"; };
+		01BFF8E51A8EC47A000927D6 /* SettingsSegementedControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsSegementedControlCell.h; path = TableViewCells/SettingsSegementedControlCell.h; sourceTree = "<group>"; };
+		01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsSegementedControlCell.m; path = TableViewCells/SettingsSegementedControlCell.m; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		01CEC56419D9F8BD00320A34 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		01CEC56519D9F8BD00320A34 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
@@ -1805,10 +1805,10 @@
 				CA0E118F1A0A1B1D00E0E622 /* MissionItemCell.m */,
 				CA10B4CC1A09E1200082BFAE /* MissionItemEditCell.h */,
 				CA10B4CD1A09E1200082BFAE /* MissionItemEditCell.m */,
-				0127AA951A8D872200399798 /* SettingsTextFieldCell.h */,
-				0127AA961A8D872200399798 /* SettingsTextFieldCell.m */,
-				01BFF8E51A8EC47A000927D6 /* SettingsLabelCell.h */,
-				01BFF8E61A8EC47A000927D6 /* SettingsLabelCell.m */,
+				0127AA951A8D872200399798 /* SettingsWaypointCell.h */,
+				0127AA961A8D872200399798 /* SettingsWaypointCell.m */,
+				01BFF8E51A8EC47A000927D6 /* SettingsSegementedControlCell.h */,
+				01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -2464,7 +2464,7 @@
 				0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
-				0127AA971A8D872200399798 /* SettingsTextFieldCell.m in Sources */,
+				0127AA971A8D872200399798 /* SettingsWaypointCell.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
 				496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
@@ -2554,7 +2554,7 @@
 				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
 				CA2D60221A734FE600AA2CBB /* GCSCraftArduPlane.m in Sources */,
-				01BFF8E71A8EC47A000927D6 /* SettingsLabelCell.m in Sources */,
+				01BFF8E71A8EC47A000927D6 /* SettingsSegementedControlCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

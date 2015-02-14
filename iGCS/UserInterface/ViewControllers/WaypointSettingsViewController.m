@@ -7,7 +7,7 @@
 //
 
 #import "WaypointSettingsViewController.h"
-#import "SettingsTextFieldCell.h"
+#import "SettingsWaypointCell.h"
 
 
 @interface WaypointSettingsViewController ()
@@ -86,9 +86,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"Cell";
-    SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SettingsWaypointCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[SettingsTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[SettingsWaypointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
     NSArray *contents = [self.sectionContentsDict objectForKey:key];

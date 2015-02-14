@@ -6,11 +6,11 @@
 //
 //
 
-#import "SettingsTextFieldCell.h"
+#import "SettingsWaypointCell.h"
 #import "PureLayout.h"
 
 
-@implementation SettingsTextFieldCell
+@implementation SettingsWaypointCell
 
 @synthesize customTextField, customLabel;
 
@@ -27,8 +27,6 @@
         [self.customLabel autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0];
         [self.customLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.contentView];
         
-
-
         self.customTextField = [UITextField newAutoLayoutView];
         [self.contentView addSubview:self.customTextField];
         self.customTextField.textAlignment = NSTextAlignmentCenter;
@@ -36,9 +34,6 @@
         [self.customTextField autoSetDimension:ALDimensionWidth toSize:75.0f];
         [self.self.customTextField autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customLabel withOffset:0];
         [self.customTextField autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.contentView];
-       
-        
-        
       }
     return self;
     

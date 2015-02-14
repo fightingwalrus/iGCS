@@ -8,6 +8,7 @@
 
 #import "DefaultSettingsTableViewController.h"
 #import "WaypointSettingsViewController.h"
+#import "SettingsSegementedControlCell.h"
 
 
 
@@ -113,10 +114,8 @@
     cell.textLabel.text = cellContent;
     
     if ([cellContent isEqual: @"Units"]) {
-        UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+        SettingsSegementedControlCell *switchView = [[SettingsSegementedControlCell alloc] initWithFrame:CGRectZero];
         cell.accessoryView = switchView;
-        [switchView setOn:NO animated:NO];
-        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
