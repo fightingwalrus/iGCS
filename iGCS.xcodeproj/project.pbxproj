@@ -250,8 +250,6 @@
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8917519817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
 		18D8917619817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
-		18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */; };
-		18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */; };
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
@@ -2151,7 +2149,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					18B9FAC018B2F7AF00668660 = {
 						DevelopmentTeam = V693RD5AXN;
@@ -2242,7 +2240,6 @@
 				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
 				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
 				18FFD5CF1A79D85900DF038C /* LICENSE in Resources */,
-				18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
 				18C862A7198AD4A800F99CD3 /* 73-radar.png in Resources */,
 				18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */,
@@ -2271,7 +2268,6 @@
 			files = (
 				18C862D9198B5B1000F99CD3 /* Icon-57.png in Resources */,
 				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
-				18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				18C862B8198AD4A800F99CD3 /* 181-hammer.png in Resources */,
 				18C862AF198AD4A800F99CD3 /* 103-map@2x.png in Resources */,
@@ -2772,11 +2768,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 40;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2818,11 +2816,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 40;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
