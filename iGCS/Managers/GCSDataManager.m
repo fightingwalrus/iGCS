@@ -7,7 +7,6 @@
 //
 
 #import "GCSDataManager.h"
-#import "GCSCraftModelGenerator.h"
 
 @implementation GCSDataManager
 

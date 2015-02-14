@@ -13,7 +13,6 @@
 @protocol GCSCraftModel <NSObject>
 @required;
 - (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat;
-- (void) update:(mavlink_heartbeat_t)heartbeat;
 
 @property (nonatomic, readonly) GCSCraftType craftType;
 
@@ -28,4 +27,11 @@
 
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
+
+// These methods are optional so they can be mixed in
+// at runtime
+@optional;
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
+@property (nonatomic, readonly) NSString *currentModeName;
+
 @end

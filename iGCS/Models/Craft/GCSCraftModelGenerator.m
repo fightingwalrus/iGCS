@@ -44,7 +44,7 @@
     
     // Mutate the existing model
     if (craftType == model.craftType) {
-        [model update:heartbeat];
+        [model updateWithHeartbeat:heartbeat];
         return model;
     }
     

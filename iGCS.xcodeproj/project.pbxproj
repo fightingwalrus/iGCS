@@ -69,6 +69,7 @@
 		1854467C18D8EEA6004F4BF8 /* RadioSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */; };
 		1854467E18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
 		1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854468318D8F05B004F4BF8 /* MainStoryboard.storyboard */; };
+		1858D50B1A8C83B80051DCA3 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
 		1866999E1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		1866999F1A314ADF00B5723A /* credits.py in Resources */ = {isa = PBXBuildFile; fileRef = 1866999B1A314ADF00B5723A /* credits.py */; };
 		186AFA2F18F90CAD00541FD6 /* GCSSikAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AFA2E18F90CAD00541FD6 /* GCSSikAT.m */; };
@@ -78,6 +79,13 @@
 		1875978F189108980012DF6D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875978A189108980012DF6D /* Icon-76.png */; };
 		1875979318910AC50012DF6D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979118910AC50012DF6D /* Icon-72.png */; };
 		1875979518910AC50012DF6D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 1875979218910AC50012DF6D /* Icon-144.png */; };
+		1880C8771A886F2500821B21 /* GCSSpeechManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */; };
+		18820E821A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
+		18820E831A64AD0C006855E9 /* GCSSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18820E811A64AD0C006855E9 /* GCSSpeechManager.m */; };
+		18820E851A64B19A006855E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18820E841A64B19A006855E9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18820E861A64B1A3006855E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18820E841A64B19A006855E9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		188597A01A761A7E008D40EE /* GCSCraftNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 1885979F1A761A7E008D40EE /* GCSCraftNotifications.m */; };
+		188597A11A761A7E008D40EE /* GCSCraftNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 1885979F1A761A7E008D40EE /* GCSCraftNotifications.m */; };
 		1888DE68170F7D1800ADA039 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE67170F7D1800ADA039 /* MediaPlayer.framework */; };
 		1888DE6A170F7D1F00ADA039 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE69170F7D1F00ADA039 /* CoreAudio.framework */; };
 		1888DE6C170F7D2800ADA039 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */; };
@@ -244,8 +252,6 @@
 		18D8916819810510001ED845 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D89162198104EC001ED845 /* CoreText.framework */; };
 		18D8917519817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
 		18D8917619817CB1001ED845 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8916D19817CB1001ED845 /* HockeySDK.framework */; };
-		18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */; };
-		18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */; };
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
@@ -256,6 +262,12 @@
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
+		18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
+		18FFD5C51A797ECA00DF038C /* GCSCraftMixins.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */; };
+		18FFD5CB1A79D84400DF038C /* Mixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5CA1A79D84400DF038C /* Mixin.m */; };
+		18FFD5CC1A79D84400DF038C /* Mixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FFD5CA1A79D84400DF038C /* Mixin.m */; };
+		18FFD5CE1A79D85900DF038C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18FFD5CD1A79D85900DF038C /* LICENSE */; };
+		18FFD5CF1A79D85900DF038C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18FFD5CD1A79D85900DF038C /* LICENSE */; };
 		447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 447C4B8D17C6E3A400440678 /* MavLinkLogger.m */; };
 		49369F9D16DC8DA700D98370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369F9C16DC8DA700D98370 /* SystemConfiguration.framework */; };
 		495253ED1703F1C3006E27B0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495253EB1703F1C3006E27B0 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -492,6 +504,12 @@
 		1875978A189108980012DF6D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		1875979118910AC50012DF6D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		1875979218910AC50012DF6D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
+		1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSpeechManagerTests.m; sourceTree = "<group>"; };
+		18820E801A64AD0C006855E9 /* GCSSpeechManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSSpeechManager.h; sourceTree = "<group>"; };
+		18820E811A64AD0C006855E9 /* GCSSpeechManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSSpeechManager.m; sourceTree = "<group>"; };
+		18820E841A64B19A006855E9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1885979E1A761A7E008D40EE /* GCSCraftNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftNotifications.h; sourceTree = "<group>"; };
+		1885979F1A761A7E008D40EE /* GCSCraftNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftNotifications.m; sourceTree = "<group>"; };
 		1888DE67170F7D1800ADA039 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1888DE69170F7D1F00ADA039 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1888DE6B170F7D2800ADA039 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -770,6 +788,7 @@
 		18C91D241A71F739009400C3 /* GCSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSDataManager.m; sourceTree = "<group>"; };
 		18C91D281A71FA89009400C3 /* GCSCraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModel.h; sourceTree = "<group>"; };
 		18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftModes.h; sourceTree = "<group>"; };
+		18C91D391A747065009400C3 /* GCSCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraft.h; sourceTree = "<group>"; };
 		18D89162198104EC001ED845 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18D8916B19817CB1001ED845 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		18D8916D19817CB1001ED845 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
@@ -788,6 +807,11 @@
 		18F8040017E24BB300CB8052 /* CommConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnection.m; sourceTree = "<group>"; };
 		18F8040117E24BB300CB8052 /* CommConnectionPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommConnectionPool.h; sourceTree = "<group>"; };
 		18F8040217E24BB300CB8052 /* CommConnectionPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommConnectionPool.m; sourceTree = "<group>"; };
+		18FFD5C21A797ECA00DF038C /* GCSCraftMixins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSCraftMixins.h; sourceTree = "<group>"; };
+		18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSCraftMixins.m; sourceTree = "<group>"; };
+		18FFD5C91A79D84400DF038C /* Mixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixin.h; sourceTree = "<group>"; };
+		18FFD5CA1A79D84400DF038C /* Mixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixin.m; sourceTree = "<group>"; };
+		18FFD5CD1A79D85900DF038C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		447C4B8C17C6E3A400440678 /* MavLinkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkLogger.h; sourceTree = "<group>"; };
 		447C4B8D17C6E3A400440678 /* MavLinkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MavLinkLogger.m; sourceTree = "<group>"; };
 		492C813016DBD102004001FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -954,6 +978,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18820E861A64B1A3006855E9 /* AVFoundation.framework in Frameworks */,
 				18D8916819810510001ED845 /* CoreText.framework in Frameworks */,
 				18B9FB1018B2F7AF00668660 /* libRscMgrUniv.a in Frameworks */,
 				18B9FAF918B2F7AF00668660 /* GameKit.framework in Frameworks */,
@@ -998,6 +1023,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18820E851A64B19A006855E9 /* AVFoundation.framework in Frameworks */,
 				01E9F18D1A04427800901980 /* CoreMotion.framework in Frameworks */,
 				186DC2391992F60700A672A6 /* CoreData.framework in Frameworks */,
 				18D89163198104EC001ED845 /* CoreText.framework in Frameworks */,
@@ -1523,6 +1549,8 @@
 		18C91D201A71F71C009400C3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				18820E801A64AD0C006855E9 /* GCSSpeechManager.h */,
+				18820E811A64AD0C006855E9 /* GCSSpeechManager.m */,
 				18C91D231A71F739009400C3 /* GCSDataManager.h */,
 				18C91D241A71F739009400C3 /* GCSDataManager.m */,
 			);
@@ -1532,6 +1560,7 @@
 		18C91D271A71F752009400C3 /* Craft */ = {
 			isa = PBXGroup;
 			children = (
+				18C91D391A747065009400C3 /* GCSCraft.h */,
 				18C91D2D1A71FD59009400C3 /* GCSCraftModes.h */,
 				18C91D281A71FA89009400C3 /* GCSCraftModel.h */,
 				CA2D60141A733FD800AA2CBB /* GCSCraftModelGenerator.h */,
@@ -1540,6 +1569,10 @@
 				CA2D601C1A7342BD00AA2CBB /* GCSCraftArduCopter.m */,
 				CA2D60201A734FE600AA2CBB /* GCSCraftArduPlane.h */,
 				CA2D60211A734FE600AA2CBB /* GCSCraftArduPlane.m */,
+				1885979E1A761A7E008D40EE /* GCSCraftNotifications.h */,
+				1885979F1A761A7E008D40EE /* GCSCraftNotifications.m */,
+				18FFD5C21A797ECA00DF038C /* GCSCraftMixins.h */,
+				18FFD5C31A797ECA00DF038C /* GCSCraftMixins.m */,
 			);
 			path = Craft;
 			sourceTree = "<group>";
@@ -1570,6 +1603,16 @@
 				18D8917019817CB1001ED845 /* HockeySDKResources.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		18FFD5C81A79D84400DF038C /* ObjectiveMixin */ = {
+			isa = PBXGroup;
+			children = (
+				18FFD5CD1A79D85900DF038C /* LICENSE */,
+				18FFD5C91A79D84400DF038C /* Mixin.h */,
+				18FFD5CA1A79D84400DF038C /* Mixin.m */,
+			);
+			path = ObjectiveMixin;
 			sourceTree = "<group>";
 		};
 		496E625C16DAFAD700E52E4A /* Images */ = {
@@ -1767,6 +1810,7 @@
 		CA0D06F719761986002458F5 /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				18FFD5C81A79D84400DF038C /* ObjectiveMixin */,
 				1866999A1A314ADF00B5723A /* LicenseGenerator-iOS */,
 				01CEC5BA19D9FA3800320A34 /* BlackRaccoon */,
 				01CEC56219D9F8BD00320A34 /* CocoaAsyncSocket */,
@@ -1831,6 +1875,7 @@
 		CA35B6941A81A98500104924 /* iGCS Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1877D1FB1A87D3FB00603A67 /* GCSSpeechManagerTests.m */,
 				CA35B6BC1A81B08F00104924 /* FirmwareTests.m */,
 				CA35B6971A81A98500104924 /* MavUtilityTests.m */,
 				CA35B6BA1A81B03E00104924 /* WaypointsTests.m */,
@@ -1937,6 +1982,7 @@
 		CA499F6114DE33BC00FCC9FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18820E841A64B19A006855E9 /* AVFoundation.framework */,
 				01E9F18C1A04427800901980 /* CoreMotion.framework */,
 				186DC2381992F60600A672A6 /* CoreData.framework */,
 				1845DA4419778CBA008945F8 /* libcommonCrypto.dylib */,
@@ -2103,7 +2149,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					18B9FAC018B2F7AF00668660 = {
 						DevelopmentTeam = V693RD5AXN;
@@ -2193,7 +2239,7 @@
 				1854467F18D8F05B004F4BF8 /* MainStoryboard.storyboard in Resources */,
 				18B9FB2A18B2F7AF00668660 /* Icon-76.png in Resources */,
 				18B9FB2B18B2F7AF00668660 /* multicast_h264_aac_48000.sdp in Resources */,
-				18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
+				18FFD5CF1A79D85900DF038C /* LICENSE in Resources */,
 				18B9FB2C18B2F7AF00668660 /* Icon-80.png in Resources */,
 				18C862A7198AD4A800F99CD3 /* 73-radar.png in Resources */,
 				18B9FB2D18B2F7AF00668660 /* Icon-144.png in Resources */,
@@ -2222,7 +2268,6 @@
 			files = (
 				18C862D9198B5B1000F99CD3 /* Icon-57.png in Resources */,
 				CA42C2EF19359D0F0059F319 /* Images.xcassets in Resources */,
-				18D8917819817CB1001ED845 /* HockeySDK.xcconfig in Resources */,
 				1875978D189108980012DF6D /* Icon-152.png in Resources */,
 				18C862B8198AD4A800F99CD3 /* 181-hammer.png in Resources */,
 				18C862AF198AD4A800F99CD3 /* 103-map@2x.png in Resources */,
@@ -2262,6 +2307,7 @@
 				01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */,
 				18C86297198AD4A800F99CD3 /* 19-gear@2x.png in Resources */,
 				18C8628B198AD4A800F99CD3 /* 05-shuffle@2x.png in Resources */,
+				18FFD5CE1A79D85900DF038C /* LICENSE in Resources */,
 				18C86291198AD4A800F99CD3 /* 07-map-marker@2x.png in Resources */,
 				1875979518910AC50012DF6D /* Icon-144.png in Resources */,
 				1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */,
@@ -2311,6 +2357,7 @@
 				18B9FAC518B2F7AF00668660 /* AppDelegate.m in Sources */,
 				1851D850191AE00400ED5C87 /* GCSRadioSettings.m in Sources */,
 				18B9FAC618B2F7AF00668660 /* FightingWalrusInterface.m in Sources */,
+				18FFD5C51A797ECA00DF038C /* GCSCraftMixins.m in Sources */,
 				18B9FAC718B2F7AF00668660 /* WaypointHelper.m in Sources */,
 				18B9FAC818B2F7AF00668660 /* SWRevealViewController.m in Sources */,
 				18B9FAC918B2F7AF00668660 /* WaypointsHolder.m in Sources */,
@@ -2333,6 +2380,7 @@
 				18B7F2CC1958953B00D2406A /* NSArray+PureLayout.m in Sources */,
 				CA05750918BE07FE001EACFD /* CXAlertView.m in Sources */,
 				18C91D261A71F739009400C3 /* GCSDataManager.m in Sources */,
+				18820E831A64AD0C006855E9 /* GCSSpeechManager.m in Sources */,
 				18B7F2CF1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
 				CA05750118BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */,
 				01CEC5E319D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
@@ -2343,6 +2391,8 @@
 				CA154E7A19BFE52000ECE919 /* DDASLLogger.m in Sources */,
 				18B9FAD418B2F7AF00668660 /* iGCSRadioConfig.m in Sources */,
 				CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */,
+				18FFD5CC1A79D84400DF038C /* Mixin.m in Sources */,
+				188597A11A761A7E008D40EE /* GCSCraftNotifications.m in Sources */,
 				18B9FAD518B2F7AF00668660 /* ArtificialHorizonView.m in Sources */,
 				18B9FAD618B2F7AF00668660 /* CompassView.m in Sources */,
 				18B9FAD718B2F7AF00668660 /* RxMissionRequestList.m in Sources */,
@@ -2413,6 +2463,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1880C8771A886F2500821B21 /* GCSSpeechManagerTests.m in Sources */,
+				1858D50B1A8C83B80051DCA3 /* GCSSpeechManager.m in Sources */,
 				CA35B6981A81A98500104924 /* MavUtilityTests.m in Sources */,
 				CA35B6A31A81ACD600104924 /* MavLinkUtility.m in Sources */,
 				CA35B6BD1A81B08F00104924 /* FirmwareTests.m in Sources */,
@@ -2441,6 +2493,8 @@
 				496E628916DAFB8B00E52E4A /* GuidedPointAnnotation.m in Sources */,
 				CA0E11901A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
+				18FFD5CB1A79D84400DF038C /* Mixin.m in Sources */,
+				18FFD5C41A797ECA00DF038C /* GCSCraftMixins.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
@@ -2486,6 +2540,7 @@
 				CA154E7D19BFE52000ECE919 /* DDFileLogger.m in Sources */,
 				CA2D601D1A7342BD00AA2CBB /* GCSCraftArduCopter.m in Sources */,
 				01CEC5E219D9FA3800320A34 /* BRRequestListDirectory.m in Sources */,
+				188597A01A761A7E008D40EE /* GCSCraftNotifications.m in Sources */,
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2526,6 +2581,7 @@
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
 				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
+				18820E821A64AD0C006855E9 /* GCSSpeechManager.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				CA2D60161A733FD800AA2CBB /* GCSCraftModelGenerator.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,
@@ -2712,11 +2768,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 40;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2758,11 +2816,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 40;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
