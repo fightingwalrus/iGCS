@@ -9,6 +9,9 @@
 #import "WaypointSettingsViewController.h"
 #import "SettingsWaypointCell.h"
 
+#import "SettingsData.h"
+
+
 
 @interface WaypointSettingsViewController ()
 
@@ -17,6 +20,8 @@
 
 @property (nonatomic, retain) NSMutableArray *sectionKeysArray;
 @property (nonatomic, retain) NSMutableDictionary *sectionContentsDict;
+
+//@property (nonatomic, assign) NSInteger altitude;
 
 
 @end
@@ -94,8 +99,31 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     cell.textLabel.text = cellContent;
-    cell.customLabel.text = @"meters";
-    cell.customTextField.text = @"1000";
+    
+    if ([SettingsData sharedSettingsData].unitType == metric) {
+        cell.customLabel.text = @"meters";
+    }
+    else {
+        cell.customLabel.text = @"feet";
+    }
+    
+    if ([cellContent isEqual: @"altitude"]) {
+        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].altitude];
+        [SettingsData sharedSettingsData].altitude +=5;
+    }
+    else if ([cellContent isEqual: @"ceiling"]) {
+        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].ceiling];
+        [SettingsData sharedSettingsData].ceiling +=3;
+        
+    }
+    
+    else if ([cellContent isEqual: @"radius"]) {
+        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].radius];
+        [SettingsData sharedSettingsData].radius +=7;
+        
+    }
+
+    [[SettingsData sharedSettingsData] save];
     return cell;
 }
 

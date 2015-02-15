@@ -12,6 +12,7 @@
 
 
 
+
 @interface DefaultSettingsTableViewController ()
 @property (nonatomic, retain) NSArray *generalSettingsArray;
 @property (nonatomic, retain) NSArray *otherSettingsArray;
@@ -27,9 +28,12 @@
 @property (nonatomic, assign) BOOL standardSelected;
 
 
+
+
 @end
 
 @implementation DefaultSettingsTableViewController
+
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -44,6 +48,7 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     [self createSectionData];
+  
 }
 
 - (void) createSectionData {

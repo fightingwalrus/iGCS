@@ -8,6 +8,7 @@
 
 #import "SettingsWaypointCell.h"
 #import "PureLayout.h"
+#import "SettingsData.h"
 
 
 @implementation SettingsWaypointCell
@@ -29,6 +30,7 @@
         
         self.customTextField = [UITextField newAutoLayoutView];
         [self.contentView addSubview:self.customTextField];
+        self.customTextField.keyboardType = UIKeyboardTypeNumberPad;
         self.customTextField.textAlignment = NSTextAlignmentCenter;
         self.customTextField.borderStyle = UITextBorderStyleRoundedRect;
         [self.customTextField autoSetDimension:ALDimensionWidth toSize:75.0f];

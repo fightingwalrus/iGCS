@@ -8,6 +8,7 @@
 
 #import "SettingsSegementedControlCell.h"
 #import "PureLayout.h"
+#import "SettingsData.h"
 
 @implementation SettingsSegementedControlCell
 
@@ -20,7 +21,7 @@
         
         NSArray *itemArray =  @[@"Standard", @"Metric"];
         self.customSegementedControl = [[UISegmentedControl newAutoLayoutView] initWithItems:itemArray];
-        self.customSegementedControl.selectedSegmentIndex = 1;
+        self.customSegementedControl.selectedSegmentIndex = [SettingsData sharedSettingsData].unitType;
         [self.contentView addSubview:self.customSegementedControl];
         [self.customSegementedControl autoSetDimension:ALDimensionWidth toSize:150.0f];
         [self.customSegementedControl autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0];
@@ -32,17 +33,15 @@
 
 
 - (void) segementedControlChanged:(UISegmentedControl *)segment {
-    if (segment.selectedSegmentIndex == 0) {
-        NSLog(@"The switch is standard");
-        
+    if (segment.selectedSegmentIndex == standard) {
+        [SettingsData sharedSettingsData].unitType = standard;
     }
     else {
-        NSLog(@"The switch is meteric");
+        [SettingsData sharedSettingsData].unitType = metric;
     }
+    
+    [[SettingsData sharedSettingsData] save];
 }
-
-
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
