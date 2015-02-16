@@ -8,6 +8,9 @@
 
 #import "GCSDataManager.h"
 #import "GCSCraftModelGenerator.h"
+#import "GCSSettings.h"
+
+
 
 @implementation GCSDataManager
 
@@ -20,13 +23,45 @@
     return sharedInstance;
 }
 
+
 - (instancetype) init {
     self = [super init];
     if (self) {
         _craft = [GCSCraftModelGenerator createInitialModel];
         _lastViewedMapCamera = nil;
+        _gcsSettings = [[GCSSettings alloc] init];  
     }
     return self;
 }
+
++ (instancetype)loadInstance {
+    NSData *decodedData = [NSData dataWithContentsOfFile:[GCSDataManager filePath]];
+    if (decodedData) {
+        GCSDataManager *progData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
+        return progData;
+    }
+    
+    return [[GCSDataManager alloc] init];
+}
+
+
++ (void) save {
+    NSData* encodeData = [NSKeyedArchiver archivedDataWithRootObject:[GCSDataManager sharedInstance].gcsSettings];
+    [encodeData writeToFile:[GCSDataManager filePath] atomically:YES];
+}
+
++(NSString*)filePath
+{
+    static NSString* filePath = nil;
+    if (!filePath) {
+        filePath =
+        [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+         stringByAppendingPathComponent:@"GCSSettings"];
+    }
+    return filePath;
+}
+
+
+
 
 @end

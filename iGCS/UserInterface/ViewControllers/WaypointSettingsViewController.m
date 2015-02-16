@@ -9,7 +9,8 @@
 #import "WaypointSettingsViewController.h"
 #import "SettingsWaypointCell.h"
 
-#import "SettingsData.h"
+#import "GCSSettings.h"
+#import "GCSDataManager.h"
 
 
 
@@ -100,7 +101,7 @@
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     cell.textLabel.text = cellContent;
     
-    if ([SettingsData sharedSettingsData].unitType == metric) {
+    if ([GCSDataManager sharedInstance].gcsSettings.unitType == metric) {
         cell.customLabel.text = @"meters";
     }
     else {
@@ -108,22 +109,22 @@
     }
     
     if ([cellContent isEqual: @"altitude"]) {
-        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].altitude];
-        [SettingsData sharedSettingsData].altitude +=5;
+        cell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.altitude];
+        [GCSDataManager sharedInstance].gcsSettings.altitude +=5;
     }
     else if ([cellContent isEqual: @"ceiling"]) {
-        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].ceiling];
-        [SettingsData sharedSettingsData].ceiling +=3;
+        cell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.ceiling];
+        [GCSDataManager sharedInstance].gcsSettings.ceiling +=3;
         
     }
     
     else if ([cellContent isEqual: @"radius"]) {
-        cell.customTextField.text = [NSString stringWithFormat:@"%d",[SettingsData sharedSettingsData].radius];
-        [SettingsData sharedSettingsData].radius +=7;
+        cell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.radius];
+        [GCSDataManager sharedInstance].gcsSettings.radius +=7;
         
     }
 
-    [[SettingsData sharedSettingsData] save];
+    [GCSDataManager save];
     return cell;
 }
 

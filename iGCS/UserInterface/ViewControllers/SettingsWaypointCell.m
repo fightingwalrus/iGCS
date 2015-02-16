@@ -8,7 +8,7 @@
 
 #import "SettingsWaypointCell.h"
 #import "PureLayout.h"
-#import "SettingsData.h"
+#import "GCSSettings.h"
 
 
 @implementation SettingsWaypointCell

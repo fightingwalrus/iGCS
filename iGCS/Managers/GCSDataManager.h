@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MKMapCamera.h>
 #import "GCSCraftModel.h"
+#import "GCSSettings.h"
 
 @interface GCSDataManager : NSObject
 + (instancetype) sharedInstance;
++ (void) save;
++ (instancetype) loadInstance;
+
 
 @property (atomic, strong) id<GCSCraftModel> craft;
 
@@ -21,5 +25,8 @@
 // aspect ratios of the maps: a camera will remain consistent between switches,
 // whereas a region cannot.
 @property (atomic, copy) MKMapCamera *lastViewedMapCamera;
+
+@property (atomic, strong) GCSSettings *gcsSettings;
+
 
 @end

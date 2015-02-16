@@ -8,7 +8,8 @@
 
 #import "SettingsSegementedControlCell.h"
 #import "PureLayout.h"
-#import "SettingsData.h"
+#import "GCSSettings.h"
+#import "GCSDataManager.h"
 
 @implementation SettingsSegementedControlCell
 
@@ -21,7 +22,7 @@
         
         NSArray *itemArray =  @[@"Standard", @"Metric"];
         self.customSegementedControl = [[UISegmentedControl newAutoLayoutView] initWithItems:itemArray];
-        self.customSegementedControl.selectedSegmentIndex = [SettingsData sharedSettingsData].unitType;
+        self.customSegementedControl.selectedSegmentIndex = [GCSDataManager sharedInstance].gcsSettings.unitType;
         [self.contentView addSubview:self.customSegementedControl];
         [self.customSegementedControl autoSetDimension:ALDimensionWidth toSize:150.0f];
         [self.customSegementedControl autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0];
@@ -34,13 +35,13 @@
 
 - (void) segementedControlChanged:(UISegmentedControl *)segment {
     if (segment.selectedSegmentIndex == standard) {
-        [SettingsData sharedSettingsData].unitType = standard;
+        [GCSDataManager sharedInstance].gcsSettings.unitType = standard;
     }
     else {
-        [SettingsData sharedSettingsData].unitType = metric;
+        [GCSDataManager sharedInstance].gcsSettings.unitType = metric;
     }
     
-    [[SettingsData sharedSettingsData] save];
+    [GCSDataManager save];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
