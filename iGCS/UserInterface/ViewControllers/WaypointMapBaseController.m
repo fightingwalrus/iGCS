@@ -287,6 +287,21 @@
     [self.mapView setNeedsDisplay];
 }
 
+- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView {
+    NSLog(@"Map started loading");
+    
+}
+
+
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView
+                       withError:(NSError *)error {
+    //Detect if map load fail occurs
+    NSLog(@"Map load failed with error %@",error);
+    int test = 5;
+    
+    
+    
+}
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {
     GCSThemeManager *theme = [GCSThemeManager sharedInstance];
     
