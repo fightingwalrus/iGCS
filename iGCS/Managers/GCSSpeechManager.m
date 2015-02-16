@@ -39,6 +39,12 @@
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(craftNavModeDidChange)
                                                          name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
+
+
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(craftMavModeDidChange)
+                                                         name:GCSCraftNotificationsCraftMavModeDidChange object:nil];
+
         }
     }
     return self;
@@ -52,6 +58,10 @@
 
 - (void)craftNavModeDidChange {
     [self speakWithText:[GCSDataManager sharedInstance].craft.currentModeName];
+}
+
+- (void)craftMavModeDidChange {
+    [self speakWithText:([GCSDataManager sharedInstance].craft.isArmed)? @"Armed" : @"Disarmed"];
 }
 
 #pragma mark - public methods

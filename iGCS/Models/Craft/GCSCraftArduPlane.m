@@ -19,6 +19,7 @@
 @synthesize guidedMode = _guidedMode;
 @synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
+@synthesize isArmed = _isArmed;
 
 - (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat {
     self = [super init];

@@ -22,10 +22,18 @@
 
     [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
                                              andNewHeartbeat:[(id)self heartbeat]];
+
+    [GCSCraftNotifications didMavModeChangeFromLastHeartbeat:lastHeartbeat
+                                             andNewHeartbeat:[(id) self heartbeat]];
+
 }
 
 - (NSString *) currentModeName {
     return [MavLinkUtility mavCustomModeToString:[(id)self heartbeat]];
+}
+
+- (BOOL) isArmed {
+    return ([(id)self heartbeat].base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
 }
 
 @end

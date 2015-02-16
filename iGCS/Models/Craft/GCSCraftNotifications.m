@@ -10,6 +10,7 @@
 #import "GCSCraftModes.h"
 
 NSString * const GCSCraftNotificationsCraftCustomModeDidChange = @"GCSCraftNotificationsCraftCustomModeDidChange";
+NSString * const GCSCraftNotificationsCraftMavModeDidChange = @"GCSCraftNotificationsCraftMavModeDidChange";
 
 @implementation GCSCraftNotifications
 
@@ -20,6 +21,17 @@ NSString * const GCSCraftNotificationsCraftCustomModeDidChange = @"GCSCraftNotif
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftCustomModeDidChange
+                                                           object:nil];
+    });
+}
+
++ (void)didMavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
+                          andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
+
+    if (lastHeartbeat.base_mode == newHeartbeat.base_mode) return;
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftMavModeDidChange
                                                            object:nil];
     });
 }

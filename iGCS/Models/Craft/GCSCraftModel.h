@@ -24,6 +24,7 @@
 // Mode status
 @property (nonatomic, readonly) BOOL isInAutoMode;
 @property (nonatomic, readonly) BOOL isInGuidedMode;
+@property (nonatomic, readonly) BOOL isArmed;
 
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
