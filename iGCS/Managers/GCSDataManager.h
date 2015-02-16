@@ -14,7 +14,7 @@
 @interface GCSDataManager : NSObject
 + (instancetype) sharedInstance;
 + (void) save;
-+ (instancetype) loadInstance;
+
 
 
 @property (atomic, strong) id<GCSCraftModel> craft;
@@ -26,7 +26,7 @@
 // whereas a region cannot.
 @property (atomic, copy) MKMapCamera *lastViewedMapCamera;
 
-@property (atomic, strong) GCSSettings *gcsSettings;
+@property (atomic, retain) GCSSettings *gcsSettings;
 
 
 @end

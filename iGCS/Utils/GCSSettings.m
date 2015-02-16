@@ -20,18 +20,18 @@ static NSString* const unitKey = @"unitKey";
 
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeInteger:self.altitude forKey:altitudeKey];
-    [encoder encodeDouble:self.radius forKey:radiusKey];
-    [encoder encodeDouble:self.ceiling forKey:ceilingKey];
-    [encoder encodeDouble:self.unitType forKey:unitKey];
+    [encoder encodeInteger:self.radius forKey:radiusKey];
+    [encoder encodeInteger:self.ceiling forKey:ceilingKey];
+    [encoder encodeInteger:self.unitType forKey:unitKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [self init];
     if (self) {
-        _altitude = [decoder decodeDoubleForKey:altitudeKey];
-        _radius = [decoder decodeDoubleForKey:radiusKey];
-        _ceiling = [decoder decodeDoubleForKey:ceilingKey];
-        _unitType = [decoder decodeDoubleForKey:unitKey];
+        _altitude = [decoder decodeIntegerForKey:altitudeKey];
+        _radius = [decoder decodeIntegerForKey:radiusKey];
+        _ceiling = [decoder decodeIntegerForKey:ceilingKey];
+        _unitType = [decoder decodeIntegerForKey:unitKey];
     }
     
     return self;

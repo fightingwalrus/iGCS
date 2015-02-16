@@ -29,19 +29,21 @@
     if (self) {
         _craft = [GCSCraftModelGenerator createInitialModel];
         _lastViewedMapCamera = nil;
-        _gcsSettings = [[GCSSettings alloc] init];  
+        _gcsSettings = [[GCSSettings alloc] init];
+       [self loadArchives];
     }
     return self;
 }
 
-+ (instancetype)loadInstance {
+- (void)loadArchives {
     NSData *decodedData = [NSData dataWithContentsOfFile:[GCSDataManager filePath]];
-    if (decodedData) {
-        GCSDataManager *progData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
-        return progData;
+    GCSSettings *progData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
+    if (progData) {
+        _gcsSettings = progData;
     }
-    
-    return [[GCSDataManager alloc] init];
+    else {
+        _gcsSettings = [[GCSSettings alloc] init];
+    }
 }
 
 
