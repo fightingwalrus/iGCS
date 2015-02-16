@@ -294,6 +294,8 @@
 		49C45CB2170A7820007C9999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB1170A7820007C9999 /* MobileCoreServices.framework */; };
 		49C45CB4170A7832007C9999 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CB3170A7832007C9999 /* libxml2.2.dylib */; };
 		49DD940316D9A5C7000DE266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DD940216D9A5C7000DE266 /* Security.framework */; };
+		5FC8D2D91A92B803002EFC80 /* GCSMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC8D2D81A92B803002EFC80 /* GCSMissionModel.m */; };
+		5FC8D2DC1A92B85C002EFC80 /* GCSMissionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC8D2DB1A92B85C002EFC80 /* GCSMissionItemModel.m */; };
 		CA056B6318C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA056B6418C5A50B00A36F5A /* DataRateRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */; };
 		CA05750018BE07FE001EACFD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0574F518BE07FE001EACFD /* CXAlertButtonContainerView.m */; };
@@ -857,6 +859,10 @@
 		49C45CB1170A7820007C9999 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		49C45CB3170A7832007C9999 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		49DD940216D9A5C7000DE266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5FC8D2D71A92B803002EFC80 /* GCSMissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSMissionModel.h; sourceTree = "<group>"; };
+		5FC8D2D81A92B803002EFC80 /* GCSMissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSMissionModel.m; sourceTree = "<group>"; };
+		5FC8D2DA1A92B85C002EFC80 /* GCSMissionItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSMissionItemModel.h; sourceTree = "<group>"; };
+		5FC8D2DB1A92B85C002EFC80 /* GCSMissionItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSMissionItemModel.m; sourceTree = "<group>"; };
 		CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRateRecorder.h; sourceTree = "<group>"; };
 		CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRateRecorder.m; sourceTree = "<group>"; };
 		CA0574F418BE07FE001EACFD /* CXAlertButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonContainerView.h; sourceTree = "<group>"; };
@@ -1191,6 +1197,7 @@
 		1851D848191ADFD900ED5C87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5FC8D2D41A92B7AA002EFC80 /* Mission */,
 				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
@@ -1762,6 +1769,17 @@
 				CAF37A09179BC2AB00183159 /* MavLinkUtility.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		5FC8D2D41A92B7AA002EFC80 /* Mission */ = {
+			isa = PBXGroup;
+			children = (
+				5FC8D2D71A92B803002EFC80 /* GCSMissionModel.h */,
+				5FC8D2D81A92B803002EFC80 /* GCSMissionModel.m */,
+				5FC8D2DA1A92B85C002EFC80 /* GCSMissionItemModel.h */,
+				5FC8D2DB1A92B85C002EFC80 /* GCSMissionItemModel.m */,
+			);
+			name = Mission;
 			sourceTree = "<group>";
 		};
 		CA0574F118BE07FE001EACFD /* CXAlertView */ = {
@@ -2531,6 +2549,7 @@
 				18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */,
 				01CEC5DC19D9FA3800320A34 /* BRRequestDownload.m in Sources */,
 				1845DA781979E5CD008945F8 /* GCSAccessoryFirmwareUtils.m in Sources */,
+				5FC8D2DC1A92B85C002EFC80 /* GCSMissionItemModel.m in Sources */,
 				CA078231192716A0007FCFD5 /* SiKFirmware.m in Sources */,
 				CAFBD050180A8C9200F5BCDB /* RxMissionItems.m in Sources */,
 				18F8040317E24BB300CB8052 /* CommConnection.m in Sources */,
@@ -2549,6 +2568,7 @@
 				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
+				5FC8D2D91A92B803002EFC80 /* GCSMissionModel.m in Sources */,
 				18C91D251A71F739009400C3 /* GCSDataManager.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
 				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
