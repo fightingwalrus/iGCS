@@ -34,6 +34,8 @@
 
 + (id<GCSCraftModel>) createInitialModel {
     mavlink_heartbeat_t heartbeat;
+    // need base mode to be zeroed so initial status events are sent out
+    heartbeat.base_mode = 0;
     heartbeat.type = MAV_TYPE_QUADROTOR;
     return [[GCSCraftArduCopter alloc] init:heartbeat];
 }

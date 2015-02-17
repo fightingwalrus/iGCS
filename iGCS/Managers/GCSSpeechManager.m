@@ -7,12 +7,14 @@
 //
 
 #import "GCSSpeechManager.h"
-#import <AVFoundation/AVFoundation.h>
 #import "GCSDataManager.h"
 
 @interface GCSSpeechManager ()
 @property (nonatomic, assign) float utteranceRate;
 @property (nonatomic, strong) NSString *defaultLanguage;
+@property (nonatomic, strong) AVSpeechSynthesizer *speechSynthesizer;
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+@property (nonatomic, strong) NSOperationQueue *speakerQueue;
 @end
 
 @implementation GCSSpeechManager
@@ -31,19 +33,27 @@
         // set speech defaults
         _utteranceRate = 0.1f;
         _defaultLanguage = @"en-US";
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+        _speakerQueue = [[NSOperationQueue alloc] init];
 
+        _speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+
+        __weak GCSSpeechManager *weakSelf = self;
         // only register for notifications on iOS 7+
         if ([AVSpeechUtterance class] && [AVSpeechSynthesizer class]) {
             // register for notifications
 
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(craftNavModeDidChange)
-                                                         name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
+            [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftCustomModeDidChange
+                                                 object:nil queue:self.speakerQueue
+                                             usingBlock:^(NSNotification *note) {
+                                                 [weakSelf craftNavModeDidChange];
+            }];
 
-
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(craftMavModeDidChange)
-                                                         name:GCSCraftNotificationsCraftMavModeDidChange object:nil];
+            [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftMavModeDidChange
+                                                 object:nil queue:self.speakerQueue
+                                             usingBlock:^(NSNotification *note) {
+                                                 [weakSelf craftMavModeDidChange];
+                                             }];
 
         }
     }
@@ -51,7 +61,7 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.notificationCenter removeObserver:self];
 }
 
 #pragma mark - handle craft related notification
@@ -61,7 +71,7 @@
 }
 
 - (void)craftMavModeDidChange {
-    [self speakWithText:([GCSDataManager sharedInstance].craft.isArmed)? @"Armed" : @"Disarmed"];
+    [self speakWithText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
 }
 
 #pragma mark - public methods
@@ -90,8 +100,7 @@
         utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.defaultLanguage];
         utterance.rate = self.utteranceRate;
 
-        AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
-        [synthesizer speakUtterance:utterance];
+        [self.speechSynthesizer speakUtterance:utterance];
     }
 }
 

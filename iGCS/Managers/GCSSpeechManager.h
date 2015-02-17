@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface GCSSpeechManager : NSObject
 + (instancetype) sharedInstance;

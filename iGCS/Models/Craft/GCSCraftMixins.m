@@ -20,11 +20,13 @@
     mavlink_heartbeat_t lastHeartbeat = [(id)self heartbeat];
     [(id)self setHeartbeat:heartbeat];
 
-    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
+    // Order of notifications matter for the speechManager
+    // and we want to hear disarmed/disarmed and then the flight mode.
+    [GCSCraftNotifications didMavModeChangeFromLastHeartbeat:lastHeartbeat
                                              andNewHeartbeat:[(id)self heartbeat]];
 
-    [GCSCraftNotifications didMavModeChangeFromLastHeartbeat:lastHeartbeat
-                                             andNewHeartbeat:[(id) self heartbeat]];
+    [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
+                                             andNewHeartbeat:[(id)self heartbeat]];
 
 }
 
