@@ -7,7 +7,6 @@
 //
 
 #import "GCSMissionItemModel.h"
-#import "mavlink.h"
 
 
 @implementation GCSMissionItemModel
@@ -47,6 +46,27 @@ uint8_t autocontinue; ///< autocontinue to next wp
     _current = [NSNumber numberWithBool:mavMissionItem.current];
     _autocontinue = [NSNumber numberWithUnsignedInteger:mavMissionItem.autocontinue];
         
+}
+
+
+-(mavlink_mission_item_t)missionItemToMavlink {
+    mavlink_mission_item_t missionItem;
+    missionItem.param1 = [_param1 floatValue];
+    missionItem.param2 = [_param2 floatValue];
+    missionItem.param3 = [_param3 floatValue];
+    missionItem.param4 = [_param4 floatValue];
+    missionItem.x = [_x floatValue];
+    missionItem.y = [_y floatValue];
+    missionItem.z = [_z floatValue];
+    missionItem.seq = [_seq unsignedIntegerValue];
+    missionItem.command = [_command unsignedIntegerValue];
+    missionItem.target_system = [_target_system unsignedIntegerValue];
+    missionItem.target_component = [_target_component unsignedIntegerValue];
+    missionItem.frame = [_frame unsignedIntegerValue];
+    missionItem.current = [_current unsignedIntegerValue];
+    missionItem.autocontinue = [_autocontinue unsignedIntegerValue];
+
+    return missionItem;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {

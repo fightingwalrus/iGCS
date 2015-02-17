@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "mavlink.h"
+
 
 @interface GCSMissionItemModel : NSObject <NSCoding>
 /*
@@ -45,5 +47,9 @@
 @property(nonatomic, strong) NSNumber *frame;
 @property(nonatomic, strong) NSNumber *current;
 @property(nonatomic, strong) NSNumber *autocontinue;
+
+
+-(mavlink_mission_item_t)missionItemToMavlink;
+
 
 @end
