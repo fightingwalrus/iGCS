@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GCSMissionModel : NSObject
+@interface GCSMissionModel : NSObject <NSCoding>
 
 @property(nonatomic, strong) NSMutableArray *missionItems;
 
