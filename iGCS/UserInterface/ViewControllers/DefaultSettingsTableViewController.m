@@ -9,12 +9,15 @@
 #import "DefaultSettingsTableViewController.h"
 #import "WaypointSettingsViewController.h"
 #import "SettingsSegementedControlCell.h"
+#import "SettingsWaypointCell.h"
+#import "GCSDataManager.h"
 
 
 
 
 @interface DefaultSettingsTableViewController ()
 @property (nonatomic, retain) NSArray *generalSettingsArray;
+@property (nonatomic, retain) NSArray *waypointSettingsArray;
 @property (nonatomic, retain) NSArray *otherSettingsArray;
 
 @property (nonatomic, retain) NSMutableArray *sectionKeysArray;
@@ -22,8 +25,7 @@
 
 
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (nonatomic, assign) BOOL standardSelected;
 
@@ -54,21 +56,27 @@
 - (void) createSectionData {
     
     //general settings
-    self.generalSettingsArray = @[@"Waypoints", @"Units"];
+    self.generalSettingsArray = @[@"Units"];
+    
+    //waypoint settings
+    self.waypointSettingsArray = @[@"Altitude", @"Radius"];
     
     //other settings
-    self.otherSettingsArray = @[@"About", @"Radio"];
+    self.otherSettingsArray = @[@"Radio",@"About"];
     
     NSMutableArray *keys = [[NSMutableArray alloc] init];
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
     
     NSString *generalSectionKey = @"General";
+    NSString *waypointSectionKey = @"Waypoints";
     NSString *otherSectionKey = @"Other";
     
     [contents setObject:self.generalSettingsArray forKey:generalSectionKey];
+    [contents setObject:self.waypointSettingsArray forKey:waypointSectionKey];
     [contents setObject:self.otherSettingsArray forKey:otherSectionKey];
     
     [keys addObject:generalSectionKey];
+    [keys addObject:waypointSectionKey];
     [keys addObject:otherSectionKey];
     
     [self setSectionKeysArray:keys];
@@ -78,15 +86,10 @@
 -(void)configureNavigationBar {
     [self setTitle:@"Settings"];
     
-    self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                             target:self action:@selector(cancelChanges:)];
-    // save button disabled on load
-    self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                                                                           target:self action:@selector(saveSettings:)];
-    self.saveBarButtonItem.enabled = NO;
+    self.doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                             target:self action:@selector(doneWithChanges:)];
     
-    self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
-    self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.doneBarButtonItem;
 }
 
 
@@ -110,26 +113,69 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
+    UITableViewCell *cell;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
     
-    cell.textLabel.text = cellContent;
-    
-    if ([cellContent isEqual: @"Units"]) {
-        SettingsSegementedControlCell *switchView = [[SettingsSegementedControlCell alloc] initWithFrame:CGRectZero];
-        cell.accessoryView = switchView;
+    if ([key isEqual:@"Waypoints"]) {
+        SettingsWaypointCell *settingsWaypointCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (settingsWaypointCell == nil) {
+            settingsWaypointCell = [[SettingsWaypointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        settingsWaypointCell.textLabel.text = cellContent;
+        
+        if ([GCSDataManager sharedInstance].gcsSettings.unitType == metric) {
+            settingsWaypointCell.customLabel.text = @"meters";
+        }
+        else {
+            settingsWaypointCell.customLabel.text = @"feet";
+        }
+        
+        if ([cellContent isEqual: @"Altitude"]) {
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.altitude];
+            //[GCSDataManager sharedInstance].gcsSettings.altitude +=5;
+        }
+        else if ([cellContent isEqual: @"Ceiling"]) {
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.ceiling];
+            [GCSDataManager sharedInstance].gcsSettings.ceiling +=3;
+            
+        }
+        
+        else if ([cellContent isEqual: @"Radius"]) {
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.radius];
+            [GCSDataManager sharedInstance].gcsSettings.radius +=7;
+            
+        }
+        
+        //[GCSDataManager save];
+        cell = settingsWaypointCell;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            
+            cell.textLabel.text = cellContent;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if ([cellContent isEqual: @"Units"]) {
+                SettingsSegementedControlCell *settingsSegementedControlCell = [[SettingsSegementedControlCell alloc] initWithFrame:CGRectZero];
+                settingsSegementedControlCell.tableView = tableView;
+                cell.accessoryView = settingsSegementedControlCell;
+                
+            }
+            else {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            }
+            
+        }
+        
     }
     
     return cell;
 }
-
-//Not sure I like the header, commend out for now
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.sectionKeysArray objectAtIndex:section];
@@ -146,11 +192,13 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
+
+/*
     if ([cellContent isEqual: @"Waypoints"]) {
         WaypointSettingsViewController *wayPointSettingsViewController = [[WaypointSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:wayPointSettingsViewController animated:YES];
     }
-    
+*/
     
 }
 
@@ -173,7 +221,7 @@
 
 #pragma mark - UINavigationBar Button handlers
 
-- (void)cancelChanges:(id)sender {
+- (void)doneWithChanges:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -191,7 +239,7 @@
 
 - (void) switchChanged:(id)sender {
     UISwitch *switchControl = sender;
-    NSLog(@"The switch is %@", switchControl.on ? @"Standard" : @"Metric");
+    DDLogVerbose(@"The switch is %@", switchControl.on ? @"Standard" : @"Metric");
     self.standardSelected = switchControl.on;
 }
 

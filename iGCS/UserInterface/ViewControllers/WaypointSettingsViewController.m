@@ -110,7 +110,7 @@
     
     if ([cellContent isEqual: @"altitude"]) {
         cell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.altitude];
-        [GCSDataManager sharedInstance].gcsSettings.altitude +=5;
+        //[GCSDataManager sharedInstance].gcsSettings.altitude +=5;
     }
     else if ([cellContent isEqual: @"ceiling"]) {
         cell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.ceiling];
@@ -124,7 +124,7 @@
         
     }
 
-    [GCSDataManager save];
+    //[GCSDataManager save];
     return cell;
 }
 
@@ -172,5 +172,7 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+
 
 @end

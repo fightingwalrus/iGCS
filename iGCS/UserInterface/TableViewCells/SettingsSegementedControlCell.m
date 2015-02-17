@@ -41,6 +41,11 @@
         [GCSDataManager sharedInstance].gcsSettings.unitType = metric;
     }
     
+    NSRange range = NSMakeRange(1, 1);
+    NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+    
+    [self.tableView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationAutomatic];
+
     [GCSDataManager save];
 }
 

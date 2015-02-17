@@ -14,6 +14,8 @@ UISegmentedControl *customSegementedControl;
 
 @property (nonatomic, retain) UISegmentedControl *customSegementedControl;
 
+@property (nonatomic, weak) UITableView *tableView;
+
 
 @end
 

@@ -29,7 +29,6 @@
     if (self) {
         _craft = [GCSCraftModelGenerator createInitialModel];
         _lastViewedMapCamera = nil;
-        _gcsSettings = [[GCSSettings alloc] init];
        [self loadArchives];
     }
     return self;
