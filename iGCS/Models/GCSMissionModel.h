@@ -10,4 +10,8 @@
 
 @interface GCSMissionModel : NSObject
 
+@property(nonatomic, strong) NSMutableArray *missionItems;
+
+
+
 @end
