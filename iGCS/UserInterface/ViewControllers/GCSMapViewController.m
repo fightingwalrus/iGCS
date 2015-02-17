@@ -77,20 +77,13 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     self.showProposedFollowPos = NO;
     self.lastFollowMeUpdate = [NSDate date];
 
-    //
-
-
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftCustomModeDidChange)
                                                  name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
 
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftMavModeDidChange)
                                                  name:GCSCraftNotificationsCraftMavModeDidChange object:nil];
-
-    
 }
 
 + (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
