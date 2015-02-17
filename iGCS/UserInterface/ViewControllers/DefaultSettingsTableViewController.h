@@ -12,6 +12,5 @@
 
 @interface DefaultSettingsTableViewController : UITableViewController
 
-
 @end
 

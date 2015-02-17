@@ -37,8 +37,15 @@
         [self.self.customTextField autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customLabel withOffset:0];
         [self.customTextField autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.contentView];
       }
+    
     return self;
     
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    DDLogVerbose(@"Made it Here!");
 }
 
 

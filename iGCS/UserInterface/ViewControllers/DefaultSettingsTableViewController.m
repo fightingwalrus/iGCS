@@ -132,21 +132,14 @@
         
         if ([cellContent isEqual: @"Altitude"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.altitude];
-            //[GCSDataManager sharedInstance].gcsSettings.altitude +=5;
         }
         else if ([cellContent isEqual: @"Ceiling"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.ceiling];
-            [GCSDataManager sharedInstance].gcsSettings.ceiling +=3;
-            
         }
         
         else if ([cellContent isEqual: @"Radius"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.radius];
-            [GCSDataManager sharedInstance].gcsSettings.radius +=7;
-            
         }
-        
-        //[GCSDataManager save];
         cell = settingsWaypointCell;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -191,7 +184,6 @@
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
-    
 
 /*
     if ([cellContent isEqual: @"Waypoints"]) {
@@ -223,26 +215,26 @@
 
 - (void)doneWithChanges:(id)sender {
     
+    NSIndexPath *indexPath;
+    SettingsWaypointCell *cell;
+    
+    indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [GCSDataManager sharedInstance].gcsSettings.altitude = [cell.customTextField.text integerValue];
+   
+    indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text integerValue];
+    [GCSDataManager save];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)saveSettings:(id)sender {
-    DDLogDebug(@"Save Default Settings");
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-- (void) switchChanged:(id)sender {
-    UISwitch *switchControl = sender;
-    DDLogVerbose(@"The switch is %@", switchControl.on ? @"Standard" : @"Metric");
-    self.standardSelected = switchControl.on;
-}
-
 
 
 
