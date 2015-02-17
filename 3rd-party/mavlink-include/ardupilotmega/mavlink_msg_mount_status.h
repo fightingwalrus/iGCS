@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_mount_status_t
 {
- int32_t pointing_a; ///< pitch(deg*100) or lat, depending on mount mode
- int32_t pointing_b; ///< roll(deg*100) or lon depending on mount mode
- int32_t pointing_c; ///< yaw(deg*100) or alt (in cm) depending on mount mode
+ int32_t pointing_a; ///< pitch(deg*100)
+ int32_t pointing_b; ///< roll(deg*100)
+ int32_t pointing_c; ///< yaw(deg*100)
  uint8_t target_system; ///< System ID
  uint8_t target_component; ///< Component ID
 } mavlink_mount_status_t;
@@ -39,9 +39,9 @@ typedef struct __mavlink_mount_status_t
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param pointing_a pitch(deg*100) or lat, depending on mount mode
- * @param pointing_b roll(deg*100) or lon depending on mount mode
- * @param pointing_c yaw(deg*100) or alt (in cm) depending on mount mode
+ * @param pointing_a pitch(deg*100)
+ * @param pointing_b roll(deg*100)
+ * @param pointing_c yaw(deg*100)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -83,9 +83,9 @@ static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param target_system System ID
  * @param target_component Component ID
- * @param pointing_a pitch(deg*100) or lat, depending on mount mode
- * @param pointing_b roll(deg*100) or lon depending on mount mode
- * @param pointing_c yaw(deg*100) or alt (in cm) depending on mount mode
+ * @param pointing_a pitch(deg*100)
+ * @param pointing_b roll(deg*100)
+ * @param pointing_c yaw(deg*100)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mount_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -153,9 +153,9 @@ static inline uint16_t mavlink_msg_mount_status_encode_chan(uint8_t system_id, u
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param pointing_a pitch(deg*100) or lat, depending on mount mode
- * @param pointing_b roll(deg*100) or lon depending on mount mode
- * @param pointing_c yaw(deg*100) or alt (in cm) depending on mount mode
+ * @param pointing_a pitch(deg*100)
+ * @param pointing_b roll(deg*100)
+ * @param pointing_c yaw(deg*100)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -190,6 +190,46 @@ static inline void mavlink_msg_mount_status_send(mavlink_channel_t chan, uint8_t
 #endif
 }
 
+#if MAVLINK_MSG_ID_MOUNT_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
+/*
+  This varient of _send() can be used to save stack space by re-using
+  memory from the receive buffer.  The caller provides a
+  mavlink_message_t which is the size of a full mavlink message. This
+  is usually the receive buffer for the channel, and allows a reply to an
+  incoming message with minimum stack space usage.
+ */
+static inline void mavlink_msg_mount_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+	char *buf = (char *)msgbuf;
+	_mav_put_int32_t(buf, 0, pointing_a);
+	_mav_put_int32_t(buf, 4, pointing_b);
+	_mav_put_int32_t(buf, 8, pointing_c);
+	_mav_put_uint8_t(buf, 12, target_system);
+	_mav_put_uint8_t(buf, 13, target_component);
+
+#if MAVLINK_CRC_EXTRA
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_LEN);
+#endif
+#else
+	mavlink_mount_status_t *packet = (mavlink_mount_status_t *)msgbuf;
+	packet->pointing_a = pointing_a;
+	packet->pointing_b = pointing_b;
+	packet->pointing_c = pointing_c;
+	packet->target_system = target_system;
+	packet->target_component = target_component;
+
+#if MAVLINK_CRC_EXTRA
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)packet, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)packet, MAVLINK_MSG_ID_MOUNT_STATUS_LEN);
+#endif
+#endif
+}
+#endif
+
 #endif
 
 // MESSAGE MOUNT_STATUS UNPACKING
@@ -218,7 +258,7 @@ static inline uint8_t mavlink_msg_mount_status_get_target_component(const mavlin
 /**
  * @brief Get field pointing_a from mount_status message
  *
- * @return pitch(deg*100) or lat, depending on mount mode
+ * @return pitch(deg*100)
  */
 static inline int32_t mavlink_msg_mount_status_get_pointing_a(const mavlink_message_t* msg)
 {
@@ -228,7 +268,7 @@ static inline int32_t mavlink_msg_mount_status_get_pointing_a(const mavlink_mess
 /**
  * @brief Get field pointing_b from mount_status message
  *
- * @return roll(deg*100) or lon depending on mount mode
+ * @return roll(deg*100)
  */
 static inline int32_t mavlink_msg_mount_status_get_pointing_b(const mavlink_message_t* msg)
 {
@@ -238,7 +278,7 @@ static inline int32_t mavlink_msg_mount_status_get_pointing_b(const mavlink_mess
 /**
  * @brief Get field pointing_c from mount_status message
  *
- * @return yaw(deg*100) or alt (in cm) depending on mount mode
+ * @return yaw(deg*100)
  */
 static inline int32_t mavlink_msg_mount_status_get_pointing_c(const mavlink_message_t* msg)
 {

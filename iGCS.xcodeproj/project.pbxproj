@@ -472,6 +472,221 @@
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
+		1837471B1A93D96700995522 /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
+		1837471C1A93D96700995522 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
+		1837471D1A93D96700995522 /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
+		1837471E1A93D96700995522 /* mavlink_msg_ahrs2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs2.h; sourceTree = "<group>"; };
+		1837471F1A93D96700995522 /* mavlink_msg_ahrs3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs3.h; sourceTree = "<group>"; };
+		183747201A93D96700995522 /* mavlink_msg_airspeed_autocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_airspeed_autocal.h; sourceTree = "<group>"; };
+		183747211A93D96700995522 /* mavlink_msg_ap_adc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ap_adc.h; sourceTree = "<group>"; };
+		183747221A93D96700995522 /* mavlink_msg_autopilot_version_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_autopilot_version_request.h; sourceTree = "<group>"; };
+		183747231A93D96700995522 /* mavlink_msg_battery2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_battery2.h; sourceTree = "<group>"; };
+		183747241A93D96700995522 /* mavlink_msg_camera_feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_camera_feedback.h; sourceTree = "<group>"; };
+		183747251A93D96700995522 /* mavlink_msg_camera_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_camera_status.h; sourceTree = "<group>"; };
+		183747261A93D96700995522 /* mavlink_msg_compassmot_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_compassmot_status.h; sourceTree = "<group>"; };
+		183747271A93D96700995522 /* mavlink_msg_data16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data16.h; sourceTree = "<group>"; };
+		183747281A93D96700995522 /* mavlink_msg_data32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data32.h; sourceTree = "<group>"; };
+		183747291A93D96700995522 /* mavlink_msg_data64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data64.h; sourceTree = "<group>"; };
+		1837472A1A93D96700995522 /* mavlink_msg_data96.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data96.h; sourceTree = "<group>"; };
+		1837472B1A93D96700995522 /* mavlink_msg_digicam_configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_digicam_configure.h; sourceTree = "<group>"; };
+		1837472C1A93D96700995522 /* mavlink_msg_digicam_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_digicam_control.h; sourceTree = "<group>"; };
+		1837472D1A93D96700995522 /* mavlink_msg_fence_fetch_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_fetch_point.h; sourceTree = "<group>"; };
+		1837472E1A93D96700995522 /* mavlink_msg_fence_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_point.h; sourceTree = "<group>"; };
+		1837472F1A93D96700995522 /* mavlink_msg_fence_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_status.h; sourceTree = "<group>"; };
+		183747301A93D96700995522 /* mavlink_msg_gimbal_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gimbal_control.h; sourceTree = "<group>"; };
+		183747311A93D96700995522 /* mavlink_msg_gimbal_report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gimbal_report.h; sourceTree = "<group>"; };
+		183747321A93D96700995522 /* mavlink_msg_hwstatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hwstatus.h; sourceTree = "<group>"; };
+		183747331A93D96700995522 /* mavlink_msg_limits_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_limits_status.h; sourceTree = "<group>"; };
+		183747341A93D96700995522 /* mavlink_msg_meminfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_meminfo.h; sourceTree = "<group>"; };
+		183747351A93D96700995522 /* mavlink_msg_mount_configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_configure.h; sourceTree = "<group>"; };
+		183747361A93D96700995522 /* mavlink_msg_mount_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_control.h; sourceTree = "<group>"; };
+		183747371A93D96700995522 /* mavlink_msg_mount_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_status.h; sourceTree = "<group>"; };
+		183747381A93D96700995522 /* mavlink_msg_radio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_radio.h; sourceTree = "<group>"; };
+		183747391A93D96700995522 /* mavlink_msg_rally_fetch_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rally_fetch_point.h; sourceTree = "<group>"; };
+		1837473A1A93D96700995522 /* mavlink_msg_rally_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rally_point.h; sourceTree = "<group>"; };
+		1837473B1A93D96700995522 /* mavlink_msg_rangefinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rangefinder.h; sourceTree = "<group>"; };
+		1837473C1A93D96700995522 /* mavlink_msg_sensor_offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sensor_offsets.h; sourceTree = "<group>"; };
+		1837473D1A93D96700995522 /* mavlink_msg_set_mag_offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_mag_offsets.h; sourceTree = "<group>"; };
+		1837473E1A93D96700995522 /* mavlink_msg_simstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_simstate.h; sourceTree = "<group>"; };
+		1837473F1A93D96700995522 /* mavlink_msg_wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_wind.h; sourceTree = "<group>"; };
+		183747401A93D96700995522 /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
+		183747411A93D96700995522 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		183747421A93D96700995522 /* checksum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checksum.h; sourceTree = "<group>"; };
+		183747441A93D96700995522 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		183747451A93D96700995522 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
+		183747461A93D96700995522 /* mavlink_msg_actuator_control_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_actuator_control_target.h; sourceTree = "<group>"; };
+		183747471A93D96700995522 /* mavlink_msg_att_pos_mocap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_att_pos_mocap.h; sourceTree = "<group>"; };
+		183747481A93D96700995522 /* mavlink_msg_attitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude.h; sourceTree = "<group>"; };
+		183747491A93D96700995522 /* mavlink_msg_attitude_quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_quaternion.h; sourceTree = "<group>"; };
+		1837474A1A93D96700995522 /* mavlink_msg_attitude_quaternion_cov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_quaternion_cov.h; sourceTree = "<group>"; };
+		1837474B1A93D96700995522 /* mavlink_msg_attitude_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_target.h; sourceTree = "<group>"; };
+		1837474C1A93D96700995522 /* mavlink_msg_auth_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_auth_key.h; sourceTree = "<group>"; };
+		1837474D1A93D96700995522 /* mavlink_msg_autopilot_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_autopilot_version.h; sourceTree = "<group>"; };
+		1837474E1A93D96700995522 /* mavlink_msg_battery_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_battery_status.h; sourceTree = "<group>"; };
+		1837474F1A93D96700995522 /* mavlink_msg_change_operator_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_change_operator_control.h; sourceTree = "<group>"; };
+		183747501A93D96700995522 /* mavlink_msg_change_operator_control_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_change_operator_control_ack.h; sourceTree = "<group>"; };
+		183747511A93D96700995522 /* mavlink_msg_command_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_command_ack.h; sourceTree = "<group>"; };
+		183747521A93D96700995522 /* mavlink_msg_command_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_command_int.h; sourceTree = "<group>"; };
+		183747531A93D96700995522 /* mavlink_msg_command_long.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_command_long.h; sourceTree = "<group>"; };
+		183747541A93D96700995522 /* mavlink_msg_data_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data_stream.h; sourceTree = "<group>"; };
+		183747551A93D96700995522 /* mavlink_msg_data_transmission_handshake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data_transmission_handshake.h; sourceTree = "<group>"; };
+		183747561A93D96700995522 /* mavlink_msg_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_debug.h; sourceTree = "<group>"; };
+		183747571A93D96700995522 /* mavlink_msg_debug_vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_debug_vect.h; sourceTree = "<group>"; };
+		183747581A93D96700995522 /* mavlink_msg_distance_sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_distance_sensor.h; sourceTree = "<group>"; };
+		183747591A93D96700995522 /* mavlink_msg_encapsulated_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_encapsulated_data.h; sourceTree = "<group>"; };
+		1837475A1A93D96700995522 /* mavlink_msg_file_transfer_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_file_transfer_protocol.h; sourceTree = "<group>"; };
+		1837475B1A93D96700995522 /* mavlink_msg_global_position_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_position_int.h; sourceTree = "<group>"; };
+		1837475C1A93D96700995522 /* mavlink_msg_global_position_int_cov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_position_int_cov.h; sourceTree = "<group>"; };
+		1837475D1A93D96700995522 /* mavlink_msg_global_vision_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_vision_position_estimate.h; sourceTree = "<group>"; };
+		1837475E1A93D96700995522 /* mavlink_msg_gps2_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps2_raw.h; sourceTree = "<group>"; };
+		1837475F1A93D96700995522 /* mavlink_msg_gps2_rtk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps2_rtk.h; sourceTree = "<group>"; };
+		183747601A93D96700995522 /* mavlink_msg_gps_global_origin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_global_origin.h; sourceTree = "<group>"; };
+		183747611A93D96700995522 /* mavlink_msg_gps_inject_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_inject_data.h; sourceTree = "<group>"; };
+		183747621A93D96700995522 /* mavlink_msg_gps_raw_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_raw_int.h; sourceTree = "<group>"; };
+		183747631A93D96700995522 /* mavlink_msg_gps_rtk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_rtk.h; sourceTree = "<group>"; };
+		183747641A93D96700995522 /* mavlink_msg_gps_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_status.h; sourceTree = "<group>"; };
+		183747651A93D96700995522 /* mavlink_msg_heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_heartbeat.h; sourceTree = "<group>"; };
+		183747661A93D96700995522 /* mavlink_msg_highres_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_highres_imu.h; sourceTree = "<group>"; };
+		183747671A93D96700995522 /* mavlink_msg_hil_controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_controls.h; sourceTree = "<group>"; };
+		183747681A93D96700995522 /* mavlink_msg_hil_gps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_gps.h; sourceTree = "<group>"; };
+		183747691A93D96700995522 /* mavlink_msg_hil_optical_flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_optical_flow.h; sourceTree = "<group>"; };
+		1837476A1A93D96700995522 /* mavlink_msg_hil_rc_inputs_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_rc_inputs_raw.h; sourceTree = "<group>"; };
+		1837476B1A93D96700995522 /* mavlink_msg_hil_sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_sensor.h; sourceTree = "<group>"; };
+		1837476C1A93D96700995522 /* mavlink_msg_hil_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_state.h; sourceTree = "<group>"; };
+		1837476D1A93D96700995522 /* mavlink_msg_hil_state_quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_state_quaternion.h; sourceTree = "<group>"; };
+		1837476E1A93D96700995522 /* mavlink_msg_local_position_ned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_ned.h; sourceTree = "<group>"; };
+		1837476F1A93D96700995522 /* mavlink_msg_local_position_ned_cov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_ned_cov.h; sourceTree = "<group>"; };
+		183747701A93D96700995522 /* mavlink_msg_local_position_ned_system_global_offset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_ned_system_global_offset.h; sourceTree = "<group>"; };
+		183747711A93D96700995522 /* mavlink_msg_log_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_data.h; sourceTree = "<group>"; };
+		183747721A93D96700995522 /* mavlink_msg_log_entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_entry.h; sourceTree = "<group>"; };
+		183747731A93D96700995522 /* mavlink_msg_log_erase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_erase.h; sourceTree = "<group>"; };
+		183747741A93D96700995522 /* mavlink_msg_log_request_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_data.h; sourceTree = "<group>"; };
+		183747751A93D96700995522 /* mavlink_msg_log_request_end.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_end.h; sourceTree = "<group>"; };
+		183747761A93D96700995522 /* mavlink_msg_log_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_list.h; sourceTree = "<group>"; };
+		183747771A93D96700995522 /* mavlink_msg_manual_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_manual_control.h; sourceTree = "<group>"; };
+		183747781A93D96700995522 /* mavlink_msg_manual_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_manual_setpoint.h; sourceTree = "<group>"; };
+		183747791A93D96700995522 /* mavlink_msg_memory_vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_memory_vect.h; sourceTree = "<group>"; };
+		1837477A1A93D96700995522 /* mavlink_msg_mission_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_ack.h; sourceTree = "<group>"; };
+		1837477B1A93D96700995522 /* mavlink_msg_mission_clear_all.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_clear_all.h; sourceTree = "<group>"; };
+		1837477C1A93D96700995522 /* mavlink_msg_mission_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_count.h; sourceTree = "<group>"; };
+		1837477D1A93D96700995522 /* mavlink_msg_mission_current.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_current.h; sourceTree = "<group>"; };
+		1837477E1A93D96700995522 /* mavlink_msg_mission_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_item.h; sourceTree = "<group>"; };
+		1837477F1A93D96700995522 /* mavlink_msg_mission_item_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_item_int.h; sourceTree = "<group>"; };
+		183747801A93D96700995522 /* mavlink_msg_mission_item_reached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_item_reached.h; sourceTree = "<group>"; };
+		183747811A93D96700995522 /* mavlink_msg_mission_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request.h; sourceTree = "<group>"; };
+		183747821A93D96700995522 /* mavlink_msg_mission_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request_list.h; sourceTree = "<group>"; };
+		183747831A93D96700995522 /* mavlink_msg_mission_request_partial_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request_partial_list.h; sourceTree = "<group>"; };
+		183747841A93D96700995522 /* mavlink_msg_mission_set_current.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_set_current.h; sourceTree = "<group>"; };
+		183747851A93D96700995522 /* mavlink_msg_mission_write_partial_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_write_partial_list.h; sourceTree = "<group>"; };
+		183747861A93D96800995522 /* mavlink_msg_named_value_float.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_named_value_float.h; sourceTree = "<group>"; };
+		183747871A93D96800995522 /* mavlink_msg_named_value_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_named_value_int.h; sourceTree = "<group>"; };
+		183747881A93D96800995522 /* mavlink_msg_nav_controller_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_nav_controller_output.h; sourceTree = "<group>"; };
+		183747891A93D96800995522 /* mavlink_msg_optical_flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_optical_flow.h; sourceTree = "<group>"; };
+		1837478A1A93D96800995522 /* mavlink_msg_optical_flow_rad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_optical_flow_rad.h; sourceTree = "<group>"; };
+		1837478B1A93D96800995522 /* mavlink_msg_param_map_rc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_map_rc.h; sourceTree = "<group>"; };
+		1837478C1A93D96800995522 /* mavlink_msg_param_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_request_list.h; sourceTree = "<group>"; };
+		1837478D1A93D96800995522 /* mavlink_msg_param_request_read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_request_read.h; sourceTree = "<group>"; };
+		1837478E1A93D96800995522 /* mavlink_msg_param_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_set.h; sourceTree = "<group>"; };
+		1837478F1A93D96800995522 /* mavlink_msg_param_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_value.h; sourceTree = "<group>"; };
+		183747901A93D96800995522 /* mavlink_msg_ping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ping.h; sourceTree = "<group>"; };
+		183747911A93D96800995522 /* mavlink_msg_position_target_global_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_position_target_global_int.h; sourceTree = "<group>"; };
+		183747921A93D96800995522 /* mavlink_msg_position_target_local_ned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_position_target_local_ned.h; sourceTree = "<group>"; };
+		183747931A93D96800995522 /* mavlink_msg_power_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_power_status.h; sourceTree = "<group>"; };
+		183747941A93D96800995522 /* mavlink_msg_radio_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_radio_status.h; sourceTree = "<group>"; };
+		183747951A93D96800995522 /* mavlink_msg_raw_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_imu.h; sourceTree = "<group>"; };
+		183747961A93D96800995522 /* mavlink_msg_raw_pressure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_pressure.h; sourceTree = "<group>"; };
+		183747971A93D96800995522 /* mavlink_msg_rc_channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels.h; sourceTree = "<group>"; };
+		183747981A93D96800995522 /* mavlink_msg_rc_channels_override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_override.h; sourceTree = "<group>"; };
+		183747991A93D96800995522 /* mavlink_msg_rc_channels_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_raw.h; sourceTree = "<group>"; };
+		1837479A1A93D96800995522 /* mavlink_msg_rc_channels_scaled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_scaled.h; sourceTree = "<group>"; };
+		1837479B1A93D96800995522 /* mavlink_msg_request_data_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_request_data_stream.h; sourceTree = "<group>"; };
+		1837479C1A93D96800995522 /* mavlink_msg_safety_allowed_area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_safety_allowed_area.h; sourceTree = "<group>"; };
+		1837479D1A93D96800995522 /* mavlink_msg_safety_set_allowed_area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_safety_set_allowed_area.h; sourceTree = "<group>"; };
+		1837479E1A93D96800995522 /* mavlink_msg_scaled_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_imu.h; sourceTree = "<group>"; };
+		1837479F1A93D96800995522 /* mavlink_msg_scaled_imu2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_imu2.h; sourceTree = "<group>"; };
+		183747A01A93D96800995522 /* mavlink_msg_scaled_pressure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_pressure.h; sourceTree = "<group>"; };
+		183747A11A93D96800995522 /* mavlink_msg_scaled_pressure2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_pressure2.h; sourceTree = "<group>"; };
+		183747A21A93D96800995522 /* mavlink_msg_serial_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_control.h; sourceTree = "<group>"; };
+		183747A31A93D96800995522 /* mavlink_msg_servo_output_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_servo_output_raw.h; sourceTree = "<group>"; };
+		183747A41A93D96800995522 /* mavlink_msg_set_actuator_control_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_actuator_control_target.h; sourceTree = "<group>"; };
+		183747A51A93D96800995522 /* mavlink_msg_set_attitude_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_attitude_target.h; sourceTree = "<group>"; };
+		183747A61A93D96800995522 /* mavlink_msg_set_gps_global_origin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_gps_global_origin.h; sourceTree = "<group>"; };
+		183747A71A93D96800995522 /* mavlink_msg_set_mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_mode.h; sourceTree = "<group>"; };
+		183747A81A93D96800995522 /* mavlink_msg_set_position_target_global_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_position_target_global_int.h; sourceTree = "<group>"; };
+		183747A91A93D96800995522 /* mavlink_msg_set_position_target_local_ned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_position_target_local_ned.h; sourceTree = "<group>"; };
+		183747AA1A93D96800995522 /* mavlink_msg_sim_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sim_state.h; sourceTree = "<group>"; };
+		183747AB1A93D96800995522 /* mavlink_msg_statustext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_statustext.h; sourceTree = "<group>"; };
+		183747AC1A93D96800995522 /* mavlink_msg_sys_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sys_status.h; sourceTree = "<group>"; };
+		183747AD1A93D96800995522 /* mavlink_msg_system_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_system_time.h; sourceTree = "<group>"; };
+		183747AE1A93D96800995522 /* mavlink_msg_terrain_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_terrain_check.h; sourceTree = "<group>"; };
+		183747AF1A93D96800995522 /* mavlink_msg_terrain_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_terrain_data.h; sourceTree = "<group>"; };
+		183747B01A93D96800995522 /* mavlink_msg_terrain_report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_terrain_report.h; sourceTree = "<group>"; };
+		183747B11A93D96800995522 /* mavlink_msg_terrain_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_terrain_request.h; sourceTree = "<group>"; };
+		183747B21A93D96800995522 /* mavlink_msg_timesync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_timesync.h; sourceTree = "<group>"; };
+		183747B31A93D96800995522 /* mavlink_msg_v2_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_v2_extension.h; sourceTree = "<group>"; };
+		183747B41A93D96800995522 /* mavlink_msg_vfr_hud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vfr_hud.h; sourceTree = "<group>"; };
+		183747B51A93D96800995522 /* mavlink_msg_vicon_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vicon_position_estimate.h; sourceTree = "<group>"; };
+		183747B61A93D96800995522 /* mavlink_msg_vision_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vision_position_estimate.h; sourceTree = "<group>"; };
+		183747B71A93D96800995522 /* mavlink_msg_vision_speed_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vision_speed_estimate.h; sourceTree = "<group>"; };
+		183747B81A93D96800995522 /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
+		183747B91A93D96800995522 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		183747BA1A93D96800995522 /* mavlink_conversions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_conversions.h; sourceTree = "<group>"; };
+		183747BB1A93D96800995522 /* mavlink_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_helpers.h; sourceTree = "<group>"; };
+		183747BC1A93D96800995522 /* mavlink_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_types.h; sourceTree = "<group>"; };
+		183747BD1A93D96800995522 /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
+		183747BF1A93DCAB00995522 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
+		183747C01A93DCAB00995522 /* mavlink_msg_attitude_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_control.h; sourceTree = "<group>"; };
+		183747C11A93DCAB00995522 /* mavlink_msg_brief_feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_brief_feature.h; sourceTree = "<group>"; };
+		183747C21A93DCAB00995522 /* mavlink_msg_detection_stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_detection_stats.h; sourceTree = "<group>"; };
+		183747C31A93DCAB00995522 /* mavlink_msg_image_available.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_available.h; sourceTree = "<group>"; };
+		183747C41A93DCAB00995522 /* mavlink_msg_image_trigger_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_trigger_control.h; sourceTree = "<group>"; };
+		183747C51A93DCAB00995522 /* mavlink_msg_image_triggered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_triggered.h; sourceTree = "<group>"; };
+		183747C61A93DCAB00995522 /* mavlink_msg_marker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_marker.h; sourceTree = "<group>"; };
+		183747C71A93DCAB00995522 /* mavlink_msg_onboard_health.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_onboard_health.h; sourceTree = "<group>"; };
+		183747C81A93DCAB00995522 /* mavlink_msg_pattern_detected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_pattern_detected.h; sourceTree = "<group>"; };
+		183747C91A93DCAB00995522 /* mavlink_msg_point_of_interest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_point_of_interest.h; sourceTree = "<group>"; };
+		183747CA1A93DCAB00995522 /* mavlink_msg_point_of_interest_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_point_of_interest_connection.h; sourceTree = "<group>"; };
+		183747CB1A93DCAB00995522 /* mavlink_msg_position_control_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_position_control_setpoint.h; sourceTree = "<group>"; };
+		183747CC1A93DCAB00995522 /* mavlink_msg_raw_aux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_aux.h; sourceTree = "<group>"; };
+		183747CD1A93DCAB00995522 /* mavlink_msg_set_cam_shutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_cam_shutter.h; sourceTree = "<group>"; };
+		183747CE1A93DCAB00995522 /* mavlink_msg_set_position_control_offset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_position_control_offset.h; sourceTree = "<group>"; };
+		183747CF1A93DCAB00995522 /* mavlink_msg_watchdog_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_command.h; sourceTree = "<group>"; };
+		183747D01A93DCAB00995522 /* mavlink_msg_watchdog_heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_heartbeat.h; sourceTree = "<group>"; };
+		183747D11A93DCAB00995522 /* mavlink_msg_watchdog_process_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_process_info.h; sourceTree = "<group>"; };
+		183747D21A93DCAB00995522 /* mavlink_msg_watchdog_process_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_process_status.h; sourceTree = "<group>"; };
+		183747D31A93DCAB00995522 /* pixhawk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixhawk.h; sourceTree = "<group>"; };
+		183747D41A93DCAB00995522 /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
+		183747D51A93DCAB00995522 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		183747D71A93E15300995522 /* autoquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoquad.h; sourceTree = "<group>"; };
+		183747D81A93E15300995522 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
+		183747D91A93E15300995522 /* mavlink_msg_aq_telemetry_f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_aq_telemetry_f.h; sourceTree = "<group>"; };
+		183747DA1A93E15300995522 /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
+		183747DB1A93E15300995522 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		183747DD1A93E21300995522 /* matrixpilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrixpilot.h; sourceTree = "<group>"; };
+		183747DE1A93E21300995522 /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
+		183747DF1A93E21300995522 /* mavlink_msg_airspeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_airspeeds.h; sourceTree = "<group>"; };
+		183747E01A93E21300995522 /* mavlink_msg_altitudes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_altitudes.h; sourceTree = "<group>"; };
+		183747E11A93E21300995522 /* mavlink_msg_flexifunction_buffer_function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_buffer_function.h; sourceTree = "<group>"; };
+		183747E21A93E21300995522 /* mavlink_msg_flexifunction_buffer_function_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_buffer_function_ack.h; sourceTree = "<group>"; };
+		183747E31A93E21300995522 /* mavlink_msg_flexifunction_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_command.h; sourceTree = "<group>"; };
+		183747E41A93E21300995522 /* mavlink_msg_flexifunction_command_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_command_ack.h; sourceTree = "<group>"; };
+		183747E51A93E21300995522 /* mavlink_msg_flexifunction_directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_directory.h; sourceTree = "<group>"; };
+		183747E61A93E21300995522 /* mavlink_msg_flexifunction_directory_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_directory_ack.h; sourceTree = "<group>"; };
+		183747E71A93E21300995522 /* mavlink_msg_flexifunction_read_req.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_read_req.h; sourceTree = "<group>"; };
+		183747E81A93E21300995522 /* mavlink_msg_flexifunction_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_set.h; sourceTree = "<group>"; };
+		183747E91A93E21300995522 /* mavlink_msg_serial_udb_extra_f13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f13.h; sourceTree = "<group>"; };
+		183747EA1A93E21300995522 /* mavlink_msg_serial_udb_extra_f14.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f14.h; sourceTree = "<group>"; };
+		183747EB1A93E21300995522 /* mavlink_msg_serial_udb_extra_f15.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f15.h; sourceTree = "<group>"; };
+		183747EC1A93E21300995522 /* mavlink_msg_serial_udb_extra_f16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f16.h; sourceTree = "<group>"; };
+		183747ED1A93E21300995522 /* mavlink_msg_serial_udb_extra_f2_a.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f2_a.h; sourceTree = "<group>"; };
+		183747EE1A93E21300995522 /* mavlink_msg_serial_udb_extra_f2_b.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f2_b.h; sourceTree = "<group>"; };
+		183747EF1A93E21300995522 /* mavlink_msg_serial_udb_extra_f4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f4.h; sourceTree = "<group>"; };
+		183747F01A93E21300995522 /* mavlink_msg_serial_udb_extra_f5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f5.h; sourceTree = "<group>"; };
+		183747F11A93E21300995522 /* mavlink_msg_serial_udb_extra_f6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f6.h; sourceTree = "<group>"; };
+		183747F21A93E21300995522 /* mavlink_msg_serial_udb_extra_f7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f7.h; sourceTree = "<group>"; };
+		183747F31A93E21300995522 /* mavlink_msg_serial_udb_extra_f8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f8.h; sourceTree = "<group>"; };
+		183747F41A93E21300995522 /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
+		183747F51A93E21300995522 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		1842F8C41892D2F80050F680 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		1842F8C51892D2F80050F680 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
 		1842F8C61892D2F80050F680 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
@@ -524,219 +739,6 @@
 		18A42CD218895B3700408D71 /* GKNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNetController.m; sourceTree = "<group>"; };
 		18A777F017CE9E910014451B /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18A777F117CE9E910014451B /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
-		18B6116E18A441AF0000E9DF /* ardupilotmega.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ardupilotmega.h; sourceTree = "<group>"; };
-		18B6116F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6117018A441AF0000E9DF /* mavlink_msg_ahrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs.h; sourceTree = "<group>"; };
-		18B6117118A441AF0000E9DF /* mavlink_msg_ahrs2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ahrs2.h; sourceTree = "<group>"; };
-		18B6117218A441AF0000E9DF /* mavlink_msg_airspeed_autocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_airspeed_autocal.h; sourceTree = "<group>"; };
-		18B6117318A441AF0000E9DF /* mavlink_msg_ap_adc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ap_adc.h; sourceTree = "<group>"; };
-		18B6117418A441AF0000E9DF /* mavlink_msg_data16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data16.h; sourceTree = "<group>"; };
-		18B6117518A441AF0000E9DF /* mavlink_msg_data32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data32.h; sourceTree = "<group>"; };
-		18B6117618A441AF0000E9DF /* mavlink_msg_data64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data64.h; sourceTree = "<group>"; };
-		18B6117718A441AF0000E9DF /* mavlink_msg_data96.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data96.h; sourceTree = "<group>"; };
-		18B6117818A441AF0000E9DF /* mavlink_msg_digicam_configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_digicam_configure.h; sourceTree = "<group>"; };
-		18B6117918A441AF0000E9DF /* mavlink_msg_digicam_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_digicam_control.h; sourceTree = "<group>"; };
-		18B6117A18A441AF0000E9DF /* mavlink_msg_fence_fetch_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_fetch_point.h; sourceTree = "<group>"; };
-		18B6117B18A441AF0000E9DF /* mavlink_msg_fence_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_point.h; sourceTree = "<group>"; };
-		18B6117C18A441AF0000E9DF /* mavlink_msg_fence_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_fence_status.h; sourceTree = "<group>"; };
-		18B6117D18A441AF0000E9DF /* mavlink_msg_hwstatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hwstatus.h; sourceTree = "<group>"; };
-		18B6117E18A441AF0000E9DF /* mavlink_msg_limits_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_limits_status.h; sourceTree = "<group>"; };
-		18B6117F18A441AF0000E9DF /* mavlink_msg_meminfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_meminfo.h; sourceTree = "<group>"; };
-		18B6118018A441AF0000E9DF /* mavlink_msg_mount_configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_configure.h; sourceTree = "<group>"; };
-		18B6118118A441AF0000E9DF /* mavlink_msg_mount_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_control.h; sourceTree = "<group>"; };
-		18B6118218A441AF0000E9DF /* mavlink_msg_mount_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mount_status.h; sourceTree = "<group>"; };
-		18B6118318A441AF0000E9DF /* mavlink_msg_radio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_radio.h; sourceTree = "<group>"; };
-		18B6118418A441AF0000E9DF /* mavlink_msg_rally_fetch_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rally_fetch_point.h; sourceTree = "<group>"; };
-		18B6118518A441AF0000E9DF /* mavlink_msg_rally_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rally_point.h; sourceTree = "<group>"; };
-		18B6118618A441AF0000E9DF /* mavlink_msg_rangefinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rangefinder.h; sourceTree = "<group>"; };
-		18B6118718A441AF0000E9DF /* mavlink_msg_sensor_offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sensor_offsets.h; sourceTree = "<group>"; };
-		18B6118818A441AF0000E9DF /* mavlink_msg_set_mag_offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_mag_offsets.h; sourceTree = "<group>"; };
-		18B6118918A441AF0000E9DF /* mavlink_msg_simstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_simstate.h; sourceTree = "<group>"; };
-		18B6118A18A441AF0000E9DF /* mavlink_msg_wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_wind.h; sourceTree = "<group>"; };
-		18B6118B18A441AF0000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B6118C18A441AF0000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		18B6118E18A441AF0000E9DF /* autoquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoquad.h; sourceTree = "<group>"; };
-		18B6118F18A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6119018A441AF0000E9DF /* mavlink_msg_aq_telemetry_f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_aq_telemetry_f.h; sourceTree = "<group>"; };
-		18B6119118A441AF0000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B6119218A441AF0000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		18B6119318A441AF0000E9DF /* checksum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checksum.h; sourceTree = "<group>"; };
-		18B6119518A441AF0000E9DF /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		18B6119618A441AF0000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6119718A441AF0000E9DF /* mavlink_msg_attitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude.h; sourceTree = "<group>"; };
-		18B6119818A441AF0000E9DF /* mavlink_msg_attitude_quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_quaternion.h; sourceTree = "<group>"; };
-		18B6119918A441AF0000E9DF /* mavlink_msg_auth_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_auth_key.h; sourceTree = "<group>"; };
-		18B6119A18A441AF0000E9DF /* mavlink_msg_battery_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_battery_status.h; sourceTree = "<group>"; };
-		18B6119B18A441AF0000E9DF /* mavlink_msg_change_operator_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_change_operator_control.h; sourceTree = "<group>"; };
-		18B6119C18A441AF0000E9DF /* mavlink_msg_change_operator_control_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_change_operator_control_ack.h; sourceTree = "<group>"; };
-		18B6119D18A441AF0000E9DF /* mavlink_msg_command_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_command_ack.h; sourceTree = "<group>"; };
-		18B6119E18A441AF0000E9DF /* mavlink_msg_command_long.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_command_long.h; sourceTree = "<group>"; };
-		18B6119F18A441AF0000E9DF /* mavlink_msg_data_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data_stream.h; sourceTree = "<group>"; };
-		18B611A018A441AF0000E9DF /* mavlink_msg_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_debug.h; sourceTree = "<group>"; };
-		18B611A118A441AF0000E9DF /* mavlink_msg_debug_vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_debug_vect.h; sourceTree = "<group>"; };
-		18B611A218A441AF0000E9DF /* mavlink_msg_file_transfer_dir_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_file_transfer_dir_list.h; sourceTree = "<group>"; };
-		18B611A318A441AF0000E9DF /* mavlink_msg_file_transfer_res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_file_transfer_res.h; sourceTree = "<group>"; };
-		18B611A418A441AF0000E9DF /* mavlink_msg_file_transfer_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_file_transfer_start.h; sourceTree = "<group>"; };
-		18B611A518A441AF0000E9DF /* mavlink_msg_global_position_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_position_int.h; sourceTree = "<group>"; };
-		18B611A618A441AF0000E9DF /* mavlink_msg_global_position_setpoint_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_position_setpoint_int.h; sourceTree = "<group>"; };
-		18B611A718A441AF0000E9DF /* mavlink_msg_global_vision_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_global_vision_position_estimate.h; sourceTree = "<group>"; };
-		18B611A818A441AF0000E9DF /* mavlink_msg_gps2_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps2_raw.h; sourceTree = "<group>"; };
-		18B611A918A441AF0000E9DF /* mavlink_msg_gps_global_origin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_global_origin.h; sourceTree = "<group>"; };
-		18B611AA18A441AF0000E9DF /* mavlink_msg_gps_inject_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_inject_data.h; sourceTree = "<group>"; };
-		18B611AB18A441AF0000E9DF /* mavlink_msg_gps_raw_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_raw_int.h; sourceTree = "<group>"; };
-		18B611AC18A441AF0000E9DF /* mavlink_msg_gps_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_gps_status.h; sourceTree = "<group>"; };
-		18B611AD18A441AF0000E9DF /* mavlink_msg_heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_heartbeat.h; sourceTree = "<group>"; };
-		18B611AE18A441AF0000E9DF /* mavlink_msg_highres_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_highres_imu.h; sourceTree = "<group>"; };
-		18B611AF18A441AF0000E9DF /* mavlink_msg_hil_controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_controls.h; sourceTree = "<group>"; };
-		18B611B018A441AF0000E9DF /* mavlink_msg_hil_gps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_gps.h; sourceTree = "<group>"; };
-		18B611B118A441AF0000E9DF /* mavlink_msg_hil_optical_flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_optical_flow.h; sourceTree = "<group>"; };
-		18B611B218A441AF0000E9DF /* mavlink_msg_hil_rc_inputs_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_rc_inputs_raw.h; sourceTree = "<group>"; };
-		18B611B318A441AF0000E9DF /* mavlink_msg_hil_sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_sensor.h; sourceTree = "<group>"; };
-		18B611B418A441AF0000E9DF /* mavlink_msg_hil_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_state.h; sourceTree = "<group>"; };
-		18B611B518A441AF0000E9DF /* mavlink_msg_hil_state_quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_hil_state_quaternion.h; sourceTree = "<group>"; };
-		18B611B618A441AF0000E9DF /* mavlink_msg_local_position_ned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_ned.h; sourceTree = "<group>"; };
-		18B611B718A441AF0000E9DF /* mavlink_msg_local_position_ned_system_global_offset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_ned_system_global_offset.h; sourceTree = "<group>"; };
-		18B611B818A441AF0000E9DF /* mavlink_msg_local_position_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_local_position_setpoint.h; sourceTree = "<group>"; };
-		18B611B918A441AF0000E9DF /* mavlink_msg_log_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_data.h; sourceTree = "<group>"; };
-		18B611BA18A441AF0000E9DF /* mavlink_msg_log_entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_entry.h; sourceTree = "<group>"; };
-		18B611BB18A441AF0000E9DF /* mavlink_msg_log_erase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_erase.h; sourceTree = "<group>"; };
-		18B611BC18A441AF0000E9DF /* mavlink_msg_log_request_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_data.h; sourceTree = "<group>"; };
-		18B611BD18A441AF0000E9DF /* mavlink_msg_log_request_end.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_end.h; sourceTree = "<group>"; };
-		18B611BE18A441AF0000E9DF /* mavlink_msg_log_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_log_request_list.h; sourceTree = "<group>"; };
-		18B611BF18A441AF0000E9DF /* mavlink_msg_manual_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_manual_control.h; sourceTree = "<group>"; };
-		18B611C018A441AF0000E9DF /* mavlink_msg_manual_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_manual_setpoint.h; sourceTree = "<group>"; };
-		18B611C118A441AF0000E9DF /* mavlink_msg_memory_vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_memory_vect.h; sourceTree = "<group>"; };
-		18B611C218A441AF0000E9DF /* mavlink_msg_mission_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_ack.h; sourceTree = "<group>"; };
-		18B611C318A441AF0000E9DF /* mavlink_msg_mission_clear_all.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_clear_all.h; sourceTree = "<group>"; };
-		18B611C418A441AF0000E9DF /* mavlink_msg_mission_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_count.h; sourceTree = "<group>"; };
-		18B611C518A441AF0000E9DF /* mavlink_msg_mission_current.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_current.h; sourceTree = "<group>"; };
-		18B611C618A441AF0000E9DF /* mavlink_msg_mission_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_item.h; sourceTree = "<group>"; };
-		18B611C718A441AF0000E9DF /* mavlink_msg_mission_item_reached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_item_reached.h; sourceTree = "<group>"; };
-		18B611C818A441AF0000E9DF /* mavlink_msg_mission_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request.h; sourceTree = "<group>"; };
-		18B611C918A441AF0000E9DF /* mavlink_msg_mission_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request_list.h; sourceTree = "<group>"; };
-		18B611CA18A441AF0000E9DF /* mavlink_msg_mission_request_partial_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_request_partial_list.h; sourceTree = "<group>"; };
-		18B611CB18A441AF0000E9DF /* mavlink_msg_mission_set_current.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_set_current.h; sourceTree = "<group>"; };
-		18B611CC18A441AF0000E9DF /* mavlink_msg_mission_write_partial_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_mission_write_partial_list.h; sourceTree = "<group>"; };
-		18B611CD18A441AF0000E9DF /* mavlink_msg_named_value_float.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_named_value_float.h; sourceTree = "<group>"; };
-		18B611CE18A441AF0000E9DF /* mavlink_msg_named_value_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_named_value_int.h; sourceTree = "<group>"; };
-		18B611CF18A441AF0000E9DF /* mavlink_msg_nav_controller_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_nav_controller_output.h; sourceTree = "<group>"; };
-		18B611D018A441AF0000E9DF /* mavlink_msg_omnidirectional_flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_omnidirectional_flow.h; sourceTree = "<group>"; };
-		18B611D118A441AF0000E9DF /* mavlink_msg_optical_flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_optical_flow.h; sourceTree = "<group>"; };
-		18B611D218A441AF0000E9DF /* mavlink_msg_param_request_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_request_list.h; sourceTree = "<group>"; };
-		18B611D318A441AF0000E9DF /* mavlink_msg_param_request_read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_request_read.h; sourceTree = "<group>"; };
-		18B611D418A441AF0000E9DF /* mavlink_msg_param_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_set.h; sourceTree = "<group>"; };
-		18B611D518A441AF0000E9DF /* mavlink_msg_param_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_param_value.h; sourceTree = "<group>"; };
-		18B611D618A441AF0000E9DF /* mavlink_msg_ping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_ping.h; sourceTree = "<group>"; };
-		18B611D718A441AF0000E9DF /* mavlink_msg_radio_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_radio_status.h; sourceTree = "<group>"; };
-		18B611D818A441AF0000E9DF /* mavlink_msg_raw_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_imu.h; sourceTree = "<group>"; };
-		18B611D918A441AF0000E9DF /* mavlink_msg_raw_pressure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_pressure.h; sourceTree = "<group>"; };
-		18B611DA18A441AF0000E9DF /* mavlink_msg_rc_channels_override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_override.h; sourceTree = "<group>"; };
-		18B611DB18A441AF0000E9DF /* mavlink_msg_rc_channels_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_raw.h; sourceTree = "<group>"; };
-		18B611DC18A441AF0000E9DF /* mavlink_msg_rc_channels_scaled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_rc_channels_scaled.h; sourceTree = "<group>"; };
-		18B611DD18A441AF0000E9DF /* mavlink_msg_request_data_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_request_data_stream.h; sourceTree = "<group>"; };
-		18B611DE18A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_rates_thrust_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_roll_pitch_yaw_rates_thrust_setpoint.h; sourceTree = "<group>"; };
-		18B611DF18A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_speed_thrust_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_roll_pitch_yaw_speed_thrust_setpoint.h; sourceTree = "<group>"; };
-		18B611E018A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_thrust_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_roll_pitch_yaw_thrust_setpoint.h; sourceTree = "<group>"; };
-		18B611E118A441AF0000E9DF /* mavlink_msg_safety_allowed_area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_safety_allowed_area.h; sourceTree = "<group>"; };
-		18B611E218A441AF0000E9DF /* mavlink_msg_safety_set_allowed_area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_safety_set_allowed_area.h; sourceTree = "<group>"; };
-		18B611E318A441AF0000E9DF /* mavlink_msg_scaled_imu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_imu.h; sourceTree = "<group>"; };
-		18B611E418A441AF0000E9DF /* mavlink_msg_scaled_imu2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_imu2.h; sourceTree = "<group>"; };
-		18B611E518A441AF0000E9DF /* mavlink_msg_scaled_pressure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_scaled_pressure.h; sourceTree = "<group>"; };
-		18B611E618A441B00000E9DF /* mavlink_msg_servo_output_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_servo_output_raw.h; sourceTree = "<group>"; };
-		18B611E718A441B00000E9DF /* mavlink_msg_set_global_position_setpoint_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_global_position_setpoint_int.h; sourceTree = "<group>"; };
-		18B611E818A441B00000E9DF /* mavlink_msg_set_gps_global_origin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_gps_global_origin.h; sourceTree = "<group>"; };
-		18B611E918A441B00000E9DF /* mavlink_msg_set_local_position_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_local_position_setpoint.h; sourceTree = "<group>"; };
-		18B611EA18A441B00000E9DF /* mavlink_msg_set_mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_mode.h; sourceTree = "<group>"; };
-		18B611EB18A441B00000E9DF /* mavlink_msg_set_quad_motors_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_quad_motors_setpoint.h; sourceTree = "<group>"; };
-		18B611EC18A441B00000E9DF /* mavlink_msg_set_quad_swarm_led_roll_pitch_yaw_thrust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_quad_swarm_led_roll_pitch_yaw_thrust.h; sourceTree = "<group>"; };
-		18B611ED18A441B00000E9DF /* mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust.h; sourceTree = "<group>"; };
-		18B611EE18A441B00000E9DF /* mavlink_msg_set_roll_pitch_yaw_speed_thrust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_roll_pitch_yaw_speed_thrust.h; sourceTree = "<group>"; };
-		18B611EF18A441B00000E9DF /* mavlink_msg_set_roll_pitch_yaw_thrust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_roll_pitch_yaw_thrust.h; sourceTree = "<group>"; };
-		18B611F018A441B00000E9DF /* mavlink_msg_setpoint_6dof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_setpoint_6dof.h; sourceTree = "<group>"; };
-		18B611F118A441B00000E9DF /* mavlink_msg_setpoint_8dof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_setpoint_8dof.h; sourceTree = "<group>"; };
-		18B611F218A441B00000E9DF /* mavlink_msg_sim_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sim_state.h; sourceTree = "<group>"; };
-		18B611F318A441B00000E9DF /* mavlink_msg_state_correction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_state_correction.h; sourceTree = "<group>"; };
-		18B611F418A441B00000E9DF /* mavlink_msg_statustext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_statustext.h; sourceTree = "<group>"; };
-		18B611F518A441B00000E9DF /* mavlink_msg_sys_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sys_status.h; sourceTree = "<group>"; };
-		18B611F618A441B00000E9DF /* mavlink_msg_system_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_system_time.h; sourceTree = "<group>"; };
-		18B611F718A441B00000E9DF /* mavlink_msg_vfr_hud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vfr_hud.h; sourceTree = "<group>"; };
-		18B611F818A441B00000E9DF /* mavlink_msg_vicon_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vicon_position_estimate.h; sourceTree = "<group>"; };
-		18B611F918A441B00000E9DF /* mavlink_msg_vision_position_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vision_position_estimate.h; sourceTree = "<group>"; };
-		18B611FA18A441B00000E9DF /* mavlink_msg_vision_speed_estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_vision_speed_estimate.h; sourceTree = "<group>"; };
-		18B611FB18A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B611FC18A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		18B611FE18A441B00000E9DF /* matrixpilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrixpilot.h; sourceTree = "<group>"; };
-		18B611FF18A441B00000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6120018A441B00000E9DF /* mavlink_msg_airspeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_airspeeds.h; sourceTree = "<group>"; };
-		18B6120118A441B00000E9DF /* mavlink_msg_altitudes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_altitudes.h; sourceTree = "<group>"; };
-		18B6120218A441B00000E9DF /* mavlink_msg_flexifunction_buffer_function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_buffer_function.h; sourceTree = "<group>"; };
-		18B6120318A441B00000E9DF /* mavlink_msg_flexifunction_buffer_function_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_buffer_function_ack.h; sourceTree = "<group>"; };
-		18B6120418A441B00000E9DF /* mavlink_msg_flexifunction_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_command.h; sourceTree = "<group>"; };
-		18B6120518A441B00000E9DF /* mavlink_msg_flexifunction_command_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_command_ack.h; sourceTree = "<group>"; };
-		18B6120618A441B00000E9DF /* mavlink_msg_flexifunction_directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_directory.h; sourceTree = "<group>"; };
-		18B6120718A441B00000E9DF /* mavlink_msg_flexifunction_directory_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_directory_ack.h; sourceTree = "<group>"; };
-		18B6120818A441B00000E9DF /* mavlink_msg_flexifunction_read_req.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_read_req.h; sourceTree = "<group>"; };
-		18B6120918A441B00000E9DF /* mavlink_msg_flexifunction_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_flexifunction_set.h; sourceTree = "<group>"; };
-		18B6120A18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f13.h; sourceTree = "<group>"; };
-		18B6120B18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f14.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f14.h; sourceTree = "<group>"; };
-		18B6120C18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f15.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f15.h; sourceTree = "<group>"; };
-		18B6120D18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f16.h; sourceTree = "<group>"; };
-		18B6120E18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f2_a.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f2_a.h; sourceTree = "<group>"; };
-		18B6120F18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f2_b.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f2_b.h; sourceTree = "<group>"; };
-		18B6121018A441B00000E9DF /* mavlink_msg_serial_udb_extra_f4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f4.h; sourceTree = "<group>"; };
-		18B6121118A441B00000E9DF /* mavlink_msg_serial_udb_extra_f5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f5.h; sourceTree = "<group>"; };
-		18B6121218A441B00000E9DF /* mavlink_msg_serial_udb_extra_f6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f6.h; sourceTree = "<group>"; };
-		18B6121318A441B00000E9DF /* mavlink_msg_serial_udb_extra_f7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f7.h; sourceTree = "<group>"; };
-		18B6121418A441B00000E9DF /* mavlink_msg_serial_udb_extra_f8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_serial_udb_extra_f8.h; sourceTree = "<group>"; };
-		18B6121518A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B6121618A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		18B6121718A441B00000E9DF /* mavlink_conversions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_conversions.h; sourceTree = "<group>"; };
-		18B6121818A441B00000E9DF /* mavlink_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_helpers.h; sourceTree = "<group>"; };
-		18B6121918A441B00000E9DF /* mavlink_protobuf_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mavlink_protobuf_manager.hpp; sourceTree = "<group>"; };
-		18B6121A18A441B00000E9DF /* mavlink_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_types.h; sourceTree = "<group>"; };
-		18B6121C18A441B00000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6121D18A441B00000E9DF /* mavlink_msg_attitude_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_attitude_control.h; sourceTree = "<group>"; };
-		18B6121E18A441B00000E9DF /* mavlink_msg_brief_feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_brief_feature.h; sourceTree = "<group>"; };
-		18B6121F18A441B00000E9DF /* mavlink_msg_data_transmission_handshake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_data_transmission_handshake.h; sourceTree = "<group>"; };
-		18B6122018A441B00000E9DF /* mavlink_msg_encapsulated_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_encapsulated_data.h; sourceTree = "<group>"; };
-		18B6122118A441B00000E9DF /* mavlink_msg_image_available.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_available.h; sourceTree = "<group>"; };
-		18B6122218A441B00000E9DF /* mavlink_msg_image_trigger_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_trigger_control.h; sourceTree = "<group>"; };
-		18B6122318A441B00000E9DF /* mavlink_msg_image_triggered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_image_triggered.h; sourceTree = "<group>"; };
-		18B6122418A441B00000E9DF /* mavlink_msg_marker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_marker.h; sourceTree = "<group>"; };
-		18B6122518A441B00000E9DF /* mavlink_msg_pattern_detected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_pattern_detected.h; sourceTree = "<group>"; };
-		18B6122618A441B00000E9DF /* mavlink_msg_point_of_interest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_point_of_interest.h; sourceTree = "<group>"; };
-		18B6122718A441B00000E9DF /* mavlink_msg_point_of_interest_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_point_of_interest_connection.h; sourceTree = "<group>"; };
-		18B6122818A441B00000E9DF /* mavlink_msg_position_control_setpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_position_control_setpoint.h; sourceTree = "<group>"; };
-		18B6122918A441B00000E9DF /* mavlink_msg_raw_aux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_raw_aux.h; sourceTree = "<group>"; };
-		18B6122A18A441B00000E9DF /* mavlink_msg_set_cam_shutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_cam_shutter.h; sourceTree = "<group>"; };
-		18B6122B18A441B00000E9DF /* mavlink_msg_set_position_control_offset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_set_position_control_offset.h; sourceTree = "<group>"; };
-		18B6122C18A441B00000E9DF /* mavlink_msg_watchdog_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_command.h; sourceTree = "<group>"; };
-		18B6122D18A441B00000E9DF /* mavlink_msg_watchdog_heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_heartbeat.h; sourceTree = "<group>"; };
-		18B6122E18A441B00000E9DF /* mavlink_msg_watchdog_process_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_process_info.h; sourceTree = "<group>"; };
-		18B6122F18A441B00000E9DF /* mavlink_msg_watchdog_process_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_watchdog_process_status.h; sourceTree = "<group>"; };
-		18B6123018A441B00000E9DF /* pixhawk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixhawk.h; sourceTree = "<group>"; };
-		18B6123118A441B00000E9DF /* pixhawk.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixhawk.pb.h; sourceTree = "<group>"; };
-		18B6123218A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B6123318A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		18B6123418A441B00000E9DF /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
-		18B6123618A441B00000E9DF /* mavlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink.h; sourceTree = "<group>"; };
-		18B6123718A441B00000E9DF /* mavlink_msg_cmd_airspeed_ack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_cmd_airspeed_ack.h; sourceTree = "<group>"; };
-		18B6123818A441B00000E9DF /* mavlink_msg_cmd_airspeed_chng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_cmd_airspeed_chng.h; sourceTree = "<group>"; };
-		18B6123918A441B00000E9DF /* mavlink_msg_filt_rot_vel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_filt_rot_vel.h; sourceTree = "<group>"; };
-		18B6123A18A441B00000E9DF /* mavlink_msg_llc_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_llc_out.h; sourceTree = "<group>"; };
-		18B6123B18A441B00000E9DF /* mavlink_msg_obs_air_temp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_air_temp.h; sourceTree = "<group>"; };
-		18B6123C18A441B00000E9DF /* mavlink_msg_obs_air_velocity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_air_velocity.h; sourceTree = "<group>"; };
-		18B6123D18A441B00000E9DF /* mavlink_msg_obs_attitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_attitude.h; sourceTree = "<group>"; };
-		18B6123E18A441B00000E9DF /* mavlink_msg_obs_bias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_bias.h; sourceTree = "<group>"; };
-		18B6123F18A441B00000E9DF /* mavlink_msg_obs_position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_position.h; sourceTree = "<group>"; };
-		18B6124018A441B00000E9DF /* mavlink_msg_obs_qff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_qff.h; sourceTree = "<group>"; };
-		18B6124118A441B00000E9DF /* mavlink_msg_obs_velocity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_velocity.h; sourceTree = "<group>"; };
-		18B6124218A441B00000E9DF /* mavlink_msg_obs_wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_obs_wind.h; sourceTree = "<group>"; };
-		18B6124318A441B00000E9DF /* mavlink_msg_pm_elec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_pm_elec.h; sourceTree = "<group>"; };
-		18B6124418A441B00000E9DF /* mavlink_msg_sys_stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mavlink_msg_sys_stat.h; sourceTree = "<group>"; };
-		18B6124518A441B00000E9DF /* sensesoar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sensesoar.h; sourceTree = "<group>"; };
-		18B6124618A441B00000E9DF /* testsuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testsuite.h; sourceTree = "<group>"; };
-		18B6124718A441B00000E9DF /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		18B6EA0319DF648C0084B666 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18B6EA0B19DF83430084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18B6EA0F19DF84050084B666 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -1188,6 +1190,251 @@
 			path = RovingNetworks;
 			sourceTree = "<group>";
 		};
+		1837471A1A93D96700995522 /* ardupilotmega */ = {
+			isa = PBXGroup;
+			children = (
+				1837471B1A93D96700995522 /* ardupilotmega.h */,
+				1837471C1A93D96700995522 /* mavlink.h */,
+				1837471D1A93D96700995522 /* mavlink_msg_ahrs.h */,
+				1837471E1A93D96700995522 /* mavlink_msg_ahrs2.h */,
+				1837471F1A93D96700995522 /* mavlink_msg_ahrs3.h */,
+				183747201A93D96700995522 /* mavlink_msg_airspeed_autocal.h */,
+				183747211A93D96700995522 /* mavlink_msg_ap_adc.h */,
+				183747221A93D96700995522 /* mavlink_msg_autopilot_version_request.h */,
+				183747231A93D96700995522 /* mavlink_msg_battery2.h */,
+				183747241A93D96700995522 /* mavlink_msg_camera_feedback.h */,
+				183747251A93D96700995522 /* mavlink_msg_camera_status.h */,
+				183747261A93D96700995522 /* mavlink_msg_compassmot_status.h */,
+				183747271A93D96700995522 /* mavlink_msg_data16.h */,
+				183747281A93D96700995522 /* mavlink_msg_data32.h */,
+				183747291A93D96700995522 /* mavlink_msg_data64.h */,
+				1837472A1A93D96700995522 /* mavlink_msg_data96.h */,
+				1837472B1A93D96700995522 /* mavlink_msg_digicam_configure.h */,
+				1837472C1A93D96700995522 /* mavlink_msg_digicam_control.h */,
+				1837472D1A93D96700995522 /* mavlink_msg_fence_fetch_point.h */,
+				1837472E1A93D96700995522 /* mavlink_msg_fence_point.h */,
+				1837472F1A93D96700995522 /* mavlink_msg_fence_status.h */,
+				183747301A93D96700995522 /* mavlink_msg_gimbal_control.h */,
+				183747311A93D96700995522 /* mavlink_msg_gimbal_report.h */,
+				183747321A93D96700995522 /* mavlink_msg_hwstatus.h */,
+				183747331A93D96700995522 /* mavlink_msg_limits_status.h */,
+				183747341A93D96700995522 /* mavlink_msg_meminfo.h */,
+				183747351A93D96700995522 /* mavlink_msg_mount_configure.h */,
+				183747361A93D96700995522 /* mavlink_msg_mount_control.h */,
+				183747371A93D96700995522 /* mavlink_msg_mount_status.h */,
+				183747381A93D96700995522 /* mavlink_msg_radio.h */,
+				183747391A93D96700995522 /* mavlink_msg_rally_fetch_point.h */,
+				1837473A1A93D96700995522 /* mavlink_msg_rally_point.h */,
+				1837473B1A93D96700995522 /* mavlink_msg_rangefinder.h */,
+				1837473C1A93D96700995522 /* mavlink_msg_sensor_offsets.h */,
+				1837473D1A93D96700995522 /* mavlink_msg_set_mag_offsets.h */,
+				1837473E1A93D96700995522 /* mavlink_msg_simstate.h */,
+				1837473F1A93D96700995522 /* mavlink_msg_wind.h */,
+				183747401A93D96700995522 /* testsuite.h */,
+				183747411A93D96700995522 /* version.h */,
+			);
+			path = ardupilotmega;
+			sourceTree = "<group>";
+		};
+		183747431A93D96700995522 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				183747441A93D96700995522 /* common.h */,
+				183747451A93D96700995522 /* mavlink.h */,
+				183747461A93D96700995522 /* mavlink_msg_actuator_control_target.h */,
+				183747471A93D96700995522 /* mavlink_msg_att_pos_mocap.h */,
+				183747481A93D96700995522 /* mavlink_msg_attitude.h */,
+				183747491A93D96700995522 /* mavlink_msg_attitude_quaternion.h */,
+				1837474A1A93D96700995522 /* mavlink_msg_attitude_quaternion_cov.h */,
+				1837474B1A93D96700995522 /* mavlink_msg_attitude_target.h */,
+				1837474C1A93D96700995522 /* mavlink_msg_auth_key.h */,
+				1837474D1A93D96700995522 /* mavlink_msg_autopilot_version.h */,
+				1837474E1A93D96700995522 /* mavlink_msg_battery_status.h */,
+				1837474F1A93D96700995522 /* mavlink_msg_change_operator_control.h */,
+				183747501A93D96700995522 /* mavlink_msg_change_operator_control_ack.h */,
+				183747511A93D96700995522 /* mavlink_msg_command_ack.h */,
+				183747521A93D96700995522 /* mavlink_msg_command_int.h */,
+				183747531A93D96700995522 /* mavlink_msg_command_long.h */,
+				183747541A93D96700995522 /* mavlink_msg_data_stream.h */,
+				183747551A93D96700995522 /* mavlink_msg_data_transmission_handshake.h */,
+				183747561A93D96700995522 /* mavlink_msg_debug.h */,
+				183747571A93D96700995522 /* mavlink_msg_debug_vect.h */,
+				183747581A93D96700995522 /* mavlink_msg_distance_sensor.h */,
+				183747591A93D96700995522 /* mavlink_msg_encapsulated_data.h */,
+				1837475A1A93D96700995522 /* mavlink_msg_file_transfer_protocol.h */,
+				1837475B1A93D96700995522 /* mavlink_msg_global_position_int.h */,
+				1837475C1A93D96700995522 /* mavlink_msg_global_position_int_cov.h */,
+				1837475D1A93D96700995522 /* mavlink_msg_global_vision_position_estimate.h */,
+				1837475E1A93D96700995522 /* mavlink_msg_gps2_raw.h */,
+				1837475F1A93D96700995522 /* mavlink_msg_gps2_rtk.h */,
+				183747601A93D96700995522 /* mavlink_msg_gps_global_origin.h */,
+				183747611A93D96700995522 /* mavlink_msg_gps_inject_data.h */,
+				183747621A93D96700995522 /* mavlink_msg_gps_raw_int.h */,
+				183747631A93D96700995522 /* mavlink_msg_gps_rtk.h */,
+				183747641A93D96700995522 /* mavlink_msg_gps_status.h */,
+				183747651A93D96700995522 /* mavlink_msg_heartbeat.h */,
+				183747661A93D96700995522 /* mavlink_msg_highres_imu.h */,
+				183747671A93D96700995522 /* mavlink_msg_hil_controls.h */,
+				183747681A93D96700995522 /* mavlink_msg_hil_gps.h */,
+				183747691A93D96700995522 /* mavlink_msg_hil_optical_flow.h */,
+				1837476A1A93D96700995522 /* mavlink_msg_hil_rc_inputs_raw.h */,
+				1837476B1A93D96700995522 /* mavlink_msg_hil_sensor.h */,
+				1837476C1A93D96700995522 /* mavlink_msg_hil_state.h */,
+				1837476D1A93D96700995522 /* mavlink_msg_hil_state_quaternion.h */,
+				1837476E1A93D96700995522 /* mavlink_msg_local_position_ned.h */,
+				1837476F1A93D96700995522 /* mavlink_msg_local_position_ned_cov.h */,
+				183747701A93D96700995522 /* mavlink_msg_local_position_ned_system_global_offset.h */,
+				183747711A93D96700995522 /* mavlink_msg_log_data.h */,
+				183747721A93D96700995522 /* mavlink_msg_log_entry.h */,
+				183747731A93D96700995522 /* mavlink_msg_log_erase.h */,
+				183747741A93D96700995522 /* mavlink_msg_log_request_data.h */,
+				183747751A93D96700995522 /* mavlink_msg_log_request_end.h */,
+				183747761A93D96700995522 /* mavlink_msg_log_request_list.h */,
+				183747771A93D96700995522 /* mavlink_msg_manual_control.h */,
+				183747781A93D96700995522 /* mavlink_msg_manual_setpoint.h */,
+				183747791A93D96700995522 /* mavlink_msg_memory_vect.h */,
+				1837477A1A93D96700995522 /* mavlink_msg_mission_ack.h */,
+				1837477B1A93D96700995522 /* mavlink_msg_mission_clear_all.h */,
+				1837477C1A93D96700995522 /* mavlink_msg_mission_count.h */,
+				1837477D1A93D96700995522 /* mavlink_msg_mission_current.h */,
+				1837477E1A93D96700995522 /* mavlink_msg_mission_item.h */,
+				1837477F1A93D96700995522 /* mavlink_msg_mission_item_int.h */,
+				183747801A93D96700995522 /* mavlink_msg_mission_item_reached.h */,
+				183747811A93D96700995522 /* mavlink_msg_mission_request.h */,
+				183747821A93D96700995522 /* mavlink_msg_mission_request_list.h */,
+				183747831A93D96700995522 /* mavlink_msg_mission_request_partial_list.h */,
+				183747841A93D96700995522 /* mavlink_msg_mission_set_current.h */,
+				183747851A93D96700995522 /* mavlink_msg_mission_write_partial_list.h */,
+				183747861A93D96800995522 /* mavlink_msg_named_value_float.h */,
+				183747871A93D96800995522 /* mavlink_msg_named_value_int.h */,
+				183747881A93D96800995522 /* mavlink_msg_nav_controller_output.h */,
+				183747891A93D96800995522 /* mavlink_msg_optical_flow.h */,
+				1837478A1A93D96800995522 /* mavlink_msg_optical_flow_rad.h */,
+				1837478B1A93D96800995522 /* mavlink_msg_param_map_rc.h */,
+				1837478C1A93D96800995522 /* mavlink_msg_param_request_list.h */,
+				1837478D1A93D96800995522 /* mavlink_msg_param_request_read.h */,
+				1837478E1A93D96800995522 /* mavlink_msg_param_set.h */,
+				1837478F1A93D96800995522 /* mavlink_msg_param_value.h */,
+				183747901A93D96800995522 /* mavlink_msg_ping.h */,
+				183747911A93D96800995522 /* mavlink_msg_position_target_global_int.h */,
+				183747921A93D96800995522 /* mavlink_msg_position_target_local_ned.h */,
+				183747931A93D96800995522 /* mavlink_msg_power_status.h */,
+				183747941A93D96800995522 /* mavlink_msg_radio_status.h */,
+				183747951A93D96800995522 /* mavlink_msg_raw_imu.h */,
+				183747961A93D96800995522 /* mavlink_msg_raw_pressure.h */,
+				183747971A93D96800995522 /* mavlink_msg_rc_channels.h */,
+				183747981A93D96800995522 /* mavlink_msg_rc_channels_override.h */,
+				183747991A93D96800995522 /* mavlink_msg_rc_channels_raw.h */,
+				1837479A1A93D96800995522 /* mavlink_msg_rc_channels_scaled.h */,
+				1837479B1A93D96800995522 /* mavlink_msg_request_data_stream.h */,
+				1837479C1A93D96800995522 /* mavlink_msg_safety_allowed_area.h */,
+				1837479D1A93D96800995522 /* mavlink_msg_safety_set_allowed_area.h */,
+				1837479E1A93D96800995522 /* mavlink_msg_scaled_imu.h */,
+				1837479F1A93D96800995522 /* mavlink_msg_scaled_imu2.h */,
+				183747A01A93D96800995522 /* mavlink_msg_scaled_pressure.h */,
+				183747A11A93D96800995522 /* mavlink_msg_scaled_pressure2.h */,
+				183747A21A93D96800995522 /* mavlink_msg_serial_control.h */,
+				183747A31A93D96800995522 /* mavlink_msg_servo_output_raw.h */,
+				183747A41A93D96800995522 /* mavlink_msg_set_actuator_control_target.h */,
+				183747A51A93D96800995522 /* mavlink_msg_set_attitude_target.h */,
+				183747A61A93D96800995522 /* mavlink_msg_set_gps_global_origin.h */,
+				183747A71A93D96800995522 /* mavlink_msg_set_mode.h */,
+				183747A81A93D96800995522 /* mavlink_msg_set_position_target_global_int.h */,
+				183747A91A93D96800995522 /* mavlink_msg_set_position_target_local_ned.h */,
+				183747AA1A93D96800995522 /* mavlink_msg_sim_state.h */,
+				183747AB1A93D96800995522 /* mavlink_msg_statustext.h */,
+				183747AC1A93D96800995522 /* mavlink_msg_sys_status.h */,
+				183747AD1A93D96800995522 /* mavlink_msg_system_time.h */,
+				183747AE1A93D96800995522 /* mavlink_msg_terrain_check.h */,
+				183747AF1A93D96800995522 /* mavlink_msg_terrain_data.h */,
+				183747B01A93D96800995522 /* mavlink_msg_terrain_report.h */,
+				183747B11A93D96800995522 /* mavlink_msg_terrain_request.h */,
+				183747B21A93D96800995522 /* mavlink_msg_timesync.h */,
+				183747B31A93D96800995522 /* mavlink_msg_v2_extension.h */,
+				183747B41A93D96800995522 /* mavlink_msg_vfr_hud.h */,
+				183747B51A93D96800995522 /* mavlink_msg_vicon_position_estimate.h */,
+				183747B61A93D96800995522 /* mavlink_msg_vision_position_estimate.h */,
+				183747B71A93D96800995522 /* mavlink_msg_vision_speed_estimate.h */,
+				183747B81A93D96800995522 /* testsuite.h */,
+				183747B91A93D96800995522 /* version.h */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		183747BE1A93DCAB00995522 /* pixhawk */ = {
+			isa = PBXGroup;
+			children = (
+				183747BF1A93DCAB00995522 /* mavlink.h */,
+				183747C01A93DCAB00995522 /* mavlink_msg_attitude_control.h */,
+				183747C11A93DCAB00995522 /* mavlink_msg_brief_feature.h */,
+				183747C21A93DCAB00995522 /* mavlink_msg_detection_stats.h */,
+				183747C31A93DCAB00995522 /* mavlink_msg_image_available.h */,
+				183747C41A93DCAB00995522 /* mavlink_msg_image_trigger_control.h */,
+				183747C51A93DCAB00995522 /* mavlink_msg_image_triggered.h */,
+				183747C61A93DCAB00995522 /* mavlink_msg_marker.h */,
+				183747C71A93DCAB00995522 /* mavlink_msg_onboard_health.h */,
+				183747C81A93DCAB00995522 /* mavlink_msg_pattern_detected.h */,
+				183747C91A93DCAB00995522 /* mavlink_msg_point_of_interest.h */,
+				183747CA1A93DCAB00995522 /* mavlink_msg_point_of_interest_connection.h */,
+				183747CB1A93DCAB00995522 /* mavlink_msg_position_control_setpoint.h */,
+				183747CC1A93DCAB00995522 /* mavlink_msg_raw_aux.h */,
+				183747CD1A93DCAB00995522 /* mavlink_msg_set_cam_shutter.h */,
+				183747CE1A93DCAB00995522 /* mavlink_msg_set_position_control_offset.h */,
+				183747CF1A93DCAB00995522 /* mavlink_msg_watchdog_command.h */,
+				183747D01A93DCAB00995522 /* mavlink_msg_watchdog_heartbeat.h */,
+				183747D11A93DCAB00995522 /* mavlink_msg_watchdog_process_info.h */,
+				183747D21A93DCAB00995522 /* mavlink_msg_watchdog_process_status.h */,
+				183747D31A93DCAB00995522 /* pixhawk.h */,
+				183747D41A93DCAB00995522 /* testsuite.h */,
+				183747D51A93DCAB00995522 /* version.h */,
+			);
+			path = pixhawk;
+			sourceTree = "<group>";
+		};
+		183747D61A93E15300995522 /* autoquad */ = {
+			isa = PBXGroup;
+			children = (
+				183747D71A93E15300995522 /* autoquad.h */,
+				183747D81A93E15300995522 /* mavlink.h */,
+				183747D91A93E15300995522 /* mavlink_msg_aq_telemetry_f.h */,
+				183747DA1A93E15300995522 /* testsuite.h */,
+				183747DB1A93E15300995522 /* version.h */,
+			);
+			path = autoquad;
+			sourceTree = "<group>";
+		};
+		183747DC1A93E21300995522 /* matrixpilot */ = {
+			isa = PBXGroup;
+			children = (
+				183747DD1A93E21300995522 /* matrixpilot.h */,
+				183747DE1A93E21300995522 /* mavlink.h */,
+				183747DF1A93E21300995522 /* mavlink_msg_airspeeds.h */,
+				183747E01A93E21300995522 /* mavlink_msg_altitudes.h */,
+				183747E11A93E21300995522 /* mavlink_msg_flexifunction_buffer_function.h */,
+				183747E21A93E21300995522 /* mavlink_msg_flexifunction_buffer_function_ack.h */,
+				183747E31A93E21300995522 /* mavlink_msg_flexifunction_command.h */,
+				183747E41A93E21300995522 /* mavlink_msg_flexifunction_command_ack.h */,
+				183747E51A93E21300995522 /* mavlink_msg_flexifunction_directory.h */,
+				183747E61A93E21300995522 /* mavlink_msg_flexifunction_directory_ack.h */,
+				183747E71A93E21300995522 /* mavlink_msg_flexifunction_read_req.h */,
+				183747E81A93E21300995522 /* mavlink_msg_flexifunction_set.h */,
+				183747E91A93E21300995522 /* mavlink_msg_serial_udb_extra_f13.h */,
+				183747EA1A93E21300995522 /* mavlink_msg_serial_udb_extra_f14.h */,
+				183747EB1A93E21300995522 /* mavlink_msg_serial_udb_extra_f15.h */,
+				183747EC1A93E21300995522 /* mavlink_msg_serial_udb_extra_f16.h */,
+				183747ED1A93E21300995522 /* mavlink_msg_serial_udb_extra_f2_a.h */,
+				183747EE1A93E21300995522 /* mavlink_msg_serial_udb_extra_f2_b.h */,
+				183747EF1A93E21300995522 /* mavlink_msg_serial_udb_extra_f4.h */,
+				183747F01A93E21300995522 /* mavlink_msg_serial_udb_extra_f5.h */,
+				183747F11A93E21300995522 /* mavlink_msg_serial_udb_extra_f6.h */,
+				183747F21A93E21300995522 /* mavlink_msg_serial_udb_extra_f7.h */,
+				183747F31A93E21300995522 /* mavlink_msg_serial_udb_extra_f8.h */,
+				183747F41A93E21300995522 /* testsuite.h */,
+				183747F51A93E21300995522 /* version.h */,
+			);
+			path = matrixpilot;
+			sourceTree = "<group>";
+		};
 		1851D848191ADFD900ED5C87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,255 +1517,6 @@
 				01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		18B6116D18A441AF0000E9DF /* ardupilotmega */ = {
-			isa = PBXGroup;
-			children = (
-				18B6116E18A441AF0000E9DF /* ardupilotmega.h */,
-				18B6116F18A441AF0000E9DF /* mavlink.h */,
-				18B6117018A441AF0000E9DF /* mavlink_msg_ahrs.h */,
-				18B6117118A441AF0000E9DF /* mavlink_msg_ahrs2.h */,
-				18B6117218A441AF0000E9DF /* mavlink_msg_airspeed_autocal.h */,
-				18B6117318A441AF0000E9DF /* mavlink_msg_ap_adc.h */,
-				18B6117418A441AF0000E9DF /* mavlink_msg_data16.h */,
-				18B6117518A441AF0000E9DF /* mavlink_msg_data32.h */,
-				18B6117618A441AF0000E9DF /* mavlink_msg_data64.h */,
-				18B6117718A441AF0000E9DF /* mavlink_msg_data96.h */,
-				18B6117818A441AF0000E9DF /* mavlink_msg_digicam_configure.h */,
-				18B6117918A441AF0000E9DF /* mavlink_msg_digicam_control.h */,
-				18B6117A18A441AF0000E9DF /* mavlink_msg_fence_fetch_point.h */,
-				18B6117B18A441AF0000E9DF /* mavlink_msg_fence_point.h */,
-				18B6117C18A441AF0000E9DF /* mavlink_msg_fence_status.h */,
-				18B6117D18A441AF0000E9DF /* mavlink_msg_hwstatus.h */,
-				18B6117E18A441AF0000E9DF /* mavlink_msg_limits_status.h */,
-				18B6117F18A441AF0000E9DF /* mavlink_msg_meminfo.h */,
-				18B6118018A441AF0000E9DF /* mavlink_msg_mount_configure.h */,
-				18B6118118A441AF0000E9DF /* mavlink_msg_mount_control.h */,
-				18B6118218A441AF0000E9DF /* mavlink_msg_mount_status.h */,
-				18B6118318A441AF0000E9DF /* mavlink_msg_radio.h */,
-				18B6118418A441AF0000E9DF /* mavlink_msg_rally_fetch_point.h */,
-				18B6118518A441AF0000E9DF /* mavlink_msg_rally_point.h */,
-				18B6118618A441AF0000E9DF /* mavlink_msg_rangefinder.h */,
-				18B6118718A441AF0000E9DF /* mavlink_msg_sensor_offsets.h */,
-				18B6118818A441AF0000E9DF /* mavlink_msg_set_mag_offsets.h */,
-				18B6118918A441AF0000E9DF /* mavlink_msg_simstate.h */,
-				18B6118A18A441AF0000E9DF /* mavlink_msg_wind.h */,
-				18B6118B18A441AF0000E9DF /* testsuite.h */,
-				18B6118C18A441AF0000E9DF /* version.h */,
-			);
-			path = ardupilotmega;
-			sourceTree = "<group>";
-		};
-		18B6118D18A441AF0000E9DF /* autoquad */ = {
-			isa = PBXGroup;
-			children = (
-				18B6118E18A441AF0000E9DF /* autoquad.h */,
-				18B6118F18A441AF0000E9DF /* mavlink.h */,
-				18B6119018A441AF0000E9DF /* mavlink_msg_aq_telemetry_f.h */,
-				18B6119118A441AF0000E9DF /* testsuite.h */,
-				18B6119218A441AF0000E9DF /* version.h */,
-			);
-			path = autoquad;
-			sourceTree = "<group>";
-		};
-		18B6119418A441AF0000E9DF /* common */ = {
-			isa = PBXGroup;
-			children = (
-				18B6119518A441AF0000E9DF /* common.h */,
-				18B6119618A441AF0000E9DF /* mavlink.h */,
-				18B6119718A441AF0000E9DF /* mavlink_msg_attitude.h */,
-				18B6119818A441AF0000E9DF /* mavlink_msg_attitude_quaternion.h */,
-				18B6119918A441AF0000E9DF /* mavlink_msg_auth_key.h */,
-				18B6119A18A441AF0000E9DF /* mavlink_msg_battery_status.h */,
-				18B6119B18A441AF0000E9DF /* mavlink_msg_change_operator_control.h */,
-				18B6119C18A441AF0000E9DF /* mavlink_msg_change_operator_control_ack.h */,
-				18B6119D18A441AF0000E9DF /* mavlink_msg_command_ack.h */,
-				18B6119E18A441AF0000E9DF /* mavlink_msg_command_long.h */,
-				18B6119F18A441AF0000E9DF /* mavlink_msg_data_stream.h */,
-				18B611A018A441AF0000E9DF /* mavlink_msg_debug.h */,
-				18B611A118A441AF0000E9DF /* mavlink_msg_debug_vect.h */,
-				18B611A218A441AF0000E9DF /* mavlink_msg_file_transfer_dir_list.h */,
-				18B611A318A441AF0000E9DF /* mavlink_msg_file_transfer_res.h */,
-				18B611A418A441AF0000E9DF /* mavlink_msg_file_transfer_start.h */,
-				18B611A518A441AF0000E9DF /* mavlink_msg_global_position_int.h */,
-				18B611A618A441AF0000E9DF /* mavlink_msg_global_position_setpoint_int.h */,
-				18B611A718A441AF0000E9DF /* mavlink_msg_global_vision_position_estimate.h */,
-				18B611A818A441AF0000E9DF /* mavlink_msg_gps2_raw.h */,
-				18B611A918A441AF0000E9DF /* mavlink_msg_gps_global_origin.h */,
-				18B611AA18A441AF0000E9DF /* mavlink_msg_gps_inject_data.h */,
-				18B611AB18A441AF0000E9DF /* mavlink_msg_gps_raw_int.h */,
-				18B611AC18A441AF0000E9DF /* mavlink_msg_gps_status.h */,
-				18B611AD18A441AF0000E9DF /* mavlink_msg_heartbeat.h */,
-				18B611AE18A441AF0000E9DF /* mavlink_msg_highres_imu.h */,
-				18B611AF18A441AF0000E9DF /* mavlink_msg_hil_controls.h */,
-				18B611B018A441AF0000E9DF /* mavlink_msg_hil_gps.h */,
-				18B611B118A441AF0000E9DF /* mavlink_msg_hil_optical_flow.h */,
-				18B611B218A441AF0000E9DF /* mavlink_msg_hil_rc_inputs_raw.h */,
-				18B611B318A441AF0000E9DF /* mavlink_msg_hil_sensor.h */,
-				18B611B418A441AF0000E9DF /* mavlink_msg_hil_state.h */,
-				18B611B518A441AF0000E9DF /* mavlink_msg_hil_state_quaternion.h */,
-				18B611B618A441AF0000E9DF /* mavlink_msg_local_position_ned.h */,
-				18B611B718A441AF0000E9DF /* mavlink_msg_local_position_ned_system_global_offset.h */,
-				18B611B818A441AF0000E9DF /* mavlink_msg_local_position_setpoint.h */,
-				18B611B918A441AF0000E9DF /* mavlink_msg_log_data.h */,
-				18B611BA18A441AF0000E9DF /* mavlink_msg_log_entry.h */,
-				18B611BB18A441AF0000E9DF /* mavlink_msg_log_erase.h */,
-				18B611BC18A441AF0000E9DF /* mavlink_msg_log_request_data.h */,
-				18B611BD18A441AF0000E9DF /* mavlink_msg_log_request_end.h */,
-				18B611BE18A441AF0000E9DF /* mavlink_msg_log_request_list.h */,
-				18B611BF18A441AF0000E9DF /* mavlink_msg_manual_control.h */,
-				18B611C018A441AF0000E9DF /* mavlink_msg_manual_setpoint.h */,
-				18B611C118A441AF0000E9DF /* mavlink_msg_memory_vect.h */,
-				18B611C218A441AF0000E9DF /* mavlink_msg_mission_ack.h */,
-				18B611C318A441AF0000E9DF /* mavlink_msg_mission_clear_all.h */,
-				18B611C418A441AF0000E9DF /* mavlink_msg_mission_count.h */,
-				18B611C518A441AF0000E9DF /* mavlink_msg_mission_current.h */,
-				18B611C618A441AF0000E9DF /* mavlink_msg_mission_item.h */,
-				18B611C718A441AF0000E9DF /* mavlink_msg_mission_item_reached.h */,
-				18B611C818A441AF0000E9DF /* mavlink_msg_mission_request.h */,
-				18B611C918A441AF0000E9DF /* mavlink_msg_mission_request_list.h */,
-				18B611CA18A441AF0000E9DF /* mavlink_msg_mission_request_partial_list.h */,
-				18B611CB18A441AF0000E9DF /* mavlink_msg_mission_set_current.h */,
-				18B611CC18A441AF0000E9DF /* mavlink_msg_mission_write_partial_list.h */,
-				18B611CD18A441AF0000E9DF /* mavlink_msg_named_value_float.h */,
-				18B611CE18A441AF0000E9DF /* mavlink_msg_named_value_int.h */,
-				18B611CF18A441AF0000E9DF /* mavlink_msg_nav_controller_output.h */,
-				18B611D018A441AF0000E9DF /* mavlink_msg_omnidirectional_flow.h */,
-				18B611D118A441AF0000E9DF /* mavlink_msg_optical_flow.h */,
-				18B611D218A441AF0000E9DF /* mavlink_msg_param_request_list.h */,
-				18B611D318A441AF0000E9DF /* mavlink_msg_param_request_read.h */,
-				18B611D418A441AF0000E9DF /* mavlink_msg_param_set.h */,
-				18B611D518A441AF0000E9DF /* mavlink_msg_param_value.h */,
-				18B611D618A441AF0000E9DF /* mavlink_msg_ping.h */,
-				18B611D718A441AF0000E9DF /* mavlink_msg_radio_status.h */,
-				18B611D818A441AF0000E9DF /* mavlink_msg_raw_imu.h */,
-				18B611D918A441AF0000E9DF /* mavlink_msg_raw_pressure.h */,
-				18B611DA18A441AF0000E9DF /* mavlink_msg_rc_channels_override.h */,
-				18B611DB18A441AF0000E9DF /* mavlink_msg_rc_channels_raw.h */,
-				18B611DC18A441AF0000E9DF /* mavlink_msg_rc_channels_scaled.h */,
-				18B611DD18A441AF0000E9DF /* mavlink_msg_request_data_stream.h */,
-				18B611DE18A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_rates_thrust_setpoint.h */,
-				18B611DF18A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_speed_thrust_setpoint.h */,
-				18B611E018A441AF0000E9DF /* mavlink_msg_roll_pitch_yaw_thrust_setpoint.h */,
-				18B611E118A441AF0000E9DF /* mavlink_msg_safety_allowed_area.h */,
-				18B611E218A441AF0000E9DF /* mavlink_msg_safety_set_allowed_area.h */,
-				18B611E318A441AF0000E9DF /* mavlink_msg_scaled_imu.h */,
-				18B611E418A441AF0000E9DF /* mavlink_msg_scaled_imu2.h */,
-				18B611E518A441AF0000E9DF /* mavlink_msg_scaled_pressure.h */,
-				18B611E618A441B00000E9DF /* mavlink_msg_servo_output_raw.h */,
-				18B611E718A441B00000E9DF /* mavlink_msg_set_global_position_setpoint_int.h */,
-				18B611E818A441B00000E9DF /* mavlink_msg_set_gps_global_origin.h */,
-				18B611E918A441B00000E9DF /* mavlink_msg_set_local_position_setpoint.h */,
-				18B611EA18A441B00000E9DF /* mavlink_msg_set_mode.h */,
-				18B611EB18A441B00000E9DF /* mavlink_msg_set_quad_motors_setpoint.h */,
-				18B611EC18A441B00000E9DF /* mavlink_msg_set_quad_swarm_led_roll_pitch_yaw_thrust.h */,
-				18B611ED18A441B00000E9DF /* mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust.h */,
-				18B611EE18A441B00000E9DF /* mavlink_msg_set_roll_pitch_yaw_speed_thrust.h */,
-				18B611EF18A441B00000E9DF /* mavlink_msg_set_roll_pitch_yaw_thrust.h */,
-				18B611F018A441B00000E9DF /* mavlink_msg_setpoint_6dof.h */,
-				18B611F118A441B00000E9DF /* mavlink_msg_setpoint_8dof.h */,
-				18B611F218A441B00000E9DF /* mavlink_msg_sim_state.h */,
-				18B611F318A441B00000E9DF /* mavlink_msg_state_correction.h */,
-				18B611F418A441B00000E9DF /* mavlink_msg_statustext.h */,
-				18B611F518A441B00000E9DF /* mavlink_msg_sys_status.h */,
-				18B611F618A441B00000E9DF /* mavlink_msg_system_time.h */,
-				18B611F718A441B00000E9DF /* mavlink_msg_vfr_hud.h */,
-				18B611F818A441B00000E9DF /* mavlink_msg_vicon_position_estimate.h */,
-				18B611F918A441B00000E9DF /* mavlink_msg_vision_position_estimate.h */,
-				18B611FA18A441B00000E9DF /* mavlink_msg_vision_speed_estimate.h */,
-				18B611FB18A441B00000E9DF /* testsuite.h */,
-				18B611FC18A441B00000E9DF /* version.h */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		18B611FD18A441B00000E9DF /* matrixpilot */ = {
-			isa = PBXGroup;
-			children = (
-				18B611FE18A441B00000E9DF /* matrixpilot.h */,
-				18B611FF18A441B00000E9DF /* mavlink.h */,
-				18B6120018A441B00000E9DF /* mavlink_msg_airspeeds.h */,
-				18B6120118A441B00000E9DF /* mavlink_msg_altitudes.h */,
-				18B6120218A441B00000E9DF /* mavlink_msg_flexifunction_buffer_function.h */,
-				18B6120318A441B00000E9DF /* mavlink_msg_flexifunction_buffer_function_ack.h */,
-				18B6120418A441B00000E9DF /* mavlink_msg_flexifunction_command.h */,
-				18B6120518A441B00000E9DF /* mavlink_msg_flexifunction_command_ack.h */,
-				18B6120618A441B00000E9DF /* mavlink_msg_flexifunction_directory.h */,
-				18B6120718A441B00000E9DF /* mavlink_msg_flexifunction_directory_ack.h */,
-				18B6120818A441B00000E9DF /* mavlink_msg_flexifunction_read_req.h */,
-				18B6120918A441B00000E9DF /* mavlink_msg_flexifunction_set.h */,
-				18B6120A18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f13.h */,
-				18B6120B18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f14.h */,
-				18B6120C18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f15.h */,
-				18B6120D18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f16.h */,
-				18B6120E18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f2_a.h */,
-				18B6120F18A441B00000E9DF /* mavlink_msg_serial_udb_extra_f2_b.h */,
-				18B6121018A441B00000E9DF /* mavlink_msg_serial_udb_extra_f4.h */,
-				18B6121118A441B00000E9DF /* mavlink_msg_serial_udb_extra_f5.h */,
-				18B6121218A441B00000E9DF /* mavlink_msg_serial_udb_extra_f6.h */,
-				18B6121318A441B00000E9DF /* mavlink_msg_serial_udb_extra_f7.h */,
-				18B6121418A441B00000E9DF /* mavlink_msg_serial_udb_extra_f8.h */,
-				18B6121518A441B00000E9DF /* testsuite.h */,
-				18B6121618A441B00000E9DF /* version.h */,
-			);
-			path = matrixpilot;
-			sourceTree = "<group>";
-		};
-		18B6121B18A441B00000E9DF /* pixhawk */ = {
-			isa = PBXGroup;
-			children = (
-				18B6121C18A441B00000E9DF /* mavlink.h */,
-				18B6121D18A441B00000E9DF /* mavlink_msg_attitude_control.h */,
-				18B6121E18A441B00000E9DF /* mavlink_msg_brief_feature.h */,
-				18B6121F18A441B00000E9DF /* mavlink_msg_data_transmission_handshake.h */,
-				18B6122018A441B00000E9DF /* mavlink_msg_encapsulated_data.h */,
-				18B6122118A441B00000E9DF /* mavlink_msg_image_available.h */,
-				18B6122218A441B00000E9DF /* mavlink_msg_image_trigger_control.h */,
-				18B6122318A441B00000E9DF /* mavlink_msg_image_triggered.h */,
-				18B6122418A441B00000E9DF /* mavlink_msg_marker.h */,
-				18B6122518A441B00000E9DF /* mavlink_msg_pattern_detected.h */,
-				18B6122618A441B00000E9DF /* mavlink_msg_point_of_interest.h */,
-				18B6122718A441B00000E9DF /* mavlink_msg_point_of_interest_connection.h */,
-				18B6122818A441B00000E9DF /* mavlink_msg_position_control_setpoint.h */,
-				18B6122918A441B00000E9DF /* mavlink_msg_raw_aux.h */,
-				18B6122A18A441B00000E9DF /* mavlink_msg_set_cam_shutter.h */,
-				18B6122B18A441B00000E9DF /* mavlink_msg_set_position_control_offset.h */,
-				18B6122C18A441B00000E9DF /* mavlink_msg_watchdog_command.h */,
-				18B6122D18A441B00000E9DF /* mavlink_msg_watchdog_heartbeat.h */,
-				18B6122E18A441B00000E9DF /* mavlink_msg_watchdog_process_info.h */,
-				18B6122F18A441B00000E9DF /* mavlink_msg_watchdog_process_status.h */,
-				18B6123018A441B00000E9DF /* pixhawk.h */,
-				18B6123118A441B00000E9DF /* pixhawk.pb.h */,
-				18B6123218A441B00000E9DF /* testsuite.h */,
-				18B6123318A441B00000E9DF /* version.h */,
-			);
-			path = pixhawk;
-			sourceTree = "<group>";
-		};
-		18B6123518A441B00000E9DF /* sensesoar */ = {
-			isa = PBXGroup;
-			children = (
-				18B6123618A441B00000E9DF /* mavlink.h */,
-				18B6123718A441B00000E9DF /* mavlink_msg_cmd_airspeed_ack.h */,
-				18B6123818A441B00000E9DF /* mavlink_msg_cmd_airspeed_chng.h */,
-				18B6123918A441B00000E9DF /* mavlink_msg_filt_rot_vel.h */,
-				18B6123A18A441B00000E9DF /* mavlink_msg_llc_out.h */,
-				18B6123B18A441B00000E9DF /* mavlink_msg_obs_air_temp.h */,
-				18B6123C18A441B00000E9DF /* mavlink_msg_obs_air_velocity.h */,
-				18B6123D18A441B00000E9DF /* mavlink_msg_obs_attitude.h */,
-				18B6123E18A441B00000E9DF /* mavlink_msg_obs_bias.h */,
-				18B6123F18A441B00000E9DF /* mavlink_msg_obs_position.h */,
-				18B6124018A441B00000E9DF /* mavlink_msg_obs_qff.h */,
-				18B6124118A441B00000E9DF /* mavlink_msg_obs_velocity.h */,
-				18B6124218A441B00000E9DF /* mavlink_msg_obs_wind.h */,
-				18B6124318A441B00000E9DF /* mavlink_msg_pm_elec.h */,
-				18B6124418A441B00000E9DF /* mavlink_msg_sys_stat.h */,
-				18B6124518A441B00000E9DF /* sensesoar.h */,
-				18B6124618A441B00000E9DF /* testsuite.h */,
-				18B6124718A441B00000E9DF /* version.h */,
-			);
-			path = sensesoar;
 			sourceTree = "<group>";
 		};
 		18B7F2B81958953B00D2406A /* PureLayout */ = {
@@ -1856,18 +1854,16 @@
 		CA20FD24164E4754005187A8 /* mavlink-include */ = {
 			isa = PBXGroup;
 			children = (
-				18B6116D18A441AF0000E9DF /* ardupilotmega */,
-				18B6118D18A441AF0000E9DF /* autoquad */,
-				18B6119418A441AF0000E9DF /* common */,
-				18B611FD18A441B00000E9DF /* matrixpilot */,
-				18B6121B18A441B00000E9DF /* pixhawk */,
-				18B6123518A441B00000E9DF /* sensesoar */,
-				18B6119318A441AF0000E9DF /* checksum.h */,
-				18B6121718A441B00000E9DF /* mavlink_conversions.h */,
-				18B6121818A441B00000E9DF /* mavlink_helpers.h */,
-				18B6121918A441B00000E9DF /* mavlink_protobuf_manager.hpp */,
-				18B6121A18A441B00000E9DF /* mavlink_types.h */,
-				18B6123418A441B00000E9DF /* protocol.h */,
+				183747DC1A93E21300995522 /* matrixpilot */,
+				183747D61A93E15300995522 /* autoquad */,
+				183747BE1A93DCAB00995522 /* pixhawk */,
+				1837471A1A93D96700995522 /* ardupilotmega */,
+				183747421A93D96700995522 /* checksum.h */,
+				183747431A93D96700995522 /* common */,
+				183747BA1A93D96800995522 /* mavlink_conversions.h */,
+				183747BB1A93D96800995522 /* mavlink_helpers.h */,
+				183747BC1A93D96800995522 /* mavlink_types.h */,
+				183747BD1A93D96800995522 /* protocol.h */,
 			);
 			path = "mavlink-include";
 			sourceTree = "<group>";
