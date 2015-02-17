@@ -11,7 +11,6 @@
 @interface SettingsWaypointCell : UITableViewCell {
     UITextField *customTextField;
     UILabel *customLabel;
-
 }
 
 @property (nonatomic, retain) UITextField *customTextField;

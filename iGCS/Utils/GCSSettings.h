@@ -16,9 +16,9 @@ typedef NS_ENUM(NSInteger, Units) {
 
 @interface GCSSettings : NSObject <NSCoding>
 
-@property (assign, nonatomic) NSUInteger altitude;
-@property (assign, nonatomic) NSUInteger radius;
-@property (assign, nonatomic) NSUInteger ceiling;
+@property (assign, nonatomic) double altitude;
+@property (assign, nonatomic) double radius;
+@property (assign, nonatomic) double ceiling;
 @property (assign, nonatomic) NSUInteger unitType;
 
 

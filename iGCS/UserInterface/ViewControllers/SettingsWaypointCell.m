@@ -43,13 +43,6 @@
 }
 
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    DDLogVerbose(@"Made it Here!");
-}
-
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

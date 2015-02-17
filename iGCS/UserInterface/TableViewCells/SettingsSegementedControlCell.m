@@ -36,13 +36,21 @@
 - (void) segementedControlChanged:(UISegmentedControl *)segment {
     if (segment.selectedSegmentIndex == standard) {
         [GCSDataManager sharedInstance].gcsSettings.unitType = standard;
+        
+        [GCSDataManager sharedInstance].gcsSettings.altitude = [self metricToStandardlength:[GCSDataManager sharedInstance].gcsSettings.altitude];
+        [GCSDataManager sharedInstance].gcsSettings.radius = [self metricToStandardlength:[GCSDataManager sharedInstance].gcsSettings.radius];
     }
     else {
         [GCSDataManager sharedInstance].gcsSettings.unitType = metric;
+        [GCSDataManager sharedInstance].gcsSettings.altitude = [self standardToMetriclength:[GCSDataManager sharedInstance].gcsSettings.altitude];
+        [GCSDataManager sharedInstance].gcsSettings.radius = [self standardToMetriclength:[GCSDataManager sharedInstance].gcsSettings.radius];
+        
     }
     
     NSRange range = NSMakeRange(1, 1);
     NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+    
+    
     
     [self.tableView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationAutomatic];
 
@@ -54,5 +62,18 @@
     
     // Configure the view for the selected state
 }
+
+- (double) metricToStandardlength:(double)value {
+    
+    return value * 3.2808;
+    
+}
+
+- (double) standardToMetriclength:(double)value {
+    
+    return value / 3.2808;
+    
+}
+
 
 @end

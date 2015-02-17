@@ -7,12 +7,10 @@
 //
 
 #import "DefaultSettingsTableViewController.h"
-#import "WaypointSettingsViewController.h"
 #import "SettingsSegementedControlCell.h"
+#import "RadioSettingsViewController.h"
 #import "SettingsWaypointCell.h"
 #import "GCSDataManager.h"
-
-
 
 
 @interface DefaultSettingsTableViewController ()
@@ -23,14 +21,10 @@
 @property (nonatomic, retain) NSMutableArray *sectionKeysArray;
 @property (nonatomic, retain) NSMutableDictionary *sectionContentsDict;
 
-
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (nonatomic, assign) BOOL standardSelected;
-
-
-
 
 @end
 
@@ -131,17 +125,23 @@
         }
         
         if ([cellContent isEqual: @"Altitude"]) {
-            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.altitude];
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.altitude];
+            settingsWaypointCell.customTextField.tag = 0;
         }
         else if ([cellContent isEqual: @"Ceiling"]) {
-            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.ceiling];
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.ceiling];
+            settingsWaypointCell.customTextField.tag = 2;
         }
         
         else if ([cellContent isEqual: @"Radius"]) {
-            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%lu",(unsigned long)[GCSDataManager sharedInstance].gcsSettings.radius];
+            settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.radius];
+            settingsWaypointCell.customTextField.tag = 1;
         }
-        cell = settingsWaypointCell;
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [settingsWaypointCell.customTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingDidEnd];
+        cell = settingsWaypointCell;
+        
 
     }
     else {
@@ -185,13 +185,11 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
 
-/*
-    if ([cellContent isEqual: @"Waypoints"]) {
-        WaypointSettingsViewController *wayPointSettingsViewController = [[WaypointSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:wayPointSettingsViewController animated:YES];
+/*    if ([cellContent isEqual: @"Radio"]) {
+        RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
+        [self.navigationController pushViewController:radioSettingsViewController animated:YES];
     }
-*/
-    
+*/    
 }
 
 
@@ -214,19 +212,6 @@
 #pragma mark - UINavigationBar Button handlers
 
 - (void)doneWithChanges:(id)sender {
-    
-    NSIndexPath *indexPath;
-    SettingsWaypointCell *cell;
-    
-    indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [GCSDataManager sharedInstance].gcsSettings.altitude = [cell.customTextField.text integerValue];
-   
-    indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
-    cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text integerValue];
-    [GCSDataManager save];
-
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -237,6 +222,23 @@
 }
 
 
+- (void) textFieldChanged:(UITextField *)textField {
+    NSIndexPath *indexPath;
+    SettingsWaypointCell *cell;
+    
+    if (textField.tag == 0) {
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [GCSDataManager sharedInstance].gcsSettings.altitude = [cell.customTextField.text doubleValue];
+    }
+    
+    if (textField.tag == 1) {
+        indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+        cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text doubleValue];
+    }
+    [GCSDataManager save];
+}
 
 
 @end
