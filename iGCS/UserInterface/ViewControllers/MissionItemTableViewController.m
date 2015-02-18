@@ -164,7 +164,7 @@ NSArray* headerWidths = nil;
     }
     
     // Reset the map and table views
-    [[self waypointsVC] resetWaypoints];
+    [[self waypointsVC] resetWaypointsZoomToMission:NO];
 }
 
 
@@ -184,7 +184,7 @@ NSArray* headerWidths = nil;
     }
     
     // Reset the map and table views
-    [[self waypointsVC] resetWaypoints];
+    [[self waypointsVC] resetWaypointsZoomToMission:NO];
 }
 
 // Support conditional rearranging of the table view.
