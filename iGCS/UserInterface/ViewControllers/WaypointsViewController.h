@@ -44,6 +44,6 @@
 - (IBAction)addClicked:(id)sender;
 - (IBAction)editDoneClicked:(id)sender;
 
-- (void) resetWaypoints;
+- (void) resetWaypointsZoomToMission:(BOOL)zoomToMission;
 
 @end

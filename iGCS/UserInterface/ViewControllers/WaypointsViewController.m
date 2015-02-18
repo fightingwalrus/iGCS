@@ -141,10 +141,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void) resetWaypoints {
-    [self resetWaypointsZoomToMission:YES];
-}
-
 - (void) resetWaypointsZoomToMission:(BOOL)zoomToMission {
     [self replaceMission:self.waypoints zoomToMission:zoomToMission];
 }
@@ -171,9 +167,9 @@
         waypoint.y = longitude;
         [self.waypoints replaceWaypoint:index with:waypoint];
         
-        // Reset the map and table views
-        [self resetWaypoints];  // FIXME: this is a little heavy handed. Want more fine-grained
-                                // control here (like not resetting the map bounds in this case)
+        // Reset the table views
+        //Note it is possible to drag the point under the tableview and out of sight
+        [self resetWaypointsZoomToMission:NO];
     }
 }
 
@@ -254,7 +250,7 @@
     }
     
     [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
-    [self resetWaypoints];
+    [self resetWaypointsZoomToMission:YES];
 }
 
 // Recognizer for long press gestures => add waypoint
@@ -327,7 +323,7 @@
 
 - (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {
     [self.waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
-    [self resetWaypoints]; // Reset the map and table views
+    [self resetWaypointsZoomToMission:NO]; // Reset the map and table views
 }
 // end @protocol MissionItemEditingDelegate
 
