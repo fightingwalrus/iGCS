@@ -14,6 +14,10 @@
 + (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
                       andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
 
++ (void)didArmedStatusChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
+                              andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
+
 @end
 
 extern NSString * const GCSCraftNotificationsCraftCustomModeDidChange;
+extern NSString * const GCSCraftNotificationsCraftArmedStatusDidChange;

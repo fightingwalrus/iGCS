@@ -76,6 +76,16 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     
     self.showProposedFollowPos = NO;
     self.lastFollowMeUpdate = [NSDate date];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(craftCustomModeDidChange)
+                                                 name:GCSCraftNotificationsCraftCustomModeDidChange
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(craftArmedStatusDidChange)
+                                                 name:GCSCraftNotificationsCraftArmedStatusDidChange
+                                               object:nil];
 }
 
 + (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
@@ -157,6 +167,22 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     return YES;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 
+#pragma mark Handle NSnotifications for UI updates
+
+- (void)craftArmedStatusDidChange {
+    // Update armed status labels
+    [self.armedLabel setText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
+    [self.armedLabel setTextColor:([GCSDataManager sharedInstance].craft.isArmed) ? [UIColor redColor] : [UIColor greenColor]];
+}
+
+- (void)craftCustomModeDidChange {
+    [self.customModeLabel setText:[GCSDataManager sharedInstance].craft.currentModeName];
+}
 
 #pragma mark -
 #pragma mark Button Click callbacks
@@ -430,13 +456,8 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
             // Mutate existing craft, or replace if required (e.g. type has changed)
             [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
                                                                                      withCurrent:heartbeat];
-            
-            // Update custom mode and armed status labels
-            BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
-            [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
-            [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:heartbeat]];
 
+            // Update segmented control
             NSInteger idx = CONTROL_MODE_RC;
             if ([GCSDataManager sharedInstance].craft.isInAutoMode) {
                 idx = CONTROL_MODE_AUTO;

@@ -31,7 +31,9 @@
 // These methods are optional so they can be mixed in
 // at runtime
 @optional;
-- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
 @property (nonatomic, readonly) NSString *currentModeName;
+- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
+- (BOOL) isArmed;
+
 
 @end

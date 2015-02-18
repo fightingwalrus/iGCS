@@ -20,12 +20,22 @@
     mavlink_heartbeat_t lastHeartbeat = [(id)self heartbeat];
     [(id)self setHeartbeat:heartbeat];
 
+    // Order of notifications matter to GCSSpeechManager
+    // and we want to hear arming status followed by the flight mode.
+    [GCSCraftNotifications didArmedStatusChangeFromLastHeartbeat:lastHeartbeat
+                                                 andNewHeartbeat:[(id)self heartbeat]];
+
     [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat
                                              andNewHeartbeat:[(id)self heartbeat]];
+
 }
 
 - (NSString *) currentModeName {
     return [MavLinkUtility mavCustomModeToString:[(id)self heartbeat]];
+}
+
+- (BOOL) isArmed {
+    return ([(id)self heartbeat].base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
 }
 
 @end
