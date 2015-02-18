@@ -35,27 +35,22 @@
         _defaultLanguage = @"en-US";
         _notificationCenter = [NSNotificationCenter defaultCenter];
         _speakerQueue = [[NSOperationQueue alloc] init];
-
         _speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
 
         __weak GCSSpeechManager *weakSelf = self;
-        // only register for notifications on iOS 7+
-        if ([AVSpeechUtterance class] && [AVSpeechSynthesizer class]) {
-            // register for notifications
+        [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftCustomModeDidChange
+                                             object:nil
+                                              queue:self.speakerQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf craftNavModeDidChange];
+        }];
 
-            [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftCustomModeDidChange
-                                                 object:nil queue:self.speakerQueue
-                                             usingBlock:^(NSNotification *note) {
-                                                 [weakSelf craftNavModeDidChange];
-            }];
-
-            [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftMavModeDidChange
-                                                 object:nil queue:self.speakerQueue
-                                             usingBlock:^(NSNotification *note) {
-                                                 [weakSelf craftMavModeDidChange];
-                                             }];
-
-        }
+        [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftMavModeDidChange
+                                             object:nil
+                                              queue:self.speakerQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf craftMavModeDidChange];
+                                         }];
     }
     return self;
 }

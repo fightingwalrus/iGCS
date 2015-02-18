@@ -172,17 +172,10 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 #pragma mark - 
 #pragma mark Handle NSnotifications for UI updates
 
-// These will get called only when there is a change event
-// instead of at every tick of the telemetry data
 - (void)craftMavModeDidChange {
     // Update armed status labels
-    if ([GCSDataManager sharedInstance].craft.isArmed) {
-        [self.armedLabel setText:@"Armed"];
-        [self.armedLabel setTextColor:[UIColor redColor]];
-    } else {
-        [self.armedLabel setText:@"Disarmed"];
-        [self.armedLabel setTextColor:[UIColor greenColor]];
-    }
+    [self.armedLabel setText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
+    [self.armedLabel setTextColor:([GCSDataManager sharedInstance].craft.isArmed) ? [UIColor redColor] : [UIColor greenColor]];
 }
 
 - (void)craftCustomModeDidChange {
