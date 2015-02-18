@@ -22,7 +22,7 @@
 
     // Order of notifications matter to GCSSpeechManager
     // and we want to hear arming status followed by the flight mode.
-    [GCSCraftNotifications didMavModeChangeFromLastHeartbeat:lastHeartbeat
+    [GCSCraftNotifications didArmedStatusChangeFromLastHeartbeat:lastHeartbeat
                                              andNewHeartbeat:[(id)self heartbeat]];
 
     [GCSCraftNotifications didNavModeChangeFromLastHeartbeat:lastHeartbeat

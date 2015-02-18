@@ -45,11 +45,11 @@
                                              [weakSelf craftNavModeDidChange];
         }];
 
-        [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftMavModeDidChange
+        [self.notificationCenter addObserverForName:GCSCraftNotificationsCraftArmedStatusDidChange
                                              object:nil
                                               queue:self.speakerQueue
                                          usingBlock:^(NSNotification *note) {
-                                             [weakSelf craftMavModeDidChange];
+                                             [weakSelf craftArmedStatusDidChange];
                                          }];
     }
     return self;
@@ -65,7 +65,7 @@
     [self speakWithText:[GCSDataManager sharedInstance].craft.currentModeName];
 }
 
-- (void)craftMavModeDidChange {
+- (void)craftArmedStatusDidChange {
     [self speakWithText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
 }
 

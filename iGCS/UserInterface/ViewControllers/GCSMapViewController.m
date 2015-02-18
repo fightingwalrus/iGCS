@@ -82,8 +82,8 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
                                                  name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(craftMavModeDidChange)
-                                                 name:GCSCraftNotificationsCraftMavModeDidChange object:nil];
+                                             selector:@selector(craftArmedStatusDidChange)
+                                                 name:GCSCraftNotificationsCraftArmedStatusDidChange object:nil];
 }
 
 + (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
@@ -172,7 +172,7 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 #pragma mark - 
 #pragma mark Handle NSnotifications for UI updates
 
-- (void)craftMavModeDidChange {
+- (void)craftArmedStatusDidChange {
     // Update armed status labels
     [self.armedLabel setText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
     [self.armedLabel setTextColor:([GCSDataManager sharedInstance].craft.isArmed) ? [UIColor redColor] : [UIColor greenColor]];
