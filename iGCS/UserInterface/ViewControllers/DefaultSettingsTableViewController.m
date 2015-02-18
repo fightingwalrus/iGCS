@@ -9,6 +9,7 @@
 #import "DefaultSettingsTableViewController.h"
 #import "SettingsSegementedControlCell.h"
 #import "RadioSettingsViewController.h"
+#import "AboutViewController.h"
 #import "SettingsWaypointCell.h"
 #import "GCSDataManager.h"
 
@@ -184,8 +185,14 @@
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
+    
+    if ([cellContent isEqual: @"About"]) {
+     AboutViewController *aboutViewController = [[AboutViewController alloc] init];
+     [self.navigationController pushViewController:aboutViewController animated:YES];
+     }
 
-/*    if ([cellContent isEqual: @"Radio"]) {
+/*
+    if ([cellContent isEqual: @"Radio"]) {
         RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
         [self.navigationController pushViewController:radioSettingsViewController animated:YES];
     }

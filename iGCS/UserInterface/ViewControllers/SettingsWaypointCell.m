@@ -30,7 +30,7 @@
         
         self.customTextField = [UITextField newAutoLayoutView];
         [self.contentView addSubview:self.customTextField];
-        self.customTextField.keyboardType = UIKeyboardTypeNumberPad;
+        self.customTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         self.customTextField.textAlignment = NSTextAlignmentCenter;
         self.customTextField.borderStyle = UITextBorderStyleRoundedRect;
         [self.customTextField autoSetDimension:ALDimensionWidth toSize:75.0f];

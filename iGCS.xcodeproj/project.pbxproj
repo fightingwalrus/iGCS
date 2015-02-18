@@ -10,6 +10,7 @@
 		0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA761A89BBD600399798 /* DefaultSettingsTableViewController.m */; };
 		0127AA971A8D872200399798 /* SettingsWaypointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA961A8D872200399798 /* SettingsWaypointCell.m */; };
 		0127AAA61A90566D00399798 /* GCSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AAA51A90566D00399798 /* GCSSettings.m */; };
+		012E66741A940C3A00705AEE /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012E66731A940C3A00705AEE /* AboutViewController.m */; };
 		01BFF8E71A8EC47A000927D6 /* SettingsSegementedControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
@@ -418,6 +419,8 @@
 		0127AA961A8D872200399798 /* SettingsWaypointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsWaypointCell.m; path = ViewControllers/SettingsWaypointCell.m; sourceTree = "<group>"; };
 		0127AAA41A90566D00399798 /* GCSSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCSSettings.h; path = ../Utils/GCSSettings.h; sourceTree = "<group>"; };
 		0127AAA51A90566D00399798 /* GCSSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCSSettings.m; path = ../Utils/GCSSettings.m; sourceTree = "<group>"; };
+		012E66721A940C3A00705AEE /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		012E66731A940C3A00705AEE /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		01BFF8E51A8EC47A000927D6 /* SettingsSegementedControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsSegementedControlCell.h; path = TableViewCells/SettingsSegementedControlCell.h; sourceTree = "<group>"; };
 		01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsSegementedControlCell.m; path = TableViewCells/SettingsSegementedControlCell.m; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
@@ -1677,6 +1680,8 @@
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
 				0127AA7A1A89BBFE00399798 /* DefaultSettingsTableViewController.h */,
 				0127AA761A89BBD600399798 /* DefaultSettingsTableViewController.m */,
+				012E66721A940C3A00705AEE /* AboutViewController.h */,
+				012E66731A940C3A00705AEE /* AboutViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2478,6 +2483,7 @@
 				496E629116DAFB8B00E52E4A /* GCSMapViewController.m in Sources */,
 				18069FD21836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */,
 				18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */,
+				012E66741A940C3A00705AEE /* AboutViewController.m in Sources */,
 				496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */,
 				496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
 				1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */,
