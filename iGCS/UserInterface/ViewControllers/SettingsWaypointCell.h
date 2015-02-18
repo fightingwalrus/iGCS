@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsWaypointCell : UITableViewCell {
-    UITextField *customTextField;
-    UILabel *customLabel;
-}
+@interface SettingsWaypointCell : UITableViewCell
 
 @property (nonatomic, retain) UITextField *customTextField;
 @property (nonatomic, retain) UILabel *customLabel;

@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsSegementedControlCell : UITableViewCell {
-UISegmentedControl *customSegementedControl;
-}
+
+
+@interface SettingsSegementedControlCell : UITableViewCell
 
 @property (nonatomic, retain) UISegmentedControl *customSegementedControl;
-
 @property (nonatomic, weak) UITableView *tableView;
-
 
 @end
 

@@ -13,14 +13,10 @@
 
 @implementation SettingsWaypointCell
 
-@synthesize customTextField, customLabel;
-
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Custom initialization
 
+    if (self) {
         self.customLabel = [UILabel newAutoLayoutView];
         [self.contentView addSubview:self.customLabel];
         self.customLabel.textAlignment = NSTextAlignmentCenter;
@@ -39,7 +35,6 @@
       }
     
     return self;
-    
 }
 
 

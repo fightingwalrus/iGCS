@@ -26,11 +26,9 @@
 @property (strong, nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (nonatomic, assign) BOOL standardSelected;
-
 @end
 
 @implementation DefaultSettingsTableViewController
-
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -40,12 +38,10 @@
     return self;
 }
 
-
 - (void) viewDidLoad {
     [super viewDidLoad];
     [self configureNavigationBar];
     [self createSectionData];
-  
 }
 
 - (void) createSectionData {
@@ -65,10 +61,11 @@
     NSString *generalSectionKey = @"General";
     NSString *waypointSectionKey = @"Waypoints";
     NSString *otherSectionKey = @"Other";
-    
-    [contents setObject:self.generalSettingsArray forKey:generalSectionKey];
-    [contents setObject:self.waypointSettingsArray forKey:waypointSectionKey];
-    [contents setObject:self.otherSettingsArray forKey:otherSectionKey];
+
+    contents[generalSectionKey] = self.generalSettingsArray;
+    contents[waypointSectionKey] = self.waypointSettingsArray;
+    contents[otherSectionKey] = self.otherSettingsArray;
+
     
     [keys addObject:generalSectionKey];
     [keys addObject:waypointSectionKey];
@@ -96,9 +93,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *key = [self.sectionKeysArray objectAtIndex:section];
-    NSArray *contents = [self.sectionContentsDict objectForKey:key];
-    NSInteger rows = contents.count;
-    return rows;
+    return [self.sectionContentsDict[key] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,25 +111,24 @@
         if (settingsWaypointCell == nil) {
             settingsWaypointCell = [[SettingsWaypointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+
         settingsWaypointCell.textLabel.text = cellContent;
         
         if ([GCSDataManager sharedInstance].gcsSettings.unitType == metric) {
             settingsWaypointCell.customLabel.text = @"meters";
-        }
-        else {
+        } else {
             settingsWaypointCell.customLabel.text = @"feet";
         }
-        
+
         if ([cellContent isEqual: @"Altitude"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.altitude];
             settingsWaypointCell.customTextField.tag = 0;
-        }
-        else if ([cellContent isEqual: @"Ceiling"]) {
+
+        } else if ([cellContent isEqual: @"Ceiling"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.ceiling];
             settingsWaypointCell.customTextField.tag = 2;
-        }
-        
-        else if ([cellContent isEqual: @"Radius"]) {
+
+        } else if ([cellContent isEqual: @"Radius"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.radius];
             settingsWaypointCell.customTextField.tag = 1;
         }
@@ -142,10 +136,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [settingsWaypointCell.customTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingDidEnd];
         cell = settingsWaypointCell;
-        
 
-    }
-    else {
+    } else {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -153,13 +145,12 @@
             cell.textLabel.text = cellContent;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([cellContent isEqual: @"Units"]) {
+            if ([cellContent isEqual:@"Units"]) {
                 SettingsSegementedControlCell *settingsSegementedControlCell = [[SettingsSegementedControlCell alloc] initWithFrame:CGRectZero];
                 settingsSegementedControlCell.tableView = tableView;
                 cell.accessoryView = settingsSegementedControlCell;
                 
-            }
-            else {
+            } else {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             }
@@ -167,7 +158,6 @@
         }
         
     }
-    
     return cell;
 }
 
@@ -176,9 +166,7 @@
 }
 
 
-
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -187,9 +175,9 @@
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
     if ([cellContent isEqual: @"About"]) {
-     AboutViewController *aboutViewController = [[AboutViewController alloc] init];
-     [self.navigationController pushViewController:aboutViewController animated:YES];
-     }
+        AboutViewController *aboutViewController = [[AboutViewController alloc] init];
+        [self.navigationController pushViewController:aboutViewController animated:YES];
+    }
 
 /*
     if ([cellContent isEqual: @"Radio"]) {
@@ -222,12 +210,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void) textFieldChanged:(UITextField *)textField {
     NSIndexPath *indexPath;
@@ -246,7 +232,6 @@
     }
     [GCSDataManager save];
 }
-
 
 @end
 
