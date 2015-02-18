@@ -142,13 +142,21 @@
 }
 
 - (void) resetWaypoints {
-    [self replaceMission:self.waypoints];
+    [self resetWaypointsZoomToMission:YES];
+}
+
+- (void) resetWaypointsZoomToMission:(BOOL)zoomToMission {
+    [self replaceMission:self.waypoints zoomToMission:zoomToMission];
 }
 
 - (void) replaceMission:(WaypointsHolder*)mission {
+    [self replaceMission:mission zoomToMission:YES];
+}
+
+- (void) replaceMission:(WaypointsHolder*)mission zoomToMission:(BOOL)zoomToMission {
     // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
     _waypoints = mission;
-    [super replaceMission:self.waypoints];
+    [super replaceMission:self.waypoints zoomToMission:zoomToMission];
     [self.missionTableViewController refreshTableView];
 }
 
@@ -257,7 +265,7 @@
     // Set the coordinates of the map point being held down
     CLLocationCoordinate2D pos = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
     [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
-    [self resetWaypoints];
+    [self resetWaypointsZoomToMission:NO];
 }
 
 // FIXME: also need to check and close the detail view if open

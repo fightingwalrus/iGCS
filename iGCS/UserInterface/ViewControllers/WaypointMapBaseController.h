@@ -33,6 +33,7 @@
 - (void) removeExistingWaypointAnnotations;
 - (WaypointAnnotation *) getWaypointAnnotation:(WaypointSeq)waypointSeq;
 - (void) replaceMission:(WaypointsHolder*)mission;
+- (void) replaceMission:(WaypointsHolder*)mission zoomToMission:(BOOL)zoomToMission;
 - (void) maybeUpdateCurrentWaypoint:(WaypointSeqOpt)newCurrentWaypointSeq;
 
 - (void) makeWaypointsDraggable:(BOOL)draggableWaypoints;
