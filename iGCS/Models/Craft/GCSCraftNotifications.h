@@ -15,7 +15,7 @@
                       andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
 
 + (void)didArmedStatusChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                          andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
+                              andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
 
 @end
 

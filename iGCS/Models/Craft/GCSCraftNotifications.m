@@ -26,7 +26,7 @@ NSString * const GCSCraftNotificationsCraftArmedStatusDidChange = @"GCSCraftNoti
 }
 
 + (void)didArmedStatusChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                          andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
+                              andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
 
     if (lastHeartbeat.base_mode != 0 &&
         (lastHeartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED) == (newHeartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED)) {

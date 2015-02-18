@@ -79,11 +79,13 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftCustomModeDidChange)
-                                                 name:GCSCraftNotificationsCraftCustomModeDidChange object:nil];
+                                                 name:GCSCraftNotificationsCraftCustomModeDidChange
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftArmedStatusDidChange)
-                                                 name:GCSCraftNotificationsCraftArmedStatusDidChange object:nil];
+                                                 name:GCSCraftNotificationsCraftArmedStatusDidChange
+                                               object:nil];
 }
 
 + (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
