@@ -143,8 +143,7 @@
 
 // 1e-5 is very approximately 1m
 #define CLLocationCoordinate2DEqual(x, y) (fabs((x).latitude - (y).latitude) < 1e-5 && fabs((x).longitude - (y).longitude) < 1e-5)
-- (void) replaceMission:(WaypointsHolder*)mission
-{
+- (void) replaceMission:(WaypointsHolder*)mission {
     [self replaceMission:mission zoomToMission:YES];
 }
 
@@ -179,10 +178,8 @@
     
     // Set the map extents
     NSUInteger offset = isHomeWPInitialised ? 0 : 1;
-    if (offset < numWaypoints) {
-        if(zoomToMission) {
-            [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
-        }
+    if (offset < numWaypoints && zoomToMission) {
+        [self zoomInOnCoordinates:coords+offset withLength:numWaypoints-offset]; // don't include HOME/0 in zoom area when not initialised
     }
     [self.mapView setNeedsDisplay];
     

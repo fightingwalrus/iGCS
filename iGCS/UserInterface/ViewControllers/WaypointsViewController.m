@@ -145,10 +145,6 @@
     [self replaceMission:self.waypoints zoomToMission:zoomToMission];
 }
 
-- (void) replaceMission:(WaypointsHolder*)mission {
-    [self replaceMission:mission zoomToMission:YES];
-}
-
 - (void) replaceMission:(WaypointsHolder*)mission zoomToMission:(BOOL)zoomToMission {
     // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
     _waypoints = mission;
