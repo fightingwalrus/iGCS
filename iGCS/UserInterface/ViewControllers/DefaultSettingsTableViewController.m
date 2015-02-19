@@ -120,15 +120,15 @@
             settingsWaypointCell.customLabel.text = @"feet";
         }
 
-        if ([cellContent isEqual: @"Altitude"]) {
+        if ([cellContent isEqual:@"Altitude"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.altitude];
             settingsWaypointCell.customTextField.tag = 0;
 
-        } else if ([cellContent isEqual: @"Ceiling"]) {
+        } else if ([cellContent isEqual:@"Ceiling"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.ceiling];
             settingsWaypointCell.customTextField.tag = 2;
 
-        } else if ([cellContent isEqual: @"Radius"]) {
+        } else if ([cellContent isEqual:@"Radius"]) {
             settingsWaypointCell.customTextField.text = [NSString stringWithFormat:@"%.2f",[GCSDataManager sharedInstance].gcsSettings.radius];
             settingsWaypointCell.customTextField.tag = 1;
         }
