@@ -254,10 +254,6 @@
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18E58A8F198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
-		18ED8F1E1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
-		18ED8F1F1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
-		18E58A91198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
-		18E58A92198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
 		18F8040317E24BB300CB8052 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18F8040417E24BB300CB8052 /* CommConnectionPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040217E24BB300CB8052 /* CommConnectionPool.m */; };
@@ -795,9 +791,6 @@
 		18D8917119817CB1001ED845 /* _LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _LICENSE.txt; sourceTree = "<group>"; };
 		18E58A87198993EB0025A516 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18E58A88198993EB0025A516 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
-		18ED8F1D1A60C3190014A575 /* quad-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quad-icon.png"; sourceTree = "<group>"; };
-		18E58A89198993EB0025A516 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		18E58A8A198993EB0025A516 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
 		18F803F617E2480900CB8052 /* CommInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommInterface.m; sourceTree = "<group>"; };
 		18F803FF17E24BB300CB8052 /* CommConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommConnection.h; sourceTree = "<group>"; };
@@ -2631,7 +2624,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/3rd-party/Redpark Serial SDK/lib\"",
@@ -2665,7 +2658,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = REDPARK;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/iGCS-Info-redpark.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iGCS/iGCS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/3rd-party/Redpark Serial SDK/lib\"",
