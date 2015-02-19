@@ -11,16 +11,15 @@
 
 #import <CoreMotion/CoreMotion.h>
 
-typedef enum AngleStatusType {
+NS_ENUM(NSUInteger, AngleStatusType) {
     angleNotUsed,
     angleNeedsOffset,
     angleHasOffset,
-}
-AngleStatusType;
+};
 
-@interface ArDroneViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ManualControlViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, strong) ArDroneUtils *arDrone2;
+@property (nonatomic, strong) ArDroneUtils *arDroneUtils;
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) CMDeviceMotion *deviceMotion;

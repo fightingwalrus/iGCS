@@ -25,7 +25,7 @@
 #import "FileUtils.h"
 #import "iGCSMavLinkInterface.h"
 #import "ArDroneUtils.h"
-#import "ArDroneViewController.h"
+#import "ManualControlViewController.h"
 
 
 @interface DebugViewController ()
@@ -71,13 +71,10 @@
 
 - (IBAction)arDroneCtrl:(id)sender {
     NSLog(@"You clicked the button, way to go");
-    ArDroneViewController *arDroneViewController = [[ArDroneViewController alloc] init];
+    ManualControlViewController *arDroneViewController = [[ManualControlViewController alloc] init];
     [self presentViewController:arDroneViewController animated:YES completion:nil];
     
 }
-
-
-
 
 -(void)consoleMessage:(NSString*)messageText {
     NSUInteger consoleMessagesStringLength = [self.consoleTextView.text length];
@@ -92,8 +89,6 @@
     self.consoleTextView.text = [[self.consoleTextView.text stringByAppendingString:messageText] stringByAppendingString:@"\n"];
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([self.consoleTextView.text length], 0)];
 }
-
-
 
 - (void)viewDidUnload {
     [self setConsoleTextView:nil];

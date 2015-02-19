@@ -35,7 +35,7 @@
 		01CEC5EC19D9FA3800320A34 /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5CF19D9FA3800320A34 /* BRStreamInfo.m */; };
 		01CEC5F019D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
 		01CEC5F119D9FA9C00320A34 /* ArDroneUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */; };
-		01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */; };
+		01CFB1A21A02E16000BECD0F /* ManualControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB1A11A02E16000BECD0F /* ManualControlViewController.m */; };
 		01E9F18D1A04427800901980 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E9F18C1A04427800901980 /* CoreMotion.framework */; };
 		01EC4F0D1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
 		01EC4F0E1A255C9F00BE8C59 /* CoreMotionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */; };
@@ -456,8 +456,8 @@
 		01CEC5CF19D9FA3800320A34 /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
 		01CEC5EE19D9FA9C00320A34 /* ArDroneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneUtils.h; sourceTree = "<group>"; };
 		01CEC5EF19D9FA9C00320A34 /* ArDroneUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneUtils.m; sourceTree = "<group>"; };
-		01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArDroneViewController.h; sourceTree = "<group>"; };
-		01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArDroneViewController.m; sourceTree = "<group>"; };
+		01CFB1A01A02E16000BECD0F /* ManualControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualControlViewController.h; sourceTree = "<group>"; };
+		01CFB1A11A02E16000BECD0F /* ManualControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualControlViewController.m; sourceTree = "<group>"; };
 		01E9F18C1A04427800901980 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		01EC4F0B1A255C9F00BE8C59 /* CoreMotionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreMotionUtils.h; sourceTree = "<group>"; };
 		01EC4F0C1A255C9F00BE8C59 /* CoreMotionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMotionUtils.m; sourceTree = "<group>"; };
@@ -1625,8 +1625,8 @@
 		496E627616DAFB8B00E52E4A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				01CFB1A01A02E16000BECD0F /* ArDroneViewController.h */,
-				01CFB1A11A02E16000BECD0F /* ArDroneViewController.m */,
+				01CFB1A01A02E16000BECD0F /* ManualControlViewController.h */,
+				01CFB1A11A02E16000BECD0F /* ManualControlViewController.m */,
 				496E627716DAFB8B00E52E4A /* CommsViewController.h */,
 				496E627816DAFB8B00E52E4A /* CommsViewController.m */,
 				CA0B69B5189B787E0014C1E4 /* GCSSidebarController.h */,
@@ -2516,7 +2516,7 @@
 				CA154E8119BFE52000ECE919 /* DDLog.m in Sources */,
 				18A42CD318895B3700408D71 /* GKLocalController.m in Sources */,
 				18069FC41836F7C70068E7A5 /* BTLEMavLinkPeripheral.m in Sources */,
-				01CFB1A21A02E16000BECD0F /* ArDroneViewController.m in Sources */,
+				01CFB1A21A02E16000BECD0F /* ManualControlViewController.m in Sources */,
 				18069FC01836F7C70068E7A5 /* BluetoothStream.m in Sources */,
 				01CEC5D919D9FA3800320A34 /* BRRequestDelete.m in Sources */,
 				447C4B8E17C6E3A500440678 /* MavLinkLogger.m in Sources */,

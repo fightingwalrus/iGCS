@@ -7,19 +7,16 @@
 //
 
 #import "CommController.h"
-#import "ArDroneViewController.h"
+#import "ManualControlViewController.h"
 #import "GCSThemeManager.h"
 #import "PureLayout.h"
 #import "ArDroneUtils.h"
 #import "CoreMotionUtils.h"
 
-@interface ArDroneViewController ()
+@interface ManualControlViewController ()
 
 //Navigation bar items
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
-
-
-
 
 //UI Elements
 @property (strong, nonatomic) UIButton *takeOffButton;
@@ -42,9 +39,6 @@
 @property (strong, nonatomic) UIButton *downOneButton;
 @property (strong, nonatomic) UIButton *downTwoButton;
 
-
-
-
 @property (strong, nonatomic) UIButton *ftpButton;
 @property (strong, nonatomic) UIButton *telnetButton;
 
@@ -57,16 +51,11 @@
 @property (strong, nonatomic) CMAttitude* rollPitchOffset;
 @property (strong, nonatomic) CMAttitude* yawOffset;
 
-@property (nonatomic, assign) AngleStatusType sendRollPitch;
-@property (nonatomic, assign) AngleStatusType sendYawThrust;
-
-
-
-
-
+@property (nonatomic, assign) enum AngleStatusType sendRollPitch;
+@property (nonatomic, assign) enum AngleStatusType sendYawThrust;
 @end
 
-@implementation ArDroneViewController
+@implementation ManualControlViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,7 +66,7 @@
     picker.delegate = self;
     self.pickerTextField.inputView = picker;
     self.animationNames = @[@"Flip Right", @"Flip Left", @"Flip Ahead", @"Flip Behind", @"Wave", @"Turn Around", @"Phi Theta Mixed"];
-    _arDrone2 = [[ArDroneUtils alloc] init];
+    _arDroneUtils = [[ArDroneUtils alloc] init];
     self.sequenceNumber = 1;
     self.thrust = 0;
 }
@@ -99,7 +88,6 @@
     [self.pickerTextField resignFirstResponder];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -109,9 +97,8 @@
     [self setTitle:@"ArDrone Test"];
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                              target:self action:@selector(cancelChanges:)];
-    
     self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
-   }
+}
 
 -(void)configureViewLayout {
     
@@ -206,9 +193,9 @@
     [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].appTintColor forState:UIControlStateNormal];
     [self.thrustZeroButton setTitleColor:[GCSThemeManager sharedInstance].waypointOtherColor forState:UIControlStateHighlighted];
     [self.view addSubview:self.thrustZeroButton];
-    
-    
 
+
+    
     self.emergencyButton = [UIButton newAutoLayoutView];
     [self.emergencyButton setTitle :@"Send Emergency Signal" forState:UIControlStateNormal];
     [self.emergencyButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:35.0]];
@@ -218,12 +205,9 @@
     [self.view addSubview:self.emergencyButton];
     [self.emergencyButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.emergencyButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
-    
-    
-    
-    
-    
-    
+
+
+
     self.pitchRollButton = [UIButton newAutoLayoutView];
     [self.pitchRollButton setTitle :@"O" forState:UIControlStateNormal];
     [self.pitchRollButton addTarget:self action:@selector(pitchRoll) forControlEvents:UIControlEventTouchDown];
@@ -396,7 +380,6 @@
 }
 
 
-
 #pragma mark - UINavigationBar Button handlers
 
 - (void)cancelChanges:(id)sender {
@@ -404,11 +387,11 @@
 }
 
 - (void) ftp {
-    [self.arDrone2 uploadProgramToDrone];
+    [self.arDroneUtils uploadProgramToDrone];
 }
 
 - (void) telnet {
-    [self.arDrone2 makeTelnetConnectionToDrone];
+    [self.arDroneUtils makeTelnetConnectionToDrone];
 }
 
 - (void) takeoff {
@@ -499,9 +482,6 @@
 
 }
 
-
-
-
 - (void) executeAnimation {
     if ([self.pickerTextField.text isEqualToString:@"Flip Left"])
         [[CommController sharedInstance].mavLinkInterface arDroneFlipLeft];
@@ -530,53 +510,62 @@
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .03;
     self.motionManager.gyroUpdateInterval = .03;
-    
+
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
                                             withHandler:^(CMDeviceMotion  *deviceMotion, NSError *error) {
-                                                
-                                                int16_t yaw = 0;
-                                                int16_t roll = 0;
-                                                int16_t pitch = 0;
-                                                int16_t thrust = 0;
-                                                //Get offsets at time of initial button press for each button
-                                                if(self.sendRollPitch == angleNeedsOffset)
-                                                {
-                                                    self.rollPitchOffset = [deviceMotion.attitude copy];
-                                                    self.sendRollPitch = angleHasOffset;
-                                                }
-                                                
-                                                if(self.sendYawThrust == angleNeedsOffset)
-                                                {
-                                                    self.yawOffset = [deviceMotion.attitude copy];
-                                                    self.sendYawThrust = angleHasOffset;
-                                                }
-                                                
-                                                //Once we have the offsets lets calculate the angles based on those offsets
-                                                if (self.sendRollPitch != angleNotUsed) {
-                                                    GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion relativeToOffset:self.rollPitchOffset];
 
-                                                    roll = anglesOfRotation.roll;
-                                                    pitch = anglesOfRotation.pitch;
-                                                }
-                                                if (self.sendYawThrust != angleNotUsed)
-                                                {
-                                                    GCSMAVRotationAngles anglesOfRotation2 = [self outputMotionData:deviceMotion relativeToOffset:self.yawOffset];
-                                                    yaw = anglesOfRotation2.yaw;
-                                                    thrust = self.thrust;
-                                                }
-                                                
-                                                DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d, Thrust : %d", pitch, roll, yaw, thrust);
-                                                
+                                                [self motionHandlerWithDeviceMotion:deviceMotion
+                                                                           andError:error];
 
-                                                [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:pitch andRoll:roll andThrust:thrust andYaw:yaw andSequenceNumber:self.sequenceNumber];
-                                                self.sequenceNumber++;
-                                                if(error){
-                                                    
-                                                    DDLogDebug(@"%@", error);
-                                                }
                                             }];
 }
 
+-(void)motionHandlerWithDeviceMotion:(CMDeviceMotion *)deviceMotion
+                            andError:(NSError *)error {
+    int16_t yaw = 0;
+    int16_t roll = 0;
+    int16_t pitch = 0;
+    int16_t thrust = 0;
+
+    //Get offsets at time of initial button press for each button
+    if(self.sendRollPitch == angleNeedsOffset) {
+        self.rollPitchOffset = [deviceMotion.attitude copy];
+        self.sendRollPitch = angleHasOffset;
+    }
+
+    if(self.sendYawThrust == angleNeedsOffset) {
+        self.yawOffset = [deviceMotion.attitude copy];
+        self.sendYawThrust = angleHasOffset;
+    }
+
+    //Once we have the offsets lets calculate the angles based on those offsets
+    if (self.sendRollPitch != angleNotUsed) {
+        GCSMAVRotationAngles anglesOfRotation = [self outputMotionData:deviceMotion relativeToOffset:self.rollPitchOffset];
+
+        roll = anglesOfRotation.roll;
+        pitch = anglesOfRotation.pitch;
+    }
+
+    if (self.sendYawThrust != angleNotUsed) {
+        GCSMAVRotationAngles anglesOfRotation2 = [self outputMotionData:deviceMotion relativeToOffset:self.yawOffset];
+        yaw = anglesOfRotation2.yaw;
+        thrust = self.thrust;
+    }
+
+    DDLogDebug(@"Pitch : %d, Roll : %d, Yaw : %d, Thrust : %d", pitch, roll, yaw, thrust);
+
+    [[CommController sharedInstance].mavLinkInterface sendMoveCommandWithPitch:pitch
+                                                                       andRoll:roll
+                                                                     andThrust:thrust
+                                                                        andYaw:yaw
+                                                             andSequenceNumber:self.sequenceNumber];
+
+    self.sequenceNumber++;
+
+    if(error){
+        DDLogDebug(@"%@", error);
+    }
+}
 
 -(GCSMAVRotationAngles)outputMotionData:(CMDeviceMotion*)deviceMotion {
     CMQuaternion quat = deviceMotion.attitude.quaternion;
