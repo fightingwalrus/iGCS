@@ -10,9 +10,10 @@
 #import <CoreMotion/CoreMotion.h>
 
 struct GCSMAVRotationAngles{
-    int16_t roll, pitch, yaw;
+    int16_t roll;
+    int16_t pitch;
+    int16_t yaw;
 };
-
 typedef struct GCSMAVRotationAngles GCSMAVRotationAngles;
 
 @interface CoreMotionUtils : NSObject

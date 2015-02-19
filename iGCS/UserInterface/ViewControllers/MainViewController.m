@@ -14,7 +14,6 @@
 #import "GCSMapViewController+DataRate.h"
 #import "WaypointsViewController.h"
 #import "CommsViewController.h"
-#import "DebugViewController.h"
 
 #import "CommController.h"
 #import "DataRateRecorder.h"
@@ -27,7 +26,6 @@
 @property (strong) GCSSidebarController *gcsSidebarVC;
 @property (strong) WaypointsViewController *waypointVC;
 @property (strong) CommsViewController *commsVC;
-@property (strong) DebugViewController *debugVC;
 
 @property (nonatomic, strong) GCSAccessoryFirmwareManager *firmwareManager;
 @end
@@ -56,7 +54,6 @@
 
 #ifdef DEBUG
     self.commsVC    = [self viewControllers][2];
-    self.debugVC    = [self viewControllers][3];
 #endif
 
     // Initialize MavLink Interfaces
