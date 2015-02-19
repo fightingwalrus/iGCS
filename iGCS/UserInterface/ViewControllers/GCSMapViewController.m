@@ -19,9 +19,10 @@
 
 #import "CXAlertView.h"
 
+#import "GCSSpeechManager.h"
+#import "GCSDataManager.h"
 
 @interface GCSMapViewController ()
-@property (nonatomic, assign) enum MAV_TYPE uavType;
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
 @property (nonatomic, strong) MKAnnotationView  *uavView;
 
@@ -49,18 +50,9 @@ static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
-static const NSUInteger VEHICLE_ICON_SIZE = 62;
-
-static UIImage *planeIcon = nil;
-static UIImage *quadIcon = nil;
+static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
 @implementation GCSMapViewController
-
-+ (void)initialize {
-    // Initialize static resources
-    if (!planeIcon) planeIcon = [UIImage imageNamed:@"plane-icon.png"];
-    if (!quadIcon) quadIcon = [UIImage imageNamed:@"quad-icon.png"];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -68,13 +60,12 @@ static UIImage *quadIcon = nil;
 }
 
 - (void)awakeFromNib {
-    self.uavType = MAV_TYPE_FIXED_WING;
-    
     self.uavPos = [[MKPointAnnotation alloc] init];
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     self.uavView = [[MKAnnotationView  alloc] initWithAnnotation:self.uavPos reuseIdentifier:@"uavView"];
-    self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:0];
+    self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                       withYaw:0];
     self.uavView.userInteractionEnabled = YES;
     self.uavView.centerOffset = CGPointZero;
     
@@ -85,10 +76,20 @@ static UIImage *quadIcon = nil;
     
     self.showProposedFollowPos = NO;
     self.lastFollowMeUpdate = [NSDate date];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(craftCustomModeDidChange)
+                                                 name:GCSCraftNotificationsCraftCustomModeDidChange
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(craftArmedStatusDidChange)
+                                                 name:GCSCraftNotificationsCraftArmedStatusDidChange
+                                               object:nil];
 }
 
-+ (UIImage*) uavIconForType:(enum MAV_TYPE)type withYaw:(double)rotation {
-    return [MiscUtilities imageWithImage:(type == MAV_TYPE_FIXED_WING ? planeIcon : quadIcon) // if not fixed wing, default to quadIcon
++ (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
+    return [MiscUtilities imageWithImage:craft.icon
                             scaledToSize:CGSizeMake(VEHICLE_ICON_SIZE,VEHICLE_ICON_SIZE)
                                 rotation:rotation];
 }
@@ -166,6 +167,22 @@ static UIImage *quadIcon = nil;
     return YES;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 
+#pragma mark Handle NSnotifications for UI updates
+
+- (void)craftArmedStatusDidChange {
+    // Update armed status labels
+    [self.armedLabel setText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
+    [self.armedLabel setTextColor:([GCSDataManager sharedInstance].craft.isArmed) ? [UIColor redColor] : [UIColor greenColor]];
+}
+
+- (void)craftCustomModeDidChange {
+    [self.customModeLabel setText:[GCSDataManager sharedInstance].craft.currentModeName];
+}
 
 #pragma mark -
 #pragma mark Button Click callbacks
@@ -212,9 +229,16 @@ static UIImage *quadIcon = nil;
     [self.mapView addAnnotation:self.currentGuidedAnnotation];
     [self.mapView setNeedsDisplay];
 
-    [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
-}
+    // As of APM:Copter 3.2 we *must* set mode to guided however we don't want to
+    // do this for APM:Plane
+    if ([GCSDataManager sharedInstance].craft.setModeBeforeGuidedItems) {
+        [[[CommController sharedInstance] mavLinkInterface] issueSetGuidedModeCommand];
+    }
 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [[[CommController sharedInstance] mavLinkInterface] issueGOTOCommand:coordinates withAltitude:altitude];
+    });
+}
 
 - (void) followMeControlChange:(FollowMeCtrlValues*)vals {
     self.showProposedFollowPos = YES;
@@ -303,6 +327,7 @@ static UIImage *quadIcon = nil;
                           handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
                               [alertView dismiss];
                           }];
+    
     alertView.showBlurBackground = YES;
 
     // Add pan gesture to allow modification of target altitude
@@ -367,8 +392,6 @@ static UIImage *quadIcon = nil;
             mavlink_attitude_t attitudePkt;
             mavlink_msg_attitude_decode(msg, &attitudePkt);
             
-            self.uavView.image = [GCSMapViewController uavIconForType:self.uavType withYaw:attitudePkt.yaw];
-            
             [self.ahIndicatorView setRoll:-attitudePkt.roll pitch:attitudePkt.pitch];
             [self.ahIndicatorView requestRedraw];
         }
@@ -377,6 +400,9 @@ static UIImage *quadIcon = nil;
         case MAVLINK_MSG_ID_VFR_HUD: {
             mavlink_vfr_hud_t  vfrHudPkt;
             mavlink_msg_vfr_hud_decode(msg, &vfrHudPkt);
+            
+            self.uavView.image = [GCSMapViewController uavIconForCraft:[GCSDataManager sharedInstance].craft
+                                                               withYaw:vfrHudPkt.heading * DEG2RAD];
             
             [self.compassView setHeading:vfrHudPkt.heading];
             [self.airspeedView setValue:vfrHudPkt.airspeed]; // m/s
@@ -426,25 +452,17 @@ static UIImage *quadIcon = nil;
             
             // We got a heartbeat, so...
             [self rescheduleHeartbeatLossCheck];
-            
-            // Record the uav type
-            self.uavType = heartbeat.type;
-            
-            // Update custom mode and armed status labels
-            BOOL isArmed = (heartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED);
-            [self.armedLabel setText:isArmed ? @"Armed" : @"Disarmed"];
-            [self.armedLabel setTextColor:isArmed ? [UIColor redColor] : [UIColor greenColor]];
-            [self.customModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
 
+            // Mutate existing craft, or replace if required (e.g. type has changed)
+            [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
+                                                                                     withCurrent:heartbeat];
+
+            // Update segmented control
             NSInteger idx = CONTROL_MODE_RC;
-            switch (heartbeat.custom_mode) {
-                case AUTO:
-                    idx = CONTROL_MODE_AUTO;
-                    break;
-
-                case GUIDED:
-                    idx = CONTROL_MODE_GUIDED;
-                    break;
+            if ([GCSDataManager sharedInstance].craft.isInAutoMode) {
+                idx = CONTROL_MODE_AUTO;
+            } else if ([GCSDataManager sharedInstance].craft.isInGuidedMode) {
+                idx = CONTROL_MODE_GUIDED;
             }
             
             // Change the segmented control to reflect the heartbeat
@@ -452,10 +470,10 @@ static UIImage *quadIcon = nil;
                 self.controlModeSegment.selectedSegmentIndex = idx;
             }
             
-            // If the current mode is not GUIDED, and has just changed
+            // If the current mode is not a GUIDED mode, and has just changed
             //   - unconditionally switch out of Follow Me mode
             //   - clear the guided position annotation markers
-            if (heartbeat.custom_mode != GUIDED && heartbeat.custom_mode != _lastCustomMode) {
+            if (![GCSDataManager sharedInstance].craft.isInGuidedMode && heartbeat.custom_mode != _lastCustomMode) {
                 [self deactivateFollowMe];
                 [self clearGuidedPositions];
             }
@@ -522,15 +540,6 @@ static UIImage *quadIcon = nil;
     }
     
     return nil;
-}
-
-// Override the base locationManager: didUpdateLocations
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = self.locationManager.location;
-    NSTimeInterval age = -[location.timestamp timeIntervalSinceNow];
-    DDLogDebug(@"locationManager didUpdateLocations: %@ (age = %0.1fs)", location.description, age);
-    if (age > 5.0) return;
-    self.userPosition = location;
 }
 
 @end

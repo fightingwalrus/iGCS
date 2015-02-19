@@ -13,6 +13,8 @@
 
 #import "CommController.h"
 
+#import "CXAlertView.h"
+
 @interface WaypointsViewController ()
 @property (nonatomic, strong) UINavigationController *navVCEditItemVC;
 @end
@@ -49,6 +51,7 @@
     //  - corrects the expanding/contract effect on Edit for iOS8
     [self.containerForTableView setTranslatesAutoresizingMaskIntoConstraints:YES];
     [self.mapView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.locateUser setTranslatesAutoresizingMaskIntoConstraints:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -138,14 +141,14 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void) resetWaypoints {
-    [self replaceMission:self.waypoints];
+- (void) resetWaypointsZoomToMission:(BOOL)zoomToMission {
+    [self replaceMission:self.waypoints zoomToMission:zoomToMission];
 }
 
-- (void) replaceMission:(WaypointsHolder*)mission {
+- (void) replaceMission:(WaypointsHolder*)mission zoomToMission:(BOOL)zoomToMission {
     // set waypoints ahead of waypointNumberForAnnotationView calls from [super replaceMission:...]
     _waypoints = mission;
-    [super replaceMission:self.waypoints];
+    [super replaceMission:self.waypoints zoomToMission:zoomToMission];
     [self.missionTableViewController refreshTableView];
 }
 
@@ -160,9 +163,9 @@
         waypoint.y = longitude;
         [self.waypoints replaceWaypoint:index with:waypoint];
         
-        // Reset the map and table views
-        [self resetWaypoints];  // FIXME: this is a little heavy handed. Want more fine-grained
-                                // control here (like not resetting the map bounds in this case)
+        // Reset the table views
+        //Note it is possible to drag the point under the tableview and out of sight
+        [self resetWaypointsZoomToMission:NO];
     }
 }
 
@@ -195,6 +198,27 @@
     return waypoint;
 }
 
+- (IBAction) clearAllClicked:(id)sender {
+    if (self.waypoints.numWaypoints == 0) return;
+
+    CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:@"Clear Mission?"
+                                                        message:nil
+                                              cancelButtonTitle:nil];
+    [alertView addButtonWithTitle:@"OK" // Order buttons as per Apple's HIG ("destructive" action on left)
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [self replaceMission:[[WaypointsHolder alloc] initWithExpectedCount:0]];
+                              [alertView dismiss];
+                          }];
+    [alertView addButtonWithTitle:@"Cancel"
+                             type:CXAlertViewButtonTypeCustom
+                          handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+                              [alertView dismiss];
+                          }];
+    alertView.showBlurBackground = YES;
+    [alertView show];
+}
+
 - (IBAction) addClicked:(id)sender {
     CLLocationCoordinate2D pos;
 
@@ -222,7 +246,7 @@
     }
     
     [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
-    [self resetWaypoints];
+    [self resetWaypointsZoomToMission:YES];
 }
 
 // Recognizer for long press gestures => add waypoint
@@ -233,7 +257,7 @@
     // Set the coordinates of the map point being held down
     CLLocationCoordinate2D pos = [self.mapView convertPoint:[sender locationInView:self.mapView] toCoordinateFromView:self.mapView];
     [self.waypoints addWaypoint:[self createDefaultWaypointFromCoords:pos]];
-    [self resetWaypoints];
+    [self resetWaypointsZoomToMission:NO];
 }
 
 // FIXME: also need to check and close the detail view if open
@@ -244,6 +268,7 @@
     self.editDoneButton.title = isEditing ? @"Done" : @"Edit";
     self.editDoneButton.style = isEditing ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
     
+    self.clearAllButton.enabled  = isEditing;
     self.addButton.enabled       = isEditing;
     self.rxMissionButton.enabled = !isEditing;
     self.txMissionButton.enabled = !isEditing;
@@ -254,10 +279,12 @@
     // Slide/grow/shrink the map and table views
     CGRect tableRect = self.containerForTableView.frame;
     CGRect mapRect   = self.mapView.frame;
-
+    CGRect locateUserRect = self.locateUser.frame;
+    
     tableRect.origin.y += delta;
     tableRect.size.height -= delta;
     mapRect.size.height += delta;
+    locateUserRect.origin.y += delta;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -265,6 +292,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     self.containerForTableView.frame = tableRect;
     self.mapView.frame = mapRect;
+    self.locateUser.frame = locateUserRect;
     [UIView commitAnimations];
     
     // Update the map view with non/editable waypoints
@@ -291,7 +319,7 @@
 
 - (void) replaceMissionItem:(mavlink_mission_item_t)item atIndex:(NSUInteger)idx {
     [self.waypoints replaceWaypoint:idx with:item]; // Swap in the modified mission item
-    [self resetWaypoints]; // Reset the map and table views
+    [self resetWaypointsZoomToMission:NO]; // Reset the map and table views
 }
 // end @protocol MissionItemEditingDelegate
 

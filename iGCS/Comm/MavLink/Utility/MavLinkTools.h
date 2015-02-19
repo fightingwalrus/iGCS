@@ -101,45 +101,4 @@ static NSString* msgToNSString(mavlink_message_t *msg, BOOL prettyPrint) {
     return s;
 }
 
-/*
-ref: ArduPlane defines.h 
- */
-
-// ArduPlane Auto Pilot modes
-// ----------------
-#define MANUAL 0
-#define CIRCLE 1                         // When flying sans GPS, and we loose the radio, just circle
-#define STABILIZE 2
-
-#define FLY_BY_WIRE_A 5         // Fly By Wire A has left stick horizontal => desired roll angle, left stick vertical => desired pitch angle, right stick vertical = manual throttle
-#define FLY_BY_WIRE_B 6         // Fly By Wire B has left stick horizontal => desired roll angle, left stick vertical => desired pitch angle, right stick vertical => desired airspeed
-#define FLY_BY_WIRE_C 7         // Fly By Wire C has left stick horizontal => desired roll angle, left stick vertical => desired climb rate, right stick vertical => desired airspeed
-// Fly By Wire B and Fly By Wire C require airspeed sensor
-#define AUTO 10
-#define RTL 11
-#define LOITER 12
-#define TAKEOFF 13                    // This is not used by APM.  It appears here for consistency with ACM
-#define LAND 14                       // This is not used by APM.  It appears here for consistency with ACM
-#define GUIDED 15
-#define INITIALISING 16     // in startup routines
-
 #endif
-
-
-// ArduCopter Auto Pilot Modes
-typedef NS_ENUM(uint32_t, GCSArduCopterModes) {
-    Stabilize = 0,  // hold level position
-    Acro = 1,       // rate control
-    AltHold = 2,    // AUTO control
-    Auto = 3,       // AUTO control
-    Guided = 4,     // AUTO control
-    Loiter = 5,     // Hold a single location
-    Rtl = 6,        // AUTO control
-    Circle = 7,     // AUTO control
-    Position = 8,   // AUTO control
-    Land = 9,       // AUTO control
-    OfLoiter = 10,  // Hold a single location using optical flow sensor
-    Drift = 11,     // DRIFT mode (Note: 12 is no longer used)
-    Sport = 13,     // earth frame rate control
-    NumModes = 14
-};
