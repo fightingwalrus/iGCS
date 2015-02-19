@@ -11,9 +11,15 @@
 
 #import <CoreMotion/CoreMotion.h>
 
-@interface ArDroneViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+NS_ENUM(NSUInteger, AngleStatusType) {
+    angleNotUsed,
+    angleNeedsOffset,
+    angleHasOffset,
+};
 
-@property (nonatomic, strong) ArDroneUtils *arDrone2;
+@interface ManualControlViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (nonatomic, strong) ArDroneUtils *arDroneUtils;
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) CMDeviceMotion *deviceMotion;

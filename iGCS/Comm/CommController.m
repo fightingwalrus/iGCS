@@ -7,7 +7,6 @@
 //
 
 #import "CommController.h"
-#import "Logger.h"
 #import "SoundUtils.h"
 #import "GCSAccessoryFirmwareUtils.h"
 
@@ -118,7 +117,7 @@ NSString * const GCSCommControllerRadioNotConnected = @"com.fightingwalrus.commc
         }
     }
     @catch (NSException *exception) {
-        [Logger dumpException:exception];
+        DDLogError(@"Error starting Telemetry Mode %@",[exception description]);
     }
 }
 
