@@ -133,7 +133,6 @@
 		18B9FADF18B2F7AF00668660 /* RxMissionItems.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD04F180A8C9200F5BCDB /* RxMissionItems.m */; };
 		18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8040017E24BB300CB8052 /* CommConnection.m */; };
 		18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
-		18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBD044180A83E000F5BCDB /* TxMissionItem.m */; };
 		18B9FAE518B2F7AF00668660 /* GCSSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0B69B6189B787E0014C1E4 /* GCSSidebarController.m */; };
 		18B9FAE818B2F7AF00668660 /* WaypointMapBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA92514516F9761A0008E92F /* WaypointMapBaseController.m */; };
@@ -245,11 +244,7 @@
 		18D8917919817CB1001ED845 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */; };
 		18D8917B19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
 		18D8917C19817CB1001ED845 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D8917019817CB1001ED845 /* HockeySDKResources.bundle */; };
-		18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
-		18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A86198993EB0025A516 /* ExceptionHandler.m */; };
 		18E58A8F198993EB0025A516 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A88198993EB0025A516 /* FileUtils.m */; };
-		18E58A91198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
-		18E58A92198993EB0025A516 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E58A8A198993EB0025A516 /* Logger.m */; };
 		18ED8F1E1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
 		18ED8F1F1A60C3190014A575 /* quad-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED8F1D1A60C3190014A575 /* quad-icon.png */; };
 		18F803F717E2480900CB8052 /* CommInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F803F617E2480900CB8052 /* CommInterface.m */; };
@@ -275,7 +270,6 @@
 		496E629B16DAFB8B00E52E4A /* DoubleBufferedAsyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628516DAFB8B00E52E4A /* DoubleBufferedAsyncView.m */; };
 		496E629D16DAFB8B00E52E4A /* VerticalScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E628816DAFB8B00E52E4A /* VerticalScaleView.m */; };
 		496E62C616DAFBF600E52E4A /* CommController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E62A116DAFBF600E52E4A /* CommController.m */; };
-		49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FA0B16DC63A000BAE96B /* DebugViewController.m */; };
 		49C1FA0E16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C1FA0F16DC654100BAE96B /* wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C1FA0D16DC654100BAE96B /* wrench.png */; };
 		49C45CB0170A7810007C9999 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C45CAF170A7810007C9999 /* CFNetwork.framework */; };
@@ -791,12 +785,8 @@
 		18D8916F19817CB1001ED845 /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
 		18D8917019817CB1001ED845 /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
 		18D8917119817CB1001ED845 /* _LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _LICENSE.txt; sourceTree = "<group>"; };
-		18E58A85198993EB0025A516 /* ExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionHandler.h; sourceTree = "<group>"; };
-		18E58A86198993EB0025A516 /* ExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionHandler.m; sourceTree = "<group>"; };
 		18E58A87198993EB0025A516 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		18E58A88198993EB0025A516 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
-		18E58A89198993EB0025A516 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		18E58A8A198993EB0025A516 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		18ED8F1D1A60C3190014A575 /* quad-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quad-icon.png"; sourceTree = "<group>"; };
 		18F803F517E2480900CB8052 /* CommInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommInterface.h; sourceTree = "<group>"; };
 		18F803F617E2480900CB8052 /* CommInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommInterface.m; sourceTree = "<group>"; };
@@ -842,8 +832,6 @@
 		496E62A116DAFBF600E52E4A /* CommController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommController.m; sourceTree = "<group>"; };
 		496E62C416DAFBF600E52E4A /* MavLinkPacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkPacketHandler.h; sourceTree = "<group>"; };
 		496E62C516DAFBF600E52E4A /* MavLinkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MavLinkTools.h; sourceTree = "<group>"; };
-		49C1FA0A16DC63A000BAE96B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
-		49C1FA0B16DC63A000BAE96B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C1FA0D16DC654100BAE96B /* wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrench.png; sourceTree = "<group>"; };
 		49C45CAF170A7810007C9999 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		49C45CB1170A7820007C9999 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1243,12 +1231,8 @@
 		18A777ED17CE9E710014451B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				18E58A85198993EB0025A516 /* ExceptionHandler.h */,
-				18E58A86198993EB0025A516 /* ExceptionHandler.m */,
 				18E58A87198993EB0025A516 /* FileUtils.h */,
 				18E58A88198993EB0025A516 /* FileUtils.m */,
-				18E58A89198993EB0025A516 /* Logger.h */,
-				18E58A8A198993EB0025A516 /* Logger.m */,
 				CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */,
 				CA056B6218C5A50B00A36F5A /* DataRateRecorder.m */,
 				1830D07017D1651400F77F7E /* DateTimeUtils.h */,
@@ -1645,8 +1629,6 @@
 				496E627E16DAFB8B00E52E4A /* WaypointsViewController.m */,
 				CA92514416F9761A0008E92F /* WaypointMapBaseController.h */,
 				CA92514516F9761A0008E92F /* WaypointMapBaseController.m */,
-				49C1FA0A16DC63A000BAE96B /* DebugViewController.h */,
-				49C1FA0B16DC63A000BAE96B /* DebugViewController.m */,
 				1854467918D8EEA6004F4BF8 /* RadioSettingsViewController.h */,
 				1854467A18D8EEA6004F4BF8 /* RadioSettingsViewController.m */,
 			);
@@ -2373,9 +2355,7 @@
 				CA0E551C19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				18B9FAE018B2F7AF00668660 /* CommConnection.m in Sources */,
 				CA154E8619BFE52000ECE919 /* DDTTYLogger.m in Sources */,
-				18E58A8C198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				18B9FAE118B2F7AF00668660 /* CommInterface.m in Sources */,
-				18B9FAE218B2F7AF00668660 /* DebugViewController.m in Sources */,
 				18B9FAE418B2F7AF00668660 /* TxMissionItem.m in Sources */,
 				CA154E8219BFE52000ECE919 /* DDLog.m in Sources */,
 				CA05750518BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
@@ -2397,7 +2377,6 @@
 				18B9FAEF18B2F7AF00668660 /* TxMissionItemCount.m in Sources */,
 				18B7541D197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */,
 				18B9FAF018B2F7AF00668660 /* CustomPointAnnotation.m in Sources */,
-				18E58A92198993EB0025A516 /* Logger.m in Sources */,
 				18B9FAF118B2F7AF00668660 /* MavLinkUtility.m in Sources */,
 				18B9FAF218B2F7AF00668660 /* MiscUtilities.m in Sources */,
 				189B2DC919DB3E0E00AAC466 /* SoundUtils.m in Sources */,
@@ -2482,13 +2461,10 @@
 				18F803F717E2480900CB8052 /* CommInterface.m in Sources */,
 				CA10784919A99C57007B42E5 /* TxMissionCommon.m in Sources */,
 				18B7F2CE1958953B00D2406A /* NSLayoutConstraint+PureLayout.m in Sources */,
-				49C1FA0C16DC63A000BAE96B /* DebugViewController.m in Sources */,
-				18E58A91198993EB0025A516 /* Logger.m in Sources */,
 				18B7F2C51958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA05750C18BE07FE001EACFD /* CXAlertViewController.m in Sources */,
 				CA05750418BE07FE001EACFD /* CXAlertButtonItem.m in Sources */,
 				01CEC5E819D9FA3800320A34 /* BRRequestUpload.m in Sources */,
-				18E58A8B198993EB0025A516 /* ExceptionHandler.m in Sources */,
 				CA10783719A98B58007B42E5 /* TxMissionClearAll.m in Sources */,
 				18B7541C197DCB4D0075B7BD /* GCSAccessoryFirmwareManager.m in Sources */,
 				CAFBD047180A83E000F5BCDB /* TxMissionItem.m in Sources */,

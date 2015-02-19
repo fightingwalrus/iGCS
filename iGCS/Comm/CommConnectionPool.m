@@ -8,8 +8,6 @@
 
 #import "CommConnectionPool.h"
 
-#import "Logger.h"
-
 @implementation CommConnectionPool
 
 
@@ -23,7 +21,6 @@
 
     return self;
 }
-
 
 -(void)addSource:(CommInterface*)interface {
     interface.connectionPool = self;
@@ -61,7 +58,6 @@
     [self removeAllConnections];
 }
 
-
 -(void)createConnection:(CommInterface*)source destination:(CommInterface*)destination {
     // TODO: Check to see if source and destination are already in source/destination lists,
     // if not, add them
@@ -78,9 +74,8 @@
         
     }
     @catch (NSException *e) {
-        [Logger dumpException:e];
+        DDLogError(@"Exception in creating connectiona: %@",[e description]);
     }
-
 }
 
 -(void)interface:(CommInterface*)interface producedBytes:(const uint8_t*)bytes length:(NSUInteger)length {
