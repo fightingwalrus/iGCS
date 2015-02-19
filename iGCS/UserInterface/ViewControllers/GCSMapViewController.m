@@ -6,11 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
+#import "PureLayout.h"
 
 #import "GCSMapViewController.h"
 #import "SWRevealViewController.h"
 #import "MainViewController.h"
 #import "GaugeViewCommon.h"
+#import "ManualControlViewController.h"
 
 #import "MavLinkUtility.h"
 #import "MiscUtilities.h"
@@ -23,6 +25,7 @@
 #import "GCSDataManager.h"
 
 @interface GCSMapViewController ()
+@property (nonatomic, strong) UIButton *manualControl;
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
 @property (nonatomic, strong) MKAnnotationView  *uavView;
 
@@ -60,6 +63,16 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 }
 
 - (void)awakeFromNib {
+
+#ifdef DEBUG
+    self.manualControl = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.manualControl.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.manualControl setTitle:@"Manual Control" forState:UIControlStateNormal];
+    [self.manualControl setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.manualControl addTarget:self action:@selector(presentManualControls)
+                 forControlEvents:UIControlEventTouchUpInside];
+#endif
+
     self.uavPos = [[MKPointAnnotation alloc] init];
     [self.uavPos setCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
@@ -106,7 +119,14 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
         // the constrained width is too narrow for iPad 6.X, we'll just remove it.
         [self.controlModeSegment removeConstraint:self.controlModeSegmentSizeConstraint];
     }
-    
+
+    // setup manual control button
+#ifdef DEBUG
+    [self.mapView addSubview:self.manualControl];
+    [self.manualControl autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.mapView withOffset:-50];
+    [self.manualControl autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.mapView withOffset:-25];
+#endif
+
 	// Do any additional setup after loading the view, typically from a nib.
     [self.mapView addAnnotation:self.uavPos];
     
@@ -540,6 +560,13 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     }
     
     return nil;
+}
+
+#pragma mark - present manual controls
+- (void)presentManualControls {
+    ManualControlViewController *manualControlViewController = [[ManualControlViewController alloc] init];
+    manualControlViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:manualControlViewController animated:YES completion:nil];
 }
 
 @end

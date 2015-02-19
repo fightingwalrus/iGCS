@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 
 //UI Elements
+@property (strong, nonatomic) UIButton *dismissButton;
 @property (strong, nonatomic) UIButton *takeOffButton;
 @property (strong, nonatomic) UIButton *landButton;
 @property (strong, nonatomic) UIButton *emergencyButton;
@@ -207,7 +208,15 @@
     [self.emergencyButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0f];
 
 
+    self.dismissButton = [UIButton newAutoLayoutView];
+    [self.dismissButton setTitle:@"Back to Map" forState:UIControlStateNormal];
+    [self.dismissButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.dismissButton];
+    [self.dismissButton autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.view withOffset:-10];
+    [self.dismissButton autoAlignAxis:ALAxisBaseline toSameAxisOfView:self.emergencyButton];
 
+    
     self.pitchRollButton = [UIButton newAutoLayoutView];
     [self.pitchRollButton setTitle :@"O" forState:UIControlStateNormal];
     [self.pitchRollButton addTarget:self action:@selector(pitchRoll) forControlEvents:UIControlEventTouchDown];
@@ -599,5 +608,8 @@
     self.thrust = 0;
 }
 
+-(void) dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
