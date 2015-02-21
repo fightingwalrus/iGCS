@@ -20,7 +20,7 @@
 @synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
 
-- (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat {
+- (id<GCSCraftModel>) init:(GCSHeartbeat *)heartbeat {
     self = [super init];
     if (self) {
         _heartbeat = heartbeat;
@@ -30,9 +30,19 @@
         _guidedMode  = APMPlaneGuided;
         _setModeBeforeGuidedItems = NO;
         _icon = [UIImage imageNamed:@"plane-icon-128.png"];
+
+        // set heartbeat to nil when app goes into background so all
+        // events fire again on app launch and telemetry reconnect
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHearbeat)
+                                                     name:UIApplicationDidEnterBackgroundNotification object:nil];
+
     }
 
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 + (void)load {
@@ -42,12 +52,18 @@
     });
 }
 
+- (void)clearHearbeat {
+    self.heartbeat = nil;
+}
+
+#pragma mark -  External API
 - (BOOL) isInAutoMode {
-    return self.heartbeat.custom_mode == APMPlaneAuto;
+    return self.heartbeat.customMode == APMPlaneAuto;
 }
 
 - (BOOL) isInGuidedMode {
-    return self.heartbeat.custom_mode == APMPlaneGuided;
+    return self.heartbeat.customMode == APMPlaneGuided;
 }
+
 
 @end

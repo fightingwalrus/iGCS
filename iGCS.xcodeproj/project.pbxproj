@@ -46,6 +46,8 @@
 		18069FD21836F7C70068E7A5 /* iGCSMavLinkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB71836F7C70068E7A5 /* iGCSMavLinkInterface.m */; };
 		18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FB91836F7C70068E7A5 /* iGCSRadioConfig.m */; };
 		18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
+		181104A81A98282D00D1B58D /* GCSHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104A71A98282D00D1B58D /* GCSHeartbeat.m */; };
+		181104A91A98282D00D1B58D /* GCSHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104A71A98282D00D1B58D /* GCSHeartbeat.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
 		1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
@@ -470,6 +472,8 @@
 		18069FBC1836F7C70068E7A5 /* RedparkSerialCable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedparkSerialCable.m; sourceTree = "<group>"; };
 		18069FBE1836F7C70068E7A5 /* RNBluetoothInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBluetoothInterface.h; sourceTree = "<group>"; };
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
+		181104A61A98282D00D1B58D /* GCSHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSHeartbeat.h; sourceTree = "<group>"; };
+		181104A71A98282D00D1B58D /* GCSHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSHeartbeat.m; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
 		1842F8C41892D2F80050F680 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
@@ -1188,9 +1192,19 @@
 			path = RovingNetworks;
 			sourceTree = "<group>";
 		};
+		181104A51A98282D00D1B58D /* Telemetry */ = {
+			isa = PBXGroup;
+			children = (
+				181104A61A98282D00D1B58D /* GCSHeartbeat.h */,
+				181104A71A98282D00D1B58D /* GCSHeartbeat.m */,
+			);
+			path = Telemetry;
+			sourceTree = "<group>";
+		};
 		1851D848191ADFD900ED5C87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				181104A51A98282D00D1B58D /* Telemetry */,
 				18C91D271A71F752009400C3 /* Craft */,
 				1851D84D191AE00400ED5C87 /* GCSRadioSettings.h */,
 				1851D84E191AE00400ED5C87 /* GCSRadioSettings.m */,
@@ -2426,6 +2440,7 @@
 				18B9FAEB18B2F7AF00668660 /* MissionItemEditViewController.m in Sources */,
 				1845DA86197B8834008945F8 /* GCSActivityIndicatorView.m in Sources */,
 				1845DA4919778ED9008945F8 /* GCSAccessoryFirmwareInterface.m in Sources */,
+				181104A91A98282D00D1B58D /* GCSHeartbeat.m in Sources */,
 				186AFA3018F90CAD00541FD6 /* GCSSikAT.m in Sources */,
 				01CEC56C19D9F8BD00320A34 /* GCDAsyncSocket.m in Sources */,
 				18B9FAEC18B2F7AF00668660 /* MissionItemTableViewController.m in Sources */,
@@ -2558,6 +2573,7 @@
 				CA0E551B19F7C27A00B11F12 /* GCSMapViewController+DataRate.m in Sources */,
 				CA0C44DC19230F570099B718 /* SiKFirmwareUploader.m in Sources */,
 				CA0B69B7189B787E0014C1E4 /* GCSSidebarController.m in Sources */,
+				181104A81A98282D00D1B58D /* GCSHeartbeat.m in Sources */,
 				CA094F2C18D534E100AC6AE4 /* WaypointAnnotationView.m in Sources */,
 				18A777F217CE9E910014451B /* FileUtils.m in Sources */,
 				CA92514616F9761A0008E92F /* WaypointMapBaseController.m in Sources */,

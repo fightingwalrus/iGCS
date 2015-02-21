@@ -10,5 +10,5 @@
 #import "GCSCraftModel.h"
 
 @interface GCSCraftArduPlane : NSObject <GCSCraftModel>
-@property (nonatomic, assign) mavlink_heartbeat_t heartbeat;
+@property (nonatomic, strong) GCSHeartbeat* heartbeat;
 @end

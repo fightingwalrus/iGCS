@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "GCSCraft.h"
+#import "GCSHeartbeat.h"
 
 @interface GCSCraftMixins : NSObject
--(void)updateWithHeartbeat:(mavlink_heartbeat_t) heartbeat;
+-(void)updateWithHeartbeat:(GCSHeartbeat *) heartbeat;
 - (NSString *) currentModeName;
 @end

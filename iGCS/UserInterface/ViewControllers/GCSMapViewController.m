@@ -19,6 +19,7 @@
 
 #import "CXAlertView.h"
 
+#import "GCSHeartbeat.h"
 #import "GCSSpeechManager.h"
 #import "GCSDataManager.h"
 
@@ -455,7 +456,7 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
             // Mutate existing craft, or replace if required (e.g. type has changed)
             [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
-                                                                                     withCurrent:heartbeat];
+                                                                                     withCurrent:[GCSHeartbeat heartbeatFromMavlinkHeartbeat:heartbeat]];
 
             // Update segmented control
             NSInteger idx = CONTROL_MODE_RC;

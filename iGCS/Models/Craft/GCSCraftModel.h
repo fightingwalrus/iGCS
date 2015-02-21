@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "mavlink.h"
 #import "GCSCraftModes.h"
+#import "GCSHeartbeat.h"
 
 @protocol GCSCraftModel <NSObject>
 @required;
-- (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat;
+- (id<GCSCraftModel>) init:(GCSHeartbeat *)heartbeat;
 
 @property (nonatomic, readonly) GCSCraftType craftType;
 
@@ -32,7 +32,7 @@
 // at runtime
 @optional;
 @property (nonatomic, readonly) NSString *currentModeName;
-- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
+- (void) updateWithHeartbeat:(GCSHeartbeat *)heartbeat;
 - (BOOL) isArmed;
 
 

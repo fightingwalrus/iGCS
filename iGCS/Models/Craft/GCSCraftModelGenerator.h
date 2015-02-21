@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "GCSCraftModel.h"
+#import "GCSHeartbeat.h"
 
 @interface GCSCraftModelGenerator : NSObject
 + (id<GCSCraftModel>) createInitialModel;
-+ (id<GCSCraftModel>) updateOrReplaceModel:(id<GCSCraftModel>)model withCurrent:(mavlink_heartbeat_t)heartbeat;
++ (id<GCSCraftModel>) updateOrReplaceModel:(id<GCSCraftModel>)model withCurrent:(GCSHeartbeat *)heartbeat;
 @end

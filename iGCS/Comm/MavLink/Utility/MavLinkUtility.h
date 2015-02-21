@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GCSHeartbeat.h"
 #import "MavLinkTools.h"
 #import "MissionItemField.h"
 
@@ -14,7 +15,7 @@
 
 + (NSString*) mavModeEnumToString:(enum MAV_MODE)mode;
 + (NSString*) mavStateEnumToString:(enum MAV_STATE)state;
-+ (NSString*) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat;
++ (NSString *) mavCustomModeToString:(GCSHeartbeat *) heartbeat;
 
 + (NSArray*) supportedMissionItemTypes;
 + (NSArray*) missionItemMetadataWith:(uint16_t)command;
