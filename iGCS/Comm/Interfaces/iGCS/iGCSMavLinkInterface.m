@@ -36,6 +36,8 @@
 #import "GCSCraftModes.h"
 #import "GCSDataManager.h"
 
+#import "GCSMissionItemModel.h"
+
 @implementation iGCSMavLinkInterface
 
 
@@ -260,6 +262,14 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 }
 
 - (void) issueRawMissionItem:(mavlink_mission_item_t)item {
+    mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
+                                  item.seq, item.frame, item.command, item.current, item.autocontinue,
+                                  item.param1, item.param2, item.param3, item.param4,
+                                  item.x, item.y, item.z);
+}
+
+- (void) issueMissionItem:(GCSMissionItemModel*)missionItem {
+    mavlink_mission_item_t item = [missionItem missionItemToMavlink];
     mavlink_msg_mission_item_send(MAVLINK_COMM_0, msg.sysid, msg.compid,
                                   item.seq, item.frame, item.command, item.current, item.autocontinue,
                                   item.param1, item.param2, item.param3, item.param4,
