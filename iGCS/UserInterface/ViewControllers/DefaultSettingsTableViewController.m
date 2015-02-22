@@ -47,10 +47,11 @@
 - (void) createSectionData {
     
     //general settings
-    self.generalSettingsArray = @[@"Units"];
+    self.generalSettingsArray = @[@"Contact Us", @"Order iDroneLink"];
     
     //waypoint settings
-    self.waypointSettingsArray = @[@"Altitude", @"Radius"];
+    //Remove For this Release
+    //self.waypointSettingsArray = @[@"Altitude", @"Radius"];
     
     //other settings
     self.otherSettingsArray = @[@"Radio",@"About"];
@@ -59,16 +60,18 @@
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
     
     NSString *generalSectionKey = @"General";
-    NSString *waypointSectionKey = @"Waypoints";
+    //Remove for this Release
+    //NSString *waypointSectionKey = @"Waypoints";
     NSString *otherSectionKey = @"Other";
-
     contents[generalSectionKey] = self.generalSettingsArray;
-    contents[waypointSectionKey] = self.waypointSettingsArray;
+    //Remove for this Release
+    //contents[waypointSectionKey] = self.waypointSettingsArray;
     contents[otherSectionKey] = self.otherSettingsArray;
 
     
     [keys addObject:generalSectionKey];
-    [keys addObject:waypointSectionKey];
+    //Remove for this Release
+    //[keys addObject:waypointSectionKey];
     [keys addObject:otherSectionKey];
     
     [self setSectionKeysArray:keys];
@@ -174,6 +177,15 @@
     NSArray *contents = [self.sectionContentsDict objectForKey:key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
+    if ([cellContent isEqual: @"Contact Us"]) {
+        NSURL *contactInfo = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:contact@fightingwalrus.com?subject=iDroneCtrl%%20%@", [self getVersionInfo]]];
+        [[UIApplication sharedApplication] openURL:contactInfo];
+    }
+    
+    if ([cellContent isEqual: @"Order iDroneLink"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fightingwalrus.com/products/idronelink"]];
+    }
+    
     if ([cellContent isEqual: @"About"]) {
         AboutViewController *aboutViewController = [[AboutViewController alloc] init];
         [self.navigationController pushViewController:aboutViewController animated:YES];
@@ -231,6 +243,10 @@
         [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text doubleValue];
     }
     [GCSDataManager save];
+}
+
+- (NSString *) getVersionInfo {
+    return[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 }
 
 @end
