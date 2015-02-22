@@ -78,6 +78,8 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     self.showProposedFollowPos = NO;
     self.lastFollowMeUpdate = [NSDate date];
 
+
+    // configure NSNotifcation observer.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftCustomModeDidChange)
                                                  name:GCSCraftNotificationsCraftCustomModeDidChange
@@ -86,6 +88,11 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(craftArmedStatusDidChange)
                                                  name:GCSCraftNotificationsCraftArmedStatusDidChange
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetTelemetryUserInterface)
+                                                 name:UIApplicationWillResignActiveNotification
                                                object:nil];
 }
 
@@ -174,7 +181,6 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
 #pragma mark - 
 #pragma mark Handle NSnotifications for UI updates
-
 - (void)craftArmedStatusDidChange {
     // Update armed status labels
     [self.armedLabel setText:([GCSDataManager sharedInstance].craft.isArmed) ? @"Armed" : @"Disarmed"];
@@ -183,6 +189,14 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
 - (void)craftCustomModeDidChange {
     [self.customModeLabel setText:[GCSDataManager sharedInstance].craft.currentModeName];
+}
+
+- (void)resetTelemetryUserInterface {
+    [self.armedLabel setText:@"-"];
+    [self.armedLabel setTextColor:[UIColor whiteColor]];
+
+    [self.customModeLabel setText:@"-"];
+    [self.customModeLabel setTextColor:[UIColor whiteColor]];
 }
 
 #pragma mark -
