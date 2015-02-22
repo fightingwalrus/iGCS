@@ -34,6 +34,8 @@
 
 + (id<GCSCraftModel>) createInitialModel {
     mavlink_heartbeat_t heartbeat;
+    // default to UIINT_MAX since 0 is a valid custom mode value
+    heartbeat.custom_mode = UINT32_MAX;
     // need base mode to be zeroed so initial status events are sent out
     heartbeat.base_mode = 0;
     heartbeat.type = MAV_TYPE_QUADROTOR;
