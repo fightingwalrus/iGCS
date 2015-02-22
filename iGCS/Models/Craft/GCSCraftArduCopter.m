@@ -6,6 +6,7 @@
 //
 //
 
+#import "TelemetryManagers.h"
 #import "GCSCraftArduCopter.h"
 #import "GCSCraftNotifications.h"
 #import "MavLinkUtility.h"
@@ -19,8 +20,10 @@
 @synthesize guidedMode = _guidedMode;
 @synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
+@synthesize notificationCenter = _notificationCenter;
+@synthesize craftQueue = _craftQueue;
 
-- (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat {
+- (id<GCSCraftModel>) init:(GCSHeartbeat*)heartbeat {
     self = [super init];
     if (self) {
         _heartbeat = heartbeat;
@@ -30,6 +33,26 @@
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon-128.png"];
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+        _craftQueue = [[NSOperationQueue alloc] init];
+
+        // set heartbeat to nil when app goes into background so all
+        // events fire again on app launch and telemetry reconnect
+        __weak GCSCraftArduCopter *weakSelf = self;
+        [self.notificationCenter addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                             object:nil
+                                              queue:self.craftQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf clearHearbeat];
+                                         }];
+
+        // set heartbeat to nil when app loses telemetry for a period of time
+        [self.notificationCenter addObserverForName:GCSHeartbeatManagerHeartbeatWasLost
+                                             object:nil
+                                              queue:self.craftQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf clearHearbeat];
+                                         }];
     }
 
     return self;
@@ -42,12 +65,17 @@
     });
 }
 
+- (void)clearHearbeat {
+    self.heartbeat = nil;
+}
+
+#pragma mark -  External API
 - (BOOL) isInAutoMode {
-    return self.heartbeat.custom_mode == APMCopterAuto;
+    return self.heartbeat.customMode == APMCopterAuto;
 }
 
 - (BOOL) isInGuidedMode {
-    return self.heartbeat.custom_mode == APMCopterGuided;
+    return self.heartbeat.customMode == APMCopterGuided;
 }
 
 @end

@@ -14,10 +14,10 @@ NSString * const GCSCraftNotificationsCraftArmedStatusDidChange = @"GCSCraftNoti
 
 @implementation GCSCraftNotifications
 
-+ (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                      andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
++ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                          andNewHeartbeat:(GCSHeartbeat *)newHeartbeat {
 
-    if (lastHeartbeat.custom_mode == newHeartbeat.custom_mode) return;
+    if (lastHeartbeat && lastHeartbeat.customMode == newHeartbeat.customMode) return;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:GCSCraftNotificationsCraftCustomModeDidChange
@@ -25,11 +25,10 @@ NSString * const GCSCraftNotificationsCraftArmedStatusDidChange = @"GCSCraftNoti
     });
 }
 
-+ (void)didArmedStatusChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                              andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat {
++ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                              andNewHeartbeat:(GCSHeartbeat *)newHeartbeat {
 
-    if (lastHeartbeat.base_mode != 0 &&
-        (lastHeartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED) == (newHeartbeat.base_mode & MAV_MODE_FLAG_SAFETY_ARMED)) {
+    if (lastHeartbeat && lastHeartbeat.isArmed == newHeartbeat.isArmed) {
         return;
     }
 

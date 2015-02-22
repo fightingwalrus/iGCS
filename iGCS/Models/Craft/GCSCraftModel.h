@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "mavlink.h"
 #import "GCSCraftModes.h"
+#import "GCSHeartbeat.h"
 
 @protocol GCSCraftModel <NSObject>
 @required;
-- (id<GCSCraftModel>) init:(mavlink_heartbeat_t)heartbeat;
+- (id<GCSCraftModel>) init:(GCSHeartbeat *)heartbeat;
 
 @property (nonatomic, readonly) GCSCraftType craftType;
 
@@ -28,11 +28,13 @@
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
 
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+@property (nonatomic, strong) NSOperationQueue *craftQueue;
 // These methods are optional so they can be mixed in
 // at runtime
 @optional;
 @property (nonatomic, readonly) NSString *currentModeName;
-- (void) updateWithHeartbeat:(mavlink_heartbeat_t)heartbeat;
+- (void) updateWithHeartbeat:(GCSHeartbeat *)heartbeat;
 - (BOOL) isArmed;
 
 

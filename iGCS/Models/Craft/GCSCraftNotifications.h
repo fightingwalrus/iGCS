@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "mavlink.h"
+#import "GCSHeartbeat.h"
 
 @interface GCSCraftNotifications : NSObject
 
-+ (void)didNavModeChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                      andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
++ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                          andNewHeartbeat:(GCSHeartbeat *)newHeartbeat;
 
-+ (void)didArmedStatusChangeFromLastHeartbeat:(mavlink_heartbeat_t) lastHeartbeat
-                              andNewHeartbeat:(mavlink_heartbeat_t) newHeartbeat;
++ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat*)lastHeartbeat
+                              andNewHeartbeat:(GCSHeartbeat*)newHeartbeat;
 
 @end
 

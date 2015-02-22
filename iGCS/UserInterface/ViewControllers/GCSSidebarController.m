@@ -58,9 +58,10 @@
         case MAVLINK_MSG_ID_HEARTBEAT: {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
-            [_mavBaseModeLabel   setText:[MavLinkUtility mavModeEnumToString:    heartbeat.base_mode]];
-            [_mavCustomModeLabel setText:[MavLinkUtility mavCustomModeToString:  heartbeat]];
-            [_mavStatusLabel     setText:[MavLinkUtility mavStateEnumToString:   heartbeat.system_status]];
+            GCSHeartbeat *aHeartbeat = [GCSHeartbeat heartbeatFromMavlinkHeartbeat:heartbeat];
+            [_mavBaseModeLabel   setText:[MavLinkUtility mavModeEnumToString:heartbeat.base_mode]];
+            [_mavCustomModeLabel setText:[MavLinkUtility mavCustomModeToString:aHeartbeat]];
+            [_mavStatusLabel     setText:[MavLinkUtility mavStateEnumToString:heartbeat.system_status]];
         }
             break;
             

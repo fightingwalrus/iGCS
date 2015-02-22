@@ -12,8 +12,8 @@
 
 @implementation GCSCraftModelGenerator
 
-+ (GCSCraftType) craftTypeFromHeartbeat:(mavlink_heartbeat_t)heartbeat {
-    switch (heartbeat.type) {
++ (GCSCraftType) craftTypeFromHeartbeat:(GCSHeartbeat*)heartbeat {
+    switch (heartbeat.mavType) {
         case MAV_TYPE_TRICOPTER:
         case MAV_TYPE_QUADROTOR:
         case MAV_TYPE_HEXAROTOR:
@@ -33,15 +33,11 @@
 #pragma mark External API
 
 + (id<GCSCraftModel>) createInitialModel {
-    mavlink_heartbeat_t heartbeat;
-    // need base mode to be zeroed so initial status events are sent out
-    heartbeat.base_mode = 0;
-    heartbeat.type = MAV_TYPE_QUADROTOR;
-    return [[GCSCraftArduCopter alloc] init:heartbeat];
+    return [[GCSCraftArduCopter alloc] init:nil];
 }
 
 + (id<GCSCraftModel>) updateOrReplaceModel:(id<GCSCraftModel>)model
-                               withCurrent:(mavlink_heartbeat_t)heartbeat {
+                               withCurrent:(GCSHeartbeat *)heartbeat {
     GCSCraftType craftType = [GCSCraftModelGenerator craftTypeFromHeartbeat:heartbeat];
     
     // Mutate the existing model

@@ -8,6 +8,7 @@
 
 #import "MavLinkUtility.h"
 #import "GCSCraftModes.h"
+#import "GCSHeartbeat.h"
 
 @implementation MavLinkUtility
 
@@ -185,21 +186,21 @@ NSDictionary *_ardupilotModes;
     return [NSString stringWithFormat:@"MAV_STATE (%d)", state];
 }
 
-+ (NSString *) mavCustomModeToString:(mavlink_heartbeat_t) heartbeat {
++ (NSString *) mavCustomModeToString:(GCSHeartbeat *) heartbeat {
     
     NSString *modeName;
     
     // APMPlane Auto Pilot Modes
     if (heartbeat.autopilot == MAV_AUTOPILOT_ARDUPILOTMEGA) {
-        modeName = _ardupilotModes[@(heartbeat.type)][@(heartbeat.custom_mode)];
+        modeName = _ardupilotModes[@(heartbeat.mavType)][@(heartbeat.customMode)];
     }
     //The ARDrone shows up as a MAV_AUTOPILOT_GENERIC
     //It also uses the system_status field for the moding instead of the custom_mode field
-    if (heartbeat.autopilot == MAV_AUTOPILOT_GENERIC && heartbeat.type == MAV_TYPE_QUADROTOR) {
-        modeName = [MavLinkUtility mavStateEnumToString:heartbeat.system_status];
+    if (heartbeat.autopilot == MAV_AUTOPILOT_GENERIC && heartbeat.mavType == MAV_TYPE_QUADROTOR) {
+        modeName = [MavLinkUtility mavStateEnumToString:heartbeat.systemStatus];
     }
     
-    return modeName ?: [NSString stringWithFormat:@"CUSTOM_MODE (%d)", heartbeat.custom_mode];
+    return modeName ?: [NSString stringWithFormat:@"CUSTOM_MODE (%d)", heartbeat.customMode];
 }
 
 + (NSArray *) supportedMissionItemTypes {

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "GCSCraftModel.h"
+#import "GCSHeartbeat.h"
 
 @interface GCSCraftArduCopter : NSObject <GCSCraftModel>
-@property (nonatomic, assign) mavlink_heartbeat_t heartbeat;
+@property (nonatomic, strong) GCSHeartbeat *heartbeat;
 @end
