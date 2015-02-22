@@ -38,4 +38,9 @@
     return ([(id)self heartbeat].isArmed);
 }
 
+// class lifecycle
+- (void)dealloc {
+    [[(id)self notificationCenter] removeObserver:self];
+}
+
 @end

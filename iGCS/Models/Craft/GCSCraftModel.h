@@ -28,6 +28,8 @@
 // Representation
 @property (nonatomic, readonly) UIImage* icon;
 
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+@property (nonatomic, strong) NSOperationQueue *craftQueue;
 // These methods are optional so they can be mixed in
 // at runtime
 @optional;

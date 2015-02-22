@@ -13,11 +13,6 @@
 #import "GCSCraftMixins.h"
 #import "Mixin.h"
 
-@interface GCSCraftArduPlane ()
-@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
-@property (nonatomic, strong) NSOperationQueue *craftQueue;
-@end
-
 @implementation GCSCraftArduPlane
 
 @synthesize craftType  = _craftType;
@@ -25,6 +20,8 @@
 @synthesize guidedMode = _guidedMode;
 @synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
+@synthesize notificationCenter = _notificationCenter;
+@synthesize craftQueue = _craftQueue;
 
 - (id<GCSCraftModel>) init:(GCSHeartbeat *)heartbeat {
     self = [super init];
@@ -58,10 +55,6 @@
     }
 
     return self;
-}
-
-- (void)dealloc {
-    [self.notificationCenter removeObserver:self];
 }
 
 + (void)load {

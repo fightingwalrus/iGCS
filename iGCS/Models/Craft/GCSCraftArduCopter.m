@@ -13,12 +13,6 @@
 #import "GCSCraftMixins.h"
 #import "Mixin.h"
 
-
-@interface GCSCraftArduCopter ()
-@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
-@property (nonatomic, strong) NSOperationQueue *craftQueue;
-@end
-
 @implementation GCSCraftArduCopter
 
 @synthesize craftType  = _craftType;
@@ -26,6 +20,8 @@
 @synthesize guidedMode = _guidedMode;
 @synthesize setModeBeforeGuidedItems  = _setModeBeforeGuidedItems;
 @synthesize icon = _icon;
+@synthesize notificationCenter = _notificationCenter;
+@synthesize craftQueue = _craftQueue;
 
 - (id<GCSCraftModel>) init:(GCSHeartbeat*)heartbeat {
     self = [super init];
@@ -38,6 +34,7 @@
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon-128.png"];
         _notificationCenter = [NSNotificationCenter defaultCenter];
+        _craftQueue = [[NSOperationQueue alloc] init];
 
         // set heartbeat to nil when app goes into background so all
         // events fire again on app launch and telemetry reconnect
@@ -59,10 +56,6 @@
     }
 
     return self;
-}
-
-- (void)dealloc {
-    [self.notificationCenter removeObserver:self];
 }
 
 + (void)load {
