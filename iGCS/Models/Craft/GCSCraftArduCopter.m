@@ -6,11 +6,18 @@
 //
 //
 
+#import "TelemetryManagers.h"
 #import "GCSCraftArduCopter.h"
 #import "GCSCraftNotifications.h"
 #import "MavLinkUtility.h"
 #import "GCSCraftMixins.h"
 #import "Mixin.h"
+
+
+@interface GCSCraftArduCopter ()
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+@property (nonatomic, strong) NSOperationQueue *craftQueue;
+@end
 
 @implementation GCSCraftArduCopter
 
@@ -30,18 +37,32 @@
         _guidedMode  = APMCopterGuided;
         _setModeBeforeGuidedItems = YES; // For 3.2+
         _icon = [UIImage imageNamed:@"quad-icon-128.png"];
+        _notificationCenter = [NSNotificationCenter defaultCenter];
 
         // set heartbeat to nil when app goes into background so all
         // events fire again on app launch and telemetry reconnect
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHearbeat)
-                                                     name:UIApplicationDidEnterBackgroundNotification object:nil];
+        __weak GCSCraftArduCopter *weakSelf = self;
+        [self.notificationCenter addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                             object:nil
+                                              queue:self.craftQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf clearHearbeat];
+                                         }];
+
+        // set heartbeat to nil when app loses telemetry for a period of time
+        [self.notificationCenter addObserverForName:GCSHeartbeatManagerHeartbeatWasLost
+                                             object:nil
+                                              queue:self.craftQueue
+                                         usingBlock:^(NSNotification *note) {
+                                             [weakSelf clearHearbeat];
+                                         }];
     }
 
     return self;
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.notificationCenter removeObserver:self];
 }
 
 + (void)load {

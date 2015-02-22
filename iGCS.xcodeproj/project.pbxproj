@@ -48,6 +48,8 @@
 		18069FD81836F7C70068E7A5 /* RNBluetoothInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */; };
 		181104A81A98282D00D1B58D /* GCSHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104A71A98282D00D1B58D /* GCSHeartbeat.m */; };
 		181104A91A98282D00D1B58D /* GCSHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104A71A98282D00D1B58D /* GCSHeartbeat.m */; };
+		181104BC1A99A08700D1B58D /* GCSHeartbeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104BA1A99A08700D1B58D /* GCSHeartbeatManager.m */; };
+		181104BD1A99A08700D1B58D /* GCSHeartbeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 181104BA1A99A08700D1B58D /* GCSHeartbeatManager.m */; };
 		1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830D07117D1651400F77F7E /* DateTimeUtils.m */; };
 		1842F8CA1892D2F80050F680 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C41892D2F80050F680 /* Icon-29.png */; };
 		1842F8CC1892D2F80050F680 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842F8C51892D2F80050F680 /* Icon-40.png */; };
@@ -474,6 +476,10 @@
 		18069FBF1836F7C70068E7A5 /* RNBluetoothInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBluetoothInterface.m; sourceTree = "<group>"; };
 		181104A61A98282D00D1B58D /* GCSHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSHeartbeat.h; sourceTree = "<group>"; };
 		181104A71A98282D00D1B58D /* GCSHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSHeartbeat.m; sourceTree = "<group>"; };
+		181104AC1A998E9000D1B58D /* GCSTelemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSTelemetry.h; sourceTree = "<group>"; };
+		181104B91A99A08700D1B58D /* GCSHeartbeatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSHeartbeatManager.h; sourceTree = "<group>"; };
+		181104BA1A99A08700D1B58D /* GCSHeartbeatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSHeartbeatManager.m; sourceTree = "<group>"; };
+		181104BB1A99A08700D1B58D /* TelemetryManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TelemetryManagers.h; sourceTree = "<group>"; };
 		1830D07017D1651400F77F7E /* DateTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeUtils.h; sourceTree = "<group>"; };
 		1830D07117D1651400F77F7E /* DateTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeUtils.m; sourceTree = "<group>"; };
 		1842F8C41892D2F80050F680 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
@@ -1195,8 +1201,19 @@
 		181104A51A98282D00D1B58D /* Telemetry */ = {
 			isa = PBXGroup;
 			children = (
+				181104AC1A998E9000D1B58D /* GCSTelemetry.h */,
 				181104A61A98282D00D1B58D /* GCSHeartbeat.h */,
 				181104A71A98282D00D1B58D /* GCSHeartbeat.m */,
+			);
+			path = Telemetry;
+			sourceTree = "<group>";
+		};
+		181104B81A99A08700D1B58D /* Telemetry */ = {
+			isa = PBXGroup;
+			children = (
+				181104BB1A99A08700D1B58D /* TelemetryManagers.h */,
+				181104B91A99A08700D1B58D /* GCSHeartbeatManager.h */,
+				181104BA1A99A08700D1B58D /* GCSHeartbeatManager.m */,
 			);
 			path = Telemetry;
 			sourceTree = "<group>";
@@ -1563,6 +1580,7 @@
 		18C91D201A71F71C009400C3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				181104B81A99A08700D1B58D /* Telemetry */,
 				18820E801A64AD0C006855E9 /* GCSSpeechManager.h */,
 				18820E811A64AD0C006855E9 /* GCSSpeechManager.m */,
 				18C91D231A71F739009400C3 /* GCSDataManager.h */,
@@ -2378,6 +2396,7 @@
 				18B7F2C61958953B00D2406A /* ALView+PureLayout.m in Sources */,
 				CA0E11911A0A1B1D00E0E622 /* MissionItemCell.m in Sources */,
 				CA0D06E71975F4C6002458F5 /* GCSTelemetryLossOverlayView.m in Sources */,
+				181104BD1A99A08700D1B58D /* GCSHeartbeatManager.m in Sources */,
 				18B9FACA18B2F7AF00668660 /* GuidedPointAnnotation.m in Sources */,
 				18B9FACB18B2F7AF00668660 /* GCSThemeManager.m in Sources */,
 				01CEC5D419D9FA3800320A34 /* BRRequest.m in Sources */,
@@ -2519,6 +2538,7 @@
 				496E629316DAFB8B00E52E4A /* MainViewController.m in Sources */,
 				496E629516DAFB8B00E52E4A /* WaypointsViewController.m in Sources */,
 				1830D07217D1651400F77F7E /* DateTimeUtils.m in Sources */,
+				181104BC1A99A08700D1B58D /* GCSHeartbeatManager.m in Sources */,
 				18069FD41836F7C70068E7A5 /* iGCSRadioConfig.m in Sources */,
 				496E629716DAFB8B00E52E4A /* ArtificialHorizonView.m in Sources */,
 				496E629916DAFB8B00E52E4A /* CompassView.m in Sources */,

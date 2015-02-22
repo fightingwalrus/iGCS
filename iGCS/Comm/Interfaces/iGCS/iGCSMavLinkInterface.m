@@ -6,8 +6,6 @@
 //
 //
 
-#import "AppDelegate.h" // For TestFlight control
-
 #import "MavLinkTools.h"
 #import "DateTimeUtils.h"
 #import "iGCSMavLinkInterface.h"
@@ -35,9 +33,13 @@
 
 #import "GCSCraftModes.h"
 #import "GCSDataManager.h"
+#import "TelemetryManagers.h"
+
+@interface iGCSMavLinkInterface ()
+@property (nonatomic, strong) GCSHeartbeatManager *heartbeatManager;
+@end
 
 @implementation iGCSMavLinkInterface
-
 
 // TODO: Limit scope of these variables
 iGCSMavLinkInterface *appMLI;
@@ -62,6 +64,7 @@ MavLinkRetryingRequestHandler* retryRequestHandler;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRadioEnteredConfigMode)
                                                      name:GCSRadioConfigEnteredConfigMode object:nil];
         _heartbeatOnlyCount = 0;
+        _heartbeatManager = [[GCSHeartbeatManager alloc] init];
     }
     return self;
 }
@@ -97,7 +100,8 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
                 // We completed a packet, so...
                 switch (msg.msgid) {
                     case MAVLINK_MSG_ID_HEARTBEAT:
-                        [self processHeartbeat];                        
+                        [self processHeartbeat];
+                        [self.heartbeatManager rescheduleLossCheck];
                         break;
                     case MAVLINK_MSG_ID_RADIO_STATUS:
                         DDLogDebug(@"Mavlink msg Radio Status found (109)");
@@ -131,7 +135,6 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
 
 
 #pragma mark - Mission Transactions: receiving
-
 - (void) startReadMissionRequest {
     [retryRequestHandler startRetryingRequest:[[RxMissionRequestList alloc] initWithInterface:self]];
 }
@@ -156,6 +159,7 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
     mavlink_msg_mission_ack_send(MAVLINK_COMM_0, msg.sysid, msg.compid, MAV_MISSION_ACCEPTED);
 }
 
+#pragma mark - Handle heartbeats
 - (void) processHeartbeat {
     DDLogDebug(@"MavLink Heartbeat.");
     
@@ -185,13 +189,10 @@ static void send_uart_bytes(mavlink_channel_t chan, const uint8_t *buffer, uint1
         
         //Reqeuest the data streams to be sent
         [self requestDataStreams];
-        
-
-        
     }
 }
 
-
+#pragma mark - request/stop MAVLink data streams
 - (void) requestDataStreams {
     DDLogInfo(@"Sending request for MavLink messages.");
     

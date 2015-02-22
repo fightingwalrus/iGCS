@@ -22,6 +22,7 @@
 #import "GCSHeartbeat.h"
 #import "GCSSpeechManager.h"
 #import "GCSDataManager.h"
+#import "TelemetryManagers.h"
 
 @interface GCSMapViewController ()
 @property (nonatomic, strong) MKPointAnnotation *uavPos;
@@ -94,6 +95,18 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
                                              selector:@selector(resetTelemetryUserInterface)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showTelemetryLossOverlay)
+                                                 name:GCSHeartbeatManagerHeartbeatWasLost
+                                               object:nil];
+
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideTelemetryLossOverlay)
+                                                 name:GCSHeartbeatManagerHeartbeatDidArrive
+                                               object:nil];
+
 }
 
 + (UIImage*) uavIconForCraft:(id<GCSCraftModel>)craft withYaw:(double)rotation {
@@ -197,6 +210,14 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
 
     [self.customModeLabel setText:@"-"];
     [self.customModeLabel setTextColor:[UIColor whiteColor]];
+}
+
+-(void) showTelemetryLossOverlay {
+    [self.telemetryLossView show];
+}
+
+- (void) hideTelemetryLossOverlay {
+    [self.telemetryLossView hide];
 }
 
 #pragma mark -
@@ -464,14 +485,10 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
         case MAVLINK_MSG_ID_HEARTBEAT: {
             mavlink_heartbeat_t heartbeat;
             mavlink_msg_heartbeat_decode(msg, &heartbeat);
-            
-            // We got a heartbeat, so...
-            [self rescheduleHeartbeatLossCheck];
 
             // Mutate existing craft, or replace if required (e.g. type has changed)
             [GCSDataManager sharedInstance].craft = [GCSCraftModelGenerator updateOrReplaceModel:[GCSDataManager sharedInstance].craft
                                                                                      withCurrent:[GCSHeartbeat heartbeatFromMavlinkHeartbeat:heartbeat]];
-
             // Update segmented control
             NSInteger idx = CONTROL_MODE_RC;
             if ([GCSDataManager sharedInstance].craft.isInAutoMode) {
