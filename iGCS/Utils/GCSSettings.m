@@ -7,7 +7,6 @@
 //
 
 #import "GCSSettings.h"
-#import "FileUtils.h"
 #import "GCSDatamanager.h"
 
 @implementation GCSSettings
@@ -16,7 +15,6 @@ static NSString* const altitudeKey = @"altitudeKey";
 static NSString* const radiusKey = @"radiusKey";
 static NSString* const ceilingKey = @"ceilingKey";
 static NSString* const unitKey = @"unitKey";
-
 
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeDouble:self.altitude forKey:altitudeKey];
@@ -36,9 +34,5 @@ static NSString* const unitKey = @"unitKey";
     
     return self;
 }
-
-
-
-
 
 @end

@@ -32,15 +32,13 @@
         [self.customTextField autoSetDimension:ALDimensionWidth toSize:75.0f];
         [self.self.customTextField autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customLabel withOffset:0];
         [self.customTextField autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.contentView];
-      }
-    
+      }    
     return self;
 }
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

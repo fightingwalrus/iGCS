@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, Units) {
+typedef NS_ENUM (NSInteger, Units) {
     standard,
     metric
 };
@@ -20,6 +20,5 @@ typedef NS_ENUM(NSInteger, Units) {
 @property (assign, nonatomic) double radius;
 @property (assign, nonatomic) double ceiling;
 @property (assign, nonatomic) NSUInteger unitType;
-
 
 @end

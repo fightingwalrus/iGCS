@@ -23,7 +23,6 @@
     return sharedInstance;
 }
 
-
 - (instancetype) init {
     self = [super init];
     if (self) {
@@ -39,8 +38,7 @@
     GCSSettings *progData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
     if (progData) {
         _gcsSettings = progData;
-    }
-    else {
+    } else {
         _gcsSettings = [[GCSSettings alloc] init];
     }
 }
@@ -61,8 +59,5 @@
     }
     return filePath;
 }
-
-
-
 
 @end
