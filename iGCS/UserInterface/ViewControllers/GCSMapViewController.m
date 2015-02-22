@@ -47,8 +47,6 @@ enum {
     CONTROL_MODE_GUIDED   = 2
 };
 
-static const double HEARTBEAT_LOSS_WAIT_TIME = 3.0;
-
 static const double FOLLOW_ME_MIN_UPDATE_TIME   = 2.0;
 static const double FOLLOW_ME_REQUIRED_ACCURACY = 10.0;
 
@@ -209,7 +207,6 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     [self.armedLabel setTextColor:[UIColor whiteColor]];
 
     [self.customModeLabel setText:@"-"];
-    [self.customModeLabel setTextColor:[UIColor whiteColor]];
 }
 
 -(void) showTelemetryLossOverlay {
@@ -391,12 +388,6 @@ static const NSUInteger VEHICLE_ICON_SIZE = 64;
     CXAlertView *alertView = (CXAlertView*)(sender.view);
     [(UILabel*)[alertView contentView] setText:[GCSMapViewController formatGotoAlertMessage:self.gotoCoordinates
                                                                                     withAlt:self.gotoAltitude]];
-}
-
-- (void) rescheduleHeartbeatLossCheck {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self.telemetryLossView selector:@selector(show) object:nil];
-    [self.telemetryLossView hide];
-    [self.telemetryLossView performSelector:@selector(show) withObject:nil afterDelay:HEARTBEAT_LOSS_WAIT_TIME];
 }
 
 - (void) handlePacket:(mavlink_message_t*)msg {

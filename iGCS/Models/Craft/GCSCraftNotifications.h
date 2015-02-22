@@ -11,11 +11,11 @@
 
 @interface GCSCraftNotifications : NSObject
 
-+ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *) lastHeartbeat
-                      andNewHeartbeat:(GCSHeartbeat *) newHeartbeat;
++ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                          andNewHeartbeat:(GCSHeartbeat *)newHeartbeat;
 
-+ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat*) lastHeartbeat
-                              andNewHeartbeat:(GCSHeartbeat*) newHeartbeat;
++ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat*)lastHeartbeat
+                              andNewHeartbeat:(GCSHeartbeat*)newHeartbeat;
 
 @end
 

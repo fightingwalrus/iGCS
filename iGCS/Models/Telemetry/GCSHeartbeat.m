@@ -16,8 +16,7 @@
 @implementation GCSHeartbeat
 
 + (GCSHeartbeat *)heartbeatFromMavlinkHeartbeat:(mavlink_heartbeat_t)heartbeat {
-    GCSHeartbeat *aHeartbeat = [[GCSHeartbeat alloc] initWithHeartbeat:heartbeat];
-    return aHeartbeat;
+    return [[GCSHeartbeat alloc] initWithHeartbeat:heartbeat];
 }
 
 - (instancetype)initWithHeartbeat:(mavlink_heartbeat_t) heartbeat {

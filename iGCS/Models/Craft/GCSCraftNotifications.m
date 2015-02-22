@@ -14,9 +14,8 @@ NSString * const GCSCraftNotificationsCraftArmedStatusDidChange = @"GCSCraftNoti
 
 @implementation GCSCraftNotifications
 
-+ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *) lastHeartbeat
-                      andNewHeartbeat:(GCSHeartbeat *) newHeartbeat {
-
++ (void)didNavModeChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                          andNewHeartbeat:(GCSHeartbeat *)newHeartbeat {
 
     if (lastHeartbeat && lastHeartbeat.customMode == newHeartbeat.customMode) return;
 
@@ -26,12 +25,10 @@ NSString * const GCSCraftNotificationsCraftArmedStatusDidChange = @"GCSCraftNoti
     });
 }
 
-+ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat *) lastHeartbeat
-                              andNewHeartbeat:(GCSHeartbeat *) newHeartbeat {
++ (void)didArmedStatusChangeFromLastHeartbeat:(GCSHeartbeat *)lastHeartbeat
+                              andNewHeartbeat:(GCSHeartbeat *)newHeartbeat {
 
-
-    // if lastHeartbeat is not nil AND the armings status has not changes return
-    if (lastHeartbeat && (lastHeartbeat.isArmed) == (newHeartbeat.isArmed)) {
+    if (lastHeartbeat && lastHeartbeat.isArmed == newHeartbeat.isArmed) {
         return;
     }
 
