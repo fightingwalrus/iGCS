@@ -27,7 +27,6 @@
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *doneBarButtonItem;
 
-@property (nonatomic, assign) BOOL standardSelected;
 @end
 
 @implementation DefaultSettingsTableViewController
@@ -56,7 +55,7 @@
     //self.waypointSettingsArray = @[@"Altitude", @"Radius"];
     
     //other settings
-    self.otherSettingsArray = @[@"Radio",@"About"];
+    self.otherSettingsArray = @[@"Radio",@"Audio Alerts", @"About"];
     
     NSMutableArray *keys = [[NSMutableArray alloc] init];
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
@@ -141,6 +140,14 @@
         [settingsWaypointCell.customTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingDidEnd];
         cell = settingsWaypointCell;
 
+    } else if ([cellContent isEqual:@"Audio Alerts"]){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.textLabel.text = cellContent;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+        cell.accessoryView = switchView;
+        [switchView setOn:[GCSDataManager sharedInstance].gcsSettings.audioAlertStatus animated:NO];
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -231,6 +238,12 @@
         cell = (SettingsWaypointCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text doubleValue];
     }
+    [GCSDataManager save];
+}
+
+- (void) switchChanged:(id)sender {
+    UISwitch *switchControl = sender;
+    [GCSDataManager sharedInstance].gcsSettings.audioAlertStatus = switchControl.on;
     [GCSDataManager save];
 }
 

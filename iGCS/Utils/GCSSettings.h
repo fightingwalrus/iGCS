@@ -19,5 +19,6 @@ typedef NS_ENUM (NSInteger, Units) {
 @property (assign, nonatomic) double radius;
 @property (assign, nonatomic) double ceiling;
 @property (assign, nonatomic) NSUInteger unitType;
+@property (assign, nonatomic) BOOL audioAlertStatus;
 
 @end
