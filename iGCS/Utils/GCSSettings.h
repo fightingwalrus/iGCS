@@ -13,7 +13,6 @@ typedef NS_ENUM (NSInteger, Units) {
     metric
 };
 
-
 @interface GCSSettings : NSObject <NSCoding>
 
 @property (assign, nonatomic) double altitude;

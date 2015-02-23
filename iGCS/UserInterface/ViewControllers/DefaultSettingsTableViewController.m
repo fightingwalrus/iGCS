@@ -107,8 +107,7 @@
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
     UITableViewCell *cell;
-    
-    
+      
     if ([key isEqual:@"Waypoints"]) {
         SettingsWaypointCell *settingsWaypointCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (settingsWaypointCell == nil) {
@@ -157,9 +156,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             }
-            
         }
-        
     }
     return cell;
 }
@@ -191,29 +188,11 @@
         [self.navigationController pushViewController:aboutViewController animated:YES];
     }
 
-/*
     if ([cellContent isEqual: @"Radio"]) {
         RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
         [self.navigationController pushViewController:radioSettingsViewController animated:YES];
     }
-*/    
 }
-
-
-/* Probably eventually need to implement this to customize our header
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.frame = CGRectMake(20, 8, 320, 20);
-    myLabel.font = [UIFont boldSystemFontOfSize:18];
-    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:myLabel];
-    
-    return headerView;
-}
-*/
 
 
 #pragma mark - UINavigationBar Button handlers

@@ -31,7 +31,6 @@ static NSString* const unitKey = @"unitKey";
         _ceiling = [decoder decodeDoubleForKey:ceilingKey];
         _unitType = [decoder decodeIntegerForKey:unitKey];
     }
-    
     return self;
 }
 

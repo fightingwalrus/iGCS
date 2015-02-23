@@ -9,6 +9,7 @@
 #import "GCSDataManager.h"
 #import "GCSCraftModelGenerator.h"
 #import "GCSSettings.h"
+#import "FileUtils.h"
 
 
 
@@ -53,9 +54,7 @@
 {
     static NSString* filePath = nil;
     if (!filePath) {
-        filePath =
-        [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
-         stringByAppendingPathComponent:@"GCSSettings"];
+        filePath = [[FileUtils URLToFileInDocumentsDirWithFileName:@"GCSSettings"] path];
     }
     return filePath;
 }
