@@ -22,7 +22,6 @@ static void *SVKvoContext = &SVKvoContext;
 
 // Navigation bar items
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *saveBarButtonItem;
 @property (strong, nonatomic) GCSActivityIndicatorView *activityIndicatorView;
 
@@ -119,14 +118,11 @@ static void *SVKvoContext = &SVKvoContext;
 -(void)configureNavigationBar {
     [self setTitle:@"Configure Radio"];
 
-    self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                         target:self action:@selector(cancelChanges:)];
     // save button disabled on load
     self.saveBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                        target:self action:@selector(saveSettings:)];
     self.saveBarButtonItem.enabled = NO;
 
-    self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem;
     self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
 }
 
@@ -187,11 +183,6 @@ static void *SVKvoContext = &SVKvoContext;
 
 #pragma mark - UINavigationBar Button handlers
 
-- (void)cancelChanges:(id)sender {
-    [[CommController sharedInstance] startTelemetryMode];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)saveSettings:(id)sender {
     DDLogDebug(@"Save Radio config Settings");
 
@@ -226,7 +217,7 @@ static void *SVKvoContext = &SVKvoContext;
 -(void)radioHasBootedAfterSave {
     // dissmiss radio config sheet
     [[CommController sharedInstance] startTelemetryMode];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)radioHasEnteredConfigMode {

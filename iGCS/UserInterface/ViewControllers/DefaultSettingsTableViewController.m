@@ -9,6 +9,7 @@
 #import "DefaultSettingsTableViewController.h"
 #import "SettingsSegementedControlCell.h"
 #import "RadioSettingsViewController.h"
+#import "CommController.h"
 #import "AboutViewController.h"
 #import "SettingsWaypointCell.h"
 #import "GCSDataManager.h"
@@ -190,10 +191,18 @@
     }
 
     if ([cellContent isEqual: @"Radio"]) {
-        RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
-        [self.navigationController pushViewController:radioSettingsViewController animated:YES];
+        if ([CommController sharedInstance].connectedAccessory == GCSAccessoryFightingWalrusRadio) {
+            RadioSettingsViewController *radioSettingsViewController = [[RadioSettingsViewController alloc] init];
+            [self.navigationController pushViewController:radioSettingsViewController animated:YES];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Radio not connected"
+                                                            message:@"Please connect a supported accessory." delegate:self
+                                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
+
 
 
 #pragma mark - UINavigationBar Button handlers
