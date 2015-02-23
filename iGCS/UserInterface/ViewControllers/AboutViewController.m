@@ -11,6 +11,7 @@
 #import "PureLayout.h"
 
 #import "FileUtils.h"
+#import "BundleUtils.h"
 
 @interface AboutViewController ()
 
@@ -28,10 +29,10 @@
     self.textView.backgroundColor = [GCSThemeManager sharedInstance].appSheetBackgroundColor;
     [self.view addSubview:self.textView];
     [self.textView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-    [self populateTextView:[self getAcknowledgements]];
+    [self populateTextViewWithAttributedString:[self buildAcknowledgementsData]];
 }
 
-- (NSAttributedString *) getAcknowledgements {
+- (NSAttributedString *) buildAcknowledgementsData {
     
     NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     if(!settingsBundle) {
@@ -40,7 +41,7 @@
 
     NSDictionary *acknowlegementPlist = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Acknowledgements.plist"]];
     NSArray *preferences = [acknowlegementPlist objectForKey:@"PreferenceSpecifiers"];
-    NSString *htmlString = [NSString stringWithFormat:@"<h2> iDroneCtrl Version: %@ </h2><br><br><h3>3rd Party Libraries</h3>", [self getVersionInfo]];
+    NSString *htmlString = [NSString stringWithFormat:@"<h2> iDroneCtrl Version: %@ </h2><br><br><h3>3rd Party Libraries</h3>", [BundleUtils appVersionInfo]];
 
     for(NSDictionary *prefSpecification in preferences) {
         NSString *footerInfo = prefSpecification[@"FooterText"];
@@ -54,16 +55,12 @@
     return attributedString;
 }
 
-- (void) populateTextView:(NSAttributedString *) attributedString {
+- (void) populateTextViewWithAttributedString:(NSAttributedString *) attributedString {
     self.textView.attributedText = attributedString;
     self.textView.scrollEnabled = YES;
     self.textView.editable = NO;
     self.textView.backgroundColor = [GCSThemeManager sharedInstance].appSheetBackgroundColor;
     [self.textView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-}
-
-- (NSString *) getVersionInfo {
-    return[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 }
 
 - (void)didReceiveMemoryWarning {

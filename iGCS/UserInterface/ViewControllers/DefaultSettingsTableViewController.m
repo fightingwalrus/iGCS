@@ -12,6 +12,7 @@
 #import "AboutViewController.h"
 #import "SettingsWaypointCell.h"
 #import "GCSDataManager.h"
+#import "BundleUtils.h"
 
 
 @interface DefaultSettingsTableViewController ()
@@ -103,7 +104,7 @@
     
     static NSString *cellIdentifier = @"Cell";
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
-    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSArray *contents = self.sectionContentsDict[key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
     UITableViewCell *cell;
@@ -171,16 +172,16 @@
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *key = [self.sectionKeysArray objectAtIndex:indexPath.section];
-    NSArray *contents = [self.sectionContentsDict objectForKey:key];
+    NSArray *contents = self.sectionContentsDict[key];
     NSString *cellContent = [contents objectAtIndex:indexPath.row];
     
     if ([cellContent isEqual: @"Contact Us"]) {
-        NSURL *contactInfo = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:contact@fightingwalrus.com?subject=iDroneCtrl%%20%@", [self getVersionInfo]]];
+        NSURL *contactInfo = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:contact@fightingwalrus.com?subject=iDroneCtrl%%20%@", [BundleUtils appVersionInfo]]];
         [[UIApplication sharedApplication] openURL:contactInfo];
     }
     
     if ([cellContent isEqual: @"Order iDroneLink"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fightingwalrus.com/products/idronelink"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fightingwalrus.com/products/idronelink?ref=idronectrlapp"]];
     }
     
     if ([cellContent isEqual: @"About"]) {
@@ -222,10 +223,6 @@
         [GCSDataManager sharedInstance].gcsSettings.radius = [cell.customTextField.text doubleValue];
     }
     [GCSDataManager save];
-}
-
-- (NSString *) getVersionInfo {
-    return[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 }
 
 @end

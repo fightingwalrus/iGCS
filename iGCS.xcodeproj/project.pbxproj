@@ -11,6 +11,8 @@
 		0127AA971A8D872200399798 /* SettingsWaypointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AA961A8D872200399798 /* SettingsWaypointCell.m */; };
 		0127AAA61A90566D00399798 /* GCSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0127AAA51A90566D00399798 /* GCSSettings.m */; };
 		012E66741A940C3A00705AEE /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012E66731A940C3A00705AEE /* AboutViewController.m */; };
+		017DA9D01A9ABA7D0042055C /* BundleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 017DA9CF1A9ABA7D0042055C /* BundleUtils.m */; };
+		017DA9D11A9ABA7D0042055C /* BundleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 017DA9CF1A9ABA7D0042055C /* BundleUtils.m */; };
 		01BFF8E71A8EC47A000927D6 /* SettingsSegementedControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */; };
 		01CEC56819D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
 		01CEC56919D9F8BD00320A34 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC56319D9F8BD00320A34 /* Documentation.html */; };
@@ -421,6 +423,8 @@
 		0127AAA51A90566D00399798 /* GCSSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCSSettings.m; path = ../Utils/GCSSettings.m; sourceTree = "<group>"; };
 		012E66721A940C3A00705AEE /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		012E66731A940C3A00705AEE /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		017DA9CE1A9ABA7D0042055C /* BundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleUtils.h; sourceTree = "<group>"; };
+		017DA9CF1A9ABA7D0042055C /* BundleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleUtils.m; sourceTree = "<group>"; };
 		01BFF8E51A8EC47A000927D6 /* SettingsSegementedControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsSegementedControlCell.h; path = TableViewCells/SettingsSegementedControlCell.h; sourceTree = "<group>"; };
 		01BFF8E61A8EC47A000927D6 /* SettingsSegementedControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsSegementedControlCell.m; path = TableViewCells/SettingsSegementedControlCell.m; sourceTree = "<group>"; };
 		01CEC56319D9F8BD00320A34 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
@@ -1252,6 +1256,8 @@
 				18E58A86198993EB0025A516 /* ExceptionHandler.m */,
 				18E58A87198993EB0025A516 /* FileUtils.h */,
 				18E58A88198993EB0025A516 /* FileUtils.m */,
+				017DA9CE1A9ABA7D0042055C /* BundleUtils.h */,
+				017DA9CF1A9ABA7D0042055C /* BundleUtils.m */,
 				18E58A89198993EB0025A516 /* Logger.h */,
 				18E58A8A198993EB0025A516 /* Logger.m */,
 				CA056B6118C5A50B00A36F5A /* DataRateRecorder.h */,
@@ -2453,6 +2459,7 @@
 				CA35B6A61A81AD2900104924 /* MissionItemField.m in Sources */,
 				CA35B6A01A81AC8600104924 /* SiKFirmware.m in Sources */,
 				CA35B6A51A81AD1500104924 /* WaypointHelper.m in Sources */,
+				017DA9D11A9ABA7D0042055C /* BundleUtils.m in Sources */,
 				CA35B6A41A81ACEE00104924 /* WaypointsHolder.m in Sources */,
 				CA35B6BB1A81B03E00104924 /* WaypointsTests.m in Sources */,
 			);
@@ -2477,6 +2484,7 @@
 				0127AA771A89BBD600399798 /* DefaultSettingsTableViewController.m in Sources */,
 				CA154E8519BFE52000ECE919 /* DDTTYLogger.m in Sources */,
 				CA10E131188FCD42002DF0E4 /* GCSThemeManager.m in Sources */,
+				017DA9D01A9ABA7D0042055C /* BundleUtils.m in Sources */,
 				0127AA971A8D872200399798 /* SettingsWaypointCell.m in Sources */,
 				496E628B16DAFB8B00E52E4A /* WaypointAnnotation.m in Sources */,
 				496E628F16DAFB8B00E52E4A /* CommsViewController.m in Sources */,
