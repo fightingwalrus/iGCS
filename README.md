@@ -1,3 +1,11 @@
+Notice
+======
+As of late February 2015, the Fighting Walrus team have moved development of iDroneCtrl to a private fork.
+
+While this repo will be otherwise dormant, users may wish to log issues or feature requests here, and regular [App Store](https://itunes.apple.com/us/app/idronectrl/id948077202) updates will continue.
+
+For additional news, or to subscribe for updates, please see the [Fighting Walrus blog](http://www.fightingwalrus.com/blogs/news).
+
 ![alt tag](https://raw.github.com/fightingwalrus/iGCS/master/iGCS/Icons/Icon-50.png) iDroneCtrl
 ====
 
